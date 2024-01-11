@@ -3,8 +3,8 @@
  */
 
 import { useHelperKidHolder } from "@/hooks/user/useHelperKidHolder";
+import { useGetHelperKidByIdQuery } from "@/turbo/graphql/helperKids";
 import { HelperKid } from "@domain/model/helper_kids/HelperKid";
-import { useGetHelperKidByIdQuery } from "graphql/hasura/generated/hasuraHelperKidsGraphql";
 
 export const useGetHelperKid = () => {
   const { helperKidId } = useHelperKidHolder();

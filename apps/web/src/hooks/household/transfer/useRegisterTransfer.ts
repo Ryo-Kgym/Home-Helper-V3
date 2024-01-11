@@ -6,7 +6,7 @@ import type { IocomeType } from "@domain/model/household/IocomeType";
 import {
   useCreateDailyDetailMutation,
   useGetTransferCategoryByQuery,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";

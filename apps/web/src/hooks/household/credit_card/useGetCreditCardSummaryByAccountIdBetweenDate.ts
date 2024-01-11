@@ -1,4 +1,4 @@
-import { useGetCreditCardSummaryByAccountIdBetweenDateQuery } from "@graphql/hasura/generated/hasuraGraphql";
+import { useGetCreditCardSummaryByAccountIdBetweenDateQuery } from "@/turbo/graphql/household";
 
 export const useGetCreditCardSummaryByAccountIdBetweenDate = (
   accountId: string,

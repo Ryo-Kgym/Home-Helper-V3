@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { GetCreditCardListQuery } from "@/turbo/graphql/household";
 import type { TableProps } from "@components/atoms/Table";
-import type { GetCreditCardListQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { IocomeType } from "@domain/model/household/IocomeType";
 

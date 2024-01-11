@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
-// @ts-ignore
 import gql from "graphql-tag";
 import * as Urql from "urql";
 

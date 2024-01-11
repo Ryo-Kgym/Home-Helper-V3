@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { GetDepositQuery } from "@graphql/hasura/generated/hasuraGraphql";
+import type { GetDepositQuery } from "@/turbo/graphql/household";
 
 import type { CategoryDetail } from "./type";
 import { refillDepositQuery as testTarget } from "./refill-deposit-query";

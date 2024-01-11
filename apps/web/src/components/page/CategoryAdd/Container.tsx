@@ -4,12 +4,12 @@
 "use client";
 
 import { useState } from "react";
-import { useCreateCategoryMutation } from "@graphql/hasura/generated/hasuraGraphql";
-import { errorPopup, successPopup } from "@function/successPopup";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { useGenerateId } from "@hooks/useGenerateId";
-import { useGroup } from "@hooks/group/useGroup";
+import { useCreateCategoryMutation } from "@/turbo/graphql/household";
 import { Presenter_ } from "@components/page/CategoryAdd/Presenter";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { errorPopup, successPopup } from "@function/successPopup";
+import { useGroup } from "@hooks/group/useGroup";
+import { useGenerateId } from "@hooks/useGenerateId";
 
 export const Container_ = () => {
   const { generate } = useGenerateId();
@@ -34,7 +34,7 @@ export const Container_ = () => {
         displayOrder: Number(inputDisplayOrder),
         groupId,
       });
-      if (error) throw new Error(error.message);
+      if (error) new Error(error.message);
 
       successPopup("登録しました");
     } catch (e) {

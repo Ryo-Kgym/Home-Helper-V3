@@ -1,4 +1,4 @@
-import { useGetCreditCardSummaryBetweenWithdrawalDateQuery } from "@graphql/hasura/generated/hasuraGraphql";
+import { useGetCreditCardSummaryBetweenWithdrawalDateQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetCreditCardSummaryBetweenMonth = (

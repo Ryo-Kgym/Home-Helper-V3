@@ -7,10 +7,10 @@ import type { TableProps } from "@components/atoms/Table";
 import type { GenreType } from "@domain/model/household/GenreType";
 import type { IocomeType } from "@domain/model/household/IocomeType";
 import { useRouter } from "next/navigation";
+import { useGetAllGenreQuery } from "@/turbo/graphql/household";
 import { ValidityStatus } from "@components/atoms";
 import { getLabel as getGenreTypeLabel } from "@domain/model/household/GenreType";
 import { getLabel as getIocomeTypeLabel } from "@domain/model/household/IocomeType";
-import { useGetAllGenreQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 
 import { Presenter_ } from "./Presenter";

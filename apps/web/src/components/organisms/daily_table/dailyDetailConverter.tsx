@@ -2,9 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { GetDailyDetailByDateQuery } from "@/turbo/graphql/household";
 import type { TableProps } from "@components/atoms/Table/";
 import type { IocomeType } from "@domain/model/household/IocomeType";
-import type { GetDailyDetailByDateQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 
 type dailyDetailConverterArgs = {

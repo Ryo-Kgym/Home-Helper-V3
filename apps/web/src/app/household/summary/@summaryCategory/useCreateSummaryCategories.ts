@@ -6,7 +6,7 @@ import type { TransferListItem } from "@components/ui";
 import {
   useCreateSummaryCategoryMutation,
   useDeleteSummaryCategoryMutation,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
 

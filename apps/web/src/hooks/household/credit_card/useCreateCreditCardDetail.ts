@@ -3,7 +3,7 @@
  */
 
 import type { IocomeType } from "@domain/model/household/IocomeType";
-import { useCreateCreditCardDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
+import { useCreateCreditCardDetailMutation } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUpdateCreditCardSummaryTotal } from "@hooks/household/credit_card/useUpdateCreditCardSummaryTotal";
 import { useGenerateId } from "@hooks/useGenerateId";

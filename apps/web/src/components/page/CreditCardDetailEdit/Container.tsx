@@ -5,12 +5,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { successPopup } from "@function/successPopup";
 import {
   useGetCreditCardDetailByIdQuery,
   useUpdateCreditCardDetailByIdMutation,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { successPopup } from "@function/successPopup";
 
 import { Presenter_ } from "./Presenter";
 

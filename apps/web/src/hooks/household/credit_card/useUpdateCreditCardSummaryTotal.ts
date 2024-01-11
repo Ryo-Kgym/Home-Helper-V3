@@ -5,7 +5,7 @@
 import {
   useGetCreditCardDetailBySummaryIdQuery,
   useUpdateCreditCardSummaryTotalMutation,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
 
 export const useUpdateCreditCardSummaryTotal = ({
   summaryId,
@@ -35,7 +35,7 @@ export const useUpdateCreditCardSummaryTotal = ({
 
       if (error) {
         console.error(error);
-        throw new Error("UpdateCreditCardSummaryTotalMutationError");
+        new Error("UpdateCreditCardSummaryTotalMutationError");
       }
     } catch (e) {
       console.error(e);

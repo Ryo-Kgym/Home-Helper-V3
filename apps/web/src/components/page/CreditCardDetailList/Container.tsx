@@ -6,8 +6,8 @@
 import type { TableProps } from "@components/atoms/Table";
 import type { IocomeType } from "@domain/model/household/IocomeType";
 import { useRouter } from "next/navigation";
+import { useGetCreditCardDetailBySummaryIdQuery } from "@/turbo/graphql/household";
 import { FormatPrice } from "@components/molecules/FormatPrice";
-import { useGetCreditCardDetailBySummaryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 
 import { Presenter_ } from "./Presenter";
 

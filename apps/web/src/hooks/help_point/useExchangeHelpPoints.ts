@@ -3,11 +3,11 @@
  */
 
 import type { ExchangeItem } from "domain/model/helper_kids/ExchangeItem";
+import { useInsertExchangedAchievementMutation } from "@/turbo/graphql/helperKids";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
-import { useInsertExchangedAchievementMutation } from "graphql/hasura/generated/hasuraHelperKidsGraphql";
 
 type Args = {
   exchangeItemMap: Map<string, ExchangeItem>;

@@ -3,8 +3,8 @@
  */
 
 import type { DailyDetail } from "@domain/model/household/DailyDetail";
+import { useGetDailyDetailByDateAccountIdQuery } from "@/turbo/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { useGetDailyDetailByDateAccountIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetDailyDetailByDateAccountId = (

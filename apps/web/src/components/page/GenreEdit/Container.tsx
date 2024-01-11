@@ -7,10 +7,11 @@ import { useEffect, useState } from "react";
 import {
   useGetGenreByIdQuery,
   useUpdateGenreByIdMutation,
-} from "@graphql/hasura/generated/hasuraGraphql";
-import { IocomeType } from "@domain/model/household/IocomeType";
+} from "@/turbo/graphql/household";
 import { GenreType } from "@domain/model/household/GenreType";
+import { IocomeType } from "@domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "@function/successPopup";
+
 import { Presenter_ } from "./Presenter";
 
 export const Container_ = ({ genreId }: { genreId: string }) => {

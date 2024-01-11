@@ -1,0 +1,37 @@
+{
+  "name": "@/turbo/graphql",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "hasura-household-codegen": "graphql-codegen --config hasura-codegen.yml",
+    "hasura-helper-kids-codegen": "graphql-codegen --config hasura-helper-kids-codegen.yml"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.8",
+    "@graphql-codegen/cli": "^3.3.1",
+    "@graphql-codegen/client-preset": "3.0.0",
+    "@graphql-codegen/introspection": "3.0.0",
+    "@graphql-codegen/typescript": "^3.0.4",
+    "@graphql-codegen/typescript-operations": "^3.0.4",
+    "@graphql-codegen/typescript-urql": "^3.7.3",
+    "eslint": "^8.56.0",
+    "graphql": "^16.8.1",
+    "typescript": "^5.3.3",
+    "urql": "^3.0.4",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "workspace:^0.2.0",
+    "@acme/prettier-config": "workspace:^0.1.0",
+    "@acme/tsconfig": "workspace:^0.1.0",
+    "@types/node": "^20.10.6",
+    "prettier": "^3.1.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@acme/eslint-config/base"
+    ]
+  },
+  "prettier": "@acme/prettier-config"
+}

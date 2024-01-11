@@ -5,8 +5,8 @@
 "use client";
 
 import type { LinkProps } from "@components/atoms/Card";
+import { useGetApplicationByGroupIdQuery } from "@/turbo/graphql/household";
 import { LinkList } from "@components/atoms/Card";
-import { useGetApplicationByGroupIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const SelectAppContainer = () => {

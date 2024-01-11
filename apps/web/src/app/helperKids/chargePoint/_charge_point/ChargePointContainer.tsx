@@ -6,9 +6,9 @@
 import type { TableProps } from "@components/atoms/Table";
 import type { HelpItem } from "@domain/model/helper_kids/HelpItem";
 import { useEffect, useState } from "react";
+import { useGetHelpItemsQuery } from "@/turbo/graphql/helperKids";
 import { Counter } from "@components/atoms/Counter/index";
 import { errorPopup, successPopup } from "@function/successPopup";
-import { useGetHelpItemsQuery } from "@graphql/hasura/generated/hasuraHelperKidsGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGetHelperKid } from "@hooks/help_point/useHelperKidPoint";
 import { useRegisterHelpPoints } from "@hooks/help_point/useRegisterHelpPoints";

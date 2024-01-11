@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useGetAccountBalanceListQuery } from "@graphql/hasura/generated/hasuraGraphql";
+import { useGetAccountBalanceListQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetAccountBalanceList = (
