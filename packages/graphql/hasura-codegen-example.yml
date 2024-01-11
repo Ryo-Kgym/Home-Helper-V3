@@ -3,14 +3,20 @@ schema: "http://localhost:8282/v1/graphql"
 documents: "./src/graphql/hasura/household/**/**.graphql"
 generates:
   ./src/graphql/hasura/generated/hasuraGraphql.tsx:
+    config:
+      interfacePrefix: "I"
+      typesPrefix: "I"
+      skipTypename: true
+      declarationKind: "interface"
+      noNamespaces: true
+      withHooks: true
     plugins:
       - "typescript"
       - "typescript-operations"
       - "typescript-urql"
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
   ./hasura-graphql.schema.json:
     plugins:
       - "introspection"
-hooks:
-  afterOneFileWrite:
-    - 'eslint --fix'
-    - 'prettier --write'

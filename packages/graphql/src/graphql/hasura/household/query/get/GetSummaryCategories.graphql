@@ -1,0 +1,20 @@
+query GetSummaryCategories($groupId: String!) {
+  categories: householdSummaryCategory(
+    where: { groupId: { _eq: $groupId } }
+    orderBy: { displayOrder: ASC }
+  ) {
+    id
+    groupId
+    displayOrder
+    category: category {
+      id
+      name
+      genre: genre {
+        id
+        name
+        type: genreType
+        iocomeType
+      }
+    }
+  }
+}

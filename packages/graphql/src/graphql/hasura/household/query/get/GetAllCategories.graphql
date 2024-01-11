@@ -1,0 +1,15 @@
+query GetAllCategories($groupId: String!) {
+  categories: householdCategory(
+    where: { groupId: { _eq: $groupId } }
+    orderBy: [{ genre: { displayOrder: ASC } }, { displayOrder: ASC }]
+  ) {
+    id
+    categoryName: name
+    displayOrder
+    validFlag
+    genre {
+      genreId: id
+      genreName: name
+    }
+  }
+}

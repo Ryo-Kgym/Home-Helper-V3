@@ -1,0 +1,19 @@
+mutation RegisterHelpPointEarnedAchievement(
+  $helpPointEarnedAchievementId: uuid!
+  $helperKidId: uuid!
+  $earnedPoint: Int!
+  $earnedDatetime: timestamp!
+  $groupId: uuid!
+) {
+  insertHelperKidsHelpPointEarnedAchievementOne(
+    object: {
+      helpPointEarnedAchievementId: $helpPointEarnedAchievementId
+      helperKidId: $helperKidId
+      earnedPoint: $earnedPoint
+      groupId: $groupId
+      earnedDatetime: $earnedDatetime
+    }
+  ) {
+    id: helpPointEarnedAchievementId
+  }
+}

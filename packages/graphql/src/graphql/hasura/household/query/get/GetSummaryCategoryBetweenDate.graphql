@@ -1,0 +1,38 @@
+query GetSummaryCategoryBetweenDate(
+  $fromDate: date!
+  $toDate: date!
+  $groupId: String!
+) {
+  summaryCategoryList: householdSummaryCategory(
+    orderBy: { displayOrder: ASC }
+    where: { groupId: { _eq: $groupId } }
+  ) {
+    category {
+      name
+      id
+      genre {
+        iocomeType
+      }
+      daily: dailyDetails(
+        where: {
+          groupId: { _eq: $groupId }
+          _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+        }
+        orderBy: { date: ASC }
+      ) {
+        date
+        amount
+      }
+      creditCard: creditCardDetails(
+        where: {
+          groupId: { _eq: $groupId }
+          _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+        }
+        orderBy: { date: ASC }
+      ) {
+        date
+        amount
+      }
+    }
+  }
+}

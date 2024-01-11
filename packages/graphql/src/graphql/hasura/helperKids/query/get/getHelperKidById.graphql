@@ -1,0 +1,41 @@
+query getHelperKidById($helperKidId: uuid!) {
+  helperKid: helperKidsHelperKidByPk(helperKidId: $helperKidId) {
+    id: helperKidId
+    name
+    nameSuffix
+  }
+  earnedAgg: helperKidsHelpPointEarnedAchievementAggregate(
+    where: { helperKidId: { _eq: $helperKidId } }
+  ) {
+    helperKids: nodes {
+      id: helperKidId
+      earnedDatetime
+      earnedPoint
+    }
+    aggregate {
+      sum {
+        earnedPoint
+      }
+      max {
+        earnedDatetime
+      }
+    }
+  }
+  exchangedAgg: helperKidsHelpPointExchangedAchievementAggregate(
+    where: { helperKidId: { _eq: $helperKidId } }
+  ) {
+    helperKids: nodes {
+      id: helperKidId
+      exchangedDatetime
+      exchangeTotalPoint
+    }
+    aggregate {
+      sum {
+        exchangeTotalPoint
+      }
+      max {
+        exchangedDatetime
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query getHelpItems($groupId: uuid!) {
+    helpItems: helperKidsHelpItem(where: {groupId: {_eq: $groupId}}) {
+        id: helpItemId
+        name
+        point
+        memo
+    }
+}
