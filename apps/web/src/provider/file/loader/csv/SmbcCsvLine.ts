@@ -13,16 +13,16 @@ export const parseSmbcCsvLine = (line: string): SmbcCsvLine => {
 
   return {
     date: () => {
-      return new Date(splitLine[0]);
+      return new Date(splitLine[0]!);
     },
     shopName: () => {
-      return splitLine[1];
+      return splitLine[1]!;
     },
     price: () => {
       return Number(splitLine[2]);
     },
     note: () => {
-      return splitLine[6];
+      return splitLine[6]!;
     },
   };
 };

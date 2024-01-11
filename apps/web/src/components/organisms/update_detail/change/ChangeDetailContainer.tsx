@@ -2,12 +2,13 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { DailyDetail } from "@domain/model/household/DailyDetail";
 import { useEffect, useState } from "react";
-import { ChangeDetailPresenter } from "./ChangeDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
 import { useDeleteDailyDetailBySerialNo } from "@hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
-import { DailyDetail } from "@domain/model/household/DailyDetail";
+import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
+
+import { ChangeDetailPresenter } from "./ChangeDetailPresenter";
 
 export const ChangeDetailContainer = ({
   initData,
@@ -25,7 +26,7 @@ export const ChangeDetailContainer = ({
   const [memo, setMemo] = useState<string>("");
 
   const { updateHandler } = useUpdateDailyDetailBySerialNo({
-    id: initData?.id!,
+    id: initData?.id ?? "",
     date: date!,
     genreId: genreId!,
     iocomeType: iocomeType,
@@ -35,17 +36,17 @@ export const ChangeDetailContainer = ({
     memo: memo,
   });
   const { deleteHandler } = useDeleteDailyDetailBySerialNo({
-    id: initData?.id!,
+    id: initData?.id ?? "",
   });
 
   const resetClickHandler = () => {
-    setDate(initData?.date!);
-    setIocomeType(initData?.iocomeType!);
-    setGenreId(initData?.genreId!);
-    setCategoryId(initData?.categoryId!);
-    setAccountId(initData?.accountId!);
-    setAmount(initData?.amount!);
-    setMemo(initData?.memo!);
+    setDate(initData!.date);
+    setIocomeType(initData!.iocomeType!);
+    setGenreId(initData!.genreId);
+    setCategoryId(initData!.categoryId);
+    setAccountId(initData!.accountId);
+    setAmount(initData!.amount);
+    setMemo(initData!.memo!);
   };
 
   useEffect(resetClickHandler, [initData]);
@@ -78,8 +79,8 @@ export const ChangeDetailContainer = ({
         await updateHandler();
         onClose();
       }}
-      deleteClickHandler={() => {
-        deleteHandler();
+      deleteClickHandler={async () => {
+        await deleteHandler();
         onClose();
       }}
     />

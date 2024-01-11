@@ -2,10 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { GetDailyDetailByDateQuery } from "@graphql/hasura/generated/hasuraGraphql";
+import type { TableProps } from "@components/atoms/Table/";
+import type { IocomeType } from "@domain/model/household/IocomeType";
+import type { GetDailyDetailByDateQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { FormatPrice } from "@components/molecules/FormatPrice";
-import { TableProps } from "@components/atoms/Table/";
-import { IocomeType } from "@domain/model/household/IocomeType";
 
 type dailyDetailConverterArgs = {
   data: GetDailyDetailByDateQuery | undefined;
@@ -13,14 +13,14 @@ type dailyDetailConverterArgs = {
 };
 export const dailyDetailConverter = ({
   data,
-  onClickHandler = () => {},
+  onClickHandler = () => undefined,
 }: dailyDetailConverterArgs): TableProps[] => {
   return (
     data?.dailyDetailByDateList?.map((dailyDetail) => {
       return {
         keyPrefix: "dailyDetail",
         columns: [
-          { value: dailyDetail?.date, align: "center" },
+          { value: dailyDetail?.date as string, align: "center" },
           {
             value: (
               <div>
@@ -35,10 +35,10 @@ export const dailyDetailConverter = ({
           {
             value: (
               <FormatPrice
-                price={dailyDetail?.amount!}
+                price={dailyDetail?.amount as number}
                 iocomeType={
                   dailyDetail?.categoryByCategoryId?.genreByGenreId
-                    ?.iocomeType! as IocomeType
+                    ?.iocomeType as IocomeType
                 }
               />
             ),
@@ -47,7 +47,7 @@ export const dailyDetailConverter = ({
           { value: dailyDetail?.memo },
         ],
         onClick: () => {
-          onClickHandler(dailyDetail?.id!);
+          onClickHandler(dailyDetail?.id);
         },
       };
     }) ?? []

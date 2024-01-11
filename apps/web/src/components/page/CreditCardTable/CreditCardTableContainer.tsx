@@ -4,15 +4,17 @@
 
 "use client";
 
-import { TableProps } from "@components/atoms/Table";
+import type { TableProps } from "@components/atoms/Table";
+import { useRouter } from "next/navigation";
 import { useGetCreditCardListQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
+
 import { creditCardListConverter } from "./creditCardListConverter";
 import { CreditCardTablePresenter } from "./CreditCardTablePresenter";
-import { useRouter } from "next/navigation";
 
 export const CreditCardTableContainer = () => {
   const { groupId } = useGroup();
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
 
   const [{ data }] = useGetCreditCardListQuery({ variables: { groupId } });

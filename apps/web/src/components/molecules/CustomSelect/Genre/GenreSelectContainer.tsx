@@ -2,10 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { GenreSelectPresenter } from "./GenreSelectPresenter";
+import type { IocomeType } from "@domain/model/household/IocomeType";
 import { useGetValidGenreListByIocomeTypeQuery } from "@graphql/hasura/generated/hasuraGraphql";
-import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
+
+import { GenreSelectPresenter } from "./GenreSelectPresenter";
 
 type GenreSelectContainerProps = {
   genreId: string | null;
@@ -18,7 +19,7 @@ export const GenreSelectContainer = ({
   genreId,
   setGenreId,
   iocomeType,
-  setGenreName = () => {},
+  setGenreName = () => undefined,
   disabled = false,
 }: GenreSelectContainerProps) => {
   const { groupId } = useGroup();

@@ -38,15 +38,15 @@ export const parseRakutenCardCsvLine = (line: string): RakutenCardCsvLine => {
   const splitLine = line.split(",");
 
   return {
-    useDate: () => new Date(splitLine[0]?.replaceAll("/", "-")),
-    useShopItem: () => splitLine[1],
-    user: () => splitLine[2],
-    paymentMethod: () => splitLine[3],
+    useDate: () => new Date(splitLine[0]!.replaceAll("/", "-")),
+    useShopItem: () => splitLine[1]!,
+    user: () => splitLine[2]!,
+    paymentMethod: () => splitLine[3]!,
     usePrice: () => Number(splitLine[4]),
     payFee: () => Number(splitLine[5]),
     payTotal: () => Number(splitLine[6]),
     thisMonthPay: () => Number(splitLine[7]),
     nextMonthBalance: () => Number(splitLine[8]),
-    newSign: () => splitLine[9],
+    newSign: () => splitLine[9]!,
   };
 };

@@ -5,13 +5,14 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Presenter_ } from "./Presenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { successPopup } from "@function/successPopup";
 import {
   useGetCreditCardDetailByIdQuery,
   useUpdateCreditCardDetailByIdMutation,
 } from "@graphql/hasura/generated/hasuraGraphql";
-import { successPopup } from "@function/successPopup";
+
+import { Presenter_ } from "./Presenter";
 
 export const Container_ = ({ id }: { id: string | null }) => {
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
@@ -21,14 +22,14 @@ export const Container_ = ({ id }: { id: string | null }) => {
 
   const [{ data }] = useGetCreditCardDetailByIdQuery({
     variables: {
-      id: id == null ? Number.MIN_VALUE.toString() : id,
+      id: id ?? Number.MIN_VALUE.toString(),
     },
   });
 
   const [, update] = useUpdateCreditCardDetailByIdMutation();
 
-  const updateHandler = () => {
-    update({
+  const updateHandler = async () => {
+    await update({
       id: id!,
       categoryId: categoryId!,
       memo: memo,
@@ -38,7 +39,7 @@ export const Container_ = ({ id }: { id: string | null }) => {
 
   const initData = useMemo(
     () => ({
-      date: new Date(data?.creditCardDetailByPk?.date),
+      date: new Date(data?.creditCardDetailByPk?.date as string),
       iocomeType:
         data?.creditCardDetailByPk?.category?.genre?.iocomeType ??
         IocomeType.Income,
@@ -51,7 +52,7 @@ export const Container_ = ({ id }: { id: string | null }) => {
   );
 
   const resetClickHandler = () => {
-    setIocomeType(initData.iocomeType! as IocomeType);
+    setIocomeType(initData.iocomeType as IocomeType);
     setGenreId(initData.genreId);
     setCategoryId(initData.categoryId);
     setMemo(initData.memo ?? null);

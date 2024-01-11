@@ -3,12 +3,13 @@
  */
 "use client";
 
-import { TableProps } from "@components/atoms/Table";
+import type { TableProps } from "@components/atoms/Table";
+import type { IocomeType } from "@domain/model/household/IocomeType";
+import { useRouter } from "next/navigation";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { useGetCreditCardDetailBySummaryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
+
 import { Presenter_ } from "./Presenter";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { useRouter } from "next/navigation";
 
 type CreditCardDetailTableContainerProps = {
   creditCardSummaryId: string;
@@ -16,6 +17,7 @@ type CreditCardDetailTableContainerProps = {
 export const Container_ = ({
   creditCardSummaryId,
 }: CreditCardDetailTableContainerProps) => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
 
   const [{ data }] = useGetCreditCardDetailBySummaryIdQuery({
@@ -28,9 +30,9 @@ export const Container_ = ({
     id: data?.creditCardSummary?.id ?? "",
     creditCard: data?.creditCardSummary?.creditCard ?? "",
     withdrawalDate:
-      new Date(data?.creditCardSummary?.withdrawalDate) ?? new Date(),
+      new Date(data?.creditCardSummary?.withdrawalDate as string) ?? new Date(),
     accountName: data?.creditCardSummary?.account.name ?? "",
-    totalAmount: data?.creditCardSummary?.totalAmount ?? 0,
+    totalAmount: (data?.creditCardSummary?.totalAmount as number) ?? 0,
     count: data?.creditCardSummary?.creditCardDetails.length ?? 0,
   };
 
@@ -38,7 +40,7 @@ export const Container_ = ({
     data?.creditCardSummary?.creditCardDetails.map((detail) => ({
       keyPrefix: "creditCardDetail",
       columns: [
-        { value: detail.date, align: "center" },
+        { value: detail.date as string, align: "center" },
         {
           value: detail.category?.genre?.name,
         },
@@ -46,8 +48,8 @@ export const Container_ = ({
         {
           value: (
             <FormatPrice
-              iocomeType={detail.category?.genre?.iocomeType! as IocomeType}
-              price={detail.amount}
+              iocomeType={detail.category?.genre?.iocomeType as IocomeType}
+              price={detail.amount as number}
             />
           ),
           align: "right",

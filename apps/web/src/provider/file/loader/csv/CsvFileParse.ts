@@ -8,6 +8,7 @@ import { parseOitaBankCsvLine } from "@provider/file/loader/csv/OitaBankCsvLine"
 import { parseRakutenCardCsvLine } from "@provider/file/loader/csv/RakutenCardCsvLine";
 import { parseSmbcCsvLine } from "@provider/file/loader/csv/SmbcCsvLine";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CsvFileParseMap = new Map<FileType, (_: string) => any>([
   [FileType.SMBC_CSV, parseSmbcCsvLine],
   [FileType.AU_PAY_CSV, parseAuPayCsvLine],
@@ -20,6 +21,7 @@ const CsvFileParseMap = new Map<FileType, (_: string) => any>([
  * @param line
  * @param fileType
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const parseCsv = (line: string, fileType: FileType): any => {
   return CsvFileParseMap.get(fileType)!(line);
 };

@@ -2,11 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { DailyDetail } from "@domain/model/household/DailyDetail";
-import { CutDetailPresenter } from "@components/organisms/update_detail/cut/CutDetailPresenter";
+import type { DailyDetail } from "@domain/model/household/DailyDetail";
 import { useState } from "react";
-import { useCutDetail } from "@hooks/household/daily_detail/useCutDetail";
+import { CutDetailPresenter } from "@components/organisms/update_detail/cut/CutDetailPresenter";
 import { errorPopup, successPopup } from "@function/successPopup";
+import { useCutDetail } from "@hooks/household/daily_detail/useCutDetail";
 
 export const CutDetailContainer = ({
   initData,
@@ -15,7 +15,7 @@ export const CutDetailContainer = ({
   initData: DailyDetail;
   onClose: () => void;
 }) => {
-  const [detailDate, setDetailDate] = useState<Date>(initData?.date!);
+  const [detailDate, setDetailDate] = useState<Date>(initData.date!);
   const [genreId, setGenreId] = useState<string | null>(initData?.genreId);
   const [categoryId, setCategoryId] = useState<string | null>(
     initData?.categoryId,
@@ -26,7 +26,7 @@ export const CutDetailContainer = ({
   const [cutAfterMemo, setCutAfterMemo] = useState<string>(
     initData?.memo ?? "",
   );
-  const cutAfterAmount = Number(initData?.amount!) - Number(amount);
+  const cutAfterAmount = Number(initData.amount) - Number(amount);
 
   const updateButtonDisabled =
     amount === 0 || amount === "" || cutAfterAmount < 0;
@@ -38,11 +38,11 @@ export const CutDetailContainer = ({
       rewrittenMemo: cutAfterMemo,
     },
     newDetail: {
-      detailDate: detailDate!,
+      detailDate: detailDate,
       genreId: genreId!,
       categoryId: categoryId!,
       accountId: accountId!,
-      amount: Number(amount!),
+      amount: Number(amount),
       memo: newMemo,
     },
   });
@@ -59,7 +59,7 @@ export const CutDetailContainer = ({
   };
 
   const clearHandler = () => {
-    setDetailDate(initData?.date!);
+    setDetailDate(initData.date!);
     setGenreId(initData?.genreId);
     setCategoryId(initData?.categoryId);
     setAccountId(initData.accountId);
@@ -71,9 +71,9 @@ export const CutDetailContainer = ({
   return (
     <CutDetailPresenter
       detailDate={detailDate}
-      defaultDetailDate={initData?.date!}
+      defaultDetailDate={initData.date!}
       setDetailDate={setDetailDate}
-      iocomeType={initData?.iocomeType!}
+      iocomeType={initData.iocomeType!}
       genreId={genreId}
       defaultGenreId={initData?.genreId}
       changeGenreIdHandler={setGenreId}

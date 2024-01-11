@@ -1,6 +1,6 @@
-import { TextInputPresenter } from "@components/atoms/Input/TextField/TextInputPresenter";
-import { ChangeEvent } from "react";
-import { InputValidator } from "@components/atoms/Input/InputValidator";
+import type { InputValidator } from "@components/atoms/Input/InputValidator";
+import type { ChangeEvent } from "react";
+import { TextInput } from "@mantine/core";
 
 type TextInputContainerProps = {
   label: string;
@@ -18,19 +18,16 @@ export const TextInputContainer = ({
   validator = { result: false, message: "" },
   placeholder = "",
 }: TextInputContainerProps) => {
-  const onChangeHandler = (event: any) => {
-    onChange(event.target.value);
-  };
-
   const errorMessage = validator.result ? validator.message : "";
 
   return (
-    <TextInputPresenter
+    <TextInput
       label={label}
       type={type}
+      error={errorMessage}
       value={value}
-      onChangeHandler={onChangeHandler}
-      errorMessage={errorMessage}
+      onChange={onChange}
+      size={"xl"}
       placeholder={placeholder}
     />
   );

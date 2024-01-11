@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { FileType } from "@provider/file/FileType";
+import type { FileType } from "@provider/file/FileType";
 import { parseCsv } from "@provider/file/loader/csv/CsvFileParse";
 import { getSetting } from "@provider/file/loader/csv/CsvFileSetting";
 import Encoding from "encoding-japanese";
@@ -21,6 +21,7 @@ export async function loadCsvFile({ file, fileType }: loadFileArgs) {
   const {
     encodingTo,
     encodingFrom,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     encodingType,
     splitSeparator,
     headerRows,
@@ -30,11 +31,16 @@ export async function loadCsvFile({ file, fileType }: loadFileArgs) {
 
   try {
     const readFile = await file.stream().getReader().read();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const csv = decodeCsv(readFile, encodingTo, encodingFrom, encodingType);
     const rows = separateRows(csv, splitSeparator, headerRows, footerRows);
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return rows.map((line) => {
       if (quotation) line = line.replaceAll(quotation, "");
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return parseCsv(line, fileType);
     });
   } catch (e) {
@@ -54,14 +60,15 @@ const decodeCsv = (
   readFile: ReadableStreamReadResult<Uint8Array>,
   to: Encoding.Encoding,
   from: Encoding.Encoding,
-  type: any,
+  type: never,
 ) => {
   const decoded = Encoding.convert(new Uint8Array(readFile.value!), {
     to: to,
     from: from,
     type: type,
   });
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   return Encoding.codeToString(decoded);
 };
 

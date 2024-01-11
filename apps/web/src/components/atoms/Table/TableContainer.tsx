@@ -3,10 +3,11 @@
  */
 "use client";
 
+import type { ColumnProps, TableProps } from "@components/atoms/Table/index";
+import type { MantineSize } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { TablePresenter } from "@components/atoms/Table/TablePresenter";
-import { ColumnProps, TableProps } from "@components/atoms/Table/index";
-import { MantineSize, Table } from "@mantine/core";
+import { Table } from "@mantine/core";
 
 type Props = {
   header: string[];
@@ -43,7 +44,7 @@ export const TableContainer = ({
   ) => (
     <Table.Tr
       key={keyPrefix + i}
-      onClick={onClick ?? (() => {})}
+      onClick={onClick ?? (() => undefined)}
       className={onClick ? "cursor-pointer" : ""}
     >
       {columns.map(generateColumn)}
@@ -67,7 +68,7 @@ export const TableContainer = ({
           key={"td" + j}
           align={columnProps.align ?? "left"}
           hidden={columnProps.hidden ?? false}
-          className={"p-2 border-2 font-bold bg-white"}
+          className={"border-2 bg-white p-2 font-bold"}
         >
           {columnProps.value}
         </Table.Td>

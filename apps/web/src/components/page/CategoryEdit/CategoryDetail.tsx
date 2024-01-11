@@ -4,18 +4,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
+import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
+import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySegment";
+import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
+import { GenreNameTextInput } from "@components/molecules/CustomTextInput";
 import { Button } from "@components/ui";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { errorPopup, successPopup } from "@function/successPopup";
 import {
   useGetCategoryByIdQuery,
   useUpdateCategoryByIdMutation,
 } from "@graphql/hasura/generated/hasuraGraphql";
-import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
-import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySegment";
-import { GenreNameTextInput } from "@components/molecules/CustomTextInput";
-import { errorPopup, successPopup } from "@function/successPopup";
-import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 
 export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   const [inputCategoryName, setInputCategoryName] = useState<string>("");
@@ -70,6 +70,7 @@ export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   }, [iocomeType]);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     setInputGenreId(inputIocomeType !== iocomeType ? null : genreId);
   }, [inputIocomeType, genreId, iocomeType]);
 
@@ -130,8 +131,8 @@ const Frame = ({
   title: string;
   children: React.ReactNode;
 }) => (
-  <div className={"bg-gray-100 p-4 my-4 rounded"}>
+  <div className={"my-4 rounded bg-gray-100 p-4"}>
     <div className={"text-gray-500"}>{title}</div>
-    <div className={"text-xl ml-[1em]"}>{children}</div>
+    <div className={"ml-[1em] text-xl"}>{children}</div>
   </div>
 );

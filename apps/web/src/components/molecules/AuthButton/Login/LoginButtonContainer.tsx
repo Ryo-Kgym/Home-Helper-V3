@@ -3,11 +3,12 @@
  */
 
 import React from "react";
-import { AuthButtonPresenter } from "@components/molecules/AuthButton/AuthButtonPresenter";
 import { useRouter } from "next/navigation";
+import { AuthButtonPresenter } from "@components/molecules/AuthButton/AuthButtonPresenter";
 import { useUser } from "@hooks/user/useUser";
 
 export const LoginButtonContainer = () => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
   const { hasUserId } = useUser();
 

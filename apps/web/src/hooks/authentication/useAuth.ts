@@ -2,17 +2,18 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useUser } from "@hooks/user/useUser";
+import { useRouter } from "next/navigation";
+import { useClerk } from "@clerk/nextjs";
 import { useGroup } from "@hooks/group/useGroup";
 import { useMessage } from "@hooks/message/useMessage";
-import { useClerk } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { useUser } from "@hooks/user/useUser";
 
 export const useAuth = () => {
   const { save: saveUser } = useUser();
   const { save: saveGroup } = useGroup();
   const { setMessage } = useMessage();
   const { signOut, session } = useClerk();
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
 
   const logout = async () => {

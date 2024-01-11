@@ -2,14 +2,14 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { DatePicker } from "@components/ui/date/index";
-import { CategorySelect } from "@components/molecules/CustomSelect/Category/index";
-import { AccountSelect } from "@components/molecules/CustomSelect/Account/index";
+import type { IocomeType } from "@domain/model/household/IocomeType";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount/index";
-import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo/index";
-import { Button } from "@components/ui/index";
+import { AccountSelect } from "@components/molecules/CustomSelect/Account";
+import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { GenreSelect } from "@components/molecules/CustomSelect/Genre/index";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo/index";
+import { DatePicker } from "@components/ui/date/index";
+import { Button } from "@components/ui/index";
 
 export const CutDetailPresenter = ({
   detailDate,
@@ -66,30 +66,34 @@ export const CutDetailPresenter = ({
         <div>分解前</div>
         <DatePicker
           value={defaultDetailDate}
-          onChange={() => {}}
+          onChange={() => undefined}
           required
           defaultValue={defaultDetailDate}
           disabled
         />
         <GenreSelect
           genreId={defaultGenreId}
-          setGenreId={() => {}}
+          setGenreId={() => undefined}
           iocomeType={iocomeType}
           disabled
         />
         <CategorySelect
           genreId={defaultGenreId}
           categoryId={defaultCategoryId}
-          setCategoryId={() => {}}
+          setCategoryId={() => undefined}
           disabled
         />
         <AccountSelect
           accountId={defaultAccountId}
-          setAccountId={() => {}}
+          setAccountId={() => undefined}
           disabled
         />
-        <AmountInput value={defaultAmount} onChange={() => {}} disabled />
-        <MemoTextArea memo={defaultMemo} setMemo={() => {}} disabled />
+        <AmountInput
+          value={defaultAmount}
+          onChange={() => undefined}
+          disabled
+        />
+        <MemoTextArea memo={defaultMemo} setMemo={() => undefined} disabled />
       </div>
       <div className={"w-32 items-center justify-items-center text-center"}>
         <div>{"->"}</div>
@@ -98,29 +102,33 @@ export const CutDetailPresenter = ({
         <div>分解後</div>
         <DatePicker
           value={defaultDetailDate}
-          onChange={() => {}}
+          onChange={() => undefined}
           required
           defaultValue={defaultDetailDate}
           disabled
         />
         <GenreSelect
           genreId={defaultGenreId}
-          setGenreId={() => {}}
+          setGenreId={() => undefined}
           iocomeType={iocomeType}
           disabled
         />
         <CategorySelect
           genreId={defaultGenreId}
           categoryId={defaultCategoryId}
-          setCategoryId={() => {}}
+          setCategoryId={() => undefined}
           disabled
         />
         <AccountSelect
           accountId={defaultAccountId}
-          setAccountId={() => {}}
+          setAccountId={() => undefined}
           disabled
         />
-        <AmountInput value={cutAfterAmount} onChange={() => {}} disabled />
+        <AmountInput
+          value={cutAfterAmount}
+          onChange={() => undefined}
+          disabled
+        />
         <MemoTextArea memo={cutAfterMemo} setMemo={changeCutAfterMemoHandler} />
       </div>
       <div className={"w-32 items-center justify-items-center text-center"}>
@@ -146,7 +154,7 @@ export const CutDetailPresenter = ({
         />
         <AccountSelect
           accountId={defaultAccountId}
-          setAccountId={() => {}}
+          setAccountId={() => undefined}
           disabled
         />
         <AmountInput value={amount} onChange={changeAmountHandler} />

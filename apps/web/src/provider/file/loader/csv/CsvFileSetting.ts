@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type Encoding from "encoding-japanese";
 import { FileType } from "@provider/file/FileType";
-import Encoding from "encoding-japanese";
 
 const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
   [
@@ -57,6 +57,7 @@ const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
 type CsvFileSetting = {
   encodingTo: Encoding.Encoding;
   encodingFrom: Encoding.Encoding;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   encodingType: any;
   splitSeparator: string;
   headerRows?: number;

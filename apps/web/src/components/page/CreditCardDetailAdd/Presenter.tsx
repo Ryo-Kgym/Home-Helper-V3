@@ -2,14 +2,14 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { DatePicker } from "@components/ui/date";
-import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { CategorySelect } from "@components/molecules/CustomSelect/Category";
-import { AccountSelect } from "@components/molecules/CustomSelect/Account";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
+import { AccountSelect } from "@components/molecules/CustomSelect/Account";
+import { CategorySelect } from "@components/molecules/CustomSelect/Category";
+import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
 import { Button } from "@components/ui";
+import { DatePicker } from "@components/ui/date";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 export const Presenter_ = ({
   date,
@@ -52,7 +52,11 @@ export const Presenter_ = ({
       setCategoryId={setCategoryId}
       genreId={genreId}
     />
-    <AccountSelect accountId={accountId} setAccountId={() => {}} disabled />
+    <AccountSelect
+      accountId={accountId}
+      setAccountId={() => undefined}
+      disabled
+    />
     <AmountInput value={amount} onChange={setAmount} />
     <MemoTextArea memo={memo} setMemo={setMemo} />
 

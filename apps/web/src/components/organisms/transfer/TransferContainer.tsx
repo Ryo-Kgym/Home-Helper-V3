@@ -3,10 +3,10 @@
  */
 "use client";
 
-import { TransferPresenter } from "@components/organisms/transfer/TransferPresenter";
 import { useState } from "react";
+import { TransferPresenter } from "@components/organisms/transfer/TransferPresenter";
+import { errorPopup, successPopup } from "@function/successPopup";
 import { useRegisterTransfer } from "@hooks/household/transfer/useRegisterTransfer";
-import { successPopup, errorPopup } from "@function/successPopup";
 
 export const TransferContainer = ({ date }: { date: Date }) => {
   const [registerDate, setRegisterDate] = useState<Date>(date);
@@ -22,8 +22,8 @@ export const TransferContainer = ({ date }: { date: Date }) => {
 
   const { registerTransfer } = useRegisterTransfer({
     date: registerDate,
-    sendAccountId: sendAccountId!!,
-    receiveAccountId: receiveAccountId!!,
+    sendAccountId: sendAccountId!,
+    receiveAccountId: receiveAccountId!,
     amount: amount as number,
     memo: memo,
   });

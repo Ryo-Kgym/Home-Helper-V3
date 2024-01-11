@@ -4,20 +4,21 @@
 
 "use client";
 
-import { TableProps } from "@components/atoms/Table";
+import type { TableProps } from "@components/atoms/Table";
+import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
+import type { FileType } from "@provider/file/FileType";
+import { useState } from "react";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { FileImportButtonsPresenter } from "@components/page/FileImport/FileImportButtonsPresenter";
 import { FileImportTablePresenter } from "@components/page/FileImport/FileImportTablePresenter";
 import {
   calcTotalPrice,
-  LoadFileProps,
   loadUploadFile,
 } from "@components/page/FileImport/loadUploadFile";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { successPopup } from "@function/successPopup";
 import { useCreateImportFile } from "@hooks/household/import_file/useCreateImportFile";
-import { FileType } from "@provider/file/FileType";
-import { useState } from "react";
+
 import { FileImportFieldPresenter } from "./FileImportFieldPresenter";
 
 export const FileImportContainer = () => {
@@ -65,7 +66,7 @@ export const FileImportContainer = () => {
 
   const { registerImported } = useCreateImportFile({
     fileType: fileType!,
-    fileName: uploadFile?.name!,
+    fileName: uploadFile?.name ?? "",
     accountId: accountId!,
     withdrawalDate: withdrawalDate!,
     loadData: loadData,
@@ -99,7 +100,7 @@ export const FileImportContainer = () => {
   };
 
   return (
-    <div className={"p-2 space-y-5"}>
+    <div className={"space-y-5 p-2"}>
       {loadData.length == 0 && (
         <FileImportFieldPresenter
           fileType={fileType}

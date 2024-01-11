@@ -21,11 +21,11 @@ export const parseOitaBankCsvLine = (line: string): OitaBankCsvLine => {
 
   return {
     number: () => {
-      return splitLine[0];
+      return splitLine[0]!;
     },
     date: () => {
       const today = new Date();
-      const monthDay = "-" + splitLine[2].replace("月", "-").replace("日", "");
+      const monthDay = "-" + splitLine[2]!.replace("月", "-").replace("日", "");
 
       const tempDate = new Date(today.getFullYear().toString() + monthDay);
 
@@ -34,18 +34,18 @@ export const parseOitaBankCsvLine = (line: string): OitaBankCsvLine => {
         : tempDate;
     },
     paymentPrice: () => {
-      const num = splitLine[4].replace("\\", "").replaceAll(",", "");
+      const num = splitLine[4]!.replace("\\", "").replaceAll(",", "");
       return num == "" ? null : Number(num);
     },
     depositPrice: () => {
-      const num = splitLine[5].replace("\\", "").replaceAll(",", "");
+      const num = splitLine[5]!.replace("\\", "").replaceAll(",", "");
       return num == "" ? null : Number(num);
     },
     transactionType: () => {
-      return splitLine[7];
+      return splitLine[7]!;
     },
     note: () => {
-      return splitLine[9];
+      return splitLine[9]!;
     },
   };
 };

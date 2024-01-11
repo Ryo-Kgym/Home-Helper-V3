@@ -2,12 +2,13 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { TableProps } from "@components/atoms/Table";
-import { DailyTableByGenrePresenter } from "./DailyTableByGenrePresenter";
-import { useGetDailyDetailByDateGenreId } from "@hooks/household/daily_detail/useGetDailyDetailByDateGenreId";
+import type { TableProps } from "@components/atoms/Table";
+import type { IocomeType } from "@domain/model/household/IocomeType";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { useDate } from "@hooks/date/useDate";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import { useGetDailyDetailByDateGenreId } from "@hooks/household/daily_detail/useGetDailyDetailByDateGenreId";
+
+import { DailyTableByGenrePresenter } from "./DailyTableByGenrePresenter";
 
 export const DailyTableByGenreContainer = ({
   fromMonth,
@@ -38,7 +39,7 @@ export const DailyTableByGenreContainer = ({
         keyPrefix: "dailyDetail",
         columns: [
           {
-            value: dailyDetail.date,
+            value: dailyDetail.date as string,
             align: "center",
           },
           {
@@ -57,10 +58,10 @@ export const DailyTableByGenreContainer = ({
           {
             value: (
               <FormatPrice
-                price={dailyDetail.amount!}
+                price={dailyDetail.amount as number}
                 iocomeType={
                   dailyDetail.categoryByCategoryId?.genreByGenreId
-                    ?.iocomeType! as IocomeType
+                    ?.iocomeType as IocomeType
                 }
               />
             ),

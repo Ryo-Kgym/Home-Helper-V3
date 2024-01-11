@@ -4,17 +4,17 @@
 
 "use client";
 
-import { TableProps } from "@components/atoms/Table";
-import { CategoryPresenter } from "@components/organisms/category/CategoryPresenter";
-import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCategoryTotalByMonth";
-import { FC, useState } from "react";
-import { DailyTableByCategory } from "@components/organisms/daily_table/category";
-import { FormatPrice } from "@components/molecules/FormatPrice";
-import { useGetCreditCardSummaryBetweenMonth } from "@hooks/household/credit_card/useGetCreditCardSummaryBetweenMonth";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import type { TableProps } from "@components/atoms/Table";
+import { useState } from "react";
 import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
+import { FormatPrice } from "@components/molecules/FormatPrice";
+import { CategoryPresenter } from "@components/organisms/category/CategoryPresenter";
+import { DailyTableByCategory } from "@components/organisms/daily_table/category";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCategoryTotalByMonth";
+import { useGetCreditCardSummaryBetweenMonth } from "@hooks/household/credit_card/useGetCreditCardSummaryBetweenMonth";
 
-export const CategoryContainer: FC = () => {
+export const CategoryContainer = () => {
   const [fromMonth, setFromMonth] = useState<Date | null>(new Date());
   const [toMonth, setToMonth] = useState<Date | null>(new Date());
 
@@ -40,15 +40,15 @@ export const CategoryContainer: FC = () => {
         {
           value: (
             <FormatPrice
-              iocomeType={category?.iocomeType! as IocomeType}
-              price={category?.total!}
+              iocomeType={category?.iocomeType as IocomeType}
+              price={category?.total as number}
             />
           ),
           align: "right",
         },
       ],
       onClick: () => {
-        setSelectedCategoryId(category?.categoryId!);
+        setSelectedCategoryId(category?.categoryId ?? "");
       },
     })) ?? [];
 
@@ -65,7 +65,7 @@ export const CategoryContainer: FC = () => {
         {
           value: (
             <FormatPrice
-              price={summary.totalAmount!}
+              price={summary.totalAmount as number}
               iocomeType={IocomeType.Outcome}
             />
           ),
@@ -83,7 +83,7 @@ export const CategoryContainer: FC = () => {
           toMonth={toMonth}
           changeToMonth={setToMonth}
           tableProps={tableProps.concat(creditCardTableProps)}
-          incomeTotal={incomeTotal! + creditCardIncomeTotal!}
+          incomeTotal={incomeTotal! + creditCardIncomeTotal}
           outcomeTotal={outcomeTotal! + creditCardOutcomeTotal!}
         />
       }

@@ -16,22 +16,22 @@ export const parseAuPayCsvLine = (line: string): AuPayCsvLine => {
   const splitLine = line.split(",");
   return {
     user: () => {
-      return splitLine[0];
+      return splitLine[0]!;
     },
     paymentType: () => {
-      return splitLine[1];
+      return splitLine[1]!;
     },
     date: () => {
-      return new Date(splitLine[2]?.replaceAll("/", "-"));
+      return new Date(splitLine[2]!.replaceAll("/", "-"));
     },
     shopName: () => {
-      return splitLine[3];
+      return splitLine[3]!;
     },
     price: () => {
       return Number(splitLine[4]);
     },
     note: () => {
-      return splitLine[5];
+      return splitLine[5]!;
     },
   };
 };

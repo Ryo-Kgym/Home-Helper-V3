@@ -3,14 +3,15 @@
  */
 "use client";
 
-import { TableProps } from "@components/atoms/Table";
+import type { TableProps } from "@components/atoms/Table";
+import { useRouter } from "next/navigation";
+import { ValidityStatus } from "@components/atoms";
+import { Presenter_ } from "@components/page/CategoryList/Presenter";
 import { useGetAllCategoriesQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import { ValidityStatus } from "@components/atoms";
-import { useRouter } from "next/navigation";
-import { Presenter_ } from "@components/page/CategoryList/Presenter";
 
 export const Container_ = () => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
   const { groupId } = useGroup();
   const [{ data, fetching }] = useGetAllCategoriesQuery({

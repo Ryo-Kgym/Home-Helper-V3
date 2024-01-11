@@ -23,7 +23,17 @@ export const loadUploadFile = async ({
       file: uploadFile,
       fileType: fileType,
     });
-    return res.map((r) => refillMap.get(fileType)?(r)) ?? [];
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return (
+      res.map((r) => {
+        const converter = refillMap.get(fileType);
+        if (!converter) {
+          throw new Error("not found converter");
+        }
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return refillMap.get(fileType) ? r : null;
+      }) ?? []
+    );
   } catch (e) {
     console.error(e);
     return [] as LoadFileProps[];

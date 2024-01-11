@@ -16,6 +16,7 @@ import { useGroup } from "@hooks/group/useGroup";
 import { Presenter_ } from "./Presenter";
 
 export const Container_ = () => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
   const { groupId } = useGroup();
   const [{ data, fetching }] = useGetAllGenreQuery({

@@ -1,13 +1,10 @@
-import { RegisterAccountPresenter } from "./RegisterAccountPresenter";
-import { FC, useState } from "react";
-import { useCreateAccount } from "@hooks/household/account/useCreateAccount";
+import { useState } from "react";
 import { errorPopup, successPopup } from "@function/successPopup";
+import { useCreateAccount } from "@hooks/household/account/useCreateAccount";
 
-type RegisterAccountContainerProps = {};
+import { RegisterAccountPresenter } from "./RegisterAccountPresenter";
 
-export const RegisterAccountContainer: FC<
-  RegisterAccountContainerProps
-> = () => {
+export const RegisterAccountContainer = () => {
   const [accountName, setAccountName] = useState<string>("");
   const [displayOrder, setDisplayOrder] = useState<number | "">(0);
 
