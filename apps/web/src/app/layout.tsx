@@ -6,12 +6,12 @@ import "../styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 
-import { ClerkProvider } from "@clerk/nextjs";
 import { Metadata } from "next";
-import { ClientsProviders } from "app/_provider/ClientsProviders";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript } from "@mantine/core";
+import { ClientsProviders } from "app/_provider/ClientsProviders";
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const metadata: Metadata = {
   title: "Home-Helper",
   description: "うちのアプリです",

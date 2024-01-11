@@ -31,12 +31,12 @@ export const DayPresenter = ({
 }: DayPresenterProps) => (
   <>
     <div
-      className={`h-32 border-r-2 border-b-2 hover:bg-amber-200 cursor-pointer
+      className={`h-32 cursor-pointer border-b-2 border-r-2 hover:bg-amber-200
       ${isToday && "bg-amber-100"} ${isNotThisMonth && "bg-gray-300"}`}
     >
       <DayLabel openClickHandler={openClickHandler}>{displayDay}</DayLabel>
 
-      <div className={"grid grid-cols-1"} onClick={saveDateHandler}>
+      <button className={"grid grid-cols-1"} onClick={saveDateHandler}>
         <TotalLine
           price={income}
           backgroundColor={`${income && "bg-green-300"} `}
@@ -51,7 +51,7 @@ export const DayPresenter = ({
             backgroundColor={"bg-yellow-300"}
           />
         )}
-      </div>
+      </button>
     </div>
     <Modal opened={opened} onClose={onClose}>
       <RegisterDailyDetail date={date} />
@@ -66,14 +66,14 @@ const DayLabel = ({
   openClickHandler: () => void;
   children: React.ReactNode;
 }) => (
-  <div
+  <button
     className={
-      "m-1 pt-1 cursor-pointer rounded-full bg-amber-200/20 w-[2em] h-[2em] text-center"
+      "m-1 h-[2em] w-[2em] cursor-pointer rounded-full bg-amber-200/20 pt-1 text-center"
     }
     onClick={openClickHandler}
   >
     {children}
-  </div>
+  </button>
 );
 const TotalLine = ({
   price,
@@ -83,7 +83,7 @@ const TotalLine = ({
   backgroundColor?: string;
 }) => (
   <div
-    className={`m-0.5 pr-1 rounded-md ${backgroundColor} text-right h-[1.5em]`}
+    className={`m-0.5 rounded-md pr-1 ${backgroundColor} h-[1.5em] text-right`}
   >
     {price?.toLocaleString() ?? ""}
   </div>

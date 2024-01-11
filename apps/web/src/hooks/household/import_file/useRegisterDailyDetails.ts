@@ -2,10 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { useCreateDailyDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
 import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
-import { useGenerateId } from "@hooks/useGenerateId";
+import { useCreateDailyDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
 
 /**
@@ -24,7 +24,7 @@ export const useRegisterDailyDetails = ({
 
   const [, createDailyDetailMutation] = useCreateDailyDetailMutation();
 
-  const createDailyDetailVariableList = loadData.map((data, idx) => ({
+  const createDailyDetailVariableList = loadData.map((data) => ({
     id: generate(),
     date: data.date,
     genreId: data.genreId!,

@@ -2,15 +2,15 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FileType } from "@provider/file/FileType";
+import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import {
   useCreateCreditCardDetailMutation,
   useCreateCreditCardSummaryMutation,
 } from "@graphql/hasura/generated/hasuraGraphql";
-import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
-import { useGenerateId } from "@hooks/useGenerateId";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
+import { FileType } from "@provider/file/FileType";
 
 /**
  * Package Private
@@ -48,7 +48,7 @@ export const useRegisterCreditCard = ({
     groupId,
   };
 
-  const detailVariableList = loadData.map((data, idx) => ({
+  const detailVariableList = loadData.map((data) => ({
     id: generate(),
     date: data.date,
     genreId: data.genreId!,

@@ -4,10 +4,10 @@
 
 "use client";
 
-import { useDisclosure } from "@mantine/hooks";
-import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
-import { Navi } from "@app/_layout/navi";
 import Link from "next/link";
+import { Navi } from "@app/_layout/navi";
+import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
 export const NavbarSection = ({
   header,
@@ -31,7 +31,7 @@ export const NavbarSection = ({
     >
       <AppShell.Header className={"bg-blue-500"}>
         <Group h="100%" px="md">
-          <div className={"font-bold text-2xl text-white"}>{header}</div>
+          <div className={"text-2xl font-bold text-white"}>{header}</div>
           <Burger opened={opened} onClick={toggle} size="sm" />
         </Group>
       </AppShell.Header>
@@ -42,8 +42,8 @@ export const NavbarSection = ({
             .filter(({ visible = true }) => visible)
             .map((navi, index) => (
               <Link key={`menu-${index}`} href={navi.url}>
-                <div
-                  className={"p-3 my-1 hover:font-bold max-sm:text-center"}
+                <button
+                  className={"my-1 p-3 hover:font-bold max-sm:text-center"}
                   onClick={() => {
                     // widthがsm以下の場合は、メニューを閉じる
                     if (window.innerWidth < 640) toggle();
@@ -51,7 +51,7 @@ export const NavbarSection = ({
                 >
                   {navi.icon && <div>{navi.icon}</div>}
                   <div>{navi.label}</div>
-                </div>
+                </button>
               </Link>
             ))}
         </AppShell.Section>

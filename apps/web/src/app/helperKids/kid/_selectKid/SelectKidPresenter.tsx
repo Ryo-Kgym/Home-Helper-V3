@@ -12,16 +12,16 @@ type Props = {
 export const SelectKidPresenter = ({ kids, saveKidHandler }: Props) => (
   <div className={"w-full"}>
     {kids.map(({ id, name }) => (
-      <div
+      <button
         key={id}
         className={
-          "w-1/2 border-2 mx-auto my-10 rounded-2xl border-gray-300 hover:border-gray-500 cursor-pointer " +
+          "mx-auto my-10 w-1/2 cursor-pointer rounded-2xl border-2 border-gray-300 hover:border-gray-500 " +
           "max-sm:w-full"
         }
         onClick={() => saveKidHandler(id)}
       >
-        <div className={"text-6xl my-10 text-center"}>{name}</div>
-      </div>
+        <div className={"my-10 text-center text-6xl"}>{name}</div>
+      </button>
     ))}
   </div>
 );

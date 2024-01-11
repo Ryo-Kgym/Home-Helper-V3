@@ -9,10 +9,10 @@ export const FramePresenter = ({
   children: React.ReactNode;
   onClickHandler: () => void;
 }) => (
-  <div
-    className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
+  <button
+    className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
     onClick={onClickHandler}
   >
     {children}
-  </div>
+  </button>
 );

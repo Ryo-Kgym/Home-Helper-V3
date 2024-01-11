@@ -3,25 +3,25 @@
  */
 "use client";
 
-import { Modal } from "@components/atoms/Modal";
 import { useState } from "react";
+import { Modal } from "@components/atoms/Modal";
 import { RegisterDailyDetail } from "@components/organisms/register_daily_detail";
-import { Tab } from "@components/ui";
 import { Transfer } from "@components/organisms/transfer/index";
+import { Tab } from "@components/ui";
 
 export const RegisterDailyButton = ({ date = new Date() }: { date?: Date }) => {
   const [opened, setOpened] = useState<boolean>(false);
 
   return (
     <div>
-      <div
+      <button
         className={
-          "text-5xl text-center cursor-pointer border-2 border-green-300 rounded-full w-13 h-13 shadow bg-green-300 hover:bg-green-400 hover:shadow-md hover:text-white"
+          "w-13 h-13 cursor-pointer rounded-full border-2 border-green-300 bg-green-300 text-center text-5xl shadow hover:bg-green-400 hover:text-white hover:shadow-md"
         }
         onClick={() => setOpened(true)}
       >
         ＋
-      </div>
+      </button>
       <Modal opened={opened} onClose={() => setOpened(false)}>
         <Tab
           defaultSelect="daily"

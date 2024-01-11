@@ -3,11 +3,12 @@
  */
 "use client";
 
-import { DepositPresenter } from "./DepositPresenter";
-import { useGetMonthlyDeposit } from "@hooks/household/deposit/useGetMonthlyDeposit";
-import { createMonthNames } from "@function/date/create-month-names";
-import { TableProps } from "@components/atoms/Table";
 import { useState } from "react";
+import { TableProps } from "@components/atoms/Table";
+import { createMonthNames } from "@function/date/create-month-names";
+import { useGetMonthlyDeposit } from "@hooks/household/deposit/useGetMonthlyDeposit";
+
+import { DepositPresenter } from "./DepositPresenter";
 
 export const DepositContainer = () => {
   const thisYear = new Date().getFullYear();
@@ -19,7 +20,7 @@ export const DepositContainer = () => {
     new Date(thisYear, 11, 31),
   );
 
-  const { monthlyDeposits, loading, error } = useGetMonthlyDeposit({
+  const { monthlyDeposits, loading } = useGetMonthlyDeposit({
     fromDate: fromMonth!,
     toDate: toMonth!,
   });

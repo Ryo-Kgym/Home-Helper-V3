@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Button, Flex } from "@mantine/core";
+import { Button } from "@mantine/core";
 
 type CounterProps = {
   count: number;
@@ -19,7 +19,7 @@ export const CounterPresenter = ({
 }: CounterProps) => (
   <div className={"flex space-x-2"}>
     <Decrement handleClick={handleDecrement} />
-    <div className={"flex items-center justify-center w-10 text-xl"}>
+    <div className={"flex w-10 items-center justify-center text-xl"}>
       {count}
     </div>
     <Increment handleClick={handleIncrement} />
@@ -37,13 +37,13 @@ export const CounterPresenter = ({
 );
 
 const Increment = ({ handleClick }: { handleClick: () => void }) => (
-  <Button className={"bg-lime-500 text-xl w-10 h-10 p-0"} onClick={handleClick}>
+  <Button className={"h-10 w-10 bg-lime-500 p-0 text-xl"} onClick={handleClick}>
     +
   </Button>
 );
 
 const Decrement = ({ handleClick }: { handleClick: () => void }) => (
-  <Button className={"bg-red-300 text-xl w-10 h-10 p-0"} onClick={handleClick}>
+  <Button className={"h-10 w-10 bg-red-300 p-0 text-xl"} onClick={handleClick}>
     -
   </Button>
 );

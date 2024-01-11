@@ -6,11 +6,6 @@
 
 import Split from "react-split";
 
-type SplitPresenterProps = {
-  first: React.ReactNode;
-  second: React.ReactNode;
-  size?: number;
-};
 export const SplitPresenter = ({
   first,
   second,
