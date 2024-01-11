@@ -3,12 +3,13 @@
  */
 "use client";
 
-import { useGetCreditCardDetailBySummaryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useState } from "react";
-import { Presenter_ } from "./Presenter";
-import { useCreateCreditCardDetail } from "@hooks/household/credit_card/useCreateCreditCardDetail";
+import { useGetCreditCardDetailBySummaryIdQuery } from "@/turbo/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "@function/successPopup";
+import { useCreateCreditCardDetail } from "@hooks/household/credit_card/useCreateCreditCardDetail";
+
+import { Presenter_ } from "./Presenter";
 
 export const Container_ = ({ summaryId }: { summaryId: string }) => {
   const [date, setDate] = useState<Date>(new Date());

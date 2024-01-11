@@ -6,7 +6,7 @@ import type { DailyTotal } from "@domain/model/household/DailyTotal";
 import {
   useGetCreditCardSummaryBetweenWithdrawalDateQuery,
   useGetTotalBetweenDateQuery,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { createDateList } from "@hooks/household/iocome/createDateList";

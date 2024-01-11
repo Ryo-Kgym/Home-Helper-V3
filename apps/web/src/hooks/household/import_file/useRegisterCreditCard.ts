@@ -6,7 +6,7 @@ import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import {
   useCreateCreditCardDetailMutation,
   useCreateCreditCardSummaryMutation,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";

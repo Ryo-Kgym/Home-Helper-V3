@@ -6,7 +6,7 @@ import type { TransferListItem } from "@components/ui";
 import {
   useGetAllCategoryListWithCriteriaQuery,
   useGetSummaryCategoriesQuery,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetSummaryCategories = () => {

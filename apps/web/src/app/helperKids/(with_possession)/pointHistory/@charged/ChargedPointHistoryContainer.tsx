@@ -3,7 +3,7 @@
  */
 "use client";
 
-import { useGetEarnedDetailByHelperKidIdQuery } from "@graphql/hasura/generated/hasuraHelperKidsGraphql";
+import { useGetEarnedDetailByHelperKidIdQuery } from "@/turbo/graphql/helperKids";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
 
 import { ChargedPointHistoryPresenter } from "./ChargedPointHistoryPresenter";

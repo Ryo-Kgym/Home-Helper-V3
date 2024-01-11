@@ -6,7 +6,7 @@
 
 import type { TableProps } from "@components/atoms/Table";
 import { useRouter } from "next/navigation";
-import { useGetCreditCardListQuery } from "@graphql/hasura/generated/hasuraGraphql";
+import { useGetCreditCardListQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 
 import { creditCardListConverter } from "./creditCardListConverter";

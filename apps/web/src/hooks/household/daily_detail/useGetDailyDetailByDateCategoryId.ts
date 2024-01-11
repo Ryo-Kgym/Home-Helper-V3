@@ -1,5 +1,5 @@
+import { useGetDailyDetailByDateCategoryIdQuery } from "@/turbo/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { useGetDailyDetailByDateCategoryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetDailyDetailByDateCategoryId = (

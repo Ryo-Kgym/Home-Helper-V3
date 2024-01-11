@@ -1,5 +1,5 @@
+import { useGetGenreTotalByMonthQuery } from "@/turbo/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { useGetGenreTotalByMonthQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 

@@ -8,12 +8,12 @@ import type {
   TotalAmountByMonthly,
   TotalAmountByMonthlyArgs,
 } from "@function/monthly/totalAmountByMonthly";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { totalAmountByMonthly } from "@function/monthly/totalAmountByMonthly";
 import {
   useGetSummaryCategoryBetweenDateQuery,
   useGetTransferCategoryByQuery,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { totalAmountByMonthly } from "@function/monthly/totalAmountByMonthly";
 import { useGroup } from "@hooks/group/useGroup";
 
 type InterfaceType = (_: { fromMonth: Date; toMonth: Date }) => {

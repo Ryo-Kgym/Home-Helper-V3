@@ -3,8 +3,8 @@
  */
 
 import type { SelectData } from "@components/ui";
+import { useGetValidCategoryByGenreIdQuery } from "@/turbo/graphql/household";
 import { Select } from "@components/ui";
-import { useGetValidCategoryByGenreIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 
 type CategorySelectProps = {

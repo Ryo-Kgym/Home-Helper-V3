@@ -3,11 +3,11 @@
  */
 
 import type { DailyDetail } from "@domain/model/household/DailyDetail";
-import { IocomeType } from "@domain/model/household/IocomeType";
 import {
   useGetDailyDetailByDateQuery,
   useGetTransferCategoryByQuery,
-} from "@graphql/hasura/generated/hasuraGraphql";
+} from "@/turbo/graphql/household";
+import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {

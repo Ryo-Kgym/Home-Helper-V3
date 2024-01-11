@@ -3,7 +3,7 @@
  */
 
 import type { IocomeType } from "@domain/model/household/IocomeType";
-import { useUpdateDailyDetailByIdMutation } from "@graphql/hasura/generated/hasuraGraphql";
+import { useUpdateDailyDetailByIdMutation } from "@/turbo/graphql/household";
 
 type useUpdateDailyDetailBySerialNoArgs = {
   id: string;

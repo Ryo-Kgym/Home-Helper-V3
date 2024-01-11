@@ -3,7 +3,7 @@
  */
 
 import type { IocomeType } from "@domain/model/household/IocomeType";
-import { useGetValidGenreListByIocomeTypeQuery } from "@graphql/hasura/generated/hasuraGraphql";
+import { useGetValidGenreListByIocomeTypeQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 
 import { GenreSelectPresenter } from "./GenreSelectPresenter";

@@ -3,7 +3,7 @@
  */
 
 import type { FileType } from "@provider/file/FileType";
-import { useCreateImportFileHistoryMutation } from "@graphql/hasura/generated/hasuraGraphql";
+import { useCreateImportFileHistoryMutation } from "@/turbo/graphql/household";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";

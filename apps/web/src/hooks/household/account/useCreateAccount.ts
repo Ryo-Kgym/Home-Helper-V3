@@ -2,9 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useGenerateId } from "@hooks/useGenerateId";
+import { useCreateAccountMutation } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
-import { useCreateAccountMutation } from "@graphql/hasura/generated/hasuraGraphql";
+import { useGenerateId } from "@hooks/useGenerateId";
 
 type CreateAccountArgs = {
   accountName: string;

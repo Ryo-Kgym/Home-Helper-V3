@@ -4,8 +4,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useGetHelperKidsQuery } from "@/turbo/graphql/helperKids";
 import { HelperKid } from "@domain/model/helper_kids/HelperKid";
-import { useGetHelperKidsQuery } from "@graphql/hasura/generated/hasuraHelperKidsGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
 

@@ -5,9 +5,9 @@
 
 import type { TableProps } from "@components/atoms/Table";
 import { useRouter } from "next/navigation";
+import { useGetAllCategoriesQuery } from "@/turbo/graphql/household";
 import { ValidityStatus } from "@components/atoms";
 import { Presenter_ } from "@components/page/CategoryList/Presenter";
-import { useGetAllCategoriesQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const Container_ = () => {

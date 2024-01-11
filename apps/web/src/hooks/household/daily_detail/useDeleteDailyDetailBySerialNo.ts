@@ -1,4 +1,4 @@
-import { useDeleteDailyDetailBySerialNoMutation } from "@graphql/hasura/generated/hasuraGraphql";
+import { useDeleteDailyDetailBySerialNoMutation } from "@/turbo/graphql/household";
 
 type useDeleteDailyDetailBySerialNoArgs = {
   id: string;

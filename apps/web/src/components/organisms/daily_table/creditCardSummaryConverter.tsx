@@ -1,5 +1,5 @@
+import type { GetCreditCardSummaryBetweenWithdrawalDateQuery } from "@/turbo/graphql/household";
 import type { TableProps } from "@components/atoms/Table";
-import type { GetCreditCardSummaryBetweenWithdrawalDateQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { IocomeType } from "@domain/model/household/IocomeType";
 

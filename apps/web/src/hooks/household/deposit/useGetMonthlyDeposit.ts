@@ -2,12 +2,13 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useGetDepositQuery } from "@graphql/hasura/generated/hasuraGraphql";
-import { useGroup } from "@hooks/group/useGroup";
-import { refillDepositQuery } from "./_useGetMonthlyDeposit_/refill-deposit-query";
-import { generateYearMonthList } from "@function/date/generate-year-month-list";
-import { createMonthlyDeposits } from "./_useGetMonthlyDeposit_/create-monthly-deposits";
 import { useEffect, useState } from "react";
+import { useGetDepositQuery } from "@/turbo/graphql/household";
+import { generateYearMonthList } from "@function/date/generate-year-month-list";
+import { useGroup } from "@hooks/group/useGroup";
+
+import { createMonthlyDeposits } from "./_useGetMonthlyDeposit_/create-monthly-deposits";
+import { refillDepositQuery } from "./_useGetMonthlyDeposit_/refill-deposit-query";
 
 /**
  * Retrieves monthly deposits for a given date range.
