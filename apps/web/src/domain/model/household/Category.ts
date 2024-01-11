@@ -1,4 +1,4 @@
-import { IocomeType } from "@domain/model/household/IocomeType";
+import type { IocomeType } from "@domain/model/household/IocomeType";
 
 export type Category = {
   iocomeType: IocomeType;
@@ -6,9 +6,4 @@ export type Category = {
   genreName: string;
   categoryId: string;
   categoryName: string;
-};
-
-export type PriceByCategory = {
-  category: Category;
-  price: number;
 };

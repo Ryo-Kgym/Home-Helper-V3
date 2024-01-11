@@ -2,9 +2,9 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
+import type { MantineMonthPickerProps } from "@components/ui/date";
 import { useDate } from "@hooks/date/useDate";
 import { MonthPickerInput } from "@mantine/dates";
-import { MantineMonthPickerProps } from "@components/ui/date/index";
 
 export const MantineMonthPicker = ({
   value,
@@ -77,7 +77,7 @@ const JumpIcon = ({
 }) => (
   <button
     className={
-      "mx-auto pb-2 text-6xl bg-inherit cursor-pointer text-gray-400 hover:text-gray-800"
+      "mx-auto cursor-pointer bg-inherit pb-2 text-6xl text-gray-400 hover:text-gray-800"
     }
     onClick={onClick}
   >

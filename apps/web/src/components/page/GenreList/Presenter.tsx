@@ -2,7 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Table, TableProps } from "@components/atoms/Table";
+import type { TableProps } from "@components/atoms/Table";
+import { Table } from "@components/atoms/Table";
 
 export const Presenter_ = ({
   tablePropsList,

@@ -2,14 +2,14 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Button } from "@components/ui";
+import type { GenreType } from "@domain/model/household/GenreType";
+import type { IocomeType } from "@domain/model/household/IocomeType";
 import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
-import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { GenreTypeSegment } from "@components/molecules/CustomSegment/GenreTypeSegment";
+import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySegment";
 import { GenreNameTextInput } from "@components/molecules/CustomTextInput";
-import { GenreType } from "@domain/model/household/GenreType";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import { Button } from "@components/ui";
 
 export const Presenter_ = ({
   categories = [],
@@ -88,8 +88,8 @@ const FrameDiv = ({
   title: string;
   children: React.ReactNode;
 }) => (
-  <div className={"bg-gray-100 p-4 my-4 rounded"}>
+  <div className={"my-4 rounded bg-gray-100 p-4"}>
     <div className={"text-gray-500"}>{title}</div>
-    <div className={"text-xl ml-[1em]"}>{children}</div>
+    <div className={"ml-[1em] text-xl"}>{children}</div>
   </div>
 );

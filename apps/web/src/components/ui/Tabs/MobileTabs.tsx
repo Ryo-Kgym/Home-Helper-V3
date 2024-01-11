@@ -4,8 +4,8 @@
 
 "use client";
 
+import type { TabsProps } from "@components/ui";
 import { Tabs } from "@mantine/core";
-import { TabsProps } from "@components/ui";
 
 export const MobileTabs = ({ defaultSelect, tabPropsList }: TabsProps) => (
   <Tabs defaultValue={defaultSelect}>
@@ -18,7 +18,7 @@ export const MobileTabs = ({ defaultSelect, tabPropsList }: TabsProps) => (
     <Tabs.List className={"absolute bottom-0 left-0 h-16 w-full"}>
       {tabPropsList.map((tab, i) => (
         <Tabs.Tab
-          className={`w-1/${tabPropsList.length} text-xl bg-gray-50`}
+          className={`w-1/${tabPropsList.length} bg-gray-50 text-xl`}
           value={tab.value}
           leftSection={tab.icon}
           key={"tab" + i}

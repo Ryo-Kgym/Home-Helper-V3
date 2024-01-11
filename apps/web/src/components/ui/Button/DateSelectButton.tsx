@@ -3,9 +3,10 @@
  */
 "use client";
 
-import { Button, MantineColor } from "@mantine/core";
-import { useDateHolder } from "@hooks/date/useDateHolder";
+import type { MantineColor } from "@mantine/core";
 import { useDate } from "@hooks/date/useDate";
+import { useDateHolder } from "@hooks/date/useDateHolder";
+import { Button } from "@mantine/core";
 
 export const DateSelectButton = (
   // @formatter:off

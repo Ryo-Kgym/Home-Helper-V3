@@ -2,7 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Table, TableProps } from "@components/atoms/Table";
+import type { TableProps } from "@components/atoms/Table";
+import { Table } from "@components/atoms/Table";
 import { Button } from "@components/ui";
 
 export const Presenter_ = ({
@@ -24,7 +25,7 @@ export const Presenter_ = ({
   backHandler: () => void;
 }) => (
   <div className={"space-y-3"}>
-    <div className={"space-x-5 text-2xl flex p-3"}>
+    <div className={"flex space-x-5 p-3 text-2xl"}>
       <div>カード： {summary.creditCard}</div>
       <div>引落日： {summary.withdrawalDate.toLocaleDateString()}</div>
       <div>アカウント： {summary.accountName}</div>

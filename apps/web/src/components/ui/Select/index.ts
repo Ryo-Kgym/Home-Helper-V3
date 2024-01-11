@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import {
+import type {
   ComboboxItem,
   ComboboxItemGroup,
 } from "@mantine/core/lib/components/Combobox/Combobox.types";

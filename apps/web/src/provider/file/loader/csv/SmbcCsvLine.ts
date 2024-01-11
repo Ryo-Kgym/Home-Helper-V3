@@ -1,12 +1,9 @@
-export interface SmbcCsvLine {
+export type SmbcCsvLine = {
   date(): Date;
-
   shopName(): string;
-
   price(): number;
-
   note(): string;
-}
+};
 
 export const parseSmbcCsvLine = (line: string): SmbcCsvLine => {
   const splitLine = line.split(",");

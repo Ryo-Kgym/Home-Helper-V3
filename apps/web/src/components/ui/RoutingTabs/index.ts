@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export { MantineRoutingTabs as RoutingTabs } from "./MantineRoutingTabs";
 

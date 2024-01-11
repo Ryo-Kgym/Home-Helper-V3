@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { TransferListItem } from "..";
-import { Combobox, useCombobox, ScrollArea } from "@mantine/core";
+import { Combobox, ScrollArea, useCombobox } from "@mantine/core";
+
+import type { TransferListItem } from "..";
 
 const TransferBox = ({
   index,
@@ -70,7 +71,7 @@ const TransferBox = ({
                     moveGenreHandler(group.items);
                   }}
                 >
-                  <div className={"text-gray-400 text-xs"}>{group.group}</div>
+                  <div className={"text-xs text-gray-400"}>{group.group}</div>
                 </Combobox.Option>
                 {group.items.map((item) => (
                   <Combobox.Option

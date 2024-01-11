@@ -2,8 +2,9 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { MantineSize, Textarea } from "@mantine/core";
-import { ChangeEvent } from "react";
+import type { MantineSize } from "@mantine/core";
+import type { ChangeEvent } from "react";
+import { Textarea } from "@mantine/core";
 
 export const MantineTextarea = ({
   label,
