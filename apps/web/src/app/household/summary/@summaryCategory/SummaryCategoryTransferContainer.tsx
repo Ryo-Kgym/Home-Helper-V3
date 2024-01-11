@@ -2,12 +2,13 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { TransferListItem } from "@components/ui";
 import { useState } from "react";
-import { TransferListItem } from "@components/ui/index";
+import { useCreateSummaryCategories } from "@app/household/summary/@summaryCategory/useCreateSummaryCategories";
+import { errorPopup, successPopup } from "@function/successPopup";
+
 import { SummaryCategoryTransferPresenter } from "./SummaryCategoryTransferPresenter";
 import { useGetSummaryCategories } from "./useGetSummaryCategories";
-import { useCreateSummaryCategories } from "@app/household/summary/@summaryCategory/useCreateSummaryCategories";
-import { successPopup, errorPopup } from "@function/successPopup";
 
 export const SummaryCategoryTransferContainer = () => {
   const [transferData, setTransferData] = useState<

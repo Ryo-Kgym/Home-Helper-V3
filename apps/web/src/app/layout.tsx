@@ -6,7 +6,7 @@ import "../styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript } from "@mantine/core";
 import { ClientsProviders } from "app/_provider/ClientsProviders";

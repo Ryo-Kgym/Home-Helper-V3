@@ -2,10 +2,11 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { TableProps } from "@components/atoms/Table";
-import { DailyTableByCategoryPresenter } from "./DailyTableByCategoryPresenter";
+import type { TableProps } from "@components/atoms/Table";
 import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
 import { useGetDailyDetailByDateCategoryId } from "@hooks/household/daily_detail/useGetDailyDetailByDateCategoryId";
+
+import { DailyTableByCategoryPresenter } from "./DailyTableByCategoryPresenter";
 
 export const DailyTableByCategoryContainer = ({
   fromMonth,

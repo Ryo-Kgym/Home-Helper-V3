@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { HelperKid } from "@domain/model/helper_kids/HelperKid";
+import type { HelperKid } from "@domain/model/helper_kids/HelperKid";
 
 type Props = {
   kids: HelperKid[];

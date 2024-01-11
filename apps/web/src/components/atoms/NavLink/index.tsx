@@ -2,8 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
+import type { HomeHelperSize } from "@components/atoms";
 import { NavLink as MNavLink } from "@mantine/core";
-import { HomeHelperSize } from "@components/atoms";
 
 type Props = {
   label: string;

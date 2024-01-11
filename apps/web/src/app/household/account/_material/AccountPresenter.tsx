@@ -2,9 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Table, TableProps } from "@components/atoms/Table/index";
-import { RangeDatePicker } from "@components/ui/date";
+import type { TableProps } from "@components/atoms/Table";
+import { Table } from "@components/atoms/Table/index";
 import { Total } from "@components/molecules/Total/index";
+import { RangeDatePicker } from "@components/ui/date";
 
 type AccountPresenterProps = {
   fromDate: Date | null;

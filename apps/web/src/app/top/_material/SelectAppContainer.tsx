@@ -4,7 +4,8 @@
 
 "use client";
 
-import { LinkProps, LinkList } from "@components/atoms/Card/index";
+import type { LinkProps } from "@components/atoms/Card";
+import { LinkList } from "@components/atoms/Card";
 import { useGetApplicationByGroupIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 

@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { SelectData } from "@components/ui";
+import type { SelectData } from "@components/ui";
 import { FileType } from "@provider/file/FileType";
+
 import { FileTypeSelectPresenter } from "./FileTypeSelectPresenter";
 
 type FileTypeSelectContainerProps = {

@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Select, SelectData } from "@components/ui";
-import { FileType } from "@provider/file/FileType";
+import type { SelectData } from "@components/ui";
+import type { FileType } from "@provider/file/FileType";
+import { Select } from "@components/ui";
 
 type FileTypeSelectPresenterProps = {
   value: FileType | null;

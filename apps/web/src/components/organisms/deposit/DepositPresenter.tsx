@@ -2,7 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Table, TableProps } from "@components/atoms/Table";
+import type { TableProps } from "@components/atoms/Table";
+import { Table } from "@components/atoms/Table";
 import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker";
 
 export const DepositPresenter = ({

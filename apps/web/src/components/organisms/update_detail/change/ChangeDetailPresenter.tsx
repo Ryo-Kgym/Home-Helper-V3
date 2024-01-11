@@ -2,15 +2,15 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { GenreSelect } from "@components/molecules/CustomSelect/Genre/index";
-import { CategorySelect } from "@components/molecules/CustomSelect/Category/index";
-import { AccountSelect } from "@components/molecules/CustomSelect/Account/index";
-import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType/index";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import type { IocomeType } from "@domain/model/household/IocomeType";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount/index";
+import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType/index";
+import { AccountSelect } from "@components/molecules/CustomSelect/Account";
+import { CategorySelect } from "@components/molecules/CustomSelect/Category";
+import { GenreSelect } from "@components/molecules/CustomSelect/Genre/index";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo/index";
-import { Button } from "@components/ui/index";
 import { DatePicker } from "@components/ui/date/index";
+import { Button } from "@components/ui/index";
 
 export const ChangeDetailPresenter = ({
   date,
@@ -49,7 +49,7 @@ export const ChangeDetailPresenter = ({
   updateClickHandler: () => void;
   deleteClickHandler: () => void;
 }) => (
-  <div className={"grid grid-cols-1 w-full"}>
+  <div className={"grid w-full grid-cols-1"}>
     <Field>
       <DatePicker
         value={date ?? new Date()}

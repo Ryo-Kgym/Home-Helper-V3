@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { TableProps } from "@components/atoms/Table";
+import type { TableProps } from "@components/atoms/Table";
 import { DailySearchContainer } from "@components/organisms/daily_table/DailySearchContainer";
 
 export const DailyTableByGenrePresenter = ({

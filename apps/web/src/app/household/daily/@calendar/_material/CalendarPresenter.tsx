@@ -2,10 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { DailyTotal } from "@domain/model/household/DailyTotal";
 import { Day } from "@app/household/daily/@calendar/_material/day";
 import { DateSelectButton } from "@components/ui";
 import { MonthPicker } from "@components/ui/date";
-import { DailyTotal } from "@domain/model/household/DailyTotal";
 
 type CalendarPresenterProps = {
   baseDate: Date | null;
@@ -32,7 +32,7 @@ export const CalendarPresenter = ({
       </div>
     </div>
 
-    <div className={"w-full grid grid-cols-7 border-l-2"}>
+    <div className={"grid w-full grid-cols-7 border-l-2"}>
       <Week />
       {dailyTotalList.map((e, index) => (
         <Day

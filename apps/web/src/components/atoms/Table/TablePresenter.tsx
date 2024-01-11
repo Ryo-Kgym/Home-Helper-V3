@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { RefObject } from "react";
+import type { RefObject } from "react";
 import { ActionIcon, Button, ScrollArea, Table } from "@mantine/core";
 import { IconArrowBarToDown } from "@tabler/icons-react";
 
@@ -72,7 +72,7 @@ const JumpToBottom = ({
   scrollToBottom ? (
     <Button
       className={
-        "z-10 absolute bottom-10 right-10 border-0 max-sm:button-1 max-sm:right-3"
+        "max-sm:button-1 absolute bottom-10 right-10 z-10 border-0 max-sm:right-3"
       }
       onClick={scrollToBottom}
       unstyled={true}

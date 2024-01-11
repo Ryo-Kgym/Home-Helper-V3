@@ -2,8 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
+import type { Navi } from "@app/_layout/navi";
 import { NavbarSection } from "@app/_layout/NavbarSection";
-import { Navi } from "@app/_layout/navi";
 import { RegisterDailyButton } from "@components/molecules";
 
 export const HouseholdLayout = ({
@@ -13,7 +13,7 @@ export const HouseholdLayout = ({
 }) => (
   <NavbarSection header={"家計簿アプリ"} naviArray={householdNavis}>
     {children}
-    <div className={"z-100 absolute right-5 bottom-16"}>
+    <div className={"z-100 absolute bottom-16 right-5"}>
       <RegisterDailyButton />
     </div>
   </NavbarSection>

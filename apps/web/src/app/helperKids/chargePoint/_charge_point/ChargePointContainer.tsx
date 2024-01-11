@@ -3,10 +3,10 @@
  */
 "use client";
 
+import type { TableProps } from "@components/atoms/Table";
+import type { HelpItem } from "@domain/model/helper_kids/HelpItem";
 import { useEffect, useState } from "react";
 import { Counter } from "@components/atoms/Counter/index";
-import { TableProps } from "@components/atoms/Table/index";
-import { HelpItem } from "@domain/model/helper_kids/HelpItem";
 import { errorPopup, successPopup } from "@function/successPopup";
 import { useGetHelpItemsQuery } from "@graphql/hasura/generated/hasuraHelperKidsGraphql";
 import { useGroup } from "@hooks/group/useGroup";

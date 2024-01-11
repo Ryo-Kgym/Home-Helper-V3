@@ -3,8 +3,8 @@
  */
 "use client";
 
+import type { TableProps } from "@components/atoms/Table";
 import { useState } from "react";
-import { TableProps } from "@components/atoms/Table";
 import { createMonthNames } from "@function/date/create-month-names";
 import { useGetMonthlyDeposit } from "@hooks/household/deposit/useGetMonthlyDeposit";
 
