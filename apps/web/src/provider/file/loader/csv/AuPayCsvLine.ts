@@ -1,4 +1,4 @@
-export interface AuPayCsvLine {
+export type AuPayCsvLine = {
   user(): string;
 
   paymentType(): string;
@@ -10,7 +10,7 @@ export interface AuPayCsvLine {
   price(): number;
 
   note(): string;
-}
+};
 
 export const parseAuPayCsvLine = (line: string): AuPayCsvLine => {
   const splitLine = line.split(",");

@@ -3,14 +3,16 @@
  */
 "use client";
 
+import { useRouter } from "next/navigation";
 import { HelperKid } from "@domain/model/helper_kids/HelperKid";
 import { useGetHelperKidsQuery } from "@graphql/hasura/generated/hasuraHelperKidsGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
-import { useRouter } from "next/navigation";
+
 import { SelectKidPresenter } from "./SelectKidPresenter";
 
 export const SelectKidContainer = () => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
   const { groupId } = useGroup();
   const { save } = useHelperKidHolder();
@@ -18,6 +20,7 @@ export const SelectKidContainer = () => {
 
   const kids: HelperKid[] =
     data?.helperKid.map(({ id, name, nameSuffix }) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       HelperKid.of(id, name, nameSuffix),
     ) ?? [];
 

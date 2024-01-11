@@ -65,7 +65,11 @@ export const ChargePointContainer = () => {
               defaultValue={0}
               setCountHandler={(diffCount, count) => {
                 setTotalPoint(totalPoint + diffCount * point);
-                helpItemMap.set(id, { id, point, count });
+                helpItemMap.set(id as string, {
+                  id: id as string,
+                  point,
+                  count,
+                });
                 setHelpItemMap(helpItemMap);
               }}
               forceReset={forceReset}
@@ -81,7 +85,7 @@ export const ChargePointContainer = () => {
       currentPoint={getCurrentPoint()}
       totalPoint={totalPoint}
       handleRegisterHelps={handleRegisterHelps}
-      handleRegisterAfterProcess={() => {}}
+      handleRegisterAfterProcess={() => undefined}
       tableProps={tableProps}
     />
   );

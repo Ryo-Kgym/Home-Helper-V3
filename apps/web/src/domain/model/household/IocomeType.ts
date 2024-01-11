@@ -1,7 +1,5 @@
 export enum IocomeType {
-  // eslint-disable-next-line no-unused-vars
   Income = "INCOME", // 収入
-  // eslint-disable-next-line no-unused-vars
   Outcome = "OUTCOME", // 支出
 }
 

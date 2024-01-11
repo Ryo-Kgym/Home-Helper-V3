@@ -2,9 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { CategoryDetail } from "./type";
+import type { MonthlyDeposit } from "@hooks/household/deposit/monthlyDeposit";
+
+import type { CategoryDetail } from "./type";
 import { groupMonthlyCategory } from "./group-monthly-category";
-import { MonthlyDeposit } from "@hooks/household/deposit/monthlyDeposit";
 
 /**
  * Creates monthly deposits based on category details and year months.

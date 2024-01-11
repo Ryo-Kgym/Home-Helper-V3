@@ -3,8 +3,10 @@
  */
 
 import "dayjs/locale/ja";
-import { MantineSize } from "@mantine/core";
-import { DateInput, DateValue } from "@mantine/dates";
+
+import type { MantineSize } from "@mantine/core";
+import type { DateValue } from "@mantine/dates";
+import { DateInput } from "@mantine/dates";
 
 export const MantineDatePicker = ({
   value,

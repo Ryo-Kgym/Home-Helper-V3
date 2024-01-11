@@ -2,9 +2,9 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Button } from "@components/ui";
 import { Input } from "@components/atoms/Input";
 import { InputValidationMessage } from "@components/atoms/Input/InputValidator";
+import { Button } from "@components/ui";
 
 type ExchangeItemRegisterPresenterProps = {
   itemName: string;
@@ -59,6 +59,7 @@ const PointItem = ({ value, setValue }: ItemProps) => (
 );
 type ItemProps = {
   value: string | number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setValue: (_: any) => void;
 };
 
@@ -66,4 +67,4 @@ const ItemStyler = ({
   children,
 }: {
   children: React.ReactNode | React.ReactNode[];
-}) => <div className={"px-8 py-8 border-b-2"}>{children}</div>;
+}) => <div className={"border-b-2 px-8 py-8"}>{children}</div>;

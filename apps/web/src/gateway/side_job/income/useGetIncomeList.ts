@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { IncomeDetail } from "@gateway/side_job/income/incomeDetail";
+import type { IncomeDetail } from "@gateway/side_job/income/incomeDetail";
 
 export const getIncomeList = async () => {
   return {

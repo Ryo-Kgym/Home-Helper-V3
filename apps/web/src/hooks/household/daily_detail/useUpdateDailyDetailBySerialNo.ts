@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { IocomeType } from "@domain/model/household/IocomeType";
 import { useUpdateDailyDetailByIdMutation } from "@graphql/hasura/generated/hasuraGraphql";
-import { IocomeType } from "@domain/model/household/IocomeType";
 
 type useUpdateDailyDetailBySerialNoArgs = {
   id: string;

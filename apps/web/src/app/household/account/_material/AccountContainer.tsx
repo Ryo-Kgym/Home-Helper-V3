@@ -4,12 +4,13 @@
 
 "use client";
 
-import { AccountPresenter } from "./AccountPresenter";
+import type { TableProps } from "@components/ui";
 import { useState } from "react";
-import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
-import { DailyTableByAccount } from "@components/organisms/daily_table/account";
 import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
-import { TableProps } from "@components/ui";
+import { DailyTableByAccount } from "@components/organisms/daily_table/account";
+import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
+
+import { AccountPresenter } from "./AccountPresenter";
 
 const FIRST_DATE = new Date("2019-01-01");
 
@@ -34,7 +35,7 @@ export const AccountContainer = () => {
           },
         ],
         onClick: () => {
-          setSelectedAccountId(account?.id!);
+          setSelectedAccountId(account?.id);
         },
       };
     }) ?? [];

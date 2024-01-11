@@ -1,7 +1,5 @@
 export enum GenreType {
-  // eslint-disable-next-line no-unused-vars
   FLUCTUATION = "FLUCTUATION", // 変動
-  // eslint-disable-next-line no-unused-vars
   FIXED = "FIXED", // 固定
 }
 

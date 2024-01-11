@@ -1,10 +1,11 @@
+import type { InputValidator } from "@components/atoms/Input/InputValidator";
 import { TextField } from "@components/atoms/Input/TextField";
-import { InputValidator } from "@components/atoms/Input/InputValidator";
 
 type InputContainerProps = {
   label: string;
   type?: "text" | "number";
   value: string | number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (_: any) => void;
   validator?: InputValidator;
   placeholder?: string;

@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import type { User } from "@domain/model/User";
 import { persist } from "@recoil/recoilPersist";
-import { User } from "@domain/model/User";
+import { atom } from "recoil";
 
 export const userState = atom<User>({
   key: "user",

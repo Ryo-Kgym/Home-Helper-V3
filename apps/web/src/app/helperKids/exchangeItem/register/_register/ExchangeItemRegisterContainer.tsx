@@ -10,10 +10,10 @@ export const ExchangeItemRegisterContainer = () => {
   return (
     <ExchangeItemRegisterPresenter
       itemName={"お皿洗い"}
-      setItemName={() => {}}
+      setItemName={() => undefined}
       point={100}
-      setPoint={() => {}}
-      registerOnClick={() => {}}
+      setPoint={() => undefined}
+      registerOnClick={() => undefined}
     />
   );
 };

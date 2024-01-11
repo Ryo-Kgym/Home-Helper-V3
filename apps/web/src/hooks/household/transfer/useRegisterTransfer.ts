@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { IocomeType } from "@domain/model/household/IocomeType";
+import type { IocomeType } from "@domain/model/household/IocomeType";
 import {
   useCreateDailyDetailMutation,
   useGetTransferCategoryByQuery,

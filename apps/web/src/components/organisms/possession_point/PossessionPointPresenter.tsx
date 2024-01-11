@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import piggy from "@public/piggy_bank.svg";
 import Image from "next/image";
+import piggy from "@public/piggy_bank.svg";
 import Countup from "react-countup";
 
 type PossessionPointPresenterProps = {
@@ -30,16 +30,16 @@ const Point = ({ name, point }: { name: string; point: number }) => (
     >
       <div
         className={
-          "flex text-4xl absolute z-10 left-[1em] top-[-0.5em] bg-white"
+          "absolute left-[1em] top-[-0.5em] z-10 flex bg-white text-4xl"
         }
       >
         {name} の今のポイント
       </div>
       <div
         className={
-          "flex border-8 border-double rounded-lg border-black " +
-          "text-9xl w-[5.2em] absolute justify-end h-[2.2em] " +
-          "pt-[0.5em] pl-[0.01em]"
+          "flex rounded-lg border-8 border-double border-black " +
+          "absolute h-[2.2em] w-[5.2em] justify-end text-9xl " +
+          "pl-[0.01em] pt-[0.5em]"
         }
       >
         <Countup
@@ -47,15 +47,18 @@ const Point = ({ name, point }: { name: string; point: number }) => (
           duration={1}
           formattingFn={(n) => n.toLocaleString()}
         />
-        <div className={"flex text-7xl pt-12 pr-5 pl-5"}>
+        <div className={"flex pl-5 pr-5 pt-12 text-7xl"}>
           {process.env.NEXT_PUBLIC_POINT_UNIT}
         </div>
       </div>
       <div>
         <Image
-          src={piggy}
+          src={
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            piggy
+          }
           alt={"piggy"}
-          className={"w-32 h-32 absolute bottom-0 right-0"}
+          className={"absolute bottom-0 right-0 h-32 w-32"}
         />
       </div>
     </div>

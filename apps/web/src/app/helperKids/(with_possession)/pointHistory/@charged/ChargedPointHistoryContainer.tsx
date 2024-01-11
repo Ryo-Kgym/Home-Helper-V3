@@ -5,6 +5,7 @@
 
 import { useGetEarnedDetailByHelperKidIdQuery } from "@graphql/hasura/generated/hasuraHelperKidsGraphql";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
+
 import { ChargedPointHistoryPresenter } from "./ChargedPointHistoryPresenter";
 
 export const ChargedPointHistoryContainer = () => {
@@ -22,7 +23,9 @@ export const ChargedPointHistoryContainer = () => {
             keyPrefix: "chargedPointHistory",
             columns: [
               {
-                value: earnedAchievement.datetime?.substring(0, 10) ?? "",
+                value:
+                  (earnedAchievement.datetime as string)?.substring(0, 10) ??
+                  "",
               },
               { value: detail.helpItem.name },
               { value: detail.count },

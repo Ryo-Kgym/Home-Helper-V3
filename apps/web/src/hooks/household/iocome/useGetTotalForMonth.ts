@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { DailyTotal } from "@domain/model/household/DailyTotal";
+import type { DailyTotal } from "@domain/model/household/DailyTotal";
 import {
   useGetCreditCardSummaryBetweenWithdrawalDateQuery,
   useGetTotalBetweenDateQuery,

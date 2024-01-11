@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Tab, TabProps } from "@components/ui/Tabs/index";
+import type { TabProps } from "@components/ui";
 import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker/index";
+import { Tab } from "@components/ui/Tabs/index";
 
 type SummaryPresenterProps = {
   fromMonth: Date | null;

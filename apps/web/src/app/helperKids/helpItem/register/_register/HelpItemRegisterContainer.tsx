@@ -10,12 +10,12 @@ export const HelpItemRegisterContainer = () => {
   return (
     <HelpItemRegisterPresenter
       itemName={"お皿洗い"}
-      setItemName={() => {}}
+      setItemName={() => undefined}
       point={100}
-      setPoint={() => {}}
+      setPoint={() => undefined}
       memo={"メモ"}
-      setMemo={() => {}}
-      registerOnClick={() => {}}
+      setMemo={() => undefined}
+      registerOnClick={() => undefined}
     />
   );
 };

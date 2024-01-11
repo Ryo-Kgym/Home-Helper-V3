@@ -4,8 +4,8 @@
 
 "use client";
 
+import type { Navi } from "@app/_layout/navi";
 import Link from "next/link";
-import { Navi } from "@app/_layout/navi";
 import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 

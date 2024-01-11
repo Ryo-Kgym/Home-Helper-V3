@@ -2,7 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Table, TableProps } from "@components/atoms/Table/index";
+import type { TableProps } from "@components/atoms/Table";
+import { Table } from "@components/atoms/Table/index";
 import { UpdateNotification } from "@components/atoms/UpdateNotification";
 
 type ChargePointPresenterProps = {
@@ -30,7 +31,7 @@ export const ChargePointPresenter = ({
     />
     <div
       className={
-        "justify-items-center sticky grid grid-cols-2 gap-4 max-md:grid-cols-1"
+        "sticky grid grid-cols-2 justify-items-center gap-4 max-md:grid-cols-1"
       }
     >
       <TotalPointBox currentPoint={currentPoint} totalUsePoint={totalPoint} />
@@ -49,8 +50,8 @@ export const ChargePointPresenter = ({
 
 const FormulaFlex = ({ label, point }: { label: string; point: number }) => (
   <div>
-    <div className={"text-gray-400 text-xs"}>{label}</div>
-    <div className={"text-3xl text-right"}>{point.toLocaleString()}</div>
+    <div className={"text-xs text-gray-400"}>{label}</div>
+    <div className={"text-right text-3xl"}>{point.toLocaleString()}</div>
   </div>
 );
 

@@ -1,4 +1,4 @@
-export interface TotalAmountByMonthlyArgs<T> {
+export type TotalAmountByMonthlyArgs<T> = {
   key: T;
   list: {
     month: string;
@@ -6,7 +6,7 @@ export interface TotalAmountByMonthlyArgs<T> {
   }[];
   fromDate: Date;
   toDate: Date;
-}
+};
 
 export type TotalAmountByMonthly<T> = {
   key: T;

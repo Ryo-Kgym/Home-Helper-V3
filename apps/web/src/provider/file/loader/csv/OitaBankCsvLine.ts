@@ -1,4 +1,4 @@
-export interface OitaBankCsvLine {
+export type OitaBankCsvLine = {
   number(): string;
 
   date(): Date;
@@ -10,7 +10,7 @@ export interface OitaBankCsvLine {
   transactionType(): string;
 
   note(): string;
-}
+};
 
 export const parseOitaBankCsvLine = (line: string): OitaBankCsvLine => {
   const removeQuotationLine = line.split('","');

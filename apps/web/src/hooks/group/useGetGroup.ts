@@ -2,9 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { Group } from "@domain/model/Group";
+import type { User } from "@domain/model/User";
 import { useUser as clerkUseAuth } from "@clerk/nextjs";
-import { Group } from "@domain/model/Group";
-import { User } from "@domain/model/User";
 import { useGetUserByEmailQuery } from "@graphql/hasura/generated/hasuraGraphql";
 
 export const useGetGroup = () => {

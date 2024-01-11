@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { TransferListItem } from "@components/ui/index";
+import type { TransferListItem } from "@components/ui";
 import {
   useGetAllCategoryListWithCriteriaQuery,
   useGetSummaryCategoriesQuery,
@@ -21,9 +21,9 @@ export const useGetSummaryCategories = () => {
     summaryCategoriesData?.categories
       ?.map((c) => c.category)
       .map((c) => ({
-        value: c!.id,
-        label: c!.name,
-        group: c!.genre?.name,
+        value: c.id,
+        label: c.name,
+        group: c.genre?.name,
       })) ?? [];
 
   const [{ data }] = useGetAllCategoryListWithCriteriaQuery({

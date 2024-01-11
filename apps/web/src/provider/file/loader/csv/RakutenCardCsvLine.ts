@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-export interface RakutenCardCsvLine {
+export type RakutenCardCsvLine = {
   // 利用日 yyyy/mm/dd
   useDate(): Date;
 
@@ -32,7 +32,7 @@ export interface RakutenCardCsvLine {
 
   // 新規サイン *
   newSign(): string;
-}
+};
 
 export const parseRakutenCardCsvLine = (line: string): RakutenCardCsvLine => {
   const splitLine = line.split(",");

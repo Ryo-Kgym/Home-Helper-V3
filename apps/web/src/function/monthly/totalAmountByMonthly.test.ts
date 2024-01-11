@@ -1,10 +1,5 @@
-// totalAmountByMonthly
-// jest parameterized test
-
-import {
-  totalAmountByMonthly,
-  TotalAmountByMonthlyArgs,
-} from "./totalAmountByMonthly";
+import type { TotalAmountByMonthlyArgs } from "./totalAmountByMonthly";
+import { totalAmountByMonthly } from "./totalAmountByMonthly";
 
 describe("totalAmountByMonthly", () => {
   test.each([
@@ -44,6 +39,6 @@ describe("totalAmountByMonthly", () => {
         ],
         total: 11100,
       });
-    }
+    },
   );
 });

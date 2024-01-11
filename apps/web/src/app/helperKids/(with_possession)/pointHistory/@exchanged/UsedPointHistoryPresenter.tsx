@@ -2,7 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Table, TableProps } from "@components/atoms/Table/index";
+import type { TableProps } from "@components/atoms/Table";
+import { Table } from "@components/atoms/Table/index";
 
 type UsedPointHistoryPresenterProps = {
   tableProps: TableProps[];

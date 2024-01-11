@@ -4,11 +4,11 @@
 
 "use client";
 
+import { LinkList } from "@components/atoms/Card";
 import { useAuth } from "@hooks/authentication/useAuth";
 import { useGetGroup } from "@hooks/group/useGetGroup";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
-import { LinkList } from "@components/atoms/Card/index";
 
 export const SelectGroupContainer = () => {
   const { save: userSave } = useUser();
@@ -22,7 +22,7 @@ export const SelectGroupContainer = () => {
       label: "Logout",
       back: true,
       handleClick: () => {
-        logout();
+        void logout();
       },
     },
   ].concat(

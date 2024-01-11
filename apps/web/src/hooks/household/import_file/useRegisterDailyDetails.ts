@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
+import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import { useCreateDailyDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";

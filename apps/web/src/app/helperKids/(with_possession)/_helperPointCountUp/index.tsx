@@ -4,9 +4,9 @@
 
 "use client";
 
+import Image from "next/image";
 import { useGetHelperKid } from "@hooks/help_point/useHelperKidPoint";
 import piggy from "@public/piggy_bank.svg";
-import Image from "next/image";
 import Countup from "react-countup";
 
 export const HelperPointCountUp = () => {
@@ -19,15 +19,18 @@ export const HelperPointCountUp = () => {
           end={getCurrentPoint()}
           duration={1}
           formattingFn={(n) => n.toLocaleString()}
-          className={"text-right w-[3em]"}
+          className={"w-[3em] text-right"}
         />
         <div className={"ml-2"}>{process.env.NEXT_PUBLIC_POINT_UNIT}</div>
       </div>
       <div>
         <Image
-          src={piggy}
+          src={
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            piggy
+          }
           alt={"piggy"}
-          className={"w-10 h-10 absolute bottom-[-0.25em] right-[-0em]"}
+          className={"absolute bottom-[-0.25em] right-[-0em] h-10 w-10"}
         />
       </div>
     </div>

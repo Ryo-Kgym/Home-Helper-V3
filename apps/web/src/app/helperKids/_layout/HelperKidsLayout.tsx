@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Navi } from "@app/_layout/navi";
+import type { Navi } from "@app/_layout/navi";
 import { NavbarSection } from "@app/_layout/NavbarSection";
 
 export const HelperKidsLayout = ({

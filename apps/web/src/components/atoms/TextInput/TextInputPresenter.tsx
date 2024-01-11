@@ -2,8 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
+import type { ChangeEventHandler } from "react";
 import { TextInput } from "@mantine/core";
-import { ChangeEventHandler } from "react";
 
 export const TextInputPresenter = ({
   label,
