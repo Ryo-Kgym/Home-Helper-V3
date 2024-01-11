@@ -1,0 +1,16 @@
+overwrite: true
+schema: "http://localhost:8282/v1/graphql"
+documents: "./src/graphql/hasura/helperKids/**/**.graphql"
+generates:
+  ./src/graphql/hasura/generated/hasuraHelperKidsGraphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-urql"
+  ./hasura-helper-kids-graphql.schema.json:
+    plugins:
+      - "introspection"
+hooks:
+  afterOneFileWrite:
+    - 'eslint --fix'
+    - 'prettier --write'

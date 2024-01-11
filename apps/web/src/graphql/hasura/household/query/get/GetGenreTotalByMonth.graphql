@@ -1,0 +1,15 @@
+query GetGenreTotalByMonth(
+  $fromDate: date!
+  $toDate: date!
+  $groupId: String!
+) {
+  genreTotalByMonthList: genreTotalByMonth(
+    args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
+  ) {
+    date
+    iocomeType
+    genreId
+    genreName
+    total
+  }
+}

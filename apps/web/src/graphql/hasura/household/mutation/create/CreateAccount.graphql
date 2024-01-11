@@ -1,0 +1,20 @@
+mutation CreateAccount(
+  $accountId: String!
+  $accountName: String!
+  $displayOrder: Int!
+  $groupId: String!
+) {
+  insertAccount: insertHouseholdAccount(
+    objects: {
+      id: $accountId
+      name: $accountName
+      displayOrder: $displayOrder
+      groupId: $groupId
+      validFlag: true
+    }
+  ) {
+    returning {
+      accountId: id
+    }
+  }
+}

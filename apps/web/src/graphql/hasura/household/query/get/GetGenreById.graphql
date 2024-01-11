@@ -1,0 +1,14 @@
+query GetGenreById($genreId: String!) {
+  genreById: householdGenreByPk(id: $genreId) {
+    id
+    genreName: name
+    genreType
+    iocomeType
+    validFlag
+    displayOrder
+    categories(where: { validFlag: { _eq: true } }) {
+      categoryId: id
+      categoryName: name
+    }
+  }
+}

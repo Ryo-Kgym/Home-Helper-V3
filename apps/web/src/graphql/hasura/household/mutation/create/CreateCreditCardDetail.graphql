@@ -1,0 +1,31 @@
+mutation CreateCreditCardDetail(
+  $id: String!
+  $date: date!
+  $genreId: String!
+  $iocomeType: String!
+  $categoryId: String!
+  $amount: numeric!
+  $memo: String!
+  $summaryId: String!
+  $userId: String!
+  $groupId: String!
+) {
+  insertCreditCardDetail: insertHouseholdCreditCardDetail(
+    objects: {
+      id: $id
+      date: $date
+      genreId: $genreId
+      iocomeType: $iocomeType
+      categoryId: $categoryId
+      amount: $amount
+      summaryId: $summaryId
+      userId: $userId
+      memo: $memo
+      groupId: $groupId
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

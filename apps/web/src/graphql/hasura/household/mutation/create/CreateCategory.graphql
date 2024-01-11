@@ -1,0 +1,23 @@
+mutation CreateCategory(
+  $categoryId: String!
+  $categoryName: String!
+  $genreId: String!
+  $displayOrder: Int!
+  $validFlag: Boolean!
+  $groupId: String!
+) {
+  insertCategory: insertHouseholdCategory(
+    objects: {
+      id: $categoryId
+      name: $categoryName
+      genreId: $genreId
+      displayOrder: $displayOrder
+      validFlag: $validFlag
+      groupId: $groupId
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

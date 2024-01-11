@@ -1,0 +1,50 @@
+query getDeposit($groupId: String!, $fromDate: date!, $toDate: date!) {
+  depositCategory: householdDepositCategory(
+    where: { groupId: { _eq: $groupId } }
+  ) {
+    category {
+      id
+      categoryName: name
+      daily: dailyDetailsAggregate(
+        orderBy: { date: ASC }
+        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+      ) {
+        aggregate {
+          count
+          sum {
+            amount
+          }
+          avg {
+            amount
+          }
+        }
+        nodes {
+          id
+          date
+          amount
+          memo
+        }
+      }
+      credit: creditCardDetailsAggregate(
+        orderBy: { date: ASC }
+        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+      ) {
+        aggregate {
+          count
+          sum {
+            amount
+          }
+          avg {
+            amount
+          }
+        }
+        nodes {
+          id
+          date
+          amount
+          memo
+        }
+      }
+    }
+  }
+}

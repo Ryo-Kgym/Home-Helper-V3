@@ -1,0 +1,17 @@
+query GetValidCategoryByGenreId($groupId: String!, $genreId: String) {
+  genreById: householdGenre(
+    where: {
+      groupId: { _eq: $groupId }
+      _and: { validFlag: { _eq: true }, _and: { id: { _eq: $genreId } } }
+    }
+    orderBy: { displayOrder: ASC }
+  ) {
+    id
+    name
+    categories(where: { validFlag: { _eq: true } }) {
+      id
+      name
+      displayOrder
+    }
+  }
+}

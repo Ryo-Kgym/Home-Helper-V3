@@ -1,0 +1,19 @@
+query GetCreditCardDetailById($id: String!) {
+  creditCardDetailByPk: householdCreditCardDetailByPk(id: $id) {
+    id
+    date
+    amount
+    memo
+    summaryId
+    category {
+      categoryId: id
+      categoryName: name
+      genre {
+        genreId: id
+        genreName: name
+        genreType
+        iocomeType
+      }
+    }
+  }
+}
