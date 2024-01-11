@@ -1,9 +1,0 @@
-mutation DeleteSummaryCategory($groupId: String!) {
-  deleteSummaryCategoryByGroup: deleteHouseholdSummaryCategory(
-    where: { groupId: { _eq: $groupId } }
-  ) {
-    returning {
-      id
-    }
-  }
-}

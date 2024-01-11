@@ -1,9 +1,0 @@
-query GetValidAccounts($groupId: String!) {
-  allAccountsList: householdAccount(
-    where: { validFlag: { _eq: true }, _and: { groupId: { _eq: $groupId } } }
-    orderBy: { displayOrder: ASC }
-  ) {
-    accountId: id
-    accountName: name
-  }
-}

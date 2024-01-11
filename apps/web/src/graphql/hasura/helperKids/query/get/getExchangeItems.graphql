@@ -1,8 +1,0 @@
-query getExchangeItems($groupId: uuid!) {
-  exchangeItems: helperKidsExchangeItem(where: { groupId: { _eq: $groupId } }) {
-    id: exchangeItemId
-    name
-    point
-    memo
-  }
-}
