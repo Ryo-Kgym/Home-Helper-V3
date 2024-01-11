@@ -1,0 +1,19 @@
+query GetTransferCategoryBy($groupId: String!) {
+  transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
+    id: groupId
+    incomeCategory: categoryByIncomeCategoryId {
+      categoryId: id
+      genre {
+        genreId: id
+        iocomeType
+      }
+    }
+    outcomeCategory: categoryByOutcomeCategoryId {
+      categoryId: id
+      genre {
+        genreId: id
+        iocomeType
+      }
+    }
+  }
+}

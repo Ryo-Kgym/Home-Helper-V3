@@ -1,0 +1,23 @@
+mutation RegisterHelpPointEarnedDetail(
+  $helpPointEarnedDetailId: uuid!
+  $earnedAchievementId: uuid!
+  $helpItemId: uuid!
+  $helpItemTotalPoint: Int!
+  $helpItemCount: Int!
+  $groupId: uuid!
+) {
+  insertHelperKidsHelpPointEarnedDetail(
+    objects: {
+      helpPointEarnedDetailId: $helpPointEarnedDetailId
+      earnedAchievementId: $earnedAchievementId
+      helpItemId: $helpItemId
+      helpItemTotalPoint: $helpItemTotalPoint
+      helpItemCount: $helpItemCount
+      groupId: $groupId
+    }
+  ) {
+    returning {
+      id: helpPointEarnedDetailId
+    }
+  }
+}

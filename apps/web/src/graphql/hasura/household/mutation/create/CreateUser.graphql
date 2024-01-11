@@ -1,0 +1,20 @@
+mutation CreateUser(
+  $userId: String!
+  $userName: String!
+  $email: String!
+  $displayOrder: Int!
+) {
+  insertUser: insertUser(
+    objects: {
+      id: $userId
+      name: $userName
+      email: $email
+      displayOrder: $displayOrder
+    }
+  ) {
+    returning {
+      userId: id
+      email
+    }
+  }
+}

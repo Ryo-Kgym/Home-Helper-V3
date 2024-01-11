@@ -1,0 +1,11 @@
+query GetCategoryById($categoryId: String!) {
+  category: householdCategoryByPk(id: $categoryId) {
+    categoryName: name
+    validFlag
+    displayOrder
+    genre {
+      genreId: id
+      iocomeType
+    }
+  }
+}
