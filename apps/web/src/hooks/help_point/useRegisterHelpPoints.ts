@@ -2,11 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { HelpItem } from "@domain/model/helper_kids/HelpItem";
+import type { HelpItem } from "@domain/model/helper_kids/HelpItem";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
-import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
 import { useGenerateId } from "@hooks/useGenerateId";
+import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
 import {
   useRegisterHelpPointEarnedAchievementMutation,
   useRegisterHelpPointEarnedDetailMutation,
@@ -37,7 +37,7 @@ export const useRegisterHelpPoints = ({ helpItemMap, totalPoint }: Args) => {
       earnedDatetime: getNow(),
     });
 
-  const _registerDetail = async ({ id, point, count }: HelpItem) =>
+  const registerDetail = async ({ id, point, count }: HelpItem) =>
     await detailMutation({
       helpPointEarnedDetailId: generate(),
       earnedAchievementId: helpPointEarnedAchievementId,
@@ -51,7 +51,7 @@ export const useRegisterHelpPoints = ({ helpItemMap, totalPoint }: Args) => {
     try {
       await _registerAchievement();
       helpItemMap.forEach((helpItem) => {
-        if (helpItem.count > 0) _registerDetail(helpItem);
+        if (helpItem.count > 0) void registerDetail(helpItem);
       });
     } catch (e) {
       console.error(e);

@@ -2,12 +2,12 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { DailyDetail } from "@domain/model/household/DailyDetail";
+import { IocomeType } from "@domain/model/household/IocomeType";
 import {
   useGetDailyDetailByDateQuery,
   useGetTransferCategoryByQuery,
 } from "@graphql/hasura/generated/hasuraGraphql";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { DailyDetail } from "@domain/model/household/DailyDetail";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
@@ -29,35 +29,35 @@ export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
   const incomeTotal = data?.dailyDetailByDateList
     ?.filter(
       (c) =>
-        c!.categoryByCategoryId!.genreByGenreId!.iocomeType ===
+        (c.categoryByCategoryId.genreByGenreId.iocomeType as IocomeType) ===
         IocomeType.Income,
     )
     .filter(
       (c) =>
-        c!.categoryByCategoryId.categoryId !=
+        c.categoryByCategoryId.categoryId !=
         tcData?.transferCategory?.incomeCategory.categoryId,
     )
-    .reduce((a, b) => a + Number(b!.amount!), 0);
+    .reduce((a, b) => a + Number(b.amount), 0);
 
   const outcomeTotal = data?.dailyDetailByDateList
     ?.filter(
       (c) =>
-        c!.categoryByCategoryId!.genreByGenreId!.iocomeType ===
+        (c.categoryByCategoryId.genreByGenreId.iocomeType as IocomeType) ===
         IocomeType.Outcome,
     )
     .filter(
       (c) =>
-        c!.categoryByCategoryId.categoryId !=
+        c.categoryByCategoryId.categoryId !=
         tcData?.transferCategory?.outcomeCategory.categoryId,
     )
-    .reduce((a, b) => a + Number(b!.amount!), 0);
+    .reduce((a, b) => a + Number(b.amount), 0);
 
   const getDetail = (id: string): DailyDetail => {
-    const dailyDetail = data?.dailyDetailByDateList?.find((e) => e!.id === id);
+    const dailyDetail = data?.dailyDetailByDateList?.find((e) => e.id === id);
 
     return {
       id: dailyDetail?.id ?? null,
-      date: new Date(dailyDetail?.date),
+      date: new Date(dailyDetail?.date as string),
       amount: Number(dailyDetail?.amount) ?? "",
       iocomeType:
         (dailyDetail?.categoryByCategoryId?.genreByGenreId

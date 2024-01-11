@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { GetDepositQuery } from "@graphql/hasura/generated/hasuraGraphql";
-import { CategoryDetail, Detail } from "./type";
+import type { GetDepositQuery } from "@graphql/hasura/generated/hasuraGraphql";
+
+import type { CategoryDetail, Detail } from "./type";
 
 /**
  * Returns an array of CategoryDetail objects based on the provided GetDepositQuery data.
@@ -15,27 +16,27 @@ export const refillDepositQuery = (
   data: GetDepositQuery | undefined,
 ): CategoryDetail[] =>
   data?.depositCategory.map((dc) => ({
-    categoryId: dc.category.id as string,
-    categoryName: dc.category.categoryName as string,
+    categoryId: dc.category.id,
+    categoryName: dc.category.categoryName,
     details: [
       ...dc.category.daily.nodes.map(
         (d) =>
           ({
-            detailId: d.id as string,
+            detailId: d.id,
             type: "daily",
-            date: new Date(d.date),
+            date: new Date(d.date as string),
             amount: d.amount as number,
-            memo: d.memo as string,
+            memo: d.memo,
           }) as Detail,
       ),
       ...dc.category.credit.nodes.map(
         (d) =>
           ({
-            detailId: d.id as string,
+            detailId: d.id,
             type: "credit",
-            date: new Date(d.date),
+            date: new Date(d.date as string),
             amount: d.amount as number,
-            memo: d.memo as string,
+            memo: d.memo,
           }) as Detail,
       ),
     ],

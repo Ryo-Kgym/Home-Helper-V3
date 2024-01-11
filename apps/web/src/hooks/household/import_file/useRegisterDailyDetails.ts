@@ -28,7 +28,7 @@ export const useRegisterDailyDetails = ({
     id: generate(),
     date: data.date,
     genreId: data.genreId!,
-    iocomeType: data.iocomeType!,
+    iocomeType: data.iocomeType,
     categoryId: data.categoryId!,
     accountId: accountId,
     amount: data.price,

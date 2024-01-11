@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
+import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import {
   useCreateCreditCardDetailMutation,
   useCreateCreditCardSummaryMutation,
@@ -40,7 +40,7 @@ export const useRegisterCreditCard = ({
 
   const summaryVariableList = {
     id: summaryId,
-    creditCard: CreditCardMap.get(fileType) || "other",
+    creditCard: CreditCardMap.get(fileType) ?? "other",
     accountId: accountId,
     totalAmount: loadData.reduce((acc, cur) => acc + cur.price, 0),
     count: loadData.length,
@@ -52,7 +52,7 @@ export const useRegisterCreditCard = ({
     id: generate(),
     date: data.date,
     genreId: data.genreId!,
-    iocomeType: data.iocomeType!,
+    iocomeType: data.iocomeType,
     categoryId: data.categoryId!,
     amount: data.price,
     memo: data.note,

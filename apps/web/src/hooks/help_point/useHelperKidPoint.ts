@@ -14,7 +14,7 @@ export const useGetHelperKid = () => {
   const helperKid = (): HelperKid =>
     helperKidData?.helperKid
       ? HelperKid.of(
-          helperKidData.helperKid.id,
+          helperKidData.helperKid.id as string,
           helperKidData.helperKid.name,
           helperKidData.helperKid.nameSuffix,
         )
@@ -25,7 +25,7 @@ export const useGetHelperKid = () => {
   const getExchangedPoint = () =>
     helperKidData?.exchangedAgg.aggregate?.sum?.exchangeTotalPoint ?? 0;
   const getLastEarnedDatetime = () =>
-    helperKidData?.earnedAgg.aggregate?.max?.earnedDatetime ?? undefined;
+    helperKidData?.earnedAgg.aggregate?.max?.earnedDatetime as string;
 
   return {
     helperKid,

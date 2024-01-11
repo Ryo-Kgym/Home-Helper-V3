@@ -2,9 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { GetDepositQuery } from "@graphql/hasura/generated/hasuraGraphql";
+
+import type { CategoryDetail } from "./type";
 import { refillDepositQuery as testTarget } from "./refill-deposit-query";
-import { CategoryDetail } from "./type";
-import { GetDepositQuery } from "@graphql/hasura/generated/hasuraGraphql";
 
 describe("refillDepositQuery function", () => {
   it("should correctly transform the provided GetDepositQuery data to CategoryDetail array", () => {
@@ -47,14 +48,16 @@ describe("refillDepositQuery function", () => {
           {
             detailId: "1",
             type: "daily",
-            date: mockData.depositCategory[0].category.daily.nodes[0].date,
+            date: mockData.depositCategory[0]!.category.daily.nodes[0]!
+              .date as Date,
             amount: 100,
             memo: "test daily detail",
           },
           {
             detailId: "2",
             type: "credit",
-            date: mockData.depositCategory[0].category.credit.nodes[0].date,
+            date: mockData.depositCategory[0]!.category.credit.nodes[0]!
+              .date as Date,
             amount: 200,
             memo: "test credit detail",
           },

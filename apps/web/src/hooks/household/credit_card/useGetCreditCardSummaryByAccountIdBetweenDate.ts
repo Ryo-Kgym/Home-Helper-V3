@@ -3,7 +3,7 @@ import { useGetCreditCardSummaryByAccountIdBetweenDateQuery } from "@graphql/has
 export const useGetCreditCardSummaryByAccountIdBetweenDate = (
   accountId: string,
   fromDate: Date | null,
-  toDate: Date | null
+  toDate: Date | null,
 ) => {
   const [{ data, fetching, error }, refetch] =
     useGetCreditCardSummaryByAccountIdBetweenDateQuery({
@@ -16,8 +16,8 @@ export const useGetCreditCardSummaryByAccountIdBetweenDate = (
 
   const incomeTotal = 0;
   const outcomeTotal = data?.allCreditCardSummariesList?.reduce(
-    (a, b) => a + Number(b!.totalAmount!),
-    0
+    (a, b) => a + Number(b.totalAmount),
+    0,
   );
 
   return {

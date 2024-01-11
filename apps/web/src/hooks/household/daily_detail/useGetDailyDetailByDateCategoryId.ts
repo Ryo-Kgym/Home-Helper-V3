@@ -1,5 +1,5 @@
-import { useGetDailyDetailByDateCategoryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { useGetDailyDetailByDateCategoryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetDailyDetailByDateCategoryId = (
@@ -20,19 +20,19 @@ export const useGetDailyDetailByDateCategoryId = (
 
   const incomeTotal = data?.dailyDetailByDateList
     ?.filter(
-      (c) =>
-        c!.categoryByCategoryId!.genreByGenreId!.iocomeType ===
-        IocomeType.Income,
+      (detail) =>
+        (detail.categoryByCategoryId.genreByGenreId
+          .iocomeType as IocomeType) === IocomeType.Income,
     )
-    .reduce((a, b) => a + Number(b!.amount!), 0);
+    .reduce((a, b) => a + Number(b.amount), 0);
 
   const outcomeTotal = data?.dailyDetailByDateList
     ?.filter(
-      (c) =>
-        c!.categoryByCategoryId!.genreByGenreId!.iocomeType ===
-        IocomeType.Outcome,
+      (detail) =>
+        (detail.categoryByCategoryId.genreByGenreId
+          .iocomeType as IocomeType) === IocomeType.Outcome,
     )
-    .reduce((a, b) => a + Number(b!.amount!), 0);
+    .reduce((a, b) => a + Number(b.amount), 0);
 
   return { data, fetching, error, incomeTotal, outcomeTotal };
 };

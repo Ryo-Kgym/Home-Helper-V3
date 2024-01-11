@@ -8,8 +8,8 @@ export const useDeleteDailyDetailBySerialNo = ({
 }: useDeleteDailyDetailBySerialNoArgs) => {
   const [, deleteMutation] = useDeleteDailyDetailBySerialNoMutation();
 
-  const deleteHandler = () => {
-    deleteMutation({
+  const deleteHandler = async () => {
+    await deleteMutation({
       id: id,
     });
   };

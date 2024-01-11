@@ -2,8 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Button, MantineColor, MantineSize } from "@mantine/core";
-import { ButtonColorType, ButtonProps } from "./";
+import type { MantineColor, MantineSize } from "@mantine/core";
+import { Button } from "@mantine/core";
+
+import type { ButtonColorType, ButtonProps } from "./";
 
 export const MantineButton = ({
   onClick,

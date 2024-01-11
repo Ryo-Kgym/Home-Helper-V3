@@ -2,11 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { ExchangeItem } from "domain/model/helper_kids/ExchangeItem";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
-import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
 import { useGenerateId } from "@hooks/useGenerateId";
-import { ExchangeItem } from "domain/model/helper_kids/ExchangeItem";
+import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
 import { useInsertExchangedAchievementMutation } from "graphql/hasura/generated/hasuraHelperKidsGraphql";
 
 type Args = {
@@ -35,7 +35,7 @@ export const useExchangeHelpPoints = ({ exchangeItemMap }: Args) => {
   const exchangeHelpPoints = async () => {
     try {
       exchangeItemMap.forEach((exchangeItem) => {
-        if (exchangeItem.count > 0) _insertAchievement(exchangeItem);
+        if (exchangeItem.count > 0) void _insertAchievement(exchangeItem);
       });
     } catch (e) {
       console.error(e);

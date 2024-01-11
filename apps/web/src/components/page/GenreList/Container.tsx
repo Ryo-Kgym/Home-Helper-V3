@@ -3,20 +3,17 @@
  */
 "use client";
 
+import type { TableProps } from "@components/atoms/Table";
+import type { GenreType } from "@domain/model/household/GenreType";
+import type { IocomeType } from "@domain/model/household/IocomeType";
+import { useRouter } from "next/navigation";
+import { ValidityStatus } from "@components/atoms";
+import { getLabel as getGenreTypeLabel } from "@domain/model/household/GenreType";
+import { getLabel as getIocomeTypeLabel } from "@domain/model/household/IocomeType";
 import { useGetAllGenreQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import {
-  GenreType,
-  getLabel as getGenreTypeLabel,
-} from "@domain/model/household/GenreType";
-import {
-  getLabel as getIocomeTypeLabel,
-  IocomeType,
-} from "@domain/model/household/IocomeType";
-import { ValidityStatus } from "@components/atoms";
-import { useRouter } from "next/navigation";
+
 import { Presenter_ } from "./Presenter";
-import { TableProps } from "@components/atoms/Table";
 
 export const Container_ = () => {
   const { push } = useRouter();

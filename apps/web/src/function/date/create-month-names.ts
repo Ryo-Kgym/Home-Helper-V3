@@ -12,7 +12,7 @@
 export const createMonthNames = (fromMonth: Date, toMonth: Date) => {
   let iterator = fromMonth;
   let prevYear = 0;
-  let monthNames: string[] = [];
+  const monthNames: string[] = [];
   while (iterator <= toMonth) {
     let year = "";
     if (prevYear !== iterator.getFullYear()) {

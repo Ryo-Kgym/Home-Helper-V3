@@ -3,9 +3,10 @@
  */
 "use client";
 
-import { Tabs } from "@mantine/core";
 import { useRouter } from "next/navigation";
-import { RoutingTabsProps } from "../RoutingTabs";
+import { Tabs } from "@mantine/core";
+
+import type { RoutingTabsProps } from "../RoutingTabs";
 
 export const MantineRoutingTabs = ({
   defaultValue,

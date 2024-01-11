@@ -3,6 +3,7 @@
  */
 "use client";
 
+import { useEffect, useState } from "react";
 import { Counter } from "@components/atoms/Counter/index";
 import { TableProps } from "@components/atoms/Table/index";
 import { HelpItem } from "@domain/model/helper_kids/HelpItem";
@@ -11,7 +12,7 @@ import { useGetHelpItemsQuery } from "@graphql/hasura/generated/hasuraHelperKids
 import { useGroup } from "@hooks/group/useGroup";
 import { useGetHelperKid } from "@hooks/help_point/useHelperKidPoint";
 import { useRegisterHelpPoints } from "@hooks/help_point/useRegisterHelpPoints";
-import { useEffect, useState } from "react";
+
 import { ChargePointPresenter } from "./ChargePointPresenter";
 
 export const ChargePointContainer = () => {
@@ -76,7 +77,7 @@ export const ChargePointContainer = () => {
 
   return (
     <ChargePointPresenter
-      fromDate={getLastEarnedDatetime()?.substring(0, 10) ?? ""}
+      fromDate={getLastEarnedDatetime().substring(0, 10) ?? ""}
       currentPoint={getCurrentPoint()}
       totalPoint={totalPoint}
       handleRegisterHelps={handleRegisterHelps}

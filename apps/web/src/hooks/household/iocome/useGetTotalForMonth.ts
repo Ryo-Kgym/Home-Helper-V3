@@ -2,14 +2,14 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { DailyTotal } from "@domain/model/household/DailyTotal";
 import {
   useGetCreditCardSummaryBetweenWithdrawalDateQuery,
   useGetTotalBetweenDateQuery,
 } from "@graphql/hasura/generated/hasuraGraphql";
-import { createDateList } from "@hooks/household/iocome/createDateList";
-import { DailyTotal } from "@domain/model/household/DailyTotal";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
+import { createDateList } from "@hooks/household/iocome/createDateList";
 
 export const useGetTotalForMonth = (date: Date) => {
   const { groupId } = useGroup();
@@ -38,12 +38,12 @@ export const useGetTotalForMonth = (date: Date) => {
   const { convertToYmd } = useDate();
 
   const dailyTotalList: DailyTotal[] = createDateList(date).map((date) => {
-    const incomeTotal = data?.incomeTotalByDate?.find(
+    const incomeTotal = data?.incomeTotalByDate.find(
       (e) => e.date === convertToYmd(date),
-    )?.total;
+    )?.total as number;
     const outcomeTotal = data?.outcomeTotalByDate?.find(
       (e) => e.date === convertToYmd(date),
-    )?.total;
+    )?.total as number;
     const filteredCreditCardSummary =
       creditData?.allCreditCardSummariesList?.filter(
         (e) => e.withdrawalDate === convertToYmd(date),

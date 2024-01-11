@@ -3,7 +3,7 @@ import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetCreditCardSummaryBetweenDate = (
   fromDate: Date | null,
-  toDate: Date | null
+  toDate: Date | null,
 ) => {
   const { groupId } = useGroup();
   const [{ data, fetching, error }] =
@@ -17,8 +17,8 @@ export const useGetCreditCardSummaryBetweenDate = (
 
   const incomeTotal = 0;
   const outcomeTotal = data?.allCreditCardSummariesList?.reduce(
-    (a, b) => a + Number(b!.totalAmount!),
-    0
+    (a, b) => a + Number(b.totalAmount),
+    0,
   );
 
   return {

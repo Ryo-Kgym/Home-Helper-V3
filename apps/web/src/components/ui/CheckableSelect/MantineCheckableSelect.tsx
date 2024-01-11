@@ -3,9 +3,9 @@
  */
 "use client";
 
-import { Checkbox } from "@mantine/core";
+import type { CheckableSelectProps } from "@components/ui";
 import { useState } from "react";
-import { CheckableSelectProps } from "@components/ui";
+import { Checkbox } from "@mantine/core";
 
 export const MantineCheckableSelect = <T extends { id: string }>({
   values,
@@ -37,7 +37,7 @@ export const MantineCheckableSelect = <T extends { id: string }>({
 
 const CheckableRow = ({
   children,
-  checkAfterHandler = () => {},
+  checkAfterHandler = () => undefined,
 }: {
   children: React.ReactNode | React.ReactNode[];
   checkAfterHandler?: (value: boolean) => void;
@@ -49,8 +49,8 @@ const CheckableRow = ({
   };
 
   return (
-    <div className={"hover:bg-gray-100 p-2 flex space-x-5"}>
-      <div className={"flex items-center m-2"}>
+    <div className={"flex space-x-5 p-2 hover:bg-gray-100"}>
+      <div className={"m-2 flex items-center"}>
         <Checkbox checked={check} onChange={checkHandler} />
       </div>
       <button className={"flex bg-inherit"} onClick={checkHandler}>

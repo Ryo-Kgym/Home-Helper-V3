@@ -3,7 +3,7 @@ import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetCreditCardSummaryBetweenMonth = (
   fromMonth: Date | null,
-  toMonth: Date | null
+  toMonth: Date | null,
 ) => {
   const { groupId } = useGroup();
   const correctedFromMonth = fromMonth ?? new Date();
@@ -12,12 +12,12 @@ export const useGetCreditCardSummaryBetweenMonth = (
   const firstDay = new Date(
     correctedFromMonth.getFullYear(),
     correctedFromMonth.getMonth(),
-    1
+    1,
   );
   const lastDay = new Date(
     correctedToMonth.getFullYear(),
     correctedToMonth.getMonth() + 1,
-    0
+    0,
   );
 
   const [{ data, fetching, error }, refetch] =
@@ -31,8 +31,8 @@ export const useGetCreditCardSummaryBetweenMonth = (
 
   const incomeTotal = 0;
   const outcomeTotal = data?.allCreditCardSummariesList?.reduce(
-    (a, b) => a + Number(b!.totalAmount!),
-    0
+    (a, b) => a + Number(b.totalAmount),
+    0,
   );
 
   return {

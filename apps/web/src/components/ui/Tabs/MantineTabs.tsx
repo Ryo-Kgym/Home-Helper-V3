@@ -4,12 +4,12 @@
 
 "use client";
 
+import type { TabsProps } from "@components/ui";
 import { Tabs } from "@mantine/core";
-import { TabsProps } from "@components/ui";
 
 export const MantineTabs = ({ defaultSelect, tabPropsList }: TabsProps) => {
   const normalClassName = "";
-  const mobileClassName: string = "max-sm:text-sm max-sm:h-5 max-sm:p-0";
+  const mobileClassName = "max-sm:text-sm max-sm:h-5 max-sm:p-0";
 
   return (
     <Tabs defaultValue={defaultSelect} className={"w-full justify-center"}>
