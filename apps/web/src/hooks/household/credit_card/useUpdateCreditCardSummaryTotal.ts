@@ -35,7 +35,7 @@ export const useUpdateCreditCardSummaryTotal = ({
 
       if (error) {
         console.error(error);
-        throw new Error("UpdateCreditCardSummaryTotalMutationError");
+        new Error("UpdateCreditCardSummaryTotalMutationError");
       }
     } catch (e) {
       console.error(e);

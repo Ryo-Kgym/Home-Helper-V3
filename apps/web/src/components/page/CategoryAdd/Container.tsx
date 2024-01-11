@@ -34,7 +34,7 @@ export const Container_ = () => {
         displayOrder: Number(inputDisplayOrder),
         groupId,
       });
-      if (error) throw new Error(error.message);
+      if (error) new Error(error.message);
 
       successPopup("登録しました");
     } catch (e) {
