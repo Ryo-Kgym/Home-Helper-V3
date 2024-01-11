@@ -34,10 +34,10 @@ export const DailyTable = ({
               {
                 value: (
                   <div className={"grid grid-cols-2"}>
-                    <div>{t.columns[0].value}</div>
-                    <div>{t.columns[1].value}</div>
-                    <div>{t.columns[2].value}</div>
-                    <div className={"text-end"}>{t.columns[3].value}</div>
+                    <div>{t.columns[0]!.value}</div>
+                    <div>{t.columns[1]!.value}</div>
+                    <div>{t.columns[2]!.value}</div>
+                    <div className={"text-end"}>{t.columns[3]!.value}</div>
                   </div>
                 ),
                 align: "left",

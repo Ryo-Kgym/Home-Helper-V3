@@ -20,8 +20,8 @@ export const generateYearMonthList = (fromDate: Date, toDate: Date) => {
   let yearMonthVariable = yearMonths[0];
 
   while (yearMonthVariable !== convertToYyyyMm(toDate)) {
-    const year = parseInt(yearMonthVariable.slice(0, 4));
-    const month = parseInt(yearMonthVariable.slice(5, 7));
+    const year = parseInt(yearMonthVariable!.slice(0, 4));
+    const month = parseInt(yearMonthVariable!.slice(5, 7));
     if (month === 12) {
       yearMonthVariable = `${year + 1}-01`;
     } else {

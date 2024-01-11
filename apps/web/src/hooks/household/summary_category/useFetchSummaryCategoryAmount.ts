@@ -4,24 +4,19 @@
 
 "use client";
 
-import { IocomeType } from "@domain/model/household/IocomeType";
-import {
+import type {
   TotalAmountByMonthly,
-  totalAmountByMonthly,
   TotalAmountByMonthlyArgs,
 } from "@function/monthly/totalAmountByMonthly";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { totalAmountByMonthly } from "@function/monthly/totalAmountByMonthly";
 import {
   useGetSummaryCategoryBetweenDateQuery,
   useGetTransferCategoryByQuery,
 } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 
-type Args = {
-  fromMonth: Date;
-  toMonth: Date;
-};
-
-type InterfaceType = (_: Args) => {
+type InterfaceType = (_: { fromMonth: Date; toMonth: Date }) => {
   data: TotalAmountByMonthly<MonthlyCategoryKey>[];
   incomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
   outcomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
@@ -36,8 +31,8 @@ export const useFetchSummaryCategoryAmount: InterfaceType = ({
   const [{ data }] = useGetSummaryCategoryBetweenDateQuery({
     variables: {
       groupId,
-      fromDate: fromMonth!.toISOString().slice(0, 10),
-      toDate: toMonth!.toISOString().slice(0, 10),
+      fromDate: fromMonth.toISOString().slice(0, 10),
+      toDate: toMonth.toISOString().slice(0, 10),
     },
   });
   const [{ data: tcData }] = useGetTransferCategoryByQuery({
@@ -49,23 +44,23 @@ export const useFetchSummaryCategoryAmount: InterfaceType = ({
   const args: TotalAmountByMonthlyArgs<MonthlyCategoryKey>[] =
     data?.summaryCategoryList?.map((sc) => ({
       key: {
-        categoryId: sc.category?.id!,
-        categoryName: sc.category?.name!,
-        iocomeType: sc.category?.genre?.iocomeType! as IocomeType,
+        categoryId: sc.category?.id,
+        categoryName: sc.category?.name,
+        iocomeType: sc.category?.genre?.iocomeType as IocomeType,
       },
       list: (
         sc.category?.daily.map((d) => ({
-          month: d.date.slice(0, 7) as string,
+          month: (d.date as string).slice(0, 7),
           amount: Number(d.amount),
         })) ?? []
       ).concat(
         sc.category?.creditCard.map((cc) => ({
           key: {
-            categoryId: sc.category?.id!,
-            categoryName: sc.category?.name!,
-            iocomeType: sc.category?.genre?.iocomeType!,
+            categoryId: sc.category?.id,
+            categoryName: sc.category?.name,
+            iocomeType: sc.category?.genre?.iocomeType as IocomeType,
           },
-          month: cc.date.slice(0, 7) as string,
+          month: (cc.date as string).slice(0, 7),
           amount: Number(cc.amount),
         })) ?? [],
       ),
@@ -92,7 +87,7 @@ export const useFetchSummaryCategoryAmount: InterfaceType = ({
             categoryName: "収入",
             iocomeType: IocomeType.Income,
           },
-          monthlyTotal: a.monthlyTotal.map((v, i) => v + b.monthlyTotal[i]),
+          monthlyTotal: a.monthlyTotal.map((v, i) => v + b.monthlyTotal[i]!),
           total: a.total + b.total,
         }),
         {
@@ -121,7 +116,7 @@ export const useFetchSummaryCategoryAmount: InterfaceType = ({
             categoryName: "支出",
             iocomeType: IocomeType.Outcome,
           },
-          monthlyTotal: a.monthlyTotal.map((v, i) => v + b.monthlyTotal[i]),
+          monthlyTotal: a.monthlyTotal.map((v, i) => v + b.monthlyTotal[i]!),
           total: a.total + b.total,
         }),
         {

@@ -7,7 +7,7 @@ export type TableProps = {
 };
 
 export type ColumnProps = {
-  value: any;
+  value: React.ReactNode | string | number;
   align?: "left" | "right" | "center";
   hidden?: boolean;
 };
@@ -15,10 +15,11 @@ export type ColumnProps = {
 export const tablePropsDateSorter = (
   a: TableProps,
   b: TableProps,
-  dateColumnIndex: number = 0
+  dateColumnIndex = 0,
 ) => {
-  const first = a.columns[dateColumnIndex].value;
-  const second = b.columns[dateColumnIndex].value;
+  const first = a.columns[dateColumnIndex]!.value as string;
+  const second = b.columns[dateColumnIndex]!.value as string;
+
   if (first < second) {
     return -1;
   }

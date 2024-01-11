@@ -2,12 +2,12 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
+import type { ColumnProps, TableProps } from "@components/atoms/Table";
+import type { TotalAmountByMonthly } from "@function/monthly/totalAmountByMonthly";
+import type { MonthlyCategoryKey } from "@hooks/household/summary_category/useFetchSummaryCategoryAmount";
 import { MonthlyCategoryPresenter } from "@app/household/summary/_material/MonthlyCategoryPresenter";
-import { ColumnProps, TableProps } from "@components/atoms/Table";
 import { FormatPrice } from "@components/molecules/FormatPrice/index";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { TotalAmountByMonthly } from "@function/monthly/totalAmountByMonthly";
-import { MonthlyCategoryKey } from "@hooks/household/summary_category/useFetchSummaryCategoryAmount";
 
 export const MonthlyCategoryContainer = ({
   data,
@@ -24,9 +24,9 @@ export const MonthlyCategoryContainer = ({
     keyPrefix: d.key.categoryName,
     columns: [
       {
-        value: d.key.categoryName as any,
+        value: d.key.categoryName,
         align: "left",
-      },
+      } as ColumnProps,
     ]
       .concat(
         d.monthlyTotal.map((mt) => ({
@@ -43,7 +43,7 @@ export const MonthlyCategoryContainer = ({
           ),
           align: "right",
         },
-      ]) as ColumnProps[],
+      ]),
   }));
 
   const incomeFooter = createFooter(incomeTotal, IocomeType.Income);
@@ -51,7 +51,7 @@ export const MonthlyCategoryContainer = ({
 
   const diff: ColumnProps[] = incomeTotal.monthlyTotal.map((mt, idx) => {
     return {
-      value: Number(mt - outcomeTotal.monthlyTotal[idx]).toLocaleString(),
+      value: Number(mt - outcomeTotal.monthlyTotal[idx]!).toLocaleString(),
       align: "right",
     };
   });
