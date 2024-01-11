@@ -347,21 +347,6 @@ importers:
       '@tiptap/starter-kit':
         specifier: ^2.1.13
         version: 2.1.15(@tiptap/pm@2.1.15)
-      '@types/encoding-japanese':
-        specifier: ^2.0.5
-        version: 2.0.5
-      '@types/node':
-        specifier: ^20.10.6
-        version: 20.10.6
-      '@types/react':
-        specifier: ^18.2.46
-        version: 18.2.46
-      '@types/react-dom':
-        specifier: ^18.2.18
-        version: 18.2.18
-      '@types/uuid':
-        specifier: ^9.0.7
-        version: 9.0.7
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10
@@ -432,9 +417,24 @@ importers:
       '@next/eslint-plugin-next':
         specifier: ^14.0.4
         version: 14.0.4
+      '@types/encoding-japanese':
+        specifier: ^2.0.5
+        version: 2.0.5
       '@types/jest':
         specifier: ^29.5.11
         version: 29.5.11
+      '@types/node':
+        specifier: ^20.10.6
+        version: 20.10.6
+      '@types/react':
+        specifier: ^18.2.46
+        version: 18.2.46
+      '@types/react-dom':
+        specifier: ^18.2.18
+        version: 18.2.18
+      '@types/uuid':
+        specifier: ^9.0.7
+        version: 9.0.7
       autoprefixer:
         specifier: ^10.4.16
         version: 10.4.16(postcss@8.4.33)
@@ -7227,7 +7227,7 @@ packages:
 
   /@types/encoding-japanese@2.0.5:
     resolution: {integrity: sha512-LjOB95Ri43cz+zZluJFFqtZGL/Pg80V/cM8ksIVuFV6INh5Ehc82iLbQyQ6heiSW8vmTzcg0hPKU+0+Em3yc1g==}
-    dev: false
+    dev: true
 
   /@types/eslint@8.56.0:
     resolution: {integrity: sha512-FlsN0p4FhuYRjIxpbdXovvHQhtlG05O1GG/RNWvdAxTboR438IOTwmrY/vLA+Xfgg06BTkP045M3vpFwTMv1dg==}
@@ -7385,6 +7385,7 @@ packages:
     resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
     dependencies:
       '@types/react': 18.2.46
+    dev: true
 
   /@types/react@18.2.46:
     resolution: {integrity: sha512-nNCvVBcZlvX4NU1nRRNV/mFl1nNRuTuslAJglQsq+8ldXe5Xv0Wd2f7WTE3jOxhLH2BFfiZGC6GCp+kHQbgG+w==}
@@ -7438,7 +7439,7 @@ packages:
 
   /@types/uuid@9.0.7:
     resolution: {integrity: sha512-WUtIVRUZ9i5dYXefDEAI7sh9/O7jGvHg7Df/5O/gtH3Yabe5odI3UWopVR1qbPXQtvOxWu3mM4XxlYeZtMWF4g==}
-    dev: false
+    dev: true
 
   /@types/ws@8.5.10:
     resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}
