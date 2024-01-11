@@ -32,6 +32,7 @@ const config = {
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
   },
   ignorePatterns: [
+    "**/hasuraGraphql.tsx",
     "**/*.config.js",
     "**/*.config.cjs",
     "**/.eslintrc.cjs",

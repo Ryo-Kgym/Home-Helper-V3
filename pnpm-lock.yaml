@@ -260,6 +260,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@/turbo/graphql':
+        specifier: workspace:^3.0.0
+        version: link:../../packages/graphql
       '@apollo/client':
         specifier: ^3.8.8
         version: 3.8.9(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -615,6 +618,9 @@ importers:
       urql:
         specifier: ^3.0.4
         version: 3.0.4(graphql@16.8.1)(react@18.2.0)
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
     devDependencies:
       '@acme/eslint-config':
         specifier: workspace:^0.2.0

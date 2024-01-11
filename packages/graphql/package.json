@@ -1,5 +1,5 @@
 {
-  "name": "@acme/graphql",
+  "name": "@/turbo/graphql",
   "version": "3.0.0",
   "private": true,
   "scripts": {
@@ -17,7 +17,8 @@
     "eslint": "^8.56.0",
     "graphql": "^16.8.1",
     "typescript": "^5.3.3",
-    "urql": "^3.0.4"
+    "urql": "^3.0.4",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:^0.2.0",

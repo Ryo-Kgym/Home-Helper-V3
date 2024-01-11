@@ -14,7 +14,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 };
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
-export interface Scalars {
+export type Scalars = {
   ID: string;
   String: string;
   Boolean: boolean;
@@ -23,144 +23,150 @@ export interface Scalars {
   date: any;
   numeric: any;
   timestamp: any;
-}
+};
 
 /** columns and relationships of "affiliation" */
-export interface IAffiliation {
+export type Affiliation = {
+  __typename?: "Affiliation";
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   groupRole: Scalars["String"];
   id: Scalars["String"];
   /** An object relationship */
-  user: IUser;
+  user: User;
   userId: Scalars["String"];
-}
+};
 
 /** aggregated selection of "affiliation" */
-export interface IAffiliationAggregate {
-  aggregate?: Maybe<IAffiliationAggregateFields>;
-  nodes: Array<IAffiliation>;
-}
+export type AffiliationAggregate = {
+  __typename?: "AffiliationAggregate";
+  aggregate?: Maybe<AffiliationAggregateFields>;
+  nodes: Array<Affiliation>;
+};
 
-export interface IAffiliationAggregateBoolExp {
-  count?: InputMaybe<IAffiliationAggregateBoolExpCount>;
-}
+export type AffiliationAggregateBoolExp = {
+  count?: InputMaybe<AffiliationAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "affiliation" */
-export interface IAffiliationAggregateFields {
+export type AffiliationAggregateFields = {
+  __typename?: "AffiliationAggregateFields";
   count: Scalars["Int"];
-  max?: Maybe<IAffiliationMaxFields>;
-  min?: Maybe<IAffiliationMinFields>;
-}
+  max?: Maybe<AffiliationMaxFields>;
+  min?: Maybe<AffiliationMinFields>;
+};
 
 /** aggregate fields of "affiliation" */
-export interface IAffiliationAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type AffiliationAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AffiliationSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "affiliation" */
-export interface IAffiliationAggregateOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IAffiliationMaxOrderBy>;
-  min?: InputMaybe<IAffiliationMinOrderBy>;
-}
+export type AffiliationAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<AffiliationMaxOrderBy>;
+  min?: InputMaybe<AffiliationMinOrderBy>;
+};
 
 /** input type for inserting array relation for remote table "affiliation" */
-export interface IAffiliationArrRelInsertInput {
-  data: Array<IAffiliationInsertInput>;
+export type AffiliationArrRelInsertInput = {
+  data: Array<AffiliationInsertInput>;
   /** upsert condition */
-  onConflict?: InputMaybe<IAffiliationOnConflict>;
-}
+  onConflict?: InputMaybe<AffiliationOnConflict>;
+};
 
 /** Boolean expression to filter rows from the table "affiliation". All fields are combined with a logical 'AND'. */
-export interface IAffiliationBoolExp {
-  _and?: InputMaybe<Array<IAffiliationBoolExp>>;
-  _not?: InputMaybe<IAffiliationBoolExp>;
-  _or?: InputMaybe<Array<IAffiliationBoolExp>>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  groupRole?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  user?: InputMaybe<IUserBoolExp>;
-  userId?: InputMaybe<IStringComparisonExp>;
-}
+export type AffiliationBoolExp = {
+  _and?: InputMaybe<Array<AffiliationBoolExp>>;
+  _not?: InputMaybe<AffiliationBoolExp>;
+  _or?: InputMaybe<Array<AffiliationBoolExp>>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  groupRole?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  user?: InputMaybe<UserBoolExp>;
+  userId?: InputMaybe<StringComparisonExp>;
+};
 
 /** unique or primary key constraints on table "affiliation" */
-export enum IAffiliationConstraint {
+export enum AffiliationConstraint {
   /** unique or primary key constraint on columns "id" */
   AffiliationPkey = "affiliation_pkey",
 }
 
 /** input type for inserting data into table "affiliation" */
-export interface IAffiliationInsertInput {
+export type AffiliationInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   groupRole?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
-  user?: InputMaybe<IUserObjRelInsertInput>;
+  user?: InputMaybe<UserObjRelInsertInput>;
   userId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IAffiliationMaxFields {
+export type AffiliationMaxFields = {
+  __typename?: "AffiliationMaxFields";
   groupId?: Maybe<Scalars["String"]>;
   groupRole?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   userId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "affiliation" */
-export interface IAffiliationMaxOrderBy {
-  groupId?: InputMaybe<IOrderBy>;
-  groupRole?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type AffiliationMaxOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  groupRole?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IAffiliationMinFields {
+export type AffiliationMinFields = {
+  __typename?: "AffiliationMinFields";
   groupId?: Maybe<Scalars["String"]>;
   groupRole?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   userId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "affiliation" */
-export interface IAffiliationMinOrderBy {
-  groupId?: InputMaybe<IOrderBy>;
-  groupRole?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type AffiliationMinOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  groupRole?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "affiliation" */
-export interface IAffiliationMutationResponse {
+export type AffiliationMutationResponse = {
+  __typename?: "AffiliationMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IAffiliation>;
-}
+  returning: Array<Affiliation>;
+};
 
 /** on_conflict condition type for table "affiliation" */
-export interface IAffiliationOnConflict {
-  constraint: IAffiliationConstraint;
-  updateColumns?: Array<IAffiliationUpdateColumn>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+export type AffiliationOnConflict = {
+  constraint: AffiliationConstraint;
+  updateColumns?: Array<AffiliationUpdateColumn>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
 /** Ordering options when selecting data from "affiliation". */
-export interface IAffiliationOrderBy {
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  groupRole?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  user?: InputMaybe<IUserOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type AffiliationOrderBy = {
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  groupRole?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  user?: InputMaybe<UserOrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "affiliation" */
-export enum IAffiliationSelectColumn {
+export enum AffiliationSelectColumn {
   /** column name */
   GroupId = "groupId",
   /** column name */
@@ -172,114 +178,119 @@ export enum IAffiliationSelectColumn {
 }
 
 /** Streaming cursor of the table "affiliation" */
-export interface IAffiliationStreamCursorInput {
+export type AffiliationStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IAffiliationStreamCursorValueInput;
+  initialValue: AffiliationStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IAffiliationStreamCursorValueInput {
+export type AffiliationStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   groupRole?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** placeholder for update columns of table "affiliation" (current role has no relevant permissions) */
-export enum IAffiliationUpdateColumn {
+export enum AffiliationUpdateColumn {
   /** placeholder (do not use) */
   Placeholder = "_PLACEHOLDER",
 }
 
 /** columns and relationships of "application" */
-export interface IApplication {
+export type Application = {
+  __typename?: "Application";
   /** An array relationship */
-  groupApplications: Array<IGroupApplication>;
+  groupApplications: Array<GroupApplication>;
   /** An aggregate relationship */
-  groupApplicationsAggregate: IGroupApplicationAggregate;
+  groupApplicationsAggregate: GroupApplicationAggregate;
   id: Scalars["String"];
   name: Scalars["String"];
   topUrl: Scalars["String"];
   validFlag?: Maybe<Scalars["Boolean"]>;
-}
+};
 
 /** columns and relationships of "application" */
-export interface IApplicationGroupApplicationsArgs {
-  distinctOn?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type ApplicationGroupApplicationsArgs = {
+  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupApplicationOrderBy>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
 /** columns and relationships of "application" */
-export interface IApplicationGroupApplicationsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type ApplicationGroupApplicationsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupApplicationOrderBy>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
 /** aggregated selection of "application" */
-export interface IApplicationAggregate {
-  aggregate?: Maybe<IApplicationAggregateFields>;
-  nodes: Array<IApplication>;
-}
+export type ApplicationAggregate = {
+  __typename?: "ApplicationAggregate";
+  aggregate?: Maybe<ApplicationAggregateFields>;
+  nodes: Array<Application>;
+};
 
 /** aggregate fields of "application" */
-export interface IApplicationAggregateFields {
+export type ApplicationAggregateFields = {
+  __typename?: "ApplicationAggregateFields";
   count: Scalars["Int"];
-  max?: Maybe<IApplicationMaxFields>;
-  min?: Maybe<IApplicationMinFields>;
-}
+  max?: Maybe<ApplicationMaxFields>;
+  min?: Maybe<ApplicationMinFields>;
+};
 
 /** aggregate fields of "application" */
-export interface IApplicationAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IApplicationSelectColumn>>;
+export type ApplicationAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<ApplicationSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** Boolean expression to filter rows from the table "application". All fields are combined with a logical 'AND'. */
-export interface IApplicationBoolExp {
-  _and?: InputMaybe<Array<IApplicationBoolExp>>;
-  _not?: InputMaybe<IApplicationBoolExp>;
-  _or?: InputMaybe<Array<IApplicationBoolExp>>;
-  groupApplications?: InputMaybe<IGroupApplicationBoolExp>;
-  groupApplicationsAggregate?: InputMaybe<IGroupApplicationAggregateBoolExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  name?: InputMaybe<IStringComparisonExp>;
-  topUrl?: InputMaybe<IStringComparisonExp>;
-  validFlag?: InputMaybe<IBooleanComparisonExp>;
-}
+export type ApplicationBoolExp = {
+  _and?: InputMaybe<Array<ApplicationBoolExp>>;
+  _not?: InputMaybe<ApplicationBoolExp>;
+  _or?: InputMaybe<Array<ApplicationBoolExp>>;
+  groupApplications?: InputMaybe<GroupApplicationBoolExp>;
+  groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateBoolExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  topUrl?: InputMaybe<StringComparisonExp>;
+  validFlag?: InputMaybe<BooleanComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IApplicationMaxFields {
+export type ApplicationMaxFields = {
+  __typename?: "ApplicationMaxFields";
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
   topUrl?: Maybe<Scalars["String"]>;
-}
+};
 
 /** aggregate min on columns */
-export interface IApplicationMinFields {
+export type ApplicationMinFields = {
+  __typename?: "ApplicationMinFields";
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
   topUrl?: Maybe<Scalars["String"]>;
-}
+};
 
 /** Ordering options when selecting data from "application". */
-export interface IApplicationOrderBy {
-  groupApplicationsAggregate?: InputMaybe<IGroupApplicationAggregateOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-  topUrl?: InputMaybe<IOrderBy>;
-  validFlag?: InputMaybe<IOrderBy>;
-}
+export type ApplicationOrderBy = {
+  groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  topUrl?: InputMaybe<OrderBy>;
+  validFlag?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "application" */
-export enum IApplicationSelectColumn {
+export enum ApplicationSelectColumn {
   /** column name */
   Id = "id",
   /** column name */
@@ -291,23 +302,23 @@ export enum IApplicationSelectColumn {
 }
 
 /** Streaming cursor of the table "application" */
-export interface IApplicationStreamCursorInput {
+export type ApplicationStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IApplicationStreamCursorValueInput;
+  initialValue: ApplicationStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IApplicationStreamCursorValueInput {
+export type ApplicationStreamCursorValueInput = {
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   topUrl?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
-export interface IBooleanComparisonExp {
+export type BooleanComparisonExp = {
   _eq?: InputMaybe<Scalars["Boolean"]>;
   _gt?: InputMaybe<Scalars["Boolean"]>;
   _gte?: InputMaybe<Scalars["Boolean"]>;
@@ -317,10 +328,10 @@ export interface IBooleanComparisonExp {
   _lte?: InputMaybe<Scalars["Boolean"]>;
   _neq?: InputMaybe<Scalars["Boolean"]>;
   _nin?: InputMaybe<Array<Scalars["Boolean"]>>;
-}
+};
 
 /** ordering argument of a cursor */
-export enum ICursorOrdering {
+export enum CursorOrdering {
   /** ascending ordering of the cursor */
   Asc = "ASC",
   /** descending ordering of the cursor */
@@ -328,7 +339,7 @@ export enum ICursorOrdering {
 }
 
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
-export interface IDateComparisonExp {
+export type DateComparisonExp = {
   _eq?: InputMaybe<Scalars["date"]>;
   _gt?: InputMaybe<Scalars["date"]>;
   _gte?: InputMaybe<Scalars["date"]>;
@@ -338,358 +349,366 @@ export interface IDateComparisonExp {
   _lte?: InputMaybe<Scalars["date"]>;
   _neq?: InputMaybe<Scalars["date"]>;
   _nin?: InputMaybe<Array<Scalars["date"]>>;
-}
+};
 
 /** columns and relationships of "group" */
-export interface IGroup {
+export type Group = {
+  __typename?: "Group";
   /** An array relationship */
-  accounts: Array<IHouseholdAccount>;
+  accounts: Array<HouseholdAccount>;
   /** An aggregate relationship */
-  accountsAggregate: IHouseholdAccountAggregate;
+  accountsAggregate: HouseholdAccountAggregate;
   /** An array relationship */
-  affiliations: Array<IAffiliation>;
+  affiliations: Array<Affiliation>;
   /** An aggregate relationship */
-  affiliationsAggregate: IAffiliationAggregate;
+  affiliationsAggregate: AffiliationAggregate;
   /** An array relationship */
-  categories: Array<IHouseholdCategory>;
+  categories: Array<HouseholdCategory>;
   /** An array relationship */
-  creditCardDetails: Array<IHouseholdCreditCardDetail>;
+  creditCardDetails: Array<HouseholdCreditCardDetail>;
   /** An aggregate relationship */
-  creditCardDetailsAggregate: IHouseholdCreditCardDetailAggregate;
+  creditCardDetailsAggregate: HouseholdCreditCardDetailAggregate;
   /** An array relationship */
-  creditCardSummaries: Array<IHouseholdCreditCardSummary>;
+  creditCardSummaries: Array<HouseholdCreditCardSummary>;
   /** An aggregate relationship */
-  creditCardSummariesAggregate: IHouseholdCreditCardSummaryAggregate;
+  creditCardSummariesAggregate: HouseholdCreditCardSummaryAggregate;
   /** An array relationship */
-  dailyDetails: Array<IHouseholdDailyDetail>;
+  dailyDetails: Array<HouseholdDailyDetail>;
   /** An aggregate relationship */
-  dailyDetailsAggregate: IHouseholdDailyDetailAggregate;
+  dailyDetailsAggregate: HouseholdDailyDetailAggregate;
   /** An array relationship */
-  depositCategories: Array<IHouseholdDepositCategory>;
+  depositCategories: Array<HouseholdDepositCategory>;
   /** An aggregate relationship */
-  depositCategoriesAggregate: IHouseholdDepositCategoryAggregate;
+  depositCategoriesAggregate: HouseholdDepositCategoryAggregate;
   /** An array relationship */
-  genres: Array<IHouseholdGenre>;
+  genres: Array<HouseholdGenre>;
   /** An aggregate relationship */
-  genresAggregate: IHouseholdGenreAggregate;
+  genresAggregate: HouseholdGenreAggregate;
   /** An array relationship */
-  groupApplications: Array<IGroupApplication>;
+  groupApplications: Array<GroupApplication>;
   /** An aggregate relationship */
-  groupApplicationsAggregate: IGroupApplicationAggregate;
+  groupApplicationsAggregate: GroupApplicationAggregate;
   id: Scalars["String"];
   /** An array relationship */
-  importFileHistories: Array<IHouseholdImportFileHistory>;
+  importFileHistories: Array<HouseholdImportFileHistory>;
   /** An aggregate relationship */
-  importFileHistoriesAggregate: IHouseholdImportFileHistoryAggregate;
+  importFileHistoriesAggregate: HouseholdImportFileHistoryAggregate;
   name: Scalars["String"];
   /** An array relationship */
-  summaryCategories: Array<IHouseholdSummaryCategory>;
+  summaryCategories: Array<HouseholdSummaryCategory>;
   /** An aggregate relationship */
-  summaryCategoriesAggregate: IHouseholdSummaryCategoryAggregate;
+  summaryCategoriesAggregate: HouseholdSummaryCategoryAggregate;
   /** An object relationship */
-  transferCategory?: Maybe<IHouseholdTransferCategory>;
-}
+  transferCategory?: Maybe<HouseholdTransferCategory>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupAccountsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAccountSelectColumn>>;
+export type GroupAccountsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAccountOrderBy>>;
-  where?: InputMaybe<IHouseholdAccountBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAccountOrderBy>>;
+  where?: InputMaybe<HouseholdAccountBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupAccountsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAccountSelectColumn>>;
+export type GroupAccountsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAccountOrderBy>>;
-  where?: InputMaybe<IHouseholdAccountBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAccountOrderBy>>;
+  where?: InputMaybe<HouseholdAccountBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupAffiliationsArgs {
-  distinctOn?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type GroupAffiliationsArgs = {
+  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IAffiliationOrderBy>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupAffiliationsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type GroupAffiliationsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IAffiliationOrderBy>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupCategoriesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCategorySelectColumn>>;
+export type GroupCategoriesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdCategoryBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupCreditCardDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type GroupCreditCardDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupCreditCardDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type GroupCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupCreditCardSummariesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type GroupCreditCardSummariesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardSummaryOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardSummaryOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupCreditCardSummariesAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type GroupCreditCardSummariesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardSummaryOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardSummaryOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupDailyDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type GroupDailyDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupDailyDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type GroupDailyDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupDepositCategoriesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDepositCategorySelectColumn>>;
+export type GroupDepositCategoriesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDepositCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDepositCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupDepositCategoriesAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDepositCategorySelectColumn>>;
+export type GroupDepositCategoriesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDepositCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDepositCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupGenresArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdGenreSelectColumn>>;
+export type GroupGenresArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdGenreOrderBy>>;
-  where?: InputMaybe<IHouseholdGenreBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdGenreOrderBy>>;
+  where?: InputMaybe<HouseholdGenreBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupGenresAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdGenreSelectColumn>>;
+export type GroupGenresAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdGenreOrderBy>>;
-  where?: InputMaybe<IHouseholdGenreBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdGenreOrderBy>>;
+  where?: InputMaybe<HouseholdGenreBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupGroupApplicationsArgs {
-  distinctOn?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type GroupGroupApplicationsArgs = {
+  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupApplicationOrderBy>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupGroupApplicationsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type GroupGroupApplicationsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupApplicationOrderBy>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupImportFileHistoriesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdImportFileHistorySelectColumn>>;
+export type GroupImportFileHistoriesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdImportFileHistoryOrderBy>>;
-  where?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdImportFileHistoryOrderBy>>;
+  where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupImportFileHistoriesAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdImportFileHistorySelectColumn>>;
+export type GroupImportFileHistoriesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdImportFileHistoryOrderBy>>;
-  where?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdImportFileHistoryOrderBy>>;
+  where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupSummaryCategoriesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type GroupSummaryCategoriesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdSummaryCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdSummaryCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
 /** columns and relationships of "group" */
-export interface IGroupSummaryCategoriesAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type GroupSummaryCategoriesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdSummaryCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdSummaryCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
 /** aggregated selection of "group" */
-export interface IGroupAggregate {
-  aggregate?: Maybe<IGroupAggregateFields>;
-  nodes: Array<IGroup>;
-}
+export type GroupAggregate = {
+  __typename?: "GroupAggregate";
+  aggregate?: Maybe<GroupAggregateFields>;
+  nodes: Array<Group>;
+};
 
 /** aggregate fields of "group" */
-export interface IGroupAggregateFields {
+export type GroupAggregateFields = {
+  __typename?: "GroupAggregateFields";
   count: Scalars["Int"];
-  max?: Maybe<IGroupMaxFields>;
-  min?: Maybe<IGroupMinFields>;
-}
+  max?: Maybe<GroupMaxFields>;
+  min?: Maybe<GroupMinFields>;
+};
 
 /** aggregate fields of "group" */
-export interface IGroupAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IGroupSelectColumn>>;
+export type GroupAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<GroupSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** columns and relationships of "group_application" */
-export interface IGroupApplication {
+export type GroupApplication = {
+  __typename?: "GroupApplication";
   /** An object relationship */
-  application: IApplication;
+  application: Application;
   applicationId: Scalars["String"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
-}
+};
 
 /** aggregated selection of "group_application" */
-export interface IGroupApplicationAggregate {
-  aggregate?: Maybe<IGroupApplicationAggregateFields>;
-  nodes: Array<IGroupApplication>;
-}
+export type GroupApplicationAggregate = {
+  __typename?: "GroupApplicationAggregate";
+  aggregate?: Maybe<GroupApplicationAggregateFields>;
+  nodes: Array<GroupApplication>;
+};
 
-export interface IGroupApplicationAggregateBoolExp {
-  count?: InputMaybe<IGroupApplicationAggregateBoolExpCount>;
-}
+export type GroupApplicationAggregateBoolExp = {
+  count?: InputMaybe<GroupApplicationAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "group_application" */
-export interface IGroupApplicationAggregateFields {
+export type GroupApplicationAggregateFields = {
+  __typename?: "GroupApplicationAggregateFields";
   count: Scalars["Int"];
-  max?: Maybe<IGroupApplicationMaxFields>;
-  min?: Maybe<IGroupApplicationMinFields>;
-}
+  max?: Maybe<GroupApplicationMaxFields>;
+  min?: Maybe<GroupApplicationMinFields>;
+};
 
 /** aggregate fields of "group_application" */
-export interface IGroupApplicationAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type GroupApplicationAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "group_application" */
-export interface IGroupApplicationAggregateOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IGroupApplicationMaxOrderBy>;
-  min?: InputMaybe<IGroupApplicationMinOrderBy>;
-}
+export type GroupApplicationAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<GroupApplicationMaxOrderBy>;
+  min?: InputMaybe<GroupApplicationMinOrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "group_application". All fields are combined with a logical 'AND'. */
-export interface IGroupApplicationBoolExp {
-  _and?: InputMaybe<Array<IGroupApplicationBoolExp>>;
-  _not?: InputMaybe<IGroupApplicationBoolExp>;
-  _or?: InputMaybe<Array<IGroupApplicationBoolExp>>;
-  application?: InputMaybe<IApplicationBoolExp>;
-  applicationId?: InputMaybe<IStringComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-}
+export type GroupApplicationBoolExp = {
+  _and?: InputMaybe<Array<GroupApplicationBoolExp>>;
+  _not?: InputMaybe<GroupApplicationBoolExp>;
+  _or?: InputMaybe<Array<GroupApplicationBoolExp>>;
+  application?: InputMaybe<ApplicationBoolExp>;
+  applicationId?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IGroupApplicationMaxFields {
+export type GroupApplicationMaxFields = {
+  __typename?: "GroupApplicationMaxFields";
   applicationId?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "group_application" */
-export interface IGroupApplicationMaxOrderBy {
-  applicationId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-}
+export type GroupApplicationMaxOrderBy = {
+  applicationId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IGroupApplicationMinFields {
+export type GroupApplicationMinFields = {
+  __typename?: "GroupApplicationMinFields";
   applicationId?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "group_application" */
-export interface IGroupApplicationMinOrderBy {
-  applicationId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-}
+export type GroupApplicationMinOrderBy = {
+  applicationId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
 
 /** Ordering options when selecting data from "group_application". */
-export interface IGroupApplicationOrderBy {
-  application?: InputMaybe<IApplicationOrderBy>;
-  applicationId?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-}
+export type GroupApplicationOrderBy = {
+  application?: InputMaybe<ApplicationOrderBy>;
+  applicationId?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "group_application" */
-export enum IGroupApplicationSelectColumn {
+export enum GroupApplicationSelectColumn {
   /** column name */
   ApplicationId = "applicationId",
   /** column name */
@@ -699,83 +718,85 @@ export enum IGroupApplicationSelectColumn {
 }
 
 /** Streaming cursor of the table "group_application" */
-export interface IGroupApplicationStreamCursorInput {
+export type GroupApplicationStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IGroupApplicationStreamCursorValueInput;
+  initialValue: GroupApplicationStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IGroupApplicationStreamCursorValueInput {
+export type GroupApplicationStreamCursorValueInput = {
   applicationId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** Boolean expression to filter rows from the table "group". All fields are combined with a logical 'AND'. */
-export interface IGroupBoolExp {
-  _and?: InputMaybe<Array<IGroupBoolExp>>;
-  _not?: InputMaybe<IGroupBoolExp>;
-  _or?: InputMaybe<Array<IGroupBoolExp>>;
-  accounts?: InputMaybe<IHouseholdAccountBoolExp>;
-  accountsAggregate?: InputMaybe<IHouseholdAccountAggregateBoolExp>;
-  affiliations?: InputMaybe<IAffiliationBoolExp>;
-  affiliationsAggregate?: InputMaybe<IAffiliationAggregateBoolExp>;
-  categories?: InputMaybe<IHouseholdCategoryBoolExp>;
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateBoolExp>;
-  creditCardSummaries?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-  creditCardSummariesAggregate?: InputMaybe<IHouseholdCreditCardSummaryAggregateBoolExp>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateBoolExp>;
-  depositCategories?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-  depositCategoriesAggregate?: InputMaybe<IHouseholdDepositCategoryAggregateBoolExp>;
-  genres?: InputMaybe<IHouseholdGenreBoolExp>;
-  genresAggregate?: InputMaybe<IHouseholdGenreAggregateBoolExp>;
-  groupApplications?: InputMaybe<IGroupApplicationBoolExp>;
-  groupApplicationsAggregate?: InputMaybe<IGroupApplicationAggregateBoolExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  importFileHistories?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-  importFileHistoriesAggregate?: InputMaybe<IHouseholdImportFileHistoryAggregateBoolExp>;
-  name?: InputMaybe<IStringComparisonExp>;
-  summaryCategories?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<IHouseholdSummaryCategoryAggregateBoolExp>;
-  transferCategory?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-}
+export type GroupBoolExp = {
+  _and?: InputMaybe<Array<GroupBoolExp>>;
+  _not?: InputMaybe<GroupBoolExp>;
+  _or?: InputMaybe<Array<GroupBoolExp>>;
+  accounts?: InputMaybe<HouseholdAccountBoolExp>;
+  accountsAggregate?: InputMaybe<HouseholdAccountAggregateBoolExp>;
+  affiliations?: InputMaybe<AffiliationBoolExp>;
+  affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
+  categories?: InputMaybe<HouseholdCategoryBoolExp>;
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
+  creditCardSummaries?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+  creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
+  depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
+  genres?: InputMaybe<HouseholdGenreBoolExp>;
+  genresAggregate?: InputMaybe<HouseholdGenreAggregateBoolExp>;
+  groupApplications?: InputMaybe<GroupApplicationBoolExp>;
+  groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateBoolExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  importFileHistories?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+  importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
+  transferCategory?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+};
 
 /** aggregate max on columns */
-export interface IGroupMaxFields {
+export type GroupMaxFields = {
+  __typename?: "GroupMaxFields";
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** aggregate min on columns */
-export interface IGroupMinFields {
+export type GroupMinFields = {
+  __typename?: "GroupMinFields";
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** Ordering options when selecting data from "group". */
-export interface IGroupOrderBy {
-  accountsAggregate?: InputMaybe<IHouseholdAccountAggregateOrderBy>;
-  affiliationsAggregate?: InputMaybe<IAffiliationAggregateOrderBy>;
-  categoriesAggregate?: InputMaybe<IHouseholdCategoryAggregateOrderBy>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateOrderBy>;
-  creditCardSummariesAggregate?: InputMaybe<IHouseholdCreditCardSummaryAggregateOrderBy>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateOrderBy>;
-  depositCategoriesAggregate?: InputMaybe<IHouseholdDepositCategoryAggregateOrderBy>;
-  genresAggregate?: InputMaybe<IHouseholdGenreAggregateOrderBy>;
-  groupApplicationsAggregate?: InputMaybe<IGroupApplicationAggregateOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  importFileHistoriesAggregate?: InputMaybe<IHouseholdImportFileHistoryAggregateOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<IHouseholdSummaryCategoryAggregateOrderBy>;
-  transferCategory?: InputMaybe<IHouseholdTransferCategoryOrderBy>;
-}
+export type GroupOrderBy = {
+  accountsAggregate?: InputMaybe<HouseholdAccountAggregateOrderBy>;
+  affiliationsAggregate?: InputMaybe<AffiliationAggregateOrderBy>;
+  categoriesAggregate?: InputMaybe<HouseholdCategoryAggregateOrderBy>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
+  creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateOrderBy>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
+  genresAggregate?: InputMaybe<HouseholdGenreAggregateOrderBy>;
+  groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
+  name?: InputMaybe<OrderBy>;
+  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
+  transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
+};
 
 /** select columns of table "group" */
-export enum IGroupSelectColumn {
+export enum GroupSelectColumn {
   /** column name */
   Id = "id",
   /** column name */
@@ -783,259 +804,266 @@ export enum IGroupSelectColumn {
 }
 
 /** Streaming cursor of the table "group" */
-export interface IGroupStreamCursorInput {
+export type GroupStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IGroupStreamCursorValueInput;
+  initialValue: GroupStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IGroupStreamCursorValueInput {
+export type GroupStreamCursorValueInput = {
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** columns and relationships of "household.account" */
-export interface IHouseholdAccount {
+export type HouseholdAccount = {
+  __typename?: "HouseholdAccount";
   /** An array relationship */
-  allDetailViews: Array<IHouseholdAllDetailView>;
+  allDetailViews: Array<HouseholdAllDetailView>;
   /** An aggregate relationship */
-  allDetailViewsAggregate: IHouseholdAllDetailViewAggregate;
+  allDetailViewsAggregate: HouseholdAllDetailViewAggregate;
   /** An array relationship */
-  creditCardSummaries: Array<IHouseholdCreditCardSummary>;
+  creditCardSummaries: Array<HouseholdCreditCardSummary>;
   /** An aggregate relationship */
-  creditCardSummariesAggregate: IHouseholdCreditCardSummaryAggregate;
+  creditCardSummariesAggregate: HouseholdCreditCardSummaryAggregate;
   /** An array relationship */
-  dailyDetails: Array<IHouseholdDailyDetail>;
+  dailyDetails: Array<HouseholdDailyDetail>;
   /** An aggregate relationship */
-  dailyDetailsAggregate: IHouseholdDailyDetailAggregate;
+  dailyDetailsAggregate: HouseholdDailyDetailAggregate;
   displayOrder: Scalars["Int"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
   name: Scalars["String"];
   validFlag?: Maybe<Scalars["Boolean"]>;
-}
+};
 
 /** columns and relationships of "household.account" */
-export interface IHouseholdAccountAllDetailViewsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAllDetailViewSelectColumn>>;
+export type HouseholdAccountAllDetailViewsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAllDetailViewOrderBy>>;
-  where?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAllDetailViewOrderBy>>;
+  where?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+};
 
 /** columns and relationships of "household.account" */
-export interface IHouseholdAccountAllDetailViewsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAllDetailViewSelectColumn>>;
+export type HouseholdAccountAllDetailViewsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAllDetailViewOrderBy>>;
-  where?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAllDetailViewOrderBy>>;
+  where?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+};
 
 /** columns and relationships of "household.account" */
-export interface IHouseholdAccountCreditCardSummariesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type HouseholdAccountCreditCardSummariesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardSummaryOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardSummaryOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
 /** columns and relationships of "household.account" */
-export interface IHouseholdAccountCreditCardSummariesAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type HouseholdAccountCreditCardSummariesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardSummaryOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardSummaryOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
 /** columns and relationships of "household.account" */
-export interface IHouseholdAccountDailyDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type HouseholdAccountDailyDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** columns and relationships of "household.account" */
-export interface IHouseholdAccountDailyDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type HouseholdAccountDailyDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** aggregated selection of "household.account" */
-export interface IHouseholdAccountAggregate {
-  aggregate?: Maybe<IHouseholdAccountAggregateFields>;
-  nodes: Array<IHouseholdAccount>;
-}
+export type HouseholdAccountAggregate = {
+  __typename?: "HouseholdAccountAggregate";
+  aggregate?: Maybe<HouseholdAccountAggregateFields>;
+  nodes: Array<HouseholdAccount>;
+};
 
-export interface IHouseholdAccountAggregateBoolExp {
-  bool_and?: InputMaybe<IHouseholdAccountAggregateBoolExpBool_And>;
-  bool_or?: InputMaybe<IHouseholdAccountAggregateBoolExpBool_Or>;
-  count?: InputMaybe<IHouseholdAccountAggregateBoolExpCount>;
-}
+export type HouseholdAccountAggregateBoolExp = {
+  bool_and?: InputMaybe<HouseholdAccountAggregateBoolExpBool_And>;
+  bool_or?: InputMaybe<HouseholdAccountAggregateBoolExpBool_Or>;
+  count?: InputMaybe<HouseholdAccountAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.account" */
-export interface IHouseholdAccountAggregateFields {
-  avg?: Maybe<IHouseholdAccountAvgFields>;
+export type HouseholdAccountAggregateFields = {
+  __typename?: "HouseholdAccountAggregateFields";
+  avg?: Maybe<HouseholdAccountAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdAccountMaxFields>;
-  min?: Maybe<IHouseholdAccountMinFields>;
-  stddev?: Maybe<IHouseholdAccountStddevFields>;
-  stddevPop?: Maybe<IHouseholdAccountStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdAccountStddevSampFields>;
-  sum?: Maybe<IHouseholdAccountSumFields>;
-  varPop?: Maybe<IHouseholdAccountVarPopFields>;
-  varSamp?: Maybe<IHouseholdAccountVarSampFields>;
-  variance?: Maybe<IHouseholdAccountVarianceFields>;
-}
+  max?: Maybe<HouseholdAccountMaxFields>;
+  min?: Maybe<HouseholdAccountMinFields>;
+  stddev?: Maybe<HouseholdAccountStddevFields>;
+  stddevPop?: Maybe<HouseholdAccountStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdAccountStddevSampFields>;
+  sum?: Maybe<HouseholdAccountSumFields>;
+  varPop?: Maybe<HouseholdAccountVarPopFields>;
+  varSamp?: Maybe<HouseholdAccountVarSampFields>;
+  variance?: Maybe<HouseholdAccountVarianceFields>;
+};
 
 /** aggregate fields of "household.account" */
-export interface IHouseholdAccountAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdAccountSelectColumn>>;
+export type HouseholdAccountAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.account" */
-export interface IHouseholdAccountAggregateOrderBy {
-  avg?: InputMaybe<IHouseholdAccountAvgOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdAccountMaxOrderBy>;
-  min?: InputMaybe<IHouseholdAccountMinOrderBy>;
-  stddev?: InputMaybe<IHouseholdAccountStddevOrderBy>;
-  stddevPop?: InputMaybe<IHouseholdAccountStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<IHouseholdAccountStddevSampOrderBy>;
-  sum?: InputMaybe<IHouseholdAccountSumOrderBy>;
-  varPop?: InputMaybe<IHouseholdAccountVarPopOrderBy>;
-  varSamp?: InputMaybe<IHouseholdAccountVarSampOrderBy>;
-  variance?: InputMaybe<IHouseholdAccountVarianceOrderBy>;
-}
+export type HouseholdAccountAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdAccountAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdAccountMaxOrderBy>;
+  min?: InputMaybe<HouseholdAccountMinOrderBy>;
+  stddev?: InputMaybe<HouseholdAccountStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdAccountStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdAccountStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdAccountSumOrderBy>;
+  varPop?: InputMaybe<HouseholdAccountVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdAccountVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdAccountVarianceOrderBy>;
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdAccountAvgFields {
+export type HouseholdAccountAvgFields = {
+  __typename?: "HouseholdAccountAvgFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by avg() on columns of table "household.account" */
-export interface IHouseholdAccountAvgOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountAvgOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.account". All fields are combined with a logical 'AND'. */
-export interface IHouseholdAccountBoolExp {
-  _and?: InputMaybe<Array<IHouseholdAccountBoolExp>>;
-  _not?: InputMaybe<IHouseholdAccountBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdAccountBoolExp>>;
-  allDetailViews?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-  allDetailViewsAggregate?: InputMaybe<IHouseholdAllDetailViewAggregateBoolExp>;
-  creditCardSummaries?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-  creditCardSummariesAggregate?: InputMaybe<IHouseholdCreditCardSummaryAggregateBoolExp>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateBoolExp>;
-  displayOrder?: InputMaybe<IIntComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  name?: InputMaybe<IStringComparisonExp>;
-  validFlag?: InputMaybe<IBooleanComparisonExp>;
-}
+export type HouseholdAccountBoolExp = {
+  _and?: InputMaybe<Array<HouseholdAccountBoolExp>>;
+  _not?: InputMaybe<HouseholdAccountBoolExp>;
+  _or?: InputMaybe<Array<HouseholdAccountBoolExp>>;
+  allDetailViews?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  allDetailViewsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
+  creditCardSummaries?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+  creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
+  displayOrder?: InputMaybe<IntComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  validFlag?: InputMaybe<BooleanComparisonExp>;
+};
 
 /** unique or primary key constraints on table "household.account" */
-export enum IHouseholdAccountConstraint {
+export enum HouseholdAccountConstraint {
   /** unique or primary key constraint on columns "id" */
   AccountPkey = "account_pkey",
 }
 
 /** input type for inserting data into table "household.account" */
-export interface IHouseholdAccountInsertInput {
-  creditCardSummaries?: InputMaybe<IHouseholdCreditCardSummaryArrRelInsertInput>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailArrRelInsertInput>;
+export type HouseholdAccountInsertInput = {
+  creditCardSummaries?: InputMaybe<HouseholdCreditCardSummaryArrRelInsertInput>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IHouseholdAccountMaxFields {
+export type HouseholdAccountMaxFields = {
+  __typename?: "HouseholdAccountMaxFields";
   displayOrder?: Maybe<Scalars["Int"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.account" */
-export interface IHouseholdAccountMaxOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountMaxOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdAccountMinFields {
+export type HouseholdAccountMinFields = {
+  __typename?: "HouseholdAccountMinFields";
   displayOrder?: Maybe<Scalars["Int"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.account" */
-export interface IHouseholdAccountMinOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountMinOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "household.account" */
-export interface IHouseholdAccountMutationResponse {
+export type HouseholdAccountMutationResponse = {
+  __typename?: "HouseholdAccountMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IHouseholdAccount>;
-}
+  returning: Array<HouseholdAccount>;
+};
 
 /** input type for inserting object relation for remote table "household.account" */
-export interface IHouseholdAccountObjRelInsertInput {
-  data: IHouseholdAccountInsertInput;
+export type HouseholdAccountObjRelInsertInput = {
+  data: HouseholdAccountInsertInput;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdAccountOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdAccountOnConflict>;
+};
 
 /** on_conflict condition type for table "household.account" */
-export interface IHouseholdAccountOnConflict {
-  constraint: IHouseholdAccountConstraint;
-  updateColumns?: Array<IHouseholdAccountUpdateColumn>;
-  where?: InputMaybe<IHouseholdAccountBoolExp>;
-}
+export type HouseholdAccountOnConflict = {
+  constraint: HouseholdAccountConstraint;
+  updateColumns?: Array<HouseholdAccountUpdateColumn>;
+  where?: InputMaybe<HouseholdAccountBoolExp>;
+};
 
 /** Ordering options when selecting data from "household.account". */
-export interface IHouseholdAccountOrderBy {
-  allDetailViewsAggregate?: InputMaybe<IHouseholdAllDetailViewAggregateOrderBy>;
-  creditCardSummariesAggregate?: InputMaybe<IHouseholdCreditCardSummaryAggregateOrderBy>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateOrderBy>;
-  displayOrder?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-  validFlag?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountOrderBy = {
+  allDetailViewsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
+  creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateOrderBy>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  validFlag?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.account" */
-export enum IHouseholdAccountSelectColumn {
+export enum HouseholdAccountSelectColumn {
   /** column name */
   DisplayOrder = "displayOrder",
   /** column name */
@@ -1049,112 +1077,120 @@ export enum IHouseholdAccountSelectColumn {
 }
 
 /** select "householdAccountAggregateBoolExpBool_andArgumentsColumns" columns of table "household.account" */
-export enum IHouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_AndArgumentsColumns {
+export enum HouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_AndArgumentsColumns {
   /** column name */
   ValidFlag = "validFlag",
 }
 
 /** select "householdAccountAggregateBoolExpBool_orArgumentsColumns" columns of table "household.account" */
-export enum IHouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_OrArgumentsColumns {
+export enum HouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_OrArgumentsColumns {
   /** column name */
   ValidFlag = "validFlag",
 }
 
 /** aggregate stddev on columns */
-export interface IHouseholdAccountStddevFields {
+export type HouseholdAccountStddevFields = {
+  __typename?: "HouseholdAccountStddevFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddev() on columns of table "household.account" */
-export interface IHouseholdAccountStddevOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountStddevOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdAccountStddevPopFields {
+export type HouseholdAccountStddevPopFields = {
+  __typename?: "HouseholdAccountStddevPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevPop() on columns of table "household.account" */
-export interface IHouseholdAccountStddevPopOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountStddevPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdAccountStddevSampFields {
+export type HouseholdAccountStddevSampFields = {
+  __typename?: "HouseholdAccountStddevSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevSamp() on columns of table "household.account" */
-export interface IHouseholdAccountStddevSampOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountStddevSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "household_account" */
-export interface IHouseholdAccountStreamCursorInput {
+export type HouseholdAccountStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdAccountStreamCursorValueInput;
+  initialValue: HouseholdAccountStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdAccountStreamCursorValueInput {
+export type HouseholdAccountStreamCursorValueInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdAccountSumFields {
+export type HouseholdAccountSumFields = {
+  __typename?: "HouseholdAccountSumFields";
   displayOrder?: Maybe<Scalars["Int"]>;
-}
+};
 
 /** order by sum() on columns of table "household.account" */
-export interface IHouseholdAccountSumOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountSumOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** placeholder for update columns of table "household.account" (current role has no relevant permissions) */
-export enum IHouseholdAccountUpdateColumn {
+export enum HouseholdAccountUpdateColumn {
   /** placeholder (do not use) */
   Placeholder = "_PLACEHOLDER",
 }
 
 /** aggregate varPop on columns */
-export interface IHouseholdAccountVarPopFields {
+export type HouseholdAccountVarPopFields = {
+  __typename?: "HouseholdAccountVarPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varPop() on columns of table "household.account" */
-export interface IHouseholdAccountVarPopOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountVarPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdAccountVarSampFields {
+export type HouseholdAccountVarSampFields = {
+  __typename?: "HouseholdAccountVarSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varSamp() on columns of table "household.account" */
-export interface IHouseholdAccountVarSampOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountVarSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdAccountVarianceFields {
+export type HouseholdAccountVarianceFields = {
+  __typename?: "HouseholdAccountVarianceFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by variance() on columns of table "household.account" */
-export interface IHouseholdAccountVarianceOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAccountVarianceOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.all_detail_view" */
-export interface IHouseholdAllDetailView {
+export type HouseholdAllDetailView = {
+  __typename?: "HouseholdAllDetailView";
   accountId?: Maybe<Scalars["String"]>;
   categoryId?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
@@ -1166,86 +1202,90 @@ export interface IHouseholdAllDetailView {
   originalAmount?: Maybe<Scalars["numeric"]>;
   signedAmount?: Maybe<Scalars["numeric"]>;
   type?: Maybe<Scalars["String"]>;
-}
+};
 
 /** aggregated selection of "household.all_detail_view" */
-export interface IHouseholdAllDetailViewAggregate {
-  aggregate?: Maybe<IHouseholdAllDetailViewAggregateFields>;
-  nodes: Array<IHouseholdAllDetailView>;
-}
+export type HouseholdAllDetailViewAggregate = {
+  __typename?: "HouseholdAllDetailViewAggregate";
+  aggregate?: Maybe<HouseholdAllDetailViewAggregateFields>;
+  nodes: Array<HouseholdAllDetailView>;
+};
 
-export interface IHouseholdAllDetailViewAggregateBoolExp {
-  count?: InputMaybe<IHouseholdAllDetailViewAggregateBoolExpCount>;
-}
+export type HouseholdAllDetailViewAggregateBoolExp = {
+  count?: InputMaybe<HouseholdAllDetailViewAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.all_detail_view" */
-export interface IHouseholdAllDetailViewAggregateFields {
-  avg?: Maybe<IHouseholdAllDetailViewAvgFields>;
+export type HouseholdAllDetailViewAggregateFields = {
+  __typename?: "HouseholdAllDetailViewAggregateFields";
+  avg?: Maybe<HouseholdAllDetailViewAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdAllDetailViewMaxFields>;
-  min?: Maybe<IHouseholdAllDetailViewMinFields>;
-  stddev?: Maybe<IHouseholdAllDetailViewStddevFields>;
-  stddevPop?: Maybe<IHouseholdAllDetailViewStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdAllDetailViewStddevSampFields>;
-  sum?: Maybe<IHouseholdAllDetailViewSumFields>;
-  varPop?: Maybe<IHouseholdAllDetailViewVarPopFields>;
-  varSamp?: Maybe<IHouseholdAllDetailViewVarSampFields>;
-  variance?: Maybe<IHouseholdAllDetailViewVarianceFields>;
-}
+  max?: Maybe<HouseholdAllDetailViewMaxFields>;
+  min?: Maybe<HouseholdAllDetailViewMinFields>;
+  stddev?: Maybe<HouseholdAllDetailViewStddevFields>;
+  stddevPop?: Maybe<HouseholdAllDetailViewStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdAllDetailViewStddevSampFields>;
+  sum?: Maybe<HouseholdAllDetailViewSumFields>;
+  varPop?: Maybe<HouseholdAllDetailViewVarPopFields>;
+  varSamp?: Maybe<HouseholdAllDetailViewVarSampFields>;
+  variance?: Maybe<HouseholdAllDetailViewVarianceFields>;
+};
 
 /** aggregate fields of "household.all_detail_view" */
-export interface IHouseholdAllDetailViewAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdAllDetailViewSelectColumn>>;
+export type HouseholdAllDetailViewAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewAggregateOrderBy {
-  avg?: InputMaybe<IHouseholdAllDetailViewAvgOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdAllDetailViewMaxOrderBy>;
-  min?: InputMaybe<IHouseholdAllDetailViewMinOrderBy>;
-  stddev?: InputMaybe<IHouseholdAllDetailViewStddevOrderBy>;
-  stddevPop?: InputMaybe<IHouseholdAllDetailViewStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<IHouseholdAllDetailViewStddevSampOrderBy>;
-  sum?: InputMaybe<IHouseholdAllDetailViewSumOrderBy>;
-  varPop?: InputMaybe<IHouseholdAllDetailViewVarPopOrderBy>;
-  varSamp?: InputMaybe<IHouseholdAllDetailViewVarSampOrderBy>;
-  variance?: InputMaybe<IHouseholdAllDetailViewVarianceOrderBy>;
-}
+export type HouseholdAllDetailViewAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdAllDetailViewAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdAllDetailViewMaxOrderBy>;
+  min?: InputMaybe<HouseholdAllDetailViewMinOrderBy>;
+  stddev?: InputMaybe<HouseholdAllDetailViewStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdAllDetailViewStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdAllDetailViewStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdAllDetailViewSumOrderBy>;
+  varPop?: InputMaybe<HouseholdAllDetailViewVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdAllDetailViewVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdAllDetailViewVarianceOrderBy>;
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdAllDetailViewAvgFields {
+export type HouseholdAllDetailViewAvgFields = {
+  __typename?: "HouseholdAllDetailViewAvgFields";
   originalAmount?: Maybe<Scalars["Float"]>;
   signedAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by avg() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewAvgOrderBy {
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewAvgOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.all_detail_view". All fields are combined with a logical 'AND'. */
-export interface IHouseholdAllDetailViewBoolExp {
-  _and?: InputMaybe<Array<IHouseholdAllDetailViewBoolExp>>;
-  _not?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdAllDetailViewBoolExp>>;
-  accountId?: InputMaybe<IStringComparisonExp>;
-  categoryId?: InputMaybe<IStringComparisonExp>;
-  date?: InputMaybe<IDateComparisonExp>;
-  genreId?: InputMaybe<IStringComparisonExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  iocomeType?: InputMaybe<IStringComparisonExp>;
-  memo?: InputMaybe<IStringComparisonExp>;
-  originalAmount?: InputMaybe<INumericComparisonExp>;
-  signedAmount?: InputMaybe<INumericComparisonExp>;
-  type?: InputMaybe<IStringComparisonExp>;
-}
+export type HouseholdAllDetailViewBoolExp = {
+  _and?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
+  _not?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  _or?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
+  accountId?: InputMaybe<StringComparisonExp>;
+  categoryId?: InputMaybe<StringComparisonExp>;
+  date?: InputMaybe<DateComparisonExp>;
+  genreId?: InputMaybe<StringComparisonExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  iocomeType?: InputMaybe<StringComparisonExp>;
+  memo?: InputMaybe<StringComparisonExp>;
+  originalAmount?: InputMaybe<NumericComparisonExp>;
+  signedAmount?: InputMaybe<NumericComparisonExp>;
+  type?: InputMaybe<StringComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IHouseholdAllDetailViewMaxFields {
+export type HouseholdAllDetailViewMaxFields = {
+  __typename?: "HouseholdAllDetailViewMaxFields";
   accountId?: Maybe<Scalars["String"]>;
   categoryId?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
@@ -1257,25 +1297,26 @@ export interface IHouseholdAllDetailViewMaxFields {
   originalAmount?: Maybe<Scalars["numeric"]>;
   signedAmount?: Maybe<Scalars["numeric"]>;
   type?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewMaxOrderBy {
-  accountId?: InputMaybe<IOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-  type?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewMaxOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdAllDetailViewMinFields {
+export type HouseholdAllDetailViewMinFields = {
+  __typename?: "HouseholdAllDetailViewMinFields";
   accountId?: Maybe<Scalars["String"]>;
   categoryId?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
@@ -1287,40 +1328,40 @@ export interface IHouseholdAllDetailViewMinFields {
   originalAmount?: Maybe<Scalars["numeric"]>;
   signedAmount?: Maybe<Scalars["numeric"]>;
   type?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewMinOrderBy {
-  accountId?: InputMaybe<IOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-  type?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewMinOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+};
 
 /** Ordering options when selecting data from "household.all_detail_view". */
-export interface IHouseholdAllDetailViewOrderBy {
-  accountId?: InputMaybe<IOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-  type?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.all_detail_view" */
-export enum IHouseholdAllDetailViewSelectColumn {
+export enum HouseholdAllDetailViewSelectColumn {
   /** column name */
   AccountId = "accountId",
   /** column name */
@@ -1346,51 +1387,54 @@ export enum IHouseholdAllDetailViewSelectColumn {
 }
 
 /** aggregate stddev on columns */
-export interface IHouseholdAllDetailViewStddevFields {
+export type HouseholdAllDetailViewStddevFields = {
+  __typename?: "HouseholdAllDetailViewStddevFields";
   originalAmount?: Maybe<Scalars["Float"]>;
   signedAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddev() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewStddevOrderBy {
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewStddevOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdAllDetailViewStddevPopFields {
+export type HouseholdAllDetailViewStddevPopFields = {
+  __typename?: "HouseholdAllDetailViewStddevPopFields";
   originalAmount?: Maybe<Scalars["Float"]>;
   signedAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevPop() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewStddevPopOrderBy {
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewStddevPopOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdAllDetailViewStddevSampFields {
+export type HouseholdAllDetailViewStddevSampFields = {
+  __typename?: "HouseholdAllDetailViewStddevSampFields";
   originalAmount?: Maybe<Scalars["Float"]>;
   signedAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevSamp() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewStddevSampOrderBy {
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewStddevSampOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "household_all_detail_view" */
-export interface IHouseholdAllDetailViewStreamCursorInput {
+export type HouseholdAllDetailViewStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdAllDetailViewStreamCursorValueInput;
+  initialValue: HouseholdAllDetailViewStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdAllDetailViewStreamCursorValueInput {
+export type HouseholdAllDetailViewStreamCursorValueInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
@@ -1402,300 +1446,306 @@ export interface IHouseholdAllDetailViewStreamCursorValueInput {
   originalAmount?: InputMaybe<Scalars["numeric"]>;
   signedAmount?: InputMaybe<Scalars["numeric"]>;
   type?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdAllDetailViewSumFields {
+export type HouseholdAllDetailViewSumFields = {
+  __typename?: "HouseholdAllDetailViewSumFields";
   originalAmount?: Maybe<Scalars["numeric"]>;
   signedAmount?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** order by sum() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewSumOrderBy {
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewSumOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdAllDetailViewVarPopFields {
+export type HouseholdAllDetailViewVarPopFields = {
+  __typename?: "HouseholdAllDetailViewVarPopFields";
   originalAmount?: Maybe<Scalars["Float"]>;
   signedAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varPop() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewVarPopOrderBy {
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewVarPopOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdAllDetailViewVarSampFields {
+export type HouseholdAllDetailViewVarSampFields = {
+  __typename?: "HouseholdAllDetailViewVarSampFields";
   originalAmount?: Maybe<Scalars["Float"]>;
   signedAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varSamp() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewVarSampOrderBy {
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewVarSampOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdAllDetailViewVarianceFields {
+export type HouseholdAllDetailViewVarianceFields = {
+  __typename?: "HouseholdAllDetailViewVarianceFields";
   originalAmount?: Maybe<Scalars["Float"]>;
   signedAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by variance() on columns of table "household.all_detail_view" */
-export interface IHouseholdAllDetailViewVarianceOrderBy {
-  originalAmount?: InputMaybe<IOrderBy>;
-  signedAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdAllDetailViewVarianceOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategory {
+export type HouseholdCategory = {
+  __typename?: "HouseholdCategory";
   /** An array relationship */
-  creditCardDetails: Array<IHouseholdCreditCardDetail>;
+  creditCardDetails: Array<HouseholdCreditCardDetail>;
   /** An aggregate relationship */
-  creditCardDetailsAggregate: IHouseholdCreditCardDetailAggregate;
+  creditCardDetailsAggregate: HouseholdCreditCardDetailAggregate;
   /** An array relationship */
-  dailyDetails: Array<IHouseholdDailyDetail>;
+  dailyDetails: Array<HouseholdDailyDetail>;
   /** An aggregate relationship */
-  dailyDetailsAggregate: IHouseholdDailyDetailAggregate;
+  dailyDetailsAggregate: HouseholdDailyDetailAggregate;
   /** An object relationship */
-  depositCategory?: Maybe<IHouseholdDepositCategory>;
+  depositCategory?: Maybe<HouseholdDepositCategory>;
   displayOrder: Scalars["Int"];
   /** An object relationship */
-  genre: IHouseholdGenre;
+  genre: HouseholdGenre;
   genreId: Scalars["String"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
   name: Scalars["String"];
   /** An array relationship */
-  summaryCategories: Array<IHouseholdSummaryCategory>;
+  summaryCategories: Array<HouseholdSummaryCategory>;
   /** An aggregate relationship */
-  summaryCategoriesAggregate: IHouseholdSummaryCategoryAggregate;
+  summaryCategoriesAggregate: HouseholdSummaryCategoryAggregate;
   /** An array relationship */
-  transferCategories: Array<IHouseholdTransferCategory>;
+  transferCategories: Array<HouseholdTransferCategory>;
   /** An aggregate relationship */
-  transferCategoriesAggregate: IHouseholdTransferCategoryAggregate;
+  transferCategoriesAggregate: HouseholdTransferCategoryAggregate;
   validFlag?: Maybe<Scalars["Boolean"]>;
-}
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategoryCreditCardDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type HouseholdCategoryCreditCardDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategoryCreditCardDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type HouseholdCategoryCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategoryDailyDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type HouseholdCategoryDailyDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategoryDailyDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type HouseholdCategoryDailyDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategorySummaryCategoriesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type HouseholdCategorySummaryCategoriesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdSummaryCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdSummaryCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategorySummaryCategoriesAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type HouseholdCategorySummaryCategoriesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdSummaryCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdSummaryCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategoryTransferCategoriesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTransferCategorySelectColumn>>;
+export type HouseholdCategoryTransferCategoriesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTransferCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTransferCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+};
 
 /** columns and relationships of "household.category" */
-export interface IHouseholdCategoryTransferCategoriesAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTransferCategorySelectColumn>>;
+export type HouseholdCategoryTransferCategoriesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTransferCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTransferCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+};
 
 /** order by aggregate values of table "household.category" */
-export interface IHouseholdCategoryAggregateOrderBy {
-  avg?: InputMaybe<IHouseholdCategoryAvgOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdCategoryMaxOrderBy>;
-  min?: InputMaybe<IHouseholdCategoryMinOrderBy>;
-  stddev?: InputMaybe<IHouseholdCategoryStddevOrderBy>;
-  stddevPop?: InputMaybe<IHouseholdCategoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<IHouseholdCategoryStddevSampOrderBy>;
-  sum?: InputMaybe<IHouseholdCategorySumOrderBy>;
-  varPop?: InputMaybe<IHouseholdCategoryVarPopOrderBy>;
-  varSamp?: InputMaybe<IHouseholdCategoryVarSampOrderBy>;
-  variance?: InputMaybe<IHouseholdCategoryVarianceOrderBy>;
-}
+export type HouseholdCategoryAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdCategoryAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdCategoryMaxOrderBy>;
+  min?: InputMaybe<HouseholdCategoryMinOrderBy>;
+  stddev?: InputMaybe<HouseholdCategoryStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdCategoryStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdCategoryStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdCategorySumOrderBy>;
+  varPop?: InputMaybe<HouseholdCategoryVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdCategoryVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdCategoryVarianceOrderBy>;
+};
 
 /** input type for inserting array relation for remote table "household.category" */
-export interface IHouseholdCategoryArrRelInsertInput {
-  data: Array<IHouseholdCategoryInsertInput>;
+export type HouseholdCategoryArrRelInsertInput = {
+  data: Array<HouseholdCategoryInsertInput>;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdCategoryOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdCategoryOnConflict>;
+};
 
 /** order by avg() on columns of table "household.category" */
-export interface IHouseholdCategoryAvgOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryAvgOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.category". All fields are combined with a logical 'AND'. */
-export interface IHouseholdCategoryBoolExp {
-  _and?: InputMaybe<Array<IHouseholdCategoryBoolExp>>;
-  _not?: InputMaybe<IHouseholdCategoryBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdCategoryBoolExp>>;
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateBoolExp>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateBoolExp>;
-  depositCategory?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-  displayOrder?: InputMaybe<IIntComparisonExp>;
-  genre?: InputMaybe<IHouseholdGenreBoolExp>;
-  genreId?: InputMaybe<IStringComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  name?: InputMaybe<IStringComparisonExp>;
-  summaryCategories?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<IHouseholdSummaryCategoryAggregateBoolExp>;
-  transferCategories?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-  transferCategoriesAggregate?: InputMaybe<IHouseholdTransferCategoryAggregateBoolExp>;
-  validFlag?: InputMaybe<IBooleanComparisonExp>;
-}
+export type HouseholdCategoryBoolExp = {
+  _and?: InputMaybe<Array<HouseholdCategoryBoolExp>>;
+  _not?: InputMaybe<HouseholdCategoryBoolExp>;
+  _or?: InputMaybe<Array<HouseholdCategoryBoolExp>>;
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
+  depositCategory?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  displayOrder?: InputMaybe<IntComparisonExp>;
+  genre?: InputMaybe<HouseholdGenreBoolExp>;
+  genreId?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
+  transferCategories?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+  transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateBoolExp>;
+  validFlag?: InputMaybe<BooleanComparisonExp>;
+};
 
 /** unique or primary key constraints on table "household.category" */
-export enum IHouseholdCategoryConstraint {
+export enum HouseholdCategoryConstraint {
   /** unique or primary key constraint on columns "id" */
   CategoryPkey = "category_pkey",
 }
 
 /** input type for incrementing numeric columns in table "household.category" */
-export interface IHouseholdCategoryIncInput {
+export type HouseholdCategoryIncInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
-}
+};
 
 /** input type for inserting data into table "household.category" */
-export interface IHouseholdCategoryInsertInput {
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailArrRelInsertInput>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailArrRelInsertInput>;
+export type HouseholdCategoryInsertInput = {
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailArrRelInsertInput>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
-  genre?: InputMaybe<IHouseholdGenreObjRelInsertInput>;
+  genre?: InputMaybe<HouseholdGenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-  summaryCategories?: InputMaybe<IHouseholdSummaryCategoryArrRelInsertInput>;
+  summaryCategories?: InputMaybe<HouseholdSummaryCategoryArrRelInsertInput>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by max() on columns of table "household.category" */
-export interface IHouseholdCategoryMaxOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryMaxOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
 
 /** order by min() on columns of table "household.category" */
-export interface IHouseholdCategoryMinOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryMinOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "household.category" */
-export interface IHouseholdCategoryMutationResponse {
+export type HouseholdCategoryMutationResponse = {
+  __typename?: "HouseholdCategoryMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IHouseholdCategory>;
-}
+  returning: Array<HouseholdCategory>;
+};
 
 /** input type for inserting object relation for remote table "household.category" */
-export interface IHouseholdCategoryObjRelInsertInput {
-  data: IHouseholdCategoryInsertInput;
+export type HouseholdCategoryObjRelInsertInput = {
+  data: HouseholdCategoryInsertInput;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdCategoryOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdCategoryOnConflict>;
+};
 
 /** on_conflict condition type for table "household.category" */
-export interface IHouseholdCategoryOnConflict {
-  constraint: IHouseholdCategoryConstraint;
-  updateColumns?: Array<IHouseholdCategoryUpdateColumn>;
-  where?: InputMaybe<IHouseholdCategoryBoolExp>;
-}
+export type HouseholdCategoryOnConflict = {
+  constraint: HouseholdCategoryConstraint;
+  updateColumns?: Array<HouseholdCategoryUpdateColumn>;
+  where?: InputMaybe<HouseholdCategoryBoolExp>;
+};
 
 /** Ordering options when selecting data from "household.category". */
-export interface IHouseholdCategoryOrderBy {
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateOrderBy>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateOrderBy>;
-  depositCategory?: InputMaybe<IHouseholdDepositCategoryOrderBy>;
-  displayOrder?: InputMaybe<IOrderBy>;
-  genre?: InputMaybe<IHouseholdGenreOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<IHouseholdSummaryCategoryAggregateOrderBy>;
-  transferCategoriesAggregate?: InputMaybe<IHouseholdTransferCategoryAggregateOrderBy>;
-  validFlag?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryOrderBy = {
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  depositCategory?: InputMaybe<HouseholdDepositCategoryOrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
+  genre?: InputMaybe<HouseholdGenreOrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
+  transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateOrderBy>;
+  validFlag?: InputMaybe<OrderBy>;
+};
 
 /** primary key columns input for table: household.category */
-export interface IHouseholdCategoryPkColumnsInput {
+export type HouseholdCategoryPkColumnsInput = {
   id: Scalars["String"];
-}
+};
 
 /** select columns of table "household.category" */
-export enum IHouseholdCategorySelectColumn {
+export enum HouseholdCategorySelectColumn {
   /** column name */
   DisplayOrder = "displayOrder",
   /** column name */
@@ -1711,55 +1761,55 @@ export enum IHouseholdCategorySelectColumn {
 }
 
 /** input type for updating data in table "household.category" */
-export interface IHouseholdCategorySetInput {
+export type HouseholdCategorySetInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by stddev() on columns of table "household.category" */
-export interface IHouseholdCategoryStddevOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryStddevOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** order by stddevPop() on columns of table "household.category" */
-export interface IHouseholdCategoryStddevPopOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryStddevPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** order by stddevSamp() on columns of table "household.category" */
-export interface IHouseholdCategoryStddevSampOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryStddevSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "household_category" */
-export interface IHouseholdCategoryStreamCursorInput {
+export type HouseholdCategoryStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdCategoryStreamCursorValueInput;
+  initialValue: HouseholdCategoryStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdCategoryStreamCursorValueInput {
+export type HouseholdCategoryStreamCursorValueInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by sum() on columns of table "household.category" */
-export interface IHouseholdCategorySumOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategorySumOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** update columns of table "household.category" */
-export enum IHouseholdCategoryUpdateColumn {
+export enum HouseholdCategoryUpdateColumn {
   /** column name */
   DisplayOrder = "displayOrder",
   /** column name */
@@ -1774,170 +1824,175 @@ export enum IHouseholdCategoryUpdateColumn {
   ValidFlag = "validFlag",
 }
 
-export interface IHouseholdCategoryUpdates {
+export type HouseholdCategoryUpdates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<IHouseholdCategoryIncInput>;
+  _inc?: InputMaybe<HouseholdCategoryIncInput>;
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<IHouseholdCategorySetInput>;
+  _set?: InputMaybe<HouseholdCategorySetInput>;
   /** filter the rows which have to be updated */
-  where: IHouseholdCategoryBoolExp;
-}
+  where: HouseholdCategoryBoolExp;
+};
 
 /** order by varPop() on columns of table "household.category" */
-export interface IHouseholdCategoryVarPopOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryVarPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** order by varSamp() on columns of table "household.category" */
-export interface IHouseholdCategoryVarSampOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryVarSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** order by variance() on columns of table "household.category" */
-export interface IHouseholdCategoryVarianceOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCategoryVarianceOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetail {
+export type HouseholdCreditCardDetail = {
+  __typename?: "HouseholdCreditCardDetail";
   amount: Scalars["numeric"];
   /** An object relationship */
-  category: IHouseholdCategory;
+  category: HouseholdCategory;
   categoryId: Scalars["String"];
   /** An object relationship */
-  creditCardSummary: IHouseholdCreditCardSummary;
+  creditCardSummary: HouseholdCreditCardSummary;
   date: Scalars["date"];
   /** An object relationship */
-  genre: IHouseholdGenre;
+  genre: HouseholdGenre;
   genreId: Scalars["String"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
   iocomeType: Scalars["String"];
   memo?: Maybe<Scalars["String"]>;
   summaryId: Scalars["String"];
   /** An object relationship */
-  user: IUser;
+  user: User;
   userId: Scalars["String"];
-}
+};
 
 /** aggregated selection of "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailAggregate {
-  aggregate?: Maybe<IHouseholdCreditCardDetailAggregateFields>;
-  nodes: Array<IHouseholdCreditCardDetail>;
-}
+export type HouseholdCreditCardDetailAggregate = {
+  __typename?: "HouseholdCreditCardDetailAggregate";
+  aggregate?: Maybe<HouseholdCreditCardDetailAggregateFields>;
+  nodes: Array<HouseholdCreditCardDetail>;
+};
 
-export interface IHouseholdCreditCardDetailAggregateBoolExp {
-  count?: InputMaybe<IHouseholdCreditCardDetailAggregateBoolExpCount>;
-}
+export type HouseholdCreditCardDetailAggregateBoolExp = {
+  count?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailAggregateFields {
-  avg?: Maybe<IHouseholdCreditCardDetailAvgFields>;
+export type HouseholdCreditCardDetailAggregateFields = {
+  __typename?: "HouseholdCreditCardDetailAggregateFields";
+  avg?: Maybe<HouseholdCreditCardDetailAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdCreditCardDetailMaxFields>;
-  min?: Maybe<IHouseholdCreditCardDetailMinFields>;
-  stddev?: Maybe<IHouseholdCreditCardDetailStddevFields>;
-  stddevPop?: Maybe<IHouseholdCreditCardDetailStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdCreditCardDetailStddevSampFields>;
-  sum?: Maybe<IHouseholdCreditCardDetailSumFields>;
-  varPop?: Maybe<IHouseholdCreditCardDetailVarPopFields>;
-  varSamp?: Maybe<IHouseholdCreditCardDetailVarSampFields>;
-  variance?: Maybe<IHouseholdCreditCardDetailVarianceFields>;
-}
+  max?: Maybe<HouseholdCreditCardDetailMaxFields>;
+  min?: Maybe<HouseholdCreditCardDetailMinFields>;
+  stddev?: Maybe<HouseholdCreditCardDetailStddevFields>;
+  stddevPop?: Maybe<HouseholdCreditCardDetailStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdCreditCardDetailStddevSampFields>;
+  sum?: Maybe<HouseholdCreditCardDetailSumFields>;
+  varPop?: Maybe<HouseholdCreditCardDetailVarPopFields>;
+  varSamp?: Maybe<HouseholdCreditCardDetailVarSampFields>;
+  variance?: Maybe<HouseholdCreditCardDetailVarianceFields>;
+};
 
 /** aggregate fields of "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type HouseholdCreditCardDetailAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailAggregateOrderBy {
-  avg?: InputMaybe<IHouseholdCreditCardDetailAvgOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdCreditCardDetailMaxOrderBy>;
-  min?: InputMaybe<IHouseholdCreditCardDetailMinOrderBy>;
-  stddev?: InputMaybe<IHouseholdCreditCardDetailStddevOrderBy>;
-  stddevPop?: InputMaybe<IHouseholdCreditCardDetailStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<IHouseholdCreditCardDetailStddevSampOrderBy>;
-  sum?: InputMaybe<IHouseholdCreditCardDetailSumOrderBy>;
-  varPop?: InputMaybe<IHouseholdCreditCardDetailVarPopOrderBy>;
-  varSamp?: InputMaybe<IHouseholdCreditCardDetailVarSampOrderBy>;
-  variance?: InputMaybe<IHouseholdCreditCardDetailVarianceOrderBy>;
-}
+export type HouseholdCreditCardDetailAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdCreditCardDetailAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdCreditCardDetailMaxOrderBy>;
+  min?: InputMaybe<HouseholdCreditCardDetailMinOrderBy>;
+  stddev?: InputMaybe<HouseholdCreditCardDetailStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdCreditCardDetailStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdCreditCardDetailStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdCreditCardDetailSumOrderBy>;
+  varPop?: InputMaybe<HouseholdCreditCardDetailVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdCreditCardDetailVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdCreditCardDetailVarianceOrderBy>;
+};
 
 /** input type for inserting array relation for remote table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailArrRelInsertInput {
-  data: Array<IHouseholdCreditCardDetailInsertInput>;
+export type HouseholdCreditCardDetailArrRelInsertInput = {
+  data: Array<HouseholdCreditCardDetailInsertInput>;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdCreditCardDetailOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdCreditCardDetailOnConflict>;
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdCreditCardDetailAvgFields {
+export type HouseholdCreditCardDetailAvgFields = {
+  __typename?: "HouseholdCreditCardDetailAvgFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by avg() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailAvgOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailAvgOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.credit_card_detail". All fields are combined with a logical 'AND'. */
-export interface IHouseholdCreditCardDetailBoolExp {
-  _and?: InputMaybe<Array<IHouseholdCreditCardDetailBoolExp>>;
-  _not?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdCreditCardDetailBoolExp>>;
-  amount?: InputMaybe<INumericComparisonExp>;
-  category?: InputMaybe<IHouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<IStringComparisonExp>;
-  creditCardSummary?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-  date?: InputMaybe<IDateComparisonExp>;
-  genre?: InputMaybe<IHouseholdGenreBoolExp>;
-  genreId?: InputMaybe<IStringComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  iocomeType?: InputMaybe<IStringComparisonExp>;
-  memo?: InputMaybe<IStringComparisonExp>;
-  summaryId?: InputMaybe<IStringComparisonExp>;
-  user?: InputMaybe<IUserBoolExp>;
-  userId?: InputMaybe<IStringComparisonExp>;
-}
+export type HouseholdCreditCardDetailBoolExp = {
+  _and?: InputMaybe<Array<HouseholdCreditCardDetailBoolExp>>;
+  _not?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  _or?: InputMaybe<Array<HouseholdCreditCardDetailBoolExp>>;
+  amount?: InputMaybe<NumericComparisonExp>;
+  category?: InputMaybe<HouseholdCategoryBoolExp>;
+  categoryId?: InputMaybe<StringComparisonExp>;
+  creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+  date?: InputMaybe<DateComparisonExp>;
+  genre?: InputMaybe<HouseholdGenreBoolExp>;
+  genreId?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  iocomeType?: InputMaybe<StringComparisonExp>;
+  memo?: InputMaybe<StringComparisonExp>;
+  summaryId?: InputMaybe<StringComparisonExp>;
+  user?: InputMaybe<UserBoolExp>;
+  userId?: InputMaybe<StringComparisonExp>;
+};
 
 /** unique or primary key constraints on table "household.credit_card_detail" */
-export enum IHouseholdCreditCardDetailConstraint {
+export enum HouseholdCreditCardDetailConstraint {
   /** unique or primary key constraint on columns "id" */
   CreditCardDetailPkey = "credit_card_detail_pkey",
 }
 
 /** input type for incrementing numeric columns in table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailIncInput {
+export type HouseholdCreditCardDetailIncInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
-}
+};
 
 /** input type for inserting data into table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailInsertInput {
+export type HouseholdCreditCardDetailInsertInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
-  category?: InputMaybe<IHouseholdCategoryObjRelInsertInput>;
+  category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
-  creditCardSummary?: InputMaybe<IHouseholdCreditCardSummaryObjRelInsertInput>;
+  creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryObjRelInsertInput>;
   date?: InputMaybe<Scalars["date"]>;
-  genre?: InputMaybe<IHouseholdGenreObjRelInsertInput>;
+  genre?: InputMaybe<HouseholdGenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
   summaryId?: InputMaybe<Scalars["String"]>;
-  user?: InputMaybe<IUserObjRelInsertInput>;
+  user?: InputMaybe<UserObjRelInsertInput>;
   userId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IHouseholdCreditCardDetailMaxFields {
+export type HouseholdCreditCardDetailMaxFields = {
+  __typename?: "HouseholdCreditCardDetailMaxFields";
   amount?: Maybe<Scalars["numeric"]>;
   categoryId?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
@@ -1948,24 +2003,25 @@ export interface IHouseholdCreditCardDetailMaxFields {
   memo?: Maybe<Scalars["String"]>;
   summaryId?: Maybe<Scalars["String"]>;
   userId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailMaxOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  summaryId?: InputMaybe<IOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailMaxOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  summaryId?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdCreditCardDetailMinFields {
+export type HouseholdCreditCardDetailMinFields = {
+  __typename?: "HouseholdCreditCardDetailMinFields";
   amount?: Maybe<Scalars["numeric"]>;
   categoryId?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
@@ -1976,63 +2032,64 @@ export interface IHouseholdCreditCardDetailMinFields {
   memo?: Maybe<Scalars["String"]>;
   summaryId?: Maybe<Scalars["String"]>;
   userId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailMinOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  summaryId?: InputMaybe<IOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailMinOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  summaryId?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailMutationResponse {
+export type HouseholdCreditCardDetailMutationResponse = {
+  __typename?: "HouseholdCreditCardDetailMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IHouseholdCreditCardDetail>;
-}
+  returning: Array<HouseholdCreditCardDetail>;
+};
 
 /** on_conflict condition type for table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailOnConflict {
-  constraint: IHouseholdCreditCardDetailConstraint;
-  updateColumns?: Array<IHouseholdCreditCardDetailUpdateColumn>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+export type HouseholdCreditCardDetailOnConflict = {
+  constraint: HouseholdCreditCardDetailConstraint;
+  updateColumns?: Array<HouseholdCreditCardDetailUpdateColumn>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** Ordering options when selecting data from "household.credit_card_detail". */
-export interface IHouseholdCreditCardDetailOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-  category?: InputMaybe<IHouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  creditCardSummary?: InputMaybe<IHouseholdCreditCardSummaryOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genre?: InputMaybe<IHouseholdGenreOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  summaryId?: InputMaybe<IOrderBy>;
-  user?: InputMaybe<IUserOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+  category?: InputMaybe<HouseholdCategoryOrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryOrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genre?: InputMaybe<HouseholdGenreOrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  summaryId?: InputMaybe<OrderBy>;
+  user?: InputMaybe<UserOrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** primary key columns input for table: household.credit_card_detail */
-export interface IHouseholdCreditCardDetailPkColumnsInput {
+export type HouseholdCreditCardDetailPkColumnsInput = {
   id: Scalars["String"];
-}
+};
 
 /** select columns of table "household.credit_card_detail" */
-export enum IHouseholdCreditCardDetailSelectColumn {
+export enum HouseholdCreditCardDetailSelectColumn {
   /** column name */
   Amount = "amount",
   /** column name */
@@ -2056,7 +2113,7 @@ export enum IHouseholdCreditCardDetailSelectColumn {
 }
 
 /** input type for updating data in table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailSetInput {
+export type HouseholdCreditCardDetailSetInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
@@ -2067,48 +2124,51 @@ export interface IHouseholdCreditCardDetailSetInput {
   memo?: InputMaybe<Scalars["String"]>;
   summaryId?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate stddev on columns */
-export interface IHouseholdCreditCardDetailStddevFields {
+export type HouseholdCreditCardDetailStddevFields = {
+  __typename?: "HouseholdCreditCardDetailStddevFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddev() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailStddevOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailStddevOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdCreditCardDetailStddevPopFields {
+export type HouseholdCreditCardDetailStddevPopFields = {
+  __typename?: "HouseholdCreditCardDetailStddevPopFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevPop() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailStddevPopOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailStddevPopOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdCreditCardDetailStddevSampFields {
+export type HouseholdCreditCardDetailStddevSampFields = {
+  __typename?: "HouseholdCreditCardDetailStddevSampFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevSamp() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailStddevSampOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailStddevSampOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "household_credit_card_detail" */
-export interface IHouseholdCreditCardDetailStreamCursorInput {
+export type HouseholdCreditCardDetailStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdCreditCardDetailStreamCursorValueInput;
+  initialValue: HouseholdCreditCardDetailStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdCreditCardDetailStreamCursorValueInput {
+export type HouseholdCreditCardDetailStreamCursorValueInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
@@ -2119,20 +2179,21 @@ export interface IHouseholdCreditCardDetailStreamCursorValueInput {
   memo?: InputMaybe<Scalars["String"]>;
   summaryId?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdCreditCardDetailSumFields {
+export type HouseholdCreditCardDetailSumFields = {
+  __typename?: "HouseholdCreditCardDetailSumFields";
   amount?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** order by sum() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailSumOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailSumOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** update columns of table "household.credit_card_detail" */
-export enum IHouseholdCreditCardDetailUpdateColumn {
+export enum HouseholdCreditCardDetailUpdateColumn {
   /** column name */
   Amount = "amount",
   /** column name */
@@ -2155,192 +2216,200 @@ export enum IHouseholdCreditCardDetailUpdateColumn {
   UserId = "userId",
 }
 
-export interface IHouseholdCreditCardDetailUpdates {
+export type HouseholdCreditCardDetailUpdates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<IHouseholdCreditCardDetailIncInput>;
+  _inc?: InputMaybe<HouseholdCreditCardDetailIncInput>;
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<IHouseholdCreditCardDetailSetInput>;
+  _set?: InputMaybe<HouseholdCreditCardDetailSetInput>;
   /** filter the rows which have to be updated */
-  where: IHouseholdCreditCardDetailBoolExp;
-}
+  where: HouseholdCreditCardDetailBoolExp;
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdCreditCardDetailVarPopFields {
+export type HouseholdCreditCardDetailVarPopFields = {
+  __typename?: "HouseholdCreditCardDetailVarPopFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varPop() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailVarPopOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailVarPopOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdCreditCardDetailVarSampFields {
+export type HouseholdCreditCardDetailVarSampFields = {
+  __typename?: "HouseholdCreditCardDetailVarSampFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varSamp() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailVarSampOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailVarSampOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdCreditCardDetailVarianceFields {
+export type HouseholdCreditCardDetailVarianceFields = {
+  __typename?: "HouseholdCreditCardDetailVarianceFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by variance() on columns of table "household.credit_card_detail" */
-export interface IHouseholdCreditCardDetailVarianceOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardDetailVarianceOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummary {
+export type HouseholdCreditCardSummary = {
+  __typename?: "HouseholdCreditCardSummary";
   /** An object relationship */
-  account: IHouseholdAccount;
+  account: HouseholdAccount;
   accountId: Scalars["String"];
   count: Scalars["Int"];
   creditCard: Scalars["String"];
   /** An array relationship */
-  creditCardDetails: Array<IHouseholdCreditCardDetail>;
+  creditCardDetails: Array<HouseholdCreditCardDetail>;
   /** An aggregate relationship */
-  creditCardDetailsAggregate: IHouseholdCreditCardDetailAggregate;
+  creditCardDetailsAggregate: HouseholdCreditCardDetailAggregate;
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
   totalAmount: Scalars["numeric"];
   withdrawalDate: Scalars["date"];
-}
+};
 
 /** columns and relationships of "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryCreditCardDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type HouseholdCreditCardSummaryCreditCardDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryCreditCardDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type HouseholdCreditCardSummaryCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** aggregated selection of "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryAggregate {
-  aggregate?: Maybe<IHouseholdCreditCardSummaryAggregateFields>;
-  nodes: Array<IHouseholdCreditCardSummary>;
-}
+export type HouseholdCreditCardSummaryAggregate = {
+  __typename?: "HouseholdCreditCardSummaryAggregate";
+  aggregate?: Maybe<HouseholdCreditCardSummaryAggregateFields>;
+  nodes: Array<HouseholdCreditCardSummary>;
+};
 
-export interface IHouseholdCreditCardSummaryAggregateBoolExp {
-  count?: InputMaybe<IHouseholdCreditCardSummaryAggregateBoolExpCount>;
-}
+export type HouseholdCreditCardSummaryAggregateBoolExp = {
+  count?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryAggregateFields {
-  avg?: Maybe<IHouseholdCreditCardSummaryAvgFields>;
+export type HouseholdCreditCardSummaryAggregateFields = {
+  __typename?: "HouseholdCreditCardSummaryAggregateFields";
+  avg?: Maybe<HouseholdCreditCardSummaryAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdCreditCardSummaryMaxFields>;
-  min?: Maybe<IHouseholdCreditCardSummaryMinFields>;
-  stddev?: Maybe<IHouseholdCreditCardSummaryStddevFields>;
-  stddevPop?: Maybe<IHouseholdCreditCardSummaryStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdCreditCardSummaryStddevSampFields>;
-  sum?: Maybe<IHouseholdCreditCardSummarySumFields>;
-  varPop?: Maybe<IHouseholdCreditCardSummaryVarPopFields>;
-  varSamp?: Maybe<IHouseholdCreditCardSummaryVarSampFields>;
-  variance?: Maybe<IHouseholdCreditCardSummaryVarianceFields>;
-}
+  max?: Maybe<HouseholdCreditCardSummaryMaxFields>;
+  min?: Maybe<HouseholdCreditCardSummaryMinFields>;
+  stddev?: Maybe<HouseholdCreditCardSummaryStddevFields>;
+  stddevPop?: Maybe<HouseholdCreditCardSummaryStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdCreditCardSummaryStddevSampFields>;
+  sum?: Maybe<HouseholdCreditCardSummarySumFields>;
+  varPop?: Maybe<HouseholdCreditCardSummaryVarPopFields>;
+  varSamp?: Maybe<HouseholdCreditCardSummaryVarSampFields>;
+  variance?: Maybe<HouseholdCreditCardSummaryVarianceFields>;
+};
 
 /** aggregate fields of "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type HouseholdCreditCardSummaryAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryAggregateOrderBy {
-  avg?: InputMaybe<IHouseholdCreditCardSummaryAvgOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdCreditCardSummaryMaxOrderBy>;
-  min?: InputMaybe<IHouseholdCreditCardSummaryMinOrderBy>;
-  stddev?: InputMaybe<IHouseholdCreditCardSummaryStddevOrderBy>;
-  stddevPop?: InputMaybe<IHouseholdCreditCardSummaryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<IHouseholdCreditCardSummaryStddevSampOrderBy>;
-  sum?: InputMaybe<IHouseholdCreditCardSummarySumOrderBy>;
-  varPop?: InputMaybe<IHouseholdCreditCardSummaryVarPopOrderBy>;
-  varSamp?: InputMaybe<IHouseholdCreditCardSummaryVarSampOrderBy>;
-  variance?: InputMaybe<IHouseholdCreditCardSummaryVarianceOrderBy>;
-}
+export type HouseholdCreditCardSummaryAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdCreditCardSummaryAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdCreditCardSummaryMaxOrderBy>;
+  min?: InputMaybe<HouseholdCreditCardSummaryMinOrderBy>;
+  stddev?: InputMaybe<HouseholdCreditCardSummaryStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdCreditCardSummaryStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdCreditCardSummaryStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdCreditCardSummarySumOrderBy>;
+  varPop?: InputMaybe<HouseholdCreditCardSummaryVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdCreditCardSummaryVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdCreditCardSummaryVarianceOrderBy>;
+};
 
 /** input type for inserting array relation for remote table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryArrRelInsertInput {
-  data: Array<IHouseholdCreditCardSummaryInsertInput>;
+export type HouseholdCreditCardSummaryArrRelInsertInput = {
+  data: Array<HouseholdCreditCardSummaryInsertInput>;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdCreditCardSummaryOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdCreditCardSummaryOnConflict>;
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdCreditCardSummaryAvgFields {
+export type HouseholdCreditCardSummaryAvgFields = {
+  __typename?: "HouseholdCreditCardSummaryAvgFields";
   count?: Maybe<Scalars["Float"]>;
   totalAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by avg() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryAvgOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryAvgOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.credit_card_summary". All fields are combined with a logical 'AND'. */
-export interface IHouseholdCreditCardSummaryBoolExp {
-  _and?: InputMaybe<Array<IHouseholdCreditCardSummaryBoolExp>>;
-  _not?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdCreditCardSummaryBoolExp>>;
-  account?: InputMaybe<IHouseholdAccountBoolExp>;
-  accountId?: InputMaybe<IStringComparisonExp>;
-  count?: InputMaybe<IIntComparisonExp>;
-  creditCard?: InputMaybe<IStringComparisonExp>;
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateBoolExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  totalAmount?: InputMaybe<INumericComparisonExp>;
-  withdrawalDate?: InputMaybe<IDateComparisonExp>;
-}
+export type HouseholdCreditCardSummaryBoolExp = {
+  _and?: InputMaybe<Array<HouseholdCreditCardSummaryBoolExp>>;
+  _not?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+  _or?: InputMaybe<Array<HouseholdCreditCardSummaryBoolExp>>;
+  account?: InputMaybe<HouseholdAccountBoolExp>;
+  accountId?: InputMaybe<StringComparisonExp>;
+  count?: InputMaybe<IntComparisonExp>;
+  creditCard?: InputMaybe<StringComparisonExp>;
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  totalAmount?: InputMaybe<NumericComparisonExp>;
+  withdrawalDate?: InputMaybe<DateComparisonExp>;
+};
 
 /** unique or primary key constraints on table "household.credit_card_summary" */
-export enum IHouseholdCreditCardSummaryConstraint {
+export enum HouseholdCreditCardSummaryConstraint {
   /** unique or primary key constraint on columns "id" */
   CreditCardSummaryPkey = "credit_card_summary_pkey",
 }
 
 /** input type for incrementing numeric columns in table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryIncInput {
+export type HouseholdCreditCardSummaryIncInput = {
   count?: InputMaybe<Scalars["Int"]>;
   totalAmount?: InputMaybe<Scalars["numeric"]>;
-}
+};
 
 /** input type for inserting data into table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryInsertInput {
-  account?: InputMaybe<IHouseholdAccountObjRelInsertInput>;
+export type HouseholdCreditCardSummaryInsertInput = {
+  account?: InputMaybe<HouseholdAccountObjRelInsertInput>;
   accountId?: InputMaybe<Scalars["String"]>;
   count?: InputMaybe<Scalars["Int"]>;
   creditCard?: InputMaybe<Scalars["String"]>;
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailArrRelInsertInput>;
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailArrRelInsertInput>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   totalAmount?: InputMaybe<Scalars["numeric"]>;
   withdrawalDate?: InputMaybe<Scalars["date"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IHouseholdCreditCardSummaryMaxFields {
+export type HouseholdCreditCardSummaryMaxFields = {
+  __typename?: "HouseholdCreditCardSummaryMaxFields";
   accountId?: Maybe<Scalars["String"]>;
   count?: Maybe<Scalars["Int"]>;
   creditCard?: Maybe<Scalars["String"]>;
@@ -2348,21 +2417,22 @@ export interface IHouseholdCreditCardSummaryMaxFields {
   id?: Maybe<Scalars["String"]>;
   totalAmount?: Maybe<Scalars["numeric"]>;
   withdrawalDate?: Maybe<Scalars["date"]>;
-}
+};
 
 /** order by max() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryMaxOrderBy {
-  accountId?: InputMaybe<IOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  creditCard?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-  withdrawalDate?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryMaxOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  creditCard?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdCreditCardSummaryMinFields {
+export type HouseholdCreditCardSummaryMinFields = {
+  __typename?: "HouseholdCreditCardSummaryMinFields";
   accountId?: Maybe<Scalars["String"]>;
   count?: Maybe<Scalars["Int"]>;
   creditCard?: Maybe<Scalars["String"]>;
@@ -2370,62 +2440,63 @@ export interface IHouseholdCreditCardSummaryMinFields {
   id?: Maybe<Scalars["String"]>;
   totalAmount?: Maybe<Scalars["numeric"]>;
   withdrawalDate?: Maybe<Scalars["date"]>;
-}
+};
 
 /** order by min() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryMinOrderBy {
-  accountId?: InputMaybe<IOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  creditCard?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-  withdrawalDate?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryMinOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  creditCard?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryMutationResponse {
+export type HouseholdCreditCardSummaryMutationResponse = {
+  __typename?: "HouseholdCreditCardSummaryMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IHouseholdCreditCardSummary>;
-}
+  returning: Array<HouseholdCreditCardSummary>;
+};
 
 /** input type for inserting object relation for remote table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryObjRelInsertInput {
-  data: IHouseholdCreditCardSummaryInsertInput;
+export type HouseholdCreditCardSummaryObjRelInsertInput = {
+  data: HouseholdCreditCardSummaryInsertInput;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdCreditCardSummaryOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdCreditCardSummaryOnConflict>;
+};
 
 /** on_conflict condition type for table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryOnConflict {
-  constraint: IHouseholdCreditCardSummaryConstraint;
-  updateColumns?: Array<IHouseholdCreditCardSummaryUpdateColumn>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+export type HouseholdCreditCardSummaryOnConflict = {
+  constraint: HouseholdCreditCardSummaryConstraint;
+  updateColumns?: Array<HouseholdCreditCardSummaryUpdateColumn>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
 /** Ordering options when selecting data from "household.credit_card_summary". */
-export interface IHouseholdCreditCardSummaryOrderBy {
-  account?: InputMaybe<IHouseholdAccountOrderBy>;
-  accountId?: InputMaybe<IOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  creditCard?: InputMaybe<IOrderBy>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-  withdrawalDate?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryOrderBy = {
+  account?: InputMaybe<HouseholdAccountOrderBy>;
+  accountId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  creditCard?: InputMaybe<OrderBy>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
+};
 
 /** primary key columns input for table: household.credit_card_summary */
-export interface IHouseholdCreditCardSummaryPkColumnsInput {
+export type HouseholdCreditCardSummaryPkColumnsInput = {
   id: Scalars["String"];
-}
+};
 
 /** select columns of table "household.credit_card_summary" */
-export enum IHouseholdCreditCardSummarySelectColumn {
+export enum HouseholdCreditCardSummarySelectColumn {
   /** column name */
   AccountId = "accountId",
   /** column name */
@@ -2443,7 +2514,7 @@ export enum IHouseholdCreditCardSummarySelectColumn {
 }
 
 /** input type for updating data in table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummarySetInput {
+export type HouseholdCreditCardSummarySetInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   count?: InputMaybe<Scalars["Int"]>;
   creditCard?: InputMaybe<Scalars["String"]>;
@@ -2451,54 +2522,57 @@ export interface IHouseholdCreditCardSummarySetInput {
   id?: InputMaybe<Scalars["String"]>;
   totalAmount?: InputMaybe<Scalars["numeric"]>;
   withdrawalDate?: InputMaybe<Scalars["date"]>;
-}
+};
 
 /** aggregate stddev on columns */
-export interface IHouseholdCreditCardSummaryStddevFields {
+export type HouseholdCreditCardSummaryStddevFields = {
+  __typename?: "HouseholdCreditCardSummaryStddevFields";
   count?: Maybe<Scalars["Float"]>;
   totalAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddev() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryStddevOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryStddevOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdCreditCardSummaryStddevPopFields {
+export type HouseholdCreditCardSummaryStddevPopFields = {
+  __typename?: "HouseholdCreditCardSummaryStddevPopFields";
   count?: Maybe<Scalars["Float"]>;
   totalAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevPop() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryStddevPopOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryStddevPopOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdCreditCardSummaryStddevSampFields {
+export type HouseholdCreditCardSummaryStddevSampFields = {
+  __typename?: "HouseholdCreditCardSummaryStddevSampFields";
   count?: Maybe<Scalars["Float"]>;
   totalAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevSamp() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryStddevSampOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryStddevSampOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "household_credit_card_summary" */
-export interface IHouseholdCreditCardSummaryStreamCursorInput {
+export type HouseholdCreditCardSummaryStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdCreditCardSummaryStreamCursorValueInput;
+  initialValue: HouseholdCreditCardSummaryStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdCreditCardSummaryStreamCursorValueInput {
+export type HouseholdCreditCardSummaryStreamCursorValueInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   count?: InputMaybe<Scalars["Int"]>;
   creditCard?: InputMaybe<Scalars["String"]>;
@@ -2506,22 +2580,24 @@ export interface IHouseholdCreditCardSummaryStreamCursorValueInput {
   id?: InputMaybe<Scalars["String"]>;
   totalAmount?: InputMaybe<Scalars["numeric"]>;
   withdrawalDate?: InputMaybe<Scalars["date"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdCreditCardSummarySumFields {
+export type HouseholdCreditCardSummarySumFields = {
+  __typename?: "HouseholdCreditCardSummarySumFields";
   count?: Maybe<Scalars["Int"]>;
   totalAmount?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** order by sum() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummarySumOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummarySumOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.credit_card_summary_total_by_account_view" */
-export interface IHouseholdCreditCardSummaryTotalByAccountView {
+export type HouseholdCreditCardSummaryTotalByAccountView = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountView";
   accountId?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
   displayOrder?: Maybe<Scalars["Int"]>;
@@ -2529,61 +2605,64 @@ export interface IHouseholdCreditCardSummaryTotalByAccountView {
   iocomeType?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregated selection of "household.credit_card_summary_total_by_account_view" */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewAggregate {
-  aggregate?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewAggregateFields>;
-  nodes: Array<IHouseholdCreditCardSummaryTotalByAccountView>;
-}
+export type HouseholdCreditCardSummaryTotalByAccountViewAggregate = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewAggregate";
+  aggregate?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewAggregateFields>;
+  nodes: Array<HouseholdCreditCardSummaryTotalByAccountView>;
+};
 
 /** aggregate fields of "household.credit_card_summary_total_by_account_view" */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewAggregateFields {
-  avg?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewAvgFields>;
+export type HouseholdCreditCardSummaryTotalByAccountViewAggregateFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewAggregateFields";
+  avg?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewMaxFields>;
-  min?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewMinFields>;
-  stddev?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewStddevFields>;
-  stddevPop?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewStddevSampFields>;
-  sum?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewSumFields>;
-  varPop?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewVarPopFields>;
-  varSamp?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewVarSampFields>;
-  variance?: Maybe<IHouseholdCreditCardSummaryTotalByAccountViewVarianceFields>;
-}
+  max?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewMaxFields>;
+  min?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewMinFields>;
+  stddev?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewStddevFields>;
+  stddevPop?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewStddevSampFields>;
+  sum?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewSumFields>;
+  varPop?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewVarPopFields>;
+  varSamp?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewVarSampFields>;
+  variance?: Maybe<HouseholdCreditCardSummaryTotalByAccountViewVarianceFields>;
+};
 
 /** aggregate fields of "household.credit_card_summary_total_by_account_view" */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewAggregateFieldsCountArgs {
-  columns?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
-  >;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+export type HouseholdCreditCardSummaryTotalByAccountViewAggregateFieldsCountArgs =
+  {
+    columns?: InputMaybe<
+      Array<HouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
+    >;
+    distinct?: InputMaybe<Scalars["Boolean"]>;
+  };
 
 /** aggregate avg on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewAvgFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewAvgFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewAvgFields";
   displayOrder?: Maybe<Scalars["Float"]>;
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Boolean expression to filter rows from the table "household.credit_card_summary_total_by_account_view". All fields are combined with a logical 'AND'. */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewBoolExp {
-  _and?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewBoolExp>
-  >;
-  _not?: InputMaybe<IHouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdCreditCardSummaryTotalByAccountViewBoolExp>>;
-  accountId?: InputMaybe<IStringComparisonExp>;
-  date?: InputMaybe<IDateComparisonExp>;
-  displayOrder?: InputMaybe<IIntComparisonExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  iocomeType?: InputMaybe<IStringComparisonExp>;
-  name?: InputMaybe<IStringComparisonExp>;
-  total?: InputMaybe<INumericComparisonExp>;
-}
+export type HouseholdCreditCardSummaryTotalByAccountViewBoolExp = {
+  _and?: InputMaybe<Array<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>>;
+  _not?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
+  _or?: InputMaybe<Array<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>>;
+  accountId?: InputMaybe<StringComparisonExp>;
+  date?: InputMaybe<DateComparisonExp>;
+  displayOrder?: InputMaybe<IntComparisonExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  iocomeType?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  total?: InputMaybe<NumericComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewMaxFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewMaxFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewMaxFields";
   accountId?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
   displayOrder?: Maybe<Scalars["Int"]>;
@@ -2591,10 +2670,11 @@ export interface IHouseholdCreditCardSummaryTotalByAccountViewMaxFields {
   iocomeType?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate min on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewMinFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewMinFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewMinFields";
   accountId?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
   displayOrder?: Maybe<Scalars["Int"]>;
@@ -2602,21 +2682,21 @@ export interface IHouseholdCreditCardSummaryTotalByAccountViewMinFields {
   iocomeType?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** Ordering options when selecting data from "household.credit_card_summary_total_by_account_view". */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewOrderBy {
-  accountId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  displayOrder?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-  total?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryTotalByAccountViewOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  total?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.credit_card_summary_total_by_account_view" */
-export enum IHouseholdCreditCardSummaryTotalByAccountViewSelectColumn {
+export enum HouseholdCreditCardSummaryTotalByAccountViewSelectColumn {
   /** column name */
   AccountId = "accountId",
   /** column name */
@@ -2634,68 +2714,76 @@ export enum IHouseholdCreditCardSummaryTotalByAccountViewSelectColumn {
 }
 
 /** aggregate stddev on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewStddevFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewStddevFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewStddevFields";
   displayOrder?: Maybe<Scalars["Float"]>;
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewStddevPopFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewStddevPopFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewStddevPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewStddevSampFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewStddevSampFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewStddevSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Streaming cursor of the table "household_credit_card_summary_total_by_account_view" */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewStreamCursorInput {
+export type HouseholdCreditCardSummaryTotalByAccountViewStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdCreditCardSummaryTotalByAccountViewStreamCursorValueInput;
+  initialValue: HouseholdCreditCardSummaryTotalByAccountViewStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewStreamCursorValueInput {
-  accountId?: InputMaybe<Scalars["String"]>;
-  date?: InputMaybe<Scalars["date"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  iocomeType?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  total?: InputMaybe<Scalars["numeric"]>;
-}
+export type HouseholdCreditCardSummaryTotalByAccountViewStreamCursorValueInput =
+  {
+    accountId?: InputMaybe<Scalars["String"]>;
+    date?: InputMaybe<Scalars["date"]>;
+    displayOrder?: InputMaybe<Scalars["Int"]>;
+    groupId?: InputMaybe<Scalars["String"]>;
+    iocomeType?: InputMaybe<Scalars["String"]>;
+    name?: InputMaybe<Scalars["String"]>;
+    total?: InputMaybe<Scalars["numeric"]>;
+  };
 
 /** aggregate sum on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewSumFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewSumFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewSumFields";
   displayOrder?: Maybe<Scalars["Int"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewVarPopFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewVarPopFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewVarPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewVarSampFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewVarSampFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewVarSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdCreditCardSummaryTotalByAccountViewVarianceFields {
+export type HouseholdCreditCardSummaryTotalByAccountViewVarianceFields = {
+  __typename?: "HouseholdCreditCardSummaryTotalByAccountViewVarianceFields";
   displayOrder?: Maybe<Scalars["Float"]>;
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** update columns of table "household.credit_card_summary" */
-export enum IHouseholdCreditCardSummaryUpdateColumn {
+export enum HouseholdCreditCardSummaryUpdateColumn {
   /** column name */
   AccountId = "accountId",
   /** column name */
@@ -2712,191 +2800,199 @@ export enum IHouseholdCreditCardSummaryUpdateColumn {
   WithdrawalDate = "withdrawalDate",
 }
 
-export interface IHouseholdCreditCardSummaryUpdates {
+export type HouseholdCreditCardSummaryUpdates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<IHouseholdCreditCardSummaryIncInput>;
+  _inc?: InputMaybe<HouseholdCreditCardSummaryIncInput>;
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<IHouseholdCreditCardSummarySetInput>;
+  _set?: InputMaybe<HouseholdCreditCardSummarySetInput>;
   /** filter the rows which have to be updated */
-  where: IHouseholdCreditCardSummaryBoolExp;
-}
+  where: HouseholdCreditCardSummaryBoolExp;
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdCreditCardSummaryVarPopFields {
+export type HouseholdCreditCardSummaryVarPopFields = {
+  __typename?: "HouseholdCreditCardSummaryVarPopFields";
   count?: Maybe<Scalars["Float"]>;
   totalAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varPop() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryVarPopOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryVarPopOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdCreditCardSummaryVarSampFields {
+export type HouseholdCreditCardSummaryVarSampFields = {
+  __typename?: "HouseholdCreditCardSummaryVarSampFields";
   count?: Maybe<Scalars["Float"]>;
   totalAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varSamp() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryVarSampOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryVarSampOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdCreditCardSummaryVarianceFields {
+export type HouseholdCreditCardSummaryVarianceFields = {
+  __typename?: "HouseholdCreditCardSummaryVarianceFields";
   count?: Maybe<Scalars["Float"]>;
   totalAmount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by variance() on columns of table "household.credit_card_summary" */
-export interface IHouseholdCreditCardSummaryVarianceOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  totalAmount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdCreditCardSummaryVarianceOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  totalAmount?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.daily_detail" */
-export interface IHouseholdDailyDetail {
+export type HouseholdDailyDetail = {
+  __typename?: "HouseholdDailyDetail";
   /** An object relationship */
-  account: IHouseholdAccount;
+  account: HouseholdAccount;
   accountId: Scalars["String"];
   amount: Scalars["numeric"];
   /** An object relationship */
-  category: IHouseholdCategory;
+  category: HouseholdCategory;
   categoryId: Scalars["String"];
   date: Scalars["date"];
   /** An object relationship */
-  genre: IHouseholdGenre;
+  genre: HouseholdGenre;
   genreId: Scalars["String"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
   iocomeType: Scalars["String"];
   memo?: Maybe<Scalars["String"]>;
   /** An object relationship */
-  user: IUser;
+  user: User;
   userId: Scalars["String"];
-}
+};
 
 /** aggregated selection of "household.daily_detail" */
-export interface IHouseholdDailyDetailAggregate {
-  aggregate?: Maybe<IHouseholdDailyDetailAggregateFields>;
-  nodes: Array<IHouseholdDailyDetail>;
-}
+export type HouseholdDailyDetailAggregate = {
+  __typename?: "HouseholdDailyDetailAggregate";
+  aggregate?: Maybe<HouseholdDailyDetailAggregateFields>;
+  nodes: Array<HouseholdDailyDetail>;
+};
 
-export interface IHouseholdDailyDetailAggregateBoolExp {
-  count?: InputMaybe<IHouseholdDailyDetailAggregateBoolExpCount>;
-}
+export type HouseholdDailyDetailAggregateBoolExp = {
+  count?: InputMaybe<HouseholdDailyDetailAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.daily_detail" */
-export interface IHouseholdDailyDetailAggregateFields {
-  avg?: Maybe<IHouseholdDailyDetailAvgFields>;
+export type HouseholdDailyDetailAggregateFields = {
+  __typename?: "HouseholdDailyDetailAggregateFields";
+  avg?: Maybe<HouseholdDailyDetailAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdDailyDetailMaxFields>;
-  min?: Maybe<IHouseholdDailyDetailMinFields>;
-  stddev?: Maybe<IHouseholdDailyDetailStddevFields>;
-  stddevPop?: Maybe<IHouseholdDailyDetailStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdDailyDetailStddevSampFields>;
-  sum?: Maybe<IHouseholdDailyDetailSumFields>;
-  varPop?: Maybe<IHouseholdDailyDetailVarPopFields>;
-  varSamp?: Maybe<IHouseholdDailyDetailVarSampFields>;
-  variance?: Maybe<IHouseholdDailyDetailVarianceFields>;
-}
+  max?: Maybe<HouseholdDailyDetailMaxFields>;
+  min?: Maybe<HouseholdDailyDetailMinFields>;
+  stddev?: Maybe<HouseholdDailyDetailStddevFields>;
+  stddevPop?: Maybe<HouseholdDailyDetailStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdDailyDetailStddevSampFields>;
+  sum?: Maybe<HouseholdDailyDetailSumFields>;
+  varPop?: Maybe<HouseholdDailyDetailVarPopFields>;
+  varSamp?: Maybe<HouseholdDailyDetailVarSampFields>;
+  variance?: Maybe<HouseholdDailyDetailVarianceFields>;
+};
 
 /** aggregate fields of "household.daily_detail" */
-export interface IHouseholdDailyDetailAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type HouseholdDailyDetailAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.daily_detail" */
-export interface IHouseholdDailyDetailAggregateOrderBy {
-  avg?: InputMaybe<IHouseholdDailyDetailAvgOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdDailyDetailMaxOrderBy>;
-  min?: InputMaybe<IHouseholdDailyDetailMinOrderBy>;
-  stddev?: InputMaybe<IHouseholdDailyDetailStddevOrderBy>;
-  stddevPop?: InputMaybe<IHouseholdDailyDetailStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<IHouseholdDailyDetailStddevSampOrderBy>;
-  sum?: InputMaybe<IHouseholdDailyDetailSumOrderBy>;
-  varPop?: InputMaybe<IHouseholdDailyDetailVarPopOrderBy>;
-  varSamp?: InputMaybe<IHouseholdDailyDetailVarSampOrderBy>;
-  variance?: InputMaybe<IHouseholdDailyDetailVarianceOrderBy>;
-}
+export type HouseholdDailyDetailAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdDailyDetailAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdDailyDetailMaxOrderBy>;
+  min?: InputMaybe<HouseholdDailyDetailMinOrderBy>;
+  stddev?: InputMaybe<HouseholdDailyDetailStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdDailyDetailStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdDailyDetailStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdDailyDetailSumOrderBy>;
+  varPop?: InputMaybe<HouseholdDailyDetailVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdDailyDetailVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdDailyDetailVarianceOrderBy>;
+};
 
 /** input type for inserting array relation for remote table "household.daily_detail" */
-export interface IHouseholdDailyDetailArrRelInsertInput {
-  data: Array<IHouseholdDailyDetailInsertInput>;
+export type HouseholdDailyDetailArrRelInsertInput = {
+  data: Array<HouseholdDailyDetailInsertInput>;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdDailyDetailOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdDailyDetailOnConflict>;
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdDailyDetailAvgFields {
+export type HouseholdDailyDetailAvgFields = {
+  __typename?: "HouseholdDailyDetailAvgFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by avg() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailAvgOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailAvgOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.daily_detail". All fields are combined with a logical 'AND'. */
-export interface IHouseholdDailyDetailBoolExp {
-  _and?: InputMaybe<Array<IHouseholdDailyDetailBoolExp>>;
-  _not?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdDailyDetailBoolExp>>;
-  account?: InputMaybe<IHouseholdAccountBoolExp>;
-  accountId?: InputMaybe<IStringComparisonExp>;
-  amount?: InputMaybe<INumericComparisonExp>;
-  category?: InputMaybe<IHouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<IStringComparisonExp>;
-  date?: InputMaybe<IDateComparisonExp>;
-  genre?: InputMaybe<IHouseholdGenreBoolExp>;
-  genreId?: InputMaybe<IStringComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  iocomeType?: InputMaybe<IStringComparisonExp>;
-  memo?: InputMaybe<IStringComparisonExp>;
-  user?: InputMaybe<IUserBoolExp>;
-  userId?: InputMaybe<IStringComparisonExp>;
-}
+export type HouseholdDailyDetailBoolExp = {
+  _and?: InputMaybe<Array<HouseholdDailyDetailBoolExp>>;
+  _not?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  _or?: InputMaybe<Array<HouseholdDailyDetailBoolExp>>;
+  account?: InputMaybe<HouseholdAccountBoolExp>;
+  accountId?: InputMaybe<StringComparisonExp>;
+  amount?: InputMaybe<NumericComparisonExp>;
+  category?: InputMaybe<HouseholdCategoryBoolExp>;
+  categoryId?: InputMaybe<StringComparisonExp>;
+  date?: InputMaybe<DateComparisonExp>;
+  genre?: InputMaybe<HouseholdGenreBoolExp>;
+  genreId?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  iocomeType?: InputMaybe<StringComparisonExp>;
+  memo?: InputMaybe<StringComparisonExp>;
+  user?: InputMaybe<UserBoolExp>;
+  userId?: InputMaybe<StringComparisonExp>;
+};
 
 /** unique or primary key constraints on table "household.daily_detail" */
-export enum IHouseholdDailyDetailConstraint {
+export enum HouseholdDailyDetailConstraint {
   /** unique or primary key constraint on columns "id" */
   DailyDetailPkey = "daily_detail_pkey",
 }
 
 /** input type for incrementing numeric columns in table "household.daily_detail" */
-export interface IHouseholdDailyDetailIncInput {
+export type HouseholdDailyDetailIncInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
-}
+};
 
 /** input type for inserting data into table "household.daily_detail" */
-export interface IHouseholdDailyDetailInsertInput {
-  account?: InputMaybe<IHouseholdAccountObjRelInsertInput>;
+export type HouseholdDailyDetailInsertInput = {
+  account?: InputMaybe<HouseholdAccountObjRelInsertInput>;
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
-  category?: InputMaybe<IHouseholdCategoryObjRelInsertInput>;
+  category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
-  genre?: InputMaybe<IHouseholdGenreObjRelInsertInput>;
+  genre?: InputMaybe<HouseholdGenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
-  user?: InputMaybe<IUserObjRelInsertInput>;
+  user?: InputMaybe<UserObjRelInsertInput>;
   userId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IHouseholdDailyDetailMaxFields {
+export type HouseholdDailyDetailMaxFields = {
+  __typename?: "HouseholdDailyDetailMaxFields";
   accountId?: Maybe<Scalars["String"]>;
   amount?: Maybe<Scalars["numeric"]>;
   categoryId?: Maybe<Scalars["String"]>;
@@ -2907,24 +3003,25 @@ export interface IHouseholdDailyDetailMaxFields {
   iocomeType?: Maybe<Scalars["String"]>;
   memo?: Maybe<Scalars["String"]>;
   userId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailMaxOrderBy {
-  accountId?: InputMaybe<IOrderBy>;
-  amount?: InputMaybe<IOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailMaxOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  amount?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdDailyDetailMinFields {
+export type HouseholdDailyDetailMinFields = {
+  __typename?: "HouseholdDailyDetailMinFields";
   accountId?: Maybe<Scalars["String"]>;
   amount?: Maybe<Scalars["numeric"]>;
   categoryId?: Maybe<Scalars["String"]>;
@@ -2935,63 +3032,64 @@ export interface IHouseholdDailyDetailMinFields {
   iocomeType?: Maybe<Scalars["String"]>;
   memo?: Maybe<Scalars["String"]>;
   userId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailMinOrderBy {
-  accountId?: InputMaybe<IOrderBy>;
-  amount?: InputMaybe<IOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailMinOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  amount?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "household.daily_detail" */
-export interface IHouseholdDailyDetailMutationResponse {
+export type HouseholdDailyDetailMutationResponse = {
+  __typename?: "HouseholdDailyDetailMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IHouseholdDailyDetail>;
-}
+  returning: Array<HouseholdDailyDetail>;
+};
 
 /** on_conflict condition type for table "household.daily_detail" */
-export interface IHouseholdDailyDetailOnConflict {
-  constraint: IHouseholdDailyDetailConstraint;
-  updateColumns?: Array<IHouseholdDailyDetailUpdateColumn>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+export type HouseholdDailyDetailOnConflict = {
+  constraint: HouseholdDailyDetailConstraint;
+  updateColumns?: Array<HouseholdDailyDetailUpdateColumn>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** Ordering options when selecting data from "household.daily_detail". */
-export interface IHouseholdDailyDetailOrderBy {
-  account?: InputMaybe<IHouseholdAccountOrderBy>;
-  accountId?: InputMaybe<IOrderBy>;
-  amount?: InputMaybe<IOrderBy>;
-  category?: InputMaybe<IHouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genre?: InputMaybe<IHouseholdGenreOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  memo?: InputMaybe<IOrderBy>;
-  user?: InputMaybe<IUserOrderBy>;
-  userId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailOrderBy = {
+  account?: InputMaybe<HouseholdAccountOrderBy>;
+  accountId?: InputMaybe<OrderBy>;
+  amount?: InputMaybe<OrderBy>;
+  category?: InputMaybe<HouseholdCategoryOrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genre?: InputMaybe<HouseholdGenreOrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  user?: InputMaybe<UserOrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
 
 /** primary key columns input for table: household.daily_detail */
-export interface IHouseholdDailyDetailPkColumnsInput {
+export type HouseholdDailyDetailPkColumnsInput = {
   id: Scalars["String"];
-}
+};
 
 /** select columns of table "household.daily_detail" */
-export enum IHouseholdDailyDetailSelectColumn {
+export enum HouseholdDailyDetailSelectColumn {
   /** column name */
   AccountId = "accountId",
   /** column name */
@@ -3015,7 +3113,7 @@ export enum IHouseholdDailyDetailSelectColumn {
 }
 
 /** input type for updating data in table "household.daily_detail" */
-export interface IHouseholdDailyDetailSetInput {
+export type HouseholdDailyDetailSetInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
@@ -3026,48 +3124,51 @@ export interface IHouseholdDailyDetailSetInput {
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate stddev on columns */
-export interface IHouseholdDailyDetailStddevFields {
+export type HouseholdDailyDetailStddevFields = {
+  __typename?: "HouseholdDailyDetailStddevFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddev() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailStddevOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailStddevOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdDailyDetailStddevPopFields {
+export type HouseholdDailyDetailStddevPopFields = {
+  __typename?: "HouseholdDailyDetailStddevPopFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevPop() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailStddevPopOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailStddevPopOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdDailyDetailStddevSampFields {
+export type HouseholdDailyDetailStddevSampFields = {
+  __typename?: "HouseholdDailyDetailStddevSampFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevSamp() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailStddevSampOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailStddevSampOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "household_daily_detail" */
-export interface IHouseholdDailyDetailStreamCursorInput {
+export type HouseholdDailyDetailStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdDailyDetailStreamCursorValueInput;
+  initialValue: HouseholdDailyDetailStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdDailyDetailStreamCursorValueInput {
+export type HouseholdDailyDetailStreamCursorValueInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
@@ -3078,20 +3179,21 @@ export interface IHouseholdDailyDetailStreamCursorValueInput {
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdDailyDetailSumFields {
+export type HouseholdDailyDetailSumFields = {
+  __typename?: "HouseholdDailyDetailSumFields";
   amount?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** order by sum() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailSumOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailSumOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** update columns of table "household.daily_detail" */
-export enum IHouseholdDailyDetailUpdateColumn {
+export enum HouseholdDailyDetailUpdateColumn {
   /** column name */
   AccountId = "accountId",
   /** column name */
@@ -3114,122 +3216,131 @@ export enum IHouseholdDailyDetailUpdateColumn {
   UserId = "userId",
 }
 
-export interface IHouseholdDailyDetailUpdates {
+export type HouseholdDailyDetailUpdates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<IHouseholdDailyDetailIncInput>;
+  _inc?: InputMaybe<HouseholdDailyDetailIncInput>;
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<IHouseholdDailyDetailSetInput>;
+  _set?: InputMaybe<HouseholdDailyDetailSetInput>;
   /** filter the rows which have to be updated */
-  where: IHouseholdDailyDetailBoolExp;
-}
+  where: HouseholdDailyDetailBoolExp;
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdDailyDetailVarPopFields {
+export type HouseholdDailyDetailVarPopFields = {
+  __typename?: "HouseholdDailyDetailVarPopFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varPop() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailVarPopOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailVarPopOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdDailyDetailVarSampFields {
+export type HouseholdDailyDetailVarSampFields = {
+  __typename?: "HouseholdDailyDetailVarSampFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varSamp() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailVarSampOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailVarSampOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdDailyDetailVarianceFields {
+export type HouseholdDailyDetailVarianceFields = {
+  __typename?: "HouseholdDailyDetailVarianceFields";
   amount?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by variance() on columns of table "household.daily_detail" */
-export interface IHouseholdDailyDetailVarianceOrderBy {
-  amount?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyDetailVarianceOrderBy = {
+  amount?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.daily_total_view" */
-export interface IHouseholdDailyTotalView {
+export type HouseholdDailyTotalView = {
+  __typename?: "HouseholdDailyTotalView";
   date?: Maybe<Scalars["date"]>;
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregated selection of "household.daily_total_view" */
-export interface IHouseholdDailyTotalViewAggregate {
-  aggregate?: Maybe<IHouseholdDailyTotalViewAggregateFields>;
-  nodes: Array<IHouseholdDailyTotalView>;
-}
+export type HouseholdDailyTotalViewAggregate = {
+  __typename?: "HouseholdDailyTotalViewAggregate";
+  aggregate?: Maybe<HouseholdDailyTotalViewAggregateFields>;
+  nodes: Array<HouseholdDailyTotalView>;
+};
 
 /** aggregate fields of "household.daily_total_view" */
-export interface IHouseholdDailyTotalViewAggregateFields {
-  avg?: Maybe<IHouseholdDailyTotalViewAvgFields>;
+export type HouseholdDailyTotalViewAggregateFields = {
+  __typename?: "HouseholdDailyTotalViewAggregateFields";
+  avg?: Maybe<HouseholdDailyTotalViewAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdDailyTotalViewMaxFields>;
-  min?: Maybe<IHouseholdDailyTotalViewMinFields>;
-  stddev?: Maybe<IHouseholdDailyTotalViewStddevFields>;
-  stddevPop?: Maybe<IHouseholdDailyTotalViewStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdDailyTotalViewStddevSampFields>;
-  sum?: Maybe<IHouseholdDailyTotalViewSumFields>;
-  varPop?: Maybe<IHouseholdDailyTotalViewVarPopFields>;
-  varSamp?: Maybe<IHouseholdDailyTotalViewVarSampFields>;
-  variance?: Maybe<IHouseholdDailyTotalViewVarianceFields>;
-}
+  max?: Maybe<HouseholdDailyTotalViewMaxFields>;
+  min?: Maybe<HouseholdDailyTotalViewMinFields>;
+  stddev?: Maybe<HouseholdDailyTotalViewStddevFields>;
+  stddevPop?: Maybe<HouseholdDailyTotalViewStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdDailyTotalViewStddevSampFields>;
+  sum?: Maybe<HouseholdDailyTotalViewSumFields>;
+  varPop?: Maybe<HouseholdDailyTotalViewVarPopFields>;
+  varSamp?: Maybe<HouseholdDailyTotalViewVarSampFields>;
+  variance?: Maybe<HouseholdDailyTotalViewVarianceFields>;
+};
 
 /** aggregate fields of "household.daily_total_view" */
-export interface IHouseholdDailyTotalViewAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdDailyTotalViewSelectColumn>>;
+export type HouseholdDailyTotalViewAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdDailyTotalViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdDailyTotalViewAvgFields {
+export type HouseholdDailyTotalViewAvgFields = {
+  __typename?: "HouseholdDailyTotalViewAvgFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Boolean expression to filter rows from the table "household.daily_total_view". All fields are combined with a logical 'AND'. */
-export interface IHouseholdDailyTotalViewBoolExp {
-  _and?: InputMaybe<Array<IHouseholdDailyTotalViewBoolExp>>;
-  _not?: InputMaybe<IHouseholdDailyTotalViewBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdDailyTotalViewBoolExp>>;
-  date?: InputMaybe<IDateComparisonExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  iocomeType?: InputMaybe<IStringComparisonExp>;
-  total?: InputMaybe<INumericComparisonExp>;
-}
+export type HouseholdDailyTotalViewBoolExp = {
+  _and?: InputMaybe<Array<HouseholdDailyTotalViewBoolExp>>;
+  _not?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
+  _or?: InputMaybe<Array<HouseholdDailyTotalViewBoolExp>>;
+  date?: InputMaybe<DateComparisonExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  iocomeType?: InputMaybe<StringComparisonExp>;
+  total?: InputMaybe<NumericComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IHouseholdDailyTotalViewMaxFields {
+export type HouseholdDailyTotalViewMaxFields = {
+  __typename?: "HouseholdDailyTotalViewMaxFields";
   date?: Maybe<Scalars["date"]>;
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate min on columns */
-export interface IHouseholdDailyTotalViewMinFields {
+export type HouseholdDailyTotalViewMinFields = {
+  __typename?: "HouseholdDailyTotalViewMinFields";
   date?: Maybe<Scalars["date"]>;
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** Ordering options when selecting data from "household.daily_total_view". */
-export interface IHouseholdDailyTotalViewOrderBy {
-  date?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  total?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDailyTotalViewOrderBy = {
+  date?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  total?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.daily_total_view" */
-export enum IHouseholdDailyTotalViewSelectColumn {
+export enum HouseholdDailyTotalViewSelectColumn {
   /** column name */
   Date = "date",
   /** column name */
@@ -3241,141 +3352,153 @@ export enum IHouseholdDailyTotalViewSelectColumn {
 }
 
 /** aggregate stddev on columns */
-export interface IHouseholdDailyTotalViewStddevFields {
+export type HouseholdDailyTotalViewStddevFields = {
+  __typename?: "HouseholdDailyTotalViewStddevFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdDailyTotalViewStddevPopFields {
+export type HouseholdDailyTotalViewStddevPopFields = {
+  __typename?: "HouseholdDailyTotalViewStddevPopFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdDailyTotalViewStddevSampFields {
+export type HouseholdDailyTotalViewStddevSampFields = {
+  __typename?: "HouseholdDailyTotalViewStddevSampFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Streaming cursor of the table "household_daily_total_view" */
-export interface IHouseholdDailyTotalViewStreamCursorInput {
+export type HouseholdDailyTotalViewStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdDailyTotalViewStreamCursorValueInput;
+  initialValue: HouseholdDailyTotalViewStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdDailyTotalViewStreamCursorValueInput {
+export type HouseholdDailyTotalViewStreamCursorValueInput = {
   date?: InputMaybe<Scalars["date"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   total?: InputMaybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdDailyTotalViewSumFields {
+export type HouseholdDailyTotalViewSumFields = {
+  __typename?: "HouseholdDailyTotalViewSumFields";
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdDailyTotalViewVarPopFields {
+export type HouseholdDailyTotalViewVarPopFields = {
+  __typename?: "HouseholdDailyTotalViewVarPopFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdDailyTotalViewVarSampFields {
+export type HouseholdDailyTotalViewVarSampFields = {
+  __typename?: "HouseholdDailyTotalViewVarSampFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdDailyTotalViewVarianceFields {
+export type HouseholdDailyTotalViewVarianceFields = {
+  __typename?: "HouseholdDailyTotalViewVarianceFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** columns and relationships of "household.deposit_category" */
-export interface IHouseholdDepositCategory {
+export type HouseholdDepositCategory = {
+  __typename?: "HouseholdDepositCategory";
   /** An object relationship */
-  category: IHouseholdCategory;
+  category: HouseholdCategory;
   categoryId: Scalars["String"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
-}
+};
 
 /** aggregated selection of "household.deposit_category" */
-export interface IHouseholdDepositCategoryAggregate {
-  aggregate?: Maybe<IHouseholdDepositCategoryAggregateFields>;
-  nodes: Array<IHouseholdDepositCategory>;
-}
+export type HouseholdDepositCategoryAggregate = {
+  __typename?: "HouseholdDepositCategoryAggregate";
+  aggregate?: Maybe<HouseholdDepositCategoryAggregateFields>;
+  nodes: Array<HouseholdDepositCategory>;
+};
 
-export interface IHouseholdDepositCategoryAggregateBoolExp {
-  count?: InputMaybe<IHouseholdDepositCategoryAggregateBoolExpCount>;
-}
+export type HouseholdDepositCategoryAggregateBoolExp = {
+  count?: InputMaybe<HouseholdDepositCategoryAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.deposit_category" */
-export interface IHouseholdDepositCategoryAggregateFields {
+export type HouseholdDepositCategoryAggregateFields = {
+  __typename?: "HouseholdDepositCategoryAggregateFields";
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdDepositCategoryMaxFields>;
-  min?: Maybe<IHouseholdDepositCategoryMinFields>;
-}
+  max?: Maybe<HouseholdDepositCategoryMaxFields>;
+  min?: Maybe<HouseholdDepositCategoryMinFields>;
+};
 
 /** aggregate fields of "household.deposit_category" */
-export interface IHouseholdDepositCategoryAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdDepositCategorySelectColumn>>;
+export type HouseholdDepositCategoryAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.deposit_category" */
-export interface IHouseholdDepositCategoryAggregateOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdDepositCategoryMaxOrderBy>;
-  min?: InputMaybe<IHouseholdDepositCategoryMinOrderBy>;
-}
+export type HouseholdDepositCategoryAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdDepositCategoryMaxOrderBy>;
+  min?: InputMaybe<HouseholdDepositCategoryMinOrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.deposit_category". All fields are combined with a logical 'AND'. */
-export interface IHouseholdDepositCategoryBoolExp {
-  _and?: InputMaybe<Array<IHouseholdDepositCategoryBoolExp>>;
-  _not?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdDepositCategoryBoolExp>>;
-  category?: InputMaybe<IHouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<IStringComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-}
+export type HouseholdDepositCategoryBoolExp = {
+  _and?: InputMaybe<Array<HouseholdDepositCategoryBoolExp>>;
+  _not?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  _or?: InputMaybe<Array<HouseholdDepositCategoryBoolExp>>;
+  category?: InputMaybe<HouseholdCategoryBoolExp>;
+  categoryId?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IHouseholdDepositCategoryMaxFields {
+export type HouseholdDepositCategoryMaxFields = {
+  __typename?: "HouseholdDepositCategoryMaxFields";
   categoryId?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.deposit_category" */
-export interface IHouseholdDepositCategoryMaxOrderBy {
-  categoryId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDepositCategoryMaxOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdDepositCategoryMinFields {
+export type HouseholdDepositCategoryMinFields = {
+  __typename?: "HouseholdDepositCategoryMinFields";
   categoryId?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.deposit_category" */
-export interface IHouseholdDepositCategoryMinOrderBy {
-  categoryId?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDepositCategoryMinOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+};
 
 /** Ordering options when selecting data from "household.deposit_category". */
-export interface IHouseholdDepositCategoryOrderBy {
-  category?: InputMaybe<IHouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdDepositCategoryOrderBy = {
+  category?: InputMaybe<HouseholdCategoryOrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.deposit_category" */
-export enum IHouseholdDepositCategorySelectColumn {
+export enum HouseholdDepositCategorySelectColumn {
   /** column name */
   CategoryId = "categoryId",
   /** column name */
@@ -3383,181 +3506,185 @@ export enum IHouseholdDepositCategorySelectColumn {
 }
 
 /** Streaming cursor of the table "household_deposit_category" */
-export interface IHouseholdDepositCategoryStreamCursorInput {
+export type HouseholdDepositCategoryStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdDepositCategoryStreamCursorValueInput;
+  initialValue: HouseholdDepositCategoryStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdDepositCategoryStreamCursorValueInput {
+export type HouseholdDepositCategoryStreamCursorValueInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** columns and relationships of "household.genre" */
-export interface IHouseholdGenre {
+export type HouseholdGenre = {
+  __typename?: "HouseholdGenre";
   /** An array relationship */
-  categories: Array<IHouseholdCategory>;
+  categories: Array<HouseholdCategory>;
   /** An array relationship */
-  creditCardDetails: Array<IHouseholdCreditCardDetail>;
+  creditCardDetails: Array<HouseholdCreditCardDetail>;
   /** An aggregate relationship */
-  creditCardDetailsAggregate: IHouseholdCreditCardDetailAggregate;
+  creditCardDetailsAggregate: HouseholdCreditCardDetailAggregate;
   /** An array relationship */
-  dailyDetails: Array<IHouseholdDailyDetail>;
+  dailyDetails: Array<HouseholdDailyDetail>;
   /** An aggregate relationship */
-  dailyDetailsAggregate: IHouseholdDailyDetailAggregate;
+  dailyDetailsAggregate: HouseholdDailyDetailAggregate;
   displayOrder: Scalars["Int"];
   genreType: Scalars["String"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
   iocomeType: Scalars["String"];
   name: Scalars["String"];
   validFlag?: Maybe<Scalars["Boolean"]>;
-}
+};
 
 /** columns and relationships of "household.genre" */
-export interface IHouseholdGenreCategoriesArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCategorySelectColumn>>;
+export type HouseholdGenreCategoriesArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdCategoryBoolExp>;
+};
 
 /** columns and relationships of "household.genre" */
-export interface IHouseholdGenreCreditCardDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type HouseholdGenreCreditCardDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "household.genre" */
-export interface IHouseholdGenreCreditCardDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type HouseholdGenreCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "household.genre" */
-export interface IHouseholdGenreDailyDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type HouseholdGenreDailyDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** columns and relationships of "household.genre" */
-export interface IHouseholdGenreDailyDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type HouseholdGenreDailyDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** aggregated selection of "household.genre" */
-export interface IHouseholdGenreAggregate {
-  aggregate?: Maybe<IHouseholdGenreAggregateFields>;
-  nodes: Array<IHouseholdGenre>;
-}
+export type HouseholdGenreAggregate = {
+  __typename?: "HouseholdGenreAggregate";
+  aggregate?: Maybe<HouseholdGenreAggregateFields>;
+  nodes: Array<HouseholdGenre>;
+};
 
-export interface IHouseholdGenreAggregateBoolExp {
-  bool_and?: InputMaybe<IHouseholdGenreAggregateBoolExpBool_And>;
-  bool_or?: InputMaybe<IHouseholdGenreAggregateBoolExpBool_Or>;
-  count?: InputMaybe<IHouseholdGenreAggregateBoolExpCount>;
-}
+export type HouseholdGenreAggregateBoolExp = {
+  bool_and?: InputMaybe<HouseholdGenreAggregateBoolExpBool_And>;
+  bool_or?: InputMaybe<HouseholdGenreAggregateBoolExpBool_Or>;
+  count?: InputMaybe<HouseholdGenreAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.genre" */
-export interface IHouseholdGenreAggregateFields {
-  avg?: Maybe<IHouseholdGenreAvgFields>;
+export type HouseholdGenreAggregateFields = {
+  __typename?: "HouseholdGenreAggregateFields";
+  avg?: Maybe<HouseholdGenreAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdGenreMaxFields>;
-  min?: Maybe<IHouseholdGenreMinFields>;
-  stddev?: Maybe<IHouseholdGenreStddevFields>;
-  stddevPop?: Maybe<IHouseholdGenreStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdGenreStddevSampFields>;
-  sum?: Maybe<IHouseholdGenreSumFields>;
-  varPop?: Maybe<IHouseholdGenreVarPopFields>;
-  varSamp?: Maybe<IHouseholdGenreVarSampFields>;
-  variance?: Maybe<IHouseholdGenreVarianceFields>;
-}
+  max?: Maybe<HouseholdGenreMaxFields>;
+  min?: Maybe<HouseholdGenreMinFields>;
+  stddev?: Maybe<HouseholdGenreStddevFields>;
+  stddevPop?: Maybe<HouseholdGenreStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdGenreStddevSampFields>;
+  sum?: Maybe<HouseholdGenreSumFields>;
+  varPop?: Maybe<HouseholdGenreVarPopFields>;
+  varSamp?: Maybe<HouseholdGenreVarSampFields>;
+  variance?: Maybe<HouseholdGenreVarianceFields>;
+};
 
 /** aggregate fields of "household.genre" */
-export interface IHouseholdGenreAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdGenreSelectColumn>>;
+export type HouseholdGenreAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.genre" */
-export interface IHouseholdGenreAggregateOrderBy {
-  avg?: InputMaybe<IHouseholdGenreAvgOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdGenreMaxOrderBy>;
-  min?: InputMaybe<IHouseholdGenreMinOrderBy>;
-  stddev?: InputMaybe<IHouseholdGenreStddevOrderBy>;
-  stddevPop?: InputMaybe<IHouseholdGenreStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<IHouseholdGenreStddevSampOrderBy>;
-  sum?: InputMaybe<IHouseholdGenreSumOrderBy>;
-  varPop?: InputMaybe<IHouseholdGenreVarPopOrderBy>;
-  varSamp?: InputMaybe<IHouseholdGenreVarSampOrderBy>;
-  variance?: InputMaybe<IHouseholdGenreVarianceOrderBy>;
-}
+export type HouseholdGenreAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdGenreAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdGenreMaxOrderBy>;
+  min?: InputMaybe<HouseholdGenreMinOrderBy>;
+  stddev?: InputMaybe<HouseholdGenreStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdGenreStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdGenreStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdGenreSumOrderBy>;
+  varPop?: InputMaybe<HouseholdGenreVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdGenreVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdGenreVarianceOrderBy>;
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdGenreAvgFields {
+export type HouseholdGenreAvgFields = {
+  __typename?: "HouseholdGenreAvgFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by avg() on columns of table "household.genre" */
-export interface IHouseholdGenreAvgOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreAvgOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.genre". All fields are combined with a logical 'AND'. */
-export interface IHouseholdGenreBoolExp {
-  _and?: InputMaybe<Array<IHouseholdGenreBoolExp>>;
-  _not?: InputMaybe<IHouseholdGenreBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdGenreBoolExp>>;
-  categories?: InputMaybe<IHouseholdCategoryBoolExp>;
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateBoolExp>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateBoolExp>;
-  displayOrder?: InputMaybe<IIntComparisonExp>;
-  genreType?: InputMaybe<IStringComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  iocomeType?: InputMaybe<IStringComparisonExp>;
-  name?: InputMaybe<IStringComparisonExp>;
-  validFlag?: InputMaybe<IBooleanComparisonExp>;
-}
+export type HouseholdGenreBoolExp = {
+  _and?: InputMaybe<Array<HouseholdGenreBoolExp>>;
+  _not?: InputMaybe<HouseholdGenreBoolExp>;
+  _or?: InputMaybe<Array<HouseholdGenreBoolExp>>;
+  categories?: InputMaybe<HouseholdCategoryBoolExp>;
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
+  displayOrder?: InputMaybe<IntComparisonExp>;
+  genreType?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  iocomeType?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  validFlag?: InputMaybe<BooleanComparisonExp>;
+};
 
 /** unique or primary key constraints on table "household.genre" */
-export enum IHouseholdGenreConstraint {
+export enum HouseholdGenreConstraint {
   /** unique or primary key constraint on columns "id" */
   GenrePkey = "genre_pkey",
 }
 
 /** input type for incrementing numeric columns in table "household.genre" */
-export interface IHouseholdGenreIncInput {
+export type HouseholdGenreIncInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
-}
+};
 
 /** input type for inserting data into table "household.genre" */
-export interface IHouseholdGenreInsertInput {
-  categories?: InputMaybe<IHouseholdCategoryArrRelInsertInput>;
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailArrRelInsertInput>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailArrRelInsertInput>;
+export type HouseholdGenreInsertInput = {
+  categories?: InputMaybe<HouseholdCategoryArrRelInsertInput>;
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailArrRelInsertInput>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genreType?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
@@ -3565,92 +3692,95 @@ export interface IHouseholdGenreInsertInput {
   iocomeType?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IHouseholdGenreMaxFields {
+export type HouseholdGenreMaxFields = {
+  __typename?: "HouseholdGenreMaxFields";
   displayOrder?: Maybe<Scalars["Int"]>;
   genreType?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.genre" */
-export interface IHouseholdGenreMaxOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-  genreType?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreMaxOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+  genreType?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdGenreMinFields {
+export type HouseholdGenreMinFields = {
+  __typename?: "HouseholdGenreMinFields";
   displayOrder?: Maybe<Scalars["Int"]>;
   genreType?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.genre" */
-export interface IHouseholdGenreMinOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-  genreType?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreMinOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+  genreType?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "household.genre" */
-export interface IHouseholdGenreMutationResponse {
+export type HouseholdGenreMutationResponse = {
+  __typename?: "HouseholdGenreMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IHouseholdGenre>;
-}
+  returning: Array<HouseholdGenre>;
+};
 
 /** input type for inserting object relation for remote table "household.genre" */
-export interface IHouseholdGenreObjRelInsertInput {
-  data: IHouseholdGenreInsertInput;
+export type HouseholdGenreObjRelInsertInput = {
+  data: HouseholdGenreInsertInput;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdGenreOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdGenreOnConflict>;
+};
 
 /** on_conflict condition type for table "household.genre" */
-export interface IHouseholdGenreOnConflict {
-  constraint: IHouseholdGenreConstraint;
-  updateColumns?: Array<IHouseholdGenreUpdateColumn>;
-  where?: InputMaybe<IHouseholdGenreBoolExp>;
-}
+export type HouseholdGenreOnConflict = {
+  constraint: HouseholdGenreConstraint;
+  updateColumns?: Array<HouseholdGenreUpdateColumn>;
+  where?: InputMaybe<HouseholdGenreBoolExp>;
+};
 
 /** Ordering options when selecting data from "household.genre". */
-export interface IHouseholdGenreOrderBy {
-  categoriesAggregate?: InputMaybe<IHouseholdCategoryAggregateOrderBy>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateOrderBy>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateOrderBy>;
-  displayOrder?: InputMaybe<IOrderBy>;
-  genreType?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-  validFlag?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreOrderBy = {
+  categoriesAggregate?: InputMaybe<HouseholdCategoryAggregateOrderBy>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
+  genreType?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  validFlag?: InputMaybe<OrderBy>;
+};
 
 /** primary key columns input for table: household.genre */
-export interface IHouseholdGenrePkColumnsInput {
+export type HouseholdGenrePkColumnsInput = {
   id: Scalars["String"];
-}
+};
 
 /** select columns of table "household.genre" */
-export enum IHouseholdGenreSelectColumn {
+export enum HouseholdGenreSelectColumn {
   /** column name */
   DisplayOrder = "displayOrder",
   /** column name */
@@ -3668,19 +3798,19 @@ export enum IHouseholdGenreSelectColumn {
 }
 
 /** select "householdGenreAggregateBoolExpBool_andArgumentsColumns" columns of table "household.genre" */
-export enum IHouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_AndArgumentsColumns {
+export enum HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_AndArgumentsColumns {
   /** column name */
   ValidFlag = "validFlag",
 }
 
 /** select "householdGenreAggregateBoolExpBool_orArgumentsColumns" columns of table "household.genre" */
-export enum IHouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_OrArgumentsColumns {
+export enum HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_OrArgumentsColumns {
   /** column name */
   ValidFlag = "validFlag",
 }
 
 /** input type for updating data in table "household.genre" */
-export interface IHouseholdGenreSetInput {
+export type HouseholdGenreSetInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genreType?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
@@ -3688,48 +3818,51 @@ export interface IHouseholdGenreSetInput {
   iocomeType?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate stddev on columns */
-export interface IHouseholdGenreStddevFields {
+export type HouseholdGenreStddevFields = {
+  __typename?: "HouseholdGenreStddevFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddev() on columns of table "household.genre" */
-export interface IHouseholdGenreStddevOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreStddevOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdGenreStddevPopFields {
+export type HouseholdGenreStddevPopFields = {
+  __typename?: "HouseholdGenreStddevPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevPop() on columns of table "household.genre" */
-export interface IHouseholdGenreStddevPopOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreStddevPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdGenreStddevSampFields {
+export type HouseholdGenreStddevSampFields = {
+  __typename?: "HouseholdGenreStddevSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevSamp() on columns of table "household.genre" */
-export interface IHouseholdGenreStddevSampOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreStddevSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "household_genre" */
-export interface IHouseholdGenreStreamCursorInput {
+export type HouseholdGenreStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdGenreStreamCursorValueInput;
+  initialValue: HouseholdGenreStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdGenreStreamCursorValueInput {
+export type HouseholdGenreStreamCursorValueInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genreType?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
@@ -3737,20 +3870,21 @@ export interface IHouseholdGenreStreamCursorValueInput {
   iocomeType?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdGenreSumFields {
+export type HouseholdGenreSumFields = {
+  __typename?: "HouseholdGenreSumFields";
   displayOrder?: Maybe<Scalars["Int"]>;
-}
+};
 
 /** order by sum() on columns of table "household.genre" */
-export interface IHouseholdGenreSumOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreSumOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** update columns of table "household.genre" */
-export enum IHouseholdGenreUpdateColumn {
+export enum HouseholdGenreUpdateColumn {
   /** column name */
   DisplayOrder = "displayOrder",
   /** column name */
@@ -3767,185 +3901,194 @@ export enum IHouseholdGenreUpdateColumn {
   ValidFlag = "validFlag",
 }
 
-export interface IHouseholdGenreUpdates {
+export type HouseholdGenreUpdates = {
   /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<IHouseholdGenreIncInput>;
+  _inc?: InputMaybe<HouseholdGenreIncInput>;
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<IHouseholdGenreSetInput>;
+  _set?: InputMaybe<HouseholdGenreSetInput>;
   /** filter the rows which have to be updated */
-  where: IHouseholdGenreBoolExp;
-}
+  where: HouseholdGenreBoolExp;
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdGenreVarPopFields {
+export type HouseholdGenreVarPopFields = {
+  __typename?: "HouseholdGenreVarPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varPop() on columns of table "household.genre" */
-export interface IHouseholdGenreVarPopOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreVarPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdGenreVarSampFields {
+export type HouseholdGenreVarSampFields = {
+  __typename?: "HouseholdGenreVarSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varSamp() on columns of table "household.genre" */
-export interface IHouseholdGenreVarSampOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreVarSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdGenreVarianceFields {
+export type HouseholdGenreVarianceFields = {
+  __typename?: "HouseholdGenreVarianceFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by variance() on columns of table "household.genre" */
-export interface IHouseholdGenreVarianceOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdGenreVarianceOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.import_file_history" */
-export interface IHouseholdImportFileHistory {
+export type HouseholdImportFileHistory = {
+  __typename?: "HouseholdImportFileHistory";
   fileName: Scalars["String"];
   fileType: Scalars["String"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
   importDatetime: Scalars["timestamp"];
   importUserId: Scalars["String"];
-}
+};
 
 /** aggregated selection of "household.import_file_history" */
-export interface IHouseholdImportFileHistoryAggregate {
-  aggregate?: Maybe<IHouseholdImportFileHistoryAggregateFields>;
-  nodes: Array<IHouseholdImportFileHistory>;
-}
+export type HouseholdImportFileHistoryAggregate = {
+  __typename?: "HouseholdImportFileHistoryAggregate";
+  aggregate?: Maybe<HouseholdImportFileHistoryAggregateFields>;
+  nodes: Array<HouseholdImportFileHistory>;
+};
 
-export interface IHouseholdImportFileHistoryAggregateBoolExp {
-  count?: InputMaybe<IHouseholdImportFileHistoryAggregateBoolExpCount>;
-}
+export type HouseholdImportFileHistoryAggregateBoolExp = {
+  count?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.import_file_history" */
-export interface IHouseholdImportFileHistoryAggregateFields {
+export type HouseholdImportFileHistoryAggregateFields = {
+  __typename?: "HouseholdImportFileHistoryAggregateFields";
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdImportFileHistoryMaxFields>;
-  min?: Maybe<IHouseholdImportFileHistoryMinFields>;
-}
+  max?: Maybe<HouseholdImportFileHistoryMaxFields>;
+  min?: Maybe<HouseholdImportFileHistoryMinFields>;
+};
 
 /** aggregate fields of "household.import_file_history" */
-export interface IHouseholdImportFileHistoryAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdImportFileHistorySelectColumn>>;
+export type HouseholdImportFileHistoryAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.import_file_history" */
-export interface IHouseholdImportFileHistoryAggregateOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdImportFileHistoryMaxOrderBy>;
-  min?: InputMaybe<IHouseholdImportFileHistoryMinOrderBy>;
-}
+export type HouseholdImportFileHistoryAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdImportFileHistoryMaxOrderBy>;
+  min?: InputMaybe<HouseholdImportFileHistoryMinOrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.import_file_history". All fields are combined with a logical 'AND'. */
-export interface IHouseholdImportFileHistoryBoolExp {
-  _and?: InputMaybe<Array<IHouseholdImportFileHistoryBoolExp>>;
-  _not?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdImportFileHistoryBoolExp>>;
-  fileName?: InputMaybe<IStringComparisonExp>;
-  fileType?: InputMaybe<IStringComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  importDatetime?: InputMaybe<ITimestampComparisonExp>;
-  importUserId?: InputMaybe<IStringComparisonExp>;
-}
+export type HouseholdImportFileHistoryBoolExp = {
+  _and?: InputMaybe<Array<HouseholdImportFileHistoryBoolExp>>;
+  _not?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+  _or?: InputMaybe<Array<HouseholdImportFileHistoryBoolExp>>;
+  fileName?: InputMaybe<StringComparisonExp>;
+  fileType?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  importDatetime?: InputMaybe<TimestampComparisonExp>;
+  importUserId?: InputMaybe<StringComparisonExp>;
+};
 
 /** unique or primary key constraints on table "household.import_file_history" */
-export enum IHouseholdImportFileHistoryConstraint {
+export enum HouseholdImportFileHistoryConstraint {
   /** unique or primary key constraint on columns "id" */
   ImportFileHistoryPkey = "import_file_history_pkey",
 }
 
 /** input type for inserting data into table "household.import_file_history" */
-export interface IHouseholdImportFileHistoryInsertInput {
+export type HouseholdImportFileHistoryInsertInput = {
   fileName?: InputMaybe<Scalars["String"]>;
   fileType?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   importDatetime?: InputMaybe<Scalars["timestamp"]>;
   importUserId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IHouseholdImportFileHistoryMaxFields {
+export type HouseholdImportFileHistoryMaxFields = {
+  __typename?: "HouseholdImportFileHistoryMaxFields";
   fileName?: Maybe<Scalars["String"]>;
   fileType?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   importDatetime?: Maybe<Scalars["timestamp"]>;
   importUserId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.import_file_history" */
-export interface IHouseholdImportFileHistoryMaxOrderBy {
-  fileName?: InputMaybe<IOrderBy>;
-  fileType?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  importDatetime?: InputMaybe<IOrderBy>;
-  importUserId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdImportFileHistoryMaxOrderBy = {
+  fileName?: InputMaybe<OrderBy>;
+  fileType?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+  importUserId?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdImportFileHistoryMinFields {
+export type HouseholdImportFileHistoryMinFields = {
+  __typename?: "HouseholdImportFileHistoryMinFields";
   fileName?: Maybe<Scalars["String"]>;
   fileType?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   importDatetime?: Maybe<Scalars["timestamp"]>;
   importUserId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.import_file_history" */
-export interface IHouseholdImportFileHistoryMinOrderBy {
-  fileName?: InputMaybe<IOrderBy>;
-  fileType?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  importDatetime?: InputMaybe<IOrderBy>;
-  importUserId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdImportFileHistoryMinOrderBy = {
+  fileName?: InputMaybe<OrderBy>;
+  fileType?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+  importUserId?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "household.import_file_history" */
-export interface IHouseholdImportFileHistoryMutationResponse {
+export type HouseholdImportFileHistoryMutationResponse = {
+  __typename?: "HouseholdImportFileHistoryMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IHouseholdImportFileHistory>;
-}
+  returning: Array<HouseholdImportFileHistory>;
+};
 
 /** on_conflict condition type for table "household.import_file_history" */
-export interface IHouseholdImportFileHistoryOnConflict {
-  constraint: IHouseholdImportFileHistoryConstraint;
-  updateColumns?: Array<IHouseholdImportFileHistoryUpdateColumn>;
-  where?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-}
+export type HouseholdImportFileHistoryOnConflict = {
+  constraint: HouseholdImportFileHistoryConstraint;
+  updateColumns?: Array<HouseholdImportFileHistoryUpdateColumn>;
+  where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+};
 
 /** Ordering options when selecting data from "household.import_file_history". */
-export interface IHouseholdImportFileHistoryOrderBy {
-  fileName?: InputMaybe<IOrderBy>;
-  fileType?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  importDatetime?: InputMaybe<IOrderBy>;
-  importUserId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdImportFileHistoryOrderBy = {
+  fileName?: InputMaybe<OrderBy>;
+  fileType?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+  importUserId?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.import_file_history" */
-export enum IHouseholdImportFileHistorySelectColumn {
+export enum HouseholdImportFileHistorySelectColumn {
   /** column name */
   FileName = "fileName",
   /** column name */
@@ -3961,191 +4104,198 @@ export enum IHouseholdImportFileHistorySelectColumn {
 }
 
 /** Streaming cursor of the table "household_import_file_history" */
-export interface IHouseholdImportFileHistoryStreamCursorInput {
+export type HouseholdImportFileHistoryStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdImportFileHistoryStreamCursorValueInput;
+  initialValue: HouseholdImportFileHistoryStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdImportFileHistoryStreamCursorValueInput {
+export type HouseholdImportFileHistoryStreamCursorValueInput = {
   fileName?: InputMaybe<Scalars["String"]>;
   fileType?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   importDatetime?: InputMaybe<Scalars["timestamp"]>;
   importUserId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** placeholder for update columns of table "household.import_file_history" (current role has no relevant permissions) */
-export enum IHouseholdImportFileHistoryUpdateColumn {
+export enum HouseholdImportFileHistoryUpdateColumn {
   /** placeholder (do not use) */
   Placeholder = "_PLACEHOLDER",
 }
 
 /** columns and relationships of "household.summary_category" */
-export interface IHouseholdSummaryCategory {
+export type HouseholdSummaryCategory = {
+  __typename?: "HouseholdSummaryCategory";
   /** An object relationship */
-  category: IHouseholdCategory;
+  category: HouseholdCategory;
   categoryId: Scalars["String"];
   displayOrder: Scalars["Int"];
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   id: Scalars["String"];
-}
+};
 
 /** aggregated selection of "household.summary_category" */
-export interface IHouseholdSummaryCategoryAggregate {
-  aggregate?: Maybe<IHouseholdSummaryCategoryAggregateFields>;
-  nodes: Array<IHouseholdSummaryCategory>;
-}
+export type HouseholdSummaryCategoryAggregate = {
+  __typename?: "HouseholdSummaryCategoryAggregate";
+  aggregate?: Maybe<HouseholdSummaryCategoryAggregateFields>;
+  nodes: Array<HouseholdSummaryCategory>;
+};
 
-export interface IHouseholdSummaryCategoryAggregateBoolExp {
-  count?: InputMaybe<IHouseholdSummaryCategoryAggregateBoolExpCount>;
-}
+export type HouseholdSummaryCategoryAggregateBoolExp = {
+  count?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.summary_category" */
-export interface IHouseholdSummaryCategoryAggregateFields {
-  avg?: Maybe<IHouseholdSummaryCategoryAvgFields>;
+export type HouseholdSummaryCategoryAggregateFields = {
+  __typename?: "HouseholdSummaryCategoryAggregateFields";
+  avg?: Maybe<HouseholdSummaryCategoryAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdSummaryCategoryMaxFields>;
-  min?: Maybe<IHouseholdSummaryCategoryMinFields>;
-  stddev?: Maybe<IHouseholdSummaryCategoryStddevFields>;
-  stddevPop?: Maybe<IHouseholdSummaryCategoryStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdSummaryCategoryStddevSampFields>;
-  sum?: Maybe<IHouseholdSummaryCategorySumFields>;
-  varPop?: Maybe<IHouseholdSummaryCategoryVarPopFields>;
-  varSamp?: Maybe<IHouseholdSummaryCategoryVarSampFields>;
-  variance?: Maybe<IHouseholdSummaryCategoryVarianceFields>;
-}
+  max?: Maybe<HouseholdSummaryCategoryMaxFields>;
+  min?: Maybe<HouseholdSummaryCategoryMinFields>;
+  stddev?: Maybe<HouseholdSummaryCategoryStddevFields>;
+  stddevPop?: Maybe<HouseholdSummaryCategoryStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdSummaryCategoryStddevSampFields>;
+  sum?: Maybe<HouseholdSummaryCategorySumFields>;
+  varPop?: Maybe<HouseholdSummaryCategoryVarPopFields>;
+  varSamp?: Maybe<HouseholdSummaryCategoryVarSampFields>;
+  variance?: Maybe<HouseholdSummaryCategoryVarianceFields>;
+};
 
 /** aggregate fields of "household.summary_category" */
-export interface IHouseholdSummaryCategoryAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type HouseholdSummaryCategoryAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryAggregateOrderBy {
-  avg?: InputMaybe<IHouseholdSummaryCategoryAvgOrderBy>;
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdSummaryCategoryMaxOrderBy>;
-  min?: InputMaybe<IHouseholdSummaryCategoryMinOrderBy>;
-  stddev?: InputMaybe<IHouseholdSummaryCategoryStddevOrderBy>;
-  stddevPop?: InputMaybe<IHouseholdSummaryCategoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<IHouseholdSummaryCategoryStddevSampOrderBy>;
-  sum?: InputMaybe<IHouseholdSummaryCategorySumOrderBy>;
-  varPop?: InputMaybe<IHouseholdSummaryCategoryVarPopOrderBy>;
-  varSamp?: InputMaybe<IHouseholdSummaryCategoryVarSampOrderBy>;
-  variance?: InputMaybe<IHouseholdSummaryCategoryVarianceOrderBy>;
-}
+export type HouseholdSummaryCategoryAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdSummaryCategoryAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdSummaryCategoryMaxOrderBy>;
+  min?: InputMaybe<HouseholdSummaryCategoryMinOrderBy>;
+  stddev?: InputMaybe<HouseholdSummaryCategoryStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdSummaryCategoryStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdSummaryCategoryStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdSummaryCategorySumOrderBy>;
+  varPop?: InputMaybe<HouseholdSummaryCategoryVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdSummaryCategoryVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdSummaryCategoryVarianceOrderBy>;
+};
 
 /** input type for inserting array relation for remote table "household.summary_category" */
-export interface IHouseholdSummaryCategoryArrRelInsertInput {
-  data: Array<IHouseholdSummaryCategoryInsertInput>;
+export type HouseholdSummaryCategoryArrRelInsertInput = {
+  data: Array<HouseholdSummaryCategoryInsertInput>;
   /** upsert condition */
-  onConflict?: InputMaybe<IHouseholdSummaryCategoryOnConflict>;
-}
+  onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdSummaryCategoryAvgFields {
+export type HouseholdSummaryCategoryAvgFields = {
+  __typename?: "HouseholdSummaryCategoryAvgFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by avg() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryAvgOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryAvgOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.summary_category". All fields are combined with a logical 'AND'. */
-export interface IHouseholdSummaryCategoryBoolExp {
-  _and?: InputMaybe<Array<IHouseholdSummaryCategoryBoolExp>>;
-  _not?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdSummaryCategoryBoolExp>>;
-  category?: InputMaybe<IHouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<IStringComparisonExp>;
-  displayOrder?: InputMaybe<IIntComparisonExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-}
+export type HouseholdSummaryCategoryBoolExp = {
+  _and?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
+  _not?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+  _or?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
+  category?: InputMaybe<HouseholdCategoryBoolExp>;
+  categoryId?: InputMaybe<StringComparisonExp>;
+  displayOrder?: InputMaybe<IntComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+};
 
 /** unique or primary key constraints on table "household.summary_category" */
-export enum IHouseholdSummaryCategoryConstraint {
+export enum HouseholdSummaryCategoryConstraint {
   /** unique or primary key constraint on columns "id" */
   SummaryCategoryByGroupPkey = "summary_category_by_group_pkey",
 }
 
 /** input type for inserting data into table "household.summary_category" */
-export interface IHouseholdSummaryCategoryInsertInput {
-  category?: InputMaybe<IHouseholdCategoryObjRelInsertInput>;
+export type HouseholdSummaryCategoryInsertInput = {
+  category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IHouseholdSummaryCategoryMaxFields {
+export type HouseholdSummaryCategoryMaxFields = {
+  __typename?: "HouseholdSummaryCategoryMaxFields";
   categoryId?: Maybe<Scalars["String"]>;
   displayOrder?: Maybe<Scalars["Int"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryMaxOrderBy {
-  categoryId?: InputMaybe<IOrderBy>;
-  displayOrder?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryMaxOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdSummaryCategoryMinFields {
+export type HouseholdSummaryCategoryMinFields = {
+  __typename?: "HouseholdSummaryCategoryMinFields";
   categoryId?: Maybe<Scalars["String"]>;
   displayOrder?: Maybe<Scalars["Int"]>;
   groupId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryMinOrderBy {
-  categoryId?: InputMaybe<IOrderBy>;
-  displayOrder?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryMinOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
 
 /** response of any mutation on the table "household.summary_category" */
-export interface IHouseholdSummaryCategoryMutationResponse {
+export type HouseholdSummaryCategoryMutationResponse = {
+  __typename?: "HouseholdSummaryCategoryMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IHouseholdSummaryCategory>;
-}
+  returning: Array<HouseholdSummaryCategory>;
+};
 
 /** on_conflict condition type for table "household.summary_category" */
-export interface IHouseholdSummaryCategoryOnConflict {
-  constraint: IHouseholdSummaryCategoryConstraint;
-  updateColumns?: Array<IHouseholdSummaryCategoryUpdateColumn>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+export type HouseholdSummaryCategoryOnConflict = {
+  constraint: HouseholdSummaryCategoryConstraint;
+  updateColumns?: Array<HouseholdSummaryCategoryUpdateColumn>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
 /** Ordering options when selecting data from "household.summary_category". */
-export interface IHouseholdSummaryCategoryOrderBy {
-  category?: InputMaybe<IHouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<IOrderBy>;
-  displayOrder?: InputMaybe<IOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryOrderBy = {
+  category?: InputMaybe<HouseholdCategoryOrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.summary_category" */
-export enum IHouseholdSummaryCategorySelectColumn {
+export enum HouseholdSummaryCategorySelectColumn {
   /** column name */
   CategoryId = "categoryId",
   /** column name */
@@ -4157,99 +4307,107 @@ export enum IHouseholdSummaryCategorySelectColumn {
 }
 
 /** aggregate stddev on columns */
-export interface IHouseholdSummaryCategoryStddevFields {
+export type HouseholdSummaryCategoryStddevFields = {
+  __typename?: "HouseholdSummaryCategoryStddevFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddev() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryStddevOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryStddevOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdSummaryCategoryStddevPopFields {
+export type HouseholdSummaryCategoryStddevPopFields = {
+  __typename?: "HouseholdSummaryCategoryStddevPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevPop() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryStddevPopOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryStddevPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdSummaryCategoryStddevSampFields {
+export type HouseholdSummaryCategoryStddevSampFields = {
+  __typename?: "HouseholdSummaryCategoryStddevSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by stddevSamp() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryStddevSampOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryStddevSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "household_summary_category" */
-export interface IHouseholdSummaryCategoryStreamCursorInput {
+export type HouseholdSummaryCategoryStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdSummaryCategoryStreamCursorValueInput;
+  initialValue: HouseholdSummaryCategoryStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdSummaryCategoryStreamCursorValueInput {
+export type HouseholdSummaryCategoryStreamCursorValueInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdSummaryCategorySumFields {
+export type HouseholdSummaryCategorySumFields = {
+  __typename?: "HouseholdSummaryCategorySumFields";
   displayOrder?: Maybe<Scalars["Int"]>;
-}
+};
 
 /** order by sum() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategorySumOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategorySumOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** placeholder for update columns of table "household.summary_category" (current role has no relevant permissions) */
-export enum IHouseholdSummaryCategoryUpdateColumn {
+export enum HouseholdSummaryCategoryUpdateColumn {
   /** placeholder (do not use) */
   Placeholder = "_PLACEHOLDER",
 }
 
 /** aggregate varPop on columns */
-export interface IHouseholdSummaryCategoryVarPopFields {
+export type HouseholdSummaryCategoryVarPopFields = {
+  __typename?: "HouseholdSummaryCategoryVarPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varPop() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryVarPopOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryVarPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdSummaryCategoryVarSampFields {
+export type HouseholdSummaryCategoryVarSampFields = {
+  __typename?: "HouseholdSummaryCategoryVarSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by varSamp() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryVarSampOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryVarSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdSummaryCategoryVarianceFields {
+export type HouseholdSummaryCategoryVarianceFields = {
+  __typename?: "HouseholdSummaryCategoryVarianceFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** order by variance() on columns of table "household.summary_category" */
-export interface IHouseholdSummaryCategoryVarianceOrderBy {
-  displayOrder?: InputMaybe<IOrderBy>;
-}
+export type HouseholdSummaryCategoryVarianceOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
 
 /** columns and relationships of "household.total_by_category_view" */
-export interface IHouseholdTotalByCategoryView {
+export type HouseholdTotalByCategoryView = {
+  __typename?: "HouseholdTotalByCategoryView";
   categoryId?: Maybe<Scalars["String"]>;
   categoryName?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
@@ -4258,56 +4416,60 @@ export interface IHouseholdTotalByCategoryView {
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
-export interface IHouseholdTotalByCategoryViewAggregate {
-  aggregate?: Maybe<IHouseholdTotalByCategoryViewAggregateFields>;
-  nodes: Array<IHouseholdTotalByCategoryView>;
-}
+export type HouseholdTotalByCategoryViewAggregate = {
+  __typename?: "HouseholdTotalByCategoryViewAggregate";
+  aggregate?: Maybe<HouseholdTotalByCategoryViewAggregateFields>;
+  nodes: Array<HouseholdTotalByCategoryView>;
+};
 
 /** aggregate fields of "household.total_by_category_view" */
-export interface IHouseholdTotalByCategoryViewAggregateFields {
-  avg?: Maybe<IHouseholdTotalByCategoryViewAvgFields>;
+export type HouseholdTotalByCategoryViewAggregateFields = {
+  __typename?: "HouseholdTotalByCategoryViewAggregateFields";
+  avg?: Maybe<HouseholdTotalByCategoryViewAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdTotalByCategoryViewMaxFields>;
-  min?: Maybe<IHouseholdTotalByCategoryViewMinFields>;
-  stddev?: Maybe<IHouseholdTotalByCategoryViewStddevFields>;
-  stddevPop?: Maybe<IHouseholdTotalByCategoryViewStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdTotalByCategoryViewStddevSampFields>;
-  sum?: Maybe<IHouseholdTotalByCategoryViewSumFields>;
-  varPop?: Maybe<IHouseholdTotalByCategoryViewVarPopFields>;
-  varSamp?: Maybe<IHouseholdTotalByCategoryViewVarSampFields>;
-  variance?: Maybe<IHouseholdTotalByCategoryViewVarianceFields>;
-}
+  max?: Maybe<HouseholdTotalByCategoryViewMaxFields>;
+  min?: Maybe<HouseholdTotalByCategoryViewMinFields>;
+  stddev?: Maybe<HouseholdTotalByCategoryViewStddevFields>;
+  stddevPop?: Maybe<HouseholdTotalByCategoryViewStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdTotalByCategoryViewStddevSampFields>;
+  sum?: Maybe<HouseholdTotalByCategoryViewSumFields>;
+  varPop?: Maybe<HouseholdTotalByCategoryViewVarPopFields>;
+  varSamp?: Maybe<HouseholdTotalByCategoryViewVarSampFields>;
+  variance?: Maybe<HouseholdTotalByCategoryViewVarianceFields>;
+};
 
 /** aggregate fields of "household.total_by_category_view" */
-export interface IHouseholdTotalByCategoryViewAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type HouseholdTotalByCategoryViewAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdTotalByCategoryViewAvgFields {
+export type HouseholdTotalByCategoryViewAvgFields = {
+  __typename?: "HouseholdTotalByCategoryViewAvgFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Boolean expression to filter rows from the table "household.total_by_category_view". All fields are combined with a logical 'AND'. */
-export interface IHouseholdTotalByCategoryViewBoolExp {
-  _and?: InputMaybe<Array<IHouseholdTotalByCategoryViewBoolExp>>;
-  _not?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdTotalByCategoryViewBoolExp>>;
-  categoryId?: InputMaybe<IStringComparisonExp>;
-  categoryName?: InputMaybe<IStringComparisonExp>;
-  date?: InputMaybe<IDateComparisonExp>;
-  genreId?: InputMaybe<IStringComparisonExp>;
-  genreName?: InputMaybe<IStringComparisonExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  iocomeType?: InputMaybe<IStringComparisonExp>;
-  total?: InputMaybe<INumericComparisonExp>;
-}
+export type HouseholdTotalByCategoryViewBoolExp = {
+  _and?: InputMaybe<Array<HouseholdTotalByCategoryViewBoolExp>>;
+  _not?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+  _or?: InputMaybe<Array<HouseholdTotalByCategoryViewBoolExp>>;
+  categoryId?: InputMaybe<StringComparisonExp>;
+  categoryName?: InputMaybe<StringComparisonExp>;
+  date?: InputMaybe<DateComparisonExp>;
+  genreId?: InputMaybe<StringComparisonExp>;
+  genreName?: InputMaybe<StringComparisonExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  iocomeType?: InputMaybe<StringComparisonExp>;
+  total?: InputMaybe<NumericComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IHouseholdTotalByCategoryViewMaxFields {
+export type HouseholdTotalByCategoryViewMaxFields = {
+  __typename?: "HouseholdTotalByCategoryViewMaxFields";
   categoryId?: Maybe<Scalars["String"]>;
   categoryName?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
@@ -4316,10 +4478,11 @@ export interface IHouseholdTotalByCategoryViewMaxFields {
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate min on columns */
-export interface IHouseholdTotalByCategoryViewMinFields {
+export type HouseholdTotalByCategoryViewMinFields = {
+  __typename?: "HouseholdTotalByCategoryViewMinFields";
   categoryId?: Maybe<Scalars["String"]>;
   categoryName?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["date"]>;
@@ -4328,22 +4491,22 @@ export interface IHouseholdTotalByCategoryViewMinFields {
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** Ordering options when selecting data from "household.total_by_category_view". */
-export interface IHouseholdTotalByCategoryViewOrderBy {
-  categoryId?: InputMaybe<IOrderBy>;
-  categoryName?: InputMaybe<IOrderBy>;
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  genreName?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  total?: InputMaybe<IOrderBy>;
-}
+export type HouseholdTotalByCategoryViewOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  categoryName?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  genreName?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  total?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.total_by_category_view" */
-export enum IHouseholdTotalByCategoryViewSelectColumn {
+export enum HouseholdTotalByCategoryViewSelectColumn {
   /** column name */
   CategoryId = "categoryId",
   /** column name */
@@ -4363,30 +4526,33 @@ export enum IHouseholdTotalByCategoryViewSelectColumn {
 }
 
 /** aggregate stddev on columns */
-export interface IHouseholdTotalByCategoryViewStddevFields {
+export type HouseholdTotalByCategoryViewStddevFields = {
+  __typename?: "HouseholdTotalByCategoryViewStddevFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdTotalByCategoryViewStddevPopFields {
+export type HouseholdTotalByCategoryViewStddevPopFields = {
+  __typename?: "HouseholdTotalByCategoryViewStddevPopFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdTotalByCategoryViewStddevSampFields {
+export type HouseholdTotalByCategoryViewStddevSampFields = {
+  __typename?: "HouseholdTotalByCategoryViewStddevSampFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Streaming cursor of the table "household_total_by_category_view" */
-export interface IHouseholdTotalByCategoryViewStreamCursorInput {
+export type HouseholdTotalByCategoryViewStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdTotalByCategoryViewStreamCursorValueInput;
+  initialValue: HouseholdTotalByCategoryViewStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdTotalByCategoryViewStreamCursorValueInput {
+export type HouseholdTotalByCategoryViewStreamCursorValueInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   categoryName?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
@@ -4395,114 +4561,124 @@ export interface IHouseholdTotalByCategoryViewStreamCursorValueInput {
   groupId?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   total?: InputMaybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdTotalByCategoryViewSumFields {
+export type HouseholdTotalByCategoryViewSumFields = {
+  __typename?: "HouseholdTotalByCategoryViewSumFields";
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdTotalByCategoryViewVarPopFields {
+export type HouseholdTotalByCategoryViewVarPopFields = {
+  __typename?: "HouseholdTotalByCategoryViewVarPopFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdTotalByCategoryViewVarSampFields {
+export type HouseholdTotalByCategoryViewVarSampFields = {
+  __typename?: "HouseholdTotalByCategoryViewVarSampFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdTotalByCategoryViewVarianceFields {
+export type HouseholdTotalByCategoryViewVarianceFields = {
+  __typename?: "HouseholdTotalByCategoryViewVarianceFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** columns and relationships of "household.total_by_genre_view" */
-export interface IHouseholdTotalByGenreView {
+export type HouseholdTotalByGenreView = {
+  __typename?: "HouseholdTotalByGenreView";
   date?: Maybe<Scalars["date"]>;
   genreId?: Maybe<Scalars["String"]>;
   genreName?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
-export interface IHouseholdTotalByGenreViewAggregate {
-  aggregate?: Maybe<IHouseholdTotalByGenreViewAggregateFields>;
-  nodes: Array<IHouseholdTotalByGenreView>;
-}
+export type HouseholdTotalByGenreViewAggregate = {
+  __typename?: "HouseholdTotalByGenreViewAggregate";
+  aggregate?: Maybe<HouseholdTotalByGenreViewAggregateFields>;
+  nodes: Array<HouseholdTotalByGenreView>;
+};
 
 /** aggregate fields of "household.total_by_genre_view" */
-export interface IHouseholdTotalByGenreViewAggregateFields {
-  avg?: Maybe<IHouseholdTotalByGenreViewAvgFields>;
+export type HouseholdTotalByGenreViewAggregateFields = {
+  __typename?: "HouseholdTotalByGenreViewAggregateFields";
+  avg?: Maybe<HouseholdTotalByGenreViewAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdTotalByGenreViewMaxFields>;
-  min?: Maybe<IHouseholdTotalByGenreViewMinFields>;
-  stddev?: Maybe<IHouseholdTotalByGenreViewStddevFields>;
-  stddevPop?: Maybe<IHouseholdTotalByGenreViewStddevPopFields>;
-  stddevSamp?: Maybe<IHouseholdTotalByGenreViewStddevSampFields>;
-  sum?: Maybe<IHouseholdTotalByGenreViewSumFields>;
-  varPop?: Maybe<IHouseholdTotalByGenreViewVarPopFields>;
-  varSamp?: Maybe<IHouseholdTotalByGenreViewVarSampFields>;
-  variance?: Maybe<IHouseholdTotalByGenreViewVarianceFields>;
-}
+  max?: Maybe<HouseholdTotalByGenreViewMaxFields>;
+  min?: Maybe<HouseholdTotalByGenreViewMinFields>;
+  stddev?: Maybe<HouseholdTotalByGenreViewStddevFields>;
+  stddevPop?: Maybe<HouseholdTotalByGenreViewStddevPopFields>;
+  stddevSamp?: Maybe<HouseholdTotalByGenreViewStddevSampFields>;
+  sum?: Maybe<HouseholdTotalByGenreViewSumFields>;
+  varPop?: Maybe<HouseholdTotalByGenreViewVarPopFields>;
+  varSamp?: Maybe<HouseholdTotalByGenreViewVarSampFields>;
+  variance?: Maybe<HouseholdTotalByGenreViewVarianceFields>;
+};
 
 /** aggregate fields of "household.total_by_genre_view" */
-export interface IHouseholdTotalByGenreViewAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type HouseholdTotalByGenreViewAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate avg on columns */
-export interface IHouseholdTotalByGenreViewAvgFields {
+export type HouseholdTotalByGenreViewAvgFields = {
+  __typename?: "HouseholdTotalByGenreViewAvgFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Boolean expression to filter rows from the table "household.total_by_genre_view". All fields are combined with a logical 'AND'. */
-export interface IHouseholdTotalByGenreViewBoolExp {
-  _and?: InputMaybe<Array<IHouseholdTotalByGenreViewBoolExp>>;
-  _not?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdTotalByGenreViewBoolExp>>;
-  date?: InputMaybe<IDateComparisonExp>;
-  genreId?: InputMaybe<IStringComparisonExp>;
-  genreName?: InputMaybe<IStringComparisonExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  iocomeType?: InputMaybe<IStringComparisonExp>;
-  total?: InputMaybe<INumericComparisonExp>;
-}
+export type HouseholdTotalByGenreViewBoolExp = {
+  _and?: InputMaybe<Array<HouseholdTotalByGenreViewBoolExp>>;
+  _not?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+  _or?: InputMaybe<Array<HouseholdTotalByGenreViewBoolExp>>;
+  date?: InputMaybe<DateComparisonExp>;
+  genreId?: InputMaybe<StringComparisonExp>;
+  genreName?: InputMaybe<StringComparisonExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  iocomeType?: InputMaybe<StringComparisonExp>;
+  total?: InputMaybe<NumericComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IHouseholdTotalByGenreViewMaxFields {
+export type HouseholdTotalByGenreViewMaxFields = {
+  __typename?: "HouseholdTotalByGenreViewMaxFields";
   date?: Maybe<Scalars["date"]>;
   genreId?: Maybe<Scalars["String"]>;
   genreName?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate min on columns */
-export interface IHouseholdTotalByGenreViewMinFields {
+export type HouseholdTotalByGenreViewMinFields = {
+  __typename?: "HouseholdTotalByGenreViewMinFields";
   date?: Maybe<Scalars["date"]>;
   genreId?: Maybe<Scalars["String"]>;
   genreName?: Maybe<Scalars["String"]>;
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** Ordering options when selecting data from "household.total_by_genre_view". */
-export interface IHouseholdTotalByGenreViewOrderBy {
-  date?: InputMaybe<IOrderBy>;
-  genreId?: InputMaybe<IOrderBy>;
-  genreName?: InputMaybe<IOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  iocomeType?: InputMaybe<IOrderBy>;
-  total?: InputMaybe<IOrderBy>;
-}
+export type HouseholdTotalByGenreViewOrderBy = {
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  genreName?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  total?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.total_by_genre_view" */
-export enum IHouseholdTotalByGenreViewSelectColumn {
+export enum HouseholdTotalByGenreViewSelectColumn {
   /** column name */
   Date = "date",
   /** column name */
@@ -4518,154 +4694,166 @@ export enum IHouseholdTotalByGenreViewSelectColumn {
 }
 
 /** aggregate stddev on columns */
-export interface IHouseholdTotalByGenreViewStddevFields {
+export type HouseholdTotalByGenreViewStddevFields = {
+  __typename?: "HouseholdTotalByGenreViewStddevFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevPop on columns */
-export interface IHouseholdTotalByGenreViewStddevPopFields {
+export type HouseholdTotalByGenreViewStddevPopFields = {
+  __typename?: "HouseholdTotalByGenreViewStddevPopFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevSamp on columns */
-export interface IHouseholdTotalByGenreViewStddevSampFields {
+export type HouseholdTotalByGenreViewStddevSampFields = {
+  __typename?: "HouseholdTotalByGenreViewStddevSampFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Streaming cursor of the table "household_total_by_genre_view" */
-export interface IHouseholdTotalByGenreViewStreamCursorInput {
+export type HouseholdTotalByGenreViewStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdTotalByGenreViewStreamCursorValueInput;
+  initialValue: HouseholdTotalByGenreViewStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdTotalByGenreViewStreamCursorValueInput {
+export type HouseholdTotalByGenreViewStreamCursorValueInput = {
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
   genreName?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   total?: InputMaybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IHouseholdTotalByGenreViewSumFields {
+export type HouseholdTotalByGenreViewSumFields = {
+  __typename?: "HouseholdTotalByGenreViewSumFields";
   total?: Maybe<Scalars["numeric"]>;
-}
+};
 
 /** aggregate varPop on columns */
-export interface IHouseholdTotalByGenreViewVarPopFields {
+export type HouseholdTotalByGenreViewVarPopFields = {
+  __typename?: "HouseholdTotalByGenreViewVarPopFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate varSamp on columns */
-export interface IHouseholdTotalByGenreViewVarSampFields {
+export type HouseholdTotalByGenreViewVarSampFields = {
+  __typename?: "HouseholdTotalByGenreViewVarSampFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate variance on columns */
-export interface IHouseholdTotalByGenreViewVarianceFields {
+export type HouseholdTotalByGenreViewVarianceFields = {
+  __typename?: "HouseholdTotalByGenreViewVarianceFields";
   total?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** columns and relationships of "household.transfer_category" */
-export interface IHouseholdTransferCategory {
+export type HouseholdTransferCategory = {
+  __typename?: "HouseholdTransferCategory";
   /** An object relationship */
-  categoryByIncomeCategoryId: IHouseholdCategory;
+  categoryByIncomeCategoryId: HouseholdCategory;
   /** An object relationship */
-  categoryByOutcomeCategoryId: IHouseholdCategory;
+  categoryByOutcomeCategoryId: HouseholdCategory;
   /** An object relationship */
-  group: IGroup;
+  group: Group;
   groupId: Scalars["String"];
   incomeCategoryId: Scalars["String"];
   outcomeCategoryId: Scalars["String"];
-}
+};
 
 /** aggregated selection of "household.transfer_category" */
-export interface IHouseholdTransferCategoryAggregate {
-  aggregate?: Maybe<IHouseholdTransferCategoryAggregateFields>;
-  nodes: Array<IHouseholdTransferCategory>;
-}
+export type HouseholdTransferCategoryAggregate = {
+  __typename?: "HouseholdTransferCategoryAggregate";
+  aggregate?: Maybe<HouseholdTransferCategoryAggregateFields>;
+  nodes: Array<HouseholdTransferCategory>;
+};
 
-export interface IHouseholdTransferCategoryAggregateBoolExp {
-  count?: InputMaybe<IHouseholdTransferCategoryAggregateBoolExpCount>;
-}
+export type HouseholdTransferCategoryAggregateBoolExp = {
+  count?: InputMaybe<HouseholdTransferCategoryAggregateBoolExpCount>;
+};
 
 /** aggregate fields of "household.transfer_category" */
-export interface IHouseholdTransferCategoryAggregateFields {
+export type HouseholdTransferCategoryAggregateFields = {
+  __typename?: "HouseholdTransferCategoryAggregateFields";
   count: Scalars["Int"];
-  max?: Maybe<IHouseholdTransferCategoryMaxFields>;
-  min?: Maybe<IHouseholdTransferCategoryMinFields>;
-}
+  max?: Maybe<HouseholdTransferCategoryMaxFields>;
+  min?: Maybe<HouseholdTransferCategoryMinFields>;
+};
 
 /** aggregate fields of "household.transfer_category" */
-export interface IHouseholdTransferCategoryAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IHouseholdTransferCategorySelectColumn>>;
+export type HouseholdTransferCategoryAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** order by aggregate values of table "household.transfer_category" */
-export interface IHouseholdTransferCategoryAggregateOrderBy {
-  count?: InputMaybe<IOrderBy>;
-  max?: InputMaybe<IHouseholdTransferCategoryMaxOrderBy>;
-  min?: InputMaybe<IHouseholdTransferCategoryMinOrderBy>;
-}
+export type HouseholdTransferCategoryAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdTransferCategoryMaxOrderBy>;
+  min?: InputMaybe<HouseholdTransferCategoryMinOrderBy>;
+};
 
 /** Boolean expression to filter rows from the table "household.transfer_category". All fields are combined with a logical 'AND'. */
-export interface IHouseholdTransferCategoryBoolExp {
-  _and?: InputMaybe<Array<IHouseholdTransferCategoryBoolExp>>;
-  _not?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-  _or?: InputMaybe<Array<IHouseholdTransferCategoryBoolExp>>;
-  categoryByIncomeCategoryId?: InputMaybe<IHouseholdCategoryBoolExp>;
-  categoryByOutcomeCategoryId?: InputMaybe<IHouseholdCategoryBoolExp>;
-  group?: InputMaybe<IGroupBoolExp>;
-  groupId?: InputMaybe<IStringComparisonExp>;
-  incomeCategoryId?: InputMaybe<IStringComparisonExp>;
-  outcomeCategoryId?: InputMaybe<IStringComparisonExp>;
-}
+export type HouseholdTransferCategoryBoolExp = {
+  _and?: InputMaybe<Array<HouseholdTransferCategoryBoolExp>>;
+  _not?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+  _or?: InputMaybe<Array<HouseholdTransferCategoryBoolExp>>;
+  categoryByIncomeCategoryId?: InputMaybe<HouseholdCategoryBoolExp>;
+  categoryByOutcomeCategoryId?: InputMaybe<HouseholdCategoryBoolExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  incomeCategoryId?: InputMaybe<StringComparisonExp>;
+  outcomeCategoryId?: InputMaybe<StringComparisonExp>;
+};
 
 /** aggregate max on columns */
-export interface IHouseholdTransferCategoryMaxFields {
+export type HouseholdTransferCategoryMaxFields = {
+  __typename?: "HouseholdTransferCategoryMaxFields";
   groupId?: Maybe<Scalars["String"]>;
   incomeCategoryId?: Maybe<Scalars["String"]>;
   outcomeCategoryId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by max() on columns of table "household.transfer_category" */
-export interface IHouseholdTransferCategoryMaxOrderBy {
-  groupId?: InputMaybe<IOrderBy>;
-  incomeCategoryId?: InputMaybe<IOrderBy>;
-  outcomeCategoryId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdTransferCategoryMaxOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  incomeCategoryId?: InputMaybe<OrderBy>;
+  outcomeCategoryId?: InputMaybe<OrderBy>;
+};
 
 /** aggregate min on columns */
-export interface IHouseholdTransferCategoryMinFields {
+export type HouseholdTransferCategoryMinFields = {
+  __typename?: "HouseholdTransferCategoryMinFields";
   groupId?: Maybe<Scalars["String"]>;
   incomeCategoryId?: Maybe<Scalars["String"]>;
   outcomeCategoryId?: Maybe<Scalars["String"]>;
-}
+};
 
 /** order by min() on columns of table "household.transfer_category" */
-export interface IHouseholdTransferCategoryMinOrderBy {
-  groupId?: InputMaybe<IOrderBy>;
-  incomeCategoryId?: InputMaybe<IOrderBy>;
-  outcomeCategoryId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdTransferCategoryMinOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  incomeCategoryId?: InputMaybe<OrderBy>;
+  outcomeCategoryId?: InputMaybe<OrderBy>;
+};
 
 /** Ordering options when selecting data from "household.transfer_category". */
-export interface IHouseholdTransferCategoryOrderBy {
-  categoryByIncomeCategoryId?: InputMaybe<IHouseholdCategoryOrderBy>;
-  categoryByOutcomeCategoryId?: InputMaybe<IHouseholdCategoryOrderBy>;
-  group?: InputMaybe<IGroupOrderBy>;
-  groupId?: InputMaybe<IOrderBy>;
-  incomeCategoryId?: InputMaybe<IOrderBy>;
-  outcomeCategoryId?: InputMaybe<IOrderBy>;
-}
+export type HouseholdTransferCategoryOrderBy = {
+  categoryByIncomeCategoryId?: InputMaybe<HouseholdCategoryOrderBy>;
+  categoryByOutcomeCategoryId?: InputMaybe<HouseholdCategoryOrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  incomeCategoryId?: InputMaybe<OrderBy>;
+  outcomeCategoryId?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "household.transfer_category" */
-export enum IHouseholdTransferCategorySelectColumn {
+export enum HouseholdTransferCategorySelectColumn {
   /** column name */
   GroupId = "groupId",
   /** column name */
@@ -4675,22 +4863,22 @@ export enum IHouseholdTransferCategorySelectColumn {
 }
 
 /** Streaming cursor of the table "household_transfer_category" */
-export interface IHouseholdTransferCategoryStreamCursorInput {
+export type HouseholdTransferCategoryStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IHouseholdTransferCategoryStreamCursorValueInput;
+  initialValue: HouseholdTransferCategoryStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IHouseholdTransferCategoryStreamCursorValueInput {
+export type HouseholdTransferCategoryStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   incomeCategoryId?: InputMaybe<Scalars["String"]>;
   outcomeCategoryId?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
-export interface IIntComparisonExp {
+export type IntComparisonExp = {
   _eq?: InputMaybe<Scalars["Int"]>;
   _gt?: InputMaybe<Scalars["Int"]>;
   _gte?: InputMaybe<Scalars["Int"]>;
@@ -4700,10 +4888,10 @@ export interface IIntComparisonExp {
   _lte?: InputMaybe<Scalars["Int"]>;
   _neq?: InputMaybe<Scalars["Int"]>;
   _nin?: InputMaybe<Array<Scalars["Int"]>>;
-}
+};
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
-export interface INumericComparisonExp {
+export type NumericComparisonExp = {
   _eq?: InputMaybe<Scalars["numeric"]>;
   _gt?: InputMaybe<Scalars["numeric"]>;
   _gte?: InputMaybe<Scalars["numeric"]>;
@@ -4713,10 +4901,10 @@ export interface INumericComparisonExp {
   _lte?: InputMaybe<Scalars["numeric"]>;
   _neq?: InputMaybe<Scalars["numeric"]>;
   _nin?: InputMaybe<Array<Scalars["numeric"]>>;
-}
+};
 
 /** column ordering options */
-export enum IOrderBy {
+export enum OrderBy {
   /** in ascending order, nulls last */
   Asc = "ASC",
   /** in ascending order, nulls first */
@@ -4732,7 +4920,7 @@ export enum IOrderBy {
 }
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
-export interface IStringComparisonExp {
+export type StringComparisonExp = {
   _eq?: InputMaybe<Scalars["String"]>;
   _gt?: InputMaybe<Scalars["String"]>;
   _gte?: InputMaybe<Scalars["String"]>;
@@ -4762,10 +4950,10 @@ export interface IStringComparisonExp {
   _regex?: InputMaybe<Scalars["String"]>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
-export interface ITimestampComparisonExp {
+export type TimestampComparisonExp = {
   _eq?: InputMaybe<Scalars["timestamp"]>;
   _gt?: InputMaybe<Scalars["timestamp"]>;
   _gte?: InputMaybe<Scalars["timestamp"]>;
@@ -4775,133 +4963,137 @@ export interface ITimestampComparisonExp {
   _lte?: InputMaybe<Scalars["timestamp"]>;
   _neq?: InputMaybe<Scalars["timestamp"]>;
   _nin?: InputMaybe<Array<Scalars["timestamp"]>>;
-}
+};
 
 /** columns and relationships of "user" */
-export interface IUser {
+export type User = {
+  __typename?: "User";
   /** An array relationship */
-  affiliations: Array<IAffiliation>;
+  affiliations: Array<Affiliation>;
   /** An aggregate relationship */
-  affiliationsAggregate: IAffiliationAggregate;
+  affiliationsAggregate: AffiliationAggregate;
   /** An array relationship */
-  creditCardDetails: Array<IHouseholdCreditCardDetail>;
+  creditCardDetails: Array<HouseholdCreditCardDetail>;
   /** An aggregate relationship */
-  creditCardDetailsAggregate: IHouseholdCreditCardDetailAggregate;
+  creditCardDetailsAggregate: HouseholdCreditCardDetailAggregate;
   /** An array relationship */
-  dailyDetails: Array<IHouseholdDailyDetail>;
+  dailyDetails: Array<HouseholdDailyDetail>;
   /** An aggregate relationship */
-  dailyDetailsAggregate: IHouseholdDailyDetailAggregate;
+  dailyDetailsAggregate: HouseholdDailyDetailAggregate;
   displayOrder?: Maybe<Scalars["Int"]>;
   email: Scalars["String"];
   id: Scalars["String"];
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** columns and relationships of "user" */
-export interface IUserAffiliationsArgs {
-  distinctOn?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type UserAffiliationsArgs = {
+  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IAffiliationOrderBy>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
 /** columns and relationships of "user" */
-export interface IUserAffiliationsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type UserAffiliationsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IAffiliationOrderBy>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
 /** columns and relationships of "user" */
-export interface IUserCreditCardDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type UserCreditCardDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "user" */
-export interface IUserCreditCardDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type UserCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "user" */
-export interface IUserDailyDetailsArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type UserDailyDetailsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** columns and relationships of "user" */
-export interface IUserDailyDetailsAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type UserDailyDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
 /** aggregated selection of "user" */
-export interface IUserAggregate {
-  aggregate?: Maybe<IUserAggregateFields>;
-  nodes: Array<IUser>;
-}
+export type UserAggregate = {
+  __typename?: "UserAggregate";
+  aggregate?: Maybe<UserAggregateFields>;
+  nodes: Array<User>;
+};
 
 /** aggregate fields of "user" */
-export interface IUserAggregateFields {
-  avg?: Maybe<IUserAvgFields>;
+export type UserAggregateFields = {
+  __typename?: "UserAggregateFields";
+  avg?: Maybe<UserAvgFields>;
   count: Scalars["Int"];
-  max?: Maybe<IUserMaxFields>;
-  min?: Maybe<IUserMinFields>;
-  stddev?: Maybe<IUserStddevFields>;
-  stddevPop?: Maybe<IUserStddevPopFields>;
-  stddevSamp?: Maybe<IUserStddevSampFields>;
-  sum?: Maybe<IUserSumFields>;
-  varPop?: Maybe<IUserVarPopFields>;
-  varSamp?: Maybe<IUserVarSampFields>;
-  variance?: Maybe<IUserVarianceFields>;
-}
+  max?: Maybe<UserMaxFields>;
+  min?: Maybe<UserMinFields>;
+  stddev?: Maybe<UserStddevFields>;
+  stddevPop?: Maybe<UserStddevPopFields>;
+  stddevSamp?: Maybe<UserStddevSampFields>;
+  sum?: Maybe<UserSumFields>;
+  varPop?: Maybe<UserVarPopFields>;
+  varSamp?: Maybe<UserVarSampFields>;
+  variance?: Maybe<UserVarianceFields>;
+};
 
 /** aggregate fields of "user" */
-export interface IUserAggregateFieldsCountArgs {
-  columns?: InputMaybe<Array<IUserSelectColumn>>;
+export type UserAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<UserSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-}
+};
 
 /** aggregate avg on columns */
-export interface IUserAvgFields {
+export type UserAvgFields = {
+  __typename?: "UserAvgFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
-export interface IUserBoolExp {
-  _and?: InputMaybe<Array<IUserBoolExp>>;
-  _not?: InputMaybe<IUserBoolExp>;
-  _or?: InputMaybe<Array<IUserBoolExp>>;
-  affiliations?: InputMaybe<IAffiliationBoolExp>;
-  affiliationsAggregate?: InputMaybe<IAffiliationAggregateBoolExp>;
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateBoolExp>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateBoolExp>;
-  displayOrder?: InputMaybe<IIntComparisonExp>;
-  email?: InputMaybe<IStringComparisonExp>;
-  id?: InputMaybe<IStringComparisonExp>;
-  name?: InputMaybe<IStringComparisonExp>;
-}
+export type UserBoolExp = {
+  _and?: InputMaybe<Array<UserBoolExp>>;
+  _not?: InputMaybe<UserBoolExp>;
+  _or?: InputMaybe<Array<UserBoolExp>>;
+  affiliations?: InputMaybe<AffiliationBoolExp>;
+  affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
+  displayOrder?: InputMaybe<IntComparisonExp>;
+  email?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+};
 
 /** unique or primary key constraints on table "user" */
-export enum IUserConstraint {
+export enum UserConstraint {
   /** unique or primary key constraint on columns "email" */
   UserEmailKey = "user_email_key",
   /** unique or primary key constraint on columns "id" */
@@ -4909,67 +5101,70 @@ export enum IUserConstraint {
 }
 
 /** input type for inserting data into table "user" */
-export interface IUserInsertInput {
-  affiliations?: InputMaybe<IAffiliationArrRelInsertInput>;
-  creditCardDetails?: InputMaybe<IHouseholdCreditCardDetailArrRelInsertInput>;
-  dailyDetails?: InputMaybe<IHouseholdDailyDetailArrRelInsertInput>;
+export type UserInsertInput = {
+  affiliations?: InputMaybe<AffiliationArrRelInsertInput>;
+  creditCardDetails?: InputMaybe<HouseholdCreditCardDetailArrRelInsertInput>;
+  dailyDetails?: InputMaybe<HouseholdDailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   email?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate max on columns */
-export interface IUserMaxFields {
+export type UserMaxFields = {
+  __typename?: "UserMaxFields";
   displayOrder?: Maybe<Scalars["Int"]>;
   email?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** aggregate min on columns */
-export interface IUserMinFields {
+export type UserMinFields = {
+  __typename?: "UserMinFields";
   displayOrder?: Maybe<Scalars["Int"]>;
   email?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-}
+};
 
 /** response of any mutation on the table "user" */
-export interface IUserMutationResponse {
+export type UserMutationResponse = {
+  __typename?: "UserMutationResponse";
   /** number of rows affected by the mutation */
   affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
-  returning: Array<IUser>;
-}
+  returning: Array<User>;
+};
 
 /** input type for inserting object relation for remote table "user" */
-export interface IUserObjRelInsertInput {
-  data: IUserInsertInput;
+export type UserObjRelInsertInput = {
+  data: UserInsertInput;
   /** upsert condition */
-  onConflict?: InputMaybe<IUserOnConflict>;
-}
+  onConflict?: InputMaybe<UserOnConflict>;
+};
 
 /** on_conflict condition type for table "user" */
-export interface IUserOnConflict {
-  constraint: IUserConstraint;
-  updateColumns?: Array<IUserUpdateColumn>;
-  where?: InputMaybe<IUserBoolExp>;
-}
+export type UserOnConflict = {
+  constraint: UserConstraint;
+  updateColumns?: Array<UserUpdateColumn>;
+  where?: InputMaybe<UserBoolExp>;
+};
 
 /** Ordering options when selecting data from "user". */
-export interface IUserOrderBy {
-  affiliationsAggregate?: InputMaybe<IAffiliationAggregateOrderBy>;
-  creditCardDetailsAggregate?: InputMaybe<IHouseholdCreditCardDetailAggregateOrderBy>;
-  dailyDetailsAggregate?: InputMaybe<IHouseholdDailyDetailAggregateOrderBy>;
-  displayOrder?: InputMaybe<IOrderBy>;
-  email?: InputMaybe<IOrderBy>;
-  id?: InputMaybe<IOrderBy>;
-  name?: InputMaybe<IOrderBy>;
-}
+export type UserOrderBy = {
+  affiliationsAggregate?: InputMaybe<AffiliationAggregateOrderBy>;
+  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
+  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
+  email?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
 
 /** select columns of table "user" */
-export enum IUserSelectColumn {
+export enum UserSelectColumn {
   /** column name */
   DisplayOrder = "displayOrder",
   /** column name */
@@ -4981,1807 +5176,1825 @@ export enum IUserSelectColumn {
 }
 
 /** aggregate stddev on columns */
-export interface IUserStddevFields {
+export type UserStddevFields = {
+  __typename?: "UserStddevFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevPop on columns */
-export interface IUserStddevPopFields {
+export type UserStddevPopFields = {
+  __typename?: "UserStddevPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate stddevSamp on columns */
-export interface IUserStddevSampFields {
+export type UserStddevSampFields = {
+  __typename?: "UserStddevSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** Streaming cursor of the table "user" */
-export interface IUserStreamCursorInput {
+export type UserStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: IUserStreamCursorValueInput;
+  initialValue: UserStreamCursorValueInput;
   /** cursor ordering */
-  ordering?: InputMaybe<ICursorOrdering>;
-}
+  ordering?: InputMaybe<CursorOrdering>;
+};
 
 /** Initial value of the column from where the streaming should start */
-export interface IUserStreamCursorValueInput {
+export type UserStreamCursorValueInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   email?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-}
+};
 
 /** aggregate sum on columns */
-export interface IUserSumFields {
+export type UserSumFields = {
+  __typename?: "UserSumFields";
   displayOrder?: Maybe<Scalars["Int"]>;
-}
+};
 
 /** placeholder for update columns of table "user" (current role has no relevant permissions) */
-export enum IUserUpdateColumn {
+export enum UserUpdateColumn {
   /** placeholder (do not use) */
   Placeholder = "_PLACEHOLDER",
 }
 
 /** aggregate varPop on columns */
-export interface IUserVarPopFields {
+export type UserVarPopFields = {
+  __typename?: "UserVarPopFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate varSamp on columns */
-export interface IUserVarSampFields {
+export type UserVarSampFields = {
+  __typename?: "UserVarSampFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
 /** aggregate variance on columns */
-export interface IUserVarianceFields {
+export type UserVarianceFields = {
+  __typename?: "UserVarianceFields";
   displayOrder?: Maybe<Scalars["Float"]>;
-}
+};
 
-export interface IAffiliationAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type AffiliationAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<AffiliationSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IAffiliationBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<AffiliationBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface ICategoryTotalByMonthArgs {
+export type CategoryTotalByMonthArgs = {
   from_date?: InputMaybe<Scalars["date"]>;
   group_id?: InputMaybe<Scalars["String"]>;
   to_date?: InputMaybe<Scalars["date"]>;
-}
+};
 
-export interface IDailyDetailByDateArgs {
+export type DailyDetailByDateArgs = {
   from_date?: InputMaybe<Scalars["date"]>;
   group_id?: InputMaybe<Scalars["String"]>;
   to_date?: InputMaybe<Scalars["date"]>;
-}
+};
 
-export interface IGenreTotalByMonthArgs {
+export type GenreTotalByMonthArgs = {
   from_date?: InputMaybe<Scalars["date"]>;
   group_id?: InputMaybe<Scalars["String"]>;
   to_date?: InputMaybe<Scalars["date"]>;
-}
+};
 
-export interface IGroupApplicationAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type GroupApplicationAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IGroupApplicationBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<GroupApplicationBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdAccountAggregateBoolExpBool_And {
-  arguments: IHouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_AndArgumentsColumns;
+export type HouseholdAccountAggregateBoolExpBool_And = {
+  arguments: HouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_AndArgumentsColumns;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdAccountBoolExp>;
-  predicate: IBooleanComparisonExp;
-}
+  filter?: InputMaybe<HouseholdAccountBoolExp>;
+  predicate: BooleanComparisonExp;
+};
 
-export interface IHouseholdAccountAggregateBoolExpBool_Or {
-  arguments: IHouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_OrArgumentsColumns;
+export type HouseholdAccountAggregateBoolExpBool_Or = {
+  arguments: HouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_OrArgumentsColumns;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdAccountBoolExp>;
-  predicate: IBooleanComparisonExp;
-}
+  filter?: InputMaybe<HouseholdAccountBoolExp>;
+  predicate: BooleanComparisonExp;
+};
 
-export interface IHouseholdAccountAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdAccountSelectColumn>>;
+export type HouseholdAccountAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdAccountBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdAccountBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdAllDetailViewAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdAllDetailViewSelectColumn>>;
+export type HouseholdAllDetailViewAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdCreditCardDetailAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type HouseholdCreditCardDetailAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdCreditCardSummaryAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type HouseholdCreditCardSummaryAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdDailyDetailAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type HouseholdDailyDetailAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdDepositCategoryAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdDepositCategorySelectColumn>>;
+export type HouseholdDepositCategoryAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdGenreAggregateBoolExpBool_And {
-  arguments: IHouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_AndArgumentsColumns;
+export type HouseholdGenreAggregateBoolExpBool_And = {
+  arguments: HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_AndArgumentsColumns;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdGenreBoolExp>;
-  predicate: IBooleanComparisonExp;
-}
+  filter?: InputMaybe<HouseholdGenreBoolExp>;
+  predicate: BooleanComparisonExp;
+};
 
-export interface IHouseholdGenreAggregateBoolExpBool_Or {
-  arguments: IHouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_OrArgumentsColumns;
+export type HouseholdGenreAggregateBoolExpBool_Or = {
+  arguments: HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_OrArgumentsColumns;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdGenreBoolExp>;
-  predicate: IBooleanComparisonExp;
-}
+  filter?: InputMaybe<HouseholdGenreBoolExp>;
+  predicate: BooleanComparisonExp;
+};
 
-export interface IHouseholdGenreAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdGenreSelectColumn>>;
+export type HouseholdGenreAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdGenreBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdGenreBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdImportFileHistoryAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdImportFileHistorySelectColumn>>;
+export type HouseholdImportFileHistoryAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdSummaryCategoryAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type HouseholdSummaryCategoryAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+  predicate: IntComparisonExp;
+};
 
-export interface IHouseholdTransferCategoryAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<IHouseholdTransferCategorySelectColumn>>;
+export type HouseholdTransferCategoryAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-  predicate: IIntComparisonExp;
-}
+  filter?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+  predicate: IntComparisonExp;
+};
 
 /** mutation root */
-export interface IMutation_Root {
+export type Mutation_Root = {
+  __typename?: "mutation_root";
   /** delete data from the table: "household.daily_detail" */
-  deleteHouseholdDailyDetail?: Maybe<IHouseholdDailyDetailMutationResponse>;
+  deleteHouseholdDailyDetail?: Maybe<HouseholdDailyDetailMutationResponse>;
   /** delete single row from the table: "household.daily_detail" */
-  deleteHouseholdDailyDetailByPk?: Maybe<IHouseholdDailyDetail>;
+  deleteHouseholdDailyDetailByPk?: Maybe<HouseholdDailyDetail>;
   /** delete data from the table: "household.summary_category" */
-  deleteHouseholdSummaryCategory?: Maybe<IHouseholdSummaryCategoryMutationResponse>;
+  deleteHouseholdSummaryCategory?: Maybe<HouseholdSummaryCategoryMutationResponse>;
   /** delete single row from the table: "household.summary_category" */
-  deleteHouseholdSummaryCategoryByPk?: Maybe<IHouseholdSummaryCategory>;
+  deleteHouseholdSummaryCategoryByPk?: Maybe<HouseholdSummaryCategory>;
   /** insert data into the table: "affiliation" */
-  insertAffiliation?: Maybe<IAffiliationMutationResponse>;
+  insertAffiliation?: Maybe<AffiliationMutationResponse>;
   /** insert a single row into the table: "affiliation" */
-  insertAffiliationOne?: Maybe<IAffiliation>;
+  insertAffiliationOne?: Maybe<Affiliation>;
   /** insert data into the table: "household.account" */
-  insertHouseholdAccount?: Maybe<IHouseholdAccountMutationResponse>;
+  insertHouseholdAccount?: Maybe<HouseholdAccountMutationResponse>;
   /** insert a single row into the table: "household.account" */
-  insertHouseholdAccountOne?: Maybe<IHouseholdAccount>;
+  insertHouseholdAccountOne?: Maybe<HouseholdAccount>;
   /** insert data into the table: "household.category" */
-  insertHouseholdCategory?: Maybe<IHouseholdCategoryMutationResponse>;
+  insertHouseholdCategory?: Maybe<HouseholdCategoryMutationResponse>;
   /** insert a single row into the table: "household.category" */
-  insertHouseholdCategoryOne?: Maybe<IHouseholdCategory>;
+  insertHouseholdCategoryOne?: Maybe<HouseholdCategory>;
   /** insert data into the table: "household.credit_card_detail" */
-  insertHouseholdCreditCardDetail?: Maybe<IHouseholdCreditCardDetailMutationResponse>;
+  insertHouseholdCreditCardDetail?: Maybe<HouseholdCreditCardDetailMutationResponse>;
   /** insert a single row into the table: "household.credit_card_detail" */
-  insertHouseholdCreditCardDetailOne?: Maybe<IHouseholdCreditCardDetail>;
+  insertHouseholdCreditCardDetailOne?: Maybe<HouseholdCreditCardDetail>;
   /** insert data into the table: "household.credit_card_summary" */
-  insertHouseholdCreditCardSummary?: Maybe<IHouseholdCreditCardSummaryMutationResponse>;
+  insertHouseholdCreditCardSummary?: Maybe<HouseholdCreditCardSummaryMutationResponse>;
   /** insert a single row into the table: "household.credit_card_summary" */
-  insertHouseholdCreditCardSummaryOne?: Maybe<IHouseholdCreditCardSummary>;
+  insertHouseholdCreditCardSummaryOne?: Maybe<HouseholdCreditCardSummary>;
   /** insert data into the table: "household.daily_detail" */
-  insertHouseholdDailyDetail?: Maybe<IHouseholdDailyDetailMutationResponse>;
+  insertHouseholdDailyDetail?: Maybe<HouseholdDailyDetailMutationResponse>;
   /** insert a single row into the table: "household.daily_detail" */
-  insertHouseholdDailyDetailOne?: Maybe<IHouseholdDailyDetail>;
+  insertHouseholdDailyDetailOne?: Maybe<HouseholdDailyDetail>;
   /** insert data into the table: "household.genre" */
-  insertHouseholdGenre?: Maybe<IHouseholdGenreMutationResponse>;
+  insertHouseholdGenre?: Maybe<HouseholdGenreMutationResponse>;
   /** insert a single row into the table: "household.genre" */
-  insertHouseholdGenreOne?: Maybe<IHouseholdGenre>;
+  insertHouseholdGenreOne?: Maybe<HouseholdGenre>;
   /** insert data into the table: "household.import_file_history" */
-  insertHouseholdImportFileHistory?: Maybe<IHouseholdImportFileHistoryMutationResponse>;
+  insertHouseholdImportFileHistory?: Maybe<HouseholdImportFileHistoryMutationResponse>;
   /** insert a single row into the table: "household.import_file_history" */
-  insertHouseholdImportFileHistoryOne?: Maybe<IHouseholdImportFileHistory>;
+  insertHouseholdImportFileHistoryOne?: Maybe<HouseholdImportFileHistory>;
   /** insert data into the table: "household.summary_category" */
-  insertHouseholdSummaryCategory?: Maybe<IHouseholdSummaryCategoryMutationResponse>;
+  insertHouseholdSummaryCategory?: Maybe<HouseholdSummaryCategoryMutationResponse>;
   /** insert a single row into the table: "household.summary_category" */
-  insertHouseholdSummaryCategoryOne?: Maybe<IHouseholdSummaryCategory>;
+  insertHouseholdSummaryCategoryOne?: Maybe<HouseholdSummaryCategory>;
   /** insert data into the table: "user" */
-  insertUser?: Maybe<IUserMutationResponse>;
+  insertUser?: Maybe<UserMutationResponse>;
   /** insert a single row into the table: "user" */
-  insertUserOne?: Maybe<IUser>;
+  insertUserOne?: Maybe<User>;
   /** update data of the table: "household.category" */
-  updateHouseholdCategory?: Maybe<IHouseholdCategoryMutationResponse>;
+  updateHouseholdCategory?: Maybe<HouseholdCategoryMutationResponse>;
   /** update single row of the table: "household.category" */
-  updateHouseholdCategoryByPk?: Maybe<IHouseholdCategory>;
+  updateHouseholdCategoryByPk?: Maybe<HouseholdCategory>;
   /** update multiples rows of table: "household.category" */
   updateHouseholdCategoryMany?: Maybe<
-    Array<Maybe<IHouseholdCategoryMutationResponse>>
+    Array<Maybe<HouseholdCategoryMutationResponse>>
   >;
   /** update data of the table: "household.credit_card_detail" */
-  updateHouseholdCreditCardDetail?: Maybe<IHouseholdCreditCardDetailMutationResponse>;
+  updateHouseholdCreditCardDetail?: Maybe<HouseholdCreditCardDetailMutationResponse>;
   /** update single row of the table: "household.credit_card_detail" */
-  updateHouseholdCreditCardDetailByPk?: Maybe<IHouseholdCreditCardDetail>;
+  updateHouseholdCreditCardDetailByPk?: Maybe<HouseholdCreditCardDetail>;
   /** update multiples rows of table: "household.credit_card_detail" */
   updateHouseholdCreditCardDetailMany?: Maybe<
-    Array<Maybe<IHouseholdCreditCardDetailMutationResponse>>
+    Array<Maybe<HouseholdCreditCardDetailMutationResponse>>
   >;
   /** update data of the table: "household.credit_card_summary" */
-  updateHouseholdCreditCardSummary?: Maybe<IHouseholdCreditCardSummaryMutationResponse>;
+  updateHouseholdCreditCardSummary?: Maybe<HouseholdCreditCardSummaryMutationResponse>;
   /** update single row of the table: "household.credit_card_summary" */
-  updateHouseholdCreditCardSummaryByPk?: Maybe<IHouseholdCreditCardSummary>;
+  updateHouseholdCreditCardSummaryByPk?: Maybe<HouseholdCreditCardSummary>;
   /** update multiples rows of table: "household.credit_card_summary" */
   updateHouseholdCreditCardSummaryMany?: Maybe<
-    Array<Maybe<IHouseholdCreditCardSummaryMutationResponse>>
+    Array<Maybe<HouseholdCreditCardSummaryMutationResponse>>
   >;
   /** update data of the table: "household.daily_detail" */
-  updateHouseholdDailyDetail?: Maybe<IHouseholdDailyDetailMutationResponse>;
+  updateHouseholdDailyDetail?: Maybe<HouseholdDailyDetailMutationResponse>;
   /** update single row of the table: "household.daily_detail" */
-  updateHouseholdDailyDetailByPk?: Maybe<IHouseholdDailyDetail>;
+  updateHouseholdDailyDetailByPk?: Maybe<HouseholdDailyDetail>;
   /** update multiples rows of table: "household.daily_detail" */
   updateHouseholdDailyDetailMany?: Maybe<
-    Array<Maybe<IHouseholdDailyDetailMutationResponse>>
+    Array<Maybe<HouseholdDailyDetailMutationResponse>>
   >;
   /** update data of the table: "household.genre" */
-  updateHouseholdGenre?: Maybe<IHouseholdGenreMutationResponse>;
+  updateHouseholdGenre?: Maybe<HouseholdGenreMutationResponse>;
   /** update single row of the table: "household.genre" */
-  updateHouseholdGenreByPk?: Maybe<IHouseholdGenre>;
+  updateHouseholdGenreByPk?: Maybe<HouseholdGenre>;
   /** update multiples rows of table: "household.genre" */
   updateHouseholdGenreMany?: Maybe<
-    Array<Maybe<IHouseholdGenreMutationResponse>>
+    Array<Maybe<HouseholdGenreMutationResponse>>
   >;
-}
+};
 
 /** mutation root */
-export interface IMutation_RootDeleteHouseholdDailyDetailArgs {
-  where: IHouseholdDailyDetailBoolExp;
-}
+export type Mutation_RootDeleteHouseholdDailyDetailArgs = {
+  where: HouseholdDailyDetailBoolExp;
+};
 
 /** mutation root */
-export interface IMutation_RootDeleteHouseholdDailyDetailByPkArgs {
+export type Mutation_RootDeleteHouseholdDailyDetailByPkArgs = {
   id: Scalars["String"];
-}
+};
 
 /** mutation root */
-export interface IMutation_RootDeleteHouseholdSummaryCategoryArgs {
-  where: IHouseholdSummaryCategoryBoolExp;
-}
+export type Mutation_RootDeleteHouseholdSummaryCategoryArgs = {
+  where: HouseholdSummaryCategoryBoolExp;
+};
 
 /** mutation root */
-export interface IMutation_RootDeleteHouseholdSummaryCategoryByPkArgs {
+export type Mutation_RootDeleteHouseholdSummaryCategoryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
 /** mutation root */
-export interface IMutation_RootInsertAffiliationArgs {
-  objects: Array<IAffiliationInsertInput>;
-  onConflict?: InputMaybe<IAffiliationOnConflict>;
-}
+export type Mutation_RootInsertAffiliationArgs = {
+  objects: Array<AffiliationInsertInput>;
+  onConflict?: InputMaybe<AffiliationOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertAffiliationOneArgs {
-  object: IAffiliationInsertInput;
-  onConflict?: InputMaybe<IAffiliationOnConflict>;
-}
+export type Mutation_RootInsertAffiliationOneArgs = {
+  object: AffiliationInsertInput;
+  onConflict?: InputMaybe<AffiliationOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdAccountArgs {
-  objects: Array<IHouseholdAccountInsertInput>;
-  onConflict?: InputMaybe<IHouseholdAccountOnConflict>;
-}
+export type Mutation_RootInsertHouseholdAccountArgs = {
+  objects: Array<HouseholdAccountInsertInput>;
+  onConflict?: InputMaybe<HouseholdAccountOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdAccountOneArgs {
-  object: IHouseholdAccountInsertInput;
-  onConflict?: InputMaybe<IHouseholdAccountOnConflict>;
-}
+export type Mutation_RootInsertHouseholdAccountOneArgs = {
+  object: HouseholdAccountInsertInput;
+  onConflict?: InputMaybe<HouseholdAccountOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdCategoryArgs {
-  objects: Array<IHouseholdCategoryInsertInput>;
-  onConflict?: InputMaybe<IHouseholdCategoryOnConflict>;
-}
+export type Mutation_RootInsertHouseholdCategoryArgs = {
+  objects: Array<HouseholdCategoryInsertInput>;
+  onConflict?: InputMaybe<HouseholdCategoryOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdCategoryOneArgs {
-  object: IHouseholdCategoryInsertInput;
-  onConflict?: InputMaybe<IHouseholdCategoryOnConflict>;
-}
+export type Mutation_RootInsertHouseholdCategoryOneArgs = {
+  object: HouseholdCategoryInsertInput;
+  onConflict?: InputMaybe<HouseholdCategoryOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdCreditCardDetailArgs {
-  objects: Array<IHouseholdCreditCardDetailInsertInput>;
-  onConflict?: InputMaybe<IHouseholdCreditCardDetailOnConflict>;
-}
+export type Mutation_RootInsertHouseholdCreditCardDetailArgs = {
+  objects: Array<HouseholdCreditCardDetailInsertInput>;
+  onConflict?: InputMaybe<HouseholdCreditCardDetailOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdCreditCardDetailOneArgs {
-  object: IHouseholdCreditCardDetailInsertInput;
-  onConflict?: InputMaybe<IHouseholdCreditCardDetailOnConflict>;
-}
+export type Mutation_RootInsertHouseholdCreditCardDetailOneArgs = {
+  object: HouseholdCreditCardDetailInsertInput;
+  onConflict?: InputMaybe<HouseholdCreditCardDetailOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdCreditCardSummaryArgs {
-  objects: Array<IHouseholdCreditCardSummaryInsertInput>;
-  onConflict?: InputMaybe<IHouseholdCreditCardSummaryOnConflict>;
-}
+export type Mutation_RootInsertHouseholdCreditCardSummaryArgs = {
+  objects: Array<HouseholdCreditCardSummaryInsertInput>;
+  onConflict?: InputMaybe<HouseholdCreditCardSummaryOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdCreditCardSummaryOneArgs {
-  object: IHouseholdCreditCardSummaryInsertInput;
-  onConflict?: InputMaybe<IHouseholdCreditCardSummaryOnConflict>;
-}
+export type Mutation_RootInsertHouseholdCreditCardSummaryOneArgs = {
+  object: HouseholdCreditCardSummaryInsertInput;
+  onConflict?: InputMaybe<HouseholdCreditCardSummaryOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdDailyDetailArgs {
-  objects: Array<IHouseholdDailyDetailInsertInput>;
-  onConflict?: InputMaybe<IHouseholdDailyDetailOnConflict>;
-}
+export type Mutation_RootInsertHouseholdDailyDetailArgs = {
+  objects: Array<HouseholdDailyDetailInsertInput>;
+  onConflict?: InputMaybe<HouseholdDailyDetailOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdDailyDetailOneArgs {
-  object: IHouseholdDailyDetailInsertInput;
-  onConflict?: InputMaybe<IHouseholdDailyDetailOnConflict>;
-}
+export type Mutation_RootInsertHouseholdDailyDetailOneArgs = {
+  object: HouseholdDailyDetailInsertInput;
+  onConflict?: InputMaybe<HouseholdDailyDetailOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdGenreArgs {
-  objects: Array<IHouseholdGenreInsertInput>;
-  onConflict?: InputMaybe<IHouseholdGenreOnConflict>;
-}
+export type Mutation_RootInsertHouseholdGenreArgs = {
+  objects: Array<HouseholdGenreInsertInput>;
+  onConflict?: InputMaybe<HouseholdGenreOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdGenreOneArgs {
-  object: IHouseholdGenreInsertInput;
-  onConflict?: InputMaybe<IHouseholdGenreOnConflict>;
-}
+export type Mutation_RootInsertHouseholdGenreOneArgs = {
+  object: HouseholdGenreInsertInput;
+  onConflict?: InputMaybe<HouseholdGenreOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdImportFileHistoryArgs {
-  objects: Array<IHouseholdImportFileHistoryInsertInput>;
-  onConflict?: InputMaybe<IHouseholdImportFileHistoryOnConflict>;
-}
+export type Mutation_RootInsertHouseholdImportFileHistoryArgs = {
+  objects: Array<HouseholdImportFileHistoryInsertInput>;
+  onConflict?: InputMaybe<HouseholdImportFileHistoryOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdImportFileHistoryOneArgs {
-  object: IHouseholdImportFileHistoryInsertInput;
-  onConflict?: InputMaybe<IHouseholdImportFileHistoryOnConflict>;
-}
+export type Mutation_RootInsertHouseholdImportFileHistoryOneArgs = {
+  object: HouseholdImportFileHistoryInsertInput;
+  onConflict?: InputMaybe<HouseholdImportFileHistoryOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdSummaryCategoryArgs {
-  objects: Array<IHouseholdSummaryCategoryInsertInput>;
-  onConflict?: InputMaybe<IHouseholdSummaryCategoryOnConflict>;
-}
+export type Mutation_RootInsertHouseholdSummaryCategoryArgs = {
+  objects: Array<HouseholdSummaryCategoryInsertInput>;
+  onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertHouseholdSummaryCategoryOneArgs {
-  object: IHouseholdSummaryCategoryInsertInput;
-  onConflict?: InputMaybe<IHouseholdSummaryCategoryOnConflict>;
-}
+export type Mutation_RootInsertHouseholdSummaryCategoryOneArgs = {
+  object: HouseholdSummaryCategoryInsertInput;
+  onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertUserArgs {
-  objects: Array<IUserInsertInput>;
-  onConflict?: InputMaybe<IUserOnConflict>;
-}
+export type Mutation_RootInsertUserArgs = {
+  objects: Array<UserInsertInput>;
+  onConflict?: InputMaybe<UserOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootInsertUserOneArgs {
-  object: IUserInsertInput;
-  onConflict?: InputMaybe<IUserOnConflict>;
-}
+export type Mutation_RootInsertUserOneArgs = {
+  object: UserInsertInput;
+  onConflict?: InputMaybe<UserOnConflict>;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCategoryArgs {
-  _inc?: InputMaybe<IHouseholdCategoryIncInput>;
-  _set?: InputMaybe<IHouseholdCategorySetInput>;
-  where: IHouseholdCategoryBoolExp;
-}
+export type Mutation_RootUpdateHouseholdCategoryArgs = {
+  _inc?: InputMaybe<HouseholdCategoryIncInput>;
+  _set?: InputMaybe<HouseholdCategorySetInput>;
+  where: HouseholdCategoryBoolExp;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCategoryByPkArgs {
-  _inc?: InputMaybe<IHouseholdCategoryIncInput>;
-  _set?: InputMaybe<IHouseholdCategorySetInput>;
-  pkColumns: IHouseholdCategoryPkColumnsInput;
-}
+export type Mutation_RootUpdateHouseholdCategoryByPkArgs = {
+  _inc?: InputMaybe<HouseholdCategoryIncInput>;
+  _set?: InputMaybe<HouseholdCategorySetInput>;
+  pkColumns: HouseholdCategoryPkColumnsInput;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCategoryManyArgs {
-  updates: Array<IHouseholdCategoryUpdates>;
-}
+export type Mutation_RootUpdateHouseholdCategoryManyArgs = {
+  updates: Array<HouseholdCategoryUpdates>;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCreditCardDetailArgs {
-  _inc?: InputMaybe<IHouseholdCreditCardDetailIncInput>;
-  _set?: InputMaybe<IHouseholdCreditCardDetailSetInput>;
-  where: IHouseholdCreditCardDetailBoolExp;
-}
+export type Mutation_RootUpdateHouseholdCreditCardDetailArgs = {
+  _inc?: InputMaybe<HouseholdCreditCardDetailIncInput>;
+  _set?: InputMaybe<HouseholdCreditCardDetailSetInput>;
+  where: HouseholdCreditCardDetailBoolExp;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCreditCardDetailByPkArgs {
-  _inc?: InputMaybe<IHouseholdCreditCardDetailIncInput>;
-  _set?: InputMaybe<IHouseholdCreditCardDetailSetInput>;
-  pkColumns: IHouseholdCreditCardDetailPkColumnsInput;
-}
+export type Mutation_RootUpdateHouseholdCreditCardDetailByPkArgs = {
+  _inc?: InputMaybe<HouseholdCreditCardDetailIncInput>;
+  _set?: InputMaybe<HouseholdCreditCardDetailSetInput>;
+  pkColumns: HouseholdCreditCardDetailPkColumnsInput;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCreditCardDetailManyArgs {
-  updates: Array<IHouseholdCreditCardDetailUpdates>;
-}
+export type Mutation_RootUpdateHouseholdCreditCardDetailManyArgs = {
+  updates: Array<HouseholdCreditCardDetailUpdates>;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCreditCardSummaryArgs {
-  _inc?: InputMaybe<IHouseholdCreditCardSummaryIncInput>;
-  _set?: InputMaybe<IHouseholdCreditCardSummarySetInput>;
-  where: IHouseholdCreditCardSummaryBoolExp;
-}
+export type Mutation_RootUpdateHouseholdCreditCardSummaryArgs = {
+  _inc?: InputMaybe<HouseholdCreditCardSummaryIncInput>;
+  _set?: InputMaybe<HouseholdCreditCardSummarySetInput>;
+  where: HouseholdCreditCardSummaryBoolExp;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCreditCardSummaryByPkArgs {
-  _inc?: InputMaybe<IHouseholdCreditCardSummaryIncInput>;
-  _set?: InputMaybe<IHouseholdCreditCardSummarySetInput>;
-  pkColumns: IHouseholdCreditCardSummaryPkColumnsInput;
-}
+export type Mutation_RootUpdateHouseholdCreditCardSummaryByPkArgs = {
+  _inc?: InputMaybe<HouseholdCreditCardSummaryIncInput>;
+  _set?: InputMaybe<HouseholdCreditCardSummarySetInput>;
+  pkColumns: HouseholdCreditCardSummaryPkColumnsInput;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdCreditCardSummaryManyArgs {
-  updates: Array<IHouseholdCreditCardSummaryUpdates>;
-}
+export type Mutation_RootUpdateHouseholdCreditCardSummaryManyArgs = {
+  updates: Array<HouseholdCreditCardSummaryUpdates>;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdDailyDetailArgs {
-  _inc?: InputMaybe<IHouseholdDailyDetailIncInput>;
-  _set?: InputMaybe<IHouseholdDailyDetailSetInput>;
-  where: IHouseholdDailyDetailBoolExp;
-}
+export type Mutation_RootUpdateHouseholdDailyDetailArgs = {
+  _inc?: InputMaybe<HouseholdDailyDetailIncInput>;
+  _set?: InputMaybe<HouseholdDailyDetailSetInput>;
+  where: HouseholdDailyDetailBoolExp;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdDailyDetailByPkArgs {
-  _inc?: InputMaybe<IHouseholdDailyDetailIncInput>;
-  _set?: InputMaybe<IHouseholdDailyDetailSetInput>;
-  pkColumns: IHouseholdDailyDetailPkColumnsInput;
-}
+export type Mutation_RootUpdateHouseholdDailyDetailByPkArgs = {
+  _inc?: InputMaybe<HouseholdDailyDetailIncInput>;
+  _set?: InputMaybe<HouseholdDailyDetailSetInput>;
+  pkColumns: HouseholdDailyDetailPkColumnsInput;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdDailyDetailManyArgs {
-  updates: Array<IHouseholdDailyDetailUpdates>;
-}
+export type Mutation_RootUpdateHouseholdDailyDetailManyArgs = {
+  updates: Array<HouseholdDailyDetailUpdates>;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdGenreArgs {
-  _inc?: InputMaybe<IHouseholdGenreIncInput>;
-  _set?: InputMaybe<IHouseholdGenreSetInput>;
-  where: IHouseholdGenreBoolExp;
-}
+export type Mutation_RootUpdateHouseholdGenreArgs = {
+  _inc?: InputMaybe<HouseholdGenreIncInput>;
+  _set?: InputMaybe<HouseholdGenreSetInput>;
+  where: HouseholdGenreBoolExp;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdGenreByPkArgs {
-  _inc?: InputMaybe<IHouseholdGenreIncInput>;
-  _set?: InputMaybe<IHouseholdGenreSetInput>;
-  pkColumns: IHouseholdGenrePkColumnsInput;
-}
+export type Mutation_RootUpdateHouseholdGenreByPkArgs = {
+  _inc?: InputMaybe<HouseholdGenreIncInput>;
+  _set?: InputMaybe<HouseholdGenreSetInput>;
+  pkColumns: HouseholdGenrePkColumnsInput;
+};
 
 /** mutation root */
-export interface IMutation_RootUpdateHouseholdGenreManyArgs {
-  updates: Array<IHouseholdGenreUpdates>;
-}
+export type Mutation_RootUpdateHouseholdGenreManyArgs = {
+  updates: Array<HouseholdGenreUpdates>;
+};
 
-export interface IQuery_Root {
+export type Query_Root = {
+  __typename?: "query_root";
   /** fetch data from the table: "affiliation" */
-  affiliation: Array<IAffiliation>;
+  affiliation: Array<Affiliation>;
   /** fetch aggregated fields from the table: "affiliation" */
-  affiliationAggregate: IAffiliationAggregate;
+  affiliationAggregate: AffiliationAggregate;
   /** fetch data from the table: "affiliation" using primary key columns */
-  affiliationByPk?: Maybe<IAffiliation>;
+  affiliationByPk?: Maybe<Affiliation>;
   /** fetch data from the table: "application" */
-  application: Array<IApplication>;
+  application: Array<Application>;
   /** fetch aggregated fields from the table: "application" */
-  applicationAggregate: IApplicationAggregate;
+  applicationAggregate: ApplicationAggregate;
   /** fetch data from the table: "application" using primary key columns */
-  applicationByPk?: Maybe<IApplication>;
+  applicationByPk?: Maybe<Application>;
   /** execute function "category_total_by_month" which returns "household.total_by_category_view" */
-  categoryTotalByMonth: Array<IHouseholdTotalByCategoryView>;
+  categoryTotalByMonth: Array<HouseholdTotalByCategoryView>;
   /** execute function "category_total_by_month" and query aggregates on result of table type "household.total_by_category_view" */
-  categoryTotalByMonthAggregate: IHouseholdTotalByCategoryViewAggregate;
+  categoryTotalByMonthAggregate: HouseholdTotalByCategoryViewAggregate;
   /** execute function "daily_detail_by_date" which returns "household.daily_detail" */
-  dailyDetailByDate: Array<IHouseholdDailyDetail>;
+  dailyDetailByDate: Array<HouseholdDailyDetail>;
   /** execute function "daily_detail_by_date" and query aggregates on result of table type "household.daily_detail" */
-  dailyDetailByDateAggregate: IHouseholdDailyDetailAggregate;
+  dailyDetailByDateAggregate: HouseholdDailyDetailAggregate;
   /** execute function "genre_total_by_month" which returns "household.total_by_genre_view" */
-  genreTotalByMonth: Array<IHouseholdTotalByGenreView>;
+  genreTotalByMonth: Array<HouseholdTotalByGenreView>;
   /** execute function "genre_total_by_month" and query aggregates on result of table type "household.total_by_genre_view" */
-  genreTotalByMonthAggregate: IHouseholdTotalByGenreViewAggregate;
+  genreTotalByMonthAggregate: HouseholdTotalByGenreViewAggregate;
   /** fetch data from the table: "group" */
-  group: Array<IGroup>;
+  group: Array<Group>;
   /** fetch aggregated fields from the table: "group" */
-  groupAggregate: IGroupAggregate;
+  groupAggregate: GroupAggregate;
   /** fetch data from the table: "group_application" */
-  groupApplication: Array<IGroupApplication>;
+  groupApplication: Array<GroupApplication>;
   /** fetch aggregated fields from the table: "group_application" */
-  groupApplicationAggregate: IGroupApplicationAggregate;
+  groupApplicationAggregate: GroupApplicationAggregate;
   /** fetch data from the table: "group_application" using primary key columns */
-  groupApplicationByPk?: Maybe<IGroupApplication>;
+  groupApplicationByPk?: Maybe<GroupApplication>;
   /** fetch data from the table: "group" using primary key columns */
-  groupByPk?: Maybe<IGroup>;
+  groupByPk?: Maybe<Group>;
   /** fetch data from the table: "household.account" */
-  householdAccount: Array<IHouseholdAccount>;
+  householdAccount: Array<HouseholdAccount>;
   /** fetch aggregated fields from the table: "household.account" */
-  householdAccountAggregate: IHouseholdAccountAggregate;
+  householdAccountAggregate: HouseholdAccountAggregate;
   /** fetch data from the table: "household.account" using primary key columns */
-  householdAccountByPk?: Maybe<IHouseholdAccount>;
+  householdAccountByPk?: Maybe<HouseholdAccount>;
   /** fetch data from the table: "household.all_detail_view" */
-  householdAllDetailView: Array<IHouseholdAllDetailView>;
+  householdAllDetailView: Array<HouseholdAllDetailView>;
   /** fetch aggregated fields from the table: "household.all_detail_view" */
-  householdAllDetailViewAggregate: IHouseholdAllDetailViewAggregate;
+  householdAllDetailViewAggregate: HouseholdAllDetailViewAggregate;
   /** fetch data from the table: "household.category" */
-  householdCategory: Array<IHouseholdCategory>;
+  householdCategory: Array<HouseholdCategory>;
   /** fetch data from the table: "household.category" using primary key columns */
-  householdCategoryByPk?: Maybe<IHouseholdCategory>;
+  householdCategoryByPk?: Maybe<HouseholdCategory>;
   /** fetch data from the table: "household.credit_card_detail" */
-  householdCreditCardDetail: Array<IHouseholdCreditCardDetail>;
+  householdCreditCardDetail: Array<HouseholdCreditCardDetail>;
   /** fetch aggregated fields from the table: "household.credit_card_detail" */
-  householdCreditCardDetailAggregate: IHouseholdCreditCardDetailAggregate;
+  householdCreditCardDetailAggregate: HouseholdCreditCardDetailAggregate;
   /** fetch data from the table: "household.credit_card_detail" using primary key columns */
-  householdCreditCardDetailByPk?: Maybe<IHouseholdCreditCardDetail>;
+  householdCreditCardDetailByPk?: Maybe<HouseholdCreditCardDetail>;
   /** fetch data from the table: "household.credit_card_summary" */
-  householdCreditCardSummary: Array<IHouseholdCreditCardSummary>;
+  householdCreditCardSummary: Array<HouseholdCreditCardSummary>;
   /** fetch aggregated fields from the table: "household.credit_card_summary" */
-  householdCreditCardSummaryAggregate: IHouseholdCreditCardSummaryAggregate;
+  householdCreditCardSummaryAggregate: HouseholdCreditCardSummaryAggregate;
   /** fetch data from the table: "household.credit_card_summary" using primary key columns */
-  householdCreditCardSummaryByPk?: Maybe<IHouseholdCreditCardSummary>;
+  householdCreditCardSummaryByPk?: Maybe<HouseholdCreditCardSummary>;
   /** fetch data from the table: "household.credit_card_summary_total_by_account_view" */
-  householdCreditCardSummaryTotalByAccountView: Array<IHouseholdCreditCardSummaryTotalByAccountView>;
+  householdCreditCardSummaryTotalByAccountView: Array<HouseholdCreditCardSummaryTotalByAccountView>;
   /** fetch aggregated fields from the table: "household.credit_card_summary_total_by_account_view" */
-  householdCreditCardSummaryTotalByAccountViewAggregate: IHouseholdCreditCardSummaryTotalByAccountViewAggregate;
+  householdCreditCardSummaryTotalByAccountViewAggregate: HouseholdCreditCardSummaryTotalByAccountViewAggregate;
   /** fetch data from the table: "household.daily_detail" */
-  householdDailyDetail: Array<IHouseholdDailyDetail>;
+  householdDailyDetail: Array<HouseholdDailyDetail>;
   /** fetch aggregated fields from the table: "household.daily_detail" */
-  householdDailyDetailAggregate: IHouseholdDailyDetailAggregate;
+  householdDailyDetailAggregate: HouseholdDailyDetailAggregate;
   /** fetch data from the table: "household.daily_detail" using primary key columns */
-  householdDailyDetailByPk?: Maybe<IHouseholdDailyDetail>;
+  householdDailyDetailByPk?: Maybe<HouseholdDailyDetail>;
   /** fetch data from the table: "household.daily_total_view" */
-  householdDailyTotalView: Array<IHouseholdDailyTotalView>;
+  householdDailyTotalView: Array<HouseholdDailyTotalView>;
   /** fetch aggregated fields from the table: "household.daily_total_view" */
-  householdDailyTotalViewAggregate: IHouseholdDailyTotalViewAggregate;
+  householdDailyTotalViewAggregate: HouseholdDailyTotalViewAggregate;
   /** fetch data from the table: "household.deposit_category" */
-  householdDepositCategory: Array<IHouseholdDepositCategory>;
+  householdDepositCategory: Array<HouseholdDepositCategory>;
   /** fetch aggregated fields from the table: "household.deposit_category" */
-  householdDepositCategoryAggregate: IHouseholdDepositCategoryAggregate;
+  householdDepositCategoryAggregate: HouseholdDepositCategoryAggregate;
   /** fetch data from the table: "household.deposit_category" using primary key columns */
-  householdDepositCategoryByPk?: Maybe<IHouseholdDepositCategory>;
+  householdDepositCategoryByPk?: Maybe<HouseholdDepositCategory>;
   /** fetch data from the table: "household.genre" */
-  householdGenre: Array<IHouseholdGenre>;
+  householdGenre: Array<HouseholdGenre>;
   /** fetch aggregated fields from the table: "household.genre" */
-  householdGenreAggregate: IHouseholdGenreAggregate;
+  householdGenreAggregate: HouseholdGenreAggregate;
   /** fetch data from the table: "household.genre" using primary key columns */
-  householdGenreByPk?: Maybe<IHouseholdGenre>;
+  householdGenreByPk?: Maybe<HouseholdGenre>;
   /** fetch data from the table: "household.import_file_history" */
-  householdImportFileHistory: Array<IHouseholdImportFileHistory>;
+  householdImportFileHistory: Array<HouseholdImportFileHistory>;
   /** fetch aggregated fields from the table: "household.import_file_history" */
-  householdImportFileHistoryAggregate: IHouseholdImportFileHistoryAggregate;
+  householdImportFileHistoryAggregate: HouseholdImportFileHistoryAggregate;
   /** fetch data from the table: "household.import_file_history" using primary key columns */
-  householdImportFileHistoryByPk?: Maybe<IHouseholdImportFileHistory>;
+  householdImportFileHistoryByPk?: Maybe<HouseholdImportFileHistory>;
   /** fetch data from the table: "household.summary_category" */
-  householdSummaryCategory: Array<IHouseholdSummaryCategory>;
+  householdSummaryCategory: Array<HouseholdSummaryCategory>;
   /** fetch aggregated fields from the table: "household.summary_category" */
-  householdSummaryCategoryAggregate: IHouseholdSummaryCategoryAggregate;
+  householdSummaryCategoryAggregate: HouseholdSummaryCategoryAggregate;
   /** fetch data from the table: "household.summary_category" using primary key columns */
-  householdSummaryCategoryByPk?: Maybe<IHouseholdSummaryCategory>;
+  householdSummaryCategoryByPk?: Maybe<HouseholdSummaryCategory>;
   /** fetch data from the table: "household.total_by_category_view" */
-  householdTotalByCategoryView: Array<IHouseholdTotalByCategoryView>;
+  householdTotalByCategoryView: Array<HouseholdTotalByCategoryView>;
   /** fetch aggregated fields from the table: "household.total_by_category_view" */
-  householdTotalByCategoryViewAggregate: IHouseholdTotalByCategoryViewAggregate;
+  householdTotalByCategoryViewAggregate: HouseholdTotalByCategoryViewAggregate;
   /** fetch data from the table: "household.total_by_genre_view" */
-  householdTotalByGenreView: Array<IHouseholdTotalByGenreView>;
+  householdTotalByGenreView: Array<HouseholdTotalByGenreView>;
   /** fetch aggregated fields from the table: "household.total_by_genre_view" */
-  householdTotalByGenreViewAggregate: IHouseholdTotalByGenreViewAggregate;
+  householdTotalByGenreViewAggregate: HouseholdTotalByGenreViewAggregate;
   /** fetch data from the table: "household.transfer_category" */
-  householdTransferCategory: Array<IHouseholdTransferCategory>;
+  householdTransferCategory: Array<HouseholdTransferCategory>;
   /** fetch aggregated fields from the table: "household.transfer_category" */
-  householdTransferCategoryAggregate: IHouseholdTransferCategoryAggregate;
+  householdTransferCategoryAggregate: HouseholdTransferCategoryAggregate;
   /** fetch data from the table: "household.transfer_category" using primary key columns */
-  householdTransferCategoryByPk?: Maybe<IHouseholdTransferCategory>;
+  householdTransferCategoryByPk?: Maybe<HouseholdTransferCategory>;
   /** fetch data from the table: "user" */
-  user: Array<IUser>;
+  user: Array<User>;
   /** fetch aggregated fields from the table: "user" */
-  userAggregate: IUserAggregate;
+  userAggregate: UserAggregate;
   /** fetch data from the table: "user" using primary key columns */
-  userByPk?: Maybe<IUser>;
-}
+  userByPk?: Maybe<User>;
+};
 
-export interface IQuery_RootAffiliationArgs {
-  distinctOn?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type Query_RootAffiliationArgs = {
+  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IAffiliationOrderBy>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
-export interface IQuery_RootAffiliationAggregateArgs {
-  distinctOn?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type Query_RootAffiliationAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IAffiliationOrderBy>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
-export interface IQuery_RootAffiliationByPkArgs {
+export type Query_RootAffiliationByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootApplicationArgs {
-  distinctOn?: InputMaybe<Array<IApplicationSelectColumn>>;
+export type Query_RootApplicationArgs = {
+  distinctOn?: InputMaybe<Array<ApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IApplicationOrderBy>>;
-  where?: InputMaybe<IApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<ApplicationOrderBy>>;
+  where?: InputMaybe<ApplicationBoolExp>;
+};
 
-export interface IQuery_RootApplicationAggregateArgs {
-  distinctOn?: InputMaybe<Array<IApplicationSelectColumn>>;
+export type Query_RootApplicationAggregateArgs = {
+  distinctOn?: InputMaybe<Array<ApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IApplicationOrderBy>>;
-  where?: InputMaybe<IApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<ApplicationOrderBy>>;
+  where?: InputMaybe<ApplicationBoolExp>;
+};
 
-export interface IQuery_RootApplicationByPkArgs {
+export type Query_RootApplicationByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootCategoryTotalByMonthArgs {
-  args: ICategoryTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type Query_RootCategoryTotalByMonthArgs = {
+  args: CategoryTotalByMonthArgs;
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface IQuery_RootCategoryTotalByMonthAggregateArgs {
-  args: ICategoryTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type Query_RootCategoryTotalByMonthAggregateArgs = {
+  args: CategoryTotalByMonthArgs;
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface IQuery_RootDailyDetailByDateArgs {
-  args: IDailyDetailByDateArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type Query_RootDailyDetailByDateArgs = {
+  args: DailyDetailByDateArgs;
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface IQuery_RootDailyDetailByDateAggregateArgs {
-  args: IDailyDetailByDateArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type Query_RootDailyDetailByDateAggregateArgs = {
+  args: DailyDetailByDateArgs;
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface IQuery_RootGenreTotalByMonthArgs {
-  args: IGenreTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type Query_RootGenreTotalByMonthArgs = {
+  args: GenreTotalByMonthArgs;
+  distinctOn?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByGenreViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByGenreViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface IQuery_RootGenreTotalByMonthAggregateArgs {
-  args: IGenreTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type Query_RootGenreTotalByMonthAggregateArgs = {
+  args: GenreTotalByMonthArgs;
+  distinctOn?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByGenreViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByGenreViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface IQuery_RootGroupArgs {
-  distinctOn?: InputMaybe<Array<IGroupSelectColumn>>;
+export type Query_RootGroupArgs = {
+  distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupOrderBy>>;
-  where?: InputMaybe<IGroupBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupOrderBy>>;
+  where?: InputMaybe<GroupBoolExp>;
+};
 
-export interface IQuery_RootGroupAggregateArgs {
-  distinctOn?: InputMaybe<Array<IGroupSelectColumn>>;
+export type Query_RootGroupAggregateArgs = {
+  distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupOrderBy>>;
-  where?: InputMaybe<IGroupBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupOrderBy>>;
+  where?: InputMaybe<GroupBoolExp>;
+};
 
-export interface IQuery_RootGroupApplicationArgs {
-  distinctOn?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type Query_RootGroupApplicationArgs = {
+  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupApplicationOrderBy>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
-export interface IQuery_RootGroupApplicationAggregateArgs {
-  distinctOn?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type Query_RootGroupApplicationAggregateArgs = {
+  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupApplicationOrderBy>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
-export interface IQuery_RootGroupApplicationByPkArgs {
+export type Query_RootGroupApplicationByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootGroupByPkArgs {
+export type Query_RootGroupByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdAccountArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAccountSelectColumn>>;
+export type Query_RootHouseholdAccountArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAccountOrderBy>>;
-  where?: InputMaybe<IHouseholdAccountBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAccountOrderBy>>;
+  where?: InputMaybe<HouseholdAccountBoolExp>;
+};
 
-export interface IQuery_RootHouseholdAccountAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAccountSelectColumn>>;
+export type Query_RootHouseholdAccountAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAccountOrderBy>>;
-  where?: InputMaybe<IHouseholdAccountBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAccountOrderBy>>;
+  where?: InputMaybe<HouseholdAccountBoolExp>;
+};
 
-export interface IQuery_RootHouseholdAccountByPkArgs {
+export type Query_RootHouseholdAccountByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdAllDetailViewArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAllDetailViewSelectColumn>>;
+export type Query_RootHouseholdAllDetailViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAllDetailViewOrderBy>>;
-  where?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAllDetailViewOrderBy>>;
+  where?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdAllDetailViewAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAllDetailViewSelectColumn>>;
+export type Query_RootHouseholdAllDetailViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAllDetailViewOrderBy>>;
-  where?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAllDetailViewOrderBy>>;
+  where?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdCategoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCategorySelectColumn>>;
+export type Query_RootHouseholdCategoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdCategoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdCategoryByPkArgs {
+export type Query_RootHouseholdCategoryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdCreditCardDetailArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type Query_RootHouseholdCreditCardDetailArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
-export interface IQuery_RootHouseholdCreditCardDetailAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type Query_RootHouseholdCreditCardDetailAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
-export interface IQuery_RootHouseholdCreditCardDetailByPkArgs {
+export type Query_RootHouseholdCreditCardDetailByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdCreditCardSummaryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type Query_RootHouseholdCreditCardSummaryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardSummaryOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardSummaryOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdCreditCardSummaryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type Query_RootHouseholdCreditCardSummaryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardSummaryOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardSummaryOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdCreditCardSummaryByPkArgs {
+export type Query_RootHouseholdCreditCardSummaryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdCreditCardSummaryTotalByAccountViewArgs {
+export type Query_RootHouseholdCreditCardSummaryTotalByAccountViewArgs = {
   distinctOn?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
+    Array<HouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
   >;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewOrderBy>
+    Array<HouseholdCreditCardSummaryTotalByAccountViewOrderBy>
   >;
-  where?: InputMaybe<IHouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
-}
+  where?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdCreditCardSummaryTotalByAccountViewAggregateArgs {
-  distinctOn?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
-  >;
+export type Query_RootHouseholdCreditCardSummaryTotalByAccountViewAggregateArgs =
+  {
+    distinctOn?: InputMaybe<
+      Array<HouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
+    >;
+    limit?: InputMaybe<Scalars["Int"]>;
+    offset?: InputMaybe<Scalars["Int"]>;
+    orderBy?: InputMaybe<
+      Array<HouseholdCreditCardSummaryTotalByAccountViewOrderBy>
+    >;
+    where?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
+  };
+
+export type Query_RootHouseholdDailyDetailArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewOrderBy>
-  >;
-  where?: InputMaybe<IHouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface IQuery_RootHouseholdDailyDetailArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type Query_RootHouseholdDailyDetailAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface IQuery_RootHouseholdDailyDetailAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
-
-export interface IQuery_RootHouseholdDailyDetailByPkArgs {
+export type Query_RootHouseholdDailyDetailByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdDailyTotalViewArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyTotalViewSelectColumn>>;
+export type Query_RootHouseholdDailyTotalViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyTotalViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyTotalViewOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyTotalViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyTotalViewOrderBy>>;
+  where?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdDailyTotalViewAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyTotalViewSelectColumn>>;
+export type Query_RootHouseholdDailyTotalViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyTotalViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyTotalViewOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyTotalViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyTotalViewOrderBy>>;
+  where?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdDepositCategoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDepositCategorySelectColumn>>;
+export type Query_RootHouseholdDepositCategoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDepositCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDepositCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdDepositCategoryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDepositCategorySelectColumn>>;
+export type Query_RootHouseholdDepositCategoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDepositCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDepositCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdDepositCategoryByPkArgs {
+export type Query_RootHouseholdDepositCategoryByPkArgs = {
   categoryId: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdGenreArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdGenreSelectColumn>>;
+export type Query_RootHouseholdGenreArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdGenreOrderBy>>;
-  where?: InputMaybe<IHouseholdGenreBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdGenreOrderBy>>;
+  where?: InputMaybe<HouseholdGenreBoolExp>;
+};
 
-export interface IQuery_RootHouseholdGenreAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdGenreSelectColumn>>;
+export type Query_RootHouseholdGenreAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdGenreOrderBy>>;
-  where?: InputMaybe<IHouseholdGenreBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdGenreOrderBy>>;
+  where?: InputMaybe<HouseholdGenreBoolExp>;
+};
 
-export interface IQuery_RootHouseholdGenreByPkArgs {
+export type Query_RootHouseholdGenreByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdImportFileHistoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdImportFileHistorySelectColumn>>;
+export type Query_RootHouseholdImportFileHistoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdImportFileHistoryOrderBy>>;
-  where?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdImportFileHistoryOrderBy>>;
+  where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdImportFileHistoryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdImportFileHistorySelectColumn>>;
+export type Query_RootHouseholdImportFileHistoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdImportFileHistoryOrderBy>>;
-  where?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdImportFileHistoryOrderBy>>;
+  where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdImportFileHistoryByPkArgs {
+export type Query_RootHouseholdImportFileHistoryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdSummaryCategoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type Query_RootHouseholdSummaryCategoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdSummaryCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdSummaryCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdSummaryCategoryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type Query_RootHouseholdSummaryCategoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdSummaryCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdSummaryCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdSummaryCategoryByPkArgs {
+export type Query_RootHouseholdSummaryCategoryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface IQuery_RootHouseholdTotalByCategoryViewArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type Query_RootHouseholdTotalByCategoryViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdTotalByCategoryViewAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type Query_RootHouseholdTotalByCategoryViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdTotalByGenreViewArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type Query_RootHouseholdTotalByGenreViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByGenreViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByGenreViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdTotalByGenreViewAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type Query_RootHouseholdTotalByGenreViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByGenreViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByGenreViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface IQuery_RootHouseholdTransferCategoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTransferCategorySelectColumn>>;
+export type Query_RootHouseholdTransferCategoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTransferCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTransferCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdTransferCategoryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTransferCategorySelectColumn>>;
+export type Query_RootHouseholdTransferCategoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTransferCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTransferCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+};
 
-export interface IQuery_RootHouseholdTransferCategoryByPkArgs {
+export type Query_RootHouseholdTransferCategoryByPkArgs = {
   groupId: Scalars["String"];
-}
+};
 
-export interface IQuery_RootUserArgs {
-  distinctOn?: InputMaybe<Array<IUserSelectColumn>>;
+export type Query_RootUserArgs = {
+  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IUserOrderBy>>;
-  where?: InputMaybe<IUserBoolExp>;
-}
+  orderBy?: InputMaybe<Array<UserOrderBy>>;
+  where?: InputMaybe<UserBoolExp>;
+};
 
-export interface IQuery_RootUserAggregateArgs {
-  distinctOn?: InputMaybe<Array<IUserSelectColumn>>;
+export type Query_RootUserAggregateArgs = {
+  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IUserOrderBy>>;
-  where?: InputMaybe<IUserBoolExp>;
-}
+  orderBy?: InputMaybe<Array<UserOrderBy>>;
+  where?: InputMaybe<UserBoolExp>;
+};
 
-export interface IQuery_RootUserByPkArgs {
+export type Query_RootUserByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_Root {
+export type Subscription_Root = {
+  __typename?: "subscription_root";
   /** fetch data from the table: "affiliation" */
-  affiliation: Array<IAffiliation>;
+  affiliation: Array<Affiliation>;
   /** fetch aggregated fields from the table: "affiliation" */
-  affiliationAggregate: IAffiliationAggregate;
+  affiliationAggregate: AffiliationAggregate;
   /** fetch data from the table: "affiliation" using primary key columns */
-  affiliationByPk?: Maybe<IAffiliation>;
+  affiliationByPk?: Maybe<Affiliation>;
   /** fetch data from the table in a streaming manner: "affiliation" */
-  affiliationStream: Array<IAffiliation>;
+  affiliationStream: Array<Affiliation>;
   /** fetch data from the table: "application" */
-  application: Array<IApplication>;
+  application: Array<Application>;
   /** fetch aggregated fields from the table: "application" */
-  applicationAggregate: IApplicationAggregate;
+  applicationAggregate: ApplicationAggregate;
   /** fetch data from the table: "application" using primary key columns */
-  applicationByPk?: Maybe<IApplication>;
+  applicationByPk?: Maybe<Application>;
   /** fetch data from the table in a streaming manner: "application" */
-  applicationStream: Array<IApplication>;
+  applicationStream: Array<Application>;
   /** execute function "category_total_by_month" which returns "household.total_by_category_view" */
-  categoryTotalByMonth: Array<IHouseholdTotalByCategoryView>;
+  categoryTotalByMonth: Array<HouseholdTotalByCategoryView>;
   /** execute function "category_total_by_month" and query aggregates on result of table type "household.total_by_category_view" */
-  categoryTotalByMonthAggregate: IHouseholdTotalByCategoryViewAggregate;
+  categoryTotalByMonthAggregate: HouseholdTotalByCategoryViewAggregate;
   /** execute function "daily_detail_by_date" which returns "household.daily_detail" */
-  dailyDetailByDate: Array<IHouseholdDailyDetail>;
+  dailyDetailByDate: Array<HouseholdDailyDetail>;
   /** execute function "daily_detail_by_date" and query aggregates on result of table type "household.daily_detail" */
-  dailyDetailByDateAggregate: IHouseholdDailyDetailAggregate;
+  dailyDetailByDateAggregate: HouseholdDailyDetailAggregate;
   /** execute function "genre_total_by_month" which returns "household.total_by_genre_view" */
-  genreTotalByMonth: Array<IHouseholdTotalByGenreView>;
+  genreTotalByMonth: Array<HouseholdTotalByGenreView>;
   /** execute function "genre_total_by_month" and query aggregates on result of table type "household.total_by_genre_view" */
-  genreTotalByMonthAggregate: IHouseholdTotalByGenreViewAggregate;
+  genreTotalByMonthAggregate: HouseholdTotalByGenreViewAggregate;
   /** fetch data from the table: "group" */
-  group: Array<IGroup>;
+  group: Array<Group>;
   /** fetch aggregated fields from the table: "group" */
-  groupAggregate: IGroupAggregate;
+  groupAggregate: GroupAggregate;
   /** fetch data from the table: "group_application" */
-  groupApplication: Array<IGroupApplication>;
+  groupApplication: Array<GroupApplication>;
   /** fetch aggregated fields from the table: "group_application" */
-  groupApplicationAggregate: IGroupApplicationAggregate;
+  groupApplicationAggregate: GroupApplicationAggregate;
   /** fetch data from the table: "group_application" using primary key columns */
-  groupApplicationByPk?: Maybe<IGroupApplication>;
+  groupApplicationByPk?: Maybe<GroupApplication>;
   /** fetch data from the table in a streaming manner: "group_application" */
-  groupApplicationStream: Array<IGroupApplication>;
+  groupApplicationStream: Array<GroupApplication>;
   /** fetch data from the table: "group" using primary key columns */
-  groupByPk?: Maybe<IGroup>;
+  groupByPk?: Maybe<Group>;
   /** fetch data from the table in a streaming manner: "group" */
-  groupStream: Array<IGroup>;
+  groupStream: Array<Group>;
   /** fetch data from the table: "household.account" */
-  householdAccount: Array<IHouseholdAccount>;
+  householdAccount: Array<HouseholdAccount>;
   /** fetch aggregated fields from the table: "household.account" */
-  householdAccountAggregate: IHouseholdAccountAggregate;
+  householdAccountAggregate: HouseholdAccountAggregate;
   /** fetch data from the table: "household.account" using primary key columns */
-  householdAccountByPk?: Maybe<IHouseholdAccount>;
+  householdAccountByPk?: Maybe<HouseholdAccount>;
   /** fetch data from the table in a streaming manner: "household.account" */
-  householdAccountStream: Array<IHouseholdAccount>;
+  householdAccountStream: Array<HouseholdAccount>;
   /** fetch data from the table: "household.all_detail_view" */
-  householdAllDetailView: Array<IHouseholdAllDetailView>;
+  householdAllDetailView: Array<HouseholdAllDetailView>;
   /** fetch aggregated fields from the table: "household.all_detail_view" */
-  householdAllDetailViewAggregate: IHouseholdAllDetailViewAggregate;
+  householdAllDetailViewAggregate: HouseholdAllDetailViewAggregate;
   /** fetch data from the table in a streaming manner: "household.all_detail_view" */
-  householdAllDetailViewStream: Array<IHouseholdAllDetailView>;
+  householdAllDetailViewStream: Array<HouseholdAllDetailView>;
   /** fetch data from the table: "household.category" */
-  householdCategory: Array<IHouseholdCategory>;
+  householdCategory: Array<HouseholdCategory>;
   /** fetch data from the table: "household.category" using primary key columns */
-  householdCategoryByPk?: Maybe<IHouseholdCategory>;
+  householdCategoryByPk?: Maybe<HouseholdCategory>;
   /** fetch data from the table in a streaming manner: "household.category" */
-  householdCategoryStream: Array<IHouseholdCategory>;
+  householdCategoryStream: Array<HouseholdCategory>;
   /** fetch data from the table: "household.credit_card_detail" */
-  householdCreditCardDetail: Array<IHouseholdCreditCardDetail>;
+  householdCreditCardDetail: Array<HouseholdCreditCardDetail>;
   /** fetch aggregated fields from the table: "household.credit_card_detail" */
-  householdCreditCardDetailAggregate: IHouseholdCreditCardDetailAggregate;
+  householdCreditCardDetailAggregate: HouseholdCreditCardDetailAggregate;
   /** fetch data from the table: "household.credit_card_detail" using primary key columns */
-  householdCreditCardDetailByPk?: Maybe<IHouseholdCreditCardDetail>;
+  householdCreditCardDetailByPk?: Maybe<HouseholdCreditCardDetail>;
   /** fetch data from the table in a streaming manner: "household.credit_card_detail" */
-  householdCreditCardDetailStream: Array<IHouseholdCreditCardDetail>;
+  householdCreditCardDetailStream: Array<HouseholdCreditCardDetail>;
   /** fetch data from the table: "household.credit_card_summary" */
-  householdCreditCardSummary: Array<IHouseholdCreditCardSummary>;
+  householdCreditCardSummary: Array<HouseholdCreditCardSummary>;
   /** fetch aggregated fields from the table: "household.credit_card_summary" */
-  householdCreditCardSummaryAggregate: IHouseholdCreditCardSummaryAggregate;
+  householdCreditCardSummaryAggregate: HouseholdCreditCardSummaryAggregate;
   /** fetch data from the table: "household.credit_card_summary" using primary key columns */
-  householdCreditCardSummaryByPk?: Maybe<IHouseholdCreditCardSummary>;
+  householdCreditCardSummaryByPk?: Maybe<HouseholdCreditCardSummary>;
   /** fetch data from the table in a streaming manner: "household.credit_card_summary" */
-  householdCreditCardSummaryStream: Array<IHouseholdCreditCardSummary>;
+  householdCreditCardSummaryStream: Array<HouseholdCreditCardSummary>;
   /** fetch data from the table: "household.credit_card_summary_total_by_account_view" */
-  householdCreditCardSummaryTotalByAccountView: Array<IHouseholdCreditCardSummaryTotalByAccountView>;
+  householdCreditCardSummaryTotalByAccountView: Array<HouseholdCreditCardSummaryTotalByAccountView>;
   /** fetch aggregated fields from the table: "household.credit_card_summary_total_by_account_view" */
-  householdCreditCardSummaryTotalByAccountViewAggregate: IHouseholdCreditCardSummaryTotalByAccountViewAggregate;
+  householdCreditCardSummaryTotalByAccountViewAggregate: HouseholdCreditCardSummaryTotalByAccountViewAggregate;
   /** fetch data from the table in a streaming manner: "household.credit_card_summary_total_by_account_view" */
-  householdCreditCardSummaryTotalByAccountViewStream: Array<IHouseholdCreditCardSummaryTotalByAccountView>;
+  householdCreditCardSummaryTotalByAccountViewStream: Array<HouseholdCreditCardSummaryTotalByAccountView>;
   /** fetch data from the table: "household.daily_detail" */
-  householdDailyDetail: Array<IHouseholdDailyDetail>;
+  householdDailyDetail: Array<HouseholdDailyDetail>;
   /** fetch aggregated fields from the table: "household.daily_detail" */
-  householdDailyDetailAggregate: IHouseholdDailyDetailAggregate;
+  householdDailyDetailAggregate: HouseholdDailyDetailAggregate;
   /** fetch data from the table: "household.daily_detail" using primary key columns */
-  householdDailyDetailByPk?: Maybe<IHouseholdDailyDetail>;
+  householdDailyDetailByPk?: Maybe<HouseholdDailyDetail>;
   /** fetch data from the table in a streaming manner: "household.daily_detail" */
-  householdDailyDetailStream: Array<IHouseholdDailyDetail>;
+  householdDailyDetailStream: Array<HouseholdDailyDetail>;
   /** fetch data from the table: "household.daily_total_view" */
-  householdDailyTotalView: Array<IHouseholdDailyTotalView>;
+  householdDailyTotalView: Array<HouseholdDailyTotalView>;
   /** fetch aggregated fields from the table: "household.daily_total_view" */
-  householdDailyTotalViewAggregate: IHouseholdDailyTotalViewAggregate;
+  householdDailyTotalViewAggregate: HouseholdDailyTotalViewAggregate;
   /** fetch data from the table in a streaming manner: "household.daily_total_view" */
-  householdDailyTotalViewStream: Array<IHouseholdDailyTotalView>;
+  householdDailyTotalViewStream: Array<HouseholdDailyTotalView>;
   /** fetch data from the table: "household.deposit_category" */
-  householdDepositCategory: Array<IHouseholdDepositCategory>;
+  householdDepositCategory: Array<HouseholdDepositCategory>;
   /** fetch aggregated fields from the table: "household.deposit_category" */
-  householdDepositCategoryAggregate: IHouseholdDepositCategoryAggregate;
+  householdDepositCategoryAggregate: HouseholdDepositCategoryAggregate;
   /** fetch data from the table: "household.deposit_category" using primary key columns */
-  householdDepositCategoryByPk?: Maybe<IHouseholdDepositCategory>;
+  householdDepositCategoryByPk?: Maybe<HouseholdDepositCategory>;
   /** fetch data from the table in a streaming manner: "household.deposit_category" */
-  householdDepositCategoryStream: Array<IHouseholdDepositCategory>;
+  householdDepositCategoryStream: Array<HouseholdDepositCategory>;
   /** fetch data from the table: "household.genre" */
-  householdGenre: Array<IHouseholdGenre>;
+  householdGenre: Array<HouseholdGenre>;
   /** fetch aggregated fields from the table: "household.genre" */
-  householdGenreAggregate: IHouseholdGenreAggregate;
+  householdGenreAggregate: HouseholdGenreAggregate;
   /** fetch data from the table: "household.genre" using primary key columns */
-  householdGenreByPk?: Maybe<IHouseholdGenre>;
+  householdGenreByPk?: Maybe<HouseholdGenre>;
   /** fetch data from the table in a streaming manner: "household.genre" */
-  householdGenreStream: Array<IHouseholdGenre>;
+  householdGenreStream: Array<HouseholdGenre>;
   /** fetch data from the table: "household.import_file_history" */
-  householdImportFileHistory: Array<IHouseholdImportFileHistory>;
+  householdImportFileHistory: Array<HouseholdImportFileHistory>;
   /** fetch aggregated fields from the table: "household.import_file_history" */
-  householdImportFileHistoryAggregate: IHouseholdImportFileHistoryAggregate;
+  householdImportFileHistoryAggregate: HouseholdImportFileHistoryAggregate;
   /** fetch data from the table: "household.import_file_history" using primary key columns */
-  householdImportFileHistoryByPk?: Maybe<IHouseholdImportFileHistory>;
+  householdImportFileHistoryByPk?: Maybe<HouseholdImportFileHistory>;
   /** fetch data from the table in a streaming manner: "household.import_file_history" */
-  householdImportFileHistoryStream: Array<IHouseholdImportFileHistory>;
+  householdImportFileHistoryStream: Array<HouseholdImportFileHistory>;
   /** fetch data from the table: "household.summary_category" */
-  householdSummaryCategory: Array<IHouseholdSummaryCategory>;
+  householdSummaryCategory: Array<HouseholdSummaryCategory>;
   /** fetch aggregated fields from the table: "household.summary_category" */
-  householdSummaryCategoryAggregate: IHouseholdSummaryCategoryAggregate;
+  householdSummaryCategoryAggregate: HouseholdSummaryCategoryAggregate;
   /** fetch data from the table: "household.summary_category" using primary key columns */
-  householdSummaryCategoryByPk?: Maybe<IHouseholdSummaryCategory>;
+  householdSummaryCategoryByPk?: Maybe<HouseholdSummaryCategory>;
   /** fetch data from the table in a streaming manner: "household.summary_category" */
-  householdSummaryCategoryStream: Array<IHouseholdSummaryCategory>;
+  householdSummaryCategoryStream: Array<HouseholdSummaryCategory>;
   /** fetch data from the table: "household.total_by_category_view" */
-  householdTotalByCategoryView: Array<IHouseholdTotalByCategoryView>;
+  householdTotalByCategoryView: Array<HouseholdTotalByCategoryView>;
   /** fetch aggregated fields from the table: "household.total_by_category_view" */
-  householdTotalByCategoryViewAggregate: IHouseholdTotalByCategoryViewAggregate;
+  householdTotalByCategoryViewAggregate: HouseholdTotalByCategoryViewAggregate;
   /** fetch data from the table in a streaming manner: "household.total_by_category_view" */
-  householdTotalByCategoryViewStream: Array<IHouseholdTotalByCategoryView>;
+  householdTotalByCategoryViewStream: Array<HouseholdTotalByCategoryView>;
   /** fetch data from the table: "household.total_by_genre_view" */
-  householdTotalByGenreView: Array<IHouseholdTotalByGenreView>;
+  householdTotalByGenreView: Array<HouseholdTotalByGenreView>;
   /** fetch aggregated fields from the table: "household.total_by_genre_view" */
-  householdTotalByGenreViewAggregate: IHouseholdTotalByGenreViewAggregate;
+  householdTotalByGenreViewAggregate: HouseholdTotalByGenreViewAggregate;
   /** fetch data from the table in a streaming manner: "household.total_by_genre_view" */
-  householdTotalByGenreViewStream: Array<IHouseholdTotalByGenreView>;
+  householdTotalByGenreViewStream: Array<HouseholdTotalByGenreView>;
   /** fetch data from the table: "household.transfer_category" */
-  householdTransferCategory: Array<IHouseholdTransferCategory>;
+  householdTransferCategory: Array<HouseholdTransferCategory>;
   /** fetch aggregated fields from the table: "household.transfer_category" */
-  householdTransferCategoryAggregate: IHouseholdTransferCategoryAggregate;
+  householdTransferCategoryAggregate: HouseholdTransferCategoryAggregate;
   /** fetch data from the table: "household.transfer_category" using primary key columns */
-  householdTransferCategoryByPk?: Maybe<IHouseholdTransferCategory>;
+  householdTransferCategoryByPk?: Maybe<HouseholdTransferCategory>;
   /** fetch data from the table in a streaming manner: "household.transfer_category" */
-  householdTransferCategoryStream: Array<IHouseholdTransferCategory>;
+  householdTransferCategoryStream: Array<HouseholdTransferCategory>;
   /** fetch data from the table: "user" */
-  user: Array<IUser>;
+  user: Array<User>;
   /** fetch aggregated fields from the table: "user" */
-  userAggregate: IUserAggregate;
+  userAggregate: UserAggregate;
   /** fetch data from the table: "user" using primary key columns */
-  userByPk?: Maybe<IUser>;
+  userByPk?: Maybe<User>;
   /** fetch data from the table in a streaming manner: "user" */
-  userStream: Array<IUser>;
-}
+  userStream: Array<User>;
+};
 
-export interface ISubscription_RootAffiliationArgs {
-  distinctOn?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type Subscription_RootAffiliationArgs = {
+  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IAffiliationOrderBy>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
-export interface ISubscription_RootAffiliationAggregateArgs {
-  distinctOn?: InputMaybe<Array<IAffiliationSelectColumn>>;
+export type Subscription_RootAffiliationAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IAffiliationOrderBy>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
-export interface ISubscription_RootAffiliationByPkArgs {
+export type Subscription_RootAffiliationByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootAffiliationStreamArgs {
+export type Subscription_RootAffiliationStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IAffiliationStreamCursorInput>>;
-  where?: InputMaybe<IAffiliationBoolExp>;
-}
+  cursor: Array<InputMaybe<AffiliationStreamCursorInput>>;
+  where?: InputMaybe<AffiliationBoolExp>;
+};
 
-export interface ISubscription_RootApplicationArgs {
-  distinctOn?: InputMaybe<Array<IApplicationSelectColumn>>;
+export type Subscription_RootApplicationArgs = {
+  distinctOn?: InputMaybe<Array<ApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IApplicationOrderBy>>;
-  where?: InputMaybe<IApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<ApplicationOrderBy>>;
+  where?: InputMaybe<ApplicationBoolExp>;
+};
 
-export interface ISubscription_RootApplicationAggregateArgs {
-  distinctOn?: InputMaybe<Array<IApplicationSelectColumn>>;
+export type Subscription_RootApplicationAggregateArgs = {
+  distinctOn?: InputMaybe<Array<ApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IApplicationOrderBy>>;
-  where?: InputMaybe<IApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<ApplicationOrderBy>>;
+  where?: InputMaybe<ApplicationBoolExp>;
+};
 
-export interface ISubscription_RootApplicationByPkArgs {
+export type Subscription_RootApplicationByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootApplicationStreamArgs {
+export type Subscription_RootApplicationStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IApplicationStreamCursorInput>>;
-  where?: InputMaybe<IApplicationBoolExp>;
-}
+  cursor: Array<InputMaybe<ApplicationStreamCursorInput>>;
+  where?: InputMaybe<ApplicationBoolExp>;
+};
 
-export interface ISubscription_RootCategoryTotalByMonthArgs {
-  args: ICategoryTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type Subscription_RootCategoryTotalByMonthArgs = {
+  args: CategoryTotalByMonthArgs;
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface ISubscription_RootCategoryTotalByMonthAggregateArgs {
-  args: ICategoryTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type Subscription_RootCategoryTotalByMonthAggregateArgs = {
+  args: CategoryTotalByMonthArgs;
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface ISubscription_RootDailyDetailByDateArgs {
-  args: IDailyDetailByDateArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type Subscription_RootDailyDetailByDateArgs = {
+  args: DailyDetailByDateArgs;
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface ISubscription_RootDailyDetailByDateAggregateArgs {
-  args: IDailyDetailByDateArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
+export type Subscription_RootDailyDetailByDateAggregateArgs = {
+  args: DailyDetailByDateArgs;
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface ISubscription_RootGenreTotalByMonthArgs {
-  args: IGenreTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type Subscription_RootGenreTotalByMonthArgs = {
+  args: GenreTotalByMonthArgs;
+  distinctOn?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByGenreViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByGenreViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface ISubscription_RootGenreTotalByMonthAggregateArgs {
-  args: IGenreTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type Subscription_RootGenreTotalByMonthAggregateArgs = {
+  args: GenreTotalByMonthArgs;
+  distinctOn?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByGenreViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByGenreViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface ISubscription_RootGroupArgs {
-  distinctOn?: InputMaybe<Array<IGroupSelectColumn>>;
+export type Subscription_RootGroupArgs = {
+  distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupOrderBy>>;
-  where?: InputMaybe<IGroupBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupOrderBy>>;
+  where?: InputMaybe<GroupBoolExp>;
+};
 
-export interface ISubscription_RootGroupAggregateArgs {
-  distinctOn?: InputMaybe<Array<IGroupSelectColumn>>;
+export type Subscription_RootGroupAggregateArgs = {
+  distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupOrderBy>>;
-  where?: InputMaybe<IGroupBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupOrderBy>>;
+  where?: InputMaybe<GroupBoolExp>;
+};
 
-export interface ISubscription_RootGroupApplicationArgs {
-  distinctOn?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type Subscription_RootGroupApplicationArgs = {
+  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupApplicationOrderBy>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
-export interface ISubscription_RootGroupApplicationAggregateArgs {
-  distinctOn?: InputMaybe<Array<IGroupApplicationSelectColumn>>;
+export type Subscription_RootGroupApplicationAggregateArgs = {
+  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IGroupApplicationOrderBy>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
-export interface ISubscription_RootGroupApplicationByPkArgs {
+export type Subscription_RootGroupApplicationByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootGroupApplicationStreamArgs {
+export type Subscription_RootGroupApplicationStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IGroupApplicationStreamCursorInput>>;
-  where?: InputMaybe<IGroupApplicationBoolExp>;
-}
+  cursor: Array<InputMaybe<GroupApplicationStreamCursorInput>>;
+  where?: InputMaybe<GroupApplicationBoolExp>;
+};
 
-export interface ISubscription_RootGroupByPkArgs {
+export type Subscription_RootGroupByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootGroupStreamArgs {
+export type Subscription_RootGroupStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IGroupStreamCursorInput>>;
-  where?: InputMaybe<IGroupBoolExp>;
-}
+  cursor: Array<InputMaybe<GroupStreamCursorInput>>;
+  where?: InputMaybe<GroupBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdAccountArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAccountSelectColumn>>;
+export type Subscription_RootHouseholdAccountArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAccountOrderBy>>;
-  where?: InputMaybe<IHouseholdAccountBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAccountOrderBy>>;
+  where?: InputMaybe<HouseholdAccountBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdAccountAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAccountSelectColumn>>;
+export type Subscription_RootHouseholdAccountAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAccountOrderBy>>;
-  where?: InputMaybe<IHouseholdAccountBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAccountOrderBy>>;
+  where?: InputMaybe<HouseholdAccountBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdAccountByPkArgs {
+export type Subscription_RootHouseholdAccountByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdAccountStreamArgs {
+export type Subscription_RootHouseholdAccountStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdAccountStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdAccountBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdAccountStreamCursorInput>>;
+  where?: InputMaybe<HouseholdAccountBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdAllDetailViewArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAllDetailViewSelectColumn>>;
+export type Subscription_RootHouseholdAllDetailViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAllDetailViewOrderBy>>;
-  where?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAllDetailViewOrderBy>>;
+  where?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdAllDetailViewAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdAllDetailViewSelectColumn>>;
+export type Subscription_RootHouseholdAllDetailViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdAllDetailViewOrderBy>>;
-  where?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdAllDetailViewOrderBy>>;
+  where?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdAllDetailViewStreamArgs {
+export type Subscription_RootHouseholdAllDetailViewStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdAllDetailViewStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdAllDetailViewBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdAllDetailViewStreamCursorInput>>;
+  where?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCategoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCategorySelectColumn>>;
+export type Subscription_RootHouseholdCategoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCategoryByPkArgs {
+export type Subscription_RootHouseholdCategoryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdCategoryStreamArgs {
+export type Subscription_RootHouseholdCategoryStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdCategoryStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdCategoryBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdCategoryStreamCursorInput>>;
+  where?: InputMaybe<HouseholdCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardDetailArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type Subscription_RootHouseholdCreditCardDetailArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardDetailAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardDetailSelectColumn>>;
+export type Subscription_RootHouseholdCreditCardDetailAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardDetailOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardDetailByPkArgs {
+export type Subscription_RootHouseholdCreditCardDetailByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdCreditCardDetailStreamArgs {
+export type Subscription_RootHouseholdCreditCardDetailStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdCreditCardDetailStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdCreditCardDetailBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdCreditCardDetailStreamCursorInput>>;
+  where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardSummaryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type Subscription_RootHouseholdCreditCardSummaryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardSummaryOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardSummaryOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardSummaryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdCreditCardSummarySelectColumn>>;
+export type Subscription_RootHouseholdCreditCardSummaryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdCreditCardSummaryOrderBy>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdCreditCardSummaryOrderBy>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardSummaryByPkArgs {
+export type Subscription_RootHouseholdCreditCardSummaryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdCreditCardSummaryStreamArgs {
+export type Subscription_RootHouseholdCreditCardSummaryStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdCreditCardSummaryStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdCreditCardSummaryBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdCreditCardSummaryStreamCursorInput>>;
+  where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardSummaryTotalByAccountViewArgs {
-  distinctOn?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
-  >;
+export type Subscription_RootHouseholdCreditCardSummaryTotalByAccountViewArgs =
+  {
+    distinctOn?: InputMaybe<
+      Array<HouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
+    >;
+    limit?: InputMaybe<Scalars["Int"]>;
+    offset?: InputMaybe<Scalars["Int"]>;
+    orderBy?: InputMaybe<
+      Array<HouseholdCreditCardSummaryTotalByAccountViewOrderBy>
+    >;
+    where?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
+  };
+
+export type Subscription_RootHouseholdCreditCardSummaryTotalByAccountViewAggregateArgs =
+  {
+    distinctOn?: InputMaybe<
+      Array<HouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
+    >;
+    limit?: InputMaybe<Scalars["Int"]>;
+    offset?: InputMaybe<Scalars["Int"]>;
+    orderBy?: InputMaybe<
+      Array<HouseholdCreditCardSummaryTotalByAccountViewOrderBy>
+    >;
+    where?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
+  };
+
+export type Subscription_RootHouseholdCreditCardSummaryTotalByAccountViewStreamArgs =
+  {
+    batchSize: Scalars["Int"];
+    cursor: Array<
+      InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewStreamCursorInput>
+    >;
+    where?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
+  };
+
+export type Subscription_RootHouseholdDailyDetailArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewOrderBy>
-  >;
-  where?: InputMaybe<IHouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardSummaryTotalByAccountViewAggregateArgs {
-  distinctOn?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewSelectColumn>
-  >;
+export type Subscription_RootHouseholdDailyDetailAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<
-    Array<IHouseholdCreditCardSummaryTotalByAccountViewOrderBy>
-  >;
-  where?: InputMaybe<IHouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyDetailOrderBy>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdCreditCardSummaryTotalByAccountViewStreamArgs {
-  batchSize: Scalars["Int"];
-  cursor: Array<
-    InputMaybe<IHouseholdCreditCardSummaryTotalByAccountViewStreamCursorInput>
-  >;
-  where?: InputMaybe<IHouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
-}
-
-export interface ISubscription_RootHouseholdDailyDetailArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
-
-export interface ISubscription_RootHouseholdDailyDetailAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyDetailOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
-
-export interface ISubscription_RootHouseholdDailyDetailByPkArgs {
+export type Subscription_RootHouseholdDailyDetailByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdDailyDetailStreamArgs {
+export type Subscription_RootHouseholdDailyDetailStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdDailyDetailStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdDailyDetailBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdDailyDetailStreamCursorInput>>;
+  where?: InputMaybe<HouseholdDailyDetailBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdDailyTotalViewArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyTotalViewSelectColumn>>;
+export type Subscription_RootHouseholdDailyTotalViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyTotalViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyTotalViewOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyTotalViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyTotalViewOrderBy>>;
+  where?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdDailyTotalViewAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDailyTotalViewSelectColumn>>;
+export type Subscription_RootHouseholdDailyTotalViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDailyTotalViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDailyTotalViewOrderBy>>;
-  where?: InputMaybe<IHouseholdDailyTotalViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDailyTotalViewOrderBy>>;
+  where?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdDailyTotalViewStreamArgs {
+export type Subscription_RootHouseholdDailyTotalViewStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdDailyTotalViewStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdDailyTotalViewBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdDailyTotalViewStreamCursorInput>>;
+  where?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdDepositCategoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDepositCategorySelectColumn>>;
+export type Subscription_RootHouseholdDepositCategoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDepositCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDepositCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdDepositCategoryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdDepositCategorySelectColumn>>;
+export type Subscription_RootHouseholdDepositCategoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdDepositCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdDepositCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdDepositCategoryByPkArgs {
+export type Subscription_RootHouseholdDepositCategoryByPkArgs = {
   categoryId: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdDepositCategoryStreamArgs {
+export type Subscription_RootHouseholdDepositCategoryStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdDepositCategoryStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdDepositCategoryBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdDepositCategoryStreamCursorInput>>;
+  where?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdGenreArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdGenreSelectColumn>>;
+export type Subscription_RootHouseholdGenreArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdGenreOrderBy>>;
-  where?: InputMaybe<IHouseholdGenreBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdGenreOrderBy>>;
+  where?: InputMaybe<HouseholdGenreBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdGenreAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdGenreSelectColumn>>;
+export type Subscription_RootHouseholdGenreAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdGenreOrderBy>>;
-  where?: InputMaybe<IHouseholdGenreBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdGenreOrderBy>>;
+  where?: InputMaybe<HouseholdGenreBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdGenreByPkArgs {
+export type Subscription_RootHouseholdGenreByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdGenreStreamArgs {
+export type Subscription_RootHouseholdGenreStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdGenreStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdGenreBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdGenreStreamCursorInput>>;
+  where?: InputMaybe<HouseholdGenreBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdImportFileHistoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdImportFileHistorySelectColumn>>;
+export type Subscription_RootHouseholdImportFileHistoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdImportFileHistoryOrderBy>>;
-  where?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdImportFileHistoryOrderBy>>;
+  where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdImportFileHistoryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdImportFileHistorySelectColumn>>;
+export type Subscription_RootHouseholdImportFileHistoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdImportFileHistoryOrderBy>>;
-  where?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdImportFileHistoryOrderBy>>;
+  where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdImportFileHistoryByPkArgs {
+export type Subscription_RootHouseholdImportFileHistoryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdImportFileHistoryStreamArgs {
+export type Subscription_RootHouseholdImportFileHistoryStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdImportFileHistoryStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdImportFileHistoryBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdImportFileHistoryStreamCursorInput>>;
+  where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdSummaryCategoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type Subscription_RootHouseholdSummaryCategoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdSummaryCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdSummaryCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdSummaryCategoryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdSummaryCategorySelectColumn>>;
+export type Subscription_RootHouseholdSummaryCategoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdSummaryCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdSummaryCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdSummaryCategoryByPkArgs {
+export type Subscription_RootHouseholdSummaryCategoryByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdSummaryCategoryStreamArgs {
+export type Subscription_RootHouseholdSummaryCategoryStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdSummaryCategoryStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdSummaryCategoryBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdSummaryCategoryStreamCursorInput>>;
+  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTotalByCategoryViewArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type Subscription_RootHouseholdTotalByCategoryViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTotalByCategoryViewAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByCategoryViewSelectColumn>>;
+export type Subscription_RootHouseholdTotalByCategoryViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTotalByCategoryViewStreamArgs {
+export type Subscription_RootHouseholdTotalByCategoryViewStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdTotalByCategoryViewStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdTotalByCategoryViewBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdTotalByCategoryViewStreamCursorInput>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTotalByGenreViewArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type Subscription_RootHouseholdTotalByGenreViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByGenreViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByGenreViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTotalByGenreViewAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTotalByGenreViewSelectColumn>>;
+export type Subscription_RootHouseholdTotalByGenreViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTotalByGenreViewOrderBy>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTotalByGenreViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTotalByGenreViewStreamArgs {
+export type Subscription_RootHouseholdTotalByGenreViewStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdTotalByGenreViewStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdTotalByGenreViewBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdTotalByGenreViewStreamCursorInput>>;
+  where?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTransferCategoryArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTransferCategorySelectColumn>>;
+export type Subscription_RootHouseholdTransferCategoryArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTransferCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTransferCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTransferCategoryAggregateArgs {
-  distinctOn?: InputMaybe<Array<IHouseholdTransferCategorySelectColumn>>;
+export type Subscription_RootHouseholdTransferCategoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IHouseholdTransferCategoryOrderBy>>;
-  where?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-}
+  orderBy?: InputMaybe<Array<HouseholdTransferCategoryOrderBy>>;
+  where?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+};
 
-export interface ISubscription_RootHouseholdTransferCategoryByPkArgs {
+export type Subscription_RootHouseholdTransferCategoryByPkArgs = {
   groupId: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootHouseholdTransferCategoryStreamArgs {
+export type Subscription_RootHouseholdTransferCategoryStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IHouseholdTransferCategoryStreamCursorInput>>;
-  where?: InputMaybe<IHouseholdTransferCategoryBoolExp>;
-}
+  cursor: Array<InputMaybe<HouseholdTransferCategoryStreamCursorInput>>;
+  where?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+};
 
-export interface ISubscription_RootUserArgs {
-  distinctOn?: InputMaybe<Array<IUserSelectColumn>>;
+export type Subscription_RootUserArgs = {
+  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IUserOrderBy>>;
-  where?: InputMaybe<IUserBoolExp>;
-}
+  orderBy?: InputMaybe<Array<UserOrderBy>>;
+  where?: InputMaybe<UserBoolExp>;
+};
 
-export interface ISubscription_RootUserAggregateArgs {
-  distinctOn?: InputMaybe<Array<IUserSelectColumn>>;
+export type Subscription_RootUserAggregateArgs = {
+  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<IUserOrderBy>>;
-  where?: InputMaybe<IUserBoolExp>;
-}
+  orderBy?: InputMaybe<Array<UserOrderBy>>;
+  where?: InputMaybe<UserBoolExp>;
+};
 
-export interface ISubscription_RootUserByPkArgs {
+export type Subscription_RootUserByPkArgs = {
   id: Scalars["String"];
-}
+};
 
-export interface ISubscription_RootUserStreamArgs {
+export type Subscription_RootUserStreamArgs = {
   batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<IUserStreamCursorInput>>;
-  where?: InputMaybe<IUserBoolExp>;
-}
+  cursor: Array<InputMaybe<UserStreamCursorInput>>;
+  where?: InputMaybe<UserBoolExp>;
+};
 
-export type ICreateAccountMutationVariables = Exact<{
+export type CreateAccountMutationVariables = Exact<{
   accountId: Scalars["String"];
   accountName: Scalars["String"];
   displayOrder: Scalars["Int"];
   groupId: Scalars["String"];
 }>;
 
-export type ICreateAccountMutation = {
-  insertAccount?: { returning: Array<{ accountId: string }> } | null;
+export type CreateAccountMutation = {
+  __typename?: "mutation_root";
+  insertAccount?: {
+    __typename?: "HouseholdAccountMutationResponse";
+    returning: Array<{ __typename?: "HouseholdAccount"; accountId: string }>;
+  } | null;
 };
 
-export type ICreateCategoryMutationVariables = Exact<{
+export type CreateCategoryMutationVariables = Exact<{
   categoryId: Scalars["String"];
   categoryName: Scalars["String"];
   genreId: Scalars["String"];
@@ -6790,11 +7003,15 @@ export type ICreateCategoryMutationVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type ICreateCategoryMutation = {
-  insertCategory?: { returning: Array<{ id: string }> } | null;
+export type CreateCategoryMutation = {
+  __typename?: "mutation_root";
+  insertCategory?: {
+    __typename?: "HouseholdCategoryMutationResponse";
+    returning: Array<{ __typename?: "HouseholdCategory"; id: string }>;
+  } | null;
 };
 
-export type ICreateCreditCardDetailMutationVariables = Exact<{
+export type CreateCreditCardDetailMutationVariables = Exact<{
   id: Scalars["String"];
   date: Scalars["date"];
   genreId: Scalars["String"];
@@ -6807,11 +7024,15 @@ export type ICreateCreditCardDetailMutationVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type ICreateCreditCardDetailMutation = {
-  insertCreditCardDetail?: { returning: Array<{ id: string }> } | null;
+export type CreateCreditCardDetailMutation = {
+  __typename?: "mutation_root";
+  insertCreditCardDetail?: {
+    __typename?: "HouseholdCreditCardDetailMutationResponse";
+    returning: Array<{ __typename?: "HouseholdCreditCardDetail"; id: string }>;
+  } | null;
 };
 
-export type ICreateCreditCardSummaryMutationVariables = Exact<{
+export type CreateCreditCardSummaryMutationVariables = Exact<{
   accountId: Scalars["String"];
   count: Scalars["Int"];
   creditCard: Scalars["String"];
@@ -6821,11 +7042,15 @@ export type ICreateCreditCardSummaryMutationVariables = Exact<{
   withdrawalDate: Scalars["date"];
 }>;
 
-export type ICreateCreditCardSummaryMutation = {
-  insertCreditCardSummary?: { returning: Array<{ id: string }> } | null;
+export type CreateCreditCardSummaryMutation = {
+  __typename?: "mutation_root";
+  insertCreditCardSummary?: {
+    __typename?: "HouseholdCreditCardSummaryMutationResponse";
+    returning: Array<{ __typename?: "HouseholdCreditCardSummary"; id: string }>;
+  } | null;
 };
 
-export type ICreateDailyDetailMutationVariables = Exact<{
+export type CreateDailyDetailMutationVariables = Exact<{
   accountId: Scalars["String"];
   amount: Scalars["numeric"];
   genreId: Scalars["String"];
@@ -6838,11 +7063,15 @@ export type ICreateDailyDetailMutationVariables = Exact<{
   userId: Scalars["String"];
 }>;
 
-export type ICreateDailyDetailMutation = {
-  insertDailyDetail?: { returning: Array<{ id: string }> } | null;
+export type CreateDailyDetailMutation = {
+  __typename?: "mutation_root";
+  insertDailyDetail?: {
+    __typename?: "HouseholdDailyDetailMutationResponse";
+    returning: Array<{ __typename?: "HouseholdDailyDetail"; id: string }>;
+  } | null;
 };
 
-export type ICreateImportFileHistoryMutationVariables = Exact<{
+export type CreateImportFileHistoryMutationVariables = Exact<{
   fileName: Scalars["String"];
   fileType: Scalars["String"];
   groupId: Scalars["String"];
@@ -6851,49 +7080,69 @@ export type ICreateImportFileHistoryMutationVariables = Exact<{
   importUserId: Scalars["String"];
 }>;
 
-export type ICreateImportFileHistoryMutation = {
-  insertImportFileHistory?: { returning: Array<{ id: string }> } | null;
+export type CreateImportFileHistoryMutation = {
+  __typename?: "mutation_root";
+  insertImportFileHistory?: {
+    __typename?: "HouseholdImportFileHistoryMutationResponse";
+    returning: Array<{ __typename?: "HouseholdImportFileHistory"; id: string }>;
+  } | null;
 };
 
-export type ICreateSummaryCategoryMutationVariables = Exact<{
+export type CreateSummaryCategoryMutationVariables = Exact<{
   id: Scalars["String"];
   displayOrder: Scalars["Int"];
   categoryId: Scalars["String"];
   groupId: Scalars["String"];
 }>;
 
-export type ICreateSummaryCategoryMutation = {
-  insertSummaryCategoryByGroup?: { returning: Array<{ id: string }> } | null;
+export type CreateSummaryCategoryMutation = {
+  __typename?: "mutation_root";
+  insertSummaryCategoryByGroup?: {
+    __typename?: "HouseholdSummaryCategoryMutationResponse";
+    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
+  } | null;
 };
 
-export type ICreateUserMutationVariables = Exact<{
+export type CreateUserMutationVariables = Exact<{
   userId: Scalars["String"];
   userName: Scalars["String"];
   email: Scalars["String"];
   displayOrder: Scalars["Int"];
 }>;
 
-export type ICreateUserMutation = {
-  insertUser?: { returning: Array<{ email: string; userId: string }> } | null;
+export type CreateUserMutation = {
+  __typename?: "mutation_root";
+  insertUser?: {
+    __typename?: "UserMutationResponse";
+    returning: Array<{ __typename?: "User"; email: string; userId: string }>;
+  } | null;
 };
 
-export type IDeleteDailyDetailBySerialNoMutationVariables = Exact<{
+export type DeleteDailyDetailBySerialNoMutationVariables = Exact<{
   id: Scalars["String"];
 }>;
 
-export type IDeleteDailyDetailBySerialNoMutation = {
-  deleteDailyDetailByPk?: { id: string } | null;
+export type DeleteDailyDetailBySerialNoMutation = {
+  __typename?: "mutation_root";
+  deleteDailyDetailByPk?: {
+    __typename?: "HouseholdDailyDetail";
+    id: string;
+  } | null;
 };
 
-export type IDeleteSummaryCategoryMutationVariables = Exact<{
+export type DeleteSummaryCategoryMutationVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type IDeleteSummaryCategoryMutation = {
-  deleteSummaryCategoryByGroup?: { returning: Array<{ id: string }> } | null;
+export type DeleteSummaryCategoryMutation = {
+  __typename?: "mutation_root";
+  deleteSummaryCategoryByGroup?: {
+    __typename?: "HouseholdSummaryCategoryMutationResponse";
+    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
+  } | null;
 };
 
-export type IUpdateCategoryByIdMutationVariables = Exact<{
+export type UpdateCategoryByIdMutationVariables = Exact<{
   categoryId: Scalars["String"];
   categoryName: Scalars["String"];
   genreId: Scalars["String"];
@@ -6901,31 +7150,40 @@ export type IUpdateCategoryByIdMutationVariables = Exact<{
   validFlag: Scalars["Boolean"];
 }>;
 
-export type IUpdateCategoryByIdMutation = {
-  updateCategoryByPk?: { id: string } | null;
+export type UpdateCategoryByIdMutation = {
+  __typename?: "mutation_root";
+  updateCategoryByPk?: { __typename?: "HouseholdCategory"; id: string } | null;
 };
 
-export type IUpdateCreditCardDetailByIdMutationVariables = Exact<{
+export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   categoryId: Scalars["String"];
   memo?: InputMaybe<Scalars["String"]>;
 }>;
 
-export type IUpdateCreditCardDetailByIdMutation = {
-  updateCreditCardDetailByPk?: { id: string } | null;
+export type UpdateCreditCardDetailByIdMutation = {
+  __typename?: "mutation_root";
+  updateCreditCardDetailByPk?: {
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+  } | null;
 };
 
-export type IUpdateCreditCardSummaryTotalMutationVariables = Exact<{
+export type UpdateCreditCardSummaryTotalMutationVariables = Exact<{
   id: Scalars["String"];
   totalAmount: Scalars["numeric"];
   count: Scalars["Int"];
 }>;
 
-export type IUpdateCreditCardSummaryTotalMutation = {
-  updateCreditCardSummary?: { id: string } | null;
+export type UpdateCreditCardSummaryTotalMutation = {
+  __typename?: "mutation_root";
+  updateCreditCardSummary?: {
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+  } | null;
 };
 
-export type IUpdateDailyDetailByIdMutationVariables = Exact<{
+export type UpdateDailyDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   date: Scalars["date"];
   genreId: Scalars["String"];
@@ -6936,11 +7194,15 @@ export type IUpdateDailyDetailByIdMutationVariables = Exact<{
   memo?: InputMaybe<Scalars["String"]>;
 }>;
 
-export type IUpdateDailyDetailByIdMutation = {
-  updateDailyDetailByPk?: { id: string } | null;
+export type UpdateDailyDetailByIdMutation = {
+  __typename?: "mutation_root";
+  updateDailyDetailByPk?: {
+    __typename?: "HouseholdDailyDetail";
+    id: string;
+  } | null;
 };
 
-export type IUpdateGenreByIdMutationVariables = Exact<{
+export type UpdateGenreByIdMutationVariables = Exact<{
   genreId: Scalars["String"];
   validFlag: Scalars["Boolean"];
   iocomeType: Scalars["String"];
@@ -6949,49 +7211,67 @@ export type IUpdateGenreByIdMutationVariables = Exact<{
   displayOrder: Scalars["Int"];
 }>;
 
-export type IUpdateGenreByIdMutation = {
-  updateGenreByPk?: { id: string } | null;
+export type UpdateGenreByIdMutation = {
+  __typename?: "mutation_root";
+  updateGenreByPk?: { __typename?: "HouseholdGenre"; id: string } | null;
 };
 
-export type IGetAccountBalanceListQueryVariables = Exact<{
+export type GetAccountBalanceListQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
 }>;
 
-export type IGetAccountBalanceListQuery = {
+export type GetAccountBalanceListQuery = {
+  __typename?: "query_root";
   account: Array<{
+    __typename?: "HouseholdAccount";
     id: string;
     accountName: string;
     allDetailViewsAggregate: {
-      aggregate?: { sum?: { signedAmount?: any | null } | null } | null;
+      __typename?: "HouseholdAllDetailViewAggregate";
+      aggregate?: {
+        __typename?: "HouseholdAllDetailViewAggregateFields";
+        sum?: {
+          __typename?: "HouseholdAllDetailViewSumFields";
+          signedAmount?: any | null;
+        } | null;
+      } | null;
     };
   }>;
 };
 
-export type IGetAllCategoriesQueryVariables = Exact<{
+export type GetAllCategoriesQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type IGetAllCategoriesQuery = {
+export type GetAllCategoriesQuery = {
+  __typename?: "query_root";
   categories: Array<{
+    __typename?: "HouseholdCategory";
     id: string;
     displayOrder: number;
     validFlag?: boolean | null;
     categoryName: string;
-    genre: { genreId: string; genreName: string };
+    genre: {
+      __typename?: "HouseholdGenre";
+      genreId: string;
+      genreName: string;
+    };
   }>;
 };
 
-export type IGetAllCategoryListWithCriteriaQueryVariables = Exact<{
+export type GetAllCategoryListWithCriteriaQueryVariables = Exact<{
   validCategoryIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
   validGenreIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
   iocomeTypeIn?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
   categoryNotIn?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
 }>;
 
-export type IGetAllCategoryListWithCriteriaQuery = {
+export type GetAllCategoryListWithCriteriaQuery = {
+  __typename?: "query_root";
   genres: Array<{
+    __typename?: "HouseholdGenre";
     id: string;
     name: string;
     iocomeType: string;
@@ -6999,6 +7279,7 @@ export type IGetAllCategoryListWithCriteriaQuery = {
     displayOrder: number;
     type: string;
     categories: Array<{
+      __typename?: "HouseholdCategory";
       id: string;
       name: string;
       validFlag?: boolean | null;
@@ -7007,12 +7288,14 @@ export type IGetAllCategoryListWithCriteriaQuery = {
   }>;
 };
 
-export type IGetAllGenreQueryVariables = Exact<{
+export type GetAllGenreQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type IGetAllGenreQuery = {
+export type GetAllGenreQuery = {
+  __typename?: "query_root";
   genre: Array<{
+    __typename?: "HouseholdGenre";
     id: string;
     genreType: string;
     iocomeType: string;
@@ -7022,46 +7305,68 @@ export type IGetAllGenreQuery = {
   }>;
 };
 
-export type IGetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
+export type GetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
 
-export type IGetAllUsersQuery = {
+export type GetAllUsersQuery = {
+  __typename?: "query_root";
   users: Array<{
+    __typename?: "User";
     id: string;
     name?: string | null;
     email: string;
-    affiliation: Array<{ group: { id: string; name: string } }>;
+    affiliation: Array<{
+      __typename?: "Affiliation";
+      group: { __typename?: "Group"; id: string; name: string };
+    }>;
   }>;
 };
 
-export type IGetApplicationByGroupIdQueryVariables = Exact<{
+export type GetApplicationByGroupIdQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type IGetApplicationByGroupIdQuery = {
-  group: Array<{ app: { id: string; name: string; topUrl: string } }>;
+export type GetApplicationByGroupIdQuery = {
+  __typename?: "query_root";
+  group: Array<{
+    __typename?: "GroupApplication";
+    app: {
+      __typename?: "Application";
+      id: string;
+      name: string;
+      topUrl: string;
+    };
+  }>;
 };
 
-export type IGetCategoryByIdQueryVariables = Exact<{
+export type GetCategoryByIdQueryVariables = Exact<{
   categoryId: Scalars["String"];
 }>;
 
-export type IGetCategoryByIdQuery = {
+export type GetCategoryByIdQuery = {
+  __typename?: "query_root";
   category?: {
+    __typename?: "HouseholdCategory";
     validFlag?: boolean | null;
     displayOrder: number;
     categoryName: string;
-    genre: { iocomeType: string; genreId: string };
+    genre: {
+      __typename?: "HouseholdGenre";
+      iocomeType: string;
+      genreId: string;
+    };
   } | null;
 };
 
-export type IGetCategoryTotalByMonthQueryVariables = Exact<{
+export type GetCategoryTotalByMonthQueryVariables = Exact<{
   fromDate?: InputMaybe<Scalars["date"]>;
   toDate?: InputMaybe<Scalars["date"]>;
   groupId: Scalars["String"];
 }>;
 
-export type IGetCategoryTotalByMonthQuery = {
+export type GetCategoryTotalByMonthQuery = {
+  __typename?: "query_root";
   categoryTotalByMonth: Array<{
+    __typename?: "HouseholdTotalByCategoryView";
     date?: any | null;
     iocomeType?: string | null;
     genreId?: string | null;
@@ -7072,21 +7377,25 @@ export type IGetCategoryTotalByMonthQuery = {
   }>;
 };
 
-export type IGetCreditCardDetailByIdQueryVariables = Exact<{
+export type GetCreditCardDetailByIdQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
 
-export type IGetCreditCardDetailByIdQuery = {
+export type GetCreditCardDetailByIdQuery = {
+  __typename?: "query_root";
   creditCardDetailByPk?: {
+    __typename?: "HouseholdCreditCardDetail";
     id: string;
     date: any;
     amount: any;
     memo?: string | null;
     summaryId: string;
     category: {
+      __typename?: "HouseholdCategory";
       categoryId: string;
       categoryName: string;
       genre: {
+        __typename?: "HouseholdGenre";
         genreType: string;
         iocomeType: string;
         genreId: string;
@@ -7096,27 +7405,32 @@ export type IGetCreditCardDetailByIdQuery = {
   } | null;
 };
 
-export type IGetCreditCardDetailBySummaryIdQueryVariables = Exact<{
+export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
 
-export type IGetCreditCardDetailBySummaryIdQuery = {
+export type GetCreditCardDetailBySummaryIdQuery = {
+  __typename?: "query_root";
   creditCardSummary?: {
+    __typename?: "HouseholdCreditCardSummary";
     id: string;
     creditCard: string;
     withdrawalDate: any;
     count: number;
     totalAmount: any;
-    account: { id: string; name: string };
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
     creditCardDetails: Array<{
+      __typename?: "HouseholdCreditCardDetail";
       id: string;
       date: any;
       memo?: string | null;
       amount: any;
       category: {
+        __typename?: "HouseholdCategory";
         id: string;
         name: string;
         genre: {
+          __typename?: "HouseholdGenre";
           id: string;
           name: string;
           genreType: string;
@@ -7127,190 +7441,261 @@ export type IGetCreditCardDetailBySummaryIdQuery = {
   } | null;
 };
 
-export type IGetCreditCardListQueryVariables = Exact<{
+export type GetCreditCardListQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type IGetCreditCardListQuery = {
+export type GetCreditCardListQuery = {
+  __typename?: "query_root";
   allCreditCardSummariesList: Array<{
+    __typename?: "HouseholdCreditCardSummary";
     id: string;
     creditCard: string;
     count: number;
     withdrawalDate: any;
     totalAmount: any;
-    account: { id: string; name: string };
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
   }>;
 };
 
-export type IGetCreditCardSummaryBetweenWithdrawalDateQueryVariables = Exact<{
+export type GetCreditCardSummaryBetweenWithdrawalDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
 }>;
 
-export type IGetCreditCardSummaryBetweenWithdrawalDateQuery = {
+export type GetCreditCardSummaryBetweenWithdrawalDateQuery = {
+  __typename?: "query_root";
   allCreditCardSummariesList: Array<{
+    __typename?: "HouseholdCreditCardSummary";
     id: string;
     withdrawalDate: any;
     totalAmount: any;
     creditCard: string;
-    accountByAccountId: { accountId: string; accountName: string };
+    accountByAccountId: {
+      __typename?: "HouseholdAccount";
+      accountId: string;
+      accountName: string;
+    };
   }>;
 };
 
-export type IGetCreditCardSummaryByAccountIdBetweenDateQueryVariables = Exact<{
+export type GetCreditCardSummaryByAccountIdBetweenDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   accountId: Scalars["String"];
 }>;
 
-export type IGetCreditCardSummaryByAccountIdBetweenDateQuery = {
+export type GetCreditCardSummaryByAccountIdBetweenDateQuery = {
+  __typename?: "query_root";
   allCreditCardSummariesList: Array<{
+    __typename?: "HouseholdCreditCardSummary";
     id: string;
     withdrawalDate: any;
     totalAmount: any;
     creditCard: string;
-    accountByAccountId: { accountId: string; accountName: string };
+    accountByAccountId: {
+      __typename?: "HouseholdAccount";
+      accountId: string;
+      accountName: string;
+    };
   }>;
 };
 
-export type IGetDailyDetailByDateQueryVariables = Exact<{
+export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
 }>;
 
-export type IGetDailyDetailByDateQuery = {
+export type GetDailyDetailByDateQuery = {
+  __typename?: "query_root";
   dailyDetailByDateList: Array<{
+    __typename?: "HouseholdDailyDetail";
     id: string;
     date: any;
     amount: any;
     memo?: string | null;
     categoryByCategoryId: {
+      __typename?: "HouseholdCategory";
       categoryId: string;
       categoryName: string;
       genreByGenreId: {
+        __typename?: "HouseholdGenre";
         genreType: string;
         iocomeType: string;
         genreId: string;
         genreName: string;
       };
     };
-    accountByAccountId: { accountId: string; accountName: string };
-    userByUserId: { userId: string; userName?: string | null };
+    accountByAccountId: {
+      __typename?: "HouseholdAccount";
+      accountId: string;
+      accountName: string;
+    };
+    userByUserId: {
+      __typename?: "User";
+      userId: string;
+      userName?: string | null;
+    };
   }>;
 };
 
-export type IGetDailyDetailByDateAccountIdQueryVariables = Exact<{
+export type GetDailyDetailByDateAccountIdQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   accountId: Scalars["String"];
   groupId: Scalars["String"];
 }>;
 
-export type IGetDailyDetailByDateAccountIdQuery = {
+export type GetDailyDetailByDateAccountIdQuery = {
+  __typename?: "query_root";
   dailyDetailByDateList: Array<{
+    __typename?: "HouseholdDailyDetail";
     id: string;
     date: any;
     amount: any;
     memo?: string | null;
     categoryByCategoryId: {
+      __typename?: "HouseholdCategory";
       categoryId: string;
       categoryName: string;
       genreByGenreId: {
+        __typename?: "HouseholdGenre";
         genreType: string;
         iocomeType: string;
         genreId: string;
         genreName: string;
       };
     };
-    accountByAccountId: { accountId: string; accountName: string };
-    userByUserId: { userId: string; userName?: string | null };
+    accountByAccountId: {
+      __typename?: "HouseholdAccount";
+      accountId: string;
+      accountName: string;
+    };
+    userByUserId: {
+      __typename?: "User";
+      userId: string;
+      userName?: string | null;
+    };
   }>;
 };
 
-export type IGetDailyDetailByDateCategoryIdQueryVariables = Exact<{
+export type GetDailyDetailByDateCategoryIdQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
   categoryId: Scalars["String"];
 }>;
 
-export type IGetDailyDetailByDateCategoryIdQuery = {
+export type GetDailyDetailByDateCategoryIdQuery = {
+  __typename?: "query_root";
   dailyDetailByDateList: Array<{
+    __typename?: "HouseholdDailyDetail";
     id: string;
     date: any;
     amount: any;
     memo?: string | null;
     categoryByCategoryId: {
+      __typename?: "HouseholdCategory";
       categoryId: string;
       categoryName: string;
       genreByGenreId: {
+        __typename?: "HouseholdGenre";
         genreType: string;
         iocomeType: string;
         genreId: string;
         genreName: string;
       };
     };
-    accountByAccountId: { accountId: string; accountName: string };
-    userByUserId: { userId: string; userName?: string | null };
+    accountByAccountId: {
+      __typename?: "HouseholdAccount";
+      accountId: string;
+      accountName: string;
+    };
+    userByUserId: {
+      __typename?: "User";
+      userId: string;
+      userName?: string | null;
+    };
   }>;
 };
 
-export type IGetDailyDetailByDateGenreIdQueryVariables = Exact<{
+export type GetDailyDetailByDateGenreIdQueryVariables = Exact<{
   genreId: Scalars["String"];
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
 }>;
 
-export type IGetDailyDetailByDateGenreIdQuery = {
+export type GetDailyDetailByDateGenreIdQuery = {
+  __typename?: "query_root";
   allCategoriesList: Array<{
+    __typename?: "HouseholdCategory";
     dailyDetailsByCategoryIdList: Array<{
+      __typename?: "HouseholdDailyDetail";
       id: string;
       date: any;
       amount: any;
       memo?: string | null;
       categoryByCategoryId: {
+        __typename?: "HouseholdCategory";
         categoryId: string;
         categoryName: string;
         genreByGenreId: {
+          __typename?: "HouseholdGenre";
           genreType: string;
           iocomeType: string;
           genreId: string;
           genreName: string;
         };
       };
-      accountByAccountId: { accountId: string; accountName: string };
-      userByUserId: { userId: string; userName?: string | null };
+      accountByAccountId: {
+        __typename?: "HouseholdAccount";
+        accountId: string;
+        accountName: string;
+      };
+      userByUserId: {
+        __typename?: "User";
+        userId: string;
+        userName?: string | null;
+      };
     }>;
   }>;
 };
 
-export type IGetGenreByIdQueryVariables = Exact<{
+export type GetGenreByIdQueryVariables = Exact<{
   genreId: Scalars["String"];
 }>;
 
-export type IGetGenreByIdQuery = {
+export type GetGenreByIdQuery = {
+  __typename?: "query_root";
   genreById?: {
+    __typename?: "HouseholdGenre";
     id: string;
     genreType: string;
     iocomeType: string;
     validFlag?: boolean | null;
     displayOrder: number;
     genreName: string;
-    categories: Array<{ categoryId: string; categoryName: string }>;
+    categories: Array<{
+      __typename?: "HouseholdCategory";
+      categoryId: string;
+      categoryName: string;
+    }>;
   } | null;
 };
 
-export type IGetGenreTotalByMonthQueryVariables = Exact<{
+export type GetGenreTotalByMonthQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
 }>;
 
-export type IGetGenreTotalByMonthQuery = {
+export type GetGenreTotalByMonthQuery = {
+  __typename?: "query_root";
   genreTotalByMonthList: Array<{
+    __typename?: "HouseholdTotalByGenreView";
     date?: any | null;
     iocomeType?: string | null;
     genreId?: string | null;
@@ -7319,128 +7704,181 @@ export type IGetGenreTotalByMonthQuery = {
   }>;
 };
 
-export type IGetSummaryCategoriesQueryVariables = Exact<{
+export type GetSummaryCategoriesQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type IGetSummaryCategoriesQuery = {
+export type GetSummaryCategoriesQuery = {
+  __typename?: "query_root";
   categories: Array<{
+    __typename?: "HouseholdSummaryCategory";
     id: string;
     groupId: string;
     displayOrder: number;
     category: {
+      __typename?: "HouseholdCategory";
       id: string;
       name: string;
-      genre: { id: string; name: string; iocomeType: string; type: string };
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+        type: string;
+      };
     };
   }>;
 };
 
-export type IGetSummaryCategoryBetweenDateQueryVariables = Exact<{
+export type GetSummaryCategoryBetweenDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
 }>;
 
-export type IGetSummaryCategoryBetweenDateQuery = {
+export type GetSummaryCategoryBetweenDateQuery = {
+  __typename?: "query_root";
   summaryCategoryList: Array<{
+    __typename?: "HouseholdSummaryCategory";
     category: {
+      __typename?: "HouseholdCategory";
       name: string;
       id: string;
-      genre: { iocomeType: string };
-      daily: Array<{ date: any; amount: any }>;
-      creditCard: Array<{ date: any; amount: any }>;
+      genre: { __typename?: "HouseholdGenre"; iocomeType: string };
+      daily: Array<{
+        __typename?: "HouseholdDailyDetail";
+        date: any;
+        amount: any;
+      }>;
+      creditCard: Array<{
+        __typename?: "HouseholdCreditCardDetail";
+        date: any;
+        amount: any;
+      }>;
     };
   }>;
 };
 
-export type IGetTotalBetweenDateQueryVariables = Exact<{
+export type GetTotalBetweenDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
 }>;
 
-export type IGetTotalBetweenDateQuery = {
+export type GetTotalBetweenDateQuery = {
+  __typename?: "query_root";
   incomeTotalByDate: Array<{
+    __typename?: "HouseholdDailyTotalView";
     date?: any | null;
     iocomeType?: string | null;
     total?: any | null;
   }>;
   outcomeTotalByDate: Array<{
+    __typename?: "HouseholdDailyTotalView";
     date?: any | null;
     iocomeType?: string | null;
     total?: any | null;
   }>;
 };
 
-export type IGetTransferCategoryByQueryVariables = Exact<{
+export type GetTransferCategoryByQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type IGetTransferCategoryByQuery = {
+export type GetTransferCategoryByQuery = {
+  __typename?: "query_root";
   transferCategory?: {
+    __typename?: "HouseholdTransferCategory";
     id: string;
     incomeCategory: {
+      __typename?: "HouseholdCategory";
       categoryId: string;
-      genre: { iocomeType: string; genreId: string };
+      genre: {
+        __typename?: "HouseholdGenre";
+        iocomeType: string;
+        genreId: string;
+      };
     };
     outcomeCategory: {
+      __typename?: "HouseholdCategory";
       categoryId: string;
-      genre: { iocomeType: string; genreId: string };
+      genre: {
+        __typename?: "HouseholdGenre";
+        iocomeType: string;
+        genreId: string;
+      };
     };
   } | null;
 };
 
-export type IGetUserByEmailQueryVariables = Exact<{
+export type GetUserByEmailQueryVariables = Exact<{
   email: Scalars["String"];
 }>;
 
-export type IGetUserByEmailQuery = {
+export type GetUserByEmailQuery = {
+  __typename?: "query_root";
   userByEmail: Array<{
+    __typename?: "User";
     email: string;
     id: string;
     name?: string | null;
     affiliation: Array<{
+      __typename?: "Affiliation";
       groupRole: string;
-      group: { id: string; name: string };
+      group: { __typename?: "Group"; id: string; name: string };
     }>;
   }>;
 };
 
-export type IGetValidAccountsQueryVariables = Exact<{
+export type GetValidAccountsQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type IGetValidAccountsQuery = {
-  allAccountsList: Array<{ accountId: string; accountName: string }>;
+export type GetValidAccountsQuery = {
+  __typename?: "query_root";
+  allAccountsList: Array<{
+    __typename?: "HouseholdAccount";
+    accountId: string;
+    accountName: string;
+  }>;
 };
 
-export type IGetValidCategoryByGenreIdQueryVariables = Exact<{
+export type GetValidCategoryByGenreIdQueryVariables = Exact<{
   groupId: Scalars["String"];
   genreId?: InputMaybe<Scalars["String"]>;
 }>;
 
-export type IGetValidCategoryByGenreIdQuery = {
+export type GetValidCategoryByGenreIdQuery = {
+  __typename?: "query_root";
   genreById: Array<{
+    __typename?: "HouseholdGenre";
     id: string;
     name: string;
-    categories: Array<{ id: string; name: string; displayOrder: number }>;
+    categories: Array<{
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      displayOrder: number;
+    }>;
   }>;
 };
 
-export type IGetValidGenreListByIocomeTypeQueryVariables = Exact<{
+export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
   iocomeType: Scalars["String"];
   groupId: Scalars["String"];
 }>;
 
-export type IGetValidGenreListByIocomeTypeQuery = {
+export type GetValidGenreListByIocomeTypeQuery = {
+  __typename?: "query_root";
   allGenresList: Array<{
+    __typename?: "HouseholdGenre";
     genreType: string;
     iocomeType: string;
     displayOrder: number;
     genreId: string;
     genreName: string;
     categoriesByGenreIdList: Array<{
+      __typename?: "HouseholdCategory";
       displayOrder: number;
       categoryId: string;
       categoryName: string;
@@ -7448,24 +7886,36 @@ export type IGetValidGenreListByIocomeTypeQuery = {
   }>;
 };
 
-export type IGetDepositQueryVariables = Exact<{
+export type GetDepositQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
 }>;
 
-export type IGetDepositQuery = {
+export type GetDepositQuery = {
+  __typename?: "query_root";
   depositCategory: Array<{
+    __typename?: "HouseholdDepositCategory";
     category: {
+      __typename?: "HouseholdCategory";
       id: string;
       categoryName: string;
       daily: {
+        __typename?: "HouseholdDailyDetailAggregate";
         aggregate?: {
+          __typename?: "HouseholdDailyDetailAggregateFields";
           count: number;
-          sum?: { amount?: any | null } | null;
-          avg?: { amount?: number | null } | null;
+          sum?: {
+            __typename?: "HouseholdDailyDetailSumFields";
+            amount?: any | null;
+          } | null;
+          avg?: {
+            __typename?: "HouseholdDailyDetailAvgFields";
+            amount?: number | null;
+          } | null;
         } | null;
         nodes: Array<{
+          __typename?: "HouseholdDailyDetail";
           id: string;
           date: any;
           amount: any;
@@ -7473,12 +7923,21 @@ export type IGetDepositQuery = {
         }>;
       };
       credit: {
+        __typename?: "HouseholdCreditCardDetailAggregate";
         aggregate?: {
+          __typename?: "HouseholdCreditCardDetailAggregateFields";
           count: number;
-          sum?: { amount?: any | null } | null;
-          avg?: { amount?: number | null } | null;
+          sum?: {
+            __typename?: "HouseholdCreditCardDetailSumFields";
+            amount?: any | null;
+          } | null;
+          avg?: {
+            __typename?: "HouseholdCreditCardDetailAvgFields";
+            amount?: number | null;
+          } | null;
         } | null;
         nodes: Array<{
+          __typename?: "HouseholdCreditCardDetail";
           id: string;
           date: any;
           amount: any;
@@ -7514,8 +7973,8 @@ export const CreateAccountDocument = gql`
 
 export function useCreateAccountMutation() {
   return Urql.useMutation<
-    ICreateAccountMutation,
-    ICreateAccountMutationVariables
+    CreateAccountMutation,
+    CreateAccountMutationVariables
   >(CreateAccountDocument);
 }
 export const CreateCategoryDocument = gql`
@@ -7546,8 +8005,8 @@ export const CreateCategoryDocument = gql`
 
 export function useCreateCategoryMutation() {
   return Urql.useMutation<
-    ICreateCategoryMutation,
-    ICreateCategoryMutationVariables
+    CreateCategoryMutation,
+    CreateCategoryMutationVariables
   >(CreateCategoryDocument);
 }
 export const CreateCreditCardDetailDocument = gql`
@@ -7586,8 +8045,8 @@ export const CreateCreditCardDetailDocument = gql`
 
 export function useCreateCreditCardDetailMutation() {
   return Urql.useMutation<
-    ICreateCreditCardDetailMutation,
-    ICreateCreditCardDetailMutationVariables
+    CreateCreditCardDetailMutation,
+    CreateCreditCardDetailMutationVariables
   >(CreateCreditCardDetailDocument);
 }
 export const CreateCreditCardSummaryDocument = gql`
@@ -7620,8 +8079,8 @@ export const CreateCreditCardSummaryDocument = gql`
 
 export function useCreateCreditCardSummaryMutation() {
   return Urql.useMutation<
-    ICreateCreditCardSummaryMutation,
-    ICreateCreditCardSummaryMutationVariables
+    CreateCreditCardSummaryMutation,
+    CreateCreditCardSummaryMutationVariables
   >(CreateCreditCardSummaryDocument);
 }
 export const CreateDailyDetailDocument = gql`
@@ -7660,8 +8119,8 @@ export const CreateDailyDetailDocument = gql`
 
 export function useCreateDailyDetailMutation() {
   return Urql.useMutation<
-    ICreateDailyDetailMutation,
-    ICreateDailyDetailMutationVariables
+    CreateDailyDetailMutation,
+    CreateDailyDetailMutationVariables
   >(CreateDailyDetailDocument);
 }
 export const CreateImportFileHistoryDocument = gql`
@@ -7692,8 +8151,8 @@ export const CreateImportFileHistoryDocument = gql`
 
 export function useCreateImportFileHistoryMutation() {
   return Urql.useMutation<
-    ICreateImportFileHistoryMutation,
-    ICreateImportFileHistoryMutationVariables
+    CreateImportFileHistoryMutation,
+    CreateImportFileHistoryMutationVariables
   >(CreateImportFileHistoryDocument);
 }
 export const CreateSummaryCategoryDocument = gql`
@@ -7720,8 +8179,8 @@ export const CreateSummaryCategoryDocument = gql`
 
 export function useCreateSummaryCategoryMutation() {
   return Urql.useMutation<
-    ICreateSummaryCategoryMutation,
-    ICreateSummaryCategoryMutationVariables
+    CreateSummaryCategoryMutation,
+    CreateSummaryCategoryMutationVariables
   >(CreateSummaryCategoryDocument);
 }
 export const CreateUserDocument = gql`
@@ -7748,7 +8207,7 @@ export const CreateUserDocument = gql`
 `;
 
 export function useCreateUserMutation() {
-  return Urql.useMutation<ICreateUserMutation, ICreateUserMutationVariables>(
+  return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(
     CreateUserDocument,
   );
 }
@@ -7762,8 +8221,8 @@ export const DeleteDailyDetailBySerialNoDocument = gql`
 
 export function useDeleteDailyDetailBySerialNoMutation() {
   return Urql.useMutation<
-    IDeleteDailyDetailBySerialNoMutation,
-    IDeleteDailyDetailBySerialNoMutationVariables
+    DeleteDailyDetailBySerialNoMutation,
+    DeleteDailyDetailBySerialNoMutationVariables
   >(DeleteDailyDetailBySerialNoDocument);
 }
 export const DeleteSummaryCategoryDocument = gql`
@@ -7780,8 +8239,8 @@ export const DeleteSummaryCategoryDocument = gql`
 
 export function useDeleteSummaryCategoryMutation() {
   return Urql.useMutation<
-    IDeleteSummaryCategoryMutation,
-    IDeleteSummaryCategoryMutationVariables
+    DeleteSummaryCategoryMutation,
+    DeleteSummaryCategoryMutationVariables
   >(DeleteSummaryCategoryDocument);
 }
 export const UpdateCategoryByIdDocument = gql`
@@ -7808,8 +8267,8 @@ export const UpdateCategoryByIdDocument = gql`
 
 export function useUpdateCategoryByIdMutation() {
   return Urql.useMutation<
-    IUpdateCategoryByIdMutation,
-    IUpdateCategoryByIdMutationVariables
+    UpdateCategoryByIdMutation,
+    UpdateCategoryByIdMutationVariables
   >(UpdateCategoryByIdDocument);
 }
 export const UpdateCreditCardDetailByIdDocument = gql`
@@ -7829,8 +8288,8 @@ export const UpdateCreditCardDetailByIdDocument = gql`
 
 export function useUpdateCreditCardDetailByIdMutation() {
   return Urql.useMutation<
-    IUpdateCreditCardDetailByIdMutation,
-    IUpdateCreditCardDetailByIdMutationVariables
+    UpdateCreditCardDetailByIdMutation,
+    UpdateCreditCardDetailByIdMutationVariables
   >(UpdateCreditCardDetailByIdDocument);
 }
 export const UpdateCreditCardSummaryTotalDocument = gql`
@@ -7850,8 +8309,8 @@ export const UpdateCreditCardSummaryTotalDocument = gql`
 
 export function useUpdateCreditCardSummaryTotalMutation() {
   return Urql.useMutation<
-    IUpdateCreditCardSummaryTotalMutation,
-    IUpdateCreditCardSummaryTotalMutationVariables
+    UpdateCreditCardSummaryTotalMutation,
+    UpdateCreditCardSummaryTotalMutationVariables
   >(UpdateCreditCardSummaryTotalDocument);
 }
 export const UpdateDailyDetailByIdDocument = gql`
@@ -7884,8 +8343,8 @@ export const UpdateDailyDetailByIdDocument = gql`
 
 export function useUpdateDailyDetailByIdMutation() {
   return Urql.useMutation<
-    IUpdateDailyDetailByIdMutation,
-    IUpdateDailyDetailByIdMutationVariables
+    UpdateDailyDetailByIdMutation,
+    UpdateDailyDetailByIdMutationVariables
   >(UpdateDailyDetailByIdDocument);
 }
 export const UpdateGenreByIdDocument = gql`
@@ -7914,8 +8373,8 @@ export const UpdateGenreByIdDocument = gql`
 
 export function useUpdateGenreByIdMutation() {
   return Urql.useMutation<
-    IUpdateGenreByIdMutation,
-    IUpdateGenreByIdMutationVariables
+    UpdateGenreByIdMutation,
+    UpdateGenreByIdMutationVariables
   >(UpdateGenreByIdDocument);
 }
 export const GetAccountBalanceListDocument = gql`
@@ -7942,13 +8401,13 @@ export const GetAccountBalanceListDocument = gql`
 
 export function useGetAccountBalanceListQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetAccountBalanceListQueryVariables>,
+    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetAccountBalanceListQuery,
-    IGetAccountBalanceListQueryVariables
+    GetAccountBalanceListQuery,
+    GetAccountBalanceListQueryVariables
   >({ query: GetAccountBalanceListDocument, ...options });
 }
 export const GetAllCategoriesDocument = gql`
@@ -7970,11 +8429,12 @@ export const GetAllCategoriesDocument = gql`
 `;
 
 export function useGetAllCategoriesQuery(
-  options: Omit<Urql.UseQueryArgs<IGetAllCategoriesQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetAllCategoriesQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<IGetAllCategoriesQuery, IGetAllCategoriesQueryVariables>(
-    { query: GetAllCategoriesDocument, ...options },
-  );
+  return Urql.useQuery<GetAllCategoriesQuery, GetAllCategoriesQueryVariables>({
+    query: GetAllCategoriesDocument,
+    ...options,
+  });
 }
 export const GetAllCategoryListWithCriteriaDocument = gql`
   query GetAllCategoryListWithCriteria(
@@ -8014,13 +8474,13 @@ export const GetAllCategoryListWithCriteriaDocument = gql`
 
 export function useGetAllCategoryListWithCriteriaQuery(
   options?: Omit<
-    Urql.UseQueryArgs<IGetAllCategoryListWithCriteriaQueryVariables>,
+    Urql.UseQueryArgs<GetAllCategoryListWithCriteriaQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetAllCategoryListWithCriteriaQuery,
-    IGetAllCategoryListWithCriteriaQueryVariables
+    GetAllCategoryListWithCriteriaQuery,
+    GetAllCategoryListWithCriteriaQueryVariables
   >({ query: GetAllCategoryListWithCriteriaDocument, ...options });
 }
 export const GetAllGenreDocument = gql`
@@ -8040,9 +8500,9 @@ export const GetAllGenreDocument = gql`
 `;
 
 export function useGetAllGenreQuery(
-  options: Omit<Urql.UseQueryArgs<IGetAllGenreQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetAllGenreQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<IGetAllGenreQuery, IGetAllGenreQueryVariables>({
+  return Urql.useQuery<GetAllGenreQuery, GetAllGenreQueryVariables>({
     query: GetAllGenreDocument,
     ...options,
   });
@@ -8064,9 +8524,9 @@ export const GetAllUsersDocument = gql`
 `;
 
 export function useGetAllUsersQuery(
-  options?: Omit<Urql.UseQueryArgs<IGetAllUsersQueryVariables>, "query">,
+  options?: Omit<Urql.UseQueryArgs<GetAllUsersQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<IGetAllUsersQuery, IGetAllUsersQueryVariables>({
+  return Urql.useQuery<GetAllUsersQuery, GetAllUsersQueryVariables>({
     query: GetAllUsersDocument,
     ...options,
   });
@@ -8085,13 +8545,13 @@ export const GetApplicationByGroupIdDocument = gql`
 
 export function useGetApplicationByGroupIdQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetApplicationByGroupIdQueryVariables>,
+    Urql.UseQueryArgs<GetApplicationByGroupIdQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetApplicationByGroupIdQuery,
-    IGetApplicationByGroupIdQueryVariables
+    GetApplicationByGroupIdQuery,
+    GetApplicationByGroupIdQueryVariables
   >({ query: GetApplicationByGroupIdDocument, ...options });
 }
 export const GetCategoryByIdDocument = gql`
@@ -8109,9 +8569,9 @@ export const GetCategoryByIdDocument = gql`
 `;
 
 export function useGetCategoryByIdQuery(
-  options: Omit<Urql.UseQueryArgs<IGetCategoryByIdQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetCategoryByIdQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<IGetCategoryByIdQuery, IGetCategoryByIdQueryVariables>({
+  return Urql.useQuery<GetCategoryByIdQuery, GetCategoryByIdQueryVariables>({
     query: GetCategoryByIdDocument,
     ...options,
   });
@@ -8138,13 +8598,13 @@ export const GetCategoryTotalByMonthDocument = gql`
 
 export function useGetCategoryTotalByMonthQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetCategoryTotalByMonthQueryVariables>,
+    Urql.UseQueryArgs<GetCategoryTotalByMonthQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetCategoryTotalByMonthQuery,
-    IGetCategoryTotalByMonthQueryVariables
+    GetCategoryTotalByMonthQuery,
+    GetCategoryTotalByMonthQueryVariables
   >({ query: GetCategoryTotalByMonthDocument, ...options });
 }
 export const GetCreditCardDetailByIdDocument = gql`
@@ -8171,13 +8631,13 @@ export const GetCreditCardDetailByIdDocument = gql`
 
 export function useGetCreditCardDetailByIdQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetCreditCardDetailByIdQueryVariables>,
+    Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetCreditCardDetailByIdQuery,
-    IGetCreditCardDetailByIdQueryVariables
+    GetCreditCardDetailByIdQuery,
+    GetCreditCardDetailByIdQueryVariables
   >({ query: GetCreditCardDetailByIdDocument, ...options });
 }
 export const GetCreditCardDetailBySummaryIdDocument = gql`
@@ -8214,13 +8674,13 @@ export const GetCreditCardDetailBySummaryIdDocument = gql`
 
 export function useGetCreditCardDetailBySummaryIdQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetCreditCardDetailBySummaryIdQueryVariables>,
+    Urql.UseQueryArgs<GetCreditCardDetailBySummaryIdQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetCreditCardDetailBySummaryIdQuery,
-    IGetCreditCardDetailBySummaryIdQueryVariables
+    GetCreditCardDetailBySummaryIdQuery,
+    GetCreditCardDetailBySummaryIdQueryVariables
   >({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
 }
 export const GetCreditCardListDocument = gql`
@@ -8243,12 +8703,11 @@ export const GetCreditCardListDocument = gql`
 `;
 
 export function useGetCreditCardListQuery(
-  options: Omit<Urql.UseQueryArgs<IGetCreditCardListQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetCreditCardListQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<
-    IGetCreditCardListQuery,
-    IGetCreditCardListQueryVariables
-  >({ query: GetCreditCardListDocument, ...options });
+  return Urql.useQuery<GetCreditCardListQuery, GetCreditCardListQueryVariables>(
+    { query: GetCreditCardListDocument, ...options },
+  );
 }
 export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
   query GetCreditCardSummaryBetweenWithdrawalDate(
@@ -8280,13 +8739,13 @@ export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
 
 export function useGetCreditCardSummaryBetweenWithdrawalDateQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetCreditCardSummaryBetweenWithdrawalDateQueryVariables>,
+    Urql.UseQueryArgs<GetCreditCardSummaryBetweenWithdrawalDateQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetCreditCardSummaryBetweenWithdrawalDateQuery,
-    IGetCreditCardSummaryBetweenWithdrawalDateQueryVariables
+    GetCreditCardSummaryBetweenWithdrawalDateQuery,
+    GetCreditCardSummaryBetweenWithdrawalDateQueryVariables
   >({ query: GetCreditCardSummaryBetweenWithdrawalDateDocument, ...options });
 }
 export const GetCreditCardSummaryByAccountIdBetweenDateDocument = gql`
@@ -8319,13 +8778,13 @@ export const GetCreditCardSummaryByAccountIdBetweenDateDocument = gql`
 
 export function useGetCreditCardSummaryByAccountIdBetweenDateQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetCreditCardSummaryByAccountIdBetweenDateQueryVariables>,
+    Urql.UseQueryArgs<GetCreditCardSummaryByAccountIdBetweenDateQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetCreditCardSummaryByAccountIdBetweenDateQuery,
-    IGetCreditCardSummaryByAccountIdBetweenDateQueryVariables
+    GetCreditCardSummaryByAccountIdBetweenDateQuery,
+    GetCreditCardSummaryByAccountIdBetweenDateQueryVariables
   >({ query: GetCreditCardSummaryByAccountIdBetweenDateDocument, ...options });
 }
 export const GetDailyDetailByDateDocument = gql`
@@ -8364,14 +8823,11 @@ export const GetDailyDetailByDateDocument = gql`
 `;
 
 export function useGetDailyDetailByDateQuery(
-  options: Omit<
-    Urql.UseQueryArgs<IGetDailyDetailByDateQueryVariables>,
-    "query"
-  >,
+  options: Omit<Urql.UseQueryArgs<GetDailyDetailByDateQueryVariables>, "query">,
 ) {
   return Urql.useQuery<
-    IGetDailyDetailByDateQuery,
-    IGetDailyDetailByDateQueryVariables
+    GetDailyDetailByDateQuery,
+    GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
 }
 export const GetDailyDetailByDateAccountIdDocument = gql`
@@ -8413,13 +8869,13 @@ export const GetDailyDetailByDateAccountIdDocument = gql`
 
 export function useGetDailyDetailByDateAccountIdQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetDailyDetailByDateAccountIdQueryVariables>,
+    Urql.UseQueryArgs<GetDailyDetailByDateAccountIdQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetDailyDetailByDateAccountIdQuery,
-    IGetDailyDetailByDateAccountIdQueryVariables
+    GetDailyDetailByDateAccountIdQuery,
+    GetDailyDetailByDateAccountIdQueryVariables
   >({ query: GetDailyDetailByDateAccountIdDocument, ...options });
 }
 export const GetDailyDetailByDateCategoryIdDocument = gql`
@@ -8461,13 +8917,13 @@ export const GetDailyDetailByDateCategoryIdDocument = gql`
 
 export function useGetDailyDetailByDateCategoryIdQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetDailyDetailByDateCategoryIdQueryVariables>,
+    Urql.UseQueryArgs<GetDailyDetailByDateCategoryIdQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetDailyDetailByDateCategoryIdQuery,
-    IGetDailyDetailByDateCategoryIdQueryVariables
+    GetDailyDetailByDateCategoryIdQuery,
+    GetDailyDetailByDateCategoryIdQueryVariables
   >({ query: GetDailyDetailByDateCategoryIdDocument, ...options });
 }
 export const GetDailyDetailByDateGenreIdDocument = gql`
@@ -8518,13 +8974,13 @@ export const GetDailyDetailByDateGenreIdDocument = gql`
 
 export function useGetDailyDetailByDateGenreIdQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetDailyDetailByDateGenreIdQueryVariables>,
+    Urql.UseQueryArgs<GetDailyDetailByDateGenreIdQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetDailyDetailByDateGenreIdQuery,
-    IGetDailyDetailByDateGenreIdQueryVariables
+    GetDailyDetailByDateGenreIdQuery,
+    GetDailyDetailByDateGenreIdQueryVariables
   >({ query: GetDailyDetailByDateGenreIdDocument, ...options });
 }
 export const GetGenreByIdDocument = gql`
@@ -8545,9 +9001,9 @@ export const GetGenreByIdDocument = gql`
 `;
 
 export function useGetGenreByIdQuery(
-  options: Omit<Urql.UseQueryArgs<IGetGenreByIdQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetGenreByIdQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<IGetGenreByIdQuery, IGetGenreByIdQueryVariables>({
+  return Urql.useQuery<GetGenreByIdQuery, GetGenreByIdQueryVariables>({
     query: GetGenreByIdDocument,
     ...options,
   });
@@ -8571,14 +9027,11 @@ export const GetGenreTotalByMonthDocument = gql`
 `;
 
 export function useGetGenreTotalByMonthQuery(
-  options: Omit<
-    Urql.UseQueryArgs<IGetGenreTotalByMonthQueryVariables>,
-    "query"
-  >,
+  options: Omit<Urql.UseQueryArgs<GetGenreTotalByMonthQueryVariables>, "query">,
 ) {
   return Urql.useQuery<
-    IGetGenreTotalByMonthQuery,
-    IGetGenreTotalByMonthQueryVariables
+    GetGenreTotalByMonthQuery,
+    GetGenreTotalByMonthQueryVariables
   >({ query: GetGenreTotalByMonthDocument, ...options });
 }
 export const GetSummaryCategoriesDocument = gql`
@@ -8605,14 +9058,11 @@ export const GetSummaryCategoriesDocument = gql`
 `;
 
 export function useGetSummaryCategoriesQuery(
-  options: Omit<
-    Urql.UseQueryArgs<IGetSummaryCategoriesQueryVariables>,
-    "query"
-  >,
+  options: Omit<Urql.UseQueryArgs<GetSummaryCategoriesQueryVariables>, "query">,
 ) {
   return Urql.useQuery<
-    IGetSummaryCategoriesQuery,
-    IGetSummaryCategoriesQueryVariables
+    GetSummaryCategoriesQuery,
+    GetSummaryCategoriesQueryVariables
   >({ query: GetSummaryCategoriesDocument, ...options });
 }
 export const GetSummaryCategoryBetweenDateDocument = gql`
@@ -8664,13 +9114,13 @@ export const GetSummaryCategoryBetweenDateDocument = gql`
 
 export function useGetSummaryCategoryBetweenDateQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetSummaryCategoryBetweenDateQueryVariables>,
+    Urql.UseQueryArgs<GetSummaryCategoryBetweenDateQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetSummaryCategoryBetweenDateQuery,
-    IGetSummaryCategoryBetweenDateQueryVariables
+    GetSummaryCategoryBetweenDateQuery,
+    GetSummaryCategoryBetweenDateQueryVariables
   >({ query: GetSummaryCategoryBetweenDateDocument, ...options });
 }
 export const GetTotalBetweenDateDocument = gql`
@@ -8709,11 +9159,11 @@ export const GetTotalBetweenDateDocument = gql`
 `;
 
 export function useGetTotalBetweenDateQuery(
-  options: Omit<Urql.UseQueryArgs<IGetTotalBetweenDateQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetTotalBetweenDateQueryVariables>, "query">,
 ) {
   return Urql.useQuery<
-    IGetTotalBetweenDateQuery,
-    IGetTotalBetweenDateQueryVariables
+    GetTotalBetweenDateQuery,
+    GetTotalBetweenDateQueryVariables
   >({ query: GetTotalBetweenDateDocument, ...options });
 }
 export const GetTransferCategoryByDocument = gql`
@@ -8740,13 +9190,13 @@ export const GetTransferCategoryByDocument = gql`
 
 export function useGetTransferCategoryByQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetTransferCategoryByQueryVariables>,
+    Urql.UseQueryArgs<GetTransferCategoryByQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetTransferCategoryByQuery,
-    IGetTransferCategoryByQueryVariables
+    GetTransferCategoryByQuery,
+    GetTransferCategoryByQueryVariables
   >({ query: GetTransferCategoryByDocument, ...options });
 }
 export const GetUserByEmailDocument = gql`
@@ -8767,9 +9217,9 @@ export const GetUserByEmailDocument = gql`
 `;
 
 export function useGetUserByEmailQuery(
-  options: Omit<Urql.UseQueryArgs<IGetUserByEmailQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetUserByEmailQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<IGetUserByEmailQuery, IGetUserByEmailQueryVariables>({
+  return Urql.useQuery<GetUserByEmailQuery, GetUserByEmailQueryVariables>({
     query: GetUserByEmailDocument,
     ...options,
   });
@@ -8787,11 +9237,12 @@ export const GetValidAccountsDocument = gql`
 `;
 
 export function useGetValidAccountsQuery(
-  options: Omit<Urql.UseQueryArgs<IGetValidAccountsQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetValidAccountsQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<IGetValidAccountsQuery, IGetValidAccountsQueryVariables>(
-    { query: GetValidAccountsDocument, ...options },
-  );
+  return Urql.useQuery<GetValidAccountsQuery, GetValidAccountsQueryVariables>({
+    query: GetValidAccountsDocument,
+    ...options,
+  });
 }
 export const GetValidCategoryByGenreIdDocument = gql`
   query GetValidCategoryByGenreId($groupId: String!, $genreId: String) {
@@ -8815,13 +9266,13 @@ export const GetValidCategoryByGenreIdDocument = gql`
 
 export function useGetValidCategoryByGenreIdQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetValidCategoryByGenreIdQueryVariables>,
+    Urql.UseQueryArgs<GetValidCategoryByGenreIdQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetValidCategoryByGenreIdQuery,
-    IGetValidCategoryByGenreIdQueryVariables
+    GetValidCategoryByGenreIdQuery,
+    GetValidCategoryByGenreIdQueryVariables
   >({ query: GetValidCategoryByGenreIdDocument, ...options });
 }
 export const GetValidGenreListByIocomeTypeDocument = gql`
@@ -8853,13 +9304,13 @@ export const GetValidGenreListByIocomeTypeDocument = gql`
 
 export function useGetValidGenreListByIocomeTypeQuery(
   options: Omit<
-    Urql.UseQueryArgs<IGetValidGenreListByIocomeTypeQueryVariables>,
+    Urql.UseQueryArgs<GetValidGenreListByIocomeTypeQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    IGetValidGenreListByIocomeTypeQuery,
-    IGetValidGenreListByIocomeTypeQueryVariables
+    GetValidGenreListByIocomeTypeQuery,
+    GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
 }
 export const GetDepositDocument = gql`
@@ -8922,9 +9373,9 @@ export const GetDepositDocument = gql`
 `;
 
 export function useGetDepositQuery(
-  options: Omit<Urql.UseQueryArgs<IGetDepositQueryVariables>, "query">,
+  options: Omit<Urql.UseQueryArgs<GetDepositQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<IGetDepositQuery, IGetDepositQueryVariables>({
+  return Urql.useQuery<GetDepositQuery, GetDepositQueryVariables>({
     query: GetDepositDocument,
     ...options,
   });
