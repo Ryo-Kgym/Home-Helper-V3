@@ -15,6 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@/turbo/graphql": "workspace:^3.0.0",
     "@expo/metro-config": "^0.10.7",
     "@shopify/flash-list": "1.4.3",
     "@tanstack/react-query": "^5.17.7",
@@ -34,7 +35,9 @@
     "react-native-reanimated": "~3.3.0",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.1",
-    "superjson": "2.2.1"
+    "superjson": "2.2.1",
+    "ulid": "^2.3.0",
+    "urql": "^3.0.4"
   },
   "devDependencies": {
     "@acme/api": "workspace:^0.1.0",
