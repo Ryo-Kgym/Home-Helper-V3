@@ -7,7 +7,7 @@ export const BalanceListPresenter = ({
   accounts: { id: string; name: string; balance: number }[];
 }) => (
   <View>
-    <Stack.Screen options={{ title: "Top" }} />
+    <Stack.Screen options={{ title: "Balance" }} />
     <FlatList
       data={accounts}
       renderItem={(a) => (
