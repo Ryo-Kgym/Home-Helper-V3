@@ -1,6 +1,7 @@
 export const paths = {
-  dashboard: "/",
+  app: "/",
   household: {
+    dashboard: "/household",
     account: "/household/account",
   },
 };
