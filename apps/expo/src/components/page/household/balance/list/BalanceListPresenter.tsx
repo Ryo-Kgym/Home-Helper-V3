@@ -2,8 +2,6 @@ import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Stack } from "expo-router";
 
-import { paths } from "~/app/paths";
-
 export const BalanceListPresenter = ({
   accounts,
 }: {

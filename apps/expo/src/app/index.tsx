@@ -1,3 +1,3 @@
-import { DashBoard } from "~/components/page/top";
+import { AppList } from "~/components/page/app";
 
-export default DashBoard;
+export default AppList;
