@@ -1,12 +1,12 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { datasource } from "@/turbo/graphql";
 import { Provider as UrqlProvider } from "urql";
 
 import "../styles.css";
 
+import { datasource } from "~/config/datasource";
+
 const Layout = () => (
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   <UrqlProvider value={datasource}>
     <Stack
       screenOptions={{
