@@ -1,7 +1,6 @@
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "react-native";
 import { Stack } from "expo-router";
 
-import { paths } from "~/app/paths";
 import { Link } from "~/components/ui";
 
 export const AppListPresenter = ({
@@ -9,15 +8,10 @@ export const AppListPresenter = ({
 }: {
   apps: { appName: string; path: string }[];
 }) => (
-  <SafeAreaView>
+  <View>
     <Stack.Screen options={{ title: "App" }} />
     {apps.map((app, index) => (
-      <Link
-        key={index}
-        label={app.appName}
-        path={paths.household.account}
-        size={"md"}
-      />
+      <Link key={index} label={app.appName} path={app.path} size={"md"} />
     ))}
-  </SafeAreaView>
+  </View>
 );
