@@ -1,12 +1,14 @@
 import { useGetAccountBalanceListQuery } from "@/turbo/graphql/household";
 
-import { mock } from "~/config/mock";
+import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { BalanceListPresenter } from "./BalanceListPresenter";
 
 export const BalanceListContainer = () => {
+  const { groupId } = useSaveGroupId();
+
   const [{ data }] = useGetAccountBalanceListQuery({
     variables: {
-      groupId: mock.groupId,
+      groupId,
       fromDate: "2019-01-01",
       toDate: "2024-12-31",
     },
