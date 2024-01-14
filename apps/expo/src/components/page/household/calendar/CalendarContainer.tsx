@@ -12,7 +12,11 @@ export const CalendarContainer = () => {
 
   const [date] = useState(today);
 
-  const days = generateCalendar(today).map((day) => ({ date: day }));
+  const days = generateCalendar(today).map((day) => ({
+    date: day,
+    isToday:
+      day.toISOString().slice(0, 10) === today.toISOString().slice(0, 10),
+  }));
 
   const [{ data: detailData }] = useGetDailyDetailByDateQuery({
     variables: {

@@ -1,7 +1,11 @@
 import { FlatList, Text, View } from "react-native";
 import { Stack } from "expo-router";
 
-export const CalendarPresenter = ({ days }: { days: { date: Date }[] }) => {
+export const CalendarPresenter = ({
+  days,
+}: {
+  days: { date: Date; isToday?: boolean }[];
+}) => {
   return (
     <View>
       <Stack.Screen options={{ title: "Calendar" }} />
@@ -30,7 +34,9 @@ export const CalendarPresenter = ({ days }: { days: { date: Date }[] }) => {
           numColumns={7}
           renderItem={(day) => (
             <View
-              className={"h-[3rem] w-[14.4%] border-b border-r border-gray-300"}
+              className={`h-[3rem] w-[14.4%] border-b border-r border-gray-300 ${
+                day.item.isToday ? "bg-orange-200" : ""
+              }`}
             >
               <Text className={"text-gray-600"}>
                 {day.item.date.toISOString().slice(8, 10)}
