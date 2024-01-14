@@ -63,6 +63,9 @@ importers:
       '@expo/metro-config':
         specifier: ^0.10.7
         version: 0.10.7
+      '@react-native-community/datetimepicker':
+        specifier: 7.2.0
+        version: 7.2.0
       '@shopify/flash-list':
         specifier: 1.4.3
         version: 1.4.3(@babel/runtime@7.23.7)(react-native@0.72.6)(react@18.2.0)
@@ -6115,6 +6118,12 @@ packages:
       - encoding
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /@react-native-community/datetimepicker@7.2.0:
+    resolution: {integrity: sha512-dO1sQy83M/EvnHE2egto05iwXZX7EYn5f/VDMp6afZFRFXRiRo7CzB3VFg4B55gJRJMNBv06NYMLPM3SlpnEGQ==}
+    dependencies:
+      invariant: 2.2.4
     dev: false
 
   /@react-native/assets-registry@0.72.0:
