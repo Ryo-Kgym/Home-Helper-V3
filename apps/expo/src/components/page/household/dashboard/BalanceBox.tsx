@@ -27,7 +27,7 @@ export const BalanceBox = () => {
 
   return (
     <Link href={paths.household.account as "/"}>
-      <View className={"rounded border border-gray-400 p-3"}>
+      <View className={"rounded-2xl border-2 border-gray-400 p-3"}>
         <Text className={"text-xl"}>残高</Text>
         <Text className={"text-right text-2xl"}>
           {totalBalance.toLocaleString() + " 円"}
