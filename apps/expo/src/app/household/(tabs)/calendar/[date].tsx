@@ -1,10 +1,16 @@
-import { useLocalSearchParams } from "expo-router";
+import { View } from "react-native";
+import { Stack, useLocalSearchParams } from "expo-router";
 
 import { Calendar } from "~/components/page/household";
 
 const Page = () => {
   const { date } = useLocalSearchParams();
-  return <Calendar baseDate={new Date(date as string)} />;
+  return (
+    <View>
+      <Stack.Screen options={{ title: date as string }} />
+      <Calendar baseDate={new Date(date as string)} />
+    </View>
+  );
 };
 
 export default Page;

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 import { useGetDailyDetailByDateQuery } from "@/turbo/graphql/household";
 
+import { paths } from "~/app/paths";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { CalendarPresenter } from "./CalendarPresenter";
 import { DailyList } from "./DailyList";
 import { generateCalendar } from "./generate-calendar";
 
 export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
+  const { push } = useRouter();
   const today = new Date();
   const { groupId } = useSaveGroupId();
 
@@ -29,11 +32,14 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
     },
   });
 
+  const changeBaseDate = (date: Date) =>
+    push(paths.household.calendar(date) as "/");
+
   useEffect(() => setDate(baseDate), [baseDate]);
 
   return (
     <>
-      <CalendarPresenter days={days} />
+      <CalendarPresenter changeBaseDate={changeBaseDate} days={days} />
       <DailyList
         details={
           detailData?.dailyDetailByDateList.map((detail) => ({
