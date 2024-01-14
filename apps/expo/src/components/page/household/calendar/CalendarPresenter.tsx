@@ -21,6 +21,7 @@ export const CalendarPresenter = ({
             { label: "土", color: "text-blue-500" },
           ]}
           numColumns={7}
+          scrollEnabled={false}
           renderItem={(week) => (
             <View className={"w-[14.4%] border-b border-r border-gray-300"}>
               <Text className={`text-center ${week.item.color}`}>
@@ -32,6 +33,7 @@ export const CalendarPresenter = ({
         <FlatList
           data={days}
           numColumns={7}
+          scrollEnabled={false}
           renderItem={(day) => (
             <View
               className={`h-[3rem] w-[14.4%] border-b border-r border-gray-300 ${
