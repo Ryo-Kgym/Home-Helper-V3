@@ -6,18 +6,19 @@ export const BalanceListPresenter = ({
 }: {
   accounts: { id: string; name: string; balance: number }[];
 }) => (
-  <View>
+  <>
     <Stack.Screen options={{ title: "Balance" }} />
     <FlatList
       data={accounts}
-      renderItem={(a) => (
-        <View key={a.item.id} className="flex-row px-4 text-black">
-          <Text className="w-2/3 text-xl">{a.item.name}</Text>
+      keyExtractor={(account) => account.id}
+      renderItem={({ item: { name, balance } }) => (
+        <View className="flex-row border-b border-b-gray-300 px-4 py-3 text-black">
+          <Text className="w-2/3 text-xl">{name}</Text>
           <Text className="w-1/3 text-right text-xl">
-            {a.item.balance.toLocaleString()}
+            {balance.toLocaleString() + " 円"}
           </Text>
         </View>
       )}
     />
-  </View>
+  </>
 );
