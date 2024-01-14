@@ -1,53 +1,41 @@
+import { useState } from "react";
+import { useGetDailyDetailByDateQuery } from "@/turbo/graphql/household";
+
+import { DailyList } from "~/components/page/household/calendar/DailyList";
+import { generateCalendar } from "~/components/page/household/calendar/generate-calendar";
+import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { CalendarPresenter } from "./CalendarPresenter";
 
 export const CalendarContainer = () => {
-  const days = [
-    { date: new Date("2021-01-01") },
-    { date: new Date("2021-01-02") },
-    { date: new Date("2021-01-03") },
-    { date: new Date("2021-01-04") },
-    { date: new Date("2021-01-05") },
-    { date: new Date("2021-01-06") },
-    { date: new Date("2021-01-07") },
-    { date: new Date("2021-01-08") },
-    { date: new Date("2021-01-09") },
-    { date: new Date("2021-01-10") },
-    { date: new Date("2021-01-11") },
-    { date: new Date("2021-01-12") },
-    { date: new Date("2021-01-13") },
-    { date: new Date("2021-01-14") },
-    { date: new Date("2021-01-15") },
-    { date: new Date("2021-01-16") },
-    { date: new Date("2021-01-17") },
-    { date: new Date("2021-01-18") },
-    { date: new Date("2021-01-19") },
-    { date: new Date("2021-01-20") },
-    { date: new Date("2021-01-21") },
-    { date: new Date("2021-01-22") },
-    { date: new Date("2021-01-23") },
-    { date: new Date("2021-01-24") },
-    { date: new Date("2021-01-25") },
-    { date: new Date("2021-01-26") },
-    { date: new Date("2021-01-27") },
-    { date: new Date("2021-01-28") },
-    { date: new Date("2021-01-29") },
-    { date: new Date("2021-01-30") },
-    { date: new Date("2021-01-31") },
-    { date: new Date("2021-02-01") },
-    { date: new Date("2021-02-02") },
-    { date: new Date("2021-02-03") },
-    { date: new Date("2021-02-04") },
-    { date: new Date("2021-02-05") },
-    { date: new Date("2021-02-06") },
-    { date: new Date("2021-02-07") },
-    { date: new Date("2021-02-08") },
-    { date: new Date("2021-02-09") },
-    { date: new Date("2021-02-10") },
-    { date: new Date("2021-02-11") },
-    { date: new Date("2021-02-12") },
-    { date: new Date("2021-02-13") },
-    { date: new Date("2021-02-14") },
-  ];
+  const today = new Date("2024-01-01");
+  const { groupId } = useSaveGroupId();
 
-  return <CalendarPresenter days={days} />;
+  const [date] = useState(today);
+
+  const days = generateCalendar(today).map((day) => ({ date: day }));
+
+  const [{ data: detailData }] = useGetDailyDetailByDateQuery({
+    variables: {
+      groupId,
+      fromDate: date.toISOString().slice(0, 10),
+      toDate: date.toISOString().slice(0, 10),
+    },
+  });
+
+  return (
+    <>
+      <CalendarPresenter days={days} />
+      <DailyList
+        details={
+          detailData?.dailyDetailByDateList.map((detail) => ({
+            id: detail.id,
+            accountName: detail.accountByAccountId.accountName,
+            amount: detail.amount as number,
+            categoryName: detail.categoryByCategoryId.categoryName,
+            genreName: detail.categoryByCategoryId.genreByGenreId.genreName,
+          })) ?? []
+        }
+      />
+    </>
+  );
 };
