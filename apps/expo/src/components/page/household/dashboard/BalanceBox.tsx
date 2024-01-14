@@ -1,6 +1,8 @@
 import { Text, View } from "react-native";
+import { Link } from "expo-router";
 import { useGetAccountBalanceListQuery } from "@/turbo/graphql/household";
 
+import { paths } from "~/app/paths";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 
 export const BalanceBox = () => {
@@ -24,12 +26,14 @@ export const BalanceBox = () => {
     }, 0) ?? 0;
 
   return (
-    <View className={"rounded border border-gray-400 p-3"}>
-      <Text className={"text-xl"}>残高</Text>
-      <Text className={"text-right text-2xl"}>
-        {totalBalance.toLocaleString() + " 円"}
-      </Text>
-      <Text>{today.toLocaleString()} 時点</Text>
-    </View>
+    <Link href={paths.household.account as "/"}>
+      <View className={"rounded border border-gray-400 p-3"}>
+        <Text className={"text-xl"}>残高</Text>
+        <Text className={"text-right text-2xl"}>
+          {totalBalance.toLocaleString() + " 円"}
+        </Text>
+        <Text>{today.toLocaleString()} 時点</Text>
+      </View>
+    </Link>
   );
 };
