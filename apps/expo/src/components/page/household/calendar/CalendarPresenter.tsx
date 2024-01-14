@@ -4,7 +4,7 @@ import { Stack } from "expo-router";
 export const CalendarPresenter = ({
   days,
 }: {
-  days: { date: Date; isToday?: boolean }[];
+  days: { date: Date; isToday: boolean; isThisMonth: boolean }[];
 }) => {
   return (
     <View>
@@ -38,7 +38,7 @@ export const CalendarPresenter = ({
             <View
               className={`h-[3rem] w-[14.4%] border-b border-r border-gray-300 ${
                 day.item.isToday ? "bg-orange-200" : ""
-              }`}
+              } ${day.item.isThisMonth ? "" : "bg-gray-400"}`}
             >
               <Text className={"text-gray-600"}>
                 {day.item.date.toISOString().slice(8, 10)}

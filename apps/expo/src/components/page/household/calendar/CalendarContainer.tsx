@@ -16,6 +16,7 @@ export const CalendarContainer = () => {
     date: day,
     isToday:
       day.toISOString().slice(0, 10) === today.toISOString().slice(0, 10),
+    isThisMonth: day.getMonth() === today.getMonth(),
   }));
 
   const [{ data: detailData }] = useGetDailyDetailByDateQuery({
