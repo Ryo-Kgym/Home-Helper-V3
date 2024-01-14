@@ -23,15 +23,18 @@ export const loadUploadFile = async ({
       file: uploadFile,
       fileType: fileType,
     });
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
+    const converter = refillMap.get(fileType);
+    if (!converter) {
+      new Error("not found converter");
+    }
+
     return (
       res.map((r) => {
-        const converter = refillMap.get(fileType);
-        if (!converter) {
-          throw new Error("not found converter");
-        }
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return refillMap.get(fileType) ? r : null;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        return converter(r);
       }) ?? []
     );
   } catch (e) {
