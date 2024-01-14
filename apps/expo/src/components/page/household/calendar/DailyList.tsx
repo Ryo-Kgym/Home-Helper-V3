@@ -11,7 +11,7 @@ export const DailyList = ({
     genreName: string;
   }[];
 }) => (
-  <View>
+  <View className={"h-1/2"}>
     <FlatList
       data={details}
       keyExtractor={(item) => item.id}
