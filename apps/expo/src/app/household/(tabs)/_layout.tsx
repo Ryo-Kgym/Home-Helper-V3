@@ -7,11 +7,12 @@ const Layout = () => (
     <Stack.Screen options={{ title: "" }} />
     <Tabs>
       <Tabs.Screen
-        name="calendar/index"
+        name="calendar/[date]"
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome name="calendar" size={24} color={color} />
           ),
+          href: `/household/calendar/${new Date().toISOString().slice(0, 10)}`,
         }}
       />
       <Tabs.Screen

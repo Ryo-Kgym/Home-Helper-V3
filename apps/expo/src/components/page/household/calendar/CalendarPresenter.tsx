@@ -1,5 +1,7 @@
-import { FlatList, Text, View } from "react-native";
-import { Stack } from "expo-router";
+import { FlatList, Pressable, Text, View } from "react-native";
+import { Link, Stack } from "expo-router";
+
+import { paths } from "~/app/paths";
 
 export const CalendarPresenter = ({
   days,
@@ -13,7 +15,7 @@ export const CalendarPresenter = ({
 }) => (
   <View>
     <Stack.Screen options={{ title: "Calendar" }} />
-    <View className={"w-full"}>
+    <View>
       <FlatList
         data={[
           { label: "日", color: "text-red-500" },
@@ -39,17 +41,21 @@ export const CalendarPresenter = ({
         numColumns={7}
         scrollEnabled={false}
         renderItem={(day) => (
-          <View
+          <Pressable
             className={`h-[3rem] w-[14.4%] border-b border-r border-gray-300 ${
-              day.item.isToday ? "bg-orange-200" : ""
+              day.item.isToday ? "bg-green-200" : ""
             } ${day.item.isThisMonth ? "" : "bg-gray-400"} ${
-              day.item.isSelectedDate ? "bg-blue-200" : ""
+              day.item.isSelectedDate ? "bg-yellow-200" : ""
             }`}
           >
-            <Text className={"text-gray-600"}>
-              {day.item.date.toISOString().slice(8, 10)}
-            </Text>
-          </View>
+            <Link href={paths.household.calendar(day.item.date) as "/"}>
+              <View className={`h-full w-full`}>
+                <Text className={"text-gray-600"}>
+                  {day.item.date.toISOString().slice(8, 10)}
+                </Text>
+              </View>
+            </Link>
+          </Pressable>
         )}
       />
     </View>

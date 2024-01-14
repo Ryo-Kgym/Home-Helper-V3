@@ -3,5 +3,7 @@ export const paths = {
   household: {
     dashboard: "/household/dashboard",
     account: "/household/account",
+    calendar: (date: Date) =>
+      `/household/calendar/${date.toISOString().slice(0, 10)}`,
   },
 };

@@ -1,17 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetDailyDetailByDateQuery } from "@/turbo/graphql/household";
-import DateTimePicker from "@react-native-community/datetimepicker";
 
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { CalendarPresenter } from "./CalendarPresenter";
 import { DailyList } from "./DailyList";
 import { generateCalendar } from "./generate-calendar";
 
-export const CalendarContainer = () => {
+export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   const today = new Date();
   const { groupId } = useSaveGroupId();
 
-  const [date, setDate] = useState<Date | undefined>(today);
+  const [date, setDate] = useState<Date | undefined>(baseDate);
 
   const days = generateCalendar(today).map((day) => ({
     date: day,
@@ -30,15 +29,10 @@ export const CalendarContainer = () => {
     },
   });
 
+  useEffect(() => setDate(baseDate), [baseDate]);
+
   return (
     <>
-      <DateTimePicker
-        display={"default"}
-        mode={"date"}
-        accessible={true}
-        value={date ?? today}
-        onChange={(e, date) => setDate(date)}
-      />
       <CalendarPresenter days={days} />
       <DailyList
         details={
