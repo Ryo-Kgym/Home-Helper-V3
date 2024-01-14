@@ -8383,7 +8383,10 @@ export const GetAccountBalanceListDocument = gql`
     $fromDate: date!
     $toDate: date!
   ) {
-    account: householdAccount(where: { _and: { groupId: { _eq: $groupId } } }) {
+    account: householdAccount(
+      where: { _and: { groupId: { _eq: $groupId } } }
+      orderBy: { displayOrder: ASC }
+    ) {
       id
       accountName: name
       allDetailViewsAggregate(
