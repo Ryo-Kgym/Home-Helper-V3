@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
-import { useGetDailyDetailByDateQuery } from "@/turbo/graphql/household";
 
 import { paths } from "~/app/paths";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { useGetDailyDetailByDateQuery } from "../../../../../../packages/graphql/household";
 import { CalendarPresenter } from "./CalendarPresenter";
 import { DailyList } from "./DailyList";
 import { generateCalendar } from "./generate-calendar";

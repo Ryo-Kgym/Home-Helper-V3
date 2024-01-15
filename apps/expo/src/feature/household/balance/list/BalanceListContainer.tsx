@@ -1,6 +1,5 @@
-import { useGetAccountBalanceListQuery } from "@/turbo/graphql/household";
-
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { useGetAccountBalanceListQuery } from "../../../../../../../packages/graphql/household";
 import { BalanceListPresenter } from "./BalanceListPresenter";
 
 export const BalanceListContainer = () => {

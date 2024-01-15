@@ -1,3 +1,3 @@
-import { AppList } from "~/components/page/app";
+import { AppList } from "~/feature/app";
 
 export default AppList;

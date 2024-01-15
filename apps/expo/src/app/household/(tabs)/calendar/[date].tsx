@@ -1,7 +1,6 @@
 import { View } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
-
-import { Calendar } from "~/components/page/household";
+import { Calendar } from "src/feature/household";
 
 const Page = () => {
   const { date } = useLocalSearchParams();
