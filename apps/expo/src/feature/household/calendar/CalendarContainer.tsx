@@ -1,20 +1,17 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { useRouter } from "expo-router";
-import { useGetDailyDetailByDateQuery } from "@/turbo/graphql/household";
 
 import { paths } from "~/app/paths";
 import { DailyList } from "~/feature/household/daily";
-import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { useGetDailyDetailList } from "~/hooks/household/dailyDetail/useGetDailyDetailList";
 import { CalendarPresenter } from "./CalendarPresenter";
 import { generateCalendar } from "./generate-calendar";
 
 export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   const { push } = useRouter();
   const today = new Date();
-  const { groupId } = useSaveGroupId();
-
-  const [date, setDate] = useState<Date | undefined>(baseDate);
+  const [date, setDate] = useState<Date>(baseDate);
 
   const days = generateCalendar(today).map((day) => ({
     date: day,
@@ -22,15 +19,12 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
       day.toISOString().slice(0, 10) === today.toISOString().slice(0, 10),
     isThisMonth: day.getMonth() === today.getMonth(),
     isSelectedDate:
-      date?.toISOString().slice(0, 10) === day.toISOString().slice(0, 10),
+      date.toISOString().slice(0, 10) === day.toISOString().slice(0, 10),
   }));
 
-  const [{ data: detailData }] = useGetDailyDetailByDateQuery({
-    variables: {
-      groupId,
-      fromDate: date?.toISOString().slice(0, 10),
-      toDate: date?.toISOString().slice(0, 10),
-    },
+  const { dailyDetailList } = useGetDailyDetailList({
+    fromDate: date,
+    toDate: date,
   });
 
   const changeBaseDate = (date: Date) =>
@@ -43,15 +37,15 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
       <CalendarPresenter changeBaseDate={changeBaseDate} days={days} />
       <View className={"h-1/2"}>
         <DailyList
-          details={
-            detailData?.dailyDetailByDateList.map((detail) => ({
-              id: detail.id,
-              accountName: detail.accountByAccountId.accountName,
-              amount: detail.amount as number,
-              categoryName: detail.categoryByCategoryId.categoryName,
-              genreName: detail.categoryByCategoryId.genreByGenreId.genreName,
-            })) ?? []
-          }
+          details={dailyDetailList.map(
+            ({ id, accountName, amount, genreName, categoryName }) => ({
+              id,
+              accountName,
+              amount,
+              genreName,
+              categoryName,
+            }),
+          )}
         />
       </View>
     </>
