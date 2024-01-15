@@ -37,15 +37,14 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
       <CalendarPresenter changeBaseDate={changeBaseDate} days={days} />
       <View className={"h-1/2"}>
         <DailyList
-          details={dailyDetailList.map(
-            ({ id, accountName, amount, genreName, categoryName }) => ({
-              id,
-              accountName,
-              amount,
-              genreName,
-              categoryName,
-            }),
-          )}
+          details={dailyDetailList.map((detail) => ({
+            id: detail.id,
+            accountName: detail.accountName,
+            amount: detail.amount,
+            genreName: detail.genreName,
+            categoryName: detail.categoryName,
+            iocomeType: detail.iocomeType,
+          }))}
         />
       </View>
     </>
