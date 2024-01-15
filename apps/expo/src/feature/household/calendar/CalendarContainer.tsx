@@ -13,11 +13,11 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   const today = new Date();
   const [date, setDate] = useState<Date>(baseDate);
 
-  const days = generateCalendar(today).map((day) => ({
+  const days = generateCalendar(baseDate).map((day) => ({
     date: day,
     isToday:
       day.toISOString().slice(0, 10) === today.toISOString().slice(0, 10),
-    isThisMonth: day.getMonth() === today.getMonth(),
+    isThisMonth: day.getMonth() === baseDate.getMonth(),
     isSelectedDate:
       date.toISOString().slice(0, 10) === day.toISOString().slice(0, 10),
   }));
@@ -27,16 +27,20 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
     toDate: date,
   });
 
-  const changeBaseDate = (date: Date) =>
+  const changeHandler = (date: Date) =>
     push(paths.household.calendar(date) as "/");
 
   useEffect(() => setDate(baseDate), [baseDate]);
 
   return (
     <>
-      <CalendarPresenter changeBaseDate={changeBaseDate} days={days} />
+      <CalendarPresenter
+        baseDate={date}
+        changeHandler={changeHandler}
+        days={days}
+      />
       <Total income={incomeTotal} outcome={outcomeTotal} />
-      <View className={"h-[42vh]"}>
+      <View className={"h-[38vh]"}>
         <DailyList
           details={dailyDetailList.map((detail) => ({
             id: detail.id,

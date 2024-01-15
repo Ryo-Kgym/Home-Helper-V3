@@ -1,10 +1,14 @@
 import { FlatList, Pressable, Text, View } from "react-native";
 
+import { MonthChanger } from "~/ui";
+
 export const CalendarPresenter = ({
-  changeBaseDate,
+  baseDate,
+  changeHandler,
   days,
 }: {
-  changeBaseDate: (date: Date) => void;
+  baseDate: Date;
+  changeHandler: (date: Date) => void;
   days: {
     date: Date;
     isToday: boolean;
@@ -13,6 +17,7 @@ export const CalendarPresenter = ({
   }[];
 }) => (
   <View>
+    <MonthChanger baseDate={baseDate} changeHandler={changeHandler} />
     <FlatList
       data={[
         { label: "日", color: "text-red-500" },
@@ -45,7 +50,7 @@ export const CalendarPresenter = ({
             day.item.isSelectedDate ? "bg-yellow-200" : ""
           }`}
           onPress={() => {
-            changeBaseDate(day.item.date);
+            changeHandler(day.item.date);
           }}
         >
           <View className={`h-full w-full`}>
