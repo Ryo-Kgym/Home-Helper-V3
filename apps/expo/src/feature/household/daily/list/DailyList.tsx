@@ -33,7 +33,7 @@ export const DailyList = ({
             detail.iocomeType === "INCOME" ? "text-green-500" : "text-red-500"
           }`}
         >
-          {detail.amount.toLocaleString()}円
+          {detail.amount.toLocaleString()}
         </Text>
       </View>
     )}
