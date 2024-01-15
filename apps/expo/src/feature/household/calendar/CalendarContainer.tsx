@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { useGetDailyDetailByDateQuery } from "@/turbo/graphql/household";
 
 import { paths } from "~/app/paths";
-import { DailyList } from "~/feature/household";
+import { DailyList } from "~/feature/household/daily";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { CalendarPresenter } from "./CalendarPresenter";
 import { generateCalendar } from "./generate-calendar";

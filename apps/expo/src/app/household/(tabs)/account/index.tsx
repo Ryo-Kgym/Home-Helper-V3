@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Stack } from "expo-router";
 
-import { BalanceList } from "~/feature/household";
+import { BalanceList } from "~/feature/household/balance";
 
 const Page = () => (
   <View>
