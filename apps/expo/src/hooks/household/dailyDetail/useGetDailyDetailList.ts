@@ -33,5 +33,15 @@ export const useGetDailyDetailList = ({
       memo: detail.memo ?? null,
     })) ?? [];
 
-  return { dailyDetailList };
+  const incomeTotal = dailyDetailList.reduce(
+    (acc, cur) => (cur.iocomeType === "INCOME" ? acc + cur.amount : acc),
+    0,
+  );
+
+  const outcomeTotal = dailyDetailList.reduce(
+    (acc, cur) => (cur.iocomeType === "OUTCOME" ? acc + cur.amount : acc),
+    0,
+  );
+
+  return { dailyDetailList, incomeTotal, outcomeTotal };
 };
