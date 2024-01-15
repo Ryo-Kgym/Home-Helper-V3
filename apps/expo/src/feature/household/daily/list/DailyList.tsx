@@ -1,6 +1,7 @@
 import { FlatList, Text, View } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
+import { Amount } from "~/ui";
 
 export const DailyList = ({
   details,
@@ -28,13 +29,11 @@ export const DailyList = ({
             <Text className={"text-gray-600"}>{detail.accountName}</Text>
           </View>
         </View>
-        <Text
-          className={`w-1/3 text-right text-xl ${
-            detail.iocomeType === "INCOME" ? "text-green-500" : "text-red-500"
-          }`}
-        >
-          {detail.amount.toLocaleString()}
-        </Text>
+        <Amount
+          className={`w-1/3 text-right text-xl`}
+          iocomeType={detail.iocomeType}
+          amount={detail.amount}
+        />
       </View>
     )}
   />
