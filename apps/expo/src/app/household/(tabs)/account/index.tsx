@@ -5,7 +5,7 @@ import { BalanceList } from "~/feature/household/balance";
 
 const Page = () => (
   <View>
-    <Stack.Screen options={{ title: "Balance" }} />
+    <Stack.Screen options={{ headerShown: false }} />
     <BalanceList />
   </View>
 );

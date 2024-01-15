@@ -6,7 +6,7 @@ const Page = () => {
   const { date } = useLocalSearchParams();
   return (
     <View>
-      <Stack.Screen options={{ title: date as string }} />
+      <Stack.Screen options={{ headerShown: false }} />
       <Calendar baseDate={new Date(date as string)} />
     </View>
   );
