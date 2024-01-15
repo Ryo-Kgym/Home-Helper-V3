@@ -1,9 +1,9 @@
 import { FlatList, Text, View } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
-import { Amount } from "~/ui";
+import { Amount } from "~/ui/Amount";
 
-export const DailyList = ({
+export const Details = ({
   details,
 }: {
   details: {

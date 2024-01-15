@@ -3,8 +3,8 @@ import { View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { paths } from "~/app/paths";
-import { DailyList, Total } from "~/feature/household/daily";
 import { useGetDailyDetailList } from "~/hooks/household/dailyDetail/useGetDailyDetailList";
+import { Details, Total } from "~/ui";
 import { CalendarPresenter } from "./CalendarPresenter";
 import { generateCalendar } from "./generate-calendar";
 
@@ -41,7 +41,7 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
       />
       <Total income={incomeTotal} outcome={outcomeTotal} />
       <View className={"h-[38vh]"}>
-        <DailyList
+        <Details
           details={dailyDetailList.map((detail) => ({
             id: detail.id,
             accountName: detail.accountName,

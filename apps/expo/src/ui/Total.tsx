@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-import { Amount } from "~/ui";
+import { Amount } from "./Amount";
 
 export const Total = ({
   income,
