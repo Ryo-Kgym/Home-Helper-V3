@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { View } from "react-native";
 import { useRouter } from "expo-router";
+import { useGetDailyDetailByDateQuery } from "@/turbo/graphql/household";
 
 import { paths } from "~/app/paths";
+import { DailyList } from "~/feature/household";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
-import { useGetDailyDetailByDateQuery } from "../../../../../../packages/graphql/household";
 import { CalendarPresenter } from "./CalendarPresenter";
-import { DailyList } from "./DailyList";
 import { generateCalendar } from "./generate-calendar";
 
 export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
@@ -40,17 +41,19 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   return (
     <>
       <CalendarPresenter changeBaseDate={changeBaseDate} days={days} />
-      <DailyList
-        details={
-          detailData?.dailyDetailByDateList.map((detail) => ({
-            id: detail.id,
-            accountName: detail.accountByAccountId.accountName,
-            amount: detail.amount as number,
-            categoryName: detail.categoryByCategoryId.categoryName,
-            genreName: detail.categoryByCategoryId.genreByGenreId.genreName,
-          })) ?? []
-        }
-      />
+      <View className={"h-1/2"}>
+        <DailyList
+          details={
+            detailData?.dailyDetailByDateList.map((detail) => ({
+              id: detail.id,
+              accountName: detail.accountByAccountId.accountName,
+              amount: detail.amount as number,
+              categoryName: detail.categoryByCategoryId.categoryName,
+              genreName: detail.categoryByCategoryId.genreByGenreId.genreName,
+            })) ?? []
+          }
+        />
+      </View>
     </>
   );
 };
