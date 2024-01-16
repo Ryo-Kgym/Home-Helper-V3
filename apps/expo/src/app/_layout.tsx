@@ -1,27 +1,21 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-
-import { TRPCProvider } from "~/utils/api";
+import { Provider as UrqlProvider } from "urql";
 
 import "../styles.css";
 
-// This is the main layout of the app
-// It wraps your pages with the providers they need
-export default function RootLayout() {
-  return (
-    <TRPCProvider>
-      {/*
-          The Stack component displays the current page.
-          It also allows you to configure your screens 
-        */}
-      <Stack
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: "#f472b6",
-          },
-        }}
-      />
-      <StatusBar />
-    </TRPCProvider>
-  );
-}
+import { datasource } from "~/config/datasource";
+
+const Layout = () => (
+  <UrqlProvider value={datasource}>
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#40ff40",
+        },
+      }}
+    />
+    <StatusBar />
+  </UrqlProvider>
+);
+export default Layout;
