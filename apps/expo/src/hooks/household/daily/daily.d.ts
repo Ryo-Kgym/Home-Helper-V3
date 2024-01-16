@@ -1,6 +1,6 @@
 import type { IocomeType } from "~/types/iocome-type";
 
-export type DailyDetail = {
+export type Daily = {
   id: string;
   accountName: string;
   amount: number;

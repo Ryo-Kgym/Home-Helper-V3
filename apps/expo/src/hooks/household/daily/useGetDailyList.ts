@@ -1,10 +1,10 @@
 import { useGetDailyDetailByDateQuery } from "@/turbo/graphql/household";
 
-import type { DailyDetail } from "~/hooks/household/dailyDetail/daily-detail";
+import type { Daily } from "~/hooks/household/daily/daily";
 import type { IocomeType } from "~/types/iocome-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 
-export const useGetDailyDetailList = ({
+export const useGetDailyList = ({
   fromDate,
   toDate,
 }: {
@@ -21,7 +21,7 @@ export const useGetDailyDetailList = ({
     },
   });
 
-  const dailyDetailList: DailyDetail[] =
+  const dailyDetailList: Daily[] =
     detailData?.dailyDetailByDateList.map((detail) => ({
       id: detail.id,
       accountName: detail.accountByAccountId.accountName,

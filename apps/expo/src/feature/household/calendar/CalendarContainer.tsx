@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { paths } from "~/app/paths";
-import { useGetDailyDetailList } from "~/hooks/household/dailyDetail/useGetDailyDetailList";
+import { useGetDailyList } from "~/hooks/household/daily/useGetDailyList";
 import { Details, Total } from "~/ui";
 import { CalendarPresenter } from "./CalendarPresenter";
 import { generateCalendar } from "./generate-calendar";
@@ -22,7 +22,7 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
       date.toISOString().slice(0, 10) === day.toISOString().slice(0, 10),
   }));
 
-  const { dailyDetailList, incomeTotal, outcomeTotal } = useGetDailyDetailList({
+  const { dailyDetailList, incomeTotal, outcomeTotal } = useGetDailyList({
     fromDate: date,
     toDate: date,
   });
