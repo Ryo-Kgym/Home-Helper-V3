@@ -1,7 +1,14 @@
 import { Text, View } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
-import { Amount, EditableDate } from "~/ui";
+import {
+  EditableAccount,
+  EditableAmount,
+  EditableCategory,
+  EditableDate,
+  EditableGenre,
+  EditableMemo,
+} from "~/ui";
 
 export const DailyDetailPresenter = ({
   date,
@@ -31,27 +38,45 @@ export const DailyDetailPresenter = ({
     </View>
     <View>
       <Text>ジャンル</Text>
-      <Text className={"text-center text-2xl"}>{genre.name}</Text>
+      <EditableGenre
+        className={"text-center text-2xl"}
+        value={genre.name}
+        setValue={() => undefined}
+        defaultValue={genre.id}
+        iocomeType={genre.iocomeType}
+      />
     </View>
     <View>
       <Text>カテゴリ</Text>
-      <Text className={"text-center text-2xl"}>{category.name}</Text>
+      <EditableCategory
+        className={"text-center text-2xl"}
+        value={category.name}
+        setValue={() => undefined}
+        defaultValue={category.id}
+        genreId={genre.id}
+      />
     </View>
     <View>
       <Text>アカウント</Text>
-      <Text className={"text-center text-2xl"}>{account.name}</Text>
+      <EditableAccount
+        className={"text-center text-2xl"}
+        value={account.name}
+        setValue={() => undefined}
+        defaultValue={account.id}
+      />
     </View>
     <View>
       <Text>金額</Text>
-      <Amount
+      <EditableAmount
         className={"text-right text-2xl"}
-        amount={amount}
+        value={amount}
+        setValue={() => undefined}
         iocomeType={genre.iocomeType}
       />
     </View>
     <View>
       <Text>メモ</Text>
-      <Text className={"text-xl"}>{memo}</Text>
+      <EditableMemo value={memo} setValue={() => undefined} />
     </View>
   </View>
 );
