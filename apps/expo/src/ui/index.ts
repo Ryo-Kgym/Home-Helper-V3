@@ -7,4 +7,5 @@ export { EditableDate } from "~/ui/editable/EditableDate";
 export { EditableGenre } from "~/ui/editable/EditableGenre";
 export { EditableMemo } from "~/ui/editable/EditableMemo";
 export { MonthChanger } from "~/ui/MonthChanger";
+export { Picker } from "~/ui/Picker";
 export { Total } from "~/ui/Total";
