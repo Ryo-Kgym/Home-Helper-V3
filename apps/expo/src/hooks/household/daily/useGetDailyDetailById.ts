@@ -12,11 +12,15 @@ export const useGetDailyDetailById = ({ id }: { id: string }) => {
 
   const daily: Daily = {
     id: data?.dailyDetail?.id ?? "",
-    accountName: data?.dailyDetail?.account.name ?? "",
+    date: new Date(data?.dailyDetail?.date ?? 0) ?? new Date(),
+    account: data?.dailyDetail?.account ?? { id: "", name: "" },
     amount: (data?.dailyDetail?.amount as number) ?? 0,
-    categoryName: data?.dailyDetail?.category.name ?? "",
-    genreName: data?.dailyDetail?.genre.name ?? "",
-    iocomeType: data?.dailyDetail?.genre.iocomeType as IocomeType,
+    category: data?.dailyDetail?.category ?? { id: "", name: "" },
+    genre: {
+      id: data?.dailyDetail?.genre?.id ?? "",
+      name: data?.dailyDetail?.genre?.name ?? "",
+      iocomeType: data?.dailyDetail?.genre?.iocomeType as IocomeType,
+    },
     memo: data?.dailyDetail?.memo ?? null,
   };
 

@@ -24,22 +24,32 @@ export const useGetDailyList = ({
   const dailyDetailList: Daily[] =
     detailData?.dailyDetailByDateList.map((detail) => ({
       id: detail.id,
-      accountName: detail.accountByAccountId.accountName,
+      date: new Date(detail.date ?? 0) ?? new Date(),
+      genre: {
+        id: detail.categoryByCategoryId.genreByGenreId.genreId,
+        name: detail.categoryByCategoryId.genreByGenreId.genreName,
+        iocomeType: detail.categoryByCategoryId.genreByGenreId
+          .iocomeType as IocomeType,
+      },
+      category: {
+        id: detail.categoryByCategoryId.categoryId,
+        name: detail.categoryByCategoryId.categoryName,
+      },
+      account: {
+        id: detail.accountByAccountId.accountId,
+        name: detail.accountByAccountId.accountName,
+      },
       amount: detail.amount as number,
-      categoryName: detail.categoryByCategoryId.categoryName,
-      genreName: detail.categoryByCategoryId.genreByGenreId.genreName,
-      iocomeType: detail.categoryByCategoryId.genreByGenreId
-        .iocomeType as IocomeType,
       memo: detail.memo ?? null,
     })) ?? [];
 
   const incomeTotal = dailyDetailList.reduce(
-    (acc, cur) => (cur.iocomeType === "INCOME" ? acc + cur.amount : acc),
+    (acc, cur) => (cur.genre.iocomeType === "INCOME" ? acc + cur.amount : acc),
     0,
   );
 
   const outcomeTotal = dailyDetailList.reduce(
-    (acc, cur) => (cur.iocomeType === "OUTCOME" ? acc + cur.amount : acc),
+    (acc, cur) => (cur.genre.iocomeType === "OUTCOME" ? acc + cur.amount : acc),
     0,
   );
 

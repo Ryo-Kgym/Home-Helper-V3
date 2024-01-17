@@ -44,11 +44,11 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
         <Details
           details={dailyDetailList.map((detail) => ({
             id: detail.id,
-            accountName: detail.accountName,
+            accountName: detail.account.name,
             amount: detail.amount,
-            genreName: detail.genreName,
-            categoryName: detail.categoryName,
-            iocomeType: detail.iocomeType,
+            genreName: detail.genre.name,
+            categoryName: detail.category.name,
+            iocomeType: detail.genre.iocomeType,
           }))}
         />
       </View>

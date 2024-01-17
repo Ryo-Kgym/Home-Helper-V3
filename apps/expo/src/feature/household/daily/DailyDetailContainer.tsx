@@ -7,10 +7,10 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
   return (
     <DailyDetailPresenter
       id={id}
-      date={new Date()}
-      account={{ id: "1", name: "現金" }}
-      genre={{ id: "1", name: "食費", iocomeType: "INCOME" }}
-      category={{ id: "1", name: "外食" }}
+      date={daily.date ?? new Date()}
+      account={daily.account}
+      genre={daily.genre}
+      category={daily.category}
       amount={daily.amount}
       memo={daily.memo ?? ""}
     />
