@@ -7886,6 +7886,47 @@ export type GetValidGenreListByIocomeTypeQuery = {
   }>;
 };
 
+export type FragDailyDetailFragment = {
+  __typename?: "HouseholdDailyDetail";
+  id: string;
+  date: any;
+  amount: any;
+  memo?: string | null;
+  genre: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    genreType: string;
+    iocomeType: string;
+  };
+  category: { __typename?: "HouseholdCategory"; id: string; name: string };
+  account: { __typename?: "HouseholdAccount"; id: string; name: string };
+};
+
+export type GetDailyDetailByIdQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetDailyDetailByIdQuery = {
+  __typename?: "query_root";
+  dailyDetail?: {
+    __typename?: "HouseholdDailyDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+      iocomeType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  } | null;
+};
+
 export type GetDepositQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
@@ -7948,6 +7989,28 @@ export type GetDepositQuery = {
   }>;
 };
 
+export const FragDailyDetailFragmentDoc = gql`
+  fragment fragDailyDetail on HouseholdDailyDetail {
+    id
+    date
+    genre {
+      id
+      name
+      genreType
+      iocomeType
+    }
+    category {
+      id
+      name
+    }
+    account {
+      id
+      name
+    }
+    amount
+    memo
+  }
+`;
 export const CreateAccountDocument = gql`
   mutation CreateAccount(
     $accountId: String!
@@ -9315,6 +9378,23 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQuery,
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
+}
+export const GetDailyDetailByIdDocument = gql`
+  query GetDailyDetailById($id: String!) {
+    dailyDetail: householdDailyDetailByPk(id: $id) {
+      ...fragDailyDetail
+    }
+  }
+  ${FragDailyDetailFragmentDoc}
+`;
+
+export function useGetDailyDetailByIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetDailyDetailByIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDailyDetailByIdQuery,
+    GetDailyDetailByIdQueryVariables
+  >({ query: GetDailyDetailByIdDocument, ...options });
 }
 export const GetDepositDocument = gql`
   query getDeposit($groupId: String!, $fromDate: date!, $toDate: date!) {

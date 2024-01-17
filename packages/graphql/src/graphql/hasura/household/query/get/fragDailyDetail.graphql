@@ -1,0 +1,20 @@
+fragment fragDailyDetail on HouseholdDailyDetail {
+    id
+    date
+    genre {
+        id
+        name
+        genreType
+        iocomeType
+    }
+    category {
+        id
+        name
+    }
+    account {
+        id
+        name
+    }
+    amount
+    memo
+}
