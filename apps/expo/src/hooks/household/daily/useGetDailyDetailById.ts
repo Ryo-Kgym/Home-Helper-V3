@@ -12,7 +12,9 @@ export const useGetDailyDetailById = ({ id }: { id: string }) => {
 
   const daily: Daily = {
     id: data?.dailyDetail?.id ?? "",
-    date: new Date(data?.dailyDetail?.date ?? 0) ?? new Date(),
+    date: data?.dailyDetail?.date
+      ? new Date(data?.dailyDetail?.date)
+      : undefined,
     account: data?.dailyDetail?.account ?? { id: "", name: "" },
     amount: (data?.dailyDetail?.amount as number) ?? 0,
     category: data?.dailyDetail?.category ?? { id: "", name: "" },

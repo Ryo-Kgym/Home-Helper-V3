@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
-import { Amount } from "~/ui";
+import { Amount, EditableDate } from "~/ui";
 
 export const DailyDetailPresenter = ({
   date,
@@ -22,9 +22,12 @@ export const DailyDetailPresenter = ({
   <View className={"gap-3"}>
     <View>
       <Text>日付</Text>
-      <Text className={"text-center text-2xl"}>
-        {date?.toISOString().slice(0, 10) ?? "-"}
-      </Text>
+      <EditableDate
+        value={date}
+        setValue={() => undefined}
+        className={"text-center text-2xl"}
+        defaultValue={"-"}
+      />
     </View>
     <View>
       <Text>ジャンル</Text>
