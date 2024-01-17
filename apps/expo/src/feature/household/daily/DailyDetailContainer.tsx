@@ -6,8 +6,10 @@ import { DailyDetailPresenter } from "./DailyDetailPresenter";
 export const DailyDetailContainer = ({ id }: { id: string }) => {
   const { daily } = useGetDailyDetailById({ id });
 
+  const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState<string | null>(null);
 
+  useEffect(() => setAmount(daily.amount), [daily.amount]);
   useEffect(() => setMemo(daily.memo), [daily.memo]);
 
   return (
@@ -39,9 +41,9 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
         setValue: () => undefined,
       }}
       amount={{
-        value: daily.amount,
+        value: amount,
         default: daily.amount,
-        setValue: () => undefined,
+        setValue: setAmount,
       }}
       memo={{
         value: memo,

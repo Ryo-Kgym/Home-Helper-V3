@@ -80,6 +80,7 @@ export const DailyDetailPresenter = ({
         value={amount.value}
         setValue={amount.setValue}
         iocomeType={iocomeType.value}
+        defaultValue={amount.default}
       />
     </View>
     <View>
