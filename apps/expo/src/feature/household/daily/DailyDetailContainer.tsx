@@ -7,7 +7,7 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
   return (
     <DailyDetailPresenter
       id={id}
-      date={daily.date ?? new Date()}
+      date={daily.date}
       account={daily.account}
       genre={daily.genre}
       category={daily.category}

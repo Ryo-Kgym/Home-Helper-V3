@@ -12,7 +12,7 @@ export const DailyDetailPresenter = ({
   memo,
 }: {
   id: string;
-  date: Date;
+  date?: Date;
   genre: { id: string; name: string; iocomeType: IocomeType };
   category: { id: string; name: string };
   account: { id: string; name: string };
@@ -23,7 +23,7 @@ export const DailyDetailPresenter = ({
     <View>
       <Text>日付</Text>
       <Text className={"text-center text-2xl"}>
-        {date.toISOString().slice(0, 10)}
+        {date?.toISOString().slice(0, 10) ?? "-"}
       </Text>
     </View>
     <View>
