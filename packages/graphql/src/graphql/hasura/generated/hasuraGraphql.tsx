@@ -7845,7 +7845,7 @@ export type GetValidAccountsQuery = {
 
 export type GetValidCategoryByGenreIdQueryVariables = Exact<{
   groupId: Scalars["String"];
-  genreId?: InputMaybe<Scalars["String"]>;
+  genreId: Scalars["String"];
 }>;
 
 export type GetValidCategoryByGenreIdQuery = {
@@ -7861,6 +7861,17 @@ export type GetValidCategoryByGenreIdQuery = {
       displayOrder: number;
     }>;
   }>;
+  genre?: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    categories: Array<{
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      displayOrder: number;
+    }>;
+  } | null;
 };
 
 export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
@@ -9311,7 +9322,7 @@ export function useGetValidAccountsQuery(
   });
 }
 export const GetValidCategoryByGenreIdDocument = gql`
-  query GetValidCategoryByGenreId($groupId: String!, $genreId: String) {
+  query GetValidCategoryByGenreId($groupId: String!, $genreId: String!) {
     genreById: householdGenre(
       where: {
         groupId: { _eq: $groupId }
@@ -9322,6 +9333,18 @@ export const GetValidCategoryByGenreIdDocument = gql`
       id
       name
       categories(where: { validFlag: { _eq: true } }) {
+        id
+        name
+        displayOrder
+      }
+    }
+    genre: householdGenreByPk(id: $genreId) {
+      id
+      name
+      categories(
+        where: { validFlag: { _eq: true } }
+        orderBy: { displayOrder: ASC }
+      ) {
         id
         name
         displayOrder

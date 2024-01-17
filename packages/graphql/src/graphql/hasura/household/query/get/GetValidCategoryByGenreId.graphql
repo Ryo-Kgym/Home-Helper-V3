@@ -1,4 +1,4 @@
-query GetValidCategoryByGenreId($groupId: String!, $genreId: String) {
+query GetValidCategoryByGenreId($groupId: String!, $genreId: String!) {
   genreById: householdGenre(
     where: {
       groupId: { _eq: $groupId }
@@ -9,6 +9,18 @@ query GetValidCategoryByGenreId($groupId: String!, $genreId: String) {
     id
     name
     categories(where: { validFlag: { _eq: true } }) {
+      id
+      name
+      displayOrder
+    }
+  }
+  genre: householdGenreByPk(id: $genreId) {
+    id
+    name
+    categories(
+      where: { validFlag: { _eq: true } }
+      orderBy: { displayOrder: ASC }
+    ) {
       id
       name
       displayOrder
