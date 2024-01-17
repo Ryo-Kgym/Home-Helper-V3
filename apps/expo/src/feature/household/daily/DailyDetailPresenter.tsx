@@ -41,7 +41,7 @@ export const DailyDetailPresenter = ({
         value={date.value}
         setValue={date.setValue}
         className={"text-center text-2xl"}
-        defaultValue={"-"}
+        loadingValue={"-"}
       />
     </View>
     <View>

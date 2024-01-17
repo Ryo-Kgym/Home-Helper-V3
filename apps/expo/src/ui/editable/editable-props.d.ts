@@ -3,5 +3,5 @@ export type EditableProps<T> = {
   setValue: (value: T) => void;
   className?: string;
   disabled?: boolean;
-  defaultValue?: string;
+  defaultValue?: T;
 };
