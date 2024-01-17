@@ -12,7 +12,7 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
       genre={daily.genre}
       category={daily.category}
       amount={daily.amount}
-      memo={daily.memo ?? ""}
+      memo={daily.memo}
     />
   );
 };

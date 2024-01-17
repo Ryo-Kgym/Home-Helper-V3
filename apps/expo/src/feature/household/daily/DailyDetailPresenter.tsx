@@ -24,7 +24,7 @@ export const DailyDetailPresenter = ({
   category: { id: string; name: string };
   account: { id: string; name: string };
   amount: number;
-  memo: string;
+  memo: string | null;
 }) => (
   <View className={"gap-3"}>
     <View>
