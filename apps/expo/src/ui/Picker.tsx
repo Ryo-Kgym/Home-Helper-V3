@@ -10,21 +10,19 @@ export const Picker = <T,>({
   setValue: (value: T) => void;
   data: { value: T; label: string }[];
   disabled?: boolean;
-}) => {
-  return (
-    <RNPicker
-      selectedValue={value}
-      onValueChange={setValue}
-      itemStyle={{ height: 100 }}
-      enabled={!disabled}
-    >
-      {data.map((account) => (
-        <RNPicker.Item
-          key={String(account.value)}
-          label={account.label}
-          value={account.value}
-        />
-      ))}
-    </RNPicker>
-  );
-};
+}) => (
+  <RNPicker
+    selectedValue={value}
+    onValueChange={setValue}
+    itemStyle={{ height: 40, fontSize: 18 }}
+    enabled={!disabled}
+  >
+    {data.map((account) => (
+      <RNPicker.Item
+        key={String(account.value)}
+        label={account.label}
+        value={account.value}
+      />
+    ))}
+  </RNPicker>
+);

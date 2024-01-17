@@ -6,10 +6,14 @@ import { DailyDetailPresenter } from "./DailyDetailPresenter";
 export const DailyDetailContainer = ({ id }: { id: string }) => {
   const { daily } = useGetDailyDetailById({ id });
 
+  const [genreId, setGenreId] = useState<string>("");
+  const [categoryId, setCategoryId] = useState<string>("");
   const [accountId, setAccountId] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState<string | null>(null);
 
+  useEffect(() => setGenreId(daily.genre.id), [daily.genre.id]);
+  useEffect(() => setCategoryId(daily.category.id), [daily.category.id]);
   useEffect(() => setAccountId(daily.account.id), [daily.account.id]);
   useEffect(() => setAmount(daily.amount), [daily.amount]);
   useEffect(() => setMemo(daily.memo), [daily.memo]);
@@ -28,14 +32,14 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
         setValue: () => undefined,
       }}
       genre={{
-        value: daily.genre.id,
+        value: genreId,
         default: daily.genre.id,
-        setValue: () => undefined,
+        setValue: setGenreId,
       }}
       category={{
-        value: daily.category.id,
+        value: categoryId,
         default: daily.category.id,
-        setValue: () => undefined,
+        setValue: setCategoryId,
       }}
       account={{
         value: accountId,
