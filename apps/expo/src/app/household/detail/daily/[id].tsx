@@ -7,7 +7,7 @@ const Page = () => {
   const { id } = useLocalSearchParams();
   return (
     <View>
-      <Stack.Screen options={{ headerShown: false }} />
+      <Stack.Screen options={{ title: "" }} />
       <DailyDetail id={id as string} />
     </View>
   );
