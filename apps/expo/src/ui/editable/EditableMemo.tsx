@@ -8,7 +8,7 @@ export const EditableMemo = ({
   className = "",
   disabled = false,
   defaultValue,
-}: EditableProps<string | null> & { defaultValue?: string }) => {
+}: EditableProps<string | null>) => {
   return (
     <TextInput
       className={`${className} rounded-xl border-2 border-gray-200 bg-gray-100 p-2`}
