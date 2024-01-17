@@ -8,7 +8,9 @@ const Page = () => {
   return (
     <View>
       <Stack.Screen options={{ title: "" }} />
-      <DailyDetail id={id as string} />
+      <View className={"w-full p-5"}>
+        <DailyDetail id={id as string} />
+      </View>
     </View>
   );
 };
