@@ -7,7 +7,8 @@ export const EditableMemo = ({
   setValue,
   className = "",
   disabled = false,
-}: EditableProps<string | null>) => {
+  defaultValue,
+}: EditableProps<string | null> & { defaultValue?: string }) => {
   return (
     <TextInput
       className={`${className} rounded-xl border-2 border-gray-200 bg-gray-100 p-2`}
@@ -15,6 +16,8 @@ export const EditableMemo = ({
       multiline={true}
       onChangeText={setValue}
       editable={!disabled}
+      inputMode={"text"}
+      placeholder={defaultValue}
     >
       {value}
     </TextInput>

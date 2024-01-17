@@ -88,6 +88,7 @@ export const DailyDetailPresenter = ({
         className={"text-xl"}
         value={memo.value}
         setValue={memo.setValue}
+        defaultValue={memo.default ?? undefined}
       />
     </View>
   </View>

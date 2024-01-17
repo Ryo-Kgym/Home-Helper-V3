@@ -1,8 +1,14 @@
+import { useEffect, useState } from "react";
+
 import { useGetDailyDetailById } from "~/hooks/household/daily/useGetDailyDetailById";
 import { DailyDetailPresenter } from "./DailyDetailPresenter";
 
 export const DailyDetailContainer = ({ id }: { id: string }) => {
   const { daily } = useGetDailyDetailById({ id });
+
+  const [memo, setMemo] = useState<string | null>(null);
+
+  useEffect(() => setMemo(daily.memo), [daily.memo]);
 
   return (
     <DailyDetailPresenter
@@ -38,9 +44,9 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
         setValue: () => undefined,
       }}
       memo={{
-        value: daily.memo,
+        value: memo,
         default: daily.memo,
-        setValue: () => undefined,
+        setValue: setMemo,
       }}
     />
   );
