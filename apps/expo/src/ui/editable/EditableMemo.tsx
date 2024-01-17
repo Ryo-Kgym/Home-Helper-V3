@@ -17,7 +17,7 @@ export const EditableMemo = ({
       onChangeText={setValue}
       editable={!disabled}
       inputMode={"text"}
-      placeholder={defaultValue}
+      placeholder={defaultValue ?? undefined}
     >
       {value}
     </TextInput>
