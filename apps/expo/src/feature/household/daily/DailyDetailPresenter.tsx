@@ -10,8 +10,15 @@ import {
   EditableMemo,
 } from "~/ui";
 
+type FieldType<T> = {
+  value: T;
+  setValue: (value: T) => void;
+  default: T;
+};
+
 export const DailyDetailPresenter = ({
   date,
+  iocomeType,
   genre,
   category,
   amount,
@@ -19,19 +26,20 @@ export const DailyDetailPresenter = ({
   memo,
 }: {
   id: string;
-  date?: Date;
-  genre: { id: string; name: string; iocomeType: IocomeType };
-  category: { id: string; name: string };
-  account: { id: string; name: string };
-  amount: number;
-  memo: string | null;
+  date: FieldType<Date | undefined>;
+  iocomeType: FieldType<IocomeType>;
+  genre: FieldType<string>;
+  category: FieldType<string>;
+  account: FieldType<string>;
+  amount: FieldType<number>;
+  memo: FieldType<string | null>;
 }) => (
   <View className={"gap-3"}>
     <View>
       <Text>日付</Text>
       <EditableDate
-        value={date}
-        setValue={() => undefined}
+        value={date.value}
+        setValue={date.setValue}
         className={"text-center text-2xl"}
         defaultValue={"-"}
       />
@@ -40,43 +48,47 @@ export const DailyDetailPresenter = ({
       <Text>ジャンル</Text>
       <EditableGenre
         className={"text-center text-2xl"}
-        value={genre.name}
-        setValue={() => undefined}
-        defaultValue={genre.id}
-        iocomeType={genre.iocomeType}
+        value={genre.value}
+        setValue={genre.setValue}
+        defaultValue={genre.default}
+        iocomeType={iocomeType.value}
       />
     </View>
     <View>
       <Text>カテゴリ</Text>
       <EditableCategory
         className={"text-center text-2xl"}
-        value={category.name}
-        setValue={() => undefined}
-        defaultValue={category.id}
-        genreId={genre.id}
+        value={category.value}
+        setValue={category.setValue}
+        defaultValue={category.default}
+        genreId={genre.value}
       />
     </View>
     <View>
       <Text>アカウント</Text>
       <EditableAccount
         className={"text-center text-2xl"}
-        value={account.name}
-        setValue={() => undefined}
-        defaultValue={account.id}
+        value={account.value}
+        setValue={account.setValue}
+        defaultValue={account.default}
       />
     </View>
     <View>
       <Text>金額</Text>
       <EditableAmount
         className={"text-right text-2xl"}
-        value={amount}
-        setValue={() => undefined}
-        iocomeType={genre.iocomeType}
+        value={amount.value}
+        setValue={amount.setValue}
+        iocomeType={iocomeType.value}
       />
     </View>
     <View>
       <Text>メモ</Text>
-      <EditableMemo value={memo} setValue={() => undefined} />
+      <EditableMemo
+        className={"text-xl"}
+        value={memo.value}
+        setValue={memo.setValue}
+      />
     </View>
   </View>
 );
