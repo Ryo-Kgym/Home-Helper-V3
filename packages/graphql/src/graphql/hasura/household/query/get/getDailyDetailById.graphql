@@ -1,0 +1,5 @@
+query GetDailyDetailById($id: String!) {
+  dailyDetail: householdDailyDetailByPk(id: $id) {
+    ...fragDailyDetail
+  }
+}

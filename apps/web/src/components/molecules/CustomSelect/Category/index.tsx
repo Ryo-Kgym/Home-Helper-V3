@@ -24,7 +24,7 @@ export const CategorySelect = ({
   const { groupId } = useGroup();
 
   const [{ data }] = useGetValidCategoryByGenreIdQuery({
-    variables: { genreId, groupId },
+    variables: { genreId: genreId ?? "", groupId },
   });
 
   const categories =

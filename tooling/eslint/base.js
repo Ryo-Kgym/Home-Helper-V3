@@ -30,6 +30,10 @@ const config = {
     ],
     "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
   },
   ignorePatterns: [
     "**/hasuraGraphql.tsx",
