@@ -15,6 +15,20 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
   const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState<string | null>(null);
 
+  const clearHandler = () => {
+    setDate(daily.date);
+    setIocomeType(daily.genre.iocomeType);
+    setGenreId(daily.genre.id);
+    setCategoryId(daily.category.id);
+    setAccountId(daily.account.id);
+    setAmount(daily.amount);
+    setMemo(daily.memo);
+  };
+
+  const updateHandler = () => {
+    console.log("update");
+  };
+
   useEffect(() => {
     setDate(daily.date);
     setIocomeType(daily.genre.iocomeType);
@@ -63,6 +77,8 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
         default: daily.memo,
         setValue: setMemo,
       }}
+      clearHandler={clearHandler}
+      updateHandler={updateHandler}
     />
   );
 };

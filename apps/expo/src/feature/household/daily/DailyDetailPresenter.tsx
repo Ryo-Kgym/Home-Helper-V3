@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
 import {
@@ -25,6 +25,8 @@ export const DailyDetailPresenter = ({
   amount,
   account,
   memo,
+  clearHandler,
+  updateHandler,
 }: {
   id: string;
   date: FieldType<Date | undefined>;
@@ -34,6 +36,8 @@ export const DailyDetailPresenter = ({
   account: FieldType<string>;
   amount: FieldType<number>;
   memo: FieldType<string | null>;
+  clearHandler: () => void;
+  updateHandler: () => void;
 }) => (
   <View className={"gap-3"}>
     <View>
@@ -94,6 +98,14 @@ export const DailyDetailPresenter = ({
         setValue={memo.setValue}
         defaultValue={memo.default ?? undefined}
       />
+    </View>
+    <View className={"flex-row justify-between"}>
+      <View className={"w-1/2"}>
+        <Button title={"更新"} onPress={updateHandler} />
+      </View>
+      <View className={"w-1/2"}>
+        <Button title={"クリア"} onPress={clearHandler} />
+      </View>
     </View>
   </View>
 );
