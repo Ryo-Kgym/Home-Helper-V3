@@ -5,8 +5,9 @@ import { useGetDailyDetailById } from "~/hooks/household/daily/useGetDailyDetail
 import { DailyDetailPresenter } from "./DailyDetailPresenter";
 
 export const DailyDetailContainer = ({ id }: { id: string }) => {
-  const { daily } = useGetDailyDetailById({ id });
+  const { daily, loading } = useGetDailyDetailById({ id });
 
+  const [date, setDate] = useState<Date | undefined>(daily.date);
   const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
   const [genreId, setGenreId] = useState<string>("");
   const [categoryId, setCategoryId] = useState<string>("");
@@ -14,19 +15,23 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
   const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState<string | null>(null);
 
-  useEffect(() => setGenreId(daily.genre.id), [daily.genre.id]);
-  useEffect(() => setCategoryId(daily.category.id), [daily.category.id]);
-  useEffect(() => setAccountId(daily.account.id), [daily.account.id]);
-  useEffect(() => setAmount(daily.amount), [daily.amount]);
-  useEffect(() => setMemo(daily.memo), [daily.memo]);
+  useEffect(() => {
+    setDate(daily.date);
+    setIocomeType(daily.genre.iocomeType);
+    setGenreId(daily.genre.id);
+    setCategoryId(daily.category.id);
+    setAccountId(daily.account.id);
+    setAmount(daily.amount);
+    setMemo(daily.memo);
+  }, [loading]);
 
   return (
     <DailyDetailPresenter
       id={id}
       date={{
-        value: daily.date,
+        value: date,
         default: daily.date,
-        setValue: () => undefined,
+        setValue: setDate,
       }}
       iocomeType={{
         value: iocomeType,
