@@ -37,11 +37,9 @@ export const Details = ({
                 <Text className={"text-gray-600"}>{detail.accountName}</Text>
               </View>
             </View>
-            <Amount
-              className={`w-1/3 text-right text-xl`}
-              iocomeType={detail.iocomeType}
-              amount={detail.amount}
-            />
+            <View className={"w-1/3"}>
+              <Amount iocomeType={detail.iocomeType} amount={detail.amount} />
+            </View>
           </View>
         </Link>
       </Pressable>

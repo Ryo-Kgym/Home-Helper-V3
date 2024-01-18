@@ -41,14 +41,12 @@ export const DailyDetailPresenter = ({
       <EditableDate
         value={date.value}
         setValue={date.setValue}
-        className={"text-center text-2xl"}
         loadingValue={"-"}
       />
     </View>
     <View>
       <Text>タイプ</Text>
       <EditableIocomeType
-        className={"text-center text-2xl"}
         value={iocomeType.value}
         setValue={iocomeType.setValue}
         defaultValue={iocomeType.default}
@@ -57,7 +55,6 @@ export const DailyDetailPresenter = ({
     <View>
       <Text>ジャンル</Text>
       <EditableGenre
-        className={"text-center text-2xl"}
         value={genre.value}
         setValue={genre.setValue}
         defaultValue={genre.default}
@@ -67,7 +64,6 @@ export const DailyDetailPresenter = ({
     <View>
       <Text>カテゴリ</Text>
       <EditableCategory
-        className={"text-center text-2xl"}
         value={category.value}
         setValue={category.setValue}
         defaultValue={category.default}
@@ -77,7 +73,6 @@ export const DailyDetailPresenter = ({
     <View>
       <Text>アカウント</Text>
       <EditableAccount
-        className={"text-center text-2xl"}
         value={account.value}
         setValue={account.setValue}
         defaultValue={account.default}
@@ -86,7 +81,6 @@ export const DailyDetailPresenter = ({
     <View>
       <Text>金額</Text>
       <EditableAmount
-        className={"text-right text-2xl"}
         value={amount.value}
         setValue={amount.setValue}
         iocomeType={iocomeType.value}
@@ -96,7 +90,6 @@ export const DailyDetailPresenter = ({
     <View>
       <Text>メモ</Text>
       <EditableMemo
-        className={"text-xl"}
         value={memo.value}
         setValue={memo.setValue}
         defaultValue={memo.default ?? undefined}

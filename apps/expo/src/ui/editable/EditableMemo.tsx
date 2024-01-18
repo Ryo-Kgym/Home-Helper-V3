@@ -6,14 +6,13 @@ import { FiledFrame } from "~/ui/FiledFrame";
 export const EditableMemo = ({
   value,
   setValue,
-  className = "",
   disabled = false,
   defaultValue,
 }: EditableProps<string | null>) => {
   return (
     <FiledFrame>
       <TextInput
-        className={className}
+        className={"text-xl"}
         numberOfLines={4}
         multiline={true}
         onChangeText={setValue}
