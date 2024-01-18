@@ -25,7 +25,7 @@ export const DailyDetailPresenter = ({
   amount,
   account,
   memo,
-  clearHandler,
+  resetHandler,
   updateHandler,
 }: {
   id: string;
@@ -36,7 +36,7 @@ export const DailyDetailPresenter = ({
   account: FieldType<string>;
   amount: FieldType<number>;
   memo: FieldType<string | null>;
-  clearHandler: () => void;
+  resetHandler: () => void;
   updateHandler: () => void;
 }) => (
   <View className={"gap-3"}>
@@ -104,7 +104,7 @@ export const DailyDetailPresenter = ({
         <Button title={"更新"} onPress={updateHandler} />
       </View>
       <View className={"w-1/2"}>
-        <Button title={"クリア"} onPress={clearHandler} />
+        <Button title={"リセット"} onPress={resetHandler} />
       </View>
     </View>
   </View>

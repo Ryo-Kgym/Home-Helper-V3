@@ -15,7 +15,7 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
   const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState<string | null>(null);
 
-  const clearHandler = () => {
+  const resetHandler = () => {
     setDate(daily.date);
     setIocomeType(daily.genre.iocomeType);
     setGenreId(daily.genre.id);
@@ -77,7 +77,7 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
         default: daily.memo,
         setValue: setMemo,
       }}
-      clearHandler={clearHandler}
+      resetHandler={resetHandler}
       updateHandler={updateHandler}
     />
   );
