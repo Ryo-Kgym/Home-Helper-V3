@@ -7,6 +7,7 @@ import {
   EditableCategory,
   EditableDate,
   EditableGenre,
+  EditableIocomeType,
   EditableMemo,
 } from "~/ui";
 
@@ -42,6 +43,15 @@ export const DailyDetailPresenter = ({
         setValue={date.setValue}
         className={"text-center text-2xl"}
         loadingValue={"-"}
+      />
+    </View>
+    <View>
+      <Text>タイプ</Text>
+      <EditableIocomeType
+        className={"text-center text-2xl"}
+        value={iocomeType.value}
+        setValue={iocomeType.setValue}
+        defaultValue={iocomeType.default}
       />
     </View>
     <View>

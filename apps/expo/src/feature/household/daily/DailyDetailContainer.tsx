@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
+import type { IocomeType } from "~/types/iocome-type";
 import { useGetDailyDetailById } from "~/hooks/household/daily/useGetDailyDetailById";
 import { DailyDetailPresenter } from "./DailyDetailPresenter";
 
 export const DailyDetailContainer = ({ id }: { id: string }) => {
   const { daily } = useGetDailyDetailById({ id });
 
+  const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
   const [genreId, setGenreId] = useState<string>("");
   const [categoryId, setCategoryId] = useState<string>("");
   const [accountId, setAccountId] = useState<string>("");
@@ -27,9 +29,9 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
         setValue: () => undefined,
       }}
       iocomeType={{
-        value: daily.genre.iocomeType,
+        value: iocomeType,
         default: daily.genre.iocomeType,
-        setValue: () => undefined,
+        setValue: setIocomeType,
       }}
       genre={{
         value: genreId,
