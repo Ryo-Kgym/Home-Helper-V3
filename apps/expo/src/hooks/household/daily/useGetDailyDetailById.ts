@@ -4,7 +4,7 @@ import type { Daily } from "~/hooks/household/daily/daily";
 import type { IocomeType } from "~/types/iocome-type";
 
 export const useGetDailyDetailById = ({ id }: { id: string }) => {
-  const [{ data }] = useGetDailyDetailByIdQuery({
+  const [{ data, fetching: loading }] = useGetDailyDetailByIdQuery({
     variables: {
       id,
     },
@@ -26,5 +26,5 @@ export const useGetDailyDetailById = ({ id }: { id: string }) => {
     memo: data?.dailyDetail?.memo ?? null,
   };
 
-  return { daily };
+  return { daily, loading };
 };
