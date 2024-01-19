@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import type { IocomeType } from "~/types/iocome-type";
+import { useRegisterDaily } from "~/hooks/household/daily/useRegisterDaily";
 import { RegisterDailyPresenter } from "./RegisterDailyPresenter";
 
 export const RegisterDailyContainer = ({
@@ -16,17 +17,31 @@ export const RegisterDailyContainer = ({
   const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState<string | null>(null);
 
+  const { registerDaily } = useRegisterDaily();
+
+  const registerable = !(!genreId || !categoryId || !accountId);
+
   const resetHandler = () => {
     setDate(initialDate);
     setIocomeType("INCOME");
     setGenreId("");
+    setCategoryId("");
     setAccountId("");
     setAmount(0);
     setMemo(null);
   };
 
-  const registerHandler = () => {
-    console.log("register");
+  const registerHandler = async () => {
+    return;
+    await registerDaily({
+      date: new Date(),
+      iocomeType,
+      genreId,
+      categoryId,
+      accountId,
+      amount,
+      memo,
+    });
   };
 
   return (
@@ -61,6 +76,7 @@ export const RegisterDailyContainer = ({
       }}
       resetHandler={resetHandler}
       registerHandler={registerHandler}
+      registerable={registerable}
     />
   );
 };

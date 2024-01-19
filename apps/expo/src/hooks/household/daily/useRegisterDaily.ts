@@ -12,7 +12,7 @@ export const useRegisterDaily = () => {
 
   const [, dailyRegistrationMutation] = useCreateDailyDetailMutation();
 
-  const registerHandler = async ({
+  const registerDaily = async ({
     date,
     genreId,
     iocomeType,
@@ -43,6 +43,6 @@ export const useRegisterDaily = () => {
     });
 
   return {
-    registerHandler,
+    registerDaily,
   };
 };
