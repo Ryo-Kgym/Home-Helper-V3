@@ -9,7 +9,6 @@ export const EditableCategory = ({
   setValue,
   genreId,
 }: EditableProps<string> & {
-  defaultValue: string;
   genreId: string;
 }) => {
   const { groupId } = useSaveGroupId();

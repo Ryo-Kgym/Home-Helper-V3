@@ -14,7 +14,6 @@ import {
 type FieldType<T> = {
   value: T;
   setValue: (value: T) => void;
-  default: T;
 };
 
 export const RegisterDailyPresenter = ({
@@ -26,9 +25,8 @@ export const RegisterDailyPresenter = ({
   account,
   memo,
   resetHandler,
-  updateHandler,
+  registerHandler,
 }: {
-  id: string;
   date: FieldType<Date | undefined>;
   iocomeType: FieldType<IocomeType>;
   genre: FieldType<string>;
@@ -37,7 +35,7 @@ export const RegisterDailyPresenter = ({
   amount: FieldType<number>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
-  updateHandler: () => void;
+  registerHandler: () => void;
 }) => (
   <View className={"gap-3"}>
     <View>
@@ -53,7 +51,6 @@ export const RegisterDailyPresenter = ({
       <EditableIocomeType
         value={iocomeType.value}
         setValue={iocomeType.setValue}
-        defaultValue={iocomeType.default}
       />
     </View>
     <View>
@@ -61,7 +58,6 @@ export const RegisterDailyPresenter = ({
       <EditableGenre
         value={genre.value}
         setValue={genre.setValue}
-        defaultValue={genre.default}
         iocomeType={iocomeType.value}
       />
     </View>
@@ -70,17 +66,12 @@ export const RegisterDailyPresenter = ({
       <EditableCategory
         value={category.value}
         setValue={category.setValue}
-        defaultValue={category.default}
         genreId={genre.value}
       />
     </View>
     <View>
       <Text>アカウント</Text>
-      <EditableAccount
-        value={account.value}
-        setValue={account.setValue}
-        defaultValue={account.default}
-      />
+      <EditableAccount value={account.value} setValue={account.setValue} />
     </View>
     <View>
       <Text>金額</Text>
@@ -88,20 +79,15 @@ export const RegisterDailyPresenter = ({
         value={amount.value}
         setValue={amount.setValue}
         iocomeType={iocomeType.value}
-        defaultValue={amount.default}
       />
     </View>
     <View>
       <Text>メモ</Text>
-      <EditableMemo
-        value={memo.value}
-        setValue={memo.setValue}
-        defaultValue={memo.default ?? undefined}
-      />
+      <EditableMemo value={memo.value} setValue={memo.setValue} />
     </View>
     <View className={"flex-row justify-between"}>
       <View className={"w-1/2"}>
-        <Button title={"登録"} onPress={updateHandler} />
+        <Button title={"登録"} onPress={registerHandler} />
       </View>
       <View className={"w-1/2"}>
         <Button title={"リセット"} onPress={resetHandler} />

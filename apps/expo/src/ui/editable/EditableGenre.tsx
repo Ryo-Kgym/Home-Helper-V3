@@ -10,7 +10,6 @@ export const EditableGenre = ({
   setValue,
   iocomeType,
 }: EditableProps<string> & {
-  defaultValue: string;
   iocomeType: IocomeType;
 }) => {
   const { groupId } = useSaveGroupId();

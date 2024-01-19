@@ -8,9 +8,7 @@ export const EditableAccount = ({
   value,
   setValue,
   disabled = false,
-}: EditableProps<string> & {
-  defaultValue: string;
-}) => {
+}: EditableProps<string> & {}) => {
   const { groupId } = useSaveGroupId();
   const [{ data }] = useGetValidAccountsQuery({
     variables: {
