@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { paths } from "~/app/paths";
+import { useGetCreditCardSummaryList } from "~/hooks/household/credit_card/useGetCreditCardSummaryList";
 import { useGetDailyList } from "~/hooks/household/daily/useGetDailyList";
 import { Details, Total } from "~/ui";
 import { CalendarPresenter } from "./CalendarPresenter";
@@ -27,6 +28,11 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
     toDate: date,
   });
 
+  const { creditCardSummaryList } = useGetCreditCardSummaryList({
+    fromDate: date,
+    toDate: date,
+  });
+
   const changeHandler = (date: Date) =>
     push(paths.household.calendar(date) as "/");
 
@@ -42,14 +48,25 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
       <Total income={incomeTotal} outcome={outcomeTotal} />
       <View className={"h-[38vh]"}>
         <Details
-          details={dailyDetailList.map((detail) => ({
-            id: detail.id,
-            accountName: detail.account.name,
-            amount: detail.amount,
-            genreName: detail.genre.name,
-            categoryName: detail.category.name,
-            iocomeType: detail.genre.iocomeType,
-          }))}
+          details={dailyDetailList
+            .map((detail) => ({
+              id: detail.id,
+              accountName: detail.account.name,
+              amount: detail.amount,
+              genreName: detail.genre.name,
+              categoryName: detail.category.name,
+              iocomeType: detail.genre.iocomeType,
+            }))
+            .concat(
+              creditCardSummaryList.map((summary) => ({
+                id: summary.id,
+                accountName: summary.account.name,
+                amount: summary.total,
+                genreName: summary.genre.name,
+                categoryName: summary.category.name,
+                iocomeType: summary.genre.iocomeType,
+              })),
+            )}
         />
       </View>
     </>
