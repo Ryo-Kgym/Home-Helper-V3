@@ -67,11 +67,11 @@ importers:
         specifier: 7.2.0
         version: 7.2.0
       '@react-native-picker/picker':
-        specifier: ^2.6.1
-        version: 2.6.1(react-native@0.72.6)(react@18.2.0)
+        specifier: ^2.4.10
+        version: 2.4.10(react-native@0.72.6)(react@18.2.0)
       '@react-native-segmented-control/segmented-control':
-        specifier: ^2.5.0
-        version: 2.5.0(react-native@0.72.6)(react@18.2.0)
+        specifier: ^2.4.1
+        version: 2.4.1(react-native@0.72.6)(react@18.2.0)
       '@shopify/flash-list':
         specifier: 1.4.3
         version: 1.4.3(@babel/runtime@7.23.7)(react-native@0.72.6)(react@18.2.0)
@@ -6138,8 +6138,8 @@ packages:
       invariant: 2.2.4
     dev: false
 
-  /@react-native-picker/picker@2.6.1(react-native@0.72.6)(react@18.2.0):
-    resolution: {integrity: sha512-oJftvmLOj6Y6/bF4kPcK6L83yNBALGmqNYugf94BzP0FQGpHBwimVN2ygqkQ2Sn2ZU3pGUZMs0jV6+Gku2GyYg==}
+  /@react-native-picker/picker@2.4.10(react-native@0.72.6)(react@18.2.0):
+    resolution: {integrity: sha512-EvAlHmPEPOwvbP6Pjg/gtDV3XJzIjIxr10fXFNlX5r9HeHw582G1Zt2o8FLyB718nOttgj8HYUTGxvhu4N65sQ==}
     peerDependencies:
       react: '>=16'
       react-native: '>=0.57'
@@ -6148,8 +6148,8 @@ packages:
       react-native: 0.72.6(@babel/core@7.23.7)(@babel/preset-env@7.23.7)(react@18.2.0)
     dev: false
 
-  /@react-native-segmented-control/segmented-control@2.5.0(react-native@0.72.6)(react@18.2.0):
-    resolution: {integrity: sha512-16tX2PPdeH1pQK/oVjNloU3ZKAKjg2NkllissESG6Xb7Cc7gOBuKDEqQgmpfb/9Wb/gGzF+7lhNbOnFjFJmyvA==}
+  /@react-native-segmented-control/segmented-control@2.4.1(react-native@0.72.6)(react@18.2.0):
+    resolution: {integrity: sha512-c8Q7TP14CD6vJ38VO5SWoIcxfwLPIz/4zRKJnJOJ0xKkMxkrUu089m86Y0dSvo+T3c1NQyvBFRtKWrPqbqG6tg==}
     peerDependencies:
       react: '>=16.0'
       react-native: '>=0.62'
