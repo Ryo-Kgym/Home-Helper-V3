@@ -30,15 +30,25 @@ export const RegisterDailyContainer = ({
   };
 
   const registerHandler = async () => {
-    await registerDaily({
-      date: new Date(),
-      iocomeType,
-      genreId,
-      categoryId,
-      accountId,
-      amount,
-      memo,
-    });
+    try {
+      const res = await registerDaily({
+        date: date ?? new Date(),
+        iocomeType,
+        genreId,
+        categoryId,
+        accountId,
+        amount,
+        memo,
+      });
+      if (res.error) {
+        alert("登録に失敗しました");
+        return;
+      }
+      alert("登録しました");
+    } catch (error) {
+      console.error(error);
+      alert("登録に失敗しました");
+    }
   };
 
   return (
