@@ -1,12 +1,14 @@
 import { View } from "react-native";
 import { Stack } from "expo-router";
 
-import { BalanceList } from "~/feature/household/balance";
+import { RegisterDaily } from "~/feature/household/daily";
 
 const Page = () => (
   <View>
     <Stack.Screen options={{ headerShown: false }} />
-    <BalanceList />
+    <View className={"w-full p-5"}>
+      <RegisterDaily />
+    </View>
   </View>
 );
 
