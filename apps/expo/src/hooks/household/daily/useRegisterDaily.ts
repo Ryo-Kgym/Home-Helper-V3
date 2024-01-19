@@ -3,7 +3,6 @@ import { useCreateDailyDetailMutation } from "@/turbo/graphql/household";
 import type { IocomeType } from "~/types/iocome-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useSaveUserId } from "~/hooks/user/useSaveUserId";
-import { convertToFullDate } from "~/persistence/converter/convert-to-full-date";
 import { generateId } from "~/persistence/converter/generate-id";
 
 export const useRegisterDaily = () => {
@@ -31,7 +30,7 @@ export const useRegisterDaily = () => {
   }) =>
     await dailyRegistrationMutation({
       id: generateId(),
-      date: convertToFullDate(date),
+      date,
       iocomeType,
       genreId,
       categoryId,
