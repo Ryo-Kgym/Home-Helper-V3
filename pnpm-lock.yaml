@@ -84,6 +84,9 @@ importers:
       '@trpc/react-query':
         specifier: next
         version: 11.0.0-next-alpha.170(@tanstack/react-query@5.17.7)(@trpc/client@11.0.0-next-alpha.170)(react-dom@18.2.0)(react@18.2.0)
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
       expo:
         specifier: ^49.0.21
         version: 49.0.21(@babel/core@7.23.7)
