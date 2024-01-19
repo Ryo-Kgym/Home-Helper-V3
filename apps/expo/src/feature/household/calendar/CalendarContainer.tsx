@@ -56,6 +56,8 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
               genreName: detail.genre.name,
               categoryName: detail.category.name,
               iocomeType: detail.genre.iocomeType,
+              redirectHandler: () =>
+                push(paths.household.daily(detail.id) as "/"),
             }))
             .concat(
               creditCardSummaryList.map((summary) => ({
@@ -65,6 +67,7 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
                 genreName: summary.genre.name,
                 categoryName: summary.category.name,
                 iocomeType: summary.genre.iocomeType,
+                redirectHandler: () => undefined,
               })),
             )}
         />
