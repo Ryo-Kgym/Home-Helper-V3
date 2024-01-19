@@ -26,7 +26,6 @@ export const RegisterDailyPresenter = ({
   memo,
   resetHandler,
   registerHandler,
-  registerable,
 }: {
   date: FieldType<Date | undefined>;
   iocomeType: FieldType<IocomeType>;
@@ -37,7 +36,6 @@ export const RegisterDailyPresenter = ({
   memo: FieldType<string | null>;
   resetHandler: () => void;
   registerHandler: () => void;
-  registerable: boolean;
 }) => (
   <View className={"gap-3"}>
     <View>
@@ -89,11 +87,7 @@ export const RegisterDailyPresenter = ({
     </View>
     <View className={"flex-row justify-between"}>
       <View className={"w-1/2"}>
-        <Button
-          title={"登録"}
-          onPress={registerHandler}
-          disabled={!registerable}
-        />
+        <Button title={"登録"} onPress={registerHandler} />
       </View>
       <View className={"w-1/2"}>
         <Button title={"リセット"} onPress={resetHandler} />

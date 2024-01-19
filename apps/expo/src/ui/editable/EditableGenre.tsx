@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useGetValidGenreListByIocomeTypeQuery } from "@/turbo/graphql/household";
 
 import type { IocomeType } from "~/types/iocome-type";
@@ -26,6 +27,12 @@ export const EditableGenre = ({
       value: genre.genreId,
       label: genre.genreName,
     })) ?? [];
+
+  useEffect(() => {
+    if (!value && genres[0]) {
+      setValue(genres[0].value);
+    }
+  }, [genres]);
 
   return <Picker value={value} setValue={setValue} data={genres} />;
 };

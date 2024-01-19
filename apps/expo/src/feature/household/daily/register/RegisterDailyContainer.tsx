@@ -19,8 +19,6 @@ export const RegisterDailyContainer = ({
 
   const { registerDaily } = useRegisterDaily();
 
-  const registerable = !(!genreId || !categoryId || !accountId);
-
   const resetHandler = () => {
     setDate(initialDate);
     setIocomeType("INCOME");
@@ -32,7 +30,6 @@ export const RegisterDailyContainer = ({
   };
 
   const registerHandler = async () => {
-    return;
     await registerDaily({
       date: new Date(),
       iocomeType,
@@ -76,7 +73,6 @@ export const RegisterDailyContainer = ({
       }}
       resetHandler={resetHandler}
       registerHandler={registerHandler}
-      registerable={registerable}
     />
   );
 };

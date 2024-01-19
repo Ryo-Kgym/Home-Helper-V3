@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useGetValidAccountsQuery } from "@/turbo/graphql/household";
 
 import type { EditableProps } from "~/ui/editable/editable-props";
@@ -8,7 +9,7 @@ export const EditableAccount = ({
   value,
   setValue,
   disabled = false,
-}: EditableProps<string> & {}) => {
+}: EditableProps<string>) => {
   const { groupId } = useSaveGroupId();
   const [{ data }] = useGetValidAccountsQuery({
     variables: {
@@ -20,6 +21,12 @@ export const EditableAccount = ({
       value: account.accountId,
       label: account.accountName,
     })) ?? [];
+
+  useEffect(() => {
+    if (!value && accounts[0]) {
+      setValue(accounts[0].value);
+    }
+  }, [accounts]);
 
   return (
     <Picker

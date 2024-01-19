@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useGetValidCategoryByGenreIdQuery } from "@/turbo/graphql/household";
 
 import type { EditableProps } from "~/ui/editable/editable-props";
@@ -25,6 +26,12 @@ export const EditableCategory = ({
       value: category.id,
       label: category.name,
     })) ?? [];
+
+  useEffect(() => {
+    if (!value && categories[0]) {
+      setValue(categories[0].value);
+    }
+  }, [categories]);
 
   return <Picker value={value} setValue={setValue} data={categories} />;
 };
