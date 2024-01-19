@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
 
-import { DailyDetail } from "~/feature/household/daily";
+import { EditDaily } from "~/feature/household/daily";
 
 const Page = () => {
   const { id } = useLocalSearchParams();
@@ -9,7 +9,7 @@ const Page = () => {
     <View>
       <Stack.Screen options={{ title: "" }} />
       <View className={"w-full p-5"}>
-        <DailyDetail id={id as string} />
+        <EditDaily id={id as string} />
       </View>
     </View>
   );

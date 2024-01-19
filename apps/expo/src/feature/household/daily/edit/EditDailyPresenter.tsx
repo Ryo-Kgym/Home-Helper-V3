@@ -17,7 +17,7 @@ type FieldType<T> = {
   default: T;
 };
 
-export const DailyDetailPresenter = ({
+export const EditDailyPresenter = ({
   date,
   iocomeType,
   genre,

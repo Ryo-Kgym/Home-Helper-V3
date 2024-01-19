@@ -1,1 +1,1 @@
-export { DailyDetailContainer as DailyDetail } from "./DailyDetailContainer";
+export { EditDailyContainer as EditDaily } from "./edit/EditDailyContainer";
