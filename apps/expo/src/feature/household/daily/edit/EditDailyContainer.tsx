@@ -47,6 +47,7 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
         memo,
       });
       alert("更新しました");
+      back();
     } catch (e) {
       console.error(e);
       alert("更新に失敗しました");
