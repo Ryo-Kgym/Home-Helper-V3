@@ -15,13 +15,19 @@ const defineConfig = (): ExpoConfig => ({
   },
   updates: {
     fallbackToCacheTimeout: 0,
+    url: "https://u.expo.dev/86b12fab-9446-4883-bde4-cac8a047cdaa",
   },
   assetBundlePatterns: ["**/*"],
+  runtimeVersion: "",
   ios: {
+    runtimeVersion: "1.0.0",
     bundleIdentifier: "your.bundle.identifier",
     supportsTablet: true,
   },
   android: {
+    runtimeVersion: {
+      policy: "appVersion",
+    },
     package: "your.bundle.identifier",
     adaptiveIcon: {
       foregroundImage: "./assets/icon.png",
