@@ -3,7 +3,7 @@ import { useGetDailyDetailByIdQuery } from "@/turbo/graphql/household";
 import type { Daily } from "~/hooks/household/daily/daily";
 import type { IocomeType } from "~/types/iocome-type";
 
-export const useGetDailyDetailById = ({ id }: { id: string }) => {
+export const useGetDailyById = ({ id }: { id: string }) => {
   const [{ data, fetching: loading }] = useGetDailyDetailByIdQuery({
     variables: {
       id,

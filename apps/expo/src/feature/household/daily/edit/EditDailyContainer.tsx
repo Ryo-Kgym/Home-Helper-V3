@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 import type { IocomeType } from "~/types/iocome-type";
-import { useGetDailyDetailById } from "~/hooks/household/daily/useGetDailyDetailById";
+import { useGetDailyById } from "~/hooks/household/daily/useGetDailyById";
 import { EditDailyPresenter } from "./EditDailyPresenter";
 
 export const EditDailyContainer = ({ id }: { id: string }) => {
-  const { daily, loading } = useGetDailyDetailById({ id });
+  const { daily, loading } = useGetDailyById({ id });
 
   const [date, setDate] = useState<Date | undefined>(daily.date);
   const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
