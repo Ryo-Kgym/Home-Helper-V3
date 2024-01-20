@@ -138,9 +138,6 @@ importers:
       superjson:
         specifier: 2.2.1
         version: 2.2.1
-      ulid:
-        specifier: ^2.3.0
-        version: 2.3.0
       urql:
         specifier: ^3.0.4
         version: 3.0.4(graphql@16.8.1)(react@18.2.0)
