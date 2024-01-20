@@ -1,5 +1,5 @@
 import { Stack, Tabs } from "expo-router";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons/";
 
 const Layout = () => (
@@ -21,6 +21,15 @@ const Layout = () => (
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="bank" size={24} color={color} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="register/index"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Entypo name="pencil" size={30} color={color} />
+          ),
+          title: "登録",
         }}
       />
     </Tabs>

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { useGetDailyDetailById } from "~/hooks/household/daily/useGetDailyDetailById";
-import { DailyDetailPresenter } from "./DailyDetailPresenter";
+import { EditDailyPresenter } from "./EditDailyPresenter";
 
-export const DailyDetailContainer = ({ id }: { id: string }) => {
+export const EditDailyContainer = ({ id }: { id: string }) => {
   const { daily, loading } = useGetDailyDetailById({ id });
 
   const [date, setDate] = useState<Date | undefined>(daily.date);
@@ -40,7 +40,7 @@ export const DailyDetailContainer = ({ id }: { id: string }) => {
   }, [loading]);
 
   return (
-    <DailyDetailPresenter
+    <EditDailyPresenter
       id={id}
       date={{
         value: date,
