@@ -28,8 +28,8 @@ export const useRegisterDaily = () => {
     accountId: string;
     amount: number;
     memo: string | null;
-  }) =>
-    await dailyRegistrationMutation({
+  }) => {
+    const { error } = await dailyRegistrationMutation({
       id: generateId(),
       date,
       iocomeType,
@@ -41,6 +41,10 @@ export const useRegisterDaily = () => {
       groupId,
       userId,
     });
+    if (error) {
+      throw error;
+    }
+  };
 
   return {
     registerDaily,

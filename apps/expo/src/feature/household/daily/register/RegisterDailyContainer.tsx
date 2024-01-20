@@ -31,7 +31,7 @@ export const RegisterDailyContainer = ({
 
   const registerHandler = async () => {
     try {
-      const res = await registerDaily({
+      await registerDaily({
         date: date ?? new Date(),
         iocomeType,
         genreId,
@@ -40,10 +40,6 @@ export const RegisterDailyContainer = ({
         amount,
         memo,
       });
-      if (res.error) {
-        alert("登録に失敗しました");
-        return;
-      }
       alert("登録しました");
     } catch (error) {
       console.error(error);
