@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 
 import type { IocomeType } from "~/types/iocome-type";
+import { useDeleteDaily } from "~/hooks/household/daily/useDeleteDaily";
 import { useEditDaily } from "~/hooks/household/daily/useEditDaily";
 import { useGetDailyById } from "~/hooks/household/daily/useGetDailyById";
 import { useAlert } from "~/hooks/useAlert";
@@ -18,7 +20,9 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
   const [memo, setMemo] = useState<string | null>(null);
 
   const { editDaily } = useEditDaily();
+  const { deleteDaily } = useDeleteDaily();
   const { alertBuilder } = useAlert();
+  const { back } = useRouter();
 
   const resetHandler = () => {
     setDate(daily.date);
@@ -50,7 +54,14 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
   };
 
   const deleteHandler = async () => {
-    alert("削除しました");
+    try {
+      await deleteDaily(id);
+      alert("削除しました");
+      back();
+    } catch (e) {
+      console.error(e);
+      alert("削除に失敗しました");
+    }
   };
 
   const onPressAlert = () => {
