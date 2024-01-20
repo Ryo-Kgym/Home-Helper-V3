@@ -27,6 +27,7 @@ export const EditDailyPresenter = ({
   memo,
   resetHandler,
   editHandler,
+  deleteHandler,
   disabled,
 }: {
   id: string;
@@ -39,6 +40,7 @@ export const EditDailyPresenter = ({
   memo: FieldType<string | null>;
   resetHandler: () => void;
   editHandler: () => void;
+  deleteHandler: () => void;
   disabled: boolean;
 }) => (
   <View className={"gap-3"}>
@@ -102,10 +104,18 @@ export const EditDailyPresenter = ({
       />
     </View>
     <View className={"flex-row justify-between"}>
-      <View className={"w-1/2"}>
+      <View className={"w-1/3"}>
         <Button title={"更新"} onPress={editHandler} disabled={disabled} />
       </View>
-      <View className={"w-1/2"}>
+      <View className={"w-1/3"}>
+        <Button
+          title={"削除"}
+          onPress={deleteHandler}
+          disabled={disabled}
+          color={"#FF0000"}
+        />
+      </View>
+      <View className={"w-1/3"}>
         <Button title={"リセット"} onPress={resetHandler} />
       </View>
     </View>

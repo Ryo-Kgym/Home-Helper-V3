@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { IocomeType } from "~/types/iocome-type";
 import { useEditDaily } from "~/hooks/household/daily/useEditDaily";
 import { useGetDailyById } from "~/hooks/household/daily/useGetDailyById";
+import { useAlert } from "~/hooks/useAlert";
 import { EditDailyPresenter } from "./EditDailyPresenter";
 
 export const EditDailyContainer = ({ id }: { id: string }) => {
@@ -17,6 +18,7 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
   const [memo, setMemo] = useState<string | null>(null);
 
   const { editDaily } = useEditDaily();
+  const { alertBuilder } = useAlert();
 
   const resetHandler = () => {
     setDate(daily.date);
@@ -45,6 +47,17 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
       console.error(e);
       alert("更新に失敗しました");
     }
+  };
+
+  const deleteHandler = async () => {
+    alert("削除しました");
+  };
+
+  const onPressAlert = () => {
+    alertBuilder({
+      title: "削除しますか？",
+      okCallback: deleteHandler,
+    });
   };
 
   useEffect(() => {
@@ -97,6 +110,7 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
       }}
       resetHandler={resetHandler}
       editHandler={editHandler}
+      deleteHandler={onPressAlert}
       disabled={loading}
     />
   );
