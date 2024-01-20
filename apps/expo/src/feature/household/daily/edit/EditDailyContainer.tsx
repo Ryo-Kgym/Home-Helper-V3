@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import type { IocomeType } from "~/types/iocome-type";
+import { useEditDaily } from "~/hooks/household/daily/useEditDaily";
 import { useGetDailyById } from "~/hooks/household/daily/useGetDailyById";
 import { EditDailyPresenter } from "./EditDailyPresenter";
 
@@ -15,6 +16,8 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
   const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState<string | null>(null);
 
+  const { editDaily } = useEditDaily();
+
   const resetHandler = () => {
     setDate(daily.date);
     setIocomeType(daily.genre.iocomeType);
@@ -25,8 +28,23 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
     setMemo(daily.memo);
   };
 
-  const updateHandler = () => {
-    console.log("update");
+  const editHandler = async () => {
+    try {
+      await editDaily({
+        id,
+        date: date!,
+        iocomeType,
+        genreId,
+        categoryId,
+        accountId,
+        amount,
+        memo,
+      });
+      alert("更新しました");
+    } catch (e) {
+      console.error(e);
+      alert("更新に失敗しました");
+    }
   };
 
   useEffect(() => {
@@ -78,7 +96,8 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
         setValue: setMemo,
       }}
       resetHandler={resetHandler}
-      updateHandler={updateHandler}
+      editHandler={editHandler}
+      disabled={loading}
     />
   );
 };

@@ -26,7 +26,8 @@ export const EditDailyPresenter = ({
   account,
   memo,
   resetHandler,
-  updateHandler,
+  editHandler,
+  disabled,
 }: {
   id: string;
   date: FieldType<Date | undefined>;
@@ -37,7 +38,8 @@ export const EditDailyPresenter = ({
   amount: FieldType<number>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
-  updateHandler: () => void;
+  editHandler: () => void;
+  disabled: boolean;
 }) => (
   <View className={"gap-3"}>
     <View>
@@ -101,7 +103,7 @@ export const EditDailyPresenter = ({
     </View>
     <View className={"flex-row justify-between"}>
       <View className={"w-1/2"}>
-        <Button title={"更新"} onPress={updateHandler} />
+        <Button title={"更新"} onPress={editHandler} disabled={disabled} />
       </View>
       <View className={"w-1/2"}>
         <Button title={"リセット"} onPress={resetHandler} />
