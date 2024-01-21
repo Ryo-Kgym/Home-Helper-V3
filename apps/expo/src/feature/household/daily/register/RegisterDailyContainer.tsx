@@ -41,6 +41,8 @@ export const RegisterDailyContainer = ({
         memo,
       });
       alert("登録しました");
+      setAmount(0);
+      setMemo(null);
     } catch (error) {
       console.error(error);
       alert("登録に失敗しました");

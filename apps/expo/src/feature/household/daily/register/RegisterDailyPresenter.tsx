@@ -1,4 +1,11 @@
-import { Button, Text, View } from "react-native";
+import {
+  Button,
+  Keyboard,
+  KeyboardAvoidingView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
 import {
@@ -37,61 +44,69 @@ export const RegisterDailyPresenter = ({
   resetHandler: () => void;
   registerHandler: () => void;
 }) => (
-  <View className={"gap-3"}>
-    <View>
-      <Text>日付</Text>
-      <EditableDate
-        value={date.value}
-        setValue={date.setValue}
-        loadingValue={"-"}
-      />
-    </View>
-    <View>
-      <Text>タイプ</Text>
-      <EditableIocomeType
-        value={iocomeType.value}
-        setValue={iocomeType.setValue}
-      />
-    </View>
-    <View>
-      <Text>ジャンル</Text>
-      <EditableGenre
-        value={genre.value}
-        setValue={genre.setValue}
-        iocomeType={iocomeType.value}
-      />
-    </View>
-    <View>
-      <Text>カテゴリ</Text>
-      <EditableCategory
-        value={category.value}
-        setValue={category.setValue}
-        genreId={genre.value}
-      />
-    </View>
-    <View>
-      <Text>アカウント</Text>
-      <EditableAccount value={account.value} setValue={account.setValue} />
-    </View>
-    <View>
-      <Text>金額</Text>
-      <EditableAmount
-        value={amount.value}
-        setValue={amount.setValue}
-        iocomeType={iocomeType.value}
-      />
-    </View>
-    <View>
-      <Text>メモ</Text>
-      <EditableMemo value={memo.value} setValue={memo.setValue} />
-    </View>
-    <View className={"flex-row justify-between"}>
-      <View className={"w-1/2"}>
-        <Button title={"登録"} onPress={registerHandler} />
+  <KeyboardAvoidingView
+    behavior={"position"}
+    contentContainerStyle={{}}
+    keyboardVerticalOffset={100}
+  >
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View className={"gap-3"}>
+        <View>
+          <Text>日付</Text>
+          <EditableDate
+            value={date.value}
+            setValue={date.setValue}
+            loadingValue={"-"}
+          />
+        </View>
+        <View>
+          <Text>タイプ</Text>
+          <EditableIocomeType
+            value={iocomeType.value}
+            setValue={iocomeType.setValue}
+          />
+        </View>
+        <View>
+          <Text>ジャンル</Text>
+          <EditableGenre
+            value={genre.value}
+            setValue={genre.setValue}
+            iocomeType={iocomeType.value}
+          />
+        </View>
+        <View>
+          <Text>カテゴリ</Text>
+          <EditableCategory
+            value={category.value}
+            setValue={category.setValue}
+            genreId={genre.value}
+          />
+        </View>
+        <View>
+          <Text>アカウント</Text>
+          <EditableAccount value={account.value} setValue={account.setValue} />
+        </View>
+        <View>
+          <Text>金額</Text>
+          <EditableAmount
+            value={amount.value}
+            setValue={amount.setValue}
+            iocomeType={iocomeType.value}
+          />
+        </View>
+        <View>
+          <Text>メモ</Text>
+          <EditableMemo value={memo.value} setValue={memo.setValue} />
+        </View>
+        <View className={"h-16 flex-row justify-between"}>
+          <View className={"w-1/2"}>
+            <Button title={"登録"} onPress={registerHandler} />
+          </View>
+          <View className={"w-1/2"}>
+            <Button title={"リセット"} onPress={resetHandler} />
+          </View>
+        </View>
       </View>
-      <View className={"w-1/2"}>
-        <Button title={"リセット"} onPress={resetHandler} />
-      </View>
-    </View>
-  </View>
+    </TouchableWithoutFeedback>
+  </KeyboardAvoidingView>
 );

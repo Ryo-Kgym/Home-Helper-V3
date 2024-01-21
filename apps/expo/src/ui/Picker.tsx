@@ -14,7 +14,7 @@ export const Picker = <T,>({
   <RNPicker
     selectedValue={value}
     onValueChange={setValue}
-    itemStyle={{ height: 40, fontSize: 18 }}
+    itemStyle={{ height: 60, fontSize: 18 }}
     enabled={!disabled}
   >
     {data.map((account) => (

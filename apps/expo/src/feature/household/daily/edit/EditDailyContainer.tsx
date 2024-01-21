@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 
 import type { IocomeType } from "~/types/iocome-type";
-import { useGetDailyDetailById } from "~/hooks/household/daily/useGetDailyDetailById";
+import { useDeleteDaily } from "~/hooks/household/daily/useDeleteDaily";
+import { useEditDaily } from "~/hooks/household/daily/useEditDaily";
+import { useGetDailyById } from "~/hooks/household/daily/useGetDailyById";
+import { useAlert } from "~/hooks/useAlert";
 import { EditDailyPresenter } from "./EditDailyPresenter";
 
 export const EditDailyContainer = ({ id }: { id: string }) => {
-  const { daily, loading } = useGetDailyDetailById({ id });
+  const { daily, loading } = useGetDailyById({ id });
 
   const [date, setDate] = useState<Date | undefined>(daily.date);
   const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
@@ -14,6 +18,11 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
   const [accountId, setAccountId] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState<string | null>(null);
+
+  const { editDaily } = useEditDaily();
+  const { deleteDaily } = useDeleteDaily();
+  const { alertBuilder } = useAlert();
+  const { back } = useRouter();
 
   const resetHandler = () => {
     setDate(daily.date);
@@ -25,8 +34,42 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
     setMemo(daily.memo);
   };
 
-  const updateHandler = () => {
-    console.log("update");
+  const editHandler = async () => {
+    try {
+      await editDaily({
+        id,
+        date: date!,
+        iocomeType,
+        genreId,
+        categoryId,
+        accountId,
+        amount,
+        memo,
+      });
+      alert("更新しました");
+      back();
+    } catch (e) {
+      console.error(e);
+      alert("更新に失敗しました");
+    }
+  };
+
+  const deleteHandler = async () => {
+    try {
+      await deleteDaily(id);
+      alert("削除しました");
+      back();
+    } catch (e) {
+      console.error(e);
+      alert("削除に失敗しました");
+    }
+  };
+
+  const onPressAlert = () => {
+    alertBuilder({
+      title: "削除しますか？",
+      okCallback: deleteHandler,
+    });
   };
 
   useEffect(() => {
@@ -78,7 +121,9 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
         setValue: setMemo,
       }}
       resetHandler={resetHandler}
-      updateHandler={updateHandler}
+      editHandler={editHandler}
+      deleteHandler={onPressAlert}
+      disabled={loading}
     />
   );
 };

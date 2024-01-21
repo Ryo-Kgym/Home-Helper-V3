@@ -14,6 +14,7 @@ export const Details = ({
     genreName: string;
     iocomeType: IocomeType;
     redirectHandler: () => void;
+    memo: string | null;
   }[];
 }) => (
   <FlatList
@@ -31,6 +32,9 @@ export const Details = ({
             <View className={"flex-row items-center"}>
               <Text className={"text-gray-600"}>{detail.genreName + "  "}</Text>
               <Text className={"text-gray-600"}>{detail.accountName}</Text>
+              <Text className={"text-gray-600"}>
+                {detail.memo?.substring(0, 10) + "..." ?? ""}
+              </Text>
             </View>
           </View>
           <View className={"w-1/3"}>

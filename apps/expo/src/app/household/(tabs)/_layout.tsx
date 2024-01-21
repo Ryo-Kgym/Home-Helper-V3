@@ -9,6 +9,7 @@ const Layout = () => (
       <Tabs.Screen
         name="calendar/[date]"
         options={{
+          title: "カレンダー",
           tabBarIcon: ({ color }) => (
             <FontAwesome name="calendar" size={24} color={color} />
           ),
@@ -18,6 +19,7 @@ const Layout = () => (
       <Tabs.Screen
         name="account/index"
         options={{
+          title: "アカウント",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="bank" size={24} color={color} />
           ),
@@ -26,10 +28,10 @@ const Layout = () => (
       <Tabs.Screen
         name="register/index"
         options={{
+          title: "登録",
           tabBarIcon: ({ color }) => (
             <Entypo name="pencil" size={30} color={color} />
           ),
-          title: "登録",
         }}
       />
     </Tabs>

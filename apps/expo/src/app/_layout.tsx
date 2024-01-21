@@ -11,7 +11,7 @@ const Layout = () => (
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#40ff40",
+          backgroundColor: "#ffa400",
         },
       }}
     />
