@@ -7458,50 +7458,6 @@ export type GetCreditCardListQuery = {
   }>;
 };
 
-export type GetCreditCardSummaryBetweenWithdrawalDateQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetCreditCardSummaryBetweenWithdrawalDateQuery = {
-  __typename?: "query_root";
-  allCreditCardSummariesList: Array<{
-    __typename?: "HouseholdCreditCardSummary";
-    id: string;
-    withdrawalDate: any;
-    totalAmount: any;
-    creditCard: string;
-    accountByAccountId: {
-      __typename?: "HouseholdAccount";
-      accountId: string;
-      accountName: string;
-    };
-  }>;
-};
-
-export type GetCreditCardSummaryByAccountIdBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  accountId: Scalars["String"];
-}>;
-
-export type GetCreditCardSummaryByAccountIdBetweenDateQuery = {
-  __typename?: "query_root";
-  allCreditCardSummariesList: Array<{
-    __typename?: "HouseholdCreditCardSummary";
-    id: string;
-    withdrawalDate: any;
-    totalAmount: any;
-    creditCard: string;
-    accountByAccountId: {
-      __typename?: "HouseholdAccount";
-      accountId: string;
-      accountName: string;
-    };
-  }>;
-};
-
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -7914,6 +7870,24 @@ export type FragDailyDetailFragment = {
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
 };
 
+export type GetCreditCardSummaryByDateQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetCreditCardSummaryByDateQuery = {
+  __typename?: "query_root";
+  creditCardSummaries: Array<{
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+    withdrawalDate: any;
+    totalAmount: any;
+    creditCard: string;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  }>;
+};
+
 export type GetDailyDetailByIdQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
@@ -7997,6 +7971,37 @@ export type GetDepositQuery = {
         }>;
       };
     };
+  }>;
+};
+
+export type GetAccountByIdQueryVariables = Exact<{
+  accountId: Scalars["String"];
+}>;
+
+export type GetAccountByIdQuery = {
+  __typename?: "query_root";
+  account?: {
+    __typename?: "HouseholdAccount";
+    id: string;
+    name: string;
+  } | null;
+};
+
+export type GetCreditCardSummaryByAccountIdQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  accountId: Scalars["String"];
+}>;
+
+export type GetCreditCardSummaryByAccountIdQuery = {
+  __typename?: "query_root";
+  creditCardSummaries: Array<{
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+    withdrawalDate: any;
+    totalAmount: any;
+    creditCard: string;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
   }>;
 };
 
@@ -8814,84 +8819,6 @@ export function useGetCreditCardListQuery(
     { query: GetCreditCardListDocument, ...options },
   );
 }
-export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
-  query GetCreditCardSummaryBetweenWithdrawalDate(
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-  ) {
-    allCreditCardSummariesList: householdCreditCardSummary(
-      where: {
-        withdrawalDate: { _gte: $fromDate }
-        _and: {
-          withdrawalDate: { _lte: $toDate }
-          _and: { groupId: { _eq: $groupId } }
-        }
-      }
-      orderBy: { withdrawalDate: ASC }
-    ) {
-      id
-      withdrawalDate
-      totalAmount
-      creditCard
-      accountByAccountId: account {
-        accountId: id
-        accountName: name
-      }
-    }
-  }
-`;
-
-export function useGetCreditCardSummaryBetweenWithdrawalDateQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCreditCardSummaryBetweenWithdrawalDateQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCreditCardSummaryBetweenWithdrawalDateQuery,
-    GetCreditCardSummaryBetweenWithdrawalDateQueryVariables
-  >({ query: GetCreditCardSummaryBetweenWithdrawalDateDocument, ...options });
-}
-export const GetCreditCardSummaryByAccountIdBetweenDateDocument = gql`
-  query GetCreditCardSummaryByAccountIdBetweenDate(
-    $fromDate: date!
-    $toDate: date!
-    $accountId: String!
-  ) {
-    allCreditCardSummariesList: householdCreditCardSummary(
-      where: {
-        withdrawalDate: { _gte: $fromDate }
-        _and: {
-          withdrawalDate: { _lte: $toDate }
-          _and: { accountId: { _eq: $accountId } }
-        }
-      }
-      orderBy: { withdrawalDate: ASC }
-    ) {
-      id
-      withdrawalDate
-      totalAmount
-      creditCard
-      accountByAccountId: account {
-        accountId: id
-        accountName: name
-      }
-    }
-  }
-`;
-
-export function useGetCreditCardSummaryByAccountIdBetweenDateQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCreditCardSummaryByAccountIdBetweenDateQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCreditCardSummaryByAccountIdBetweenDateQuery,
-    GetCreditCardSummaryByAccountIdBetweenDateQueryVariables
-  >({ query: GetCreditCardSummaryByAccountIdBetweenDateDocument, ...options });
-}
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate(
     $fromDate: date!
@@ -9430,6 +9357,45 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
 }
+export const GetCreditCardSummaryByDateDocument = gql`
+  query getCreditCardSummaryByDate(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: String!
+  ) {
+    creditCardSummaries: householdCreditCardSummary(
+      where: {
+        withdrawalDate: { _gte: $fromDate }
+        _and: {
+          withdrawalDate: { _lte: $toDate }
+          _and: { groupId: { _eq: $groupId } }
+        }
+      }
+      orderBy: { withdrawalDate: ASC }
+    ) {
+      id
+      withdrawalDate
+      totalAmount
+      creditCard
+      account {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardSummaryByDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryByDateQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryByDateQuery,
+    GetCreditCardSummaryByDateQueryVariables
+  >({ query: GetCreditCardSummaryByDateDocument, ...options });
+}
 export const GetDailyDetailByIdDocument = gql`
   query GetDailyDetailById($id: String!) {
     dailyDetail: householdDailyDetailByPk(id: $id) {
@@ -9513,6 +9479,62 @@ export function useGetDepositQuery(
     query: GetDepositDocument,
     ...options,
   });
+}
+export const GetAccountByIdDocument = gql`
+  query getAccountById($accountId: String!) {
+    account: householdAccountByPk(id: $accountId) {
+      id
+      name
+    }
+  }
+`;
+
+export function useGetAccountByIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetAccountByIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAccountByIdQuery, GetAccountByIdQueryVariables>({
+    query: GetAccountByIdDocument,
+    ...options,
+  });
+}
+export const GetCreditCardSummaryByAccountIdDocument = gql`
+  query getCreditCardSummaryByAccountId(
+    $fromDate: date!
+    $toDate: date!
+    $accountId: String!
+  ) {
+    creditCardSummaries: householdCreditCardSummary(
+      where: {
+        withdrawalDate: { _gte: $fromDate }
+        _and: {
+          withdrawalDate: { _lte: $toDate }
+          _and: { accountId: { _eq: $accountId } }
+        }
+      }
+      orderBy: { withdrawalDate: ASC }
+    ) {
+      id
+      withdrawalDate
+      totalAmount
+      creditCard
+      account {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardSummaryByAccountIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryByAccountIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryByAccountIdQuery,
+    GetCreditCardSummaryByAccountIdQueryVariables
+  >({ query: GetCreditCardSummaryByAccountIdDocument, ...options });
 }
 export const GetDailyByAccountIdDocument = gql`
   query getDailyByAccountId(

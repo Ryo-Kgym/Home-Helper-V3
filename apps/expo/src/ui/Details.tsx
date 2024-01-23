@@ -9,7 +9,7 @@ export const Details = ({
   details: {
     id: string;
     date?: Date;
-    accountName: string;
+    accountName?: string;
     amount: number;
     categoryName: string;
     genreName: string;
@@ -39,7 +39,9 @@ export const Details = ({
             </View>
             <View className={"flex-row items-center gap-2"}>
               <Text className={"text-gray-600"}>{detail.genreName}</Text>
-              <Text className={"text-gray-600"}>{detail.accountName}</Text>
+              {detail.accountName && (
+                <Text className={"text-gray-600"}>{detail.accountName}</Text>
+              )}
               <Text className={"text-gray-600"}>
                 {detail.memo ? detail.memo.substring(0, 10) + "..." : null}
               </Text>
