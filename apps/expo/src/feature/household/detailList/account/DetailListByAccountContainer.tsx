@@ -25,7 +25,7 @@ export const DetailListByAccountContainer = ({
   const details =
     data?.dailyDetailByDateList.map((d) => ({
       id: d.id,
-      date: d.date ? new Date(d.date) : null,
+      date: d.date ? new Date(d.date) : undefined,
       accountId: d.accountByAccountId.accountId,
       accountName: d.accountByAccountId.accountName,
       amount: (d.amount as number) ?? 0,
