@@ -19,12 +19,24 @@ export const useGetDetails = <T extends DetailBase>({
     daily: dailyConverter,
     creditCardSummary: creditCardSummaryConverter,
   },
+  filter = {
+    term: {
+      income: () => true,
+      outcome: () => true,
+    },
+  },
 }: {
   fromDate: Date;
   toDate: Date;
   converter: {
     daily: (daily: Daily) => T;
     creditCardSummary: (creditCard: CreditCardSummary) => T;
+  };
+  filter?: {
+    term: {
+      income: (data: T) => boolean;
+      outcome: (data: T) => boolean;
+    };
   };
 }) => {
   const { dailyDetailList } = useGetDailyList({
@@ -67,10 +79,14 @@ export const useGetDetails = <T extends DetailBase>({
     };
   };
 
-  const term = calcTotal([
-    ...dailyDetailList.map(dailyConverter),
-    ...creditCardSummaryList.map(creditCardSummaryConverter),
-  ]);
+  const term = calcTotal(
+    [
+      ...dailyDetailList.map(dailyConverter),
+      ...creditCardSummaryList.map(creditCardSummaryConverter),
+    ],
+    filter.term.income,
+    filter.term.outcome,
+  );
 
   return {
     getDetailsByDate,
