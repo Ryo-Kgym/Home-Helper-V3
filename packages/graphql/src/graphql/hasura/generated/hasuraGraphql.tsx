@@ -8000,6 +8000,19 @@ export type GetDepositQuery = {
   }>;
 };
 
+export type GetAccountByIdQueryVariables = Exact<{
+  accountId: Scalars["String"];
+}>;
+
+export type GetAccountByIdQuery = {
+  __typename?: "query_root";
+  account?: {
+    __typename?: "HouseholdAccount";
+    id: string;
+    name: string;
+  } | null;
+};
+
 export type GetDailyByAccountIdQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -9511,6 +9524,23 @@ export function useGetDepositQuery(
 ) {
   return Urql.useQuery<GetDepositQuery, GetDepositQueryVariables>({
     query: GetDepositDocument,
+    ...options,
+  });
+}
+export const GetAccountByIdDocument = gql`
+  query getAccountById($accountId: String!) {
+    account: householdAccountByPk(id: $accountId) {
+      id
+      name
+    }
+  }
+`;
+
+export function useGetAccountByIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetAccountByIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAccountByIdQuery, GetAccountByIdQueryVariables>({
+    query: GetAccountByIdDocument,
     ...options,
   });
 }
