@@ -1,15 +1,19 @@
+import { useRouter } from "expo-router";
+import { useGetAccountBalanceListQuery } from "@/turbo/graphql/household";
+
+import { paths } from "~/app/paths";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
-import { useGetAccountBalanceListQuery } from "../../../../../../../packages/graphql/household";
 import { BalanceListPresenter } from "./BalanceListPresenter";
 
 export const BalanceListContainer = () => {
   const { groupId } = useSaveGroupId();
+  const { push } = useRouter();
 
   const [{ data }] = useGetAccountBalanceListQuery({
     variables: {
       groupId,
       fromDate: "2019-01-01",
-      toDate: "2024-12-31",
+      toDate: "2099-12-31",
     },
   });
   const accounts =
@@ -19,6 +23,8 @@ export const BalanceListContainer = () => {
       balance:
         (account.allDetailViewsAggregate?.aggregate?.sum
           ?.signedAmount as number) ?? 0,
+      redirectHandler: () =>
+        push(paths.household.detailListByAccount(account.id) as "/"),
     })) ?? [];
   return <BalanceListPresenter accounts={accounts} />;
 };
