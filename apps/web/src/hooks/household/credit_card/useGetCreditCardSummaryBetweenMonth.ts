@@ -1,4 +1,4 @@
-import { useGetCreditCardSummaryBetweenWithdrawalDateQuery } from "@/turbo/graphql/household";
+import { useGetCreditCardSummaryByDateQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetCreditCardSummaryBetweenMonth = (
@@ -21,7 +21,7 @@ export const useGetCreditCardSummaryBetweenMonth = (
   );
 
   const [{ data, fetching, error }, refetch] =
-    useGetCreditCardSummaryBetweenWithdrawalDateQuery({
+    useGetCreditCardSummaryByDateQuery({
       variables: {
         fromDate: firstDay.toISOString(),
         toDate: lastDay.toISOString(),
@@ -30,10 +30,11 @@ export const useGetCreditCardSummaryBetweenMonth = (
     });
 
   const incomeTotal = 0;
-  const outcomeTotal = data?.allCreditCardSummariesList?.reduce(
-    (a, b) => a + Number(b.totalAmount),
-    0,
-  );
+  const outcomeTotal =
+    data?.creditCardSummaries?.reduce(
+      (a: number, b) => a + Number(b.totalAmount),
+      0,
+    ) ?? 0;
 
   return {
     data,

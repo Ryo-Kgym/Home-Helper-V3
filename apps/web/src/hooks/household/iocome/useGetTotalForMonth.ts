@@ -4,7 +4,7 @@
 
 import type { DailyTotal } from "@domain/model/household/DailyTotal";
 import {
-  useGetCreditCardSummaryBetweenWithdrawalDateQuery,
+  useGetCreditCardSummaryByDateQuery,
   useGetTotalBetweenDateQuery,
 } from "@/turbo/graphql/household";
 import { useDate } from "@hooks/date/useDate";
@@ -27,14 +27,13 @@ export const useGetTotalForMonth = (date: Date) => {
       groupId,
     },
   });
-  const [{ data: creditData }] =
-    useGetCreditCardSummaryBetweenWithdrawalDateQuery({
-      variables: {
-        fromDate: firstDate,
-        toDate: lastDate,
-        groupId,
-      },
-    });
+  const [{ data: creditData }] = useGetCreditCardSummaryByDateQuery({
+    variables: {
+      fromDate: firstDate,
+      toDate: lastDate,
+      groupId,
+    },
+  });
   const { convertToYmd } = useDate();
 
   const dailyTotalList: DailyTotal[] = createDateList(date).map((date) => {
@@ -45,14 +44,14 @@ export const useGetTotalForMonth = (date: Date) => {
       (e) => e.date === convertToYmd(date),
     )?.total as number;
     const filteredCreditCardSummary =
-      creditData?.allCreditCardSummariesList?.filter(
+      creditData?.creditCardSummaries?.filter(
         (e) => e.withdrawalDate === convertToYmd(date),
       ) ?? [];
 
     const creditCardTotal =
       filteredCreditCardSummary.length > 0
         ? filteredCreditCardSummary.reduce(
-            (acc, cur) => acc + Number(cur.totalAmount),
+            (acc: number, cur) => acc + Number(cur.totalAmount),
             0,
           )
         : undefined;

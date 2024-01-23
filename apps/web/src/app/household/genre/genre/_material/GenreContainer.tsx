@@ -55,7 +55,7 @@ export const GenreContainer = () => {
     }) ?? [];
 
   const creditCardTableProps: TableProps[] =
-    creditCardSummaryData?.allCreditCardSummariesList?.map((summary) => {
+    creditCardSummaryData?.creditCardSummaries?.map((summary) => {
       return {
         keyPrefix: "creditCardSummary",
         columns: [
@@ -85,7 +85,7 @@ export const GenreContainer = () => {
           changeToMonth={setToMonth}
           tableProps={tableProps.concat(creditCardTableProps)}
           incomeTotal={incomeTotal! + creditCardIncomeTotal}
-          outcomeTotal={outcomeTotal! + creditCardOutcomeTotal!}
+          outcomeTotal={outcomeTotal! + creditCardOutcomeTotal}
         />
       }
       second={
