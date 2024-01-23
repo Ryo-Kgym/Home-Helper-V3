@@ -1,4 +1,4 @@
-import { useGetCreditCardSummaryBetweenWithdrawalDateQuery } from "@/turbo/graphql/household";
+import { useGetCreditCardSummaryByDateQuery } from "@/turbo/graphql/household";
 
 import type { CreditCardSummary } from "~/hooks/household/credit_card/credit-card-type";
 import type { CreditCard } from "~/types/credit-card";
@@ -18,17 +18,16 @@ export const useGetCreditCardSummaryList = ({
 }) => {
   const { groupId } = useSaveGroupId();
 
-  const [{ data, fetching: loading }] =
-    useGetCreditCardSummaryBetweenWithdrawalDateQuery({
-      variables: {
-        groupId,
-        fromDate,
-        toDate,
-      },
-    });
+  const [{ data, fetching: loading }] = useGetCreditCardSummaryByDateQuery({
+    variables: {
+      groupId,
+      fromDate,
+      toDate,
+    },
+  });
 
   const creditCardSummaryList: CreditCardSummary[] =
-    data?.allCreditCardSummariesList.map((c) => ({
+    data?.creditCardSummaries.map((c) => ({
       id: c.id,
       withdrawalDate: c.withdrawalDate ? new Date(c.withdrawalDate) : undefined,
       genre: {
@@ -39,8 +38,8 @@ export const useGetCreditCardSummaryList = ({
         name: getCreditCardName(c.creditCard as CreditCard),
       },
       account: {
-        id: c.accountByAccountId.accountId,
-        name: c.accountByAccountId.accountName,
+        id: c.account.id,
+        name: c.account.name,
       },
       total: c.totalAmount as number,
     })) ?? [];
