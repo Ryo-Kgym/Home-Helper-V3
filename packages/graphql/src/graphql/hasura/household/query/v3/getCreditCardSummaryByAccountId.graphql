@@ -1,4 +1,4 @@
-query GetCreditCardSummaryByAccountIdBetweenDate(
+query getCreditCardSummaryByAccountId(
   $fromDate: date!
   $toDate: date!
   $accountId: String!

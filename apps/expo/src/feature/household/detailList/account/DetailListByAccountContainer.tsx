@@ -2,7 +2,7 @@ import type { ComponentProps } from "react";
 import { useRouter } from "expo-router";
 import {
   OrderBy,
-  useGetCreditCardSummaryByAccountIdBetweenDateQuery,
+  useGetCreditCardSummaryByAccountIdQuery,
   useGetDailyByAccountIdQuery,
 } from "@/turbo/graphql/household";
 
@@ -32,14 +32,15 @@ export const DetailListByAccountContainer = ({
       orderBy: OrderBy.Desc,
     },
   });
-  const [{ data: creditCardSummary }] =
-    useGetCreditCardSummaryByAccountIdBetweenDateQuery({
+  const [{ data: creditCardSummary }] = useGetCreditCardSummaryByAccountIdQuery(
+    {
       variables: {
         accountId,
         fromDate: "2019-01-01",
         toDate: "2099-12-31",
       },
-    });
+    },
+  );
 
   const details: ComponentProps<typeof Details>["details"] = [
     ...(dailyDetail?.dailies.map((d) => ({
