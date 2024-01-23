@@ -29,14 +29,16 @@ export const Details = ({
           }
         >
           <View className={"w-2/3"}>
-            <View className={"flex-row gap-5"}>
-              <Text className={"text-xl text-gray-600"}>
-                {detail.date?.toISOString().slice(0, 10) ?? ""}
-              </Text>
-              <Text className={"text-xl"}>{detail.categoryName}</Text>
+            <View className={"flex-row items-center gap-5"}>
+              {detail.date && (
+                <Text className={"text-lg text-gray-600"}>
+                  {detail.date.toISOString().slice(0, 10)}
+                </Text>
+              )}
+              <Text className={"text-lg"}>{detail.categoryName}</Text>
             </View>
-            <View className={"flex-row items-center"}>
-              <Text className={"text-gray-600"}>{detail.genreName + "  "}</Text>
+            <View className={"flex-row items-center gap-2"}>
+              <Text className={"text-gray-600"}>{detail.genreName}</Text>
               <Text className={"text-gray-600"}>{detail.accountName}</Text>
               <Text className={"text-gray-600"}>
                 {detail.memo ? detail.memo.substring(0, 10) + "..." : null}
