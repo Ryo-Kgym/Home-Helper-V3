@@ -31,12 +31,15 @@ export const DayPresenter = ({
 }: DayPresenterProps) => (
   <>
     <div
-      className={`h-32 cursor-pointer border-b-2 border-r-2 hover:bg-amber-200
+      className={`h-32 cursor-pointer border-b-2 border-r-2 border-gray-400 hover:bg-amber-200 
       ${isToday && "bg-amber-100"} ${isNotThisMonth && "bg-gray-300"}`}
     >
       <DayLabel openClickHandler={openClickHandler}>{displayDay}</DayLabel>
 
-      <button className={"grid grid-cols-1"} onClick={saveDateHandler}>
+      <button
+        className={"grid grid-cols-1 bg-inherit"}
+        onClick={saveDateHandler}
+      >
         <TotalLine
           price={income}
           backgroundColor={`${income && "bg-green-300"} `}
