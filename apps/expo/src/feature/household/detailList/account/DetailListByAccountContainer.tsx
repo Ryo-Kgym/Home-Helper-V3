@@ -1,5 +1,8 @@
 import { useRouter } from "expo-router";
-import { useGetDailyDetailByDateAccountIdQuery } from "@/turbo/graphql/household";
+import {
+  OrderBy,
+  useGetDailyByAccountIdQuery,
+} from "@/turbo/graphql/household";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { paths } from "~/app/paths";
@@ -13,26 +16,26 @@ export const DetailListByAccountContainer = ({
 }) => {
   const { groupId } = useSaveGroupId();
   const { push } = useRouter();
-  const [{ data }] = useGetDailyDetailByDateAccountIdQuery({
+  const [{ data }] = useGetDailyByAccountIdQuery({
     variables: {
       accountId,
       groupId,
       fromDate: "2019-01-01",
       toDate: "2099-12-31",
+      orderBy: OrderBy.Desc,
     },
   });
 
   const details =
-    data?.dailyDetailByDateList.map((d) => ({
+    data?.dailies.map((d) => ({
       id: d.id,
       date: d.date ? new Date(d.date) : undefined,
-      accountId: d.accountByAccountId.accountId,
-      accountName: d.accountByAccountId.accountName,
+      accountId: d.account.id,
+      accountName: d.account.name,
       amount: (d.amount as number) ?? 0,
-      categoryName: d.categoryByCategoryId.categoryName,
-      genreName: d.categoryByCategoryId.genreByGenreId.genreName,
-      iocomeType: d.categoryByCategoryId.genreByGenreId
-        .iocomeType as IocomeType,
+      categoryName: d.category.name,
+      genreName: d.genre.name,
+      iocomeType: d.genre.iocomeType as IocomeType,
       redirectHandler: () => push(paths.household.daily(d.id) as "/"),
       memo: d.memo ?? null,
     })) ?? [];
