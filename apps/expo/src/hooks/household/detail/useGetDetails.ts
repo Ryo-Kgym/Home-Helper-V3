@@ -63,7 +63,13 @@ export const useGetDetails = <T extends DetailBase>({
     };
   };
 
+  const term = calcTotal([
+    ...dailyDetailList.map(dailyConverter),
+    ...creditCardSummaryList.map(creditCardSummaryConverter),
+  ]);
+
   return {
     getDetailsByDate,
+    term,
   };
 };
