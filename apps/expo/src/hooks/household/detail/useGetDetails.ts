@@ -15,13 +15,17 @@ import { calcTotal } from "./calc-total";
 export const useGetDetails = <T extends DetailBase>({
   fromDate,
   toDate,
-  dailyConverter,
-  creditCardSummaryConverter,
+  converter: {
+    daily: dailyConverter,
+    creditCardSummary: creditCardSummaryConverter,
+  },
 }: {
   fromDate: Date;
   toDate: Date;
-  dailyConverter: (daily: Daily) => T;
-  creditCardSummaryConverter: (creditCard: CreditCardSummary) => T;
+  converter: {
+    daily: (daily: Daily) => T;
+    creditCardSummary: (creditCard: CreditCardSummary) => T;
+  };
 }) => {
   const { dailyDetailList } = useGetDailyList({
     fromDate,

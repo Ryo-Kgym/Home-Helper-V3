@@ -18,14 +18,16 @@ export const useCalcMonthly = () => {
   const { term } = useGetDetails({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
-    dailyConverter: (d) => ({
-      iocomeType: d.genre.iocomeType,
-      amount: d.amount,
-    }),
-    creditCardSummaryConverter: (d) => ({
-      iocomeType: d.genre.iocomeType,
-      amount: d.total,
-    }),
+    converter: {
+      daily: (d) => ({
+        iocomeType: d.genre.iocomeType,
+        amount: d.amount,
+      }),
+      creditCardSummary: (d) => ({
+        iocomeType: d.genre.iocomeType,
+        amount: d.total,
+      }),
+    },
   });
 
   return {
