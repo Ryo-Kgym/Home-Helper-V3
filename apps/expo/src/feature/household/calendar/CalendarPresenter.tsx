@@ -14,6 +14,9 @@ export const CalendarPresenter = ({
     isToday: boolean;
     isThisMonth: boolean;
     isSelectedDate: boolean;
+    income: number;
+    outcome: number;
+    totalDisabled: boolean;
   }[];
 }) => (
   <View>
@@ -56,6 +59,12 @@ export const CalendarPresenter = ({
           <View className={`h-full w-full`}>
             <Text className={"text-gray-600"}>
               {day.item.date.toISOString().slice(8, 10)}
+            </Text>
+            <Text className={"text-right text-xs text-green-500"}>
+              {!day.item.totalDisabled && day.item.income.toLocaleString()}
+            </Text>
+            <Text className={"text-right text-xs text-red-500"}>
+              {!day.item.totalDisabled && day.item.outcome.toLocaleString()}
             </Text>
           </View>
         </Pressable>

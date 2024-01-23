@@ -41,14 +41,20 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   });
   const { details, incomeTotal, outcomeTotal } = getDetailsByDate(baseDate);
 
-  const days = calendar.map((day) => ({
-    date: day,
-    isToday:
-      day.toISOString().slice(0, 10) === today.toISOString().slice(0, 10),
-    isThisMonth: day.getMonth() === baseDate.getMonth(),
-    isSelectedDate:
-      baseDate.toISOString().slice(0, 10) === day.toISOString().slice(0, 10),
-  }));
+  const days = calendar.map((day) => {
+    const { incomeTotal, outcomeTotal } = getDetailsByDate(day);
+    return {
+      date: day,
+      isToday:
+        day.toISOString().slice(0, 10) === today.toISOString().slice(0, 10),
+      isThisMonth: day.getMonth() === baseDate.getMonth(),
+      isSelectedDate:
+        baseDate.toISOString().slice(0, 10) === day.toISOString().slice(0, 10),
+      income: incomeTotal,
+      outcome: outcomeTotal,
+      totalDisabled: incomeTotal === 0 && outcomeTotal === 0,
+    };
+  });
 
   const changeHandler = (date: Date) =>
     push(paths.household.calendar(date) as "/");
