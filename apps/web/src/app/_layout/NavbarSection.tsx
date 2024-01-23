@@ -43,7 +43,9 @@ export const NavbarSection = ({
             .map((navi, index) => (
               <Link key={`menu-${index}`} href={navi.url}>
                 <button
-                  className={"my-1 p-3 hover:font-bold max-sm:text-center"}
+                  className={
+                    "my-1 w-full bg-inherit p-3 hover:font-bold max-sm:text-center"
+                  }
                   onClick={() => {
                     // widthがsm以下の場合は、メニューを閉じる
                     if (window.innerWidth < 640) toggle();
