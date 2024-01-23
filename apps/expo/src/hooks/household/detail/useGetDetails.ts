@@ -1,0 +1,69 @@
+import type { CreditCardSummary } from "~/hooks/household/credit_card/credit-card-type";
+import type { Daily } from "~/hooks/household/daily/daily";
+import type { DetailBase } from "~/hooks/household/detail/detail-base";
+import { useGetCreditCardSummaryList } from "~/hooks/household/credit_card/useGetCreditCardSummaryList";
+import { useGetDailyList } from "~/hooks/household/daily/useGetDailyList";
+import { calcTotal } from "./calc-total";
+
+/**
+ * 日付を指定して、その日の明細を取得し、集計する。
+ * @param fromDate 抽出開始日
+ * @param toDate 抽出終了日
+ * @param dailyConverter 日次明細を変換する関数
+ * @param creditCardConverter クレジットカードサマリを変換する関数
+ */
+export const useGetDetails = <T extends DetailBase>({
+  fromDate,
+  toDate,
+  dailyConverter,
+  creditCardSummaryConverter,
+}: {
+  fromDate: Date;
+  toDate: Date;
+  dailyConverter: (daily: Daily) => T;
+  creditCardSummaryConverter: (creditCard: CreditCardSummary) => T;
+}) => {
+  const { dailyDetailList } = useGetDailyList({
+    fromDate,
+    toDate,
+  });
+
+  const { creditCardSummaryList } = useGetCreditCardSummaryList({
+    fromDate,
+    toDate,
+  });
+
+  const getDetailsByDate = (date: Date) => {
+    const details: T[] = [
+      // 日次明細
+      ...dailyDetailList
+        .filter(
+          (d) =>
+            d.date?.toISOString().slice(0, 10) ===
+            date.toISOString().slice(0, 10),
+        )
+        .map(dailyConverter),
+      // クレジットカードサマリ
+      ...creditCardSummaryList
+        .filter(
+          (d) =>
+            d.withdrawalDate?.toISOString().slice(0, 10) ===
+            date.toISOString().slice(0, 10),
+        )
+        .map(creditCardSummaryConverter),
+    ];
+
+    const { incomeTotal, outcomeTotal, balance } = calcTotal(details);
+
+    return {
+      details,
+      incomeTotal,
+      outcomeTotal,
+      balance,
+    };
+  };
+
+  return {
+    getDetailsByDate,
+  };
+};
