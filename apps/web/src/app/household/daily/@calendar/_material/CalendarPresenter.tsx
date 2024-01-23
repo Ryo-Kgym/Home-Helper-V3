@@ -32,7 +32,7 @@ export const CalendarPresenter = ({
       </div>
     </div>
 
-    <div className={"grid w-full grid-cols-7 border-l-2"}>
+    <div className={"grid w-full grid-cols-7 border-l-2 border-gray-400"}>
       <Week />
       {dailyTotalList.map((e, index) => (
         <Day
@@ -49,7 +49,7 @@ export const CalendarPresenter = ({
 );
 
 const Week = () => {
-  const baseStyle = "p-2 border-r-2 border-b-2 border-t-2";
+  const baseStyle = "p-2 border-r-2 border-b-2 border-t-2 border-gray-400";
 
   return (
     <>

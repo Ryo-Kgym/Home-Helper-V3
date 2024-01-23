@@ -14,6 +14,30 @@ export type AuPayCsvLine = {
 
 export const parseAuPayCsvLine = (line: string): AuPayCsvLine => {
   const splitLine = line.split(",");
+
+  if (splitLine.length !== 6) {
+    return {
+      user: () => {
+        return "";
+      },
+      paymentType: () => {
+        return "";
+      },
+      date: () => {
+        return new Date();
+      },
+      shopName: () => {
+        return "";
+      },
+      price: () => {
+        return 0;
+      },
+      note: () => {
+        return "";
+      },
+    };
+  }
+
   return {
     user: () => {
       return splitLine[0]!;
