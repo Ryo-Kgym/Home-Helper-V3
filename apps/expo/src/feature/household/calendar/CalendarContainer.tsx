@@ -18,26 +18,28 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   const { getDetailsByDate } = useGetDetails({
     fromDate,
     toDate,
-    dailyConverter: (detail) => ({
-      id: detail.id,
-      accountName: detail.account.name,
-      amount: detail.amount,
-      genreName: detail.genre.name,
-      categoryName: detail.category.name,
-      iocomeType: detail.genre.iocomeType,
-      memo: detail.memo,
-      redirectHandler: () => push(paths.household.daily(detail.id) as "/"),
-    }),
-    creditCardSummaryConverter: (summary) => ({
-      id: summary.id,
-      accountName: summary.account.name,
-      amount: summary.total,
-      genreName: summary.genre.name,
-      categoryName: summary.category.name,
-      iocomeType: summary.genre.iocomeType,
-      memo: null,
-      redirectHandler: () => undefined,
-    }),
+    converter: {
+      daily: (detail) => ({
+        id: detail.id,
+        accountName: detail.account.name,
+        amount: detail.amount,
+        genreName: detail.genre.name,
+        categoryName: detail.category.name,
+        iocomeType: detail.genre.iocomeType,
+        memo: detail.memo,
+        redirectHandler: () => push(paths.household.daily(detail.id) as "/"),
+      }),
+      creditCardSummary: (summary) => ({
+        id: summary.id,
+        accountName: summary.account.name,
+        amount: summary.total,
+        genreName: summary.genre.name,
+        categoryName: summary.category.name,
+        iocomeType: summary.genre.iocomeType,
+        memo: null,
+        redirectHandler: () => undefined,
+      }),
+    },
   });
   const { details, incomeTotal, outcomeTotal } = getDetailsByDate(baseDate);
 
