@@ -79,6 +79,27 @@ export const useGetDetails = <T extends DetailBase>({
     };
   };
 
+  const getDetailsForTerm = () => {
+    const details: T[] = [
+      // 日次明細
+      ...dailyDetailList.map(dailyConverter),
+      // クレジットカードサマリ
+      ...creditCardSummaryList.map(creditCardSummaryConverter),
+    ];
+
+    const { incomeTotal, outcomeTotal, balance } = calcTotal(details);
+
+    return {
+      details,
+      incomeTotal,
+      outcomeTotal,
+      balance,
+    };
+  };
+
+  /**
+   * @deprecated
+   */
   const term = calcTotal(
     [
       ...dailyDetailList.map(dailyConverter),
@@ -90,6 +111,7 @@ export const useGetDetails = <T extends DetailBase>({
 
   return {
     getDetailsByDate,
+    getDetailsForTerm,
     term,
   };
 };
