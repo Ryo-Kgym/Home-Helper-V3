@@ -8,6 +8,7 @@ export const Details = ({
 }: {
   details: {
     id: string;
+    date?: Date;
     accountName: string;
     amount: number;
     categoryName: string;
@@ -27,13 +28,20 @@ export const Details = ({
             "flex-row items-center border-b border-b-gray-400 px-3 py-2"
           }
         >
-          <View className={"w-2/3 "}>
-            <Text className={"text-xl"}>{detail.categoryName}</Text>
-            <View className={"flex-row items-center"}>
-              <Text className={"text-gray-600"}>{detail.genreName + "  "}</Text>
+          <View className={"w-2/3"}>
+            <View className={"flex-row items-center gap-5"}>
+              {detail.date && (
+                <Text className={"text-lg text-gray-600"}>
+                  {detail.date.toISOString().slice(0, 10)}
+                </Text>
+              )}
+              <Text className={"text-lg"}>{detail.categoryName}</Text>
+            </View>
+            <View className={"flex-row items-center gap-2"}>
+              <Text className={"text-gray-600"}>{detail.genreName}</Text>
               <Text className={"text-gray-600"}>{detail.accountName}</Text>
               <Text className={"text-gray-600"}>
-                {detail.memo?.substring(0, 10) + "..." ?? ""}
+                {detail.memo ? detail.memo.substring(0, 10) + "..." : null}
               </Text>
             </View>
           </View>

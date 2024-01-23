@@ -6,5 +6,7 @@ export const paths = {
     calendar: (date: Date) =>
       `/household/calendar/${date.toISOString().slice(0, 10)}`,
     daily: (id: string) => `/household/detail/daily/${id}`,
+    detailListByAccount: (accountId: string) =>
+      `/household/detailList/account/${accountId}`,
   },
 };

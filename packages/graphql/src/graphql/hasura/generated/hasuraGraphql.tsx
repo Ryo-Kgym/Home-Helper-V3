@@ -8000,6 +8000,34 @@ export type GetDepositQuery = {
   }>;
 };
 
+export type GetDailyByAccountIdQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  accountId: Scalars["String"];
+  groupId: Scalars["String"];
+  orderBy?: InputMaybe<OrderBy>;
+}>;
+
+export type GetDailyByAccountIdQuery = {
+  __typename?: "query_root";
+  dailies: Array<{
+    __typename?: "HouseholdDailyDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+      iocomeType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  }>;
+};
+
 export const FragDailyDetailFragmentDoc = gql`
   fragment fragDailyDetail on HouseholdDailyDetail {
     id
@@ -9485,4 +9513,31 @@ export function useGetDepositQuery(
     query: GetDepositDocument,
     ...options,
   });
+}
+export const GetDailyByAccountIdDocument = gql`
+  query getDailyByAccountId(
+    $fromDate: date!
+    $toDate: date!
+    $accountId: String!
+    $groupId: String!
+    $orderBy: OrderBy = ASC
+  ) {
+    dailies: dailyDetailByDate(
+      args: { group_id: $groupId, from_date: $fromDate, to_date: $toDate }
+      where: { accountId: { _eq: $accountId } }
+      orderBy: { date: $orderBy, id: DESC }
+    ) {
+      ...fragDailyDetail
+    }
+  }
+  ${FragDailyDetailFragmentDoc}
+`;
+
+export function useGetDailyByAccountIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetDailyByAccountIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDailyByAccountIdQuery,
+    GetDailyByAccountIdQueryVariables
+  >({ query: GetDailyByAccountIdDocument, ...options });
 }
