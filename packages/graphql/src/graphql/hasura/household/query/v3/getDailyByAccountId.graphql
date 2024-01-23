@@ -1,0 +1,15 @@
+query getDailyByAccountId(
+  $fromDate: date!
+  $toDate: date!
+  $accountId: String!
+  $groupId: String!
+  $orderBy: OrderBy = ASC
+) {
+  dailies: dailyDetailByDate(
+    args: { group_id: $groupId, from_date: $fromDate, to_date: $toDate }
+    where: { accountId: { _eq: $accountId } }
+    orderBy: { date: $orderBy, id: DESC }
+  ) {
+    ...fragDailyDetail
+  }
+}
