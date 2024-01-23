@@ -52,7 +52,7 @@ export const DetailListByAccountContainer = ({
       redirectHandler: () => push(paths.household.daily(d.id) as "/"),
       memo: d.memo ?? null,
     })) ?? []),
-    ...(creditCardSummary?.allCreditCardSummariesList.map((d) => ({
+    ...(creditCardSummary?.creditCardSummaries.map((d) => ({
       id: d.id,
       date: d.withdrawalDate ? new Date(d.withdrawalDate) : undefined,
       amount: (d.totalAmount as number) ?? 0,

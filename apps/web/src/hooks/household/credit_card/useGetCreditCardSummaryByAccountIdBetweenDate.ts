@@ -15,8 +15,8 @@ export const useGetCreditCardSummaryByAccountIdBetweenDate = (
     });
 
   const incomeTotal = 0;
-  const outcomeTotal = data?.allCreditCardSummariesList?.reduce(
-    (a, b) => a + Number(b.totalAmount),
+  const outcomeTotal = data?.creditCardSummaries.reduce(
+    (a: number, b) => a + Number(b.totalAmount),
     0,
   );
 

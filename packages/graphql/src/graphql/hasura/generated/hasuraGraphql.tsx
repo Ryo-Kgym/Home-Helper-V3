@@ -7488,17 +7488,13 @@ export type GetCreditCardSummaryByAccountIdBetweenDateQueryVariables = Exact<{
 
 export type GetCreditCardSummaryByAccountIdBetweenDateQuery = {
   __typename?: "query_root";
-  allCreditCardSummariesList: Array<{
+  creditCardSummaries: Array<{
     __typename?: "HouseholdCreditCardSummary";
     id: string;
     withdrawalDate: any;
     totalAmount: any;
     creditCard: string;
-    accountByAccountId: {
-      __typename?: "HouseholdAccount";
-      accountId: string;
-      accountName: string;
-    };
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
   }>;
 };
 
@@ -8872,7 +8868,7 @@ export const GetCreditCardSummaryByAccountIdBetweenDateDocument = gql`
     $toDate: date!
     $accountId: String!
   ) {
-    allCreditCardSummariesList: householdCreditCardSummary(
+    creditCardSummaries: householdCreditCardSummary(
       where: {
         withdrawalDate: { _gte: $fromDate }
         _and: {
@@ -8886,9 +8882,9 @@ export const GetCreditCardSummaryByAccountIdBetweenDateDocument = gql`
       withdrawalDate
       totalAmount
       creditCard
-      accountByAccountId: account {
-        accountId: id
-        accountName: name
+      account {
+        id
+        name
       }
     }
   }

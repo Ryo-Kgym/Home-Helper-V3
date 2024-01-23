@@ -3,7 +3,7 @@ query GetCreditCardSummaryByAccountIdBetweenDate(
   $toDate: date!
   $accountId: String!
 ) {
-  allCreditCardSummariesList: householdCreditCardSummary(
+  creditCardSummaries: householdCreditCardSummary(
     where: {
       withdrawalDate: { _gte: $fromDate }
       _and: {
@@ -17,9 +17,9 @@ query GetCreditCardSummaryByAccountIdBetweenDate(
     withdrawalDate
     totalAmount
     creditCard
-    accountByAccountId: account {
-      accountId: id
-      accountName: name
+    account {
+      id
+      name
     }
   }
 }
