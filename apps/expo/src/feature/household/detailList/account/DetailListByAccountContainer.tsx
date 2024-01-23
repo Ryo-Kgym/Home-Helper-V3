@@ -65,7 +65,11 @@ export const DetailListByAccountContainer = ({
       redirectHandler: () => undefined,
       memo: null,
     })) ?? []),
-  ];
+  ].sort((a, b) => {
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return b.date.getTime() - a.date.getTime();
+  });
 
   return <Details details={details} />;
 };
