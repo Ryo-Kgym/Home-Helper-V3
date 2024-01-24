@@ -1,11 +1,13 @@
 import { View } from "react-native";
 
+import { CategoryRankingBox } from "~/feature/household/dashboard/CategoryRankingBox";
 import { BalanceBox } from "./BalanceBox";
 import { MonthlyBox } from "./MonthlyBox";
 
 export const HouseholdDashboardPresenter = () => (
   <View className={"gap-2 p-2"}>
-    <MonthlyBox />
     <BalanceBox />
+    <MonthlyBox />
+    <CategoryRankingBox />
   </View>
 );
