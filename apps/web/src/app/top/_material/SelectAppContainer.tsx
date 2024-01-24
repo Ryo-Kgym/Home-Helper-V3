@@ -5,7 +5,7 @@
 "use client";
 
 import type { LinkProps } from "@components/atoms/Card";
-import { useGetAppsQuery } from "@/turbo/graphql/household";
+import { useGetAppsQuery } from "@/turbo/graphql/public";
 import { LinkList } from "@components/atoms/Card";
 import { useGroup } from "@hooks/group/useGroup";
 

@@ -1,5 +1,5 @@
 import { Text } from "react-native";
-import { useGetAppsQuery } from "@/turbo/graphql/household";
+import { useGetAppsQuery } from "@/turbo/graphql/public";
 
 import { paths } from "~/app/paths";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
