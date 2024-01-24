@@ -28,11 +28,15 @@ export const EditableGenre = ({
       label: genre.genreName,
     })) ?? [];
 
-  useEffect(() => {
-    if (!value && genres[0]) {
-      setValue(genres[0].value);
-    }
-  }, [genres]);
+  useEffect(
+    () => {
+      if (!value && genres[0]) {
+        setValue(genres[0].value);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [genres],
+  );
 
   return <Picker value={value} setValue={setValue} data={genres} />;
 };

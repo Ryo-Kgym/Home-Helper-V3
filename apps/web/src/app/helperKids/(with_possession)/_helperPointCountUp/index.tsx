@@ -25,10 +25,7 @@ export const HelperPointCountUp = () => {
       </div>
       <div>
         <Image
-          src={
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            piggy
-          }
+          src={piggy}
           alt={"piggy"}
           className={"absolute bottom-[-0.25em] right-[-0em] h-10 w-10"}
         />

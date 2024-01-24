@@ -21,7 +21,7 @@ export async function loadCsvFile({ file, fileType }: loadFileArgs) {
   const {
     encodingTo,
     encodingFrom,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
     encodingType,
     splitSeparator,
     headerRows,
@@ -33,7 +33,7 @@ export async function loadCsvFile({ file, fileType }: loadFileArgs) {
     const readFile = await file.stream().getReader().read();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
     const csv = decodeCsv(readFile, encodingTo, encodingFrom, encodingType);
     const rows = separateRows(csv, splitSeparator, headerRows, footerRows);
 

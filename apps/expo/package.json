@@ -1,5 +1,5 @@
 {
-  "name": "@acme/expo",
+  "name": "@v3/expo",
   "version": "0.1.0",
   "private": true,
   "main": "expo-router/entry",
@@ -10,7 +10,7 @@
     "dev:ios": "expo start --ios",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "format": "prettier --check ./src --ignore-path ../../.gitignore",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
@@ -47,7 +47,6 @@
     "urql": "^3.0.4"
   },
   "devDependencies": {
-    "@acme/api": "workspace:^0.1.0",
     "@acme/eslint-config": "workspace:^0.2.0",
     "@acme/prettier-config": "workspace:^0.1.0",
     "@acme/tailwind-config": "workspace:^0.1.0",

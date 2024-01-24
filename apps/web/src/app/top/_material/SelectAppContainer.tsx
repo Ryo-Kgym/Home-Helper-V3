@@ -5,13 +5,13 @@
 "use client";
 
 import type { LinkProps } from "@components/atoms/Card";
-import { useGetApplicationByGroupIdQuery } from "@/turbo/graphql/household";
+import { useGetAppsQuery } from "@/turbo/graphql/public";
 import { LinkList } from "@components/atoms/Card";
 import { useGroup } from "@hooks/group/useGroup";
 
 export const SelectAppContainer = () => {
   const { groupId } = useGroup();
-  const [{ data }] = useGetApplicationByGroupIdQuery({
+  const [{ data }] = useGetAppsQuery({
     variables: { groupId },
   });
 
