@@ -7970,11 +7970,11 @@ export type GetAccountByIdQuery = {
   } | null;
 };
 
-export type GetApplicationByGroupIdQueryVariables = Exact<{
+export type GetAppsQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
 
-export type GetApplicationByGroupIdQuery = {
+export type GetAppsQuery = {
   __typename?: "query_root";
   group: Array<{
     __typename?: "GroupApplication";
@@ -9474,8 +9474,8 @@ export function useGetAccountByIdQuery(
     ...options,
   });
 }
-export const GetApplicationByGroupIdDocument = gql`
-  query getApplicationByGroupId($groupId: String!) {
+export const GetAppsDocument = gql`
+  query getApps($groupId: String!) {
     group: groupApplication(where: { groupId: { _eq: $groupId } }) {
       app: application {
         id
@@ -9486,16 +9486,13 @@ export const GetApplicationByGroupIdDocument = gql`
   }
 `;
 
-export function useGetApplicationByGroupIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetApplicationByGroupIdQueryVariables>,
-    "query"
-  >,
+export function useGetAppsQuery(
+  options: Omit<Urql.UseQueryArgs<GetAppsQueryVariables>, "query">,
 ) {
-  return Urql.useQuery<
-    GetApplicationByGroupIdQuery,
-    GetApplicationByGroupIdQueryVariables
-  >({ query: GetApplicationByGroupIdDocument, ...options });
+  return Urql.useQuery<GetAppsQuery, GetAppsQueryVariables>({
+    query: GetAppsDocument,
+    ...options,
+  });
 }
 export const GetCreditCardSummaryByAccountIdDocument = gql`
   query getCreditCardSummaryByAccountId(
