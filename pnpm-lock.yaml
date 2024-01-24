@@ -117,9 +117,6 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4(graphql@16.8.1)(react@18.2.0)
     devDependencies:
-      '@acme/api':
-        specifier: workspace:^0.1.0
-        version: link:../../packages/api
       '@acme/eslint-config':
         specifier: workspace:^0.2.0
         version: link:../../tooling/eslint
@@ -376,46 +373,6 @@ importers:
       prettier:
         specifier: ^3.1.1
         version: 3.1.1
-
-  packages/api:
-    dependencies:
-      '@acme/auth':
-        specifier: workspace:^0.1.0
-        version: link:../auth
-      '@acme/db':
-        specifier: workspace:^0.1.0
-        version: link:../db
-      '@acme/validators':
-        specifier: workspace:^0.1.0
-        version: link:../validators
-      '@trpc/server':
-        specifier: next
-        version: 11.0.0-next-alpha.170
-      superjson:
-        specifier: 2.2.1
-        version: 2.2.1
-      zod:
-        specifier: ^3.22.4
-        version: 3.22.4
-    devDependencies:
-      '@acme/eslint-config':
-        specifier: workspace:^0.2.0
-        version: link:../../tooling/eslint
-      '@acme/prettier-config':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/prettier
-      '@acme/tsconfig':
-        specifier: workspace:^0.1.0
-        version: link:../../tooling/typescript
-      eslint:
-        specifier: ^8.56.0
-        version: 8.56.0
-      prettier:
-        specifier: ^3.1.1
-        version: 3.1.1
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
 
   packages/auth:
     dependencies:
@@ -6578,12 +6535,6 @@ packages:
       '@trpc/core': 11.0.0-next-alpha.170
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  /@trpc/server@11.0.0-next-alpha.170:
-    resolution: {integrity: sha512-9ljYo7s5YmNs10X/ImNj0I99ikFT3SsrNmQLVoGiBXpxZXf7p+hC6o/J0+FP0NrMdhl+x1XYvUyL4DmoFs259w==}
-    dependencies:
-      '@trpc/core': 11.0.0-next-alpha.170
     dev: false
 
   /@tsconfig/node10@1.0.9:
