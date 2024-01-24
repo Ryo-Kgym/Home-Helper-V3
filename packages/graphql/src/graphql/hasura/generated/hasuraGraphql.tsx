@@ -7970,23 +7970,6 @@ export type GetAccountByIdQuery = {
   } | null;
 };
 
-export type GetAppsQueryVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type GetAppsQuery = {
-  __typename?: "query_root";
-  group: Array<{
-    __typename?: "GroupApplication";
-    app: {
-      __typename?: "Application";
-      id: string;
-      name: string;
-      topUrl: string;
-    };
-  }>;
-};
-
 export type GetCreditCardSummaryByAccountIdQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -9471,26 +9454,6 @@ export function useGetAccountByIdQuery(
 ) {
   return Urql.useQuery<GetAccountByIdQuery, GetAccountByIdQueryVariables>({
     query: GetAccountByIdDocument,
-    ...options,
-  });
-}
-export const GetAppsDocument = gql`
-  query getApps($groupId: String!) {
-    group: groupApplication(where: { groupId: { _eq: $groupId } }) {
-      app: application {
-        id
-        name
-        topUrl
-      }
-    }
-  }
-`;
-
-export function useGetAppsQuery(
-  options: Omit<Urql.UseQueryArgs<GetAppsQueryVariables>, "query">,
-) {
-  return Urql.useQuery<GetAppsQuery, GetAppsQueryVariables>({
-    query: GetAppsDocument,
     ...options,
   });
 }
