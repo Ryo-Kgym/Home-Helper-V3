@@ -1,5 +1,5 @@
 {
-  "name": "@/turbo/expo",
+  "name": "@v3/expo",
   "version": "0.1.0",
   "private": true,
   "main": "expo-router/entry",
