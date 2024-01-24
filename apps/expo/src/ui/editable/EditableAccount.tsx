@@ -22,11 +22,15 @@ export const EditableAccount = ({
       label: account.accountName,
     })) ?? [];
 
-  useEffect(() => {
-    if (!value && accounts[0]) {
-      setValue(accounts[0].value);
-    }
-  }, [accounts]);
+  useEffect(
+    () => {
+      if (!value && accounts[0]) {
+        setValue(accounts[0].value);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [accounts],
+  );
 
   return (
     <Picker

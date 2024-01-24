@@ -1,9 +1,4 @@
-import {
-  useDeleteDailyDetailBySerialNoMutation,
-  useUpdateDailyDetailByIdMutation,
-} from "@/turbo/graphql/household";
-
-import type { IocomeType } from "~/types/iocome-type";
+import { useDeleteDailyDetailBySerialNoMutation } from "@/turbo/graphql/household";
 
 export const useDeleteDaily = () => {
   const [, deleteDailyMutation] = useDeleteDailyDetailBySerialNoMutation();

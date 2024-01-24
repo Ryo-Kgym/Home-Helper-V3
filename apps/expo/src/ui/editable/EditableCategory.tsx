@@ -27,11 +27,15 @@ export const EditableCategory = ({
       label: category.name,
     })) ?? [];
 
-  useEffect(() => {
-    if (!value && categories[0]) {
-      setValue(categories[0].value);
-    }
-  }, [categories]);
+  useEffect(
+    () => {
+      if (!value && categories[0]) {
+        setValue(categories[0].value);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [categories],
+  );
 
   return <Picker value={value} setValue={setValue} data={categories} />;
 };

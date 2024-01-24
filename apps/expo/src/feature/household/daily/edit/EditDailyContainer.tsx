@@ -68,19 +68,24 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
   const onPressAlert = () => {
     alertBuilder({
       title: "削除しますか？",
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       okCallback: deleteHandler,
     });
   };
 
-  useEffect(() => {
-    setDate(daily.date);
-    setIocomeType(daily.genre.iocomeType);
-    setGenreId(daily.genre.id);
-    setCategoryId(daily.category.id);
-    setAccountId(daily.account.id);
-    setAmount(daily.amount);
-    setMemo(daily.memo);
-  }, [loading]);
+  useEffect(
+    () => {
+      setDate(daily.date);
+      setIocomeType(daily.genre.iocomeType);
+      setGenreId(daily.genre.id);
+      setCategoryId(daily.category.id);
+      setAccountId(daily.account.id);
+      setAmount(daily.amount);
+      setMemo(daily.memo);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [loading],
+  );
 
   return (
     <EditDailyPresenter
