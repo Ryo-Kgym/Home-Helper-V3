@@ -1,15 +1,37 @@
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
+import { useGetAggregatedCategoriesByDateQuery } from "@/turbo/graphql/household";
 
 import { paths } from "~/app/paths";
+import { getMonth } from "~/func/date/get-month";
+import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { DashboardFrame } from "./DashboardFrame";
 
 export const CategoryRankingBox = () => {
+  const { groupId } = useSaveGroupId();
+  const { firstDayOfMonth, lastDayOfMonth } = getMonth();
+
+  const [{ data }] = useGetAggregatedCategoriesByDateQuery({
+    variables: {
+      fromDate: firstDayOfMonth,
+      toDate: lastDayOfMonth,
+      groupId,
+      iocomeType: "OUTCOME",
+      limit: 10,
+    },
+  });
+
+  const categories =
+    data?.group?.dailies.map((d) => ({
+      categoryName: d.categoryName,
+      amount: d.total,
+    })) ?? [];
+
   return (
     <DashboardFrame
       label={"ランキング"}
       href={paths.household.calendar(new Date())}
     >
-      <View>
+      <ScrollView>
         {categories.map((c, i) => (
           <View key={i} className={"flex-row items-center"}>
             <Text className={"w-1/6 text-xl"}>{i + 1}</Text>
@@ -19,35 +41,7 @@ export const CategoryRankingBox = () => {
             </Text>
           </View>
         ))}
-      </View>
+      </ScrollView>
     </DashboardFrame>
   );
 };
-
-const categories = [
-  {
-    amount: 1000,
-    categoryName: "食費",
-    memo: null,
-  },
-  {
-    amount: 2000,
-    categoryName: "外食",
-    memo: null,
-  },
-  {
-    amount: 3000,
-    categoryName: "交通費",
-    memo: null,
-  },
-  {
-    amount: 4000,
-    categoryName: "交際費",
-    memo: null,
-  },
-  {
-    amount: 5000,
-    categoryName: "娯楽",
-    memo: null,
-  },
-];
