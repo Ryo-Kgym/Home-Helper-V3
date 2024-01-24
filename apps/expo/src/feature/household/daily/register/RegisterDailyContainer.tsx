@@ -14,10 +14,12 @@ export const RegisterDailyContainer = ({
   const [genreId, setGenreId] = useState<string>("");
   const [categoryId, setCategoryId] = useState<string>("");
   const [accountId, setAccountId] = useState<string>("");
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number | null>(null);
   const [memo, setMemo] = useState<string | null>(null);
 
   const { registerDaily } = useRegisterDaily();
+
+  const registerable = typeof amount === "number";
 
   const resetHandler = () => {
     setDate(initialDate);
@@ -25,11 +27,13 @@ export const RegisterDailyContainer = ({
     setGenreId("");
     setCategoryId("");
     setAccountId("");
-    setAmount(0);
+    setAmount(null);
     setMemo(null);
   };
 
   const registerHandler = async () => {
+    if (!registerable) return;
+
     try {
       await registerDaily({
         date: date ?? new Date(),

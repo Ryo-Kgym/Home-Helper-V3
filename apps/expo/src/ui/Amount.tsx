@@ -5,7 +5,7 @@ export const Amount = ({
   iocomeType,
   size = "md",
 }: {
-  amount: number;
+  amount: number | null;
   iocomeType: string;
   size?: keyof typeof SizeType;
 }) => (
@@ -14,7 +14,7 @@ export const Amount = ({
       iocomeType === "INCOME" ? "text-green-500" : "text-red-500"
     }`}
   >
-    {amount.toLocaleString()}
+    {amount ? amount.toLocaleString() : ""}
   </Text>
 );
 
