@@ -4,9 +4,7 @@
 
 import { createClient } from "urql";
 
-import { env } from "~/config/env";
-
 export const datasource = createClient({
-  url: env.HOME_HELPER_GRAPHQL_ENDPOINT,
+  url: process.env.EXPO_PUBLIC_API_URL ?? "",
   requestPolicy: "cache-and-network",
 });

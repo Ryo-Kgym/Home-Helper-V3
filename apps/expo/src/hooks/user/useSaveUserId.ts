@@ -1,7 +1,5 @@
-import { mock } from "~/config/mock";
-
 export const useSaveUserId = () => {
-  const userId = mock.userId;
+  const userId = process.env.EXPO_PUBLIC_MOCK_USER_ID ?? "";
 
   const saveUserId = () => undefined;
 
