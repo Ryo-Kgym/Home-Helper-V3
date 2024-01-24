@@ -50,3 +50,4 @@ yarn-error.log*
 .turbo
 /packages/graphql/hasura*-codegen.yml
 /packages/graphql/hasura*-graphql.schema.json
+/packages/graphql/src/graphql/hasura/graphql.config.yml
