@@ -1,12 +1,11 @@
 import { useGetTransferCategoryByQuery } from "@/turbo/graphql/household";
 
+import { getMonth } from "~/func/date/get-month";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useGetDetails } from "~/hooks/household/detail/useGetDetails";
 
 export const useCalcMonthly = () => {
-  const today = new Date();
-  const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+  const { firstDayOfMonth, lastDayOfMonth } = getMonth();
   const { groupId } = useSaveGroupId();
 
   const [{ data: transData }] = useGetTransferCategoryByQuery({
