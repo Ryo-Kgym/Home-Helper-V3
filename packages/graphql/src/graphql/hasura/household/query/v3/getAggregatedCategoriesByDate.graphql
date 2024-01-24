@@ -1,0 +1,28 @@
+query getAggregatedCategoriesByDate(
+  $groupId: String!
+  $fromDate: date!
+  $toDate: date!
+  $iocomeType: String!
+  $limit: Int!
+) {
+  group: groupByPk(id: $groupId) {
+    dailies: totalByCategoryView(
+      orderBy: { total: DESC }
+      where: {
+        date: { _gte: $fromDate }
+        _and: {
+          date: { _lte: $toDate }
+          _and: { iocomeType: { _eq: $iocomeType } }
+        }
+      }
+      limit: $limit
+    ) {
+      genreId
+      genreName
+      iocomeType
+      categoryId
+      categoryName
+      total
+    }
+  }
+}
