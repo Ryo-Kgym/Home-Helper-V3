@@ -11,22 +11,25 @@ export const EditableAmount = ({
   iocomeType,
   disabled = false,
   defaultValue,
-}: EditableProps<number> & { iocomeType: IocomeType }) => {
-  return (
-    <FiledFrame>
-      {disabled ? (
-        <Amount amount={value} iocomeType={iocomeType} />
-      ) : (
-        <TextInput
-          className={"text-right text-xl"}
-          onChange={(e) => setValue(Number(e.nativeEvent.text))}
-          editable={!disabled}
-          inputMode={"numeric"}
-          placeholder={String(defaultValue)}
-        >
-          {value}
-        </TextInput>
-      )}
-    </FiledFrame>
-  );
-};
+}: EditableProps<number | null> & { iocomeType: IocomeType }) => (
+  <FiledFrame>
+    {disabled ? (
+      <Amount amount={value} iocomeType={iocomeType} />
+    ) : (
+      <TextInput
+        className={"text-right text-xl"}
+        onChange={(e) => {
+          // 値が数値のみをsetValueに設定する
+          const value = e.nativeEvent.text;
+          const numberValue = Number(value);
+          if (isNaN(numberValue)) return;
+          setValue(numberValue);
+        }}
+        editable={!disabled}
+        inputMode={"numeric"}
+        placeholder={defaultValue ? String(defaultValue) : ""}
+        value={value ? String(value) : ""}
+      />
+    )}
+  </FiledFrame>
+);
