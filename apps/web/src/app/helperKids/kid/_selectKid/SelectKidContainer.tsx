@@ -20,7 +20,6 @@ export const SelectKidContainer = () => {
 
   const kids: HelperKid[] =
     data?.helperKid.map(({ id, name, nameSuffix }) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       HelperKid.of(id, name, nameSuffix),
     ) ?? [];
 
