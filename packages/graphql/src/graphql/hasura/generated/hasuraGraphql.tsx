@@ -8090,31 +8090,6 @@ export type GetAccountByIdQuery = {
   } | null;
 };
 
-export type GetAggregatedCategoriesByDateQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  iocomeType: Scalars["String"];
-  limit: Scalars["Int"];
-  excludeCategoryIds?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
-}>;
-
-export type GetAggregatedCategoriesByDateQuery = {
-  __typename?: "query_root";
-  group?: {
-    __typename?: "Group";
-    dailies: Array<{
-      __typename?: "HouseholdTotalByCategoryView";
-      genreId?: string | null;
-      genreName?: string | null;
-      iocomeType?: string | null;
-      categoryId?: string | null;
-      categoryName?: string | null;
-      total?: any | null;
-    }>;
-  } | null;
-};
-
 export type GetCreditCardSummaryByAccountIdQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -9601,52 +9576,6 @@ export function useGetAccountByIdQuery(
     query: GetAccountByIdDocument,
     ...options,
   });
-}
-export const GetAggregatedCategoriesByDateDocument = gql`
-  query getAggregatedCategoriesByDate(
-    $groupId: String!
-    $fromDate: date!
-    $toDate: date!
-    $iocomeType: String!
-    $limit: Int!
-    $excludeCategoryIds: [String!] = []
-  ) {
-    group: groupByPk(id: $groupId) {
-      dailies: totalByCategoryView(
-        orderBy: { total: DESC }
-        where: {
-          date: { _gte: $fromDate }
-          _and: {
-            date: { _lte: $toDate }
-            _and: {
-              iocomeType: { _eq: $iocomeType }
-              _and: { categoryId: { _nin: $excludeCategoryIds } }
-            }
-          }
-        }
-        limit: $limit
-      ) {
-        genreId
-        genreName
-        iocomeType
-        categoryId
-        categoryName
-        total
-      }
-    }
-  }
-`;
-
-export function useGetAggregatedCategoriesByDateQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetAggregatedCategoriesByDateQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetAggregatedCategoriesByDateQuery,
-    GetAggregatedCategoriesByDateQueryVariables
-  >({ query: GetAggregatedCategoriesByDateDocument, ...options });
 }
 export const GetCreditCardSummaryByAccountIdDocument = gql`
   query getCreditCardSummaryByAccountId(
