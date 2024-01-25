@@ -8090,6 +8090,35 @@ export type GetAccountByIdQuery = {
   } | null;
 };
 
+export type GetCreditCardDetailListQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetCreditCardDetailListQuery = {
+  __typename?: "query_root";
+  creditCardDetails: Array<{
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      iocomeType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    summary: {
+      __typename?: "HouseholdCreditCardSummary";
+      id: string;
+      account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    };
+  }>;
+};
+
 export type GetCreditCardSummaryByAccountIdQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -9622,6 +9651,53 @@ export function useGetAccountByIdQuery(
     query: GetAccountByIdDocument,
     ...options,
   });
+}
+export const GetCreditCardDetailListDocument = gql`
+  query getCreditCardDetailList(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: String!
+  ) {
+    creditCardDetails: householdCreditCardDetail(
+      where: {
+        date: { _gte: $fromDate, _lte: $toDate }
+        _and: { groupId: { _eq: $groupId } }
+      }
+    ) {
+      id
+      date
+      amount
+      memo
+      genre {
+        id
+        name
+        iocomeType
+      }
+      category {
+        id
+        name
+      }
+      summary: creditCardSummary {
+        id
+        account {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardDetailListQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailListQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailListQuery,
+    GetCreditCardDetailListQueryVariables
+  >({ query: GetCreditCardDetailListDocument, ...options });
 }
 export const GetCreditCardSummaryByAccountIdDocument = gql`
   query getCreditCardSummaryByAccountId(
