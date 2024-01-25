@@ -1,23 +1,15 @@
-import {
-  useGetAggregatedCategoriesByDateQuery,
-  useGetTransferCategoryByQuery,
-} from "@/turbo/graphql/household";
+import { useGetAggregatedCategoriesByDateQuery } from "@/turbo/graphql/household";
 
 import { Presenter } from "~/feature/household/dashboard/CategoryRankingBox/Presenter";
 import { getMonth } from "~/func/date/get-month";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { useGetTransferCategory } from "~/hooks/household/transfer/useGetTransferCategory";
 
 export const Container = () => {
   const { groupId } = useSaveGroupId();
   const { firstDayOfMonth, lastDayOfMonth, month } = getMonth();
 
-  const [{ data: transferCategoryData }] = useGetTransferCategoryByQuery({
-    variables: {
-      groupId,
-    },
-  });
-  const outcomeTransferCategoryId =
-    transferCategoryData?.transferCategory?.outcomeCategory.categoryId ?? "";
+  const { outcomeCategory } = useGetTransferCategory();
 
   const [{ data }] = useGetAggregatedCategoriesByDateQuery({
     variables: {
@@ -26,7 +18,7 @@ export const Container = () => {
       groupId,
       iocomeType: "OUTCOME",
       limit: 10,
-      excludeCategoryIds: [outcomeTransferCategoryId],
+      excludeCategoryIds: [outcomeCategory.id],
     },
   });
 
