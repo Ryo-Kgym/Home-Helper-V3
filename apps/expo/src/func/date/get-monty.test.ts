@@ -9,6 +9,7 @@ describe("getMonth", () => {
     expect(month).toEqual({
       firstDayOfMonth: new Date("2023-12-01"),
       lastDayOfMonth: new Date("2023-12-31"),
+      month: 12,
     });
   });
 
@@ -18,6 +19,7 @@ describe("getMonth", () => {
     expect(month).toEqual({
       firstDayOfMonth: new Date("2024-02-01"),
       lastDayOfMonth: new Date("2024-02-29"),
+      month: 2,
     });
   });
 
@@ -27,6 +29,7 @@ describe("getMonth", () => {
     expect(month).toEqual({
       firstDayOfMonth: new Date(date.getFullYear(), date.getMonth(), 1, 9),
       lastDayOfMonth: new Date(date.getFullYear(), date.getMonth() + 1, 0, 9),
+      month: date.getMonth() + 1,
     });
   });
 });

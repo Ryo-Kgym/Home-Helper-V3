@@ -16,8 +16,11 @@ export const getMonth = (baseDate?: Date) => {
     9,
   );
 
+  const month = baseDate.getMonth() + 1;
+
   return {
     firstDayOfMonth,
     lastDayOfMonth,
+    month,
   };
 };
