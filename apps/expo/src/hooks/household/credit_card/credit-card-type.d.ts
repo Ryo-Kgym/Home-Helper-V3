@@ -8,3 +8,13 @@ export type CreditCardSummary = {
   account: { id: string; name: string };
   total: number;
 };
+
+export type CreditCardDetail = {
+  id: string;
+  date: Date;
+  genre: { name: string; iocomeType: IocomeType };
+  category: { name: string };
+  account: { id: string; name: string };
+  amount: number;
+  memo: string | null;
+};
