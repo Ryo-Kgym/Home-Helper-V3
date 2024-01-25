@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useGetDetailsByCategoryQuery } from "@/turbo/graphql/household";
+import { useGetDetailsByCategoryQuery } from "@v3/graphql/household";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";

@@ -6,12 +6,12 @@
 import type { TableProps } from "@components/atoms/Table";
 import type { ExchangeItem } from "@domain/model/helper_kids/ExchangeItem";
 import { useEffect, useState } from "react";
-import { useGetExchangeItemsQuery } from "@/turbo/graphql/helperKids";
 import { Counter } from "@components/atoms/Counter/index";
 import { errorPopup, successPopup } from "@function/successPopup";
 import { useGroup } from "@hooks/group/useGroup";
 import { useExchangeHelpPoints } from "@hooks/help_point/useExchangeHelpPoints";
 import { useGetHelperKid } from "@hooks/help_point/useHelperKidPoint";
+import { useGetExchangeItemsQuery } from "@v3/graphql/helperKids";
 
 import { ExchangePointPresenter } from "./ExchangePointPresenter";
 

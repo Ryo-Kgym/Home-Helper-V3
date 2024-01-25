@@ -3,14 +3,14 @@
  */
 
 import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
-import {
-  useCreateCreditCardDetailMutation,
-  useCreateCreditCardSummaryMutation,
-} from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
 import { FileType } from "@provider/file/FileType";
+import {
+  useCreateCreditCardDetailMutation,
+  useCreateCreditCardSummaryMutation,
+} from "@v3/graphql/household";
 
 /**
  * Package Private

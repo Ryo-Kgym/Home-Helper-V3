@@ -1,0 +1,33 @@
+query getCreditCardDetailList(
+  $fromDate: date!
+  $toDate: date!
+  $groupId: String!
+) {
+  creditCardDetails: householdCreditCardDetail(
+    where: {
+      date: { _gte: $fromDate, _lte: $toDate }
+      _and: { groupId: { _eq: $groupId } }
+    }
+  ) {
+    id
+    date
+    amount
+    memo
+    genre {
+      id
+      name
+      iocomeType
+    }
+    category {
+      id
+      name
+    }
+    summary: creditCardSummary {
+      id
+      account {
+        id
+        name
+      }
+    }
+  }
+}

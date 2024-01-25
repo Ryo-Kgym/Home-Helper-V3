@@ -4,10 +4,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useGetHelperKidsQuery } from "@/turbo/graphql/helperKids";
 import { HelperKid } from "@domain/model/helper_kids/HelperKid";
 import { useGroup } from "@hooks/group/useGroup";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
+import { useGetHelperKidsQuery } from "@v3/graphql/helperKids";
 
 import { SelectKidPresenter } from "./SelectKidPresenter";
 

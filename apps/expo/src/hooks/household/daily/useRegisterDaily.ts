@@ -1,4 +1,4 @@
-import { useCreateDailyDetailMutation } from "@/turbo/graphql/household";
+import { useCreateDailyDetailMutation } from "@v3/graphql/household";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";

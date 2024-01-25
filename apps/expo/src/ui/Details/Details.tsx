@@ -1,23 +1,9 @@
 import { FlatList, Pressable, Text, View } from "react-native";
 
-import type { IocomeType } from "~/types/iocome-type";
+import type { Detail } from "~/ui/Details/detail-type";
 import { Amount } from "~/ui/Amount";
 
-export const Details = ({
-  details,
-}: {
-  details: {
-    id: string;
-    date?: Date;
-    accountName?: string;
-    amount: number;
-    categoryName: string;
-    genreName: string;
-    iocomeType: IocomeType;
-    redirectHandler: () => void;
-    memo: string | null;
-  }[];
-}) => (
+export const Details = ({ details }: { details: Detail[] }) => (
   <FlatList
     data={details}
     keyExtractor={(item) => item.id}

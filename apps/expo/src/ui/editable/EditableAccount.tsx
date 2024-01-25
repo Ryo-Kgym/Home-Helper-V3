@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useGetValidAccountsQuery } from "@/turbo/graphql/household";
+import { useGetValidAccountsQuery } from "@v3/graphql/household";
 
 import type { EditableProps } from "~/ui/editable/editable-props";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";

@@ -1,4 +1,4 @@
-import { useGetCreditCardSummaryByDateQuery } from "@/turbo/graphql/household";
+import { useGetCreditCardSummaryByDateQuery } from "@v3/graphql/household";
 
 import type { CreditCardSummary } from "~/hooks/household/credit_card/credit-card-type";
 import type { CreditCard } from "~/types/credit-card";

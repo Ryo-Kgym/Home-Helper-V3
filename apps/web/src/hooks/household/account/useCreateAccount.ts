@@ -2,9 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useCreateAccountMutation } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
+import { useCreateAccountMutation } from "@v3/graphql/household";
 
 type CreateAccountArgs = {
   accountName: string;

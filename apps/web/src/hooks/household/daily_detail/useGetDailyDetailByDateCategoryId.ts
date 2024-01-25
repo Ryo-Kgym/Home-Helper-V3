@@ -1,6 +1,6 @@
-import { useGetDailyDetailByDateCategoryIdQuery } from "@/turbo/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetDailyDetailByDateCategoryIdQuery } from "@v3/graphql/household";
 
 export const useGetDailyDetailByDateCategoryId = (
   categoryId: string,

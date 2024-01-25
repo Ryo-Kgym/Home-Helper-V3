@@ -17,7 +17,7 @@ export const Presenter = ({
 }) => (
   <DashboardFrame
     label={`${month}月の支出ランキング`}
-    href={paths.household.calendar(new Date())}
+    href={paths.household.categoryRanking(new Date())}
     size={"w-full"}
   >
     {loading ? (

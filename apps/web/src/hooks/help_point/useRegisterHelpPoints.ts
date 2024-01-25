@@ -3,14 +3,14 @@
  */
 
 import type { HelpItem } from "@domain/model/helper_kids/HelpItem";
-import {
-  useRegisterHelpPointEarnedAchievementMutation,
-  useRegisterHelpPointEarnedDetailMutation,
-} from "@/turbo/graphql/helperKids";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
+import {
+  useRegisterHelpPointEarnedAchievementMutation,
+  useRegisterHelpPointEarnedDetailMutation,
+} from "@v3/graphql/helperKids";
 
 type Args = {
   helpItemMap: Map<string, HelpItem>;

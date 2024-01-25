@@ -3,9 +3,9 @@
  */
 
 import { useEffect, useState } from "react";
-import { useGetDepositQuery } from "@/turbo/graphql/household";
 import { generateYearMonthList } from "@function/date/generate-year-month-list";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetDepositQuery } from "@v3/graphql/household";
 
 import { createMonthlyDeposits } from "./_useGetMonthlyDeposit_/create-monthly-deposits";
 import { refillDepositQuery } from "./_useGetMonthlyDeposit_/refill-deposit-query";

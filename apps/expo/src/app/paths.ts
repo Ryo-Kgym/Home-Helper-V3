@@ -8,5 +8,9 @@ export const paths = {
     daily: (id: string) => `/household/detail/daily/${id}`,
     detailListByAccount: (accountId: string) =>
       `/household/detailList/account/${accountId}`,
+    categoryRanking: (date: Date) =>
+      `/household/detailList/categoryRanking/${date
+        .toISOString()
+        .slice(0, 10)}`,
   },
 };

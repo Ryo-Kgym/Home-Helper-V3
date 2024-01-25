@@ -3,9 +3,9 @@
  */
 
 import type { DailyDetail } from "@domain/model/household/DailyDetail";
-import { useGetDailyDetailByDateAccountIdQuery } from "@/turbo/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetDailyDetailByDateAccountIdQuery } from "@v3/graphql/household";
 
 export const useGetDailyDetailByDateAccountId = (
   accountId: string,

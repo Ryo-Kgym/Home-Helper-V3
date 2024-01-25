@@ -1,5 +1,5 @@
-import { useGetCreditCardSummaryByDateQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetCreditCardSummaryByDateQuery } from "@v3/graphql/household";
 
 export const useGetCreditCardSummaryBetweenMonth = (
   fromMonth: Date | null,

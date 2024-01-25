@@ -4,13 +4,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  useGetGenreByIdQuery,
-  useUpdateGenreByIdMutation,
-} from "@/turbo/graphql/household";
 import { GenreType } from "@domain/model/household/GenreType";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "@function/successPopup";
+import {
+  useGetGenreByIdQuery,
+  useUpdateGenreByIdMutation,
+} from "@v3/graphql/household";
 
 import { Presenter_ } from "./Presenter";
 

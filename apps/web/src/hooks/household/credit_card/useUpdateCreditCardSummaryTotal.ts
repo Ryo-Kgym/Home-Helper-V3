@@ -5,7 +5,7 @@
 import {
   useGetCreditCardDetailBySummaryIdQuery,
   useUpdateCreditCardSummaryTotalMutation,
-} from "@/turbo/graphql/household";
+} from "@v3/graphql/household";
 
 export const useUpdateCreditCardSummaryTotal = ({
   summaryId,

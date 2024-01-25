@@ -1,4 +1,4 @@
-import { useGetCreditCardSummaryByAccountIdQuery } from "@/turbo/graphql/household";
+import { useGetCreditCardSummaryByAccountIdQuery } from "@v3/graphql/household";
 
 export const useGetCreditCardSummaryByAccountIdBetweenDate = (
   accountId: string,

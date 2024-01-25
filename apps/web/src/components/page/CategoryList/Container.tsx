@@ -5,10 +5,10 @@
 
 import type { TableProps } from "@components/atoms/Table";
 import { useRouter } from "next/navigation";
-import { useGetAllCategoriesQuery } from "@/turbo/graphql/household";
 import { ValidityStatus } from "@components/atoms";
 import { Presenter_ } from "@components/page/CategoryList/Presenter";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetAllCategoriesQuery } from "@v3/graphql/household";
 
 export const Container_ = () => {
   // eslint-disable-next-line @typescript-eslint/unbound-method

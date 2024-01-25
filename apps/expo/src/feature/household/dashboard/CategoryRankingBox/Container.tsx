@@ -1,6 +1,6 @@
-import { Presenter } from "~/feature/household/dashboard/CategoryRankingBox/Presenter";
-import { useGetCategoryTotal } from "~/feature/household/dashboard/CategoryRankingBox/useGetCategoryTotal";
 import { getMonth } from "~/func/date/get-month";
+import { Presenter } from "./Presenter";
+import { useGetCategoryTotal } from "./useGetCategoryTotal";
 
 export const Container = () => {
   const { firstDayOfMonth, lastDayOfMonth, month } = getMonth();

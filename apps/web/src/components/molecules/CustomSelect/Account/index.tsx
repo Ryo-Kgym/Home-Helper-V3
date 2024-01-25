@@ -2,9 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useGetValidAccountsQuery } from "@/turbo/graphql/household";
 import { Select } from "@components/ui/index";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetValidAccountsQuery } from "@v3/graphql/household";
 
 type AccountSelectProps = {
   accountId: string | null;

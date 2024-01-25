@@ -3,8 +3,8 @@
  */
 "use client";
 
-import { useGetEarnedDetailByHelperKidIdQuery } from "@/turbo/graphql/helperKids";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
+import { useGetEarnedDetailByHelperKidIdQuery } from "@v3/graphql/helperKids";
 
 import { ChargedPointHistoryPresenter } from "./ChargedPointHistoryPresenter";
 

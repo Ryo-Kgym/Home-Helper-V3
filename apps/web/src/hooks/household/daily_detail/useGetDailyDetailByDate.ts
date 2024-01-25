@@ -3,12 +3,12 @@
  */
 
 import type { DailyDetail } from "@domain/model/household/DailyDetail";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { useGroup } from "@hooks/group/useGroup";
 import {
   useGetDailyDetailByDateQuery,
   useGetTransferCategoryByQuery,
-} from "@/turbo/graphql/household";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { useGroup } from "@hooks/group/useGroup";
+} from "@v3/graphql/household";
 
 export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
   const { groupId } = useGroup();

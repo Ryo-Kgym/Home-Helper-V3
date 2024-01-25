@@ -3,9 +3,9 @@
  */
 
 import type { SelectData } from "@components/ui";
-import { useGetValidCategoryByGenreIdQuery } from "@/turbo/graphql/household";
 import { Select } from "@components/ui";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetValidCategoryByGenreIdQuery } from "@v3/graphql/household";
 
 type CategorySelectProps = {
   categoryId: string | null;
