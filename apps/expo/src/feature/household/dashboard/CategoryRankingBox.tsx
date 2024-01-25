@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { useGetAggregatedCategoriesByDateQuery } from "@/turbo/graphql/household";
 
 import { paths } from "~/app/paths";
@@ -31,7 +31,7 @@ export const CategoryRankingBox = () => {
       label={"ランキング"}
       href={paths.household.calendar(new Date())}
     >
-      <ScrollView>
+      <View>
         {categories.map((c, i) => (
           <View key={i} className={"flex-row items-center"}>
             <Text className={"w-1/6 text-xl"}>{i + 1}</Text>
@@ -41,7 +41,7 @@ export const CategoryRankingBox = () => {
             </Text>
           </View>
         ))}
-      </ScrollView>
+      </View>
     </DashboardFrame>
   );
 };
