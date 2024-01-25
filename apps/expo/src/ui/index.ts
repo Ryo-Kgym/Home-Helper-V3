@@ -1,5 +1,5 @@
 export { Amount } from "~/ui/Amount";
-export { Details as Details } from "~/ui/Details";
+export { Details as Details } from "~/ui/Details/Details";
 export { EditableAccount } from "~/ui/editable/EditableAccount";
 export { EditableAmount } from "~/ui/editable/EditableAmount";
 export { EditableCategory } from "~/ui/editable/EditableCategory";
