@@ -1,8 +1,8 @@
 import { View } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
+import { useGetAccountByIdQuery } from "@v3/graphql/household";
 
 import { DetailListByAccount } from "~/feature/household/detailList";
-import { useGetAccountByIdQuery } from "../../../../../../../packages/graphql/src/graphql/hasura/generated/hasuraGraphql";
 
 const Page = () => {
   const { accountId } = useLocalSearchParams();
