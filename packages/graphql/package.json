@@ -1,5 +1,5 @@
 {
-  "name": "@/turbo/graphql",
+  "name": "@v3/graphql",
   "version": "3.0.0",
   "private": true,
   "scripts": {

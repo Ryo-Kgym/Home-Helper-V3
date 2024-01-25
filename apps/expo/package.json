@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@/turbo/graphql": "workspace:^3.0.0",
+    "@v3/graphql": "workspace:^3.0.0",
     "@expo/metro-config": "^0.10.7",
     "@react-native-community/datetimepicker": "7.2.0",
     "@react-native-picker/picker": "^2.4.10",
