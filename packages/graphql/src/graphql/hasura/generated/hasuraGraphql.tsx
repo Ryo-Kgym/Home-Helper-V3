@@ -8096,6 +8096,7 @@ export type GetAggregatedCategoriesByDateQueryVariables = Exact<{
   toDate: Scalars["date"];
   iocomeType: Scalars["String"];
   limit: Scalars["Int"];
+  excludeCategoryIds?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
 }>;
 
 export type GetAggregatedCategoriesByDateQuery = {
@@ -9608,6 +9609,7 @@ export const GetAggregatedCategoriesByDateDocument = gql`
     $toDate: date!
     $iocomeType: String!
     $limit: Int!
+    $excludeCategoryIds: [String!] = []
   ) {
     group: groupByPk(id: $groupId) {
       dailies: totalByCategoryView(
@@ -9616,7 +9618,10 @@ export const GetAggregatedCategoriesByDateDocument = gql`
           date: { _gte: $fromDate }
           _and: {
             date: { _lte: $toDate }
-            _and: { iocomeType: { _eq: $iocomeType } }
+            _and: {
+              iocomeType: { _eq: $iocomeType }
+              _and: { categoryId: { _nin: $excludeCategoryIds } }
+            }
           }
         }
         limit: $limit

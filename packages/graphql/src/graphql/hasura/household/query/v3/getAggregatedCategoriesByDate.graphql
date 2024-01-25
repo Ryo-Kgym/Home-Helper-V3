@@ -4,6 +4,7 @@ query getAggregatedCategoriesByDate(
   $toDate: date!
   $iocomeType: String!
   $limit: Int!
+  $excludeCategoryIds: [String!] = []
 ) {
   group: groupByPk(id: $groupId) {
     dailies: totalByCategoryView(
@@ -12,7 +13,10 @@ query getAggregatedCategoriesByDate(
         date: { _gte: $fromDate }
         _and: {
           date: { _lte: $toDate }
-          _and: { iocomeType: { _eq: $iocomeType } }
+          _and: {
+            iocomeType: { _eq: $iocomeType }
+            _and: { categoryId: { _nin: $excludeCategoryIds } }
+          }
         }
       }
       limit: $limit
