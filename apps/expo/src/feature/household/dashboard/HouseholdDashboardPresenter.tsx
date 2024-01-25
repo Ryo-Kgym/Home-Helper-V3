@@ -6,8 +6,10 @@ import { MonthlyBox } from "./MonthlyBox";
 
 export const HouseholdDashboardPresenter = () => (
   <View className={"gap-2 p-2"}>
-    <BalanceBox />
-    <MonthlyBox />
+    <View className={"flex-row justify-between gap-2"}>
+      <BalanceBox />
+      <MonthlyBox />
+    </View>
     <CategoryRankingBox />
   </View>
 );

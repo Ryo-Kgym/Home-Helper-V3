@@ -5,29 +5,29 @@ import { DashboardFrame } from "./DashboardFrame";
 import { useCalcMonthly } from "./useCalcMonthly";
 
 export const MonthlyBox = () => {
-  const { incomeTotal, outcomeTotal, diff } = useCalcMonthly();
+  const { incomeTotal, outcomeTotal, diff, month } = useCalcMonthly();
 
   return (
     <DashboardFrame
-      label={"今月の実績"}
+      label={`${month}月の実績`}
       href={paths.household.calendar(new Date())}
     >
       <View>
         <View className={"flex-row items-center"}>
-          <Text className={"w-1/3 text-center"}>収入</Text>
-          <Text className={"w-2/3 text-right text-3xl text-green-500"}>
+          <Text className={"text-center"}>収入</Text>
+          <Text className={"w-32 text-right text-2xl text-green-500"}>
             {incomeTotal.toLocaleString()}
           </Text>
         </View>
         <View className={"flex-row items-center"}>
-          <Text className={"w-1/3 text-center"}>支出</Text>
-          <Text className={"w-2/3 text-right text-3xl text-red-500"}>
+          <Text className={"text-center"}>支出</Text>
+          <Text className={"w-32 text-right text-2xl text-red-500"}>
             {outcomeTotal.toLocaleString()}
           </Text>
         </View>
         <View className={"flex-row items-center"}>
-          <Text className={"w-1/3 text-center"}>差引</Text>
-          <Text className={"w-2/3 text-right text-3xl"}>
+          <Text className={"text-center"}>差引</Text>
+          <Text className={"w-32 text-right text-2xl"}>
             {diff.toLocaleString()}
           </Text>
         </View>

@@ -5,7 +5,7 @@ import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useGetDetails } from "~/hooks/household/detail/useGetDetails";
 
 export const useCalcMonthly = () => {
-  const { firstDayOfMonth, lastDayOfMonth } = getMonth();
+  const { firstDayOfMonth, lastDayOfMonth, month } = getMonth();
   const { groupId } = useSaveGroupId();
 
   const [{ data: transData }] = useGetTransferCategoryByQuery({
@@ -42,6 +42,7 @@ export const useCalcMonthly = () => {
   });
 
   return {
+    month,
     incomeTotal: term.incomeTotal,
     outcomeTotal: term.outcomeTotal,
     diff: term.balance,

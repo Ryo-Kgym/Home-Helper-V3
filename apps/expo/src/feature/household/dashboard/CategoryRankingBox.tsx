@@ -11,7 +11,7 @@ import { DashboardFrame } from "./DashboardFrame";
 
 export const CategoryRankingBox = () => {
   const { groupId } = useSaveGroupId();
-  const { firstDayOfMonth, lastDayOfMonth } = getMonth();
+  const { firstDayOfMonth, lastDayOfMonth, month } = getMonth();
 
   const [{ data: transferCategoryData }] = useGetTransferCategoryByQuery({
     variables: {
@@ -40,7 +40,7 @@ export const CategoryRankingBox = () => {
 
   return (
     <DashboardFrame
-      label={"ランキング"}
+      label={`${month}月のランキング`}
       href={paths.household.calendar(new Date())}
     >
       <View>
