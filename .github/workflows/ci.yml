@@ -3,6 +3,9 @@ name: CI
 on:
   pull_request:
     branches: ["*"]
+  push:
+    # develop以外のブランチにpushされたらCIを実行する
+    branches-ignore: ["develop"]
   merge_group:
 
 concurrency:
