@@ -43,7 +43,7 @@ export const EditDailyPresenter = ({
   genre: FieldType<string>;
   category: FieldType<string>;
   account: FieldType<string>;
-  amount: FieldType<number>;
+  amount: FieldType<number | null>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
   editHandler: () => void;

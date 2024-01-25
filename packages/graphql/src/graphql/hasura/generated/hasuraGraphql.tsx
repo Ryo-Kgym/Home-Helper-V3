@@ -398,6 +398,10 @@ export type Group = {
   summaryCategories: Array<HouseholdSummaryCategory>;
   /** An aggregate relationship */
   summaryCategoriesAggregate: HouseholdSummaryCategoryAggregate;
+  /** An array relationship */
+  totalByCategoryView: Array<HouseholdTotalByCategoryView>;
+  /** An aggregate relationship */
+  totalByCategoryViewAggregate: HouseholdTotalByCategoryViewAggregate;
   /** An object relationship */
   transferCategory?: Maybe<HouseholdTransferCategory>;
 };
@@ -591,6 +595,24 @@ export type GroupSummaryCategoriesAggregateArgs = {
   where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
 };
 
+/** columns and relationships of "group" */
+export type GroupTotalByCategoryViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
+
+/** columns and relationships of "group" */
+export type GroupTotalByCategoryViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdTotalByCategoryViewOrderBy>>;
+  where?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+};
+
 /** aggregated selection of "group" */
 export type GroupAggregate = {
   __typename?: "GroupAggregate";
@@ -760,6 +782,8 @@ export type GroupBoolExp = {
   name?: InputMaybe<StringComparisonExp>;
   summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
   summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
+  totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
+  totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryBoolExp>;
 };
 
@@ -792,6 +816,7 @@ export type GroupOrderBy = {
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
   summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
+  totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
 };
 
@@ -4413,15 +4438,22 @@ export type HouseholdTotalByCategoryView = {
   date?: Maybe<Scalars["date"]>;
   genreId?: Maybe<Scalars["String"]>;
   genreName?: Maybe<Scalars["String"]>;
+  /** An object relationship */
+  group?: Maybe<Group>;
   groupId?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<Scalars["String"]>;
   total?: Maybe<Scalars["numeric"]>;
 };
 
+/** aggregated selection of "household.total_by_category_view" */
 export type HouseholdTotalByCategoryViewAggregate = {
   __typename?: "HouseholdTotalByCategoryViewAggregate";
   aggregate?: Maybe<HouseholdTotalByCategoryViewAggregateFields>;
   nodes: Array<HouseholdTotalByCategoryView>;
+};
+
+export type HouseholdTotalByCategoryViewAggregateBoolExp = {
+  count?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExpCount>;
 };
 
 /** aggregate fields of "household.total_by_category_view" */
@@ -4446,10 +4478,30 @@ export type HouseholdTotalByCategoryViewAggregateFieldsCountArgs = {
   distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
+/** order by aggregate values of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdTotalByCategoryViewAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdTotalByCategoryViewMaxOrderBy>;
+  min?: InputMaybe<HouseholdTotalByCategoryViewMinOrderBy>;
+  stddev?: InputMaybe<HouseholdTotalByCategoryViewStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdTotalByCategoryViewStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdTotalByCategoryViewStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdTotalByCategoryViewSumOrderBy>;
+  varPop?: InputMaybe<HouseholdTotalByCategoryViewVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdTotalByCategoryViewVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdTotalByCategoryViewVarianceOrderBy>;
+};
+
 /** aggregate avg on columns */
 export type HouseholdTotalByCategoryViewAvgFields = {
   __typename?: "HouseholdTotalByCategoryViewAvgFields";
   total?: Maybe<Scalars["Float"]>;
+};
+
+/** order by avg() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewAvgOrderBy = {
+  total?: InputMaybe<OrderBy>;
 };
 
 /** Boolean expression to filter rows from the table "household.total_by_category_view". All fields are combined with a logical 'AND'. */
@@ -4462,6 +4514,7 @@ export type HouseholdTotalByCategoryViewBoolExp = {
   date?: InputMaybe<DateComparisonExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   genreName?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   iocomeType?: InputMaybe<StringComparisonExp>;
   total?: InputMaybe<NumericComparisonExp>;
@@ -4480,6 +4533,18 @@ export type HouseholdTotalByCategoryViewMaxFields = {
   total?: Maybe<Scalars["numeric"]>;
 };
 
+/** order by max() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewMaxOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  categoryName?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  genreName?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  total?: InputMaybe<OrderBy>;
+};
+
 /** aggregate min on columns */
 export type HouseholdTotalByCategoryViewMinFields = {
   __typename?: "HouseholdTotalByCategoryViewMinFields";
@@ -4493,6 +4558,18 @@ export type HouseholdTotalByCategoryViewMinFields = {
   total?: Maybe<Scalars["numeric"]>;
 };
 
+/** order by min() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewMinOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  categoryName?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  genreName?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  total?: InputMaybe<OrderBy>;
+};
+
 /** Ordering options when selecting data from "household.total_by_category_view". */
 export type HouseholdTotalByCategoryViewOrderBy = {
   categoryId?: InputMaybe<OrderBy>;
@@ -4500,6 +4577,7 @@ export type HouseholdTotalByCategoryViewOrderBy = {
   date?: InputMaybe<OrderBy>;
   genreId?: InputMaybe<OrderBy>;
   genreName?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   iocomeType?: InputMaybe<OrderBy>;
   total?: InputMaybe<OrderBy>;
@@ -4531,16 +4609,31 @@ export type HouseholdTotalByCategoryViewStddevFields = {
   total?: Maybe<Scalars["Float"]>;
 };
 
+/** order by stddev() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewStddevOrderBy = {
+  total?: InputMaybe<OrderBy>;
+};
+
 /** aggregate stddevPop on columns */
 export type HouseholdTotalByCategoryViewStddevPopFields = {
   __typename?: "HouseholdTotalByCategoryViewStddevPopFields";
   total?: Maybe<Scalars["Float"]>;
 };
 
+/** order by stddevPop() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewStddevPopOrderBy = {
+  total?: InputMaybe<OrderBy>;
+};
+
 /** aggregate stddevSamp on columns */
 export type HouseholdTotalByCategoryViewStddevSampFields = {
   __typename?: "HouseholdTotalByCategoryViewStddevSampFields";
   total?: Maybe<Scalars["Float"]>;
+};
+
+/** order by stddevSamp() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewStddevSampOrderBy = {
+  total?: InputMaybe<OrderBy>;
 };
 
 /** Streaming cursor of the table "household_total_by_category_view" */
@@ -4569,10 +4662,20 @@ export type HouseholdTotalByCategoryViewSumFields = {
   total?: Maybe<Scalars["numeric"]>;
 };
 
+/** order by sum() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewSumOrderBy = {
+  total?: InputMaybe<OrderBy>;
+};
+
 /** aggregate varPop on columns */
 export type HouseholdTotalByCategoryViewVarPopFields = {
   __typename?: "HouseholdTotalByCategoryViewVarPopFields";
   total?: Maybe<Scalars["Float"]>;
+};
+
+/** order by varPop() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewVarPopOrderBy = {
+  total?: InputMaybe<OrderBy>;
 };
 
 /** aggregate varSamp on columns */
@@ -4581,10 +4684,20 @@ export type HouseholdTotalByCategoryViewVarSampFields = {
   total?: Maybe<Scalars["Float"]>;
 };
 
+/** order by varSamp() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewVarSampOrderBy = {
+  total?: InputMaybe<OrderBy>;
+};
+
 /** aggregate variance on columns */
 export type HouseholdTotalByCategoryViewVarianceFields = {
   __typename?: "HouseholdTotalByCategoryViewVarianceFields";
   total?: Maybe<Scalars["Float"]>;
+};
+
+/** order by variance() on columns of table "household.total_by_category_view" */
+export type HouseholdTotalByCategoryViewVarianceOrderBy = {
+  total?: InputMaybe<OrderBy>;
 };
 
 /** columns and relationships of "household.total_by_genre_view" */
@@ -5359,6 +5472,13 @@ export type HouseholdSummaryCategoryAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+  predicate: IntComparisonExp;
+};
+
+export type HouseholdTotalByCategoryViewAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   predicate: IntComparisonExp;
 };
 
@@ -8016,6 +8136,52 @@ export type GetDailyByAccountIdQuery = {
   }>;
 };
 
+export type GetDetailsByCategoryQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetDetailsByCategoryQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    transfer?: {
+      __typename?: "HouseholdTransferCategory";
+      outcomeCategoryId: string;
+      incomeCategoryId: string;
+    } | null;
+    dailyDetails: Array<{
+      __typename?: "HouseholdDailyDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    }>;
+    creditCardDetails: Array<{
+      __typename?: "HouseholdCreditCardDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    }>;
+  } | null;
+};
+
 export const FragDailyDetailFragmentDoc = gql`
   fragment fragDailyDetail on HouseholdDailyDetail {
     id
@@ -9522,4 +9688,57 @@ export function useGetDailyByAccountIdQuery(
     GetDailyByAccountIdQuery,
     GetDailyByAccountIdQueryVariables
   >({ query: GetDailyByAccountIdDocument, ...options });
+}
+export const GetDetailsByCategoryDocument = gql`
+  query getDetailsByCategory(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: String!
+  ) {
+    group: groupByPk(id: $groupId) {
+      transfer: transferCategory {
+        outcomeCategoryId
+        incomeCategoryId
+      }
+      dailyDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+        id
+        date
+        genre {
+          id
+          name
+          iocomeType
+        }
+        category {
+          id
+          name
+        }
+        amount
+        memo
+      }
+      creditCardDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+        id
+        date
+        genre {
+          id
+          name
+          iocomeType
+        }
+        category {
+          id
+          name
+        }
+        amount
+        memo
+      }
+    }
+  }
+`;
+
+export function useGetDetailsByCategoryQuery(
+  options: Omit<Urql.UseQueryArgs<GetDetailsByCategoryQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDetailsByCategoryQuery,
+    GetDetailsByCategoryQueryVariables
+  >({ query: GetDetailsByCategoryDocument, ...options });
 }

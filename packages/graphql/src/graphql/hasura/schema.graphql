@@ -401,6 +401,32 @@ type Group {
         "filter the rows returned"
         where: HouseholdSummaryCategoryBoolExp
     ): HouseholdSummaryCategoryAggregate!
+    "An array relationship"
+    totalByCategoryView(
+        "distinct select on columns"
+        distinctOn: [HouseholdTotalByCategoryViewSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [HouseholdTotalByCategoryViewOrderBy!],
+        "filter the rows returned"
+        where: HouseholdTotalByCategoryViewBoolExp
+    ): [HouseholdTotalByCategoryView!]!
+    "An aggregate relationship"
+    totalByCategoryViewAggregate(
+        "distinct select on columns"
+        distinctOn: [HouseholdTotalByCategoryViewSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [HouseholdTotalByCategoryViewOrderBy!],
+        "filter the rows returned"
+        where: HouseholdTotalByCategoryViewBoolExp
+    ): HouseholdTotalByCategoryViewAggregate!
     "An object relationship"
     transferCategory: HouseholdTransferCategory
 }
@@ -1812,11 +1838,14 @@ type HouseholdTotalByCategoryView {
     date: date
     genreId: String
     genreName: String
+    "An object relationship"
+    group: Group
     groupId: String
     iocomeType: String
     total: numeric
 }
 
+"aggregated selection of \"household.total_by_category_view\""
 type HouseholdTotalByCategoryViewAggregate {
     aggregate: HouseholdTotalByCategoryViewAggregateFields
     nodes: [HouseholdTotalByCategoryView!]!
@@ -4704,6 +4733,8 @@ input GroupBoolExp {
     name: StringComparisonExp
     summaryCategories: HouseholdSummaryCategoryBoolExp
     summaryCategoriesAggregate: HouseholdSummaryCategoryAggregateBoolExp
+    totalByCategoryView: HouseholdTotalByCategoryViewBoolExp
+    totalByCategoryViewAggregate: HouseholdTotalByCategoryViewAggregateBoolExp
     transferCategory: HouseholdTransferCategoryBoolExp
 }
 
@@ -4722,6 +4753,7 @@ input GroupOrderBy {
     importFileHistoriesAggregate: HouseholdImportFileHistoryAggregateOrderBy
     name: OrderBy
     summaryCategoriesAggregate: HouseholdSummaryCategoryAggregateOrderBy
+    totalByCategoryViewAggregate: HouseholdTotalByCategoryViewAggregateOrderBy
     transferCategory: HouseholdTransferCategoryOrderBy
 }
 
@@ -6430,6 +6462,30 @@ input HouseholdSummaryCategoryVarianceOrderBy {
     displayOrder: OrderBy
 }
 
+input HouseholdTotalByCategoryViewAggregateBoolExp {
+    count: householdTotalByCategoryViewAggregateBoolExpCount
+}
+
+"order by aggregate values of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewAggregateOrderBy {
+    avg: HouseholdTotalByCategoryViewAvgOrderBy
+    count: OrderBy
+    max: HouseholdTotalByCategoryViewMaxOrderBy
+    min: HouseholdTotalByCategoryViewMinOrderBy
+    stddev: HouseholdTotalByCategoryViewStddevOrderBy
+    stddevPop: HouseholdTotalByCategoryViewStddevPopOrderBy
+    stddevSamp: HouseholdTotalByCategoryViewStddevSampOrderBy
+    sum: HouseholdTotalByCategoryViewSumOrderBy
+    varPop: HouseholdTotalByCategoryViewVarPopOrderBy
+    varSamp: HouseholdTotalByCategoryViewVarSampOrderBy
+    variance: HouseholdTotalByCategoryViewVarianceOrderBy
+}
+
+"order by avg() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewAvgOrderBy {
+    total: OrderBy
+}
+
 "Boolean expression to filter rows from the table \"household.total_by_category_view\". All fields are combined with a logical 'AND'."
 input HouseholdTotalByCategoryViewBoolExp {
     _and: [HouseholdTotalByCategoryViewBoolExp!]
@@ -6440,9 +6496,34 @@ input HouseholdTotalByCategoryViewBoolExp {
     date: DateComparisonExp
     genreId: StringComparisonExp
     genreName: StringComparisonExp
+    group: GroupBoolExp
     groupId: StringComparisonExp
     iocomeType: StringComparisonExp
     total: NumericComparisonExp
+}
+
+"order by max() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewMaxOrderBy {
+    categoryId: OrderBy
+    categoryName: OrderBy
+    date: OrderBy
+    genreId: OrderBy
+    genreName: OrderBy
+    groupId: OrderBy
+    iocomeType: OrderBy
+    total: OrderBy
+}
+
+"order by min() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewMinOrderBy {
+    categoryId: OrderBy
+    categoryName: OrderBy
+    date: OrderBy
+    genreId: OrderBy
+    genreName: OrderBy
+    groupId: OrderBy
+    iocomeType: OrderBy
+    total: OrderBy
 }
 
 "Ordering options when selecting data from \"household.total_by_category_view\"."
@@ -6452,8 +6533,24 @@ input HouseholdTotalByCategoryViewOrderBy {
     date: OrderBy
     genreId: OrderBy
     genreName: OrderBy
+    group: GroupOrderBy
     groupId: OrderBy
     iocomeType: OrderBy
+    total: OrderBy
+}
+
+"order by stddev() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewStddevOrderBy {
+    total: OrderBy
+}
+
+"order by stddevPop() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewStddevPopOrderBy {
+    total: OrderBy
+}
+
+"order by stddevSamp() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewStddevSampOrderBy {
     total: OrderBy
 }
 
@@ -6475,6 +6572,26 @@ input HouseholdTotalByCategoryViewStreamCursorValueInput {
     groupId: String
     iocomeType: String
     total: numeric
+}
+
+"order by sum() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewSumOrderBy {
+    total: OrderBy
+}
+
+"order by varPop() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewVarPopOrderBy {
+    total: OrderBy
+}
+
+"order by varSamp() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewVarSampOrderBy {
+    total: OrderBy
+}
+
+"order by variance() on columns of table \"household.total_by_category_view\""
+input HouseholdTotalByCategoryViewVarianceOrderBy {
+    total: OrderBy
 }
 
 "Boolean expression to filter rows from the table \"household.total_by_genre_view\". All fields are combined with a logical 'AND'."
@@ -6842,6 +6959,13 @@ input householdSummaryCategoryAggregateBoolExpCount {
     arguments: [HouseholdSummaryCategorySelectColumn!]
     distinct: Boolean
     filter: HouseholdSummaryCategoryBoolExp
+    predicate: IntComparisonExp!
+}
+
+input householdTotalByCategoryViewAggregateBoolExpCount {
+    arguments: [HouseholdTotalByCategoryViewSelectColumn!]
+    distinct: Boolean
+    filter: HouseholdTotalByCategoryViewBoolExp
     predicate: IntComparisonExp!
 }
 

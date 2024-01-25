@@ -26,12 +26,16 @@ export const BalanceBox = () => {
     }, 0) ?? 0;
 
   return (
-    <DashboardFrame label={"残高"} href={paths.household.account}>
-      <View className={""}>
-        <Text className={"text-right text-3xl"}>
+    <DashboardFrame
+      label={"残高"}
+      href={paths.household.account}
+      size={"w-1/2"}
+    >
+      <View>
+        <Text className={"text-right text-2xl"}>
           {totalBalance.toLocaleString()}
         </Text>
-        <Text>{today.toLocaleString()} 時点</Text>
+        <Text>{today.toLocaleString().slice(0, 10)} 時点</Text>
       </View>
     </DashboardFrame>
   );

@@ -16,7 +16,7 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
   const [genreId, setGenreId] = useState<string>("");
   const [categoryId, setCategoryId] = useState<string>("");
   const [accountId, setAccountId] = useState<string>("");
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number | null>(null);
   const [memo, setMemo] = useState<string | null>(null);
 
   const { editDaily } = useEditDaily();
@@ -35,6 +35,7 @@ export const EditDailyContainer = ({ id }: { id: string }) => {
   };
 
   const editHandler = async () => {
+    if (!amount) return;
     try {
       await editDaily({
         id,

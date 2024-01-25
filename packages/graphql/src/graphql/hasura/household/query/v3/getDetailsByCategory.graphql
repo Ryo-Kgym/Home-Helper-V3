@@ -1,0 +1,42 @@
+query getDetailsByCategory(
+  $fromDate: date!
+  $toDate: date!
+  $groupId: String!
+) {
+  group: groupByPk(id: $groupId) {
+    transfer: transferCategory {
+      outcomeCategoryId
+      incomeCategoryId
+    }
+    dailyDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+      id
+      date
+      genre {
+        id
+        name
+        iocomeType
+      }
+      category {
+        id
+        name
+      }
+      amount
+      memo
+    }
+    creditCardDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+      id
+      date
+      genre {
+        id
+        name
+        iocomeType
+      }
+      category {
+        id
+        name
+      }
+      amount
+      memo
+    }
+  }
+}
