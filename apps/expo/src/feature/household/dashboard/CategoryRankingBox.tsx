@@ -1,5 +1,8 @@
 import { Text, View } from "react-native";
-import { useGetAggregatedCategoriesByDateQuery } from "@/turbo/graphql/household";
+import {
+  useGetAggregatedCategoriesByDateQuery,
+  useGetTransferCategoryByQuery,
+} from "@/turbo/graphql/household";
 
 import { paths } from "~/app/paths";
 import { getMonth } from "~/func/date/get-month";
@@ -10,6 +13,14 @@ export const CategoryRankingBox = () => {
   const { groupId } = useSaveGroupId();
   const { firstDayOfMonth, lastDayOfMonth } = getMonth();
 
+  const [{ data: transferCategoryData }] = useGetTransferCategoryByQuery({
+    variables: {
+      groupId,
+    },
+  });
+  const outcomeTransferCategoryId =
+    transferCategoryData?.transferCategory?.outcomeCategory.categoryId ?? "";
+
   const [{ data }] = useGetAggregatedCategoriesByDateQuery({
     variables: {
       fromDate: firstDayOfMonth,
@@ -17,6 +28,7 @@ export const CategoryRankingBox = () => {
       groupId,
       iocomeType: "OUTCOME",
       limit: 10,
+      excludeCategoryIds: [outcomeTransferCategoryId],
     },
   });
 
