@@ -4,10 +4,10 @@
 "use client";
 
 import { useState } from "react";
-import { useGetCreditCardDetailBySummaryIdQuery } from "@/turbo/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "@function/successPopup";
 import { useCreateCreditCardDetail } from "@hooks/household/credit_card/useCreateCreditCardDetail";
+import { useGetCreditCardDetailBySummaryIdQuery } from "@v3/graphql/household";
 
 import { Presenter_ } from "./Presenter";
 

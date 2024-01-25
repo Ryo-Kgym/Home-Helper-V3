@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useGetValidGenreListByIocomeTypeQuery } from "@/turbo/graphql/household";
+import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
 
 import type { IocomeType } from "~/types/iocome-type";
 import type { EditableProps } from "~/ui/editable/editable-props";

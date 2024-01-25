@@ -1,4 +1,4 @@
-import { useGetTransferCategoryByQuery } from "@/turbo/graphql/household";
+import { useGetTransferCategoryByQuery } from "@v3/graphql/household";
 
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 

@@ -3,8 +3,8 @@
  */
 "use client";
 
-import { useGetExchangedAchievementsByHelperKidIdQuery } from "@/turbo/graphql/helperKids";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
+import { useGetExchangedAchievementsByHelperKidIdQuery } from "@v3/graphql/helperKids";
 
 import { UsedPointHistoryPresenter } from "./UsedPointHistoryPresenter";
 

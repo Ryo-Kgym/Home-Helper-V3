@@ -3,11 +3,11 @@
  */
 
 import type { IocomeType } from "@domain/model/household/IocomeType";
-import { useCreateCreditCardDetailMutation } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUpdateCreditCardSummaryTotal } from "@hooks/household/credit_card/useUpdateCreditCardSummaryTotal";
 import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
+import { useCreateCreditCardDetailMutation } from "@v3/graphql/household";
 
 export const useCreateCreditCardDetail = ({
   summaryId,

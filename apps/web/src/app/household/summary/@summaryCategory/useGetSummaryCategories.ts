@@ -3,11 +3,11 @@
  */
 
 import type { TransferListItem } from "@components/ui";
+import { useGroup } from "@hooks/group/useGroup";
 import {
   useGetAllCategoryListWithCriteriaQuery,
   useGetSummaryCategoriesQuery,
-} from "@/turbo/graphql/household";
-import { useGroup } from "@hooks/group/useGroup";
+} from "@v3/graphql/household";
 
 export const useGetSummaryCategories = () => {
   const { groupId } = useGroup();

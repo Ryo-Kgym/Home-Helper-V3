@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useGetValidCategoryByGenreIdQuery } from "@/turbo/graphql/household";
+import { useGetValidCategoryByGenreIdQuery } from "@v3/graphql/household";
 
 import type { EditableProps } from "~/ui/editable/editable-props";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";

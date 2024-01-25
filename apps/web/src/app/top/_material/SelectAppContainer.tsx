@@ -5,9 +5,9 @@
 "use client";
 
 import type { LinkProps } from "@components/atoms/Card";
-import { useGetAppsQuery } from "@/turbo/graphql/public";
 import { LinkList } from "@components/atoms/Card";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetAppsQuery } from "@v3/graphql/public";
 
 export const SelectAppContainer = () => {
   const { groupId } = useGroup();

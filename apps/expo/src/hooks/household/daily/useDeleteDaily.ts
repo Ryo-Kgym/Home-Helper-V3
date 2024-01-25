@@ -1,4 +1,4 @@
-import { useDeleteDailyDetailBySerialNoMutation } from "@/turbo/graphql/household";
+import { useDeleteDailyDetailBySerialNoMutation } from "@v3/graphql/household";
 
 export const useDeleteDaily = () => {
   const [, deleteDailyMutation] = useDeleteDailyDetailBySerialNoMutation();

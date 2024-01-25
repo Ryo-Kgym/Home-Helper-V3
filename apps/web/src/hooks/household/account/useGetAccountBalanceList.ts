@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useGetAccountBalanceListQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetAccountBalanceListQuery } from "@v3/graphql/household";
 
 export const useGetAccountBalanceList = (
   fromDate: Date | null,

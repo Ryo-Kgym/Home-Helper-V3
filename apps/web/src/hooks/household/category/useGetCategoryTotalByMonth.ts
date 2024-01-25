@@ -1,7 +1,7 @@
-import { useGetCategoryTotalByMonthQuery } from "@/turbo/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetCategoryTotalByMonthQuery } from "@v3/graphql/household";
 
 export const useGetCategoryTotalByMonth = (
   fromMonth: Date | null,

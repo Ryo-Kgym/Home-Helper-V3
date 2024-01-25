@@ -4,10 +4,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  useGetCategoryByIdQuery,
-  useUpdateCategoryByIdMutation,
-} from "@/turbo/graphql/household";
 import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySegment";
@@ -16,6 +12,10 @@ import { GenreNameTextInput } from "@components/molecules/CustomTextInput";
 import { Button } from "@components/ui";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "@function/successPopup";
+import {
+  useGetCategoryByIdQuery,
+  useUpdateCategoryByIdMutation,
+} from "@v3/graphql/household";
 
 export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   const [inputCategoryName, setInputCategoryName] = useState<string>("");

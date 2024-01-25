@@ -6,12 +6,12 @@
 import type { TableProps } from "@components/atoms/Table";
 import type { HelpItem } from "@domain/model/helper_kids/HelpItem";
 import { useEffect, useState } from "react";
-import { useGetHelpItemsQuery } from "@/turbo/graphql/helperKids";
 import { Counter } from "@components/atoms/Counter/index";
 import { errorPopup, successPopup } from "@function/successPopup";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGetHelperKid } from "@hooks/help_point/useHelperKidPoint";
 import { useRegisterHelpPoints } from "@hooks/help_point/useRegisterHelpPoints";
+import { useGetHelpItemsQuery } from "@v3/graphql/helperKids";
 
 import { ChargePointPresenter } from "./ChargePointPresenter";
 

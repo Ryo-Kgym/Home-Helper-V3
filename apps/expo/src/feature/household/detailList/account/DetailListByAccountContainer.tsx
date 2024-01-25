@@ -4,7 +4,7 @@ import {
   OrderBy,
   useGetCreditCardSummaryByAccountIdQuery,
   useGetDailyByAccountIdQuery,
-} from "@/turbo/graphql/household";
+} from "@v3/graphql/household";
 
 import type { CreditCard } from "~/types/credit-card";
 import type { IocomeType } from "~/types/iocome-type";

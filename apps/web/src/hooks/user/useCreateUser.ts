@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useCreateUserMutation } from "@/turbo/graphql/household";
 import { useGenerateId } from "@hooks/useGenerateId";
+import { useCreateUserMutation } from "@v3/graphql/household";
 
 export const useCreateUser = () => {
   const { generate } = useGenerateId();

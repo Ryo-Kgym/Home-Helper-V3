@@ -3,8 +3,8 @@
  */
 
 import type { IocomeType } from "@domain/model/household/IocomeType";
-import { useGetValidGenreListByIocomeTypeQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
 
 import { GenreSelectPresenter } from "./GenreSelectPresenter";
 

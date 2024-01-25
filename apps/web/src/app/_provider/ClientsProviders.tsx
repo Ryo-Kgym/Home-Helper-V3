@@ -4,8 +4,8 @@
 
 "use client";
 
-import { datasource } from "@/turbo/graphql";
 import { MantineProvider } from "@mantine/core";
+import { datasource } from "@v3/graphql";
 import { Toaster } from "react-hot-toast";
 import { RecoilRoot } from "recoil";
 import { Provider as UrqlProvider } from "urql";

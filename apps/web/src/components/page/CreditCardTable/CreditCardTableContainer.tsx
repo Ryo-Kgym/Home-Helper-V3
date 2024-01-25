@@ -6,8 +6,8 @@
 
 import type { TableProps } from "@components/atoms/Table";
 import { useRouter } from "next/navigation";
-import { useGetCreditCardListQuery } from "@/turbo/graphql/household";
 import { useGroup } from "@hooks/group/useGroup";
+import { useGetCreditCardListQuery } from "@v3/graphql/household";
 
 import { creditCardListConverter } from "./creditCardListConverter";
 import { CreditCardTablePresenter } from "./CreditCardTablePresenter";
