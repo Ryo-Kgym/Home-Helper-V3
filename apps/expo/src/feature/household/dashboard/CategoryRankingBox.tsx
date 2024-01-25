@@ -42,6 +42,7 @@ export const CategoryRankingBox = () => {
     <DashboardFrame
       label={`${month}月のランキング`}
       href={paths.household.calendar(new Date())}
+      size={"w-full"}
     >
       <View>
         {categories.map((c, i) => (
