@@ -8136,6 +8136,52 @@ export type GetDailyByAccountIdQuery = {
   }>;
 };
 
+export type GetDetailsByCategoryQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetDetailsByCategoryQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    transfer?: {
+      __typename?: "HouseholdTransferCategory";
+      outcomeCategoryId: string;
+      incomeCategoryId: string;
+    } | null;
+    dailyDetails: Array<{
+      __typename?: "HouseholdDailyDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    }>;
+    creditCardDetails: Array<{
+      __typename?: "HouseholdCreditCardDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    }>;
+  } | null;
+};
+
 export const FragDailyDetailFragmentDoc = gql`
   fragment fragDailyDetail on HouseholdDailyDetail {
     id
@@ -9642,4 +9688,57 @@ export function useGetDailyByAccountIdQuery(
     GetDailyByAccountIdQuery,
     GetDailyByAccountIdQueryVariables
   >({ query: GetDailyByAccountIdDocument, ...options });
+}
+export const GetDetailsByCategoryDocument = gql`
+  query getDetailsByCategory(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: String!
+  ) {
+    group: groupByPk(id: $groupId) {
+      transfer: transferCategory {
+        outcomeCategoryId
+        incomeCategoryId
+      }
+      dailyDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+        id
+        date
+        genre {
+          id
+          name
+          iocomeType
+        }
+        category {
+          id
+          name
+        }
+        amount
+        memo
+      }
+      creditCardDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+        id
+        date
+        genre {
+          id
+          name
+          iocomeType
+        }
+        category {
+          id
+          name
+        }
+        amount
+        memo
+      }
+    }
+  }
+`;
+
+export function useGetDetailsByCategoryQuery(
+  options: Omit<Urql.UseQueryArgs<GetDetailsByCategoryQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDetailsByCategoryQuery,
+    GetDetailsByCategoryQueryVariables
+  >({ query: GetDetailsByCategoryDocument, ...options });
 }
