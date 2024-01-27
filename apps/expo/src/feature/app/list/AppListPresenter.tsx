@@ -15,7 +15,7 @@ export const AppListPresenter = ({
         }
       >
         <Link href={app.path as `./`}>
-          <View className={"items-center px-4 pb-4 pt-5"}>
+          <View className={"items-center p-5"}>
             <Text className={"text-xl"}>{app.appName}</Text>
           </View>
         </Link>
