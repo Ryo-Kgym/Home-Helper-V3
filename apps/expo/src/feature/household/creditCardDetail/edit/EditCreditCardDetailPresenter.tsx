@@ -62,6 +62,7 @@ export const EditCreditCardDetailPresenter = ({
             value={date.value}
             setValue={date.setValue}
             loadingValue={"-"}
+            disabled
           />
         </View>
         <View>
