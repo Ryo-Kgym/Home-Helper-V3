@@ -29,7 +29,7 @@ export const Presenter = ({
         {categories.map((c, i) => (
           <View key={i} className={"flex-row items-center"}>
             <Text className={"text-md w-1/12"}>{i + 1}</Text>
-            <View className={"w-11/12"}>
+            <View className={"w-11/12 flex-row items-center justify-between"}>
               <Text className={"text-md text-gray-500"}>{c.categoryName}</Text>
               <Text className={"text-right text-lg"}>
                 {c.amount.toLocaleString()}
