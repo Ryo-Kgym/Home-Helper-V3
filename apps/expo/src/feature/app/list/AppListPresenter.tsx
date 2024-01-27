@@ -1,22 +1,25 @@
-import { FlatList, Pressable, Text } from "react-native";
-import { Link, Stack } from "expo-router";
+import { FlatList, Pressable, Text, View } from "react-native";
+import { Link } from "expo-router";
 
 export const AppListPresenter = ({
   apps,
 }: {
   apps: { appName: string; path: string }[];
 }) => (
-  <>
-    <Stack.Screen options={{ title: "App" }} />
-    <FlatList
-      data={apps}
-      renderItem={({ item: app }) => (
-        <Pressable className={"rounded-2xl border-2 p-4"}>
-          <Link href={app.path as `./`}>
+  <FlatList
+    data={apps}
+    renderItem={({ item: app }) => (
+      <Pressable
+        className={
+          "rounded-2xl border-2 border-gray-500 bg-neutral-50 shadow-md"
+        }
+      >
+        <Link href={app.path as `./`}>
+          <View className={"items-center px-4 pb-4 pt-5"}>
             <Text className={"text-xl"}>{app.appName}</Text>
-          </Link>
-        </Pressable>
-      )}
-    />
-  </>
+          </View>
+        </Link>
+      </Pressable>
+    )}
+  />
 );
