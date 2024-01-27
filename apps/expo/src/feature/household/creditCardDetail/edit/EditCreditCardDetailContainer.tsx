@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 
 import type { IocomeType } from "~/types/iocome-type";
+import { useGetCreditCardDetailById } from "~/hooks/household/credit_card/useGetCreditCardDetailById";
 import { useDeleteDaily } from "~/hooks/household/daily/useDeleteDaily";
 import { useEditDaily } from "~/hooks/household/daily/useEditDaily";
-import { useGetDailyById } from "~/hooks/household/daily/useGetDailyById";
 import { useAlert } from "~/hooks/useAlert";
 import { EditCreditCardDetailPresenter } from "./EditCreditCardDetailPresenter";
 
 export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
-  const { daily, loading } = useGetDailyById({ id });
+  const { creditCardDetail, loading } = useGetCreditCardDetailById({ id });
 
-  const [date, setDate] = useState<Date | undefined>(daily.date);
+  const [date, setDate] = useState<Date | undefined>(creditCardDetail.date);
   const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
   const [genreId, setGenreId] = useState<string>("");
   const [categoryId, setCategoryId] = useState<string>("");
@@ -25,13 +25,13 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
   const { back } = useRouter();
 
   const resetHandler = () => {
-    setDate(daily.date);
-    setIocomeType(daily.genre.iocomeType);
-    setGenreId(daily.genre.id);
-    setCategoryId(daily.category.id);
-    setAccountId(daily.account.id);
-    setAmount(daily.amount);
-    setMemo(daily.memo);
+    setDate(creditCardDetail.date);
+    setIocomeType(creditCardDetail.genre.iocomeType);
+    setGenreId(creditCardDetail.genre.id);
+    setCategoryId(creditCardDetail.category.id);
+    setAccountId(creditCardDetail.account.id);
+    setAmount(creditCardDetail.amount);
+    setMemo(creditCardDetail.memo);
   };
 
   const editHandler = async () => {
@@ -74,62 +74,58 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
     });
   };
 
-  useEffect(
-    () => {
-      setDate(daily.date);
-      setIocomeType(daily.genre.iocomeType);
-      setGenreId(daily.genre.id);
-      setCategoryId(daily.category.id);
-      setAccountId(daily.account.id);
-      setAmount(daily.amount);
-      setMemo(daily.memo);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [loading],
-  );
+  useEffect(() => {
+    setDate(creditCardDetail.date);
+    setIocomeType(creditCardDetail.genre.iocomeType);
+    setGenreId(creditCardDetail.genre.id);
+    setCategoryId(creditCardDetail.category.id);
+    setAccountId(creditCardDetail.account.id);
+    setAmount(creditCardDetail.amount);
+    setMemo(creditCardDetail.memo);
+  }, [loading]);
 
   return (
     <EditCreditCardDetailPresenter
       id={id}
       date={{
         value: date,
-        default: daily.date,
+        default: creditCardDetail.date,
         setValue: setDate,
       }}
       iocomeType={{
         value: iocomeType,
-        default: daily.genre.iocomeType,
+        default: creditCardDetail.genre.iocomeType,
         setValue: setIocomeType,
       }}
       genre={{
         value: genreId,
-        default: daily.genre.id,
+        default: creditCardDetail.genre.id,
         setValue: setGenreId,
       }}
       category={{
         value: categoryId,
-        default: daily.category.id,
+        default: creditCardDetail.category.id,
         setValue: setCategoryId,
       }}
       account={{
         value: accountId,
-        default: daily.account.id,
+        default: creditCardDetail.account.id,
         setValue: setAccountId,
       }}
       amount={{
         value: amount,
-        default: daily.amount,
+        default: creditCardDetail.amount,
         setValue: setAmount,
       }}
       memo={{
         value: memo,
-        default: daily.memo,
+        default: creditCardDetail.memo,
         setValue: setMemo,
       }}
       resetHandler={resetHandler}
       editHandler={editHandler}
       deleteHandler={onPressAlert}
-      disabled={loading}
+      disabled={true}
     />
   );
 };
