@@ -21,15 +21,16 @@ export const Presenter = ({
     label={`${month}月の変動支出`}
     href={paths.household.categoryRanking(baseDate)}
     size={"w-1/2"}
+    scroll={120}
   >
     {loading ? (
       <Text>Loading...</Text>
     ) : (
-      <View>
+      <>
         {categories.map((c, i) => (
           <View key={i} className={"flex-row items-center"}>
-            <Text className={"text-md w-1/12"}>{i + 1}</Text>
-            <View className={"w-11/12"}>
+            <Text className={"w-1/12 text-xs"}>{i + 1}</Text>
+            <View className={"w-11/12 flex-row items-center justify-between"}>
               <Text className={"text-md text-gray-500"}>{c.categoryName}</Text>
               <Text className={"text-right text-lg"}>
                 {c.amount.toLocaleString()}
@@ -37,7 +38,7 @@ export const Presenter = ({
             </View>
           </View>
         ))}
-      </View>
+      </>
     )}
   </DashboardFrame>
 );

@@ -12,7 +12,7 @@ export const MonthlyBox = ({ baseDate }: { baseDate: Date }) => {
   return (
     <DashboardFrame
       label={`${month}月の実績`}
-      href={paths.household.calendar(new Date())}
+      href={paths.household.calendar(baseDate)}
       size={"w-1/2"}
     >
       <View>
