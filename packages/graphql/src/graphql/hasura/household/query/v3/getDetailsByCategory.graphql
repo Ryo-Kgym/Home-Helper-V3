@@ -21,6 +21,7 @@ query getDetailsByCategory(
         id
         name
         iocomeType
+        genreType
       }
       category {
         id
@@ -41,6 +42,7 @@ query getDetailsByCategory(
         id
         name
         iocomeType
+        genreType
       }
       category {
         id

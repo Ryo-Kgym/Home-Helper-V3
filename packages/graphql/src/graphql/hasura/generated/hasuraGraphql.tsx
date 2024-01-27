@@ -8192,6 +8192,7 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         name: string;
         iocomeType: string;
+        genreType: string;
       };
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
     }>;
@@ -8206,6 +8207,7 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         name: string;
         iocomeType: string;
+        genreType: string;
       };
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
     }>;
@@ -9790,6 +9792,7 @@ export const GetDetailsByCategoryDocument = gql`
           id
           name
           iocomeType
+          genreType
         }
         category {
           id
@@ -9810,6 +9813,7 @@ export const GetDetailsByCategoryDocument = gql`
           id
           name
           iocomeType
+          genreType
         }
         category {
           id
