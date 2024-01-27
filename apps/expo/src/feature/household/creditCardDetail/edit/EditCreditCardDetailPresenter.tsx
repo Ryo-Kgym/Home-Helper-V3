@@ -9,6 +9,7 @@ import {
 
 import type { IocomeType } from "~/types/iocome-type";
 import {
+  DeleteButton,
   EditableAccount,
   EditableAmount,
   EditableCategory,
@@ -123,12 +124,7 @@ export const EditCreditCardDetailPresenter = ({
             <Button title={"更新"} onPress={editHandler} disabled={disabled} />
           </View>
           <View className={"w-1/3"}>
-            <Button
-              title={"削除"}
-              onPress={deleteHandler}
-              disabled={disabled}
-              color={"#FF0000"}
-            />
+            <DeleteButton deleteHandler={deleteHandler} disabled={disabled} />
           </View>
           <View className={"w-1/3"}>
             <Button title={"リセット"} onPress={resetHandler} />
