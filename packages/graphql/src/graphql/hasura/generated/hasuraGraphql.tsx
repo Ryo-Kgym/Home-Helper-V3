@@ -8077,6 +8077,26 @@ export type GetDepositQuery = {
   }>;
 };
 
+export type FragCreditCardDetailFragment = {
+  __typename?: "HouseholdCreditCardDetail";
+  id: string;
+  date: any;
+  amount: any;
+  memo?: string | null;
+  genre: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    iocomeType: string;
+  };
+  category: { __typename?: "HouseholdCategory"; id: string; name: string };
+  summary: {
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  };
+};
+
 export type GetAccountByIdQueryVariables = Exact<{
   accountId: Scalars["String"];
 }>;
@@ -8207,9 +8227,13 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         name: string;
         iocomeType: string;
-        genreType: string;
       };
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      summary: {
+        __typename?: "HouseholdCreditCardSummary";
+        id: string;
+        account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      };
     }>;
   } | null;
 };
@@ -8234,6 +8258,30 @@ export const FragDailyDetailFragmentDoc = gql`
     }
     amount
     memo
+  }
+`;
+export const FragCreditCardDetailFragmentDoc = gql`
+  fragment fragCreditCardDetail on HouseholdCreditCardDetail {
+    id
+    date
+    amount
+    memo
+    genre {
+      id
+      name
+      iocomeType
+    }
+    category {
+      id
+      name
+    }
+    summary: creditCardSummary {
+      id
+      account {
+        id
+        name
+      }
+    }
   }
 `;
 export const CreateAccountDocument = gql`
@@ -9667,28 +9715,10 @@ export const GetCreditCardDetailListDocument = gql`
         _and: { groupId: { _eq: $groupId } }
       }
     ) {
-      id
-      date
-      amount
-      memo
-      genre {
-        id
-        name
-        iocomeType
-      }
-      category {
-        id
-        name
-      }
-      summary: creditCardSummary {
-        id
-        account {
-          id
-          name
-        }
-      }
+      ...fragCreditCardDetail
     }
   }
+  ${FragCreditCardDetailFragmentDoc}
 `;
 
 export function useGetCreditCardDetailListQuery(
@@ -9807,23 +9837,11 @@ export const GetDetailsByCategoryDocument = gql`
           _and: { iocomeType: { _in: $iocomeType } }
         }
       ) {
-        id
-        date
-        genre {
-          id
-          name
-          iocomeType
-          genreType
-        }
-        category {
-          id
-          name
-        }
-        amount
-        memo
+        ...fragCreditCardDetail
       }
     }
   }
+  ${FragCreditCardDetailFragmentDoc}
 `;
 
 export function useGetDetailsByCategoryQuery(

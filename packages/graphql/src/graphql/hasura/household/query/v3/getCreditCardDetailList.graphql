@@ -9,25 +9,6 @@ query getCreditCardDetailList(
       _and: { groupId: { _eq: $groupId } }
     }
   ) {
-    id
-    date
-    amount
-    memo
-    genre {
-      id
-      name
-      iocomeType
-    }
-    category {
-      id
-      name
-    }
-    summary: creditCardSummary {
-      id
-      account {
-        id
-        name
-      }
-    }
+    ...fragCreditCardDetail
   }
 }
