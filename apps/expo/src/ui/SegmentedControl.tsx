@@ -4,10 +4,12 @@ export const SegmentedControl = <T,>({
   value,
   setValue,
   data,
+  disabled = false,
 }: {
   value: T;
   setValue: (value: T) => void;
   data: { value: T; label: string }[];
+  disabled?: boolean;
 }) => (
   <NRSegmentedControl
     values={data.map((item) => item.label)}
@@ -15,5 +17,6 @@ export const SegmentedControl = <T,>({
     onChange={(event) => {
       setValue(data[event.nativeEvent.selectedSegmentIndex]?.value ?? value);
     }}
+    enabled={!disabled}
   />
 );

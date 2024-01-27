@@ -5,6 +5,7 @@ import { SegmentedControl } from "../SegmentedControl";
 export const EditableIocomeType = ({
   value,
   setValue,
+  disabled = false,
 }: EditableProps<IocomeType>) => {
   const data = [
     {
@@ -16,5 +17,12 @@ export const EditableIocomeType = ({
       label: "支出",
     },
   ];
-  return <SegmentedControl value={value} setValue={setValue} data={data} />;
+  return (
+    <SegmentedControl
+      value={value}
+      setValue={setValue}
+      data={data}
+      disabled={disabled}
+    />
+  );
 };

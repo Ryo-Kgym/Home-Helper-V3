@@ -71,6 +71,7 @@ export const EditCreditCardDetailPresenter = ({
             value={iocomeType.value}
             setValue={iocomeType.setValue}
             defaultValue={iocomeType.default}
+            disabled
           />
         </View>
         <View>
