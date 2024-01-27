@@ -5,7 +5,7 @@ import { getMonth } from "~/func/date/get-month";
 import { BalanceBox } from "./BalanceBox";
 import { MonthlyBox } from "./MonthlyBox";
 
-export const HouseholdDashboardContainer = () => {
+export const HouseholdDashboard = () => {
   const today = new Date();
   const { lastMonth } = getMonth();
 
