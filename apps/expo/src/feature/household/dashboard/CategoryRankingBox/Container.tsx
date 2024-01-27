@@ -8,6 +8,7 @@ export const Container = ({ baseDate }: { baseDate: Date }) => {
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
     iocomeType: ["OUTCOME"],
+    genreType: ["FLUCTUATION"],
   });
 
   return (
