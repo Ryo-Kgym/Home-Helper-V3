@@ -21,11 +21,12 @@ export const Presenter = ({
     label={`${month}月の変動支出`}
     href={paths.household.categoryRanking(baseDate)}
     size={"w-1/2"}
+    scroll={120}
   >
     {loading ? (
       <Text>Loading...</Text>
     ) : (
-      <View>
+      <>
         {categories.map((c, i) => (
           <View key={i} className={"flex-row items-center"}>
             <Text className={"w-1/12 text-xs"}>{i + 1}</Text>
@@ -37,7 +38,7 @@ export const Presenter = ({
             </View>
           </View>
         ))}
-      </View>
+      </>
     )}
   </DashboardFrame>
 );
