@@ -13,8 +13,8 @@ export const HouseholdDashboardContainer = () => {
     <View>
       <BalanceBox />
       <View className={"flex-row"}>
-        <MonthlyBox />
-        <MonthlyBox />
+        <MonthlyBox baseDate={lastMonth} />
+        <MonthlyBox baseDate={today} />
       </View>
       <CategoryRankingBox baseDate={lastMonth} />
       <CategoryRankingBox baseDate={today} />

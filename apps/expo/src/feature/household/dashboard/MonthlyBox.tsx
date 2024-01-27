@@ -4,8 +4,10 @@ import { paths } from "~/app/paths";
 import { DashboardFrame } from "./DashboardFrame";
 import { useCalcMonthly } from "./useCalcMonthly";
 
-export const MonthlyBox = () => {
-  const { incomeTotal, outcomeTotal, diff, month } = useCalcMonthly();
+export const MonthlyBox = ({ baseDate }: { baseDate: Date }) => {
+  const { incomeTotal, outcomeTotal, diff, month } = useCalcMonthly({
+    baseDate,
+  });
 
   return (
     <DashboardFrame

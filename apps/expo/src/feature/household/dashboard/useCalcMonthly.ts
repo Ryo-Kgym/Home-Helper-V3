@@ -4,8 +4,8 @@ import { getMonth } from "~/func/date/get-month";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useGetDetails } from "~/hooks/household/detail/useGetDetails";
 
-export const useCalcMonthly = () => {
-  const { firstDayOfMonth, lastDayOfMonth, month } = getMonth();
+export const useCalcMonthly = ({ baseDate }: { baseDate?: Date }) => {
+  const { firstDayOfMonth, lastDayOfMonth, month } = getMonth(baseDate);
   const { groupId } = useSaveGroupId();
 
   const [{ data: transData }] = useGetTransferCategoryByQuery({
