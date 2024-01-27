@@ -25,20 +25,20 @@ export const CategoryRankingDetailListContainer = ({
   });
 
   const details: ComponentProps<typeof Details>["details"] = [
-    ...dailyDetailList.map((d) => ({
-      id: d.id,
-      date: d.date,
-      accountName: d.account.name,
-      amount: d.amount,
-      categoryName: d.category.name,
-      genreName: d.genre.name,
-      iocomeType: d.genre.iocomeType,
-      redirectHandler: () => {
-        push(paths.household.daily(d.id) as "/");
-      },
-      memo: d.memo,
-      type: "daily",
-    })),
+    ...dailyDetailList.map((d) => {
+      return {
+        id: d.id,
+        date: d.date,
+        accountName: d.account.name,
+        amount: d.amount,
+        categoryName: d.category.name,
+        genreName: d.genre.name,
+        iocomeType: d.genre.iocomeType,
+        redirectHandler: () => push(paths.household.daily(d.id) as "/"),
+        memo: d.memo,
+        type: "daily",
+      };
+    }),
     ...creditCardDetailList.map((d) => ({
       id: d.id,
       date: d.date,
@@ -47,7 +47,8 @@ export const CategoryRankingDetailListContainer = ({
       categoryName: d.category.name,
       genreName: d.genre.name,
       iocomeType: d.genre.iocomeType,
-      redirectHandler: () => undefined,
+      redirectHandler: () =>
+        push(paths.household.creditCardDetail(d.id) as "/"),
       memo: d.memo,
       type: "creditCardDetail",
     })),

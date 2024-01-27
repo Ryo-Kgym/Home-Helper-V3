@@ -61,7 +61,8 @@ export const DetailListByAccountContainer = ({
       categoryName: getCreditCardName(d.creditCard as CreditCard),
       genreName: getCreditCardGenreName(),
       iocomeType: "OUTCOME" as IocomeType,
-      redirectHandler: () => undefined,
+      redirectHandler: () =>
+        push(paths.household.creditCardDetail(d.id) as "/"),
       memo: null,
       type: "creditCardSummary",
     })) ?? []),
