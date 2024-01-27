@@ -10,14 +10,16 @@ export const HouseholdDashboardContainer = () => {
   const { lastMonth } = getMonth();
 
   return (
-    <View>
+    <View className={"pt-1"}>
       <BalanceBox />
       <View className={"flex-row"}>
         <MonthlyBox baseDate={lastMonth} />
         <MonthlyBox baseDate={today} />
       </View>
-      <CategoryRankingBox baseDate={lastMonth} />
-      <CategoryRankingBox baseDate={today} />
+      <View className={"flex-row"}>
+        <CategoryRankingBox baseDate={lastMonth} />
+        <CategoryRankingBox baseDate={today} />
+      </View>
     </View>
   );
 };

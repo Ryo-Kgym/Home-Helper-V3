@@ -20,7 +20,7 @@ export const DashboardFrame = ({
           "min-w-full rounded-2xl border-2 border-gray-400 bg-neutral-50 p-3 shadow-sm"
         }
       >
-        <Text className={"text-xl "}>{label}</Text>
+        <Text className={"text-lg"}>{label}</Text>
         {children}
       </View>
     </Link>
