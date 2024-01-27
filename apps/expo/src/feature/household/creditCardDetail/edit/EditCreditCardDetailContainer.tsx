@@ -34,7 +34,7 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
     setMemo(creditCardDetail.memo);
   };
 
-  const editHandler = async () => {
+  const updateHandler = async () => {
     if (!amount) return;
     try {
       await editDaily({
@@ -123,7 +123,7 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
         setValue: setMemo,
       }}
       resetHandler={resetHandler}
-      editHandler={editHandler}
+      updateHandler={updateHandler}
       deleteHandler={onPressAlert}
       disabled={true}
     />

@@ -35,7 +35,7 @@ export const EditCreditCardDetailPresenter = ({
   account,
   memo,
   resetHandler,
-  editHandler,
+  updateHandler,
   deleteHandler,
   disabled,
 }: {
@@ -48,7 +48,7 @@ export const EditCreditCardDetailPresenter = ({
   amount: FieldType<number | null>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
-  editHandler: () => void;
+  updateHandler: () => void;
   deleteHandler: () => void;
   disabled: boolean;
 }) => (
@@ -122,7 +122,7 @@ export const EditCreditCardDetailPresenter = ({
         </View>
         <View className={"flex-row justify-between"}>
           <View className={"w-1/3"}>
-            <UpdateButton updateHandler={editHandler} disabled={disabled} />
+            <UpdateButton updateHandler={updateHandler} disabled={disabled} />
           </View>
           <View className={"w-1/3"}>
             <DeleteButton deleteHandler={deleteHandler} disabled={disabled} />
