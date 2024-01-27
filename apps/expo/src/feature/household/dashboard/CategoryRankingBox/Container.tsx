@@ -15,7 +15,7 @@ export const Container = ({ baseDate }: { baseDate: Date }) => {
     <Presenter
       baseDate={baseDate}
       month={month}
-      categories={categoryTotal.sort((a, b) => b.amount - a.amount).slice(0, 5)}
+      categories={categoryTotal.sort((a, b) => b.amount - a.amount)}
       loading={loading}
     />
   );
