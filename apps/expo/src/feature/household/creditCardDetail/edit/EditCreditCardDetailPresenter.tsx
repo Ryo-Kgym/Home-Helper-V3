@@ -8,7 +8,6 @@ import {
 
 import type { IocomeType } from "~/types/iocome-type";
 import {
-  DeleteButton,
   EditableAccount,
   EditableAmount,
   EditableCategory,
@@ -26,7 +25,7 @@ type FieldType<T> = {
   default: T;
 };
 
-export const EditDailyPresenter = ({
+export const EditCreditCardDetailPresenter = ({
   date,
   iocomeType,
   genre,
@@ -35,8 +34,7 @@ export const EditDailyPresenter = ({
   account,
   memo,
   resetHandler,
-  editHandler,
-  deleteHandler,
+  updateHandler,
   disabled,
 }: {
   id: string;
@@ -48,8 +46,7 @@ export const EditDailyPresenter = ({
   amount: FieldType<number | null>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
-  editHandler: () => void;
-  deleteHandler: () => void;
+  updateHandler: () => void;
   disabled: boolean;
 }) => (
   <KeyboardAvoidingView
@@ -65,6 +62,7 @@ export const EditDailyPresenter = ({
             value={date.value}
             setValue={date.setValue}
             loadingValue={"-"}
+            disabled
           />
         </View>
         <View>
@@ -73,6 +71,7 @@ export const EditDailyPresenter = ({
             value={iocomeType.value}
             setValue={iocomeType.setValue}
             defaultValue={iocomeType.default}
+            disabled
           />
         </View>
         <View>
@@ -99,6 +98,7 @@ export const EditDailyPresenter = ({
             value={account.value}
             setValue={account.setValue}
             defaultValue={account.default}
+            disabled
           />
         </View>
         <View>
@@ -108,6 +108,7 @@ export const EditDailyPresenter = ({
             setValue={amount.setValue}
             iocomeType={iocomeType.value}
             defaultValue={amount.default}
+            disabled
           />
         </View>
         <View>
@@ -119,13 +120,10 @@ export const EditDailyPresenter = ({
           />
         </View>
         <View className={"flex-row justify-between"}>
-          <View className={"w-1/3"}>
-            <UpdateButton updateHandler={editHandler} disabled={disabled} />
+          <View className={"w-1/2"}>
+            <UpdateButton updateHandler={updateHandler} disabled={disabled} />
           </View>
-          <View className={"w-1/3"}>
-            <DeleteButton deleteHandler={deleteHandler} disabled={disabled} />
-          </View>
-          <View className={"w-1/3"}>
+          <View className={"w-1/2"}>
             <ResetButton resetHandler={resetHandler} />
           </View>
         </View>

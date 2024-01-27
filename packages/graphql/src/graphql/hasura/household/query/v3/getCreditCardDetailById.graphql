@@ -1,0 +1,5 @@
+query getCreditCardDetailById($id: String!) {
+  creditCardDetail: householdCreditCardDetailByPk(id: $id) {
+    ...fragCreditCardDetail
+  }
+}

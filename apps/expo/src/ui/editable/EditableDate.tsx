@@ -8,6 +8,7 @@ export const EditableDate = ({
   value,
   setValue,
   loadingValue,
+  disabled,
 }: EditableProps<Date | undefined> & { loadingValue: string }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -22,7 +23,12 @@ export const EditableDate = ({
 
   return (
     <View className={"rounded bg-gray-200"}>
-      <Button title={title} onPress={showDatePicker} color={"#444444"} />
+      <Button
+        title={title}
+        onPress={showDatePicker}
+        color={"#444444"}
+        disabled={disabled}
+      />
       <DateTimePickerModal
         date={value}
         textColor={"#000"}

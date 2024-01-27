@@ -7275,20 +7275,6 @@ export type UpdateCategoryByIdMutation = {
   updateCategoryByPk?: { __typename?: "HouseholdCategory"; id: string } | null;
 };
 
-export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
-  id: Scalars["String"];
-  categoryId: Scalars["String"];
-  memo?: InputMaybe<Scalars["String"]>;
-}>;
-
-export type UpdateCreditCardDetailByIdMutation = {
-  __typename?: "mutation_root";
-  updateCreditCardDetailByPk?: {
-    __typename?: "HouseholdCreditCardDetail";
-    id: string;
-  } | null;
-};
-
 export type UpdateCreditCardSummaryTotalMutationVariables = Exact<{
   id: Scalars["String"];
   totalAmount: Scalars["numeric"];
@@ -7334,6 +7320,21 @@ export type UpdateGenreByIdMutationVariables = Exact<{
 export type UpdateGenreByIdMutation = {
   __typename?: "mutation_root";
   updateGenreByPk?: { __typename?: "HouseholdGenre"; id: string } | null;
+};
+
+export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
+  id: Scalars["String"];
+  genreId: Scalars["String"];
+  categoryId: Scalars["String"];
+  memo?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type UpdateCreditCardDetailByIdMutation = {
+  __typename?: "mutation_root";
+  updateHouseholdCreditCardDetailByPk?: {
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+  } | null;
 };
 
 export type GetAccountBalanceListQueryVariables = Exact<{
@@ -7478,34 +7479,6 @@ export type GetCategoryTotalByMonthQuery = {
     categoryName?: string | null;
     total?: any | null;
   }>;
-};
-
-export type GetCreditCardDetailByIdQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type GetCreditCardDetailByIdQuery = {
-  __typename?: "query_root";
-  creditCardDetailByPk?: {
-    __typename?: "HouseholdCreditCardDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    summaryId: string;
-    category: {
-      __typename?: "HouseholdCategory";
-      categoryId: string;
-      categoryName: string;
-      genre: {
-        __typename?: "HouseholdGenre";
-        genreType: string;
-        iocomeType: string;
-        genreId: string;
-        genreName: string;
-      };
-    };
-  } | null;
 };
 
 export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
@@ -8077,6 +8050,27 @@ export type GetDepositQuery = {
   }>;
 };
 
+export type FragCreditCardDetailFragment = {
+  __typename?: "HouseholdCreditCardDetail";
+  id: string;
+  date: any;
+  amount: any;
+  memo?: string | null;
+  genre: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    iocomeType: string;
+    genreType: string;
+  };
+  category: { __typename?: "HouseholdCategory"; id: string; name: string };
+  summary: {
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  };
+};
+
 export type GetAccountByIdQueryVariables = Exact<{
   accountId: Scalars["String"];
 }>;
@@ -8087,6 +8081,34 @@ export type GetAccountByIdQuery = {
     __typename?: "HouseholdAccount";
     id: string;
     name: string;
+  } | null;
+};
+
+export type GetCreditCardDetailByIdQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetCreditCardDetailByIdQuery = {
+  __typename?: "query_root";
+  creditCardDetail?: {
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      iocomeType: string;
+      genreType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    summary: {
+      __typename?: "HouseholdCreditCardSummary";
+      id: string;
+      account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    };
   } | null;
 };
 
@@ -8109,6 +8131,7 @@ export type GetCreditCardDetailListQuery = {
       id: string;
       name: string;
       iocomeType: string;
+      genreType: string;
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     summary: {
@@ -8210,6 +8233,11 @@ export type GetDetailsByCategoryQuery = {
         genreType: string;
       };
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      summary: {
+        __typename?: "HouseholdCreditCardSummary";
+        id: string;
+        account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      };
     }>;
   } | null;
 };
@@ -8234,6 +8262,31 @@ export const FragDailyDetailFragmentDoc = gql`
     }
     amount
     memo
+  }
+`;
+export const FragCreditCardDetailFragmentDoc = gql`
+  fragment fragCreditCardDetail on HouseholdCreditCardDetail {
+    id
+    date
+    amount
+    memo
+    genre {
+      id
+      name
+      iocomeType
+      genreType
+    }
+    category {
+      id
+      name
+    }
+    summary: creditCardSummary {
+      id
+      account {
+        id
+        name
+      }
+    }
   }
 `;
 export const CreateAccountDocument = gql`
@@ -8559,27 +8612,6 @@ export function useUpdateCategoryByIdMutation() {
     UpdateCategoryByIdMutationVariables
   >(UpdateCategoryByIdDocument);
 }
-export const UpdateCreditCardDetailByIdDocument = gql`
-  mutation UpdateCreditCardDetailById(
-    $id: String!
-    $categoryId: String!
-    $memo: String
-  ) {
-    updateCreditCardDetailByPk: updateHouseholdCreditCardDetailByPk(
-      pkColumns: { id: $id }
-      _set: { categoryId: $categoryId, memo: $memo }
-    ) {
-      id
-    }
-  }
-`;
-
-export function useUpdateCreditCardDetailByIdMutation() {
-  return Urql.useMutation<
-    UpdateCreditCardDetailByIdMutation,
-    UpdateCreditCardDetailByIdMutationVariables
-  >(UpdateCreditCardDetailByIdDocument);
-}
 export const UpdateCreditCardSummaryTotalDocument = gql`
   mutation UpdateCreditCardSummaryTotal(
     $id: String!
@@ -8664,6 +8696,28 @@ export function useUpdateGenreByIdMutation() {
     UpdateGenreByIdMutation,
     UpdateGenreByIdMutationVariables
   >(UpdateGenreByIdDocument);
+}
+export const UpdateCreditCardDetailByIdDocument = gql`
+  mutation updateCreditCardDetailById(
+    $id: String!
+    $genreId: String!
+    $categoryId: String!
+    $memo: String
+  ) {
+    updateHouseholdCreditCardDetailByPk(
+      pkColumns: { id: $id }
+      _set: { genreId: $genreId, categoryId: $categoryId, memo: $memo }
+    ) {
+      id
+    }
+  }
+`;
+
+export function useUpdateCreditCardDetailByIdMutation() {
+  return Urql.useMutation<
+    UpdateCreditCardDetailByIdMutation,
+    UpdateCreditCardDetailByIdMutationVariables
+  >(UpdateCreditCardDetailByIdDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList(
@@ -8874,39 +8928,6 @@ export function useGetCategoryTotalByMonthQuery(
     GetCategoryTotalByMonthQuery,
     GetCategoryTotalByMonthQueryVariables
   >({ query: GetCategoryTotalByMonthDocument, ...options });
-}
-export const GetCreditCardDetailByIdDocument = gql`
-  query GetCreditCardDetailById($id: String!) {
-    creditCardDetailByPk: householdCreditCardDetailByPk(id: $id) {
-      id
-      date
-      amount
-      memo
-      summaryId
-      category {
-        categoryId: id
-        categoryName: name
-        genre {
-          genreId: id
-          genreName: name
-          genreType
-          iocomeType
-        }
-      }
-    }
-  }
-`;
-
-export function useGetCreditCardDetailByIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCreditCardDetailByIdQuery,
-    GetCreditCardDetailByIdQueryVariables
-  >({ query: GetCreditCardDetailByIdDocument, ...options });
 }
 export const GetCreditCardDetailBySummaryIdDocument = gql`
   query GetCreditCardDetailBySummaryId($id: String!) {
@@ -9655,6 +9676,26 @@ export function useGetAccountByIdQuery(
     ...options,
   });
 }
+export const GetCreditCardDetailByIdDocument = gql`
+  query getCreditCardDetailById($id: String!) {
+    creditCardDetail: householdCreditCardDetailByPk(id: $id) {
+      ...fragCreditCardDetail
+    }
+  }
+  ${FragCreditCardDetailFragmentDoc}
+`;
+
+export function useGetCreditCardDetailByIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailByIdQuery,
+    GetCreditCardDetailByIdQueryVariables
+  >({ query: GetCreditCardDetailByIdDocument, ...options });
+}
 export const GetCreditCardDetailListDocument = gql`
   query getCreditCardDetailList(
     $fromDate: date!
@@ -9667,28 +9708,10 @@ export const GetCreditCardDetailListDocument = gql`
         _and: { groupId: { _eq: $groupId } }
       }
     ) {
-      id
-      date
-      amount
-      memo
-      genre {
-        id
-        name
-        iocomeType
-      }
-      category {
-        id
-        name
-      }
-      summary: creditCardSummary {
-        id
-        account {
-          id
-          name
-        }
-      }
+      ...fragCreditCardDetail
     }
   }
+  ${FragCreditCardDetailFragmentDoc}
 `;
 
 export function useGetCreditCardDetailListQuery(
@@ -9807,23 +9830,11 @@ export const GetDetailsByCategoryDocument = gql`
           _and: { iocomeType: { _in: $iocomeType } }
         }
       ) {
-        id
-        date
-        genre {
-          id
-          name
-          iocomeType
-          genreType
-        }
-        category {
-          id
-          name
-        }
-        amount
-        memo
+        ...fragCreditCardDetail
       }
     }
   }
+  ${FragCreditCardDetailFragmentDoc}
 `;
 
 export function useGetDetailsByCategoryQuery(

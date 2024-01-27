@@ -36,20 +36,7 @@ query getDetailsByCategory(
         _and: { iocomeType: { _in: $iocomeType } }
       }
     ) {
-      id
-      date
-      genre {
-        id
-        name
-        iocomeType
-        genreType
-      }
-      category {
-        id
-        name
-      }
-      amount
-      memo
+      ...fragCreditCardDetail
     }
   }
 }

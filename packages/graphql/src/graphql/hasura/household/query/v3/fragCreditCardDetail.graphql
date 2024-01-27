@@ -1,0 +1,23 @@
+fragment fragCreditCardDetail on HouseholdCreditCardDetail {
+  id
+  date
+  amount
+  memo
+  genre {
+    id
+    name
+    iocomeType
+    genreType
+  }
+  category {
+    id
+    name
+  }
+  summary: creditCardSummary {
+    id
+    account {
+      id
+      name
+    }
+  }
+}

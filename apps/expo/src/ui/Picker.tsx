@@ -15,14 +15,17 @@ export const Picker = <T,>({
     selectedValue={value}
     onValueChange={setValue}
     itemStyle={{ height: 60, fontSize: 18 }}
-    enabled={!disabled}
   >
-    {data.map((account) => (
-      <RNPicker.Item
-        key={String(account.value)}
-        label={account.label}
-        value={account.value}
-      />
-    ))}
+    {data
+      .filter(
+        (d) =>
+          // disabledがfalseの場合は、全て表示する
+          !disabled ||
+          // disableの場合は、valueが一致するものだけ表示する
+          (disabled && d.value === value),
+      )
+      .map((d) => (
+        <RNPicker.Item key={String(d.value)} label={d.label} value={d.value} />
+      ))}
   </RNPicker>
 );

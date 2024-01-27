@@ -2,6 +2,7 @@ import { FlatList, Pressable, Text, View } from "react-native";
 
 import type { Detail } from "~/ui/Details/detail-type";
 import { Amount } from "~/ui/Amount";
+import { getBgColor } from "~/ui/Details/get-bg-color";
 
 export const Details = ({ details }: { details: Detail[] }) => (
   <FlatList
@@ -10,9 +11,9 @@ export const Details = ({ details }: { details: Detail[] }) => (
     renderItem={({ item: detail }) => (
       <Pressable onPress={detail.redirectHandler}>
         <View
-          className={
-            "flex-row items-center border-b border-b-gray-400 px-3 py-2"
-          }
+          className={`flex-row items-center border-b border-b-gray-400 px-3 py-2 ${getBgColor(
+            detail.type,
+          )}`}
         >
           <View className={"w-2/3"}>
             <View className={"flex-row items-center gap-5"}>
