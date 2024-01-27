@@ -5,7 +5,7 @@ export const colorSetting: {
     bg: string;
   };
 } = {
-  default: { bg: "bg-inherit" },
+  default: { bg: "" },
   blue: { bg: "bg-blue-50" },
   yellow: { bg: "bg-yellow-50" },
 };

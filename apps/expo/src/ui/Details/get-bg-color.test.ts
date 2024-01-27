@@ -11,7 +11,7 @@ describe("getBgColor", () => {
     { type: "daily", expected: "bg-blue-50" },
     { type: "creditCardDetail", expected: "bg-yellow-50" },
     { type: "creditCardSummary", expected: "bg-yellow-50" },
-    { type: undefined, expected: "bg-inherit" },
+    { type: undefined, expected: "" },
   ];
 
   it.each(testData)(
