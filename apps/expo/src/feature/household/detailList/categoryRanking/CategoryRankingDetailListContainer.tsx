@@ -37,6 +37,7 @@ export const CategoryRankingDetailListContainer = ({
         push(paths.household.daily(d.id) as "/");
       },
       memo: d.memo,
+      type: "daily",
     })),
     ...creditCardDetailList.map((d) => ({
       id: d.id,
@@ -48,6 +49,7 @@ export const CategoryRankingDetailListContainer = ({
       iocomeType: d.genre.iocomeType,
       redirectHandler: () => undefined,
       memo: d.memo,
+      type: "creditCardDetail",
     })),
   ].sort(sortBy.date.asc);
 

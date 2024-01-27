@@ -52,6 +52,7 @@ export const DetailListByAccountContainer = ({
       iocomeType: d.genre.iocomeType as IocomeType,
       redirectHandler: () => push(paths.household.daily(d.id) as "/"),
       memo: d.memo ?? null,
+      type: "daily",
     })) ?? []),
     ...(creditCardSummary?.creditCardSummaries.map((d) => ({
       id: d.id,
@@ -62,6 +63,7 @@ export const DetailListByAccountContainer = ({
       iocomeType: "OUTCOME" as IocomeType,
       redirectHandler: () => undefined,
       memo: null,
+      type: "creditCardSummary",
     })) ?? []),
   ].sort((a, b) => {
     if (!a.date) return 1;
