@@ -19,6 +19,7 @@ export const useGetCategoryTotal = ({
       groupId,
       fromDate,
       toDate,
+      iocomeType: ["OUTCOME"],
     },
   });
 
@@ -40,9 +41,7 @@ export const useGetCategoryTotal = ({
 
   const categoryTotal = totalCategory({
     details: [...dailyDetails, ...creditCardDetails],
-    filter: (d) =>
-      d.iocomeType === "OUTCOME" &&
-      d.categoryId !== data?.group?.transfer?.outcomeCategoryId,
+    filter: (d) => d.categoryId !== data?.group?.transfer?.outcomeCategoryId,
   });
 
   useEffect(() => {

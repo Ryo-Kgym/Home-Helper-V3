@@ -8169,6 +8169,7 @@ export type GetDetailsByCategoryQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
+  iocomeType?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
 }>;
 
 export type GetDetailsByCategoryQuery = {
@@ -9770,13 +9771,19 @@ export const GetDetailsByCategoryDocument = gql`
     $fromDate: date!
     $toDate: date!
     $groupId: String!
+    $iocomeType: [String!] = ["INCOME", "OUTCOME"]
   ) {
     group: groupByPk(id: $groupId) {
       transfer: transferCategory {
         outcomeCategoryId
         incomeCategoryId
       }
-      dailyDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+      dailyDetails(
+        where: {
+          date: { _gte: $fromDate, _lte: $toDate }
+          _and: { iocomeType: { _in: $iocomeType } }
+        }
+      ) {
         id
         date
         genre {
@@ -9791,7 +9798,12 @@ export const GetDetailsByCategoryDocument = gql`
         amount
         memo
       }
-      creditCardDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+      creditCardDetails(
+        where: {
+          date: { _gte: $fromDate, _lte: $toDate }
+          _and: { iocomeType: { _in: $iocomeType } }
+        }
+      ) {
         id
         date
         genre {
