@@ -8088,6 +8088,7 @@ export type FragCreditCardDetailFragment = {
     id: string;
     name: string;
     iocomeType: string;
+    genreType: string;
   };
   category: { __typename?: "HouseholdCategory"; id: string; name: string };
   summary: {
@@ -8129,6 +8130,7 @@ export type GetCreditCardDetailListQuery = {
       id: string;
       name: string;
       iocomeType: string;
+      genreType: string;
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     summary: {
@@ -8227,6 +8229,7 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         name: string;
         iocomeType: string;
+        genreType: string;
       };
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
       summary: {
@@ -8270,6 +8273,7 @@ export const FragCreditCardDetailFragmentDoc = gql`
       id
       name
       iocomeType
+      genreType
     }
     category {
       id
