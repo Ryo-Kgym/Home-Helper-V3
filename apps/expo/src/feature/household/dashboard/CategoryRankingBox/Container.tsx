@@ -7,6 +7,7 @@ export const Container = ({ baseDate }: { baseDate: Date }) => {
   const { categoryTotal, loading } = useGetCategoryTotal({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
+    iocomeType: ["OUTCOME"],
   });
 
   return (
