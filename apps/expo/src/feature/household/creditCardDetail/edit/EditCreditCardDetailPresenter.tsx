@@ -17,6 +17,7 @@ import {
   EditableGenre,
   EditableIocomeType,
   EditableMemo,
+  UpdateButton,
 } from "~/ui";
 
 type FieldType<T> = {
@@ -121,7 +122,7 @@ export const EditCreditCardDetailPresenter = ({
         </View>
         <View className={"flex-row justify-between"}>
           <View className={"w-1/3"}>
-            <Button title={"更新"} onPress={editHandler} disabled={disabled} />
+            <UpdateButton updateHandler={editHandler} disabled={disabled} />
           </View>
           <View className={"w-1/3"}>
             <DeleteButton deleteHandler={deleteHandler} disabled={disabled} />
