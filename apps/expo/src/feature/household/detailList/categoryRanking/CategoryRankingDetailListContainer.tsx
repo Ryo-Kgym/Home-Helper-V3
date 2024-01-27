@@ -5,7 +5,7 @@ import { paths } from "~/app/paths";
 import { getMonth } from "~/func/date/get-month";
 import { useGetCreditCardDetailList } from "~/hooks/household/credit_card/useGetCreditCardDetailList";
 import { useGetDailyList } from "~/hooks/household/daily/useGetDailyList";
-import { Details, sortKey } from "~/ui";
+import { Details, sortBy } from "~/ui";
 
 export const CategoryRankingDetailListContainer = ({
   yyyyMM,
@@ -49,7 +49,7 @@ export const CategoryRankingDetailListContainer = ({
       redirectHandler: () => undefined,
       memo: d.memo,
     })),
-  ].sort(sortKey.date.asc);
+  ].sort(sortBy.date.asc);
 
   return <Details details={details} />;
 };

@@ -1,6 +1,6 @@
 import type { Detail } from "~/ui/Details/detail-type";
 
-export const sortKey = {
+export const sortBy = {
   date: {
     asc: (a: Detail, b: Detail) => sortByDate(a, b, 1),
     desc: (a: Detail, b: Detail) => sortByDate(a, b, -1),

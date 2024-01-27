@@ -2,7 +2,7 @@ export type { Detail } from "~/ui/Details/detail-type";
 
 export { Amount } from "~/ui/Amount";
 export { Details as Details } from "~/ui/Details/Details";
-export { sortKey } from "~/ui/Details/sort-detail";
+export { sortBy } from "~/ui/Details/sort-detail";
 export { EditableAccount } from "~/ui/editable/EditableAccount";
 export { EditableAmount } from "~/ui/editable/EditableAmount";
 export { EditableCategory } from "~/ui/editable/EditableCategory";
