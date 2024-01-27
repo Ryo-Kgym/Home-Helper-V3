@@ -4,10 +4,12 @@ import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
 
 export const Presenter = ({
+  baseDate,
   month,
   categories,
   loading,
 }: {
+  baseDate: Date;
   month: number;
   categories: {
     categoryName: string;
@@ -17,7 +19,7 @@ export const Presenter = ({
 }) => (
   <DashboardFrame
     label={`${month}月の支出ランキング`}
-    href={paths.household.categoryRanking(new Date())}
+    href={paths.household.categoryRanking(baseDate)}
     size={"w-full"}
   >
     {loading ? (
