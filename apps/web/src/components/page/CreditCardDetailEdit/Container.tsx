@@ -31,6 +31,7 @@ export const Container_ = ({ id }: { id: string | null }) => {
   const updateHandler = async () => {
     await update({
       id: id!,
+      genreId: genreId!,
       categoryId: categoryId!,
       memo: memo,
     });

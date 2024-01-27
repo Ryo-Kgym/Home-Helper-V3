@@ -7275,20 +7275,6 @@ export type UpdateCategoryByIdMutation = {
   updateCategoryByPk?: { __typename?: "HouseholdCategory"; id: string } | null;
 };
 
-export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
-  id: Scalars["String"];
-  categoryId: Scalars["String"];
-  memo?: InputMaybe<Scalars["String"]>;
-}>;
-
-export type UpdateCreditCardDetailByIdMutation = {
-  __typename?: "mutation_root";
-  updateCreditCardDetailByPk?: {
-    __typename?: "HouseholdCreditCardDetail";
-    id: string;
-  } | null;
-};
-
 export type UpdateCreditCardSummaryTotalMutationVariables = Exact<{
   id: Scalars["String"];
   totalAmount: Scalars["numeric"];
@@ -7334,6 +7320,21 @@ export type UpdateGenreByIdMutationVariables = Exact<{
 export type UpdateGenreByIdMutation = {
   __typename?: "mutation_root";
   updateGenreByPk?: { __typename?: "HouseholdGenre"; id: string } | null;
+};
+
+export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
+  id: Scalars["String"];
+  genreId: Scalars["String"];
+  categoryId: Scalars["String"];
+  memo?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type UpdateCreditCardDetailByIdMutation = {
+  __typename?: "mutation_root";
+  updateHouseholdCreditCardDetailByPk?: {
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+  } | null;
 };
 
 export type GetAccountBalanceListQueryVariables = Exact<{
@@ -8611,27 +8612,6 @@ export function useUpdateCategoryByIdMutation() {
     UpdateCategoryByIdMutationVariables
   >(UpdateCategoryByIdDocument);
 }
-export const UpdateCreditCardDetailByIdDocument = gql`
-  mutation UpdateCreditCardDetailById(
-    $id: String!
-    $categoryId: String!
-    $memo: String
-  ) {
-    updateCreditCardDetailByPk: updateHouseholdCreditCardDetailByPk(
-      pkColumns: { id: $id }
-      _set: { categoryId: $categoryId, memo: $memo }
-    ) {
-      id
-    }
-  }
-`;
-
-export function useUpdateCreditCardDetailByIdMutation() {
-  return Urql.useMutation<
-    UpdateCreditCardDetailByIdMutation,
-    UpdateCreditCardDetailByIdMutationVariables
-  >(UpdateCreditCardDetailByIdDocument);
-}
 export const UpdateCreditCardSummaryTotalDocument = gql`
   mutation UpdateCreditCardSummaryTotal(
     $id: String!
@@ -8716,6 +8696,28 @@ export function useUpdateGenreByIdMutation() {
     UpdateGenreByIdMutation,
     UpdateGenreByIdMutationVariables
   >(UpdateGenreByIdDocument);
+}
+export const UpdateCreditCardDetailByIdDocument = gql`
+  mutation updateCreditCardDetailById(
+    $id: String!
+    $genreId: String!
+    $categoryId: String!
+    $memo: String
+  ) {
+    updateHouseholdCreditCardDetailByPk(
+      pkColumns: { id: $id }
+      _set: { genreId: $genreId, categoryId: $categoryId, memo: $memo }
+    ) {
+      id
+    }
+  }
+`;
+
+export function useUpdateCreditCardDetailByIdMutation() {
+  return Urql.useMutation<
+    UpdateCreditCardDetailByIdMutation,
+    UpdateCreditCardDetailByIdMutationVariables
+  >(UpdateCreditCardDetailByIdDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList(
