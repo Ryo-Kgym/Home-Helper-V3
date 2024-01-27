@@ -3,6 +3,7 @@ export type { Detail } from "~/ui/Details/detail-type";
 export { Amount } from "~/ui/Amount";
 
 export { ButtonDelete as DeleteButton } from "~/ui/Button/ButtonDelete";
+export { ButtonReset as ResetButton } from "~/ui/Button/ButtonReset";
 export { ButtonUpdate as UpdateButton } from "~/ui/Button/ButtonUpdate";
 export { Details as Details } from "~/ui/Details/Details";
 export { getBgColor } from "~/ui/Details/get-bg-color";

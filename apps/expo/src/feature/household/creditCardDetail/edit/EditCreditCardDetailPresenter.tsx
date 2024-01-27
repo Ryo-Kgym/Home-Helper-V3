@@ -17,6 +17,7 @@ import {
   EditableGenre,
   EditableIocomeType,
   EditableMemo,
+  ResetButton,
   UpdateButton,
 } from "~/ui";
 
@@ -128,7 +129,7 @@ export const EditCreditCardDetailPresenter = ({
             <DeleteButton deleteHandler={deleteHandler} disabled={disabled} />
           </View>
           <View className={"w-1/3"}>
-            <Button title={"リセット"} onPress={resetHandler} />
+            <ResetButton resetHandler={resetHandler} />
           </View>
         </View>
       </View>
