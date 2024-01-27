@@ -1,5 +1,23 @@
-import { HouseholdDashboardPresenter } from "./HouseholdDashboardPresenter";
+import { View } from "react-native";
+
+import { CategoryRankingBox } from "~/feature/household/dashboard/CategoryRankingBox";
+import { getMonth } from "~/func/date/get-month";
+import { BalanceBox } from "./BalanceBox";
+import { MonthlyBox } from "./MonthlyBox";
 
 export const HouseholdDashboardContainer = () => {
-  return <HouseholdDashboardPresenter />;
+  const today = new Date();
+  const { lastMonth } = getMonth();
+
+  return (
+    <View>
+      <BalanceBox />
+      <View className={"flex-row"}>
+        <MonthlyBox />
+        <MonthlyBox />
+      </View>
+      <CategoryRankingBox baseDate={lastMonth} />
+      <CategoryRankingBox baseDate={today} />
+    </View>
+  );
 };
