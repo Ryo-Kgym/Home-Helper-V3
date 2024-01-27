@@ -1,5 +1,6 @@
 import type { IocomeType } from "~/types/iocome-type";
 import type { EditableProps } from "~/ui/editable/editable-props";
+import { getLabel, iocomeTypeArray } from "~/types/iocome-type";
 import { SegmentedControl } from "../SegmentedControl";
 
 export const EditableIocomeType = ({
@@ -7,16 +8,11 @@ export const EditableIocomeType = ({
   setValue,
   disabled = false,
 }: EditableProps<IocomeType>) => {
-  const data = [
-    {
-      value: "INCOME" as IocomeType,
-      label: "収入",
-    },
-    {
-      value: "OUTCOME" as IocomeType,
-      label: "支出",
-    },
-  ];
+  const data = iocomeTypeArray.map((value) => ({
+    value,
+    label: getLabel(value),
+  }));
+
   return (
     <SegmentedControl
       value={value}
