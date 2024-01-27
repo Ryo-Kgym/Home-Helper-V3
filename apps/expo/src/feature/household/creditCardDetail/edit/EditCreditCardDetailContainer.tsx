@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 
 import type { IocomeType } from "~/types/iocome-type";
+import { useEditCreditCardDetail } from "~/hooks/household/credit_card/useEditCreditCardDetail";
 import { useGetCreditCardDetailById } from "~/hooks/household/credit_card/useGetCreditCardDetailById";
-import { useDeleteDaily } from "~/hooks/household/daily/useDeleteDaily";
-import { useEditDaily } from "~/hooks/household/daily/useEditDaily";
-import { useAlert } from "~/hooks/useAlert";
 import { EditCreditCardDetailPresenter } from "./EditCreditCardDetailPresenter";
 
 export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
@@ -19,9 +17,7 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
   const [amount, setAmount] = useState<number | null>(null);
   const [memo, setMemo] = useState<string | null>(null);
 
-  const { editDaily } = useEditDaily();
-  const { deleteDaily } = useDeleteDaily();
-  const { alertBuilder } = useAlert();
+  const { editCreditCardDetail } = useEditCreditCardDetail();
   const { back } = useRouter();
 
   const resetHandler = () => {
@@ -37,14 +33,10 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
   const updateHandler = async () => {
     if (!amount) return;
     try {
-      await editDaily({
+      await editCreditCardDetail({
         id,
-        date: date!,
-        iocomeType,
         genreId,
         categoryId,
-        accountId,
-        amount,
         memo,
       });
       alert("更新しました");
@@ -53,25 +45,6 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
       console.error(e);
       alert("更新に失敗しました");
     }
-  };
-
-  const deleteHandler = async () => {
-    try {
-      await deleteDaily(id);
-      alert("削除しました");
-      back();
-    } catch (e) {
-      console.error(e);
-      alert("削除に失敗しました");
-    }
-  };
-
-  const onPressAlert = () => {
-    alertBuilder({
-      title: "削除しますか？",
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      okCallback: deleteHandler,
-    });
   };
 
   useEffect(() => {
@@ -124,8 +97,7 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
       }}
       resetHandler={resetHandler}
       updateHandler={updateHandler}
-      deleteHandler={onPressAlert}
-      disabled={true}
+      disabled={loading}
     />
   );
 };

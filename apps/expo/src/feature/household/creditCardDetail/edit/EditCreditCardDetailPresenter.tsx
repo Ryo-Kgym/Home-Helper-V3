@@ -8,7 +8,6 @@ import {
 
 import type { IocomeType } from "~/types/iocome-type";
 import {
-  DeleteButton,
   EditableAccount,
   EditableAmount,
   EditableCategory,
@@ -36,7 +35,6 @@ export const EditCreditCardDetailPresenter = ({
   memo,
   resetHandler,
   updateHandler,
-  deleteHandler,
   disabled,
 }: {
   id: string;
@@ -49,7 +47,6 @@ export const EditCreditCardDetailPresenter = ({
   memo: FieldType<string | null>;
   resetHandler: () => void;
   updateHandler: () => void;
-  deleteHandler: () => void;
   disabled: boolean;
 }) => (
   <KeyboardAvoidingView
@@ -121,13 +118,10 @@ export const EditCreditCardDetailPresenter = ({
           />
         </View>
         <View className={"flex-row justify-between"}>
-          <View className={"w-1/3"}>
+          <View className={"w-1/2"}>
             <UpdateButton updateHandler={updateHandler} disabled={disabled} />
           </View>
-          <View className={"w-1/3"}>
-            <DeleteButton deleteHandler={deleteHandler} disabled={disabled} />
-          </View>
-          <View className={"w-1/3"}>
+          <View className={"w-1/2"}>
             <ResetButton resetHandler={resetHandler} />
           </View>
         </View>
