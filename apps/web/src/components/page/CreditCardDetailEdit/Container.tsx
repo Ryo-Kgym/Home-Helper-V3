@@ -39,14 +39,13 @@ export const Container_ = ({ id }: { id: string | null }) => {
 
   const initData = useMemo(
     () => ({
-      date: new Date(data?.creditCardDetailByPk?.date as string),
+      date: new Date(data?.creditCardDetail?.date as string),
       iocomeType:
-        data?.creditCardDetailByPk?.category?.genre?.iocomeType ??
-        IocomeType.Income,
-      genreId: data?.creditCardDetailByPk?.category?.genre?.genreId ?? null,
-      categoryId: data?.creditCardDetailByPk?.category?.categoryId ?? null,
-      amount: Number(data?.creditCardDetailByPk?.amount) ?? "",
-      memo: data?.creditCardDetailByPk?.memo,
+        data?.creditCardDetail?.genre?.iocomeType ?? IocomeType.Income,
+      genreId: data?.creditCardDetail?.genre?.id ?? null,
+      categoryId: data?.creditCardDetail?.category?.id ?? null,
+      amount: Number(data?.creditCardDetail?.amount) ?? "",
+      memo: data?.creditCardDetail?.memo,
     }),
     [data],
   );

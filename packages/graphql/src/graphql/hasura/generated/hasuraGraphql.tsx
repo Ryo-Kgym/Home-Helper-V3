@@ -7480,34 +7480,6 @@ export type GetCategoryTotalByMonthQuery = {
   }>;
 };
 
-export type GetCreditCardDetailByIdQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type GetCreditCardDetailByIdQuery = {
-  __typename?: "query_root";
-  creditCardDetailByPk?: {
-    __typename?: "HouseholdCreditCardDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    summaryId: string;
-    category: {
-      __typename?: "HouseholdCategory";
-      categoryId: string;
-      categoryName: string;
-      genre: {
-        __typename?: "HouseholdGenre";
-        genreType: string;
-        iocomeType: string;
-        genreId: string;
-        genreName: string;
-      };
-    };
-  } | null;
-};
-
 export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
@@ -8108,6 +8080,34 @@ export type GetAccountByIdQuery = {
     __typename?: "HouseholdAccount";
     id: string;
     name: string;
+  } | null;
+};
+
+export type GetCreditCardDetailByIdQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetCreditCardDetailByIdQuery = {
+  __typename?: "query_root";
+  creditCardDetail?: {
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      iocomeType: string;
+      genreType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    summary: {
+      __typename?: "HouseholdCreditCardSummary";
+      id: string;
+      account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    };
   } | null;
 };
 
@@ -8927,39 +8927,6 @@ export function useGetCategoryTotalByMonthQuery(
     GetCategoryTotalByMonthQueryVariables
   >({ query: GetCategoryTotalByMonthDocument, ...options });
 }
-export const GetCreditCardDetailByIdDocument = gql`
-  query GetCreditCardDetailById($id: String!) {
-    creditCardDetailByPk: householdCreditCardDetailByPk(id: $id) {
-      id
-      date
-      amount
-      memo
-      summaryId
-      category {
-        categoryId: id
-        categoryName: name
-        genre {
-          genreId: id
-          genreName: name
-          genreType
-          iocomeType
-        }
-      }
-    }
-  }
-`;
-
-export function useGetCreditCardDetailByIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCreditCardDetailByIdQuery,
-    GetCreditCardDetailByIdQueryVariables
-  >({ query: GetCreditCardDetailByIdDocument, ...options });
-}
 export const GetCreditCardDetailBySummaryIdDocument = gql`
   query GetCreditCardDetailBySummaryId($id: String!) {
     creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
@@ -9706,6 +9673,26 @@ export function useGetAccountByIdQuery(
     query: GetAccountByIdDocument,
     ...options,
   });
+}
+export const GetCreditCardDetailByIdDocument = gql`
+  query getCreditCardDetailById($id: String!) {
+    creditCardDetail: householdCreditCardDetailByPk(id: $id) {
+      ...fragCreditCardDetail
+    }
+  }
+  ${FragCreditCardDetailFragmentDoc}
+`;
+
+export function useGetCreditCardDetailByIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailByIdQuery,
+    GetCreditCardDetailByIdQueryVariables
+  >({ query: GetCreditCardDetailByIdDocument, ...options });
 }
 export const GetCreditCardDetailListDocument = gql`
   query getCreditCardDetailList(
