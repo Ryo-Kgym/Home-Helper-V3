@@ -8,9 +8,11 @@ import { totalCategory } from "./total-category";
 export const useGetCategoryTotal = ({
   fromDate,
   toDate,
+  iocomeType = ["INCOME", "OUTCOME"],
 }: {
   fromDate: Date;
   toDate: Date;
+  iocomeType?: IocomeType[];
 }) => {
   const [loading, setLoading] = useState(false);
   const { groupId } = useSaveGroupId();
@@ -19,7 +21,7 @@ export const useGetCategoryTotal = ({
       groupId,
       fromDate,
       toDate,
-      iocomeType: ["OUTCOME"],
+      iocomeType,
     },
   });
 
@@ -41,7 +43,10 @@ export const useGetCategoryTotal = ({
 
   const categoryTotal = totalCategory({
     details: [...dailyDetails, ...creditCardDetails],
-    filter: (d) => d.categoryId !== data?.group?.transfer?.outcomeCategoryId,
+    filter: (d) =>
+      // カテゴリ：振替は除外する。
+      d.categoryId !== data?.group?.transfer?.incomeCategoryId &&
+      d.categoryId !== data?.group?.transfer?.outcomeCategoryId,
   });
 
   useEffect(() => {
