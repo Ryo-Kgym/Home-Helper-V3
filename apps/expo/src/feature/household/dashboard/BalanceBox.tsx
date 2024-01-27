@@ -32,7 +32,7 @@ export const BalanceBox = () => {
       size={"w-1/2"}
     >
       <View>
-        <Text className={"text-right text-2xl"}>
+        <Text className={"text-right text-lg"}>
           {totalBalance.toLocaleString()}
         </Text>
         <Text>{today.toLocaleString().slice(0, 10)} 時点</Text>

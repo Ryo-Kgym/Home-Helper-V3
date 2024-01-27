@@ -1,1 +1,1 @@
-export { HouseholdDashboardContainer as HouseholdDashboard } from "./HouseholdDashboardContainer";
+export { HouseholdDashboard as HouseholdDashboard } from "./HouseholdDashboard";

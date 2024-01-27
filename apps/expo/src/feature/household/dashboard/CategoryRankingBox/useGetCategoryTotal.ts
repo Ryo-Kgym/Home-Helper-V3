@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 import { useGetDetailsByCategoryQuery } from "@v3/graphql/household";
 
+import type { GenreType } from "~/types/genre-type";
 import type { IocomeType } from "~/types/iocome-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { genreTypeArray } from "~/types/genre-type";
 import { totalCategory } from "./total-category";
 
 export const useGetCategoryTotal = ({
   fromDate,
   toDate,
+  iocomeType = ["INCOME", "OUTCOME"],
+  genreType = genreTypeArray,
 }: {
   fromDate: Date;
   toDate: Date;
+  iocomeType?: IocomeType[];
+  genreType?: GenreType[];
 }) => {
   const [loading, setLoading] = useState(false);
   const { groupId } = useSaveGroupId();
@@ -19,12 +25,14 @@ export const useGetCategoryTotal = ({
       groupId,
       fromDate,
       toDate,
+      iocomeType,
     },
   });
 
   const dailyDetails =
     data?.group?.dailyDetails.map((d) => ({
       iocomeType: d.genre.iocomeType as IocomeType,
+      genreType: d.genre.genreType as GenreType,
       categoryId: d.category.id ?? "",
       categoryName: d.category.name ?? "",
       amount: d.amount as number,
@@ -33,6 +41,7 @@ export const useGetCategoryTotal = ({
   const creditCardDetails =
     data?.group?.creditCardDetails.map((d) => ({
       iocomeType: d.genre.iocomeType as IocomeType,
+      genreType: d.genre.genreType as GenreType,
       categoryId: d.category.id ?? "",
       categoryName: d.category.name ?? "",
       amount: d.amount as number,
@@ -41,7 +50,9 @@ export const useGetCategoryTotal = ({
   const categoryTotal = totalCategory({
     details: [...dailyDetails, ...creditCardDetails],
     filter: (d) =>
-      d.iocomeType === "OUTCOME" &&
+      genreType.includes(d.genreType) &&
+      // カテゴリ：振替は除外する。
+      d.categoryId !== data?.group?.transfer?.incomeCategoryId &&
       d.categoryId !== data?.group?.transfer?.outcomeCategoryId,
   });
 

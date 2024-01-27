@@ -4,10 +4,12 @@ import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
 
 export const Presenter = ({
+  baseDate,
   month,
   categories,
   loading,
 }: {
+  baseDate: Date;
   month: number;
   categories: {
     categoryName: string;
@@ -16,9 +18,9 @@ export const Presenter = ({
   loading: boolean;
 }) => (
   <DashboardFrame
-    label={`${month}月の支出ランキング`}
-    href={paths.household.categoryRanking(new Date())}
-    size={"w-full"}
+    label={`${month}月の変動支出`}
+    href={paths.household.categoryRanking(baseDate)}
+    size={"w-1/2"}
   >
     {loading ? (
       <Text>Loading...</Text>
@@ -26,11 +28,13 @@ export const Presenter = ({
       <View>
         {categories.map((c, i) => (
           <View key={i} className={"flex-row items-center"}>
-            <Text className={"w-1/6 text-lg"}>{i + 1}</Text>
-            <Text className={"w-1/2 text-xl"}>{c.categoryName}</Text>
-            <Text className={"w-1/3 text-right text-2xl"}>
-              {c.amount.toLocaleString()}
-            </Text>
+            <Text className={"text-md w-1/12"}>{i + 1}</Text>
+            <View className={"w-11/12"}>
+              <Text className={"text-md text-gray-500"}>{c.categoryName}</Text>
+              <Text className={"text-right text-lg"}>
+                {c.amount.toLocaleString()}
+              </Text>
+            </View>
           </View>
         ))}
       </View>
