@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGetDetailsByCategoryQuery } from "@v3/graphql/household";
 
+import type { GenreType } from "~/types/genre-type";
 import type { IocomeType } from "~/types/iocome-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { totalCategory } from "./total-category";
@@ -13,6 +14,7 @@ export const useGetCategoryTotal = ({
   fromDate: Date;
   toDate: Date;
   iocomeType?: IocomeType[];
+  genreType?: GenreType[];
 }) => {
   const [loading, setLoading] = useState(false);
   const { groupId } = useSaveGroupId();
