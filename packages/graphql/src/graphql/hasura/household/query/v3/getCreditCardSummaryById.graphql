@@ -1,0 +1,13 @@
+query getCreditCardSummaryById($id: String!) {
+  creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
+    id
+    creditCard
+    withdrawalDate
+    account {
+      id
+      name
+    }
+    totalAmount
+    count
+  }
+}
