@@ -18,7 +18,7 @@ export const useCalcTotal = ({
     },
   });
 
-  const { term } = useGetDetails({
+  const { getDetailsForTerm } = useGetDetails({
     fromDate,
     toDate,
     converter: {
@@ -46,8 +46,6 @@ export const useCalcTotal = ({
   });
 
   return {
-    incomeTotal: term.incomeTotal,
-    outcomeTotal: term.outcomeTotal,
-    diff: term.balance,
+    calcTotal: getDetailsForTerm,
   };
 };

@@ -85,7 +85,9 @@ export const useGetDetails = <T extends DetailBase>({
       ...dailyDetailList.map(dailyConverter),
       // クレジットカードサマリ
       ...creditCardSummaryList.map(creditCardSummaryConverter),
-    ];
+    ]
+      .filter(filter.term.income)
+      .filter(filter.term.outcome);
 
     const { incomeTotal, outcomeTotal, balance } = calcTotal(details);
 
@@ -97,21 +99,8 @@ export const useGetDetails = <T extends DetailBase>({
     };
   };
 
-  /**
-   * @deprecated
-   */
-  const term = calcTotal(
-    [
-      ...dailyDetailList.map(dailyConverter),
-      ...creditCardSummaryList.map(creditCardSummaryConverter),
-    ],
-    filter.term.income,
-    filter.term.outcome,
-  );
-
   return {
     getDetailsByDate,
     getDetailsForTerm,
-    term,
   };
 };

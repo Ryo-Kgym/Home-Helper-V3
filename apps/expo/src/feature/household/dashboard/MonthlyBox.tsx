@@ -7,10 +7,11 @@ import { useCalcTotal } from "./useCalcTotal";
 
 export const MonthlyBox = ({ baseDate }: { baseDate: Date }) => {
   const { firstDayOfMonth, lastDayOfMonth, month } = getMonth(baseDate);
-  const { incomeTotal, outcomeTotal, diff } = useCalcTotal({
+  const { calcTotal } = useCalcTotal({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
   });
+  const { incomeTotal, outcomeTotal, balance } = calcTotal();
 
   return (
     <DashboardFrame
@@ -34,7 +35,7 @@ export const MonthlyBox = ({ baseDate }: { baseDate: Date }) => {
         <View className={"flex-row items-center"}>
           <Text className={"text-center"}>差引</Text>
           <Text className={"w-40 text-right text-lg"}>
-            {diff.toLocaleString()}
+            {balance.toLocaleString()}
           </Text>
         </View>
       </View>
