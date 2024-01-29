@@ -1,21 +1,23 @@
 import { Text, View } from "react-native";
 
 import { paths } from "~/app/paths";
-import { getMonth } from "~/func/date/get-month";
+import { getYear } from "~/func/date/get-year";
 import { DashboardFrame } from "./DashboardFrame";
 import { useCalcTotal } from "./useCalcTotal";
 
-export const MonthlyBox = ({ baseDate }: { baseDate: Date }) => {
-  const { firstDayOfMonth, lastDayOfMonth, month } = getMonth(baseDate);
+export const YearlyBox = ({ baseDate }: { baseDate: Date }) => {
+  const { firstDayOfYear, lastDateNotGreaterThanToday, year } =
+    getYear(baseDate);
+
   const { calcTotal } = useCalcTotal({
-    fromDate: firstDayOfMonth,
-    toDate: lastDayOfMonth,
+    fromDate: firstDayOfYear,
+    toDate: lastDateNotGreaterThanToday,
   });
   const { incomeTotal, outcomeTotal, balance } = calcTotal();
 
   return (
     <DashboardFrame
-      label={`${month}月の実績`}
+      label={`${year}年の実績`}
       href={paths.household.calendar(baseDate)}
       size={"w-1/2"}
     >

@@ -1,11 +1,15 @@
 import { useGetTransferCategoryByQuery } from "@v3/graphql/household";
 
-import { getMonth } from "~/func/date/get-month";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useGetDetails } from "~/hooks/household/detail/useGetDetails";
 
-export const useCalcMonthly = ({ baseDate }: { baseDate?: Date }) => {
-  const { firstDayOfMonth, lastDayOfMonth, month } = getMonth(baseDate);
+export const useCalcTotal = ({
+  fromDate,
+  toDate,
+}: {
+  fromDate: Date;
+  toDate: Date;
+}) => {
   const { groupId } = useSaveGroupId();
 
   const [{ data: transData }] = useGetTransferCategoryByQuery({
@@ -14,9 +18,9 @@ export const useCalcMonthly = ({ baseDate }: { baseDate?: Date }) => {
     },
   });
 
-  const { term } = useGetDetails({
-    fromDate: firstDayOfMonth,
-    toDate: lastDayOfMonth,
+  const { getDetailsForTerm } = useGetDetails({
+    fromDate,
+    toDate,
     converter: {
       daily: (d) => ({
         categoryId: d.category.id,
@@ -42,9 +46,6 @@ export const useCalcMonthly = ({ baseDate }: { baseDate?: Date }) => {
   });
 
   return {
-    month,
-    incomeTotal: term.incomeTotal,
-    outcomeTotal: term.outcomeTotal,
-    diff: term.balance,
+    calcTotal: getDetailsForTerm,
   };
 };
