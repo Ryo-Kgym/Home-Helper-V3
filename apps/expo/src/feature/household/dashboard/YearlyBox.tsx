@@ -6,10 +6,12 @@ import { DashboardFrame } from "./DashboardFrame";
 import { useCalcTotal } from "./useCalcTotal";
 
 export const YearlyBox = ({ baseDate }: { baseDate: Date }) => {
-  const { firstDayOfYear, lastDayOfYear, year } = getYear(baseDate);
+  const { firstDayOfYear, lastDateNotGreaterThanToday, year } =
+    getYear(baseDate);
+
   const { calcTotal } = useCalcTotal({
     fromDate: firstDayOfYear,
-    toDate: lastDayOfYear,
+    toDate: lastDateNotGreaterThanToday,
   });
   const { incomeTotal, outcomeTotal, balance } = calcTotal();
 
