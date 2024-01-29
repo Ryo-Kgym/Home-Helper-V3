@@ -38,7 +38,10 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
         categoryName: summary.category.name,
         iocomeType: summary.genre.iocomeType,
         memo: null,
-        redirectHandler: () => undefined,
+        redirectHandler: () =>
+          push(
+            paths.household.detailListByCreditCardSummary(summary.id) as "/",
+          ),
         type: "creditCardSummary",
       }),
     },

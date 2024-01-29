@@ -9,6 +9,8 @@ export const paths = {
     creditCardDetail: (id: string) => `/household/detail/creditCard/${id}`,
     detailListByAccount: (accountId: string) =>
       `/household/detailList/account/${accountId}`,
+    detailListByCreditCardSummary: (summaryId: string) =>
+      `/household/detailList/creditCardSummary/${summaryId}`,
     categoryRanking: (date: Date) =>
       `/household/detailList/categoryRanking/${date
         .toISOString()

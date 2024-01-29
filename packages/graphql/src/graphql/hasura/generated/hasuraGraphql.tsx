@@ -8160,6 +8160,23 @@ export type GetCreditCardSummaryByAccountIdQuery = {
   }>;
 };
 
+export type GetCreditCardSummaryByIdQueryVariables = Exact<{
+  summaryId: Scalars["String"];
+}>;
+
+export type GetCreditCardSummaryByIdQuery = {
+  __typename?: "query_root";
+  creditCardSummary?: {
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+    creditCard: string;
+    withdrawalDate: any;
+    totalAmount: any;
+    count: number;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  } | null;
+};
+
 export type GetDailyByAccountIdQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -9763,6 +9780,33 @@ export function useGetCreditCardSummaryByAccountIdQuery(
     GetCreditCardSummaryByAccountIdQuery,
     GetCreditCardSummaryByAccountIdQueryVariables
   >({ query: GetCreditCardSummaryByAccountIdDocument, ...options });
+}
+export const GetCreditCardSummaryByIdDocument = gql`
+  query getCreditCardSummaryById($summaryId: String!) {
+    creditCardSummary: householdCreditCardSummaryByPk(id: $summaryId) {
+      id
+      creditCard
+      withdrawalDate
+      account {
+        id
+        name
+      }
+      totalAmount
+      count
+    }
+  }
+`;
+
+export function useGetCreditCardSummaryByIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryByIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryByIdQuery,
+    GetCreditCardSummaryByIdQueryVariables
+  >({ query: GetCreditCardSummaryByIdDocument, ...options });
 }
 export const GetDailyByAccountIdDocument = gql`
   query getDailyByAccountId(
