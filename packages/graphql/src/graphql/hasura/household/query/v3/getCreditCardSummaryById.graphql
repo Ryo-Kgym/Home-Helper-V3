@@ -1,5 +1,5 @@
-query getCreditCardSummaryById($id: String!) {
-  creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
+query getCreditCardSummaryById($summaryId: String!) {
+  creditCardSummary: householdCreditCardSummaryByPk(id: $summaryId) {
     id
     creditCard
     withdrawalDate

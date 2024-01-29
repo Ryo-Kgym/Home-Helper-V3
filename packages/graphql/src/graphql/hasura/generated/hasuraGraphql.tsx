@@ -8161,7 +8161,7 @@ export type GetCreditCardSummaryByAccountIdQuery = {
 };
 
 export type GetCreditCardSummaryByIdQueryVariables = Exact<{
-  id: Scalars["String"];
+  summaryId: Scalars["String"];
 }>;
 
 export type GetCreditCardSummaryByIdQuery = {
@@ -9782,8 +9782,8 @@ export function useGetCreditCardSummaryByAccountIdQuery(
   >({ query: GetCreditCardSummaryByAccountIdDocument, ...options });
 }
 export const GetCreditCardSummaryByIdDocument = gql`
-  query getCreditCardSummaryById($id: String!) {
-    creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
+  query getCreditCardSummaryById($summaryId: String!) {
+    creditCardSummary: householdCreditCardSummaryByPk(id: $summaryId) {
       id
       creditCard
       withdrawalDate
