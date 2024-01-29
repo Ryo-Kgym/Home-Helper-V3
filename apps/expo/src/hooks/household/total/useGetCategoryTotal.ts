@@ -5,12 +5,13 @@ import type { GenreType } from "~/types/genre-type";
 import type { IocomeType } from "~/types/iocome-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { genreTypeArray } from "~/types/genre-type";
+import { iocomeTypeArray } from "~/types/iocome-type";
 import { totalCategory } from "./total-category";
 
 export const useGetCategoryTotal = ({
   fromDate,
   toDate,
-  iocomeType = ["INCOME", "OUTCOME"],
+  iocomeType = iocomeTypeArray,
   genreType = genreTypeArray,
 }: {
   fromDate: Date;
