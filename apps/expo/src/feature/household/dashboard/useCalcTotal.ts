@@ -3,7 +3,7 @@ import { useGetTransferCategoryByQuery } from "@v3/graphql/household";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useGetDetails } from "~/hooks/household/detail/useGetDetails";
 
-export const useCalcMonthly = ({
+export const useCalcTotal = ({
   fromDate,
   toDate,
 }: {

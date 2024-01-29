@@ -3,11 +3,11 @@ import { Text, View } from "react-native";
 import { paths } from "~/app/paths";
 import { getMonth } from "~/func/date/get-month";
 import { DashboardFrame } from "./DashboardFrame";
-import { useCalcMonthly } from "./useCalcMonthly";
+import { useCalcTotal } from "./useCalcTotal";
 
 export const MonthlyBox = ({ baseDate }: { baseDate: Date }) => {
   const { firstDayOfMonth, lastDayOfMonth, month } = getMonth(baseDate);
-  const { incomeTotal, outcomeTotal, diff } = useCalcMonthly({
+  const { incomeTotal, outcomeTotal, diff } = useCalcTotal({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
   });
