@@ -16,5 +16,6 @@ export { EditableDate } from "~/ui/editable/EditableDate";
 export { EditableGenre } from "~/ui/editable/EditableGenre";
 export { EditableMemo } from "~/ui/editable/EditableMemo";
 export { EditableIocomeType } from "~/ui/editable/EditableIocomeType";
+export { Modal } from "~/ui/Modal";
 export { MonthChanger } from "~/ui/MonthChanger";
 export { Total } from "~/ui/Total";

@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Button, FlatList, Modal, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { getYear } from "~/func/date/get-year";
 import { sortBy } from "~/hooks/household/total/sort-by";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
-import { EditableIocomeType, FilterButton } from "~/ui";
+import { EditableIocomeType, FilterButton, Modal } from "~/ui";
 
 export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
   const [visible, setVisible] = useState(false);
@@ -24,17 +24,9 @@ export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
   return (
     <>
       <FilterButton pressHandler={() => setVisible(!visible)} />
-      <Modal animationType={"fade"} visible={visible} transparent>
-        <View className={"flex-1 justify-center bg-black/30"}>
-          <View className={"m-5 rounded-xl bg-neutral-100 px-3 pb-2 pt-1"}>
-            <View className={"flex-row items-center justify-between"}>
-              <Text className={"text-center text-xl"}>条件</Text>
-              <Button onPress={() => setVisible(!visible)} title={"×"} />
-            </View>
-            <View>
-              <EditableIocomeType value={iocomeType} setValue={setIocomeType} />
-            </View>
-          </View>
+      <Modal visible={visible} setVisible={setVisible}>
+        <View>
+          <EditableIocomeType value={iocomeType} setValue={setIocomeType} />
         </View>
       </Modal>
       <FlatList
