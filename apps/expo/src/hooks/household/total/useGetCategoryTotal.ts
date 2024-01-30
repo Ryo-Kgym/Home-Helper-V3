@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useGetDetailsByCategoryQuery } from "@v3/graphql/household";
 
+import type { WithAmountType } from "./total-category";
 import type { GenreType } from "~/types/genre-type";
 import type { IocomeType } from "~/types/iocome-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { sortBy } from "~/hooks/household/total/sort-by";
 import { genreTypeArray } from "~/types/genre-type";
 import { iocomeTypeArray } from "~/types/iocome-type";
 import { totalCategory } from "./total-category";
@@ -13,11 +15,13 @@ export const useGetCategoryTotal = ({
   toDate,
   iocomeType = iocomeTypeArray,
   genreType = genreTypeArray,
+  sort = sortBy.amount.desc,
 }: {
   fromDate: Date;
   toDate: Date;
   iocomeType?: IocomeType[];
   genreType?: GenreType[];
+  sort?: (a: WithAmountType, b: WithAmountType) => number;
 }) => {
   const [loading, setLoading] = useState(false);
   const { groupId } = useSaveGroupId();
@@ -55,7 +59,7 @@ export const useGetCategoryTotal = ({
       // カテゴリ：振替は除外する。
       d.categoryId !== data?.group?.transfer?.incomeCategoryId &&
       d.categoryId !== data?.group?.transfer?.outcomeCategoryId,
-  });
+  }).sort(sort);
 
   useEffect(() => {
     if (!categoryTotal) {

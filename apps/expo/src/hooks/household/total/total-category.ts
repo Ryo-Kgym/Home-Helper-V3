@@ -3,7 +3,7 @@ type BaseType = {
   categoryName: string;
 };
 
-type WithAmountType = { amount: number } & BaseType;
+export type WithAmountType = { amount: number } & BaseType;
 
 export const totalCategory = <T extends WithAmountType>({
   details,

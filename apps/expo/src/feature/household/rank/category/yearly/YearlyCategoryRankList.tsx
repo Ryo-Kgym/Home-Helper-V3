@@ -3,6 +3,7 @@ import { FlatList, Text, View } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { getYear } from "~/func/date/get-year";
+import { sortBy } from "~/hooks/household/total/sort-by";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
 import { EditableIocomeType } from "~/ui";
 
@@ -14,6 +15,7 @@ export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
     fromDate: firstDayOfYear,
     toDate: lastDateNotGreaterThanToday,
     iocomeType: [iocomeType],
+    sort: sortBy.amount.desc,
   });
 
   if (loading) return <Text>loading...</Text>;
