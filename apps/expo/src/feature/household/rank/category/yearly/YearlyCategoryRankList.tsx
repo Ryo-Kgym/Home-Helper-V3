@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { Button, FlatList, Modal, Pressable, Text, View } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { getYear } from "~/func/date/get-year";
@@ -8,6 +9,7 @@ import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal
 import { EditableIocomeType } from "~/ui";
 
 export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
+  const [visible, setVisible] = useState(false);
   const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
 
   const { firstDayOfYear, lastDateNotGreaterThanToday } = getYear(year);
@@ -22,8 +24,36 @@ export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
 
   return (
     <>
-      {/*TODO モーダルに隠す*/}
-      <EditableIocomeType value={iocomeType} setValue={setIocomeType} />
+      <Pressable
+        onPress={() => setVisible(!visible)}
+        style={{
+          zIndex: 100,
+          position: "absolute",
+          bottom: 10,
+          right: 40,
+        }}
+      >
+        <View
+          className={
+            "h-16 w-16 flex-1 items-center justify-center rounded-full bg-neutral-200 shadow-xl"
+          }
+        >
+          <Feather name="filter" size={24} color="black" />
+        </View>
+      </Pressable>
+      <Modal animationType={"fade"} visible={visible} transparent>
+        <View className={"flex-1 justify-center bg-black/30"}>
+          <View className={"m-5 rounded-xl bg-neutral-100 px-3 pb-2 pt-1"}>
+            <View className={"flex-row items-center justify-between"}>
+              <Text className={"text-center text-xl"}>条件</Text>
+              <Button onPress={() => setVisible(!visible)} title={"×"} />
+            </View>
+            <View>
+              <EditableIocomeType value={iocomeType} setValue={setIocomeType} />
+            </View>
+          </View>
+        </View>
+      </Modal>
       <FlatList
         data={categoryTotal}
         keyExtractor={(item) => item.categoryId}
