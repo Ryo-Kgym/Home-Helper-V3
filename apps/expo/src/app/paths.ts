@@ -15,5 +15,7 @@ export const paths = {
       `/household/detailList/categoryRanking/${date
         .toISOString()
         .slice(0, 10)}`,
+    rankCategoryYearly: (date: Date) =>
+      `/household/rank/category/yearly/${date.toISOString().slice(0, 10)}`,
   },
 };

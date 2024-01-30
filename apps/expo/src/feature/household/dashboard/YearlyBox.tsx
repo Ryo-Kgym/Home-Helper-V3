@@ -2,8 +2,8 @@ import { Text, View } from "react-native";
 
 import { paths } from "~/app/paths";
 import { getYear } from "~/func/date/get-year";
+import { useCalcTotal } from "~/hooks/household/detail/useCalcTotal";
 import { DashboardFrame } from "./DashboardFrame";
-import { useCalcTotal } from "./useCalcTotal";
 
 export const YearlyBox = ({ baseDate }: { baseDate: Date }) => {
   const { firstDayOfYear, lastDateNotGreaterThanToday, year } =
@@ -18,7 +18,7 @@ export const YearlyBox = ({ baseDate }: { baseDate: Date }) => {
   return (
     <DashboardFrame
       label={`${year}年の実績`}
-      href={paths.household.calendar(baseDate)}
+      href={paths.household.rankCategoryYearly(baseDate)}
       size={"w-1/2"}
     >
       <View>
