@@ -11,7 +11,7 @@ export const RegisterBox = () => {
       href={paths.household.registerDaily}
       size={"25%"}
     >
-      <View className={"ml-3"}>
+      <View className={"items-center justify-center"}>
         <AntDesign name="edit" size={48} color="gray" />
       </View>
     </DashboardFrame>

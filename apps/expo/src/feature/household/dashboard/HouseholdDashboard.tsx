@@ -1,6 +1,7 @@
 import { View } from "react-native";
 
 import { CategoryRankingBox } from "~/feature/household/dashboard/CategoryRankingBox";
+import { SettingBox } from "~/feature/household/dashboard/SettingBox";
 import { YearlyBox } from "~/feature/household/dashboard/YearlyBox";
 import { getMonth } from "~/func/date/get-month";
 import { getYear } from "~/func/date/get-year";
@@ -18,6 +19,7 @@ export const HouseholdDashboard = () => {
       <View className={"flex-row"}>
         <BalanceBox />
         <RegisterBox />
+        <SettingBox />
       </View>
       <View className={"flex-row"}>
         <YearlyBox baseDate={lastYear} />
