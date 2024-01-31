@@ -47,19 +47,24 @@ export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
             }
           >
             <View
-              key={item.categoryId}
               className={
                 "flex-row items-center border-b border-b-gray-300 py-2"
               }
             >
-              <Text className={"w-1/12 pr-2 text-right text-sm text-gray-600"}>
+              <Text
+                className={"w-1/12 text-right text-sm text-gray-600"}
+                style={{ paddingRight: 4 }}
+              >
                 {index + 1}
               </Text>
-              <View className={"flex-1 flex-row justify-between"}>
+              <View className={"w-11/12 flex-row items-center justify-between"}>
                 <Text className={"text-xl text-gray-600"}>
                   {item.categoryName}
                 </Text>
-                <Text className={"pr-2 text-right text-xl"}>
+                <Text
+                  className={"text-right text-xl"}
+                  style={{ paddingRight: 12 }}
+                >
                   {item.amount.toLocaleString()}
                 </Text>
               </View>

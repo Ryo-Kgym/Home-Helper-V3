@@ -16,9 +16,19 @@ export const ButtonFilter = ({
     }}
   >
     <View
-      className={
-        "h-16 w-16 flex-1 items-center justify-center rounded-full bg-neutral-100 shadow-xl"
-      }
+      style={{
+        boxShadow: "0 0 0 0 rgba(0, 0, 0, 0.5)",
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        borderRadius: 30,
+        backgroundColor: "white",
+        height: 60,
+        width: 60,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
       <Feather name="filter" size={24} color="black" />
     </View>
