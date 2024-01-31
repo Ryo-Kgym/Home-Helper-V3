@@ -27,7 +27,7 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
         categoryName: detail.category.name,
         iocomeType: detail.genre.iocomeType,
         memo: detail.memo,
-        redirectHandler: () => push(paths.household.daily(detail.id) as "/"),
+        redirectHandler: () => push(paths.household.daily({ id: detail.id })),
         type: "daily",
       }),
       creditCardSummary: (summary) => ({
@@ -40,7 +40,9 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
         memo: null,
         redirectHandler: () =>
           push(
-            paths.household.detailListByCreditCardSummary(summary.id) as "/",
+            paths.household.detailListByCreditCardSummary({
+              summaryId: summary.id,
+            }),
           ),
         type: "creditCardSummary",
       }),
@@ -64,7 +66,7 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   });
 
   const changeHandler = (date: Date) =>
-    push(paths.household.calendar(date) as "/");
+    push(paths.household.calendar({ date }));
 
   return (
     <>
