@@ -24,7 +24,7 @@ export const BalanceListContainer = () => {
         (account.allDetailViewsAggregate?.aggregate?.sum
           ?.signedAmount as number) ?? 0,
       redirectHandler: () =>
-        push(paths.household.detailListByAccount(account.id) as "/"),
+        push(paths.household.detailListByAccount({ accountId: account.id })),
     })) ?? [];
   return <BalanceListPresenter accounts={accounts} />;
 };

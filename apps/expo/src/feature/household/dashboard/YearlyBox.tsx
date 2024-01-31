@@ -18,7 +18,7 @@ export const YearlyBox = ({ baseDate }: { baseDate: Date }) => {
   return (
     <DashboardFrame
       label={`${year}年の実績`}
-      href={paths.household.rankCategoryYearly(baseDate)}
+      href={paths.household.rankCategoryYearly({ date: baseDate })}
       size={"w-1/2"}
     >
       <View>

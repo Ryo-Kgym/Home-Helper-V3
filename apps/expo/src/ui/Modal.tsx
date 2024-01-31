@@ -1,4 +1,4 @@
-import { Button, Modal as RNModal, Text, View } from "react-native";
+import { Button, Pressable, Modal as RNModal, Text, View } from "react-native";
 
 export const Modal = ({
   visible,
@@ -10,14 +10,34 @@ export const Modal = ({
   children: React.ReactNode;
 }) => (
   <RNModal animationType={"fade"} visible={visible} transparent>
-    <View className={"flex-1 justify-center bg-black/30"}>
-      <View className={"m-5 rounded-xl bg-neutral-100 px-3 pb-2 pt-1"}>
+    <View
+      style={{
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        flex: 1,
+        justifyContent: "center",
+      }}
+    >
+      <Pressable onPress={() => setVisible(!visible)} style={{ flex: 1 }} />
+      <View
+        style={{
+          backgroundColor: "white",
+          shadowColor: "black",
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.5,
+          shadowRadius: 10,
+          marginHorizontal: 10,
+          borderRadius: 10,
+          paddingVertical: 8,
+          paddingHorizontal: 10,
+        }}
+      >
         <View className={"flex-row items-center justify-between"}>
           <Text className={"text-center text-xl"}>条件</Text>
           <Button onPress={() => setVisible(!visible)} title={"×"} />
         </View>
         {children}
       </View>
+      <Pressable onPress={() => setVisible(!visible)} style={{ flex: 1 }} />
     </View>
   </RNModal>
 );
