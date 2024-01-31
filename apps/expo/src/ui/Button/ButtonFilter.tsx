@@ -17,7 +17,6 @@ export const ButtonFilter = ({
   >
     <View
       style={{
-        boxShadow: "0 0 0 0 rgba(0, 0, 0, 0.5)",
         shadowColor: "black",
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.5,
