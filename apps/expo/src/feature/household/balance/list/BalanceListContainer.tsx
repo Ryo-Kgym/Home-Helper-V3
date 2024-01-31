@@ -13,7 +13,7 @@ export const BalanceListContainer = () => {
     variables: {
       groupId,
       fromDate: "2019-01-01",
-      toDate: "2099-12-31",
+      toDate: new Date().toISOString().slice(0, 10),
     },
   });
   const accounts =
