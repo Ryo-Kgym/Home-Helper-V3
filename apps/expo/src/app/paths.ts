@@ -17,5 +17,9 @@ export const paths = {
         .slice(0, 10)}`,
     rankCategoryYearly: (date: Date) =>
       `/household/rank/category/yearly/${date.toISOString().slice(0, 10)}`,
+    detailListByCategory: (year: Date, categoryId: string) =>
+      `/household/rank/category/yearly/${year
+        .toISOString()
+        .slice(0, 10)}/${categoryId}`,
   },
 };
