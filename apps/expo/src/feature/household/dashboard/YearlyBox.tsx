@@ -19,7 +19,7 @@ export const YearlyBox = ({ baseDate }: { baseDate: Date }) => {
     <DashboardFrame
       label={`${year}年の実績`}
       href={paths.household.rankCategoryYearly({ date: baseDate })}
-      size={"w-1/2"}
+      size={"50%"}
     >
       <View>
         <View className={"flex-row items-center"}>

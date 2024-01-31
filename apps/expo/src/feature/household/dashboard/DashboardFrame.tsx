@@ -12,14 +12,14 @@ export const DashboardFrame = ({
   label: string;
   children: ReactNode | ReactNode[];
   href: string;
-  size: "w-full" | "w-1/2" | "w-1/3" | "w-1/4";
+  size: "100%" | "50%" | "25%";
   scroll?: number;
 }) =>
   scroll ? (
-    <View className={`${size} px-1 py-0.5`}>
+    <View className={`px-1 py-0.5`} style={{ width: size }}>
       <View
         className={
-          "min-w-full rounded-2xl border-2 border-gray-400 bg-neutral-50 p-3 shadow-sm"
+          "rounded-2xl border-2 border-gray-400 bg-neutral-50 p-3 shadow-sm"
         }
       >
         <Pressable>
@@ -35,7 +35,7 @@ export const DashboardFrame = ({
       </View>
     </View>
   ) : (
-    <Pressable className={`${size} px-1 py-0.5`}>
+    <Pressable className={"px-1 py-0.5"} style={{ width: size }}>
       <Link href={href as "/"}>
         <View
           className={
