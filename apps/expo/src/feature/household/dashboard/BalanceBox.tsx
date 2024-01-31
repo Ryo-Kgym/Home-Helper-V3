@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
+import { useGetAccountBalanceListQuery } from "@v3/graphql/household";
 
 import { paths } from "~/app/paths";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
-import { useGetAccountBalanceListQuery } from "../../../../../../packages/graphql/household";
 import { DashboardFrame } from "./DashboardFrame";
 
 export const BalanceBox = () => {

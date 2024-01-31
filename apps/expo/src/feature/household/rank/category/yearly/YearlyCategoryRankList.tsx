@@ -39,10 +39,10 @@ export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
           <Pressable
             onPress={() =>
               push(
-                paths.household.detailListByCategory(
+                paths.household.detailListByCategory({
                   year,
-                  item.categoryId,
-                ) as "/",
+                  categoryId: item.categoryId,
+                }),
               )
             }
           >

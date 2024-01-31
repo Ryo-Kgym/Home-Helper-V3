@@ -38,7 +38,7 @@ export const DetailListByYearlyCategory = ({
         categoryName: d.category.name,
         genreName: d.genre.name,
         iocomeType: d.genre.iocomeType,
-        redirectHandler: () => push(paths.household.daily(d.id) as "/"),
+        redirectHandler: () => push(paths.household.daily({ id: d.id })),
         memo: d.memo,
         type: "daily",
       })),
@@ -54,7 +54,7 @@ export const DetailListByYearlyCategory = ({
         genreName: d.genre.name,
         iocomeType: d.genre.iocomeType,
         redirectHandler: () =>
-          push(paths.household.creditCardDetail(d.id) as "/"),
+          push(paths.household.creditCardDetail({ id: d.id })),
         memo: d.memo,
         type: "creditCardDetail",
       })),
