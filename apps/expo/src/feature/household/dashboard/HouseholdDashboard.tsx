@@ -6,6 +6,7 @@ import { getMonth } from "~/func/date/get-month";
 import { getYear } from "~/func/date/get-year";
 import { BalanceBox } from "./BalanceBox";
 import { MonthlyBox } from "./MonthlyBox";
+import { RegisterBox } from "./RegisterBox";
 
 export const HouseholdDashboard = () => {
   const today = new Date();
@@ -14,7 +15,10 @@ export const HouseholdDashboard = () => {
 
   return (
     <View className={"pt-1"}>
-      <BalanceBox />
+      <View className={"flex-row"}>
+        <BalanceBox />
+        <RegisterBox />
+      </View>
       <View className={"flex-row"}>
         <YearlyBox baseDate={lastYear} />
         <YearlyBox baseDate={today} />
