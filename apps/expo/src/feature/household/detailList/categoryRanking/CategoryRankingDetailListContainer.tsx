@@ -52,7 +52,7 @@ export const CategoryRankingDetailListContainer = ({
       memo: d.memo,
       type: "creditCardDetail",
     })),
-  ].sort(sortBy.date.asc);
+  ].sort(sortBy.date.desc);
 
   return <Details details={details} />;
 };
