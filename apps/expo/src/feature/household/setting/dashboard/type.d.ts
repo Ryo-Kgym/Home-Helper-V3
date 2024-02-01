@@ -8,10 +8,11 @@ export type Feature =
 
 export type ArgsType = "year" | "month";
 
+export type ArgsMapType =
+  | { type: "year"; value: number }
+  | { type: "month"; value: number };
+
 export type BoxesType = {
   feature: Feature;
-  argsMap: (
-    | { type: "year"; value: number }
-    | { type: "month"; value: number }
-  )[];
+  argsMap: ArgsMapType[];
 }[];
