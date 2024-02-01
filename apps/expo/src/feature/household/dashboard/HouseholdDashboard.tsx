@@ -16,20 +16,19 @@ export const HouseholdDashboard = () => {
 
   return (
     <View className={"pt-1"}>
-      <View className={"flex-row"}>
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+        }}
+      >
         <BalanceBox />
         <RegisterBox />
         <SettingBox />
-      </View>
-      <View className={"flex-row"}>
         <YearlyBox baseDate={lastYear} />
         <YearlyBox baseDate={today} />
-      </View>
-      <View className={"flex-row"}>
         <MonthlyBox baseDate={lastMonth} />
         <MonthlyBox baseDate={today} />
-      </View>
-      <View className={"flex-row"}>
         <CategoryRankingBox baseDate={lastMonth} />
         <CategoryRankingBox baseDate={today} />
       </View>
