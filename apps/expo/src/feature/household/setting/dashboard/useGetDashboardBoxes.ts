@@ -1,5 +1,5 @@
-import type { BoxesType } from "~/feature/household/setting/dashboard/type";
-import { generateBox } from "~/feature/household/setting/dashboard/generateBox/generate-box";
+import type { BoxesType } from "./type";
+import { generateBox } from "./generate-box";
 
 export const useGetDashboardBoxes = () => {
   const getDashboardBoxes = (): BoxesType => {
