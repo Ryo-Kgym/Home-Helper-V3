@@ -1,4 +1,4 @@
-import type { BoxesType } from "./type";
+import type { BoxesType } from "../type";
 import { featureSetting } from "~/feature/household/setting/dashboard/feature-setting";
 
 export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
