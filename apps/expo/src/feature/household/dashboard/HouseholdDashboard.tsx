@@ -14,6 +14,18 @@ export const HouseholdDashboard = () => {
   const { lastMonth } = getMonth();
   const { lastYear } = getYear();
 
+  const boxes = [
+    () => <BalanceBox />,
+    () => <RegisterBox />,
+    () => <SettingBox />,
+    () => <YearlyBox baseDate={lastYear} />,
+    () => <YearlyBox baseDate={today} />,
+    () => <MonthlyBox baseDate={lastMonth} />,
+    () => <MonthlyBox baseDate={today} />,
+    () => <CategoryRankingBox baseDate={lastMonth} />,
+    () => <CategoryRankingBox baseDate={today} />,
+  ];
+
   return (
     <View className={"pt-1"}>
       <View
@@ -22,15 +34,9 @@ export const HouseholdDashboard = () => {
           flexWrap: "wrap",
         }}
       >
-        <BalanceBox />
-        <RegisterBox />
-        <SettingBox />
-        <YearlyBox baseDate={lastYear} />
-        <YearlyBox baseDate={today} />
-        <MonthlyBox baseDate={lastMonth} />
-        <MonthlyBox baseDate={today} />
-        <CategoryRankingBox baseDate={lastMonth} />
-        <CategoryRankingBox baseDate={today} />
+        {boxes.map((Box, i) => (
+          <Box key={i} />
+        ))}
       </View>
     </View>
   );
