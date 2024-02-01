@@ -12,10 +12,10 @@ export const useGetDashboardBoxes = () => {
         feature: "register",
         argsMap: [],
       },
-      {
-        feature: "setting",
-        argsMap: [],
-      },
+      // {
+      //   feature: "setting",
+      //   argsMap: [],
+      // },
       {
         feature: "yearly",
         argsMap: [{ type: "year", value: -2 }],
