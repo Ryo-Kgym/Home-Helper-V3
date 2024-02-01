@@ -1479,6 +1479,58 @@ type HouseholdDailyTotalViewVarianceFields {
     total: Float
 }
 
+"columns and relationships of \"household.dashboard_setting\""
+type HouseholdDashboardSetting {
+    "An array relationship"
+    dashboardSettingArgs(
+        "distinct select on columns"
+        distinctOn: [HouseholdDashboardSettingArgsSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [HouseholdDashboardSettingArgsOrderBy!],
+        "filter the rows returned"
+        where: HouseholdDashboardSettingArgsBoolExp
+    ): [HouseholdDashboardSettingArgs!]!
+    feature: String!
+    "An object relationship"
+    group: Group!
+    groupId: String!
+    id: String!
+    order: Int!
+    "An object relationship"
+    user: User!
+    userId: String!
+}
+
+"columns and relationships of \"household.dashboard_setting_args\""
+type HouseholdDashboardSettingArgs {
+    "An object relationship"
+    dashboardSetting: HouseholdDashboardSetting!
+    id: String!
+    settingId: String!
+    type: String!
+    value: String!
+}
+
+"response of any mutation on the table \"household.dashboard_setting_args\""
+type HouseholdDashboardSettingArgsMutationResponse {
+    "number of rows affected by the mutation"
+    affectedRows: Int!
+    "data from the rows affected by the mutation"
+    returning: [HouseholdDashboardSettingArgs!]!
+}
+
+"response of any mutation on the table \"household.dashboard_setting\""
+type HouseholdDashboardSettingMutationResponse {
+    "number of rows affected by the mutation"
+    affectedRows: Int!
+    "data from the rows affected by the mutation"
+    returning: [HouseholdDashboardSetting!]!
+}
+
 "columns and relationships of \"household.deposit_category\""
 type HouseholdDepositCategory {
     "An object relationship"
@@ -2240,6 +2292,20 @@ type mutation_root {
     ): HouseholdDailyDetailMutationResponse
     "delete single row from the table: \"household.daily_detail\""
     deleteHouseholdDailyDetailByPk(id: String!): HouseholdDailyDetail
+    "delete data from the table: \"household.dashboard_setting\""
+    deleteHouseholdDashboardSetting(
+        "filter the rows which have to be deleted"
+        where: HouseholdDashboardSettingBoolExp!
+    ): HouseholdDashboardSettingMutationResponse
+    "delete data from the table: \"household.dashboard_setting_args\""
+    deleteHouseholdDashboardSettingArgs(
+        "filter the rows which have to be deleted"
+        where: HouseholdDashboardSettingArgsBoolExp!
+    ): HouseholdDashboardSettingArgsMutationResponse
+    "delete single row from the table: \"household.dashboard_setting_args\""
+    deleteHouseholdDashboardSettingArgsByPk(id: String!): HouseholdDashboardSettingArgs
+    "delete single row from the table: \"household.dashboard_setting\""
+    deleteHouseholdDashboardSettingByPk(id: String!): HouseholdDashboardSetting
     "delete data from the table: \"household.summary_category\""
     deleteHouseholdSummaryCategory(
         "filter the rows which have to be deleted"
@@ -2331,6 +2397,34 @@ type mutation_root {
         "upsert condition"
         onConflict: HouseholdDailyDetailOnConflict
     ): HouseholdDailyDetail
+    "insert data into the table: \"household.dashboard_setting\""
+    insertHouseholdDashboardSetting(
+        "the rows to be inserted"
+        objects: [HouseholdDashboardSettingInsertInput!]!,
+        "upsert condition"
+        onConflict: HouseholdDashboardSettingOnConflict
+    ): HouseholdDashboardSettingMutationResponse
+    "insert data into the table: \"household.dashboard_setting_args\""
+    insertHouseholdDashboardSettingArgs(
+        "the rows to be inserted"
+        objects: [HouseholdDashboardSettingArgsInsertInput!]!,
+        "upsert condition"
+        onConflict: HouseholdDashboardSettingArgsOnConflict
+    ): HouseholdDashboardSettingArgsMutationResponse
+    "insert a single row into the table: \"household.dashboard_setting_args\""
+    insertHouseholdDashboardSettingArgsOne(
+        "the row to be inserted"
+        object: HouseholdDashboardSettingArgsInsertInput!,
+        "upsert condition"
+        onConflict: HouseholdDashboardSettingArgsOnConflict
+    ): HouseholdDashboardSettingArgs
+    "insert a single row into the table: \"household.dashboard_setting\""
+    insertHouseholdDashboardSettingOne(
+        "the row to be inserted"
+        object: HouseholdDashboardSettingInsertInput!,
+        "upsert condition"
+        onConflict: HouseholdDashboardSettingOnConflict
+    ): HouseholdDashboardSetting
     "insert data into the table: \"household.genre\""
     insertHouseholdGenre(
         "the rows to be inserted"
@@ -2907,6 +3001,36 @@ type query_root {
         "filter the rows returned"
         where: HouseholdDailyTotalViewBoolExp
     ): HouseholdDailyTotalViewAggregate!
+    "fetch data from the table: \"household.dashboard_setting\""
+    householdDashboardSetting(
+        "distinct select on columns"
+        distinctOn: [HouseholdDashboardSettingSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [HouseholdDashboardSettingOrderBy!],
+        "filter the rows returned"
+        where: HouseholdDashboardSettingBoolExp
+    ): [HouseholdDashboardSetting!]!
+    "fetch data from the table: \"household.dashboard_setting_args\""
+    householdDashboardSettingArgs(
+        "distinct select on columns"
+        distinctOn: [HouseholdDashboardSettingArgsSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [HouseholdDashboardSettingArgsOrderBy!],
+        "filter the rows returned"
+        where: HouseholdDashboardSettingArgsBoolExp
+    ): [HouseholdDashboardSettingArgs!]!
+    "fetch data from the table: \"household.dashboard_setting_args\" using primary key columns"
+    householdDashboardSettingArgsByPk(id: String!): HouseholdDashboardSettingArgs
+    "fetch data from the table: \"household.dashboard_setting\" using primary key columns"
+    householdDashboardSettingByPk(id: String!): HouseholdDashboardSetting
     "fetch data from the table: \"household.deposit_category\""
     householdDepositCategory(
         "distinct select on columns"
@@ -3645,6 +3769,54 @@ type subscription_root {
         "filter the rows returned"
         where: HouseholdDailyTotalViewBoolExp
     ): [HouseholdDailyTotalView!]!
+    "fetch data from the table: \"household.dashboard_setting\""
+    householdDashboardSetting(
+        "distinct select on columns"
+        distinctOn: [HouseholdDashboardSettingSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [HouseholdDashboardSettingOrderBy!],
+        "filter the rows returned"
+        where: HouseholdDashboardSettingBoolExp
+    ): [HouseholdDashboardSetting!]!
+    "fetch data from the table: \"household.dashboard_setting_args\""
+    householdDashboardSettingArgs(
+        "distinct select on columns"
+        distinctOn: [HouseholdDashboardSettingArgsSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [HouseholdDashboardSettingArgsOrderBy!],
+        "filter the rows returned"
+        where: HouseholdDashboardSettingArgsBoolExp
+    ): [HouseholdDashboardSettingArgs!]!
+    "fetch data from the table: \"household.dashboard_setting_args\" using primary key columns"
+    householdDashboardSettingArgsByPk(id: String!): HouseholdDashboardSettingArgs
+    "fetch data from the table in a streaming manner: \"household.dashboard_setting_args\""
+    householdDashboardSettingArgsStream(
+        "maximum number of rows returned in a single batch"
+        batchSize: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [HouseholdDashboardSettingArgsStreamCursorInput]!,
+        "filter the rows returned"
+        where: HouseholdDashboardSettingArgsBoolExp
+    ): [HouseholdDashboardSettingArgs!]!
+    "fetch data from the table: \"household.dashboard_setting\" using primary key columns"
+    householdDashboardSettingByPk(id: String!): HouseholdDashboardSetting
+    "fetch data from the table in a streaming manner: \"household.dashboard_setting\""
+    householdDashboardSettingStream(
+        "maximum number of rows returned in a single batch"
+        batchSize: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [HouseholdDashboardSettingStreamCursorInput]!,
+        "filter the rows returned"
+        where: HouseholdDashboardSettingBoolExp
+    ): [HouseholdDashboardSetting!]!
     "fetch data from the table: \"household.deposit_category\""
     householdDepositCategory(
         "distinct select on columns"
@@ -4281,6 +4453,56 @@ enum HouseholdDailyTotalViewSelectColumn {
     iocomeType
     "column name"
     total
+}
+
+"unique or primary key constraints on table \"household.dashboard_setting_args\""
+enum HouseholdDashboardSettingArgsConstraint {
+    "unique or primary key constraint on columns \"id\""
+    dashboard_setting_args_pkey
+}
+
+"select columns of table \"household.dashboard_setting_args\""
+enum HouseholdDashboardSettingArgsSelectColumn {
+    "column name"
+    id
+    "column name"
+    settingId
+    "column name"
+    type
+    "column name"
+    value
+}
+
+"placeholder for update columns of table \"household.dashboard_setting_args\" (current role has no relevant permissions)"
+enum HouseholdDashboardSettingArgsUpdateColumn {
+    "placeholder (do not use)"
+    _PLACEHOLDER
+}
+
+"unique or primary key constraints on table \"household.dashboard_setting\""
+enum HouseholdDashboardSettingConstraint {
+    "unique or primary key constraint on columns \"id\""
+    dashboard_setting_pkey
+}
+
+"select columns of table \"household.dashboard_setting\""
+enum HouseholdDashboardSettingSelectColumn {
+    "column name"
+    feature
+    "column name"
+    groupId
+    "column name"
+    id
+    "column name"
+    order
+    "column name"
+    userId
+}
+
+"placeholder for update columns of table \"household.dashboard_setting\" (current role has no relevant permissions)"
+enum HouseholdDashboardSettingUpdateColumn {
+    "placeholder (do not use)"
+    _PLACEHOLDER
 }
 
 "select columns of table \"household.deposit_category\""
@@ -5983,6 +6205,158 @@ input HouseholdDailyTotalViewStreamCursorValueInput {
     groupId: String
     iocomeType: String
     total: numeric
+}
+
+"order by aggregate values of table \"household.dashboard_setting_args\""
+input HouseholdDashboardSettingArgsAggregateOrderBy {
+    count: OrderBy
+    max: HouseholdDashboardSettingArgsMaxOrderBy
+    min: HouseholdDashboardSettingArgsMinOrderBy
+}
+
+"input type for inserting array relation for remote table \"household.dashboard_setting_args\""
+input HouseholdDashboardSettingArgsArrRelInsertInput {
+    data: [HouseholdDashboardSettingArgsInsertInput!]!
+    "upsert condition"
+    onConflict: HouseholdDashboardSettingArgsOnConflict
+}
+
+"Boolean expression to filter rows from the table \"household.dashboard_setting_args\". All fields are combined with a logical 'AND'."
+input HouseholdDashboardSettingArgsBoolExp {
+    _and: [HouseholdDashboardSettingArgsBoolExp!]
+    _not: HouseholdDashboardSettingArgsBoolExp
+    _or: [HouseholdDashboardSettingArgsBoolExp!]
+    dashboardSetting: HouseholdDashboardSettingBoolExp
+    id: StringComparisonExp
+    settingId: StringComparisonExp
+    type: StringComparisonExp
+    value: StringComparisonExp
+}
+
+"input type for inserting data into table \"household.dashboard_setting_args\""
+input HouseholdDashboardSettingArgsInsertInput {
+    dashboardSetting: HouseholdDashboardSettingObjRelInsertInput
+    id: String
+    settingId: String
+    type: String
+    value: String
+}
+
+"order by max() on columns of table \"household.dashboard_setting_args\""
+input HouseholdDashboardSettingArgsMaxOrderBy {
+    id: OrderBy
+    settingId: OrderBy
+    type: OrderBy
+    value: OrderBy
+}
+
+"order by min() on columns of table \"household.dashboard_setting_args\""
+input HouseholdDashboardSettingArgsMinOrderBy {
+    id: OrderBy
+    settingId: OrderBy
+    type: OrderBy
+    value: OrderBy
+}
+
+"on_conflict condition type for table \"household.dashboard_setting_args\""
+input HouseholdDashboardSettingArgsOnConflict {
+    constraint: HouseholdDashboardSettingArgsConstraint!
+    updateColumns: [HouseholdDashboardSettingArgsUpdateColumn!]! = []
+    where: HouseholdDashboardSettingArgsBoolExp
+}
+
+"Ordering options when selecting data from \"household.dashboard_setting_args\"."
+input HouseholdDashboardSettingArgsOrderBy {
+    dashboardSetting: HouseholdDashboardSettingOrderBy
+    id: OrderBy
+    settingId: OrderBy
+    type: OrderBy
+    value: OrderBy
+}
+
+"Streaming cursor of the table \"household_dashboard_setting_args\""
+input HouseholdDashboardSettingArgsStreamCursorInput {
+    "Stream column input with initial value"
+    initialValue: HouseholdDashboardSettingArgsStreamCursorValueInput!
+    "cursor ordering"
+    ordering: CursorOrdering
+}
+
+"Initial value of the column from where the streaming should start"
+input HouseholdDashboardSettingArgsStreamCursorValueInput {
+    id: String
+    settingId: String
+    type: String
+    value: String
+}
+
+"Boolean expression to filter rows from the table \"household.dashboard_setting\". All fields are combined with a logical 'AND'."
+input HouseholdDashboardSettingBoolExp {
+    _and: [HouseholdDashboardSettingBoolExp!]
+    _not: HouseholdDashboardSettingBoolExp
+    _or: [HouseholdDashboardSettingBoolExp!]
+    dashboardSettingArgs: HouseholdDashboardSettingArgsBoolExp
+    feature: StringComparisonExp
+    group: GroupBoolExp
+    groupId: StringComparisonExp
+    id: StringComparisonExp
+    order: IntComparisonExp
+    user: UserBoolExp
+    userId: StringComparisonExp
+}
+
+"input type for inserting data into table \"household.dashboard_setting\""
+input HouseholdDashboardSettingInsertInput {
+    dashboardSettingArgs: HouseholdDashboardSettingArgsArrRelInsertInput
+    feature: String
+    groupId: String
+    id: String
+    order: Int
+    user: UserObjRelInsertInput
+    userId: String
+}
+
+"input type for inserting object relation for remote table \"household.dashboard_setting\""
+input HouseholdDashboardSettingObjRelInsertInput {
+    data: HouseholdDashboardSettingInsertInput!
+    "upsert condition"
+    onConflict: HouseholdDashboardSettingOnConflict
+}
+
+"on_conflict condition type for table \"household.dashboard_setting\""
+input HouseholdDashboardSettingOnConflict {
+    constraint: HouseholdDashboardSettingConstraint!
+    updateColumns: [HouseholdDashboardSettingUpdateColumn!]! = []
+    where: HouseholdDashboardSettingBoolExp
+}
+
+"Ordering options when selecting data from \"household.dashboard_setting\"."
+input HouseholdDashboardSettingOrderBy {
+    dashboardSettingArgsAggregate: HouseholdDashboardSettingArgsAggregateOrderBy
+    feature: OrderBy
+    group: GroupOrderBy
+    groupId: OrderBy
+    id: OrderBy
+    order: OrderBy
+    user: UserOrderBy
+    userId: OrderBy
+}
+
+"Streaming cursor of the table \"household_dashboard_setting\""
+input HouseholdDashboardSettingStreamCursorInput {
+    "Stream column input with initial value"
+    initialValue: HouseholdDashboardSettingStreamCursorValueInput!
+    "cursor ordering"
+    ordering: CursorOrdering
+}
+
+"Initial value of the column from where the streaming should start"
+input HouseholdDashboardSettingStreamCursorValueInput {
+    feature: String
+    groupId: String
+    id: String
+    order: Int
+    userId: String
 }
 
 input HouseholdDepositCategoryAggregateBoolExp {
