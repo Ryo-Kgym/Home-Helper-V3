@@ -12,7 +12,7 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
       const year = new Date();
       year.setFullYear(year.getFullYear() + type.value);
 
-      Object.defineProperty(props, "baseDate", {
+      Object.defineProperty(props, "year", {
         value: year,
         enumerable: true,
       });
@@ -24,7 +24,7 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
       const month = new Date();
       month.setMonth(month.getMonth() + type.value);
 
-      Object.defineProperty(props, "baseDate", {
+      Object.defineProperty(props, "month", {
         value: month,
         enumerable: true,
       });

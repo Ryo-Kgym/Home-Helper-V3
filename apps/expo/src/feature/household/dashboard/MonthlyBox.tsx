@@ -5,8 +5,8 @@ import { getMonth } from "~/func/date/get-month";
 import { useCalcTotal } from "~/hooks/household/detail/useCalcTotal";
 import { DashboardFrame } from "./DashboardFrame";
 
-export const MonthlyBox = ({ baseDate }: { baseDate: Date }) => {
-  const { firstDayOfMonth, lastDayOfMonth, month } = getMonth(baseDate);
+export const MonthlyBox = ({ month }: { month: Date }) => {
+  const { firstDayOfMonth, lastDayOfMonth, month: monthNum } = getMonth(month);
   const { calcTotal } = useCalcTotal({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
@@ -15,8 +15,8 @@ export const MonthlyBox = ({ baseDate }: { baseDate: Date }) => {
 
   return (
     <DashboardFrame
-      label={`${month}月の実績`}
-      href={paths.household.calendar({ date: baseDate })}
+      label={`${monthNum}月の実績`}
+      href={paths.household.calendar({ date: month })}
       size={"50%"}
     >
       <View>

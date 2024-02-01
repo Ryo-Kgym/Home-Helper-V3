@@ -2,8 +2,8 @@ import { getMonth } from "~/func/date/get-month";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
 import { Presenter } from "./Presenter";
 
-export const Container = ({ baseDate }: { baseDate: Date }) => {
-  const { firstDayOfMonth, lastDayOfMonth, month } = getMonth(baseDate);
+export const Container = ({ month }: { month: Date }) => {
+  const { firstDayOfMonth, lastDayOfMonth, month: monthNum } = getMonth(month);
   const { categoryTotal, loading } = useGetCategoryTotal({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
@@ -13,8 +13,8 @@ export const Container = ({ baseDate }: { baseDate: Date }) => {
 
   return (
     <Presenter
-      baseDate={baseDate}
-      month={month}
+      baseDate={month}
+      month={monthNum}
       categories={categoryTotal.sort((a, b) => b.amount - a.amount)}
       loading={loading}
     />

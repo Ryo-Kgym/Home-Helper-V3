@@ -5,9 +5,12 @@ import { getYear } from "~/func/date/get-year";
 import { useCalcTotal } from "~/hooks/household/detail/useCalcTotal";
 import { DashboardFrame } from "./DashboardFrame";
 
-export const YearlyBox = ({ baseDate }: { baseDate: Date }) => {
-  const { firstDayOfYear, lastDateNotGreaterThanToday, year } =
-    getYear(baseDate);
+export const YearlyBox = ({ year }: { year: Date }) => {
+  const {
+    firstDayOfYear,
+    lastDateNotGreaterThanToday,
+    year: yearNum,
+  } = getYear(year);
 
   const { calcTotal } = useCalcTotal({
     fromDate: firstDayOfYear,
@@ -17,8 +20,8 @@ export const YearlyBox = ({ baseDate }: { baseDate: Date }) => {
 
   return (
     <DashboardFrame
-      label={`${year}年の実績`}
-      href={paths.household.rankCategoryYearly({ date: baseDate })}
+      label={`${yearNum}年の実績`}
+      href={paths.household.rankCategoryYearly({ date: year })}
       size={"50%"}
     >
       <View>
