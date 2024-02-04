@@ -1,0 +1,13 @@
+query getDashboardSetting($userId: String!, $groupId: String!) {
+  setting: householdDashboardSetting(
+    where: { userId: { _eq: $userId }, _and: { groupId: { _eq: $groupId } } }
+  ) {
+    id
+    feature
+    args: dashboardSettingArgs {
+      id
+      type
+      value
+    }
+  }
+}
