@@ -1,8 +1,8 @@
 overwrite: true
 schema: "http://localhost:8282/v1/graphql"
-documents: "./src/graphql/hasura/household/**/**.graphql"
+documents: "./household/schema/**/*.graphql"
 generates:
-  ./src/graphql/hasura/generated/hasuraGraphql.tsx:
+  ./household/hasuraGraphql.tsx:
     config:
       withHooks: true
     plugins:

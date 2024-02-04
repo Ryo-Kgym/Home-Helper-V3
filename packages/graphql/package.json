@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "private": true,
   "scripts": {
-    "hasura-household-codegen": "graphql-codegen --config hasura-codegen.yml",
+    "hasura-household-codegen": "graphql-codegen --config household/hasura-codegen.yml",
     "hasura-helper-kids-codegen": "graphql-codegen --config hasura-helper-kids-codegen.yml",
     "hasura-public-codegen": "graphql-codegen --config hasura-public-codegen.yml"
   },
