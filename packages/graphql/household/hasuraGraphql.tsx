@@ -10255,6 +10255,7 @@ export const GetDashboardSettingDocument = gql`
   query getDashboardSetting($userId: String!, $groupId: String!) {
     setting: householdDashboardSetting(
       where: { userId: { _eq: $userId }, _and: { groupId: { _eq: $groupId } } }
+      orderBy: { order: ASC }
     ) {
       id
       feature
