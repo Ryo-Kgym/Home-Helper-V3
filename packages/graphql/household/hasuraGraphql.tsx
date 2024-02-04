@@ -3434,6 +3434,262 @@ export type HouseholdDailyTotalViewVarianceFields = {
   total?: Maybe<Scalars["Float"]>;
 };
 
+/** columns and relationships of "household.dashboard_setting" */
+export type HouseholdDashboardSetting = {
+  __typename?: "HouseholdDashboardSetting";
+  /** An array relationship */
+  dashboardSettingArgs: Array<HouseholdDashboardSettingArgs>;
+  feature: Scalars["String"];
+  /** An object relationship */
+  group: Group;
+  groupId: Scalars["String"];
+  id: Scalars["String"];
+  order: Scalars["Int"];
+  /** An object relationship */
+  user: User;
+  userId: Scalars["String"];
+};
+
+/** columns and relationships of "household.dashboard_setting" */
+export type HouseholdDashboardSettingDashboardSettingArgsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDashboardSettingArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdDashboardSettingArgsOrderBy>>;
+  where?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
+};
+
+/** columns and relationships of "household.dashboard_setting_args" */
+export type HouseholdDashboardSettingArgs = {
+  __typename?: "HouseholdDashboardSettingArgs";
+  /** An object relationship */
+  dashboardSetting: HouseholdDashboardSetting;
+  id: Scalars["String"];
+  settingId: Scalars["String"];
+  type: Scalars["String"];
+  value: Scalars["String"];
+};
+
+/** order by aggregate values of table "household.dashboard_setting_args" */
+export type HouseholdDashboardSettingArgsAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdDashboardSettingArgsMaxOrderBy>;
+  min?: InputMaybe<HouseholdDashboardSettingArgsMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "household.dashboard_setting_args" */
+export type HouseholdDashboardSettingArgsArrRelInsertInput = {
+  data: Array<HouseholdDashboardSettingArgsInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdDashboardSettingArgsOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "household.dashboard_setting_args". All fields are combined with a logical 'AND'. */
+export type HouseholdDashboardSettingArgsBoolExp = {
+  _and?: InputMaybe<Array<HouseholdDashboardSettingArgsBoolExp>>;
+  _not?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
+  _or?: InputMaybe<Array<HouseholdDashboardSettingArgsBoolExp>>;
+  dashboardSetting?: InputMaybe<HouseholdDashboardSettingBoolExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  settingId?: InputMaybe<StringComparisonExp>;
+  type?: InputMaybe<StringComparisonExp>;
+  value?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household.dashboard_setting_args" */
+export enum HouseholdDashboardSettingArgsConstraint {
+  /** unique or primary key constraint on columns "id" */
+  DashboardSettingArgsPkey = "dashboard_setting_args_pkey",
+}
+
+/** input type for inserting data into table "household.dashboard_setting_args" */
+export type HouseholdDashboardSettingArgsInsertInput = {
+  dashboardSetting?: InputMaybe<HouseholdDashboardSettingObjRelInsertInput>;
+  id?: InputMaybe<Scalars["String"]>;
+  settingId?: InputMaybe<Scalars["String"]>;
+  type?: InputMaybe<Scalars["String"]>;
+  value?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "household.dashboard_setting_args" */
+export type HouseholdDashboardSettingArgsMaxOrderBy = {
+  id?: InputMaybe<OrderBy>;
+  settingId?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+  value?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "household.dashboard_setting_args" */
+export type HouseholdDashboardSettingArgsMinOrderBy = {
+  id?: InputMaybe<OrderBy>;
+  settingId?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+  value?: InputMaybe<OrderBy>;
+};
+
+/** response of any mutation on the table "household.dashboard_setting_args" */
+export type HouseholdDashboardSettingArgsMutationResponse = {
+  __typename?: "HouseholdDashboardSettingArgsMutationResponse";
+  /** number of rows affected by the mutation */
+  affectedRows: Scalars["Int"];
+  /** data from the rows affected by the mutation */
+  returning: Array<HouseholdDashboardSettingArgs>;
+};
+
+/** on_conflict condition type for table "household.dashboard_setting_args" */
+export type HouseholdDashboardSettingArgsOnConflict = {
+  constraint: HouseholdDashboardSettingArgsConstraint;
+  updateColumns?: Array<HouseholdDashboardSettingArgsUpdateColumn>;
+  where?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.dashboard_setting_args". */
+export type HouseholdDashboardSettingArgsOrderBy = {
+  dashboardSetting?: InputMaybe<HouseholdDashboardSettingOrderBy>;
+  id?: InputMaybe<OrderBy>;
+  settingId?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+  value?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "household.dashboard_setting_args" */
+export enum HouseholdDashboardSettingArgsSelectColumn {
+  /** column name */
+  Id = "id",
+  /** column name */
+  SettingId = "settingId",
+  /** column name */
+  Type = "type",
+  /** column name */
+  Value = "value",
+}
+
+/** Streaming cursor of the table "household_dashboard_setting_args" */
+export type HouseholdDashboardSettingArgsStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: HouseholdDashboardSettingArgsStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type HouseholdDashboardSettingArgsStreamCursorValueInput = {
+  id?: InputMaybe<Scalars["String"]>;
+  settingId?: InputMaybe<Scalars["String"]>;
+  type?: InputMaybe<Scalars["String"]>;
+  value?: InputMaybe<Scalars["String"]>;
+};
+
+/** placeholder for update columns of table "household.dashboard_setting_args" (current role has no relevant permissions) */
+export enum HouseholdDashboardSettingArgsUpdateColumn {
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
+}
+
+/** Boolean expression to filter rows from the table "household.dashboard_setting". All fields are combined with a logical 'AND'. */
+export type HouseholdDashboardSettingBoolExp = {
+  _and?: InputMaybe<Array<HouseholdDashboardSettingBoolExp>>;
+  _not?: InputMaybe<HouseholdDashboardSettingBoolExp>;
+  _or?: InputMaybe<Array<HouseholdDashboardSettingBoolExp>>;
+  dashboardSettingArgs?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
+  feature?: InputMaybe<StringComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  order?: InputMaybe<IntComparisonExp>;
+  user?: InputMaybe<UserBoolExp>;
+  userId?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household.dashboard_setting" */
+export enum HouseholdDashboardSettingConstraint {
+  /** unique or primary key constraint on columns "id" */
+  DashboardSettingPkey = "dashboard_setting_pkey",
+}
+
+/** input type for inserting data into table "household.dashboard_setting" */
+export type HouseholdDashboardSettingInsertInput = {
+  dashboardSettingArgs?: InputMaybe<HouseholdDashboardSettingArgsArrRelInsertInput>;
+  feature?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  order?: InputMaybe<Scalars["Int"]>;
+  user?: InputMaybe<UserObjRelInsertInput>;
+  userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** response of any mutation on the table "household.dashboard_setting" */
+export type HouseholdDashboardSettingMutationResponse = {
+  __typename?: "HouseholdDashboardSettingMutationResponse";
+  /** number of rows affected by the mutation */
+  affectedRows: Scalars["Int"];
+  /** data from the rows affected by the mutation */
+  returning: Array<HouseholdDashboardSetting>;
+};
+
+/** input type for inserting object relation for remote table "household.dashboard_setting" */
+export type HouseholdDashboardSettingObjRelInsertInput = {
+  data: HouseholdDashboardSettingInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdDashboardSettingOnConflict>;
+};
+
+/** on_conflict condition type for table "household.dashboard_setting" */
+export type HouseholdDashboardSettingOnConflict = {
+  constraint: HouseholdDashboardSettingConstraint;
+  updateColumns?: Array<HouseholdDashboardSettingUpdateColumn>;
+  where?: InputMaybe<HouseholdDashboardSettingBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.dashboard_setting". */
+export type HouseholdDashboardSettingOrderBy = {
+  dashboardSettingArgsAggregate?: InputMaybe<HouseholdDashboardSettingArgsAggregateOrderBy>;
+  feature?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  order?: InputMaybe<OrderBy>;
+  user?: InputMaybe<UserOrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "household.dashboard_setting" */
+export enum HouseholdDashboardSettingSelectColumn {
+  /** column name */
+  Feature = "feature",
+  /** column name */
+  GroupId = "groupId",
+  /** column name */
+  Id = "id",
+  /** column name */
+  Order = "order",
+  /** column name */
+  UserId = "userId",
+}
+
+/** Streaming cursor of the table "household_dashboard_setting" */
+export type HouseholdDashboardSettingStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: HouseholdDashboardSettingStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type HouseholdDashboardSettingStreamCursorValueInput = {
+  feature?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  order?: InputMaybe<Scalars["Int"]>;
+  userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** placeholder for update columns of table "household.dashboard_setting" (current role has no relevant permissions) */
+export enum HouseholdDashboardSettingUpdateColumn {
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
+}
+
 /** columns and relationships of "household.deposit_category" */
 export type HouseholdDepositCategory = {
   __typename?: "HouseholdDepositCategory";
@@ -5496,6 +5752,14 @@ export type Mutation_Root = {
   deleteHouseholdDailyDetail?: Maybe<HouseholdDailyDetailMutationResponse>;
   /** delete single row from the table: "household.daily_detail" */
   deleteHouseholdDailyDetailByPk?: Maybe<HouseholdDailyDetail>;
+  /** delete data from the table: "household.dashboard_setting" */
+  deleteHouseholdDashboardSetting?: Maybe<HouseholdDashboardSettingMutationResponse>;
+  /** delete data from the table: "household.dashboard_setting_args" */
+  deleteHouseholdDashboardSettingArgs?: Maybe<HouseholdDashboardSettingArgsMutationResponse>;
+  /** delete single row from the table: "household.dashboard_setting_args" */
+  deleteHouseholdDashboardSettingArgsByPk?: Maybe<HouseholdDashboardSettingArgs>;
+  /** delete single row from the table: "household.dashboard_setting" */
+  deleteHouseholdDashboardSettingByPk?: Maybe<HouseholdDashboardSetting>;
   /** delete data from the table: "household.summary_category" */
   deleteHouseholdSummaryCategory?: Maybe<HouseholdSummaryCategoryMutationResponse>;
   /** delete single row from the table: "household.summary_category" */
@@ -5524,6 +5788,14 @@ export type Mutation_Root = {
   insertHouseholdDailyDetail?: Maybe<HouseholdDailyDetailMutationResponse>;
   /** insert a single row into the table: "household.daily_detail" */
   insertHouseholdDailyDetailOne?: Maybe<HouseholdDailyDetail>;
+  /** insert data into the table: "household.dashboard_setting" */
+  insertHouseholdDashboardSetting?: Maybe<HouseholdDashboardSettingMutationResponse>;
+  /** insert data into the table: "household.dashboard_setting_args" */
+  insertHouseholdDashboardSettingArgs?: Maybe<HouseholdDashboardSettingArgsMutationResponse>;
+  /** insert a single row into the table: "household.dashboard_setting_args" */
+  insertHouseholdDashboardSettingArgsOne?: Maybe<HouseholdDashboardSettingArgs>;
+  /** insert a single row into the table: "household.dashboard_setting" */
+  insertHouseholdDashboardSettingOne?: Maybe<HouseholdDashboardSetting>;
   /** insert data into the table: "household.genre" */
   insertHouseholdGenre?: Maybe<HouseholdGenreMutationResponse>;
   /** insert a single row into the table: "household.genre" */
@@ -5589,6 +5861,26 @@ export type Mutation_RootDeleteHouseholdDailyDetailArgs = {
 
 /** mutation root */
 export type Mutation_RootDeleteHouseholdDailyDetailByPkArgs = {
+  id: Scalars["String"];
+};
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdDashboardSettingArgs = {
+  where: HouseholdDashboardSettingBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdDashboardSettingArgsArgs = {
+  where: HouseholdDashboardSettingArgsBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdDashboardSettingArgsByPkArgs = {
+  id: Scalars["String"];
+};
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdDashboardSettingByPkArgs = {
   id: Scalars["String"];
 };
 
@@ -5672,6 +5964,30 @@ export type Mutation_RootInsertHouseholdDailyDetailArgs = {
 export type Mutation_RootInsertHouseholdDailyDetailOneArgs = {
   object: HouseholdDailyDetailInsertInput;
   onConflict?: InputMaybe<HouseholdDailyDetailOnConflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdDashboardSettingArgs = {
+  objects: Array<HouseholdDashboardSettingInsertInput>;
+  onConflict?: InputMaybe<HouseholdDashboardSettingOnConflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdDashboardSettingArgsArgs = {
+  objects: Array<HouseholdDashboardSettingArgsInsertInput>;
+  onConflict?: InputMaybe<HouseholdDashboardSettingArgsOnConflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdDashboardSettingArgsOneArgs = {
+  object: HouseholdDashboardSettingArgsInsertInput;
+  onConflict?: InputMaybe<HouseholdDashboardSettingArgsOnConflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdDashboardSettingOneArgs = {
+  object: HouseholdDashboardSettingInsertInput;
+  onConflict?: InputMaybe<HouseholdDashboardSettingOnConflict>;
 };
 
 /** mutation root */
@@ -5895,6 +6211,14 @@ export type Query_Root = {
   householdDailyTotalView: Array<HouseholdDailyTotalView>;
   /** fetch aggregated fields from the table: "household.daily_total_view" */
   householdDailyTotalViewAggregate: HouseholdDailyTotalViewAggregate;
+  /** fetch data from the table: "household.dashboard_setting" */
+  householdDashboardSetting: Array<HouseholdDashboardSetting>;
+  /** fetch data from the table: "household.dashboard_setting_args" */
+  householdDashboardSettingArgs: Array<HouseholdDashboardSettingArgs>;
+  /** fetch data from the table: "household.dashboard_setting_args" using primary key columns */
+  householdDashboardSettingArgsByPk?: Maybe<HouseholdDashboardSettingArgs>;
+  /** fetch data from the table: "household.dashboard_setting" using primary key columns */
+  householdDashboardSettingByPk?: Maybe<HouseholdDashboardSetting>;
   /** fetch data from the table: "household.deposit_category" */
   householdDepositCategory: Array<HouseholdDepositCategory>;
   /** fetch aggregated fields from the table: "household.deposit_category" */
@@ -6224,6 +6548,30 @@ export type Query_RootHouseholdDailyTotalViewAggregateArgs = {
   where?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
 };
 
+export type Query_RootHouseholdDashboardSettingArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDashboardSettingSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdDashboardSettingOrderBy>>;
+  where?: InputMaybe<HouseholdDashboardSettingBoolExp>;
+};
+
+export type Query_RootHouseholdDashboardSettingArgsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDashboardSettingArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdDashboardSettingArgsOrderBy>>;
+  where?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
+};
+
+export type Query_RootHouseholdDashboardSettingArgsByPkArgs = {
+  id: Scalars["String"];
+};
+
+export type Query_RootHouseholdDashboardSettingByPkArgs = {
+  id: Scalars["String"];
+};
+
 export type Query_RootHouseholdDepositCategoryArgs = {
   distinctOn?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -6478,6 +6826,18 @@ export type Subscription_Root = {
   householdDailyTotalViewAggregate: HouseholdDailyTotalViewAggregate;
   /** fetch data from the table in a streaming manner: "household.daily_total_view" */
   householdDailyTotalViewStream: Array<HouseholdDailyTotalView>;
+  /** fetch data from the table: "household.dashboard_setting" */
+  householdDashboardSetting: Array<HouseholdDashboardSetting>;
+  /** fetch data from the table: "household.dashboard_setting_args" */
+  householdDashboardSettingArgs: Array<HouseholdDashboardSettingArgs>;
+  /** fetch data from the table: "household.dashboard_setting_args" using primary key columns */
+  householdDashboardSettingArgsByPk?: Maybe<HouseholdDashboardSettingArgs>;
+  /** fetch data from the table in a streaming manner: "household.dashboard_setting_args" */
+  householdDashboardSettingArgsStream: Array<HouseholdDashboardSettingArgs>;
+  /** fetch data from the table: "household.dashboard_setting" using primary key columns */
+  householdDashboardSettingByPk?: Maybe<HouseholdDashboardSetting>;
+  /** fetch data from the table in a streaming manner: "household.dashboard_setting" */
+  householdDashboardSettingStream: Array<HouseholdDashboardSetting>;
   /** fetch data from the table: "household.deposit_category" */
   householdDepositCategory: Array<HouseholdDepositCategory>;
   /** fetch aggregated fields from the table: "household.deposit_category" */
@@ -6897,6 +7257,42 @@ export type Subscription_RootHouseholdDailyTotalViewStreamArgs = {
   batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<HouseholdDailyTotalViewStreamCursorInput>>;
   where?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
+};
+
+export type Subscription_RootHouseholdDashboardSettingArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDashboardSettingSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdDashboardSettingOrderBy>>;
+  where?: InputMaybe<HouseholdDashboardSettingBoolExp>;
+};
+
+export type Subscription_RootHouseholdDashboardSettingArgsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdDashboardSettingArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdDashboardSettingArgsOrderBy>>;
+  where?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
+};
+
+export type Subscription_RootHouseholdDashboardSettingArgsByPkArgs = {
+  id: Scalars["String"];
+};
+
+export type Subscription_RootHouseholdDashboardSettingArgsStreamArgs = {
+  batchSize: Scalars["Int"];
+  cursor: Array<InputMaybe<HouseholdDashboardSettingArgsStreamCursorInput>>;
+  where?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
+};
+
+export type Subscription_RootHouseholdDashboardSettingByPkArgs = {
+  id: Scalars["String"];
+};
+
+export type Subscription_RootHouseholdDashboardSettingStreamArgs = {
+  batchSize: Scalars["Int"];
+  cursor: Array<InputMaybe<HouseholdDashboardSettingStreamCursorInput>>;
+  where?: InputMaybe<HouseholdDashboardSettingBoolExp>;
 };
 
 export type Subscription_RootHouseholdDepositCategoryArgs = {
@@ -8202,6 +8598,26 @@ export type GetDailyByAccountIdQuery = {
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  }>;
+};
+
+export type GetDashboardSettingQueryVariables = Exact<{
+  userId: Scalars["String"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetDashboardSettingQuery = {
+  __typename?: "query_root";
+  setting: Array<{
+    __typename?: "HouseholdDashboardSetting";
+    id: string;
+    feature: string;
+    args: Array<{
+      __typename?: "HouseholdDashboardSettingArgs";
+      id: string;
+      type: string;
+      value: string;
+    }>;
   }>;
 };
 
@@ -9834,6 +10250,31 @@ export function useGetDailyByAccountIdQuery(
     GetDailyByAccountIdQuery,
     GetDailyByAccountIdQueryVariables
   >({ query: GetDailyByAccountIdDocument, ...options });
+}
+export const GetDashboardSettingDocument = gql`
+  query getDashboardSetting($userId: String!, $groupId: String!) {
+    setting: householdDashboardSetting(
+      where: { userId: { _eq: $userId }, _and: { groupId: { _eq: $groupId } } }
+      orderBy: { order: ASC }
+    ) {
+      id
+      feature
+      args: dashboardSettingArgs {
+        id
+        type
+        value
+      }
+    }
+  }
+`;
+
+export function useGetDashboardSettingQuery(
+  options: Omit<Urql.UseQueryArgs<GetDashboardSettingQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDashboardSettingQuery,
+    GetDashboardSettingQueryVariables
+  >({ query: GetDashboardSettingDocument, ...options });
 }
 export const GetDetailsByCategoryDocument = gql`
   query getDetailsByCategory(

@@ -20,7 +20,7 @@ export const Presenter = ({
   <DashboardFrame
     label={`${month}月の変動支出`}
     href={paths.household.categoryRanking({ date: baseDate })}
-    size={"w-1/2"}
+    size={"50%"}
     scroll={120}
   >
     {loading ? (

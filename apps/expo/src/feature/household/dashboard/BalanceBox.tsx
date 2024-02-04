@@ -26,11 +26,7 @@ export const BalanceBox = () => {
     }, 0) ?? 0;
 
   return (
-    <DashboardFrame
-      label={"残高"}
-      href={paths.household.account}
-      size={"w-1/2"}
-    >
+    <DashboardFrame label={"残高"} href={paths.household.account} size={"50%"}>
       <View>
         <Text className={"text-right text-lg"}>
           {totalBalance.toLocaleString()}

@@ -1,1 +1,1 @@
-export * from "../src/graphql/hasura/generated/hasuraGraphql";
+export * from "./hasuraGraphql";

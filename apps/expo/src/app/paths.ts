@@ -31,5 +31,6 @@ export const paths = {
       `/household/rank/category/yearly/${year
         .toISOString()
         .slice(0, 10)}/${categoryId}` as "/",
+    setting: "/household/setting" as "/",
   },
 } as const;
