@@ -17,12 +17,11 @@ export const useGetDashboardBoxes = () => {
   });
 
   const setting: BoxesType =
-    data?.setting.map((s) => {
-      return {
-        feature: s.feature as Feature,
-        argsMap: s.args.map((a) => valueConverter[a.type as ArgsType](a.value)),
-      };
-    }) ?? [];
+    data?.setting.map((s) => ({
+      id: s.id,
+      feature: s.feature as Feature,
+      argsMap: s.args.map((a) => valueConverter[a.type as ArgsType](a.value)),
+    })) ?? [];
 
   const getBoxNodes = (): React.ReactNode[] => generateBox(setting);
 

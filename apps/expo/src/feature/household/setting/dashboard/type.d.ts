@@ -13,6 +13,7 @@ export type ArgsMapType =
   | { type: "month"; value: number };
 
 export type BoxesType = {
+  id: string;
   feature: Feature;
   argsMap: ArgsMapType[];
 }[];
