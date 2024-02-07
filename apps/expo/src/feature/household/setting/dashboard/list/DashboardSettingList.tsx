@@ -3,7 +3,7 @@ import { FlatList, Text, View } from "react-native";
 import { useGetDashboardBoxes } from "~/feature/household/setting";
 import { featureMap } from "./feature-map";
 
-export const DashboardSetting = () => {
+export const DashboardSettingList = () => {
   const { setting } = useGetDashboardBoxes();
 
   return (
