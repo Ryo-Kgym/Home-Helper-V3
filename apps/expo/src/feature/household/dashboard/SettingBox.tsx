@@ -6,7 +6,7 @@ import { DashboardFrame } from "./DashboardFrame";
 
 export const SettingBox = () => {
   return (
-    <DashboardFrame label={""} href={paths.household.setting} size={"25%"}>
+    <DashboardFrame label={""} href={paths.household.setting.root} size={"25%"}>
       <View className={"items-center justify-center"}>
         <Octicons name="gear" size={48} color="gray" />
       </View>
