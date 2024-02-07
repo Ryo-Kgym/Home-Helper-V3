@@ -40,9 +40,7 @@ export const DashboardSettingList = () => {
               <View
                 style={{
                   flexDirection: "row",
-                  justifyContent: "space-between",
                   alignItems: "center",
-                  flex: 1,
                   paddingHorizontal: 10,
                 }}
               >
@@ -52,6 +50,8 @@ export const DashboardSettingList = () => {
                 <Text
                   style={{
                     textAlign: "right",
+                    flex: 1,
+                    paddingRight: 20,
                   }}
                 >
                   {item.argsMap
