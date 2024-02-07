@@ -34,6 +34,8 @@ export const paths = {
     setting: {
       root: "/household/setting" as "/",
       dashboard: "/household/setting/dashboard" as "/",
+      dashboardEdit: ({ id }: { id: string }) =>
+        `/household/setting/dashboard/edit/${id}` as "/",
     },
   },
 } as const;
