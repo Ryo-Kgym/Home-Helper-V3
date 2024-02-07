@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Stack } from "expo-router";
 
-import { DashboardSetting } from "~/feature/household/setting/dashboard/DashboardSetting";
+import { DashboardSetting } from "~/feature/household/setting";
 
 const Page = () => {
   return (

@@ -26,7 +26,7 @@ export const useGetDashboardBoxes = () => {
 
   const getBoxNodes = (): React.ReactNode[] => generateBox(setting);
 
-  return { getBoxNodes };
+  return { getBoxNodes, setting };
 };
 
 const valueConverter: {
