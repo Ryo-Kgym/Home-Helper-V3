@@ -1,5 +1,7 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
+import { Link } from "expo-router";
 
+import { paths } from "~/app/paths";
 import { useGetDashboardBoxes } from "~/feature/household/setting";
 import { featureMap } from "./feature-map";
 
@@ -11,29 +13,55 @@ export const DashboardSettingList = () => {
       <FlatList
         data={setting}
         renderItem={({ item, index }) => (
-          <View
+          <Pressable
             style={{
-              flexDirection: "row",
-              alignItems: "center",
               borderStyle: "solid",
               borderBottomWidth: 0.5,
               borderColor: "gray",
-              padding: 6,
             }}
           >
-            <Text style={{ marginRight: 12, textAlign: "right", width: 18 }}>
-              {index + 1}
-            </Text>
-            <Text className={"text-xl"}>{featureMap[item.feature].label}</Text>
-            <Text
-              style={{
-                flex: 1,
-                textAlign: "right",
-              }}
-            >
-              {item.argsMap.map((at) => at.type + "= " + at.value).join(", ")}
-            </Text>
-          </View>
+            <Link href={paths.household.setting.dashboardEdit({ id: item.id })}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingTop: 10,
+                  paddingBottom: 8,
+                }}
+              >
+                <Text
+                  style={{
+                    width: 20,
+                    textAlign: "right",
+                  }}
+                >
+                  {index + 1}
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flex: 1,
+                    paddingHorizontal: 10,
+                  }}
+                >
+                  <Text className={"text-xl"}>
+                    {featureMap[item.feature].label}
+                  </Text>
+                  <Text
+                    style={{
+                      textAlign: "right",
+                    }}
+                  >
+                    {item.argsMap
+                      .map((at) => at.type + "= " + at.value)
+                      .join(", ")}
+                  </Text>
+                </View>
+              </View>
+            </Link>
+          </Pressable>
         )}
       />
     </View>
