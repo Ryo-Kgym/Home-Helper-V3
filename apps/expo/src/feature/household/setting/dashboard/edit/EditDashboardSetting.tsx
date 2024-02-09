@@ -6,11 +6,12 @@ import { ResetButton, UpdateButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import { featureMap } from "../list/feature-map";
 import { generateMonthOptions, generateYearOptions } from "./args-value-range";
+import { useEditDashboardSetting } from "./useEditDashboardSetting";
 
 export const EditDashboardSetting = ({
-  detail,
+  setting,
 }: {
-  detail:
+  setting:
     | {
         id: string;
         feature: Feature;
@@ -20,35 +21,54 @@ export const EditDashboardSetting = ({
 }) => {
   const [feature, setFeature] = useState<Feature | null>(null);
   const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>([]);
-
+  const { updateSetting } = useEditDashboardSetting();
   const featurePickerData = Object.keys(featureMap).map((f) => ({
     label: featureMap[f as Feature].label,
     value: f as Feature,
   }));
 
-  const updateHandler = () => {
-    console.error("feature", feature, "args", argsMapTypes);
+  const updateHandler = async () => {
+    if (!setting || !feature) {
+      return;
+    }
+    try {
+      await updateSetting({
+        settingId: setting.id,
+        feature,
+        order: 9,
+        argsMapTypes,
+      });
+      alert("更新しました");
+    } catch (e) {
+      console.error(e);
+      alert("更新に失敗しました");
+    }
   };
 
   const resetHandler = () => {
-    if (detail) {
-      setFeature(detail.feature);
-      setArgsMapTypes(detail.argsMap);
+    if (setting) {
+      setFeature(setting.feature);
+      setArgsMapTypes(setting.argsMap);
     }
   };
 
   useEffect(() => {
-    if (detail) {
-      setFeature(detail.feature);
-      setArgsMapTypes(detail.argsMap);
+    if (setting) {
+      setFeature(setting.feature);
+      setArgsMapTypes(setting.argsMap);
     }
-  }, [detail]);
+  }, [setting]);
 
-  if (!detail || !feature) return null;
+  if (!setting || !feature) return null;
 
   return (
     <View>
-      <Picker value={feature} setValue={setFeature} data={featurePickerData} />
+      <Picker
+        value={feature}
+        setValue={setFeature}
+        data={featurePickerData}
+        disabled={true}
+      />
       <View>
         {featureMap[feature].argsTypes.map((type, index) => {
           if (!argsMapTypes[index]) return null;

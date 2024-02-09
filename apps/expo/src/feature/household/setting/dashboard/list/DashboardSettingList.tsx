@@ -73,7 +73,7 @@ export const DashboardSettingList = () => {
         )}
       />
       <Modal visible={visible} setVisible={setVisible}>
-        <EditDashboardSetting detail={detail} />
+        <EditDashboardSetting setting={detail} />
       </Modal>
     </>
   );
