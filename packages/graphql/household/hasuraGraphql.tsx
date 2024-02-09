@@ -3607,6 +3607,11 @@ export enum HouseholdDashboardSettingConstraint {
   DashboardSettingPkey = "dashboard_setting_pkey",
 }
 
+/** input type for incrementing numeric columns in table "household.dashboard_setting" */
+export type HouseholdDashboardSettingIncInput = {
+  order?: InputMaybe<Scalars["Int"]>;
+};
+
 /** input type for inserting data into table "household.dashboard_setting" */
 export type HouseholdDashboardSettingInsertInput = {
   dashboardSettingArgs?: InputMaybe<HouseholdDashboardSettingArgsArrRelInsertInput>;
@@ -3653,6 +3658,11 @@ export type HouseholdDashboardSettingOrderBy = {
   userId?: InputMaybe<OrderBy>;
 };
 
+/** primary key columns input for table: household.dashboard_setting */
+export type HouseholdDashboardSettingPkColumnsInput = {
+  id: Scalars["String"];
+};
+
 /** select columns of table "household.dashboard_setting" */
 export enum HouseholdDashboardSettingSelectColumn {
   /** column name */
@@ -3666,6 +3676,15 @@ export enum HouseholdDashboardSettingSelectColumn {
   /** column name */
   UserId = "userId",
 }
+
+/** input type for updating data in table "household.dashboard_setting" */
+export type HouseholdDashboardSettingSetInput = {
+  feature?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  order?: InputMaybe<Scalars["Int"]>;
+  userId?: InputMaybe<Scalars["String"]>;
+};
 
 /** Streaming cursor of the table "household_dashboard_setting" */
 export type HouseholdDashboardSettingStreamCursorInput = {
@@ -3684,11 +3703,28 @@ export type HouseholdDashboardSettingStreamCursorValueInput = {
   userId?: InputMaybe<Scalars["String"]>;
 };
 
-/** placeholder for update columns of table "household.dashboard_setting" (current role has no relevant permissions) */
+/** update columns of table "household.dashboard_setting" */
 export enum HouseholdDashboardSettingUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
+  /** column name */
+  Feature = "feature",
+  /** column name */
+  GroupId = "groupId",
+  /** column name */
+  Id = "id",
+  /** column name */
+  Order = "order",
+  /** column name */
+  UserId = "userId",
 }
+
+export type HouseholdDashboardSettingUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<HouseholdDashboardSettingIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdDashboardSettingSetInput>;
+  /** filter the rows which have to be updated */
+  where: HouseholdDashboardSettingBoolExp;
+};
 
 /** columns and relationships of "household.deposit_category" */
 export type HouseholdDepositCategory = {
@@ -5844,6 +5880,14 @@ export type Mutation_Root = {
   updateHouseholdDailyDetailMany?: Maybe<
     Array<Maybe<HouseholdDailyDetailMutationResponse>>
   >;
+  /** update data of the table: "household.dashboard_setting" */
+  updateHouseholdDashboardSetting?: Maybe<HouseholdDashboardSettingMutationResponse>;
+  /** update single row of the table: "household.dashboard_setting" */
+  updateHouseholdDashboardSettingByPk?: Maybe<HouseholdDashboardSetting>;
+  /** update multiples rows of table: "household.dashboard_setting" */
+  updateHouseholdDashboardSettingMany?: Maybe<
+    Array<Maybe<HouseholdDashboardSettingMutationResponse>>
+  >;
   /** update data of the table: "household.genre" */
   updateHouseholdGenre?: Maybe<HouseholdGenreMutationResponse>;
   /** update single row of the table: "household.genre" */
@@ -6112,6 +6156,25 @@ export type Mutation_RootUpdateHouseholdDailyDetailByPkArgs = {
 /** mutation root */
 export type Mutation_RootUpdateHouseholdDailyDetailManyArgs = {
   updates: Array<HouseholdDailyDetailUpdates>;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdDashboardSettingArgs = {
+  _inc?: InputMaybe<HouseholdDashboardSettingIncInput>;
+  _set?: InputMaybe<HouseholdDashboardSettingSetInput>;
+  where: HouseholdDashboardSettingBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdDashboardSettingByPkArgs = {
+  _inc?: InputMaybe<HouseholdDashboardSettingIncInput>;
+  _set?: InputMaybe<HouseholdDashboardSettingSetInput>;
+  pkColumns: HouseholdDashboardSettingPkColumnsInput;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdDashboardSettingManyArgs = {
+  updates: Array<HouseholdDashboardSettingUpdates>;
 };
 
 /** mutation root */
@@ -7718,6 +7781,25 @@ export type UpdateGenreByIdMutation = {
   updateGenreByPk?: { __typename?: "HouseholdGenre"; id: string } | null;
 };
 
+export type DeleteInsertDashboardSettingArgsMutationVariables = Exact<{
+  argsId: Scalars["String"];
+  type: Scalars["String"];
+  value: Scalars["String"];
+  settingId: Scalars["String"];
+}>;
+
+export type DeleteInsertDashboardSettingArgsMutation = {
+  __typename?: "mutation_root";
+  deleteDashboardSettingArgs?: {
+    __typename?: "HouseholdDashboardSettingArgsMutationResponse";
+    affectedRows: number;
+  } | null;
+  insertDashboardSettingArgs?: {
+    __typename?: "HouseholdDashboardSettingArgsMutationResponse";
+    affectedRows: number;
+  } | null;
+};
+
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   genreId: Scalars["String"];
@@ -7729,6 +7811,20 @@ export type UpdateCreditCardDetailByIdMutation = {
   __typename?: "mutation_root";
   updateHouseholdCreditCardDetailByPk?: {
     __typename?: "HouseholdCreditCardDetail";
+    id: string;
+  } | null;
+};
+
+export type UpdateDashboardSettingMutationVariables = Exact<{
+  settingId: Scalars["String"];
+  feature: Scalars["String"];
+  order: Scalars["Int"];
+}>;
+
+export type UpdateDashboardSettingMutation = {
+  __typename?: "mutation_root";
+  updateDashboardSetting?: {
+    __typename?: "HouseholdDashboardSetting";
     id: string;
   } | null;
 };
@@ -8612,6 +8708,7 @@ export type GetDashboardSettingQuery = {
     __typename?: "HouseholdDashboardSetting";
     id: string;
     feature: string;
+    order: number;
     args: Array<{
       __typename?: "HouseholdDashboardSettingArgs";
       id: string;
@@ -9130,6 +9227,37 @@ export function useUpdateGenreByIdMutation() {
     UpdateGenreByIdMutationVariables
   >(UpdateGenreByIdDocument);
 }
+export const DeleteInsertDashboardSettingArgsDocument = gql`
+  mutation deleteInsertDashboardSettingArgs(
+    $argsId: String!
+    $type: String!
+    $value: String!
+    $settingId: String!
+  ) {
+    deleteDashboardSettingArgs: deleteHouseholdDashboardSettingArgs(
+      where: { settingId: { _eq: $settingId } }
+    ) {
+      affectedRows
+    }
+    insertDashboardSettingArgs: insertHouseholdDashboardSettingArgs(
+      objects: {
+        id: $argsId
+        type: $type
+        value: $value
+        settingId: $settingId
+      }
+    ) {
+      affectedRows
+    }
+  }
+`;
+
+export function useDeleteInsertDashboardSettingArgsMutation() {
+  return Urql.useMutation<
+    DeleteInsertDashboardSettingArgsMutation,
+    DeleteInsertDashboardSettingArgsMutationVariables
+  >(DeleteInsertDashboardSettingArgsDocument);
+}
 export const UpdateCreditCardDetailByIdDocument = gql`
   mutation updateCreditCardDetailById(
     $id: String!
@@ -9151,6 +9279,27 @@ export function useUpdateCreditCardDetailByIdMutation() {
     UpdateCreditCardDetailByIdMutation,
     UpdateCreditCardDetailByIdMutationVariables
   >(UpdateCreditCardDetailByIdDocument);
+}
+export const UpdateDashboardSettingDocument = gql`
+  mutation updateDashboardSetting(
+    $settingId: String!
+    $feature: String!
+    $order: Int!
+  ) {
+    updateDashboardSetting: updateHouseholdDashboardSettingByPk(
+      pkColumns: { id: $settingId }
+      _set: { feature: $feature, order: $order }
+    ) {
+      id
+    }
+  }
+`;
+
+export function useUpdateDashboardSettingMutation() {
+  return Urql.useMutation<
+    UpdateDashboardSettingMutation,
+    UpdateDashboardSettingMutationVariables
+  >(UpdateDashboardSettingDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList(
@@ -10259,6 +10408,7 @@ export const GetDashboardSettingDocument = gql`
     ) {
       id
       feature
+      order
       args: dashboardSettingArgs {
         id
         type

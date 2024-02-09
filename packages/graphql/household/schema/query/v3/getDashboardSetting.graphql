@@ -5,6 +5,7 @@ query getDashboardSetting($userId: String!, $groupId: String!) {
   ) {
     id
     feature
+    order
     args: dashboardSettingArgs {
       id
       type
