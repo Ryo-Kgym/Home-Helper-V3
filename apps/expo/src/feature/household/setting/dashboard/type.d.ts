@@ -15,5 +15,6 @@ export type ArgsMapType =
 export type BoxesType = {
   id: string;
   feature: Feature;
+  order: number;
   argsMap: ArgsMapType[];
 }[];

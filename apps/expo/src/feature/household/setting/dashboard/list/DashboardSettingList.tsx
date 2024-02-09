@@ -7,18 +7,18 @@ import { useGetDashboardBoxes } from "../useGetDashboardBoxes";
 import { featureMap } from "./feature-map";
 
 export const DashboardSettingList = () => {
-  const { setting } = useGetDashboardBoxes();
+  const { settings } = useGetDashboardBoxes();
   const [visible, setVisible] = useState(false);
   const [settingId, setSettingId] = useState<string | null>(null);
 
-  const detail = setting.find((s) => s.id === settingId);
+  const setting = settings.find((s) => s.id === settingId);
 
   return (
     <>
       <FlatList
-        data={setting}
+        data={settings}
         keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <Pressable
             style={{
               borderStyle: "solid",
@@ -44,7 +44,7 @@ export const DashboardSettingList = () => {
                   textAlign: "right",
                 }}
               >
-                {index + 1}
+                {item.order}
               </Text>
               <View
                 style={{
@@ -73,7 +73,7 @@ export const DashboardSettingList = () => {
         )}
       />
       <Modal visible={visible} setVisible={setVisible}>
-        <EditDashboardSetting setting={detail} />
+        <EditDashboardSetting setting={setting} />
       </Modal>
     </>
   );

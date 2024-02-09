@@ -8708,6 +8708,7 @@ export type GetDashboardSettingQuery = {
     __typename?: "HouseholdDashboardSetting";
     id: string;
     feature: string;
+    order: number;
     args: Array<{
       __typename?: "HouseholdDashboardSettingArgs";
       id: string;
@@ -10407,6 +10408,7 @@ export const GetDashboardSettingDocument = gql`
     ) {
       id
       feature
+      order
       args: dashboardSettingArgs {
         id
         type

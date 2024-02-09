@@ -15,6 +15,7 @@ export const EditDashboardSetting = ({
     | {
         id: string;
         feature: Feature;
+        order: number;
         argsMap: ArgsMapType[];
       }
     | undefined;
@@ -35,7 +36,7 @@ export const EditDashboardSetting = ({
       await updateSetting({
         settingId: setting.id,
         feature,
-        order: 9,
+        order: setting.order,
         argsMapTypes,
       });
       alert("更新しました");
