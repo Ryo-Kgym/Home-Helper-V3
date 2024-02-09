@@ -44,38 +44,39 @@ export const EditDashboardSetting = ({
     <View>
       <Picker value={feature} setValue={setFeature} data={featurePickerData} />
       <View>
-        {detail.argsMap.map((a, index) => {
-          if (!args[index]) return null;
+        {feature &&
+          featureMap[feature]?.argsTypes.map((argsType, index) => {
+            if (!args[index]) return null;
 
-          return (
-            <View key={a.type}>
-              <Text>{a.type}</Text>
-              {/* TODO 種類が増えたらリファクタリングする*/}
-              {a.type === "year" && (
-                <Picker
-                  value={args[index]!.value}
-                  setValue={(v) => {
-                    const newArgs = [...args];
-                    newArgs[index] = { type: a.type, value: v };
-                    setArgs(newArgs);
-                  }}
-                  data={generateYearOptions()}
-                />
-              )}
-              {a.type === "month" && (
-                <Picker
-                  value={args[index]!.value}
-                  setValue={(v) => {
-                    const newArgs = [...args];
-                    newArgs[index] = { type: a.type, value: v };
-                    setArgs(newArgs);
-                  }}
-                  data={generateMonthOptions()}
-                />
-              )}
-            </View>
-          );
-        })}
+            return (
+              <View key={argsType}>
+                <Text>{argsType}</Text>
+                {/* TODO 種類が増えたらリファクタリングする*/}
+                {argsType === "year" && (
+                  <Picker
+                    value={args[index]!.value}
+                    setValue={(v) => {
+                      const newArgs = [...args];
+                      newArgs[index] = { type: argsType, value: v };
+                      setArgs(newArgs);
+                    }}
+                    data={generateYearOptions()}
+                  />
+                )}
+                {argsType === "month" && (
+                  <Picker
+                    value={args[index]!.value}
+                    setValue={(v) => {
+                      const newArgs = [...args];
+                      newArgs[index] = { type: argsType, value: v };
+                      setArgs(newArgs);
+                    }}
+                    data={generateMonthOptions()}
+                  />
+                )}
+              </View>
+            );
+          })}
       </View>
     </View>
   );
