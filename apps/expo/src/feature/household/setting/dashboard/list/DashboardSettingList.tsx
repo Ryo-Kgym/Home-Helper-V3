@@ -1,26 +1,35 @@
+import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
-import { Link } from "expo-router";
 
-import { paths } from "~/app/paths";
+import { EditDashboardSetting } from "~/feature/household/setting/dashboard/edit/EditDashboardSetting";
+import { Modal } from "~/ui";
 import { useGetDashboardBoxes } from "../useGetDashboardBoxes";
 import { featureMap } from "./feature-map";
 
 export const DashboardSettingList = () => {
   const { setting } = useGetDashboardBoxes();
+  const [visible, setVisible] = useState(false);
+  const [settingId, setSettingId] = useState<string | null>(null);
+
+  const detail = setting.find((s) => s.id === settingId);
 
   return (
-    <FlatList
-      data={setting}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item, index }) => (
-        <Pressable
-          style={{
-            borderStyle: "solid",
-            borderBottomWidth: 0.5,
-            borderColor: "gray",
-          }}
-        >
-          <Link href={paths.household.setting.dashboardEdit({ id: item.id })}>
+    <>
+      <FlatList
+        data={setting}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item, index }) => (
+          <Pressable
+            style={{
+              borderStyle: "solid",
+              borderBottomWidth: 0.5,
+              borderColor: "gray",
+            }}
+            onPress={() => {
+              setSettingId(item.id);
+              setVisible(true);
+            }}
+          >
             <View
               style={{
                 flexDirection: "row",
@@ -60,9 +69,12 @@ export const DashboardSettingList = () => {
                 </Text>
               </View>
             </View>
-          </Link>
-        </Pressable>
-      )}
-    />
+          </Pressable>
+        )}
+      />
+      <Modal visible={visible} setVisible={setVisible}>
+        <EditDashboardSetting detail={detail} />
+      </Modal>
+    </>
   );
 };
