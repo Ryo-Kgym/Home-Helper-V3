@@ -40,6 +40,7 @@ export const EditDashboardSetting = ({
         argsMapTypes,
       });
       alert("更新しました");
+      setArgsMapTypes(argsMapTypes);
     } catch (e) {
       console.error(e);
       alert("更新に失敗しました");
