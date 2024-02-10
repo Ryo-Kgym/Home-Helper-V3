@@ -23,7 +23,7 @@ export const FilterModal = ({
   return (
     <>
       <FilterButton pressHandler={() => setVisible(!visible)} />
-      <Modal visible={visible} setVisible={setVisible}>
+      <Modal title={"フィルター"} visible={visible} setVisible={setVisible}>
         <View>
           <Text>年</Text>
           <EditableYear
