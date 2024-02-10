@@ -3,10 +3,9 @@ import { Text, View } from "react-native";
 
 import type { ArgsMapType, Feature } from "../type";
 import { ResetButton, UpdateButton } from "~/ui";
-import { generateYearOptions } from "~/ui/editable/EditableYear/generate-year-options";
 import { Picker } from "~/ui/Picker";
 import { featureMap } from "../list/feature-map";
-import { argsValueRange, generateMonthOptions } from "./args-value-range";
+import { generateMonthOptions, generateYearOptions } from "./args-value-range";
 import { useEditDashboardSetting } from "./useEditDashboardSetting";
 
 export const EditDashboardSetting = ({
@@ -88,7 +87,7 @@ export const EditDashboardSetting = ({
                     newArgs[index] = { type, value };
                     setArgsMapTypes(newArgs);
                   }}
-                  data={generateYearOptions(argsValueRange.year)}
+                  data={generateYearOptions()}
                 />
               )}
               {type === "month" && (
