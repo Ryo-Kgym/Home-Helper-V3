@@ -62,7 +62,9 @@ export const DetailListByAccountContainer = ({
       genreName: getCreditCardGenreName(),
       iocomeType: "OUTCOME" as IocomeType,
       redirectHandler: () =>
-        push(paths.household.creditCardDetail({ id: d.id })),
+        push(
+          paths.household.detailListByCreditCardSummary({ summaryId: d.id }),
+        ),
       memo: null,
       type: "creditCardSummary",
     })) ?? []),
