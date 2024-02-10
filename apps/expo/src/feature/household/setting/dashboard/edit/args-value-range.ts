@@ -1,6 +1,6 @@
 import type { ArgsType } from "~/feature/household/setting/dashboard/type";
 
-const argsValueRange: {
+export const argsValueRange: {
   [type in ArgsType]: {
     min: number;
     max: number;
@@ -14,19 +14,6 @@ const argsValueRange: {
     min: -24,
     max: 2,
   },
-};
-
-export const generateYearOptions = () => {
-  const currentYear = new Date().getFullYear();
-  const years: { label: string; value: number }[] = [];
-  const { min, max } = argsValueRange.year;
-  for (let i = min; i <= max; i++) {
-    years.push({
-      label: `${currentYear + i}年`,
-      value: i,
-    });
-  }
-  return years;
 };
 
 export const generateMonthOptions = () => {
