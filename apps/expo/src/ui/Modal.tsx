@@ -1,10 +1,12 @@
 import { Button, Pressable, Modal as RNModal, Text, View } from "react-native";
 
 export const Modal = ({
+  title = "",
   visible,
   setVisible,
   children,
 }: {
+  title?: string;
   visible: boolean;
   setVisible: (val: boolean) => void;
   children: React.ReactNode;
@@ -32,7 +34,7 @@ export const Modal = ({
         }}
       >
         <View className={"flex-row items-center justify-between"}>
-          <Text className={"text-center text-xl"}>条件</Text>
+          <Text className={"text-center text-xl"}>{title}</Text>
           <Button onPress={() => setVisible(!visible)} title={"×"} />
         </View>
         {children}
