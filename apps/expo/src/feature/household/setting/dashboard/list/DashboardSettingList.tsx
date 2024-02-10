@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
 
-import { RegisterDashboardSetting } from "~/feature/household/setting";
-import { EditDashboardSetting } from "~/feature/household/setting/dashboard/edit/EditDashboardSetting";
 import { AddButton, Modal } from "~/ui";
+import { EditDashboardSetting } from "../edit/EditDashboardSetting";
+import { RegisterDashboardSetting } from "../register/RegisterDashboardSetting";
 import { useGetDashboardBoxes } from "../useGetDashboardBoxes";
 import { featureMap } from "./feature-map";
 
