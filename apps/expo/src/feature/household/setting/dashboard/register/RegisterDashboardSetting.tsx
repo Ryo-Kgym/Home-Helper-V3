@@ -8,39 +8,29 @@ import {
   generateMonthOptions,
   generateYearOptions,
 } from "../edit/args-value-range";
-import { useEditDashboardSetting } from "../edit/useEditDashboardSetting";
 import { featureMap } from "../list/feature-map";
 
 export const RegisterDashboardSetting = () => {
   const [feature, setFeature] = useState<Feature>("balance");
   const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>([]);
-  const { updateSetting } = useEditDashboardSetting();
   const featurePickerData = Object.keys(featureMap).map((f) => ({
     label: featureMap[f as Feature].label,
     value: f as Feature,
   }));
 
-  const updateHandler = async () => {
-    if (!feature) {
-      return;
-    }
+  const registerHandler = () => {
     try {
-      await updateSetting({
-        settingId: "setting.id",
-        feature,
-        order: 0,
-        argsMapTypes,
-      });
-      alert("更新しました");
+      alert("登録しました");
       setArgsMapTypes(argsMapTypes);
     } catch (e) {
       console.error(e);
-      alert("更新に失敗しました");
+      alert("登録に失敗しました");
     }
   };
 
   const resetHandler = () => {
-    // TODO 未実装
+    setFeature("balance");
+    setArgsMapTypes([]);
   };
 
   return (
@@ -86,7 +76,7 @@ export const RegisterDashboardSetting = () => {
             width: "50%",
           }}
         >
-          <UpdateButton updateHandler={updateHandler} />
+          <UpdateButton updateHandler={registerHandler} />
         </View>
         <View
           style={{
