@@ -1,9 +1,10 @@
-import { FlatList, Text, View } from "react-native";
-import { Link } from "expo-router";
+import { FlatList, Pressable, Text, View } from "react-native";
+import { Link, useRouter } from "expo-router";
 
 import { paths } from "~/app/paths";
 
 export const Setting = () => {
+  const { push } = useRouter();
   const data = [
     {
       href: paths.household.setting.dashboard,
@@ -15,20 +16,21 @@ export const Setting = () => {
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <View
+        <Pressable
           style={{
-            flexDirection: "row",
             alignItems: "center",
             borderStyle: "solid",
             borderBottomWidth: 0.5,
             borderColor: "gray",
-            padding: 6,
+            paddingTop: 10,
+            paddingBottom: 8,
           }}
+          onPress={() => push(item.href)}
         >
-          <Link href={item.href}>
+          <View>
             <Text className={"text-xl"}>{item.label}</Text>
-          </Link>
-        </View>
+          </View>
+        </Pressable>
       )}
     ></FlatList>
   );
