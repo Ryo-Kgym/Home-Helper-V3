@@ -7,14 +7,17 @@ import { paths } from "~/app/paths";
 import { getYear } from "~/func/date/get-year";
 import { sortBy } from "~/hooks/household/total/sort-by";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
-import { EditableIocomeType, FilterButton, Modal } from "~/ui";
+import { EditableIocomeType, EditableYear, FilterButton, Modal } from "~/ui";
 
 export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
   const [visible, setVisible] = useState(false);
+  const [filterYear, setFilterYear] = useState<number>(year.getFullYear());
   const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
   const { push } = useRouter();
 
-  const { firstDayOfYear, lastDateNotGreaterThanToday } = getYear(year);
+  const { firstDayOfYear, lastDateNotGreaterThanToday } = getYear(
+    new Date(filterYear, 0, 1, 9),
+  );
   const { categoryTotal, loading } = useGetCategoryTotal({
     fromDate: firstDayOfYear,
     toDate: lastDateNotGreaterThanToday,
@@ -29,6 +32,13 @@ export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
       <FilterButton pressHandler={() => setVisible(!visible)} />
       <Modal visible={visible} setVisible={setVisible}>
         <View>
+          <Text>年</Text>
+          <EditableYear
+            value={filterYear}
+            setValue={setFilterYear}
+            defaultValue={year.getFullYear()}
+          />
+          <Text>収支</Text>
           <EditableIocomeType value={iocomeType} setValue={setIocomeType} />
         </View>
       </Modal>

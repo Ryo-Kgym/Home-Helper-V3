@@ -1,18 +1,20 @@
 import type { EditableProps } from "../editable-props";
 import { Picker } from "~/ui/Picker";
-import { generateYearOptions } from "./generate-year-options";
 
 export const EditableYear = ({
   value,
   setValue,
+  defaultValue = new Date().getFullYear(),
   range,
 }: EditableProps<number> & { range?: { min: number; max: number } }) => {
-  const { min, max } = range ?? { min: -10, max: 0 };
-  return (
-    <Picker
-      value={value}
-      setValue={setValue}
-      data={generateYearOptions({ min, max })}
-    />
-  );
+  const { min, max } = range ?? { min: -10, max: 10 };
+
+  const data: { label: string; value: number }[] = [
+    ...Array.from({ length: max - min + 1 }, (_, i) => {
+      const year = max - i + defaultValue;
+      return { label: `${year}年`, value: year };
+    }),
+  ];
+
+  return <Picker value={value} setValue={setValue} data={data} />;
 };
