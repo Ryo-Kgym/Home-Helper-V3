@@ -1,4 +1,4 @@
-import type { EditableProps } from "../editable-props";
+import type { EditableProps } from "./editable-props";
 import { Picker } from "~/ui/Picker";
 
 export const EditableYear = ({
