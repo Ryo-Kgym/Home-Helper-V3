@@ -4,17 +4,20 @@ import { useRouter } from "expo-router";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { paths } from "~/app/paths";
+import { FilterModal } from "~/feature/household/rank/category/yearly/FilterModal";
 import { getYear } from "~/func/date/get-year";
 import { sortBy } from "~/hooks/household/total/sort-by";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
-import { EditableIocomeType, FilterButton, Modal } from "~/ui";
 
 export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
   const [visible, setVisible] = useState(false);
+  const [filterYear, setFilterYear] = useState<number>(year.getFullYear());
   const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
   const { push } = useRouter();
 
-  const { firstDayOfYear, lastDateNotGreaterThanToday } = getYear(year);
+  const { firstDayOfYear, lastDateNotGreaterThanToday } = getYear(
+    new Date(filterYear, 0, 1, 9),
+  );
   const { categoryTotal, loading } = useGetCategoryTotal({
     fromDate: firstDayOfYear,
     toDate: lastDateNotGreaterThanToday,
@@ -26,12 +29,15 @@ export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
 
   return (
     <>
-      <FilterButton pressHandler={() => setVisible(!visible)} />
-      <Modal visible={visible} setVisible={setVisible}>
-        <View>
-          <EditableIocomeType value={iocomeType} setValue={setIocomeType} />
-        </View>
-      </Modal>
+      <FilterModal
+        visible={visible}
+        setVisible={setVisible}
+        filterYear={filterYear}
+        setFilterYear={setFilterYear}
+        iocomeType={iocomeType}
+        setIocomeType={setIocomeType}
+        year={year}
+      />
       <FlatList
         data={categoryTotal}
         keyExtractor={(item) => item.categoryId}
