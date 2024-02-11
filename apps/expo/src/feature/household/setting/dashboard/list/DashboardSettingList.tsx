@@ -24,6 +24,7 @@ export const DashboardSettingList = () => {
     item,
     drag,
     isActive,
+    getIndex,
   }: RenderItemParams<SettingProps>) => (
     <ScaleDecorator>
       <TouchableOpacity
@@ -52,7 +53,7 @@ export const DashboardSettingList = () => {
               textAlign: "right",
             }}
           >
-            {item.order}
+            {getIndex() ? getIndex()! + 1 : 1}
           </Text>
           <View
             style={{
