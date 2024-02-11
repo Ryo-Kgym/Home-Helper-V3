@@ -4,7 +4,8 @@ export type Feature =
   | "yearly"
   | "monthly"
   | "monthlyCategory"
-  | "setting";
+  | "setting"
+  | "reload";
 
 export type ArgsType = "year" | "month";
 
