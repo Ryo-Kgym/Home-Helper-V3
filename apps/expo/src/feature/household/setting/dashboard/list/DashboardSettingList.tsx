@@ -6,7 +6,8 @@ import DraggableFlatList, {
 } from "react-native-draggable-flatlist";
 
 import type { SettingProps } from "../type";
-import { AddButton, Modal } from "~/ui";
+import { useUpdateDashboardSettingOrder } from "~/feature/household/setting/dashboard/list/useUpdateDashboardSettingOrder";
+import { AddButton, Modal, UpdateButton } from "~/ui";
 import { useGetDashboardBoxes } from "../..";
 import { EditDashboardSetting } from "../edit/EditDashboardSetting";
 import { featureMap } from "../list/feature-map";
@@ -14,11 +15,26 @@ import { RegisterDashboardSetting } from "../register/RegisterDashboardSetting";
 
 export const DashboardSettingList = () => {
   const { settings } = useGetDashboardBoxes();
-  const [data, setData] = useState(settings);
+  const [data, setData] = useState<SettingProps[]>(settings);
   const [visible, setVisible] = useState(false);
   const [addVisible, setAddVisible] = useState(false);
   const [settingId, setSettingId] = useState<string | null>(null);
   const setting = settings.find((s) => s.id === settingId);
+  const { updateOrder } = useUpdateDashboardSettingOrder();
+
+  const updateOrderHandler = async () => {
+    try {
+      await updateOrder(
+        data.map((d) => ({
+          settingId: d.id,
+        })),
+      );
+      alert("更新しました");
+    } catch (e) {
+      console.error(e);
+      alert("更新に失敗しました");
+    }
+  };
 
   const renderItem = ({
     item,
@@ -34,7 +50,7 @@ export const DashboardSettingList = () => {
           setVisible(true);
         }}
         disabled={isActive}
-        style={[{ backgroundColor: isActive ? "rgba(255,0,0,0.2)" : "clear" }]}
+        style={[{ backgroundColor: isActive ? "rgba(255,0,0,0.1)" : "clear" }]}
       >
         <View
           style={{
@@ -89,10 +105,13 @@ export const DashboardSettingList = () => {
       <Modal visible={visible} setVisible={setVisible}>
         <EditDashboardSetting setting={setting} />
       </Modal>
-      <AddButton addHandler={() => setAddVisible(true)} />
       <Modal visible={addVisible} setVisible={setAddVisible}>
         <RegisterDashboardSetting />
       </Modal>
+      <View>
+        <AddButton addHandler={() => setAddVisible(true)} />
+        <UpdateButton updateHandler={updateOrderHandler} />
+      </View>
     </>
   );
 };
