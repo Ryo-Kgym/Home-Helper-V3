@@ -7781,6 +7781,22 @@ export type UpdateGenreByIdMutation = {
   updateGenreByPk?: { __typename?: "HouseholdGenre"; id: string } | null;
 };
 
+export type DeleteDashboardSettingMutationVariables = Exact<{
+  settingId: Scalars["String"];
+}>;
+
+export type DeleteDashboardSettingMutation = {
+  __typename?: "mutation_root";
+  deleteHouseholdDashboardSettingArgs?: {
+    __typename?: "HouseholdDashboardSettingArgsMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteHouseholdDashboardSettingByPk?: {
+    __typename?: "HouseholdDashboardSetting";
+    id: string;
+  } | null;
+};
+
 export type DeleteInsertDashboardSettingArgsMutationVariables = Exact<{
   argsId: Scalars["String"];
   type: Scalars["String"];
@@ -9257,6 +9273,25 @@ export function useUpdateGenreByIdMutation() {
     UpdateGenreByIdMutation,
     UpdateGenreByIdMutationVariables
   >(UpdateGenreByIdDocument);
+}
+export const DeleteDashboardSettingDocument = gql`
+  mutation deleteDashboardSetting($settingId: String!) {
+    deleteHouseholdDashboardSettingArgs(
+      where: { settingId: { _eq: $settingId } }
+    ) {
+      affectedRows
+    }
+    deleteHouseholdDashboardSettingByPk(id: $settingId) {
+      id
+    }
+  }
+`;
+
+export function useDeleteDashboardSettingMutation() {
+  return Urql.useMutation<
+    DeleteDashboardSettingMutation,
+    DeleteDashboardSettingMutationVariables
+  >(DeleteDashboardSettingDocument);
 }
 export const DeleteInsertDashboardSettingArgsDocument = gql`
   mutation deleteInsertDashboardSettingArgs(

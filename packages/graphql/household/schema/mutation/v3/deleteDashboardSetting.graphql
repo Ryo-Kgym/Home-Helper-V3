@@ -1,0 +1,12 @@
+mutation deleteDashboardSetting($settingId: String!) {
+    deleteHouseholdDashboardSettingArgs(where: {
+        settingId: {
+            _eq: $settingId
+        }
+    }) {
+        affectedRows
+    }
+    deleteHouseholdDashboardSettingByPk(id: $settingId) {
+        id
+    }
+}
