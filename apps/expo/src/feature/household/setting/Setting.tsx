@@ -1,5 +1,5 @@
 import { FlatList, Pressable, Text, View } from "react-native";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 import { paths } from "~/app/paths";
 
