@@ -13,9 +13,11 @@ export type ArgsMapType =
   | { type: "year"; value: number }
   | { type: "month"; value: number };
 
-export type BoxesType = {
+export type SettingProps = {
   id: string;
   feature: Feature;
   order: number;
   argsMap: ArgsMapType[];
-}[];
+};
+
+export type BoxesType = SettingProps[];
