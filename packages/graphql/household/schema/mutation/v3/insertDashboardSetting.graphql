@@ -1,0 +1,38 @@
+mutation insertDashboardSetting(
+  $settingId: String!
+  $feature: String!
+  $order: Int!
+  $userId: String!
+  $groupId: String!
+) {
+  insertSetting: insertHouseholdDashboardSetting(
+    objects: {
+      id: $settingId
+      feature: $feature
+      order: $order
+      userId: $userId
+      groupId: $groupId
+    }
+  ) {
+    affectedRows
+  }
+}
+
+mutation insertDashboardSettingArgs(
+  $id: String!
+  $type: String!
+  $value: String!
+  $settingId: String!
+) {
+  insertSettingArgs: insertHouseholdDashboardSettingArgs(
+    objects: {
+      # formatter: off
+      id: $id
+      type: $type
+      value: $value
+      settingId: $settingId
+    }
+  ) {
+    affectedRows
+  }
+}

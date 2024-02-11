@@ -6,7 +6,7 @@ import { Setting } from "~/feature/household/setting";
 const Page = () => {
   return (
     <View>
-      <Stack.Screen options={{ title: "設定" }} />
+      <Stack.Screen options={{ headerShown: false }} />
       <View className={"w-full"}>
         <Setting />
       </View>

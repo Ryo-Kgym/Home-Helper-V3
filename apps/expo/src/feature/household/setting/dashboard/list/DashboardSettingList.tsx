@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
 
-import { EditDashboardSetting } from "~/feature/household/setting/dashboard/edit/EditDashboardSetting";
-import { Modal } from "~/ui";
+import { AddButton, Modal } from "~/ui";
+import { EditDashboardSetting } from "../edit/EditDashboardSetting";
+import { RegisterDashboardSetting } from "../register/RegisterDashboardSetting";
 import { useGetDashboardBoxes } from "../useGetDashboardBoxes";
 import { featureMap } from "./feature-map";
 
 export const DashboardSettingList = () => {
   const { settings } = useGetDashboardBoxes();
   const [visible, setVisible] = useState(false);
+  const [addVisible, setAddVisible] = useState(false);
   const [settingId, setSettingId] = useState<string | null>(null);
 
   const setting = settings.find((s) => s.id === settingId);
@@ -74,6 +76,10 @@ export const DashboardSettingList = () => {
       />
       <Modal visible={visible} setVisible={setVisible}>
         <EditDashboardSetting setting={setting} />
+      </Modal>
+      <AddButton addHandler={() => setAddVisible(true)} />
+      <Modal visible={addVisible} setVisible={setAddVisible}>
+        <RegisterDashboardSetting />
       </Modal>
     </>
   );

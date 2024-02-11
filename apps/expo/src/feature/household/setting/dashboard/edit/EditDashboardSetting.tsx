@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 import type { ArgsMapType, Feature } from "../type";
-import { ResetButton, UpdateButton } from "~/ui";
+import { DeleteButton, ResetButton, UpdateButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import { featureMap } from "../list/feature-map";
 import { generateMonthOptions, generateYearOptions } from "./args-value-range";
+import { useDeleteDashboardSetting } from "./useDeleteDashboardSetting";
 import { useEditDashboardSetting } from "./useEditDashboardSetting";
 
 export const EditDashboardSetting = ({
@@ -23,6 +24,7 @@ export const EditDashboardSetting = ({
   const [feature, setFeature] = useState<Feature | null>(null);
   const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>([]);
   const { updateSetting } = useEditDashboardSetting();
+  const { deleteDashboardSetting } = useDeleteDashboardSetting();
   const featurePickerData = Object.keys(featureMap).map((f) => ({
     label: featureMap[f as Feature].label,
     value: f as Feature,
@@ -44,6 +46,19 @@ export const EditDashboardSetting = ({
     } catch (e) {
       console.error(e);
       alert("更新に失敗しました");
+    }
+  };
+
+  const deleteHandler = async () => {
+    if (!setting) {
+      return;
+    }
+    try {
+      await deleteDashboardSetting(setting.id);
+      alert("削除しました");
+    } catch (e) {
+      console.error(e);
+      alert("削除に失敗しました");
     }
   };
 
@@ -108,14 +123,21 @@ export const EditDashboardSetting = ({
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View
           style={{
-            width: "50%",
+            width: "33%",
           }}
         >
           <UpdateButton updateHandler={updateHandler} />
         </View>
         <View
           style={{
-            width: "50%",
+            width: "33%",
+          }}
+        >
+          <DeleteButton deleteHandler={deleteHandler} />
+        </View>
+        <View
+          style={{
+            width: "33%",
           }}
         >
           <ResetButton resetHandler={resetHandler} />
