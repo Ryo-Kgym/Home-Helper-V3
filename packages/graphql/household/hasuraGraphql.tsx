@@ -7800,6 +7800,37 @@ export type DeleteInsertDashboardSettingArgsMutation = {
   } | null;
 };
 
+export type InsertDashboardSettingMutationVariables = Exact<{
+  settingId: Scalars["String"];
+  feature: Scalars["String"];
+  order: Scalars["Int"];
+  userId: Scalars["String"];
+  groupId: Scalars["String"];
+}>;
+
+export type InsertDashboardSettingMutation = {
+  __typename?: "mutation_root";
+  insertSetting?: {
+    __typename?: "HouseholdDashboardSettingMutationResponse";
+    affectedRows: number;
+  } | null;
+};
+
+export type InsertDashboardSettingArgsMutationVariables = Exact<{
+  id: Scalars["String"];
+  type: Scalars["String"];
+  value: Scalars["String"];
+  settingId: Scalars["String"];
+}>;
+
+export type InsertDashboardSettingArgsMutation = {
+  __typename?: "mutation_root";
+  insertSettingArgs?: {
+    __typename?: "HouseholdDashboardSettingArgsMutationResponse";
+    affectedRows: number;
+  } | null;
+};
+
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   genreId: Scalars["String"];
@@ -9257,6 +9288,55 @@ export function useDeleteInsertDashboardSettingArgsMutation() {
     DeleteInsertDashboardSettingArgsMutation,
     DeleteInsertDashboardSettingArgsMutationVariables
   >(DeleteInsertDashboardSettingArgsDocument);
+}
+export const InsertDashboardSettingDocument = gql`
+  mutation insertDashboardSetting(
+    $settingId: String!
+    $feature: String!
+    $order: Int!
+    $userId: String!
+    $groupId: String!
+  ) {
+    insertSetting: insertHouseholdDashboardSetting(
+      objects: {
+        id: $settingId
+        feature: $feature
+        order: $order
+        userId: $userId
+        groupId: $groupId
+      }
+    ) {
+      affectedRows
+    }
+  }
+`;
+
+export function useInsertDashboardSettingMutation() {
+  return Urql.useMutation<
+    InsertDashboardSettingMutation,
+    InsertDashboardSettingMutationVariables
+  >(InsertDashboardSettingDocument);
+}
+export const InsertDashboardSettingArgsDocument = gql`
+  mutation insertDashboardSettingArgs(
+    $id: String!
+    $type: String!
+    $value: String!
+    $settingId: String!
+  ) {
+    insertSettingArgs: insertHouseholdDashboardSettingArgs(
+      objects: { id: $id, type: $type, value: $value, settingId: $settingId }
+    ) {
+      affectedRows
+    }
+  }
+`;
+
+export function useInsertDashboardSettingArgsMutation() {
+  return Urql.useMutation<
+    InsertDashboardSettingArgsMutation,
+    InsertDashboardSettingArgsMutationVariables
+  >(InsertDashboardSettingArgsDocument);
 }
 export const UpdateCreditCardDetailByIdDocument = gql`
   mutation updateCreditCardDetailById(
