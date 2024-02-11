@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import { useGetDashboardBoxes } from "~/feature/household/setting";
 
@@ -7,7 +7,7 @@ export const HouseholdDashboard = () => {
   const boxNodes = getBoxNodes();
 
   return (
-    <View className={"pt-1"}>
+    <ScrollView className={"pt-1"}>
       <View
         style={{
           flexDirection: "row",
@@ -16,6 +16,6 @@ export const HouseholdDashboard = () => {
       >
         {boxNodes.map((Box) => Box)}
       </View>
-    </View>
+    </ScrollView>
   );
 };
