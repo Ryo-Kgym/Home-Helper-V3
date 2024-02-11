@@ -108,9 +108,13 @@ export const DashboardSettingList = () => {
       <Modal visible={addVisible} setVisible={setAddVisible}>
         <RegisterDashboardSetting />
       </Modal>
-      <View>
-        <AddButton addHandler={() => setAddVisible(true)} />
-        <UpdateButton updateHandler={updateOrderHandler} />
+      <View style={{ flexDirection: "row" }}>
+        <View style={{ width: "50%" }}>
+          <AddButton addHandler={() => setAddVisible(true)} />
+        </View>
+        <View style={{ width: "50%" }}>
+          <UpdateButton updateHandler={updateOrderHandler} />
+        </View>
       </View>
     </>
   );
