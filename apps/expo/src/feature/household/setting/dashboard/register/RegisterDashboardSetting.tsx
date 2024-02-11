@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import type { ArgsMapType, Feature } from "../type";
-import { ResetButton, UpdateButton } from "~/ui";
+import { useRegisterDashboardSetting } from "~/feature/household/setting/dashboard/register/useRegisterDashboardSetting";
+import { RegisterButton, ResetButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import {
   generateMonthOptions,
@@ -10,18 +11,27 @@ import {
 } from "../edit/args-value-range";
 import { featureMap } from "../list/feature-map";
 
+const DEFAULT_ARGS_MAP_TYPES: ArgsMapType[] = Array(3).fill({});
+
 export const RegisterDashboardSetting = () => {
   const [feature, setFeature] = useState<Feature>("balance");
-  const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>([]);
+  const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>(
+    DEFAULT_ARGS_MAP_TYPES,
+  );
+  const { registerDashboardSetting } = useRegisterDashboardSetting();
+
   const featurePickerData = Object.keys(featureMap).map((f) => ({
     label: featureMap[f as Feature].label,
     value: f as Feature,
   }));
 
-  const registerHandler = () => {
+  const registerHandler = async () => {
     try {
+      await registerDashboardSetting({
+        feature,
+        argsMapTypes,
+      });
       alert("登録しました");
-      setArgsMapTypes(argsMapTypes);
     } catch (e) {
       console.error(e);
       alert("登録に失敗しました");
@@ -30,7 +40,7 @@ export const RegisterDashboardSetting = () => {
 
   const resetHandler = () => {
     setFeature("balance");
-    setArgsMapTypes([]);
+    setArgsMapTypes(DEFAULT_ARGS_MAP_TYPES);
   };
 
   return (
@@ -38,36 +48,35 @@ export const RegisterDashboardSetting = () => {
       <Picker value={feature} setValue={setFeature} data={featurePickerData} />
       <View>
         {featureMap[feature].argsTypes.map((type, index) => {
-          if (!argsMapTypes[index]) return null;
+          if (type === "year") {
+            return (
+              <Picker
+                key={type}
+                value={argsMapTypes[index]!.value}
+                setValue={(value) => {
+                  const newArgs = [...argsMapTypes];
+                  newArgs[index] = { type, value };
+                  setArgsMapTypes(newArgs);
+                }}
+                data={generateYearOptions()}
+              />
+            );
+          }
 
-          return (
-            <View key={type}>
-              <Text>{type}</Text>
-              {/* TODO 種類が増えたらリファクタリングする*/}
-              {type === "year" && (
-                <Picker
-                  value={argsMapTypes[index]!.value}
-                  setValue={(value) => {
-                    const newArgs = [...argsMapTypes];
-                    newArgs[index] = { type, value };
-                    setArgsMapTypes(newArgs);
-                  }}
-                  data={generateYearOptions()}
-                />
-              )}
-              {type === "month" && (
-                <Picker
-                  value={argsMapTypes[index]!.value}
-                  setValue={(value) => {
-                    const newArgs = [...argsMapTypes];
-                    newArgs[index] = { type, value };
-                    setArgsMapTypes(newArgs);
-                  }}
-                  data={generateMonthOptions()}
-                />
-              )}
-            </View>
-          );
+          if (type === "month") {
+            return (
+              <Picker
+                key={type}
+                value={argsMapTypes[index]!.value}
+                setValue={(value) => {
+                  const newArgs = [...argsMapTypes];
+                  newArgs[index] = { type, value };
+                  setArgsMapTypes(newArgs);
+                }}
+                data={generateMonthOptions()}
+              />
+            );
+          }
         })}
       </View>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -76,7 +85,7 @@ export const RegisterDashboardSetting = () => {
             width: "50%",
           }}
         >
-          <UpdateButton updateHandler={registerHandler} />
+          <RegisterButton registerHandler={registerHandler} />
         </View>
         <View
           style={{
