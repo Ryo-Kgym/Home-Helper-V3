@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-import type { ArgsMapType, Feature } from "../type";
+import type { ArgsMapType, ArgsType, Feature } from "../type";
 import { RegisterButton, ResetButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import {
@@ -11,19 +11,30 @@ import {
 import { featureMap } from "../list/feature-map";
 import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
-const DEFAULT_ARGS_MAP_TYPES: ArgsMapType[] = Array(3).fill({});
+const defaultArgsMapTypes: ArgsMapType[] = Array(1).fill({});
+const featureOptions = Object.keys(featureMap).map((f) => ({
+  label: featureMap[f as Feature].label,
+  value: f as Feature,
+}));
+const pickerSetting: Record<
+  ArgsType,
+  {
+    data: { label: string; value: ArgsMapType["value"] }[];
+  }
+> = {
+  year: {
+    data: generateYearOptions(),
+  },
+  month: {
+    data: generateMonthOptions(),
+  },
+};
 
 export const RegisterDashboardSetting = () => {
   const [feature, setFeature] = useState<Feature>("balance");
-  const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>(
-    DEFAULT_ARGS_MAP_TYPES,
-  );
+  const [argsMapTypes, setArgsMapTypes] =
+    useState<ArgsMapType[]>(defaultArgsMapTypes);
   const { registerDashboardSetting } = useRegisterDashboardSetting();
-
-  const featurePickerData = Object.keys(featureMap).map((f) => ({
-    label: featureMap[f as Feature].label,
-    value: f as Feature,
-  }));
 
   const registerHandler = async () => {
     try {
@@ -40,44 +51,47 @@ export const RegisterDashboardSetting = () => {
 
   const resetHandler = () => {
     setFeature("balance");
-    setArgsMapTypes(DEFAULT_ARGS_MAP_TYPES);
+    setArgsMapTypes(defaultArgsMapTypes);
   };
+
+  useEffect(() => {
+    // featureが変化した時にargsMapTypesを初期化する
+    const args: ArgsMapType[] = [];
+
+    featureMap[feature].argsTypes.map((type) => {
+      if (type === "year") {
+        args.push({
+          type,
+          value: 0, // 今年
+        });
+      }
+      if (type === "month") {
+        args.push({
+          type,
+          value: 0, // 今月
+        });
+      }
+    });
+
+    setArgsMapTypes(args.length ? args : defaultArgsMapTypes);
+  }, [feature]);
 
   return (
     <View>
-      <Picker value={feature} setValue={setFeature} data={featurePickerData} />
+      <Picker value={feature} setValue={setFeature} data={featureOptions} />
       <View>
-        {featureMap[feature].argsTypes.map((type, index) => {
-          if (type === "year") {
-            return (
-              <Picker
-                key={type}
-                value={argsMapTypes[index]!.value}
-                setValue={(value) => {
-                  const newArgs = [...argsMapTypes];
-                  newArgs[index] = { type, value };
-                  setArgsMapTypes(newArgs);
-                }}
-                data={generateYearOptions()}
-              />
-            );
-          }
-
-          if (type === "month") {
-            return (
-              <Picker
-                key={type}
-                value={argsMapTypes[index]!.value}
-                setValue={(value) => {
-                  const newArgs = [...argsMapTypes];
-                  newArgs[index] = { type, value };
-                  setArgsMapTypes(newArgs);
-                }}
-                data={generateMonthOptions()}
-              />
-            );
-          }
-        })}
+        {featureMap[feature].argsTypes.map((type, index) => (
+          <Picker
+            key={type}
+            value={argsMapTypes[index]!.value}
+            setValue={(value) => {
+              const newArgs = [...argsMapTypes];
+              newArgs[index] = { type, value };
+              setArgsMapTypes(newArgs);
+            }}
+            data={pickerSetting[type].data}
+          />
+        ))}
       </View>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View

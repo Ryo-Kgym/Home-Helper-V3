@@ -11,8 +11,7 @@ export const useRegisterDashboardSetting = () => {
     feature: Feature;
     argsMapTypes: ArgsMapType[];
   }) => {
-    console.error("feature", feature);
-    console.error("argsMapTypes", argsMapTypes);
+    console.error(feature, argsMapTypes);
     return Promise.resolve();
   };
 
