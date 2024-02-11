@@ -33,4 +33,8 @@ export const featureMap: {
     label: "設定",
     argsTypes: [],
   },
+  reload: {
+    label: "更新",
+    argsTypes: [],
+  },
 };
