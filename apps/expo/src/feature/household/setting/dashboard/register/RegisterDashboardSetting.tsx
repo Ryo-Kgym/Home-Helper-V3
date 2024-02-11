@@ -2,7 +2,6 @@ import { useState } from "react";
 import { View } from "react-native";
 
 import type { ArgsMapType, Feature } from "../type";
-import { useRegisterDashboardSetting } from "~/feature/household/setting/dashboard/register/useRegisterDashboardSetting";
 import { RegisterButton, ResetButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import {
@@ -10,6 +9,7 @@ import {
   generateYearOptions,
 } from "../edit/args-value-range";
 import { featureMap } from "../list/feature-map";
+import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
 const DEFAULT_ARGS_MAP_TYPES: ArgsMapType[] = Array(3).fill({});
 
