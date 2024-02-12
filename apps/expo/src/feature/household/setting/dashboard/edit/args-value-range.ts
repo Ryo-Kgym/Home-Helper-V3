@@ -14,6 +14,10 @@ const argsValueRange: {
     min: -24,
     max: 2,
   },
+  genreType: {
+    min: 0,
+    max: 0,
+  },
 };
 
 export const generateYearOptions = () => {

@@ -1,6 +1,7 @@
 import { useGetDashboardSettingQuery } from "@v3/graphql/household";
 
 import type { ArgsMapType, ArgsType, BoxesType, Feature } from "./type";
+import type { GenreType } from "~/types/genre-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useSaveUserId } from "~/hooks/user/useSaveUserId";
 import { generateBox } from "./generate-box";
@@ -39,5 +40,9 @@ const valueConverter: {
   month: (value: string) => ({
     type: "month",
     value: Number(value),
+  }),
+  genreType: (value: string) => ({
+    type: "genreType",
+    value: value.split(",").map((s) => s as GenreType),
   }),
 };

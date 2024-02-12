@@ -13,7 +13,7 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
         key: "year",
         callback: (type) => {
           const year = new Date();
-          year.setFullYear(year.getFullYear() + type.value);
+          year.setFullYear(year.getFullYear() + (type.value as number));
           return year;
         },
       });
@@ -26,7 +26,7 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
         key: "month",
         callback: (type) => {
           const month = new Date();
-          month.setMonth(month.getMonth() + type.value);
+          month.setMonth(month.getMonth() + (type.value as number));
           return month;
         },
       });

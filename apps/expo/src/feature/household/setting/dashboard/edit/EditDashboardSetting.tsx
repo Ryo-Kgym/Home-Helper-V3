@@ -96,8 +96,8 @@ export const EditDashboardSetting = ({
               {/* TODO 種類が増えたらリファクタリングする*/}
               {type === "year" && (
                 <Picker
-                  value={argsMapTypes[index]!.value}
-                  setValue={(value) => {
+                  value={argsMapTypes[index]!.value as number}
+                  setValue={(value: number) => {
                     const newArgs = [...argsMapTypes];
                     newArgs[index] = { type, value };
                     setArgsMapTypes(newArgs);
@@ -107,8 +107,8 @@ export const EditDashboardSetting = ({
               )}
               {type === "month" && (
                 <Picker
-                  value={argsMapTypes[index]!.value}
-                  setValue={(value) => {
+                  value={argsMapTypes[index]!.value as number}
+                  setValue={(value: number) => {
                     const newArgs = [...argsMapTypes];
                     newArgs[index] = { type, value };
                     setArgsMapTypes(newArgs);

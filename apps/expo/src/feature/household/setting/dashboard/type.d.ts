@@ -1,3 +1,5 @@
+import type { GenreType } from "~/types/genre-type";
+
 export type Feature =
   | "register"
   | "balance"
@@ -7,11 +9,12 @@ export type Feature =
   | "setting"
   | "reload";
 
-export type ArgsType = "year" | "month";
+export type ArgsType = "year" | "month" | "genreType";
 
 export type ArgsMapType =
   | { type: "year"; value: number }
-  | { type: "month"; value: number };
+  | { type: "month"; value: number }
+  | { type: "genreType"; value: GenreType[] };
 
 export type SettingProps = {
   id: string;

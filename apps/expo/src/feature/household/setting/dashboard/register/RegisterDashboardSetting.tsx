@@ -28,6 +28,13 @@ const pickerSetting: Record<
   month: {
     data: generateMonthOptions(),
   },
+  genreType: {
+    data: [
+      { label: "変動", value: ["FLUCTUATION"] },
+      { label: "固定", value: ["FIXED"] },
+      { label: "変動・固定", value: ["FLUCTUATION", "FIXED"] },
+    ],
+  },
 };
 
 export const RegisterDashboardSetting = () => {
@@ -83,11 +90,13 @@ export const RegisterDashboardSetting = () => {
         {featureMap[feature].argsTypes.map((type, index) => (
           <Picker
             key={type}
-            value={argsMapTypes[index]!.value}
+            value={argsMapTypes[index]!.value as number}
             setValue={(value) => {
-              const newArgs = [...argsMapTypes];
-              newArgs[index] = { type, value };
-              setArgsMapTypes(newArgs);
+              if (type === "year" || type === "month") {
+                const newArgs = [...argsMapTypes];
+                newArgs[index] = { type, value: value as number };
+                setArgsMapTypes(newArgs);
+              }
             }}
             data={pickerSetting[type].data}
           />
