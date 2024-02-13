@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-import type { ArgsMapType, ArgsType, Feature } from "../type";
-import { pickerSetting } from "~/feature/household/setting/dashboard/picker-setting";
+import type { ArgsMapType, Feature } from "../type";
 import { EditableFeature, RegisterButton, ResetButton } from "~/ui";
-import { Picker } from "~/ui/Picker";
-import {
-  generateMonthOptions,
-  generateYearOptions,
-} from "../edit/args-value-range";
 import { featureMap } from "../list/feature-map";
+import { ArgsMapTypesPicker } from "../ui/ArgsMapTypesPicker";
 import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
 const defaultArgsMapTypes: ArgsMapType[] = Array(2).fill({});
@@ -65,17 +60,12 @@ export const RegisterDashboardSetting = () => {
       <EditableFeature value={feature} setValue={setFeature} />
       <View>
         {featureMap[feature].argsTypes.map((type, index) => (
-          <Picker
+          <ArgsMapTypesPicker
             key={type}
-            value={argsMapTypes[index]!.value as number}
-            setValue={(value) => {
-              if (type === "year" || type === "month") {
-                const newArgs = [...argsMapTypes];
-                newArgs[index] = { type, value: value as number };
-                setArgsMapTypes(newArgs);
-              }
-            }}
-            data={pickerSetting[type].data}
+            type={type}
+            index={index}
+            argsMapTypes={argsMapTypes}
+            setArgsMapTypes={setArgsMapTypes}
           />
         ))}
       </View>
