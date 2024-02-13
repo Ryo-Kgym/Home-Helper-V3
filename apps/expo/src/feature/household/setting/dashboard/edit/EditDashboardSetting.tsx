@@ -1,13 +1,38 @@
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
-import type { ArgsMapType, Feature } from "../type";
+import type { ArgsMapType, ArgsType, Feature } from "../type";
 import { DeleteButton, ResetButton, UpdateButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import { featureMap } from "../list/feature-map";
 import { generateMonthOptions, generateYearOptions } from "./args-value-range";
 import { useDeleteDashboardSetting } from "./useDeleteDashboardSetting";
 import { useEditDashboardSetting } from "./useEditDashboardSetting";
+
+const featureOptions = Object.keys(featureMap).map((f) => ({
+  label: featureMap[f as Feature].label,
+  value: f as Feature,
+}));
+const pickerSetting: Record<
+  ArgsType,
+  {
+    data: { label: string; value: ArgsMapType["value"] }[];
+  }
+> = {
+  year: {
+    data: generateYearOptions(),
+  },
+  month: {
+    data: generateMonthOptions(),
+  },
+  genreType: {
+    data: [
+      { label: "変動", value: ["FLUCTUATION"] },
+      { label: "固定", value: ["FIXED"] },
+      { label: "変動・固定", value: ["FLUCTUATION", "FIXED"] },
+    ],
+  },
+};
 
 export const EditDashboardSetting = ({
   setting,
@@ -25,10 +50,6 @@ export const EditDashboardSetting = ({
   const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>([]);
   const { updateSetting } = useEditDashboardSetting();
   const { deleteDashboardSetting } = useDeleteDashboardSetting();
-  const featurePickerData = Object.keys(featureMap).map((f) => ({
-    label: featureMap[f as Feature].label,
-    value: f as Feature,
-  }));
 
   const updateHandler = async () => {
     if (!setting || !feature) {
@@ -83,42 +104,24 @@ export const EditDashboardSetting = ({
       <Picker
         value={feature}
         setValue={setFeature}
-        data={featurePickerData}
+        data={featureOptions}
         disabled={true}
       />
       <View>
-        {featureMap[feature].argsTypes.map((type, index) => {
-          if (!argsMapTypes[index]) return null;
-
-          return (
-            <View key={type}>
-              <Text>{type}</Text>
-              {/* TODO 種類が増えたらリファクタリングする*/}
-              {type === "year" && (
-                <Picker
-                  value={argsMapTypes[index]!.value as number}
-                  setValue={(value: number) => {
-                    const newArgs = [...argsMapTypes];
-                    newArgs[index] = { type, value };
-                    setArgsMapTypes(newArgs);
-                  }}
-                  data={generateYearOptions()}
-                />
-              )}
-              {type === "month" && (
-                <Picker
-                  value={argsMapTypes[index]!.value as number}
-                  setValue={(value: number) => {
-                    const newArgs = [...argsMapTypes];
-                    newArgs[index] = { type, value };
-                    setArgsMapTypes(newArgs);
-                  }}
-                  data={generateMonthOptions()}
-                />
-              )}
-            </View>
-          );
-        })}
+        {featureMap[feature].argsTypes.map((type, index) => (
+          <Picker
+            key={type}
+            value={argsMapTypes[index]!.value as number}
+            setValue={(value) => {
+              if (type === "year" || type === "month") {
+                const newArgs = [...argsMapTypes];
+                newArgs[index] = { type, value: value as number };
+                setArgsMapTypes(newArgs);
+              }
+            }}
+            data={pickerSetting[type].data}
+          />
+        ))}
       </View>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View
