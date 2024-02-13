@@ -11,9 +11,9 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
         argsMap,
         props,
         key: "year",
-        callback: (type) => {
+        parseToProps: ({ value }) => {
           const year = new Date();
-          year.setFullYear(year.getFullYear() + (type.value as number));
+          year.setFullYear(year.getFullYear() + (value as number));
           return year;
         },
       });
@@ -24,9 +24,9 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
         argsMap,
         props,
         key: "month",
-        callback: (type) => {
+        parseToProps: ({ value }) => {
           const month = new Date();
-          month.setMonth(month.getMonth() + (type.value as number));
+          month.setMonth(month.getMonth() + (value as number));
           return month;
         },
       });
@@ -36,9 +36,7 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
         argsMap,
         props,
         key: "genreType",
-        callback: (type) => {
-          return type.value;
-        },
+        parseToProps: ({ value }) => value,
       });
     }
 
@@ -50,18 +48,18 @@ const appendProps = ({
   props,
   argsMap,
   key,
-  callback,
+  parseToProps,
 }: {
   props: unknown;
   argsMap: ArgsMapType[];
   key: string;
-  callback: (props: ArgsMapType) => unknown;
+  parseToProps: (argsMapType: ArgsMapType) => unknown;
 }) => {
-  const type = argsMap.filter((arg) => arg.type === key)?.[0];
-  if (!type) throw new Error(`${key} type is required`);
+  const argsMapType = argsMap.filter((arg) => arg.type === key)?.[0];
+  if (!argsMapType) throw new Error(`${key} type is required`);
 
   return Object.defineProperty(props, key, {
-    value: callback(type),
+    value: parseToProps(argsMapType),
     enumerable: true,
   });
 };
