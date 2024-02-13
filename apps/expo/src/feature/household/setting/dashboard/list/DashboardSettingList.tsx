@@ -79,15 +79,23 @@ export const DashboardSettingList = () => {
             }}
           >
             <Text className={"text-xl"}>{featureMap[item.feature].label}</Text>
-            <Text
+            <View
               style={{
-                textAlign: "right",
                 flex: 1,
                 paddingRight: 20,
               }}
             >
-              {item.argsMap.map((at) => at.type + "= " + at.value).join(", ")}
-            </Text>
+              {item.argsMap.map((at) => (
+                <Text
+                  key={at.type}
+                  style={{
+                    textAlign: "right",
+                  }}
+                >
+                  {at.type + "= " + at.value.toString()}
+                </Text>
+              ))}
+            </View>
           </View>
         </View>
       </TouchableOpacity>
