@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native";
 
-import { useGetDashboardBoxes } from "~/feature/household/setting";
+import { useGetDashboardBoxes } from "~/feature/household/setting/dashboard/useGetDashboardBoxes";
 
 export const HouseholdDashboard = () => {
   const { getBoxNodes } = useGetDashboardBoxes();

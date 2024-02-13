@@ -6,12 +6,12 @@ import DraggableFlatList, {
 } from "react-native-draggable-flatlist";
 
 import type { SettingProps } from "../type";
-import { useUpdateDashboardSettingOrder } from "~/feature/household/setting/dashboard/list/useUpdateDashboardSettingOrder";
 import { AddButton, Modal, UpdateButton } from "~/ui";
-import { useGetDashboardBoxes } from "../..";
+import { useGetDashboardBoxes } from "../../dashboard/useGetDashboardBoxes";
 import { EditDashboardSetting } from "../edit/EditDashboardSetting";
 import { featureMap } from "../list/feature-map";
 import { RegisterDashboardSetting } from "../register/RegisterDashboardSetting";
+import { useUpdateDashboardSettingOrder } from "./useUpdateDashboardSettingOrder";
 
 export const DashboardSettingList = () => {
   const { settings } = useGetDashboardBoxes();
