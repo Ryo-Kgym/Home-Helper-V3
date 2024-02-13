@@ -21,13 +21,13 @@ export const ArgsMapTypesPicker = ({
 }) => (
   <Picker
     key={type}
-    value={argsMapTypes[index]!.value as number}
+    value={argsMapTypes[index]!.value}
     setValue={(value) => {
-      if (type === "year" || type === "month") {
-        const newArgs = [...argsMapTypes];
-        newArgs[index] = { type, value: value as number };
-        setArgsMapTypes(newArgs);
-      }
+      const newArgs = [...argsMapTypes];
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      newArgs[index] = { type, value };
+      setArgsMapTypes(newArgs);
     }}
     data={pickerSetting[type].data}
   />
