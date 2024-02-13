@@ -1,34 +1,13 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-import type { ArgsMapType, ArgsType, Feature } from "../type";
+import type { ArgsMapType, Feature } from "../type";
+import { pickerSetting } from "~/feature/household/setting/dashboard/picker-setting";
 import { DeleteButton, EditableFeature, ResetButton, UpdateButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import { featureMap } from "../list/feature-map";
-import { generateMonthOptions, generateYearOptions } from "./args-value-range";
 import { useDeleteDashboardSetting } from "./useDeleteDashboardSetting";
 import { useEditDashboardSetting } from "./useEditDashboardSetting";
-
-const pickerSetting: Record<
-  ArgsType,
-  {
-    data: { label: string; value: ArgsMapType["value"] }[];
-  }
-> = {
-  year: {
-    data: generateYearOptions(),
-  },
-  month: {
-    data: generateMonthOptions(),
-  },
-  genreType: {
-    data: [
-      { label: "変動", value: ["FLUCTUATION"] },
-      { label: "固定", value: ["FIXED"] },
-      { label: "変動・固定", value: ["FLUCTUATION", "FIXED"] },
-    ],
-  },
-};
 
 export const EditDashboardSetting = ({
   setting,

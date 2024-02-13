@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 import type { ArgsMapType, ArgsType, Feature } from "../type";
+import { pickerSetting } from "~/feature/household/setting/dashboard/picker-setting";
 import { EditableFeature, RegisterButton, ResetButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import {
@@ -12,26 +13,6 @@ import { featureMap } from "../list/feature-map";
 import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
 const defaultArgsMapTypes: ArgsMapType[] = Array(2).fill({});
-const pickerSetting: Record<
-  ArgsType,
-  {
-    data: { label: string; value: ArgsMapType["value"] }[];
-  }
-> = {
-  year: {
-    data: generateYearOptions(),
-  },
-  month: {
-    data: generateMonthOptions(),
-  },
-  genreType: {
-    data: [
-      { label: "変動", value: ["FLUCTUATION"] },
-      { label: "固定", value: ["FIXED"] },
-      { label: "変動・固定", value: ["FLUCTUATION", "FIXED"] },
-    ],
-  },
-};
 
 export const RegisterDashboardSetting = () => {
   const [feature, setFeature] = useState<Feature>("balance");
