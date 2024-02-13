@@ -5,12 +5,13 @@ import { featureSetting } from "./feature-setting";
 export const generateBox = (
   settingPropsList: SettingProps[],
 ): React.ReactNode[] =>
-  settingPropsList.map(({ feature, argsMap }, index) => {
+  settingPropsList.map(({ feature, argsMap, id }, index) => {
     const { component: Component, argsTypes } = featureSetting[feature];
     const props = {};
 
     if (argsTypes.includes("year")) {
       appendProps({
+        settingId: id,
         argsMap,
         props,
         key: "year",
@@ -24,6 +25,7 @@ export const generateBox = (
 
     if (argsTypes.includes("month")) {
       appendProps({
+        settingId: id,
         argsMap,
         props,
         key: "month",
@@ -36,6 +38,7 @@ export const generateBox = (
     }
     if (argsTypes.includes("genreType")) {
       appendProps({
+        settingId: id,
         argsMap,
         props,
         key: "genreType",
@@ -51,18 +54,21 @@ export const generateBox = (
   });
 
 const appendProps = ({
+  settingId,
   props,
   argsMap,
   key,
   parseToProps,
 }: {
+  settingId: string;
   props: unknown;
   argsMap: ArgsMapType[];
   key: string;
   parseToProps: (argsMapType: ArgsMapType) => unknown;
 }) => {
   const argsMapType = argsMap.filter((arg) => arg.type === key)?.[0];
-  if (!argsMapType) throw new Error(`${key} type is required`);
+  if (!argsMapType)
+    throw new Error(`${key} type is required for settingId: ${settingId}`);
 
   return Object.defineProperty(props, key, {
     value: parseToProps(argsMapType),
