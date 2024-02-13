@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 import type { ArgsMapType, ArgsType, Feature } from "../type";
-import { RegisterButton, ResetButton } from "~/ui";
+import { EditableFeature, RegisterButton, ResetButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import {
   generateMonthOptions,
@@ -11,11 +11,7 @@ import {
 import { featureMap } from "../list/feature-map";
 import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
-const defaultArgsMapTypes: ArgsMapType[] = Array(1).fill({});
-const featureOptions = Object.keys(featureMap).map((f) => ({
-  label: featureMap[f as Feature].label,
-  value: f as Feature,
-}));
+const defaultArgsMapTypes: ArgsMapType[] = Array(2).fill({});
 const pickerSetting: Record<
   ArgsType,
   {
@@ -85,7 +81,7 @@ export const RegisterDashboardSetting = () => {
 
   return (
     <View>
-      <Picker value={feature} setValue={setFeature} data={featureOptions} />
+      <EditableFeature value={feature} setValue={setFeature} />
       <View>
         {featureMap[feature].argsTypes.map((type, index) => (
           <Picker

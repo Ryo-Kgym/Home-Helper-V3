@@ -2,17 +2,13 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 import type { ArgsMapType, ArgsType, Feature } from "../type";
-import { DeleteButton, ResetButton, UpdateButton } from "~/ui";
+import { DeleteButton, EditableFeature, ResetButton, UpdateButton } from "~/ui";
 import { Picker } from "~/ui/Picker";
 import { featureMap } from "../list/feature-map";
 import { generateMonthOptions, generateYearOptions } from "./args-value-range";
 import { useDeleteDashboardSetting } from "./useDeleteDashboardSetting";
 import { useEditDashboardSetting } from "./useEditDashboardSetting";
 
-const featureOptions = Object.keys(featureMap).map((f) => ({
-  label: featureMap[f as Feature].label,
-  value: f as Feature,
-}));
 const pickerSetting: Record<
   ArgsType,
   {
@@ -101,12 +97,7 @@ export const EditDashboardSetting = ({
 
   return (
     <View>
-      <Picker
-        value={feature}
-        setValue={setFeature}
-        data={featureOptions}
-        disabled={true}
-      />
+      <EditableFeature value={feature} setValue={setFeature} disabled={true} />
       <View>
         {featureMap[feature].argsTypes.map((type, index) => (
           <Picker
