@@ -31,6 +31,16 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
         },
       });
     }
+    if (argsTypes.includes("genreType")) {
+      appendProps({
+        argsMap,
+        props,
+        key: "genreType",
+        callback: (type) => {
+          return type.value;
+        },
+      });
+    }
 
     return <Component key={index} {...props} />;
   });
