@@ -27,7 +27,7 @@ export const featureMap: {
   },
   monthlyCategory: {
     label: "月間カテゴリ",
-    argsTypes: ["month"],
+    argsTypes: ["month", "genreType"],
   },
   setting: {
     label: "設定",

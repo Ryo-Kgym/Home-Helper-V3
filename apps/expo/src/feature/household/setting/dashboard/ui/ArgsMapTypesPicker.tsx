@@ -1,3 +1,5 @@
+import { Text } from "react-native";
+
 import type {
   ArgsMapType,
   ArgsType,
@@ -19,18 +21,21 @@ export const ArgsMapTypesPicker = ({
   argsMapTypes: ArgsMapType[];
   setArgsMapTypes: (args: ArgsMapType[]) => void;
 }) => (
-  <Picker
-    key={type}
-    value={argsMapTypes[index]!.value}
-    setValue={(value) => {
-      const newArgs = [...argsMapTypes];
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      newArgs[index] = { type, value };
-      setArgsMapTypes(newArgs);
-    }}
-    data={pickerSetting[type].data}
-  />
+  <>
+    <Text>{type}</Text>
+    <Picker
+      key={type}
+      value={argsMapTypes[index]!.value}
+      setValue={(value) => {
+        const newArgs = [...argsMapTypes];
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        newArgs[index] = { type, value };
+        setArgsMapTypes(newArgs);
+      }}
+      data={pickerSetting[type].data}
+    />
+  </>
 );
 
 const pickerSetting: Record<
@@ -47,9 +52,9 @@ const pickerSetting: Record<
   },
   genreType: {
     data: [
-      { label: "変動", value: ["FLUCTUATION"] },
-      { label: "固定", value: ["FIXED"] },
-      { label: "変動・固定", value: ["FLUCTUATION", "FIXED"] },
+      { label: "変動", value: "FLC" },
+      { label: "固定", value: "FXD" },
+      { label: "変動・固定", value: "ALL" },
     ],
   },
 };

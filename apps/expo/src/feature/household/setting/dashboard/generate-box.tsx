@@ -1,4 +1,5 @@
 import type { ArgsMapType, SettingProps } from "./type";
+import type { GenreType } from "~/types/genre-type";
 import { featureSetting } from "./feature-setting";
 
 export const generateBox = (
@@ -38,7 +39,11 @@ export const generateBox = (
         argsMap,
         props,
         key: "genreType",
-        parseToProps: ({ value }) => value,
+        parseToProps: ({ value }): GenreType[] => {
+          if (value === "FXD") return ["FIXED"];
+          if (value === "FLC") return ["FLUCTUATION"];
+          return ["FIXED", "FLUCTUATION"];
+        },
       });
     }
 

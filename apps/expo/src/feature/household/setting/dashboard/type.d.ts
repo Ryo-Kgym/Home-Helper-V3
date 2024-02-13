@@ -1,5 +1,3 @@
-import type { GenreType } from "~/types/genre-type";
-
 export type Feature =
   | "register"
   | "balance"
@@ -14,7 +12,7 @@ export type ArgsType = "year" | "month" | "genreType";
 export type ArgsMapType =
   | { type: "year"; value: number }
   | { type: "month"; value: number }
-  | { type: "genreType"; value: GenreType[] };
+  | { type: "genreType"; value: GenreParamType };
 
 export type SettingProps = {
   id: string;
@@ -22,3 +20,5 @@ export type SettingProps = {
   order: number;
   argsMap: ArgsMapType[];
 };
+
+export type GenreParamType = "FLC" | "FXD" | "ALL";

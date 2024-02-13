@@ -50,6 +50,12 @@ export const RegisterDashboardSetting = () => {
           value: 0, // 今月
         });
       }
+      if (type === "genreType") {
+        args.push({
+          type,
+          value: "ALL",
+        });
+      }
     });
 
     setArgsMapTypes(args.length ? args : defaultArgsMapTypes);
