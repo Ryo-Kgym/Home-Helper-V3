@@ -13,7 +13,6 @@ export { EditableAccount } from "~/ui/editable/EditableAccount";
 export { EditableAmount } from "~/ui/editable/EditableAmount";
 export { EditableCategory } from "~/ui/editable/EditableCategory";
 export { EditableDate } from "~/ui/editable/EditableDate";
-export { EditableFeature } from "~/ui/editable/EditableFeature";
 export { EditableGenre } from "~/ui/editable/EditableGenre";
 export { EditableIocomeType } from "~/ui/editable/EditableIocomeType";
 export { EditableMemo } from "~/ui/editable/EditableMemo";

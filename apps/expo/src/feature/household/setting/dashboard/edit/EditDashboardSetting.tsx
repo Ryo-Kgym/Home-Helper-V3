@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 import type { ArgsMapType, Feature } from "../type";
-import { DeleteButton, EditableFeature, ResetButton, UpdateButton } from "~/ui";
+import { DeleteButton, ResetButton, UpdateButton } from "~/ui";
 import { featureMap } from "../list/feature-map";
-import { ArgsMapTypesPicker } from "../ui/ArgsMapTypesPicker";
+import { ArgsMapTypesPicker, EditableFeature } from "../ui";
 import { useDeleteDashboardSetting } from "./useDeleteDashboardSetting";
 import { useEditDashboardSetting } from "./useEditDashboardSetting";
 
