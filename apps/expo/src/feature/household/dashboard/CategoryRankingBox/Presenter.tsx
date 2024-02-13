@@ -1,13 +1,16 @@
 import { Text, View } from "react-native";
 
+import type { GenreType } from "~/types/genre-type";
 import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
+import { getGenreTypeLabel } from "~/types/genre-type";
 
 export const Presenter = ({
   baseDate,
   month,
   categories,
   loading,
+  genreType,
 }: {
   baseDate: Date;
   month: number;
@@ -16,9 +19,10 @@ export const Presenter = ({
     amount: number;
   }[];
   loading: boolean;
+  genreType: GenreType[];
 }) => (
   <DashboardFrame
-    label={`${month}月の変動支出`}
+    label={`${month}月の${generateTitle({ genreType })}支出`}
     href={paths.household.categoryRanking({ date: baseDate })}
     size={"50%"}
     scroll={120}
@@ -42,3 +46,7 @@ export const Presenter = ({
     )}
   </DashboardFrame>
 );
+
+const generateTitle = ({ genreType }: { genreType: GenreType[] }) => {
+  return genreType.map((g) => getGenreTypeLabel(g)).join("・");
+};
