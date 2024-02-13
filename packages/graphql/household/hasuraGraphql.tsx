@@ -10554,7 +10554,7 @@ export const GetDashboardSettingDocument = gql`
       id
       feature
       order
-      args: dashboardSettingArgs {
+      args: dashboardSettingArgs(orderBy: { type: ASC }) {
         id
         type
         value

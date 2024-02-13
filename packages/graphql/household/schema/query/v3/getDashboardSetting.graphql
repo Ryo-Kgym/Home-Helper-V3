@@ -1,12 +1,12 @@
 query getDashboardSetting($userId: String!, $groupId: String!) {
   setting: householdDashboardSetting(
     where: { userId: { _eq: $userId }, _and: { groupId: { _eq: $groupId } } }
-    orderBy: {order: ASC}
+    orderBy: { order: ASC }
   ) {
     id
     feature
     order
-    args: dashboardSettingArgs {
+    args: dashboardSettingArgs(orderBy: { type: ASC }) {
       id
       type
       value
