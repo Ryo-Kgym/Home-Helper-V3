@@ -1,8 +1,10 @@
-import type { ArgsMapType, BoxesType } from "./type";
+import type { ArgsMapType, SettingProps } from "./type";
 import { featureSetting } from "./feature-setting";
 
-export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
-  return boxes.map(({ feature, argsMap }, index) => {
+export const generateBox = (
+  settingPropsList: SettingProps[],
+): React.ReactNode[] =>
+  settingPropsList.map(({ feature, argsMap }, index) => {
     const { component: Component, argsTypes } = featureSetting[feature];
     const props = {};
 
@@ -42,7 +44,6 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
 
     return <Component key={index} {...props} />;
   });
-};
 
 const appendProps = ({
   props,

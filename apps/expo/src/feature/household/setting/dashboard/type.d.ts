@@ -22,5 +22,3 @@ export type SettingProps = {
   order: number;
   argsMap: ArgsMapType[];
 };
-
-export type BoxesType = SettingProps[];

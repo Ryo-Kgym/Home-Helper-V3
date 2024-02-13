@@ -1,6 +1,6 @@
 import { useGetDashboardSettingQuery } from "@v3/graphql/household";
 
-import type { ArgsMapType, ArgsType, BoxesType, Feature } from "./type";
+import type { ArgsMapType, ArgsType, Feature, SettingProps } from "./type";
 import type { GenreType } from "~/types/genre-type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useSaveUserId } from "~/hooks/user/useSaveUserId";
@@ -17,7 +17,7 @@ export const useGetDashboardBoxes = () => {
     },
   });
 
-  const settings: BoxesType =
+  const settings: SettingProps[] =
     data?.setting.map((s) => ({
       id: s.id,
       feature: s.feature as Feature,
