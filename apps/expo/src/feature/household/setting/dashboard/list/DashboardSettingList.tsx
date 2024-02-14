@@ -14,12 +14,12 @@ import { RegisterDashboardSetting } from "../register/RegisterDashboardSetting";
 import { useUpdateDashboardSettingOrder } from "./useUpdateDashboardSettingOrder";
 
 export const DashboardSettingList = () => {
-  const { settings } = useGetDashboardBoxes();
-  const [data, setData] = useState<SettingProps[]>(settings);
+  const { getSettings } = useGetDashboardBoxes();
+  const [data, setData] = useState<SettingProps[]>(getSettings());
   const [visible, setVisible] = useState(false);
   const [addVisible, setAddVisible] = useState(false);
   const [settingId, setSettingId] = useState<string | null>(null);
-  const setting = settings.find((s) => s.id === settingId);
+  const setting = getSettings().find((s) => s.id === settingId);
   const { updateOrder } = useUpdateDashboardSettingOrder();
 
   const updateOrderHandler = async () => {
@@ -117,6 +117,7 @@ export const DashboardSettingList = () => {
         <RegisterDashboardSetting
           registerAfterHandler={() => {
             setAddVisible(false);
+            setData(getSettings());
           }}
         />
       </Modal>
