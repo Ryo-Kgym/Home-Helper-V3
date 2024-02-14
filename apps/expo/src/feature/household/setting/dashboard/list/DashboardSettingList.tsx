@@ -114,7 +114,11 @@ export const DashboardSettingList = () => {
         <EditDashboardSetting setting={setting} />
       </Modal>
       <Modal visible={addVisible} setVisible={setAddVisible}>
-        <RegisterDashboardSetting />
+        <RegisterDashboardSetting
+          registerAfterHandler={() => {
+            setAddVisible(false);
+          }}
+        />
       </Modal>
       <View style={{ flexDirection: "row" }}>
         <View style={{ width: "50%" }}>

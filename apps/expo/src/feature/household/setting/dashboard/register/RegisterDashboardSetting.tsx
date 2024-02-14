@@ -9,7 +9,11 @@ import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
 const defaultArgsMapTypes: ArgsMapType[] = Array(2).fill({});
 
-export const RegisterDashboardSetting = () => {
+export const RegisterDashboardSetting = ({
+  registerAfterHandler,
+}: {
+  registerAfterHandler?: () => void;
+}) => {
   const [feature, setFeature] = useState<Feature>("balance");
   const [argsMapTypes, setArgsMapTypes] =
     useState<ArgsMapType[]>(defaultArgsMapTypes);
@@ -25,6 +29,8 @@ export const RegisterDashboardSetting = () => {
     } catch (e) {
       console.error(e);
       alert("登録に失敗しました");
+    } finally {
+      registerAfterHandler && registerAfterHandler();
     }
   };
 
