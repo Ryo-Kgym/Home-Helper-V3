@@ -7789,10 +7789,13 @@ export type DeleteDashboardSettingMutation = {
   __typename?: "mutation_root";
   deleteHouseholdDashboardSettingArgs?: {
     __typename?: "HouseholdDashboardSettingArgsMutationResponse";
-    affectedRows: number;
+    returning: Array<{
+      __typename: "HouseholdDashboardSettingArgs";
+      id: string;
+    }>;
   } | null;
   deleteHouseholdDashboardSettingByPk?: {
-    __typename?: "HouseholdDashboardSetting";
+    __typename: "HouseholdDashboardSetting";
     id: string;
   } | null;
 };
@@ -7808,11 +7811,17 @@ export type DeleteInsertDashboardSettingArgsMutation = {
   __typename?: "mutation_root";
   deleteDashboardSettingArgs?: {
     __typename?: "HouseholdDashboardSettingArgsMutationResponse";
-    affectedRows: number;
+    returning: Array<{
+      __typename: "HouseholdDashboardSettingArgs";
+      id: string;
+    }>;
   } | null;
   insertDashboardSettingArgs?: {
     __typename?: "HouseholdDashboardSettingArgsMutationResponse";
-    affectedRows: number;
+    returning: Array<{
+      __typename: "HouseholdDashboardSettingArgs";
+      id: string;
+    }>;
   } | null;
 };
 
@@ -7828,7 +7837,7 @@ export type InsertDashboardSettingMutation = {
   __typename?: "mutation_root";
   insertSetting?: {
     __typename?: "HouseholdDashboardSettingMutationResponse";
-    affectedRows: number;
+    returning: Array<{ __typename: "HouseholdDashboardSetting"; id: string }>;
   } | null;
 };
 
@@ -7843,7 +7852,10 @@ export type InsertDashboardSettingArgsMutation = {
   __typename?: "mutation_root";
   insertSettingArgs?: {
     __typename?: "HouseholdDashboardSettingArgsMutationResponse";
-    affectedRows: number;
+    returning: Array<{
+      __typename: "HouseholdDashboardSettingArgs";
+      id: string;
+    }>;
   } | null;
 };
 
@@ -7871,7 +7883,7 @@ export type UpdateDashboardSettingMutationVariables = Exact<{
 export type UpdateDashboardSettingMutation = {
   __typename?: "mutation_root";
   updateDashboardSetting?: {
-    __typename?: "HouseholdDashboardSetting";
+    __typename: "HouseholdDashboardSetting";
     id: string;
   } | null;
 };
@@ -7884,7 +7896,7 @@ export type UpdateDashboardSettingOrderMutationVariables = Exact<{
 export type UpdateDashboardSettingOrderMutation = {
   __typename?: "mutation_root";
   updateHouseholdDashboardSettingByPk?: {
-    __typename?: "HouseholdDashboardSetting";
+    __typename: "HouseholdDashboardSetting";
     id: string;
   } | null;
 };
@@ -8765,12 +8777,12 @@ export type GetDashboardSettingQueryVariables = Exact<{
 export type GetDashboardSettingQuery = {
   __typename?: "query_root";
   setting: Array<{
-    __typename?: "HouseholdDashboardSetting";
+    __typename: "HouseholdDashboardSetting";
     id: string;
     feature: string;
     order: number;
     args: Array<{
-      __typename?: "HouseholdDashboardSettingArgs";
+      __typename: "HouseholdDashboardSettingArgs";
       id: string;
       type: string;
       value: string;
@@ -9292,10 +9304,14 @@ export const DeleteDashboardSettingDocument = gql`
     deleteHouseholdDashboardSettingArgs(
       where: { settingId: { _eq: $settingId } }
     ) {
-      affectedRows
+      returning {
+        id
+        __typename
+      }
     }
     deleteHouseholdDashboardSettingByPk(id: $settingId) {
       id
+      __typename
     }
   }
 `;
@@ -9316,7 +9332,10 @@ export const DeleteInsertDashboardSettingArgsDocument = gql`
     deleteDashboardSettingArgs: deleteHouseholdDashboardSettingArgs(
       where: { settingId: { _eq: $settingId } }
     ) {
-      affectedRows
+      returning {
+        id
+        __typename
+      }
     }
     insertDashboardSettingArgs: insertHouseholdDashboardSettingArgs(
       objects: {
@@ -9326,7 +9345,10 @@ export const DeleteInsertDashboardSettingArgsDocument = gql`
         settingId: $settingId
       }
     ) {
-      affectedRows
+      returning {
+        id
+        __typename
+      }
     }
   }
 `;
@@ -9354,7 +9376,10 @@ export const InsertDashboardSettingDocument = gql`
         groupId: $groupId
       }
     ) {
-      affectedRows
+      returning {
+        id
+        __typename
+      }
     }
   }
 `;
@@ -9375,7 +9400,10 @@ export const InsertDashboardSettingArgsDocument = gql`
     insertSettingArgs: insertHouseholdDashboardSettingArgs(
       objects: { id: $id, type: $type, value: $value, settingId: $settingId }
     ) {
-      affectedRows
+      returning {
+        id
+        __typename
+      }
     }
   }
 `;
@@ -9419,6 +9447,7 @@ export const UpdateDashboardSettingDocument = gql`
       _set: { feature: $feature, order: $order }
     ) {
       id
+      __typename
     }
   }
 `;
@@ -9436,6 +9465,7 @@ export const UpdateDashboardSettingOrderDocument = gql`
       _set: { order: $order }
     ) {
       id
+      __typename
     }
   }
 `;
@@ -10554,10 +10584,12 @@ export const GetDashboardSettingDocument = gql`
       id
       feature
       order
+      __typename
       args: dashboardSettingArgs(orderBy: { type: ASC }) {
         id
         type
         value
+        __typename
       }
     }
   }

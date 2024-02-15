@@ -7,11 +7,17 @@ mutation deleteInsertDashboardSettingArgs(
   deleteDashboardSettingArgs: deleteHouseholdDashboardSettingArgs(
     where: { settingId: { _eq: $settingId } }
   ) {
-    affectedRows
+    returning {
+      id
+      __typename
+    }
   }
   insertDashboardSettingArgs: insertHouseholdDashboardSettingArgs(
     objects: { id: $argsId, type: $type, value: $value, settingId: $settingId }
   ) {
-    affectedRows
+    returning {
+      id
+      __typename
+    }
   }
 }

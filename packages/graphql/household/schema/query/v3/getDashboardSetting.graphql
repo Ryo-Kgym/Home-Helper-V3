@@ -6,10 +6,12 @@ query getDashboardSetting($userId: String!, $groupId: String!) {
     id
     feature
     order
+    __typename
     args: dashboardSettingArgs(orderBy: { type: ASC }) {
       id
       type
       value
+      __typename
     }
   }
 }

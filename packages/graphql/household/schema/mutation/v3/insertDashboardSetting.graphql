@@ -14,7 +14,10 @@ mutation insertDashboardSetting(
       groupId: $groupId
     }
   ) {
-    affectedRows
+    returning {
+      id
+      __typename
+    }
   }
 }
 
@@ -33,6 +36,9 @@ mutation insertDashboardSettingArgs(
       settingId: $settingId
     }
   ) {
-    affectedRows
+    returning {
+      id
+      __typename
+    }
   }
 }

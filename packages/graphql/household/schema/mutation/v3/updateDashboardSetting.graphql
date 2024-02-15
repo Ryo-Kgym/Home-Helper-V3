@@ -8,5 +8,6 @@ mutation updateDashboardSetting(
     _set: { feature: $feature, order: $order }
   ) {
     id
+    __typename
   }
 }
