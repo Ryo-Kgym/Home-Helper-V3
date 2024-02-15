@@ -36,16 +36,15 @@ export const useEditDashboardSetting = () => {
         throw settingError;
       }
 
-      await Promise.allSettled(
-        argsMapTypes.map(async (amt) => {
-          await dIArgsMutation({
-            argsId: generateId(),
-            settingId,
-            type: amt.type,
-            value: amt.value.toString(),
-          });
-        }),
-      );
+      await dIArgsMutation({
+        objects: argsMapTypes.map((amt) => ({
+          id: generateId(),
+          settingId,
+          type: amt.type,
+          value: amt.value.toString(),
+        })),
+        settingId,
+      });
     } catch (e) {
       console.error(e);
     }

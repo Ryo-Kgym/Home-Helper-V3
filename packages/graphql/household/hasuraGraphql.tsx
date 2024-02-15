@@ -7801,10 +7801,10 @@ export type DeleteDashboardSettingMutation = {
 };
 
 export type DeleteInsertDashboardSettingArgsMutationVariables = Exact<{
-  argsId: Scalars["String"];
-  type: Scalars["String"];
-  value: Scalars["String"];
   settingId: Scalars["String"];
+  objects:
+    | Array<HouseholdDashboardSettingArgsInsertInput>
+    | HouseholdDashboardSettingArgsInsertInput;
 }>;
 
 export type DeleteInsertDashboardSettingArgsMutation = {
@@ -9324,10 +9324,8 @@ export function useDeleteDashboardSettingMutation() {
 }
 export const DeleteInsertDashboardSettingArgsDocument = gql`
   mutation deleteInsertDashboardSettingArgs(
-    $argsId: String!
-    $type: String!
-    $value: String!
     $settingId: String!
+    $objects: [HouseholdDashboardSettingArgsInsertInput!]!
   ) {
     deleteDashboardSettingArgs: deleteHouseholdDashboardSettingArgs(
       where: { settingId: { _eq: $settingId } }
@@ -9338,12 +9336,7 @@ export const DeleteInsertDashboardSettingArgsDocument = gql`
       }
     }
     insertDashboardSettingArgs: insertHouseholdDashboardSettingArgs(
-      objects: {
-        id: $argsId
-        type: $type
-        value: $value
-        settingId: $settingId
-      }
+      objects: $objects
     ) {
       returning {
         id

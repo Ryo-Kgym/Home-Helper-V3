@@ -1,8 +1,6 @@
 mutation deleteInsertDashboardSettingArgs(
-  $argsId: String!
-  $type: String!
-  $value: String!
   $settingId: String!
+  $objects: [HouseholdDashboardSettingArgsInsertInput!]!
 ) {
   deleteDashboardSettingArgs: deleteHouseholdDashboardSettingArgs(
     where: { settingId: { _eq: $settingId } }
@@ -13,7 +11,7 @@ mutation deleteInsertDashboardSettingArgs(
     }
   }
   insertDashboardSettingArgs: insertHouseholdDashboardSettingArgs(
-    objects: { id: $argsId, type: $type, value: $value, settingId: $settingId }
+    objects: $objects
   ) {
     returning {
       id
