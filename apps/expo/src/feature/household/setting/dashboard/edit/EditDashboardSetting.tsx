@@ -10,6 +10,7 @@ import { useEditDashboardSetting } from "./useEditDashboardSetting";
 
 export const EditDashboardSetting = ({
   setting,
+  updateAfterHandler,
 }: {
   setting:
     | {
@@ -19,6 +20,7 @@ export const EditDashboardSetting = ({
         argsMap: ArgsMapType[];
       }
     | undefined;
+  updateAfterHandler?: () => void;
 }) => {
   const [feature, setFeature] = useState<Feature | null>(null);
   const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>([]);
@@ -41,6 +43,8 @@ export const EditDashboardSetting = ({
     } catch (e) {
       console.error(e);
       alert("更新に失敗しました");
+    } finally {
+      updateAfterHandler && updateAfterHandler();
     }
   };
 
@@ -54,6 +58,8 @@ export const EditDashboardSetting = ({
     } catch (e) {
       console.error(e);
       alert("削除に失敗しました");
+    } finally {
+      updateAfterHandler && updateAfterHandler();
     }
   };
 

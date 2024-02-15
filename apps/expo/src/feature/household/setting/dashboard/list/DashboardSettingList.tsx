@@ -111,13 +111,17 @@ export const DashboardSettingList = () => {
         renderItem={renderItem}
       />
       <Modal visible={visible} setVisible={setVisible}>
-        <EditDashboardSetting setting={setting} />
+        <EditDashboardSetting
+          setting={setting}
+          updateAfterHandler={() => {
+            setVisible(false);
+          }}
+        />
       </Modal>
       <Modal visible={addVisible} setVisible={setAddVisible}>
         <RegisterDashboardSetting
           registerAfterHandler={() => {
             setAddVisible(false);
-            setData(getSettings());
           }}
         />
       </Modal>
