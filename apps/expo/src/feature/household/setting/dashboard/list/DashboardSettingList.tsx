@@ -1,5 +1,5 @@
 import type { RenderItemParams } from "react-native-draggable-flatlist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import DraggableFlatList, {
   ScaleDecorator,
@@ -21,6 +21,10 @@ export const DashboardSettingList = () => {
   const [settingId, setSettingId] = useState<string | null>(null);
   const setting = getSettings().find((s) => s.id === settingId);
   const { updateOrder } = useUpdateDashboardSettingOrder();
+
+  useEffect(() => {
+    setData(getSettings());
+  }, [visible, addVisible]);
 
   const updateOrderHandler = async () => {
     try {
