@@ -4,5 +4,6 @@ mutation updateDashboardSettingOrder($settingId: String!, $order: Int!) {
     _set: { order: $order }
   ) {
     id
+    __typename
   }
 }

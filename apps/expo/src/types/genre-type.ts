@@ -8,3 +8,6 @@ export type GenreType = keyof typeof genreTypeMap;
 export const genreTypeArray = Object.keys(genreTypeMap).map(
   (key) => key as GenreType,
 );
+
+export const getGenreTypeLabel = (genreType: GenreType) =>
+  genreTypeMap[genreType];

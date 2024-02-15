@@ -7,11 +7,12 @@ export type Feature =
   | "setting"
   | "reload";
 
-export type ArgsType = "year" | "month";
+export type ArgsType = "year" | "month" | "genreType";
 
 export type ArgsMapType =
   | { type: "year"; value: number }
-  | { type: "month"; value: number };
+  | { type: "month"; value: number }
+  | { type: "genreType"; value: GenreParamType };
 
 export type SettingProps = {
   id: string;
@@ -20,4 +21,4 @@ export type SettingProps = {
   argsMap: ArgsMapType[];
 };
 
-export type BoxesType = SettingProps[];
+export type GenreParamType = "FLC" | "FXD" | "ALL";

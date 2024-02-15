@@ -1,19 +1,23 @@
-import type { ArgsMapType, BoxesType } from "./type";
+import type { ArgsMapType, SettingProps } from "./type";
+import type { GenreType } from "~/types/genre-type";
 import { featureSetting } from "./feature-setting";
 
-export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
-  return boxes.map(({ feature, argsMap }, index) => {
+export const generateBox = (
+  settingPropsList: SettingProps[],
+): React.ReactNode[] =>
+  settingPropsList.map(({ feature, argsMap, id }, index) => {
     const { component: Component, argsTypes } = featureSetting[feature];
     const props = {};
 
     if (argsTypes.includes("year")) {
       appendProps({
+        settingId: id,
         argsMap,
         props,
         key: "year",
-        callback: (type) => {
+        parseToProps: ({ value }) => {
           const year = new Date();
-          year.setFullYear(year.getFullYear() + type.value);
+          year.setFullYear(year.getFullYear() + (value as number));
           return year;
         },
       });
@@ -21,37 +25,53 @@ export const generateBox = (boxes: BoxesType): React.ReactNode[] => {
 
     if (argsTypes.includes("month")) {
       appendProps({
+        settingId: id,
         argsMap,
         props,
         key: "month",
-        callback: (type) => {
+        parseToProps: ({ value }) => {
           const month = new Date();
-          month.setMonth(month.getMonth() + type.value);
+          month.setMonth(month.getMonth() + (value as number));
           return month;
+        },
+      });
+    }
+    if (argsTypes.includes("genreType")) {
+      appendProps({
+        settingId: id,
+        argsMap,
+        props,
+        key: "genreType",
+        parseToProps: ({ value }): GenreType[] => {
+          if (value === "FXD") return ["FIXED"];
+          if (value === "FLC") return ["FLUCTUATION"];
+          return ["FIXED", "FLUCTUATION"];
         },
       });
     }
 
     return <Component key={index} {...props} />;
   });
-};
 
 const appendProps = ({
+  settingId,
   props,
   argsMap,
   key,
-  callback,
+  parseToProps,
 }: {
+  settingId: string;
   props: unknown;
   argsMap: ArgsMapType[];
   key: string;
-  callback: (props: ArgsMapType) => unknown;
+  parseToProps: (argsMapType: ArgsMapType) => unknown;
 }) => {
-  const type = argsMap.filter((arg) => arg.type === key)?.[0];
-  if (!type) throw new Error(`${key} type is required`);
+  const argsMapType = argsMap.filter((arg) => arg.type === key)?.[0];
+  if (!argsMapType)
+    throw new Error(`${key} type is required for settingId: ${settingId}`);
 
   return Object.defineProperty(props, key, {
-    value: callback(type),
+    value: parseToProps(argsMapType),
     enumerable: true,
   });
 };

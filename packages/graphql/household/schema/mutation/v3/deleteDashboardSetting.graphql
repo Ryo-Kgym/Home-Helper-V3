@@ -4,9 +4,13 @@ mutation deleteDashboardSetting($settingId: String!) {
             _eq: $settingId
         }
     }) {
-        affectedRows
+        returning {
+            id
+            __typename
+        }
     }
     deleteHouseholdDashboardSettingByPk(id: $settingId) {
         id
+        __typename
     }
 }

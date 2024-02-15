@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import type { ArgsMapType, Feature } from "../type";
 import { DeleteButton, ResetButton, UpdateButton } from "~/ui";
-import { Picker } from "~/ui/Picker";
 import { featureMap } from "../list/feature-map";
-import { generateMonthOptions, generateYearOptions } from "./args-value-range";
+import { ArgsMapTypesPicker, EditableFeature } from "../ui";
 import { useDeleteDashboardSetting } from "./useDeleteDashboardSetting";
 import { useEditDashboardSetting } from "./useEditDashboardSetting";
 
 export const EditDashboardSetting = ({
   setting,
+  updateAfterHandler,
 }: {
   setting:
     | {
@@ -20,15 +20,12 @@ export const EditDashboardSetting = ({
         argsMap: ArgsMapType[];
       }
     | undefined;
+  updateAfterHandler?: () => void;
 }) => {
   const [feature, setFeature] = useState<Feature | null>(null);
   const [argsMapTypes, setArgsMapTypes] = useState<ArgsMapType[]>([]);
   const { updateSetting } = useEditDashboardSetting();
   const { deleteDashboardSetting } = useDeleteDashboardSetting();
-  const featurePickerData = Object.keys(featureMap).map((f) => ({
-    label: featureMap[f as Feature].label,
-    value: f as Feature,
-  }));
 
   const updateHandler = async () => {
     if (!setting || !feature) {
@@ -46,6 +43,8 @@ export const EditDashboardSetting = ({
     } catch (e) {
       console.error(e);
       alert("更新に失敗しました");
+    } finally {
+      updateAfterHandler && updateAfterHandler();
     }
   };
 
@@ -59,6 +58,8 @@ export const EditDashboardSetting = ({
     } catch (e) {
       console.error(e);
       alert("削除に失敗しました");
+    } finally {
+      updateAfterHandler && updateAfterHandler();
     }
   };
 
@@ -80,45 +81,17 @@ export const EditDashboardSetting = ({
 
   return (
     <View>
-      <Picker
-        value={feature}
-        setValue={setFeature}
-        data={featurePickerData}
-        disabled={true}
-      />
+      <EditableFeature value={feature} setValue={setFeature} disabled={true} />
       <View>
-        {featureMap[feature].argsTypes.map((type, index) => {
-          if (!argsMapTypes[index]) return null;
-
-          return (
-            <View key={type}>
-              <Text>{type}</Text>
-              {/* TODO 種類が増えたらリファクタリングする*/}
-              {type === "year" && (
-                <Picker
-                  value={argsMapTypes[index]!.value}
-                  setValue={(value) => {
-                    const newArgs = [...argsMapTypes];
-                    newArgs[index] = { type, value };
-                    setArgsMapTypes(newArgs);
-                  }}
-                  data={generateYearOptions()}
-                />
-              )}
-              {type === "month" && (
-                <Picker
-                  value={argsMapTypes[index]!.value}
-                  setValue={(value) => {
-                    const newArgs = [...argsMapTypes];
-                    newArgs[index] = { type, value };
-                    setArgsMapTypes(newArgs);
-                  }}
-                  data={generateMonthOptions()}
-                />
-              )}
-            </View>
-          );
-        })}
+        {featureMap[feature].argsTypes.map((type, index) => (
+          <ArgsMapTypesPicker
+            key={type}
+            type={type}
+            index={index}
+            argsMapTypes={argsMapTypes}
+            setArgsMapTypes={setArgsMapTypes}
+          />
+        ))}
       </View>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View

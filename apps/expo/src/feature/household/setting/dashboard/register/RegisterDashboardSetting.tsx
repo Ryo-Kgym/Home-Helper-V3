@@ -1,36 +1,19 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-import type { ArgsMapType, ArgsType, Feature } from "../type";
+import type { ArgsMapType, Feature } from "../type";
 import { RegisterButton, ResetButton } from "~/ui";
-import { Picker } from "~/ui/Picker";
-import {
-  generateMonthOptions,
-  generateYearOptions,
-} from "../edit/args-value-range";
 import { featureMap } from "../list/feature-map";
+import { ArgsMapTypesPicker, EditableFeature } from "../ui";
 import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
-const defaultArgsMapTypes: ArgsMapType[] = Array(1).fill({});
-const featureOptions = Object.keys(featureMap).map((f) => ({
-  label: featureMap[f as Feature].label,
-  value: f as Feature,
-}));
-const pickerSetting: Record<
-  ArgsType,
-  {
-    data: { label: string; value: ArgsMapType["value"] }[];
-  }
-> = {
-  year: {
-    data: generateYearOptions(),
-  },
-  month: {
-    data: generateMonthOptions(),
-  },
-};
+const defaultArgsMapTypes: ArgsMapType[] = Array(2).fill({});
 
-export const RegisterDashboardSetting = () => {
+export const RegisterDashboardSetting = ({
+  registerAfterHandler,
+}: {
+  registerAfterHandler?: () => void;
+}) => {
   const [feature, setFeature] = useState<Feature>("balance");
   const [argsMapTypes, setArgsMapTypes] =
     useState<ArgsMapType[]>(defaultArgsMapTypes);
@@ -46,6 +29,8 @@ export const RegisterDashboardSetting = () => {
     } catch (e) {
       console.error(e);
       alert("登録に失敗しました");
+    } finally {
+      registerAfterHandler && registerAfterHandler();
     }
   };
 
@@ -71,6 +56,12 @@ export const RegisterDashboardSetting = () => {
           value: 0, // 今月
         });
       }
+      if (type === "genreType") {
+        args.push({
+          type,
+          value: "ALL",
+        });
+      }
     });
 
     setArgsMapTypes(args.length ? args : defaultArgsMapTypes);
@@ -78,18 +69,15 @@ export const RegisterDashboardSetting = () => {
 
   return (
     <View>
-      <Picker value={feature} setValue={setFeature} data={featureOptions} />
+      <EditableFeature value={feature} setValue={setFeature} />
       <View>
         {featureMap[feature].argsTypes.map((type, index) => (
-          <Picker
+          <ArgsMapTypesPicker
             key={type}
-            value={argsMapTypes[index]!.value}
-            setValue={(value) => {
-              const newArgs = [...argsMapTypes];
-              newArgs[index] = { type, value };
-              setArgsMapTypes(newArgs);
-            }}
-            data={pickerSetting[type].data}
+            type={type}
+            index={index}
+            argsMapTypes={argsMapTypes}
+            setArgsMapTypes={setArgsMapTypes}
           />
         ))}
       </View>

@@ -1,6 +1,6 @@
 import { useGetDashboardSettingQuery } from "@v3/graphql/household";
 
-import type { ArgsMapType, ArgsType, BoxesType, Feature } from "./type";
+import type { ArgsMapType, ArgsType, Feature, GenreParamType } from "./type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useSaveUserId } from "~/hooks/user/useSaveUserId";
 import { generateBox } from "./generate-box";
@@ -16,7 +16,7 @@ export const useGetDashboardBoxes = () => {
     },
   });
 
-  const settings: BoxesType =
+  const getSettings = () =>
     data?.setting.map((s) => ({
       id: s.id,
       feature: s.feature as Feature,
@@ -24,9 +24,9 @@ export const useGetDashboardBoxes = () => {
       argsMap: s.args.map((a) => valueConverter[a.type as ArgsType](a.value)),
     })) ?? [];
 
-  const getBoxNodes = (): React.ReactNode[] => generateBox(settings);
+  const getBoxNodes = (): React.ReactNode[] => generateBox(getSettings());
 
-  return { getBoxNodes, settings };
+  return { getBoxNodes, getSettings };
 };
 
 const valueConverter: {
@@ -39,5 +39,9 @@ const valueConverter: {
   month: (value: string) => ({
     type: "month",
     value: Number(value),
+  }),
+  genreType: (value: string) => ({
+    type: "genreType",
+    value: value as GenreParamType,
   }),
 };

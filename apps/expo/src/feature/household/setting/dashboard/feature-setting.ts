@@ -21,7 +21,10 @@ export const featureSetting: {
   balance: { component: BalanceBox, argsTypes: [] },
   yearly: { component: YearlyBox, argsTypes: ["year"] },
   monthly: { component: MonthlyBox, argsTypes: ["month"] },
-  monthlyCategory: { component: CategoryRankingBox, argsTypes: ["month"] },
+  monthlyCategory: {
+    component: CategoryRankingBox,
+    argsTypes: ["month", "genreType"],
+  },
   setting: { component: SettingBox, argsTypes: [] },
   reload: { component: ReloadBox, argsTypes: [] },
 };

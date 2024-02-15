@@ -1,26 +1,30 @@
 import type { RenderItemParams } from "react-native-draggable-flatlist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import DraggableFlatList, {
   ScaleDecorator,
 } from "react-native-draggable-flatlist";
 
 import type { SettingProps } from "../type";
-import { useUpdateDashboardSettingOrder } from "~/feature/household/setting/dashboard/list/useUpdateDashboardSettingOrder";
 import { AddButton, Modal, UpdateButton } from "~/ui";
-import { useGetDashboardBoxes } from "../..";
+import { useGetDashboardBoxes } from "../../dashboard/useGetDashboardBoxes";
 import { EditDashboardSetting } from "../edit/EditDashboardSetting";
 import { featureMap } from "../list/feature-map";
 import { RegisterDashboardSetting } from "../register/RegisterDashboardSetting";
+import { useUpdateDashboardSettingOrder } from "./useUpdateDashboardSettingOrder";
 
 export const DashboardSettingList = () => {
-  const { settings } = useGetDashboardBoxes();
-  const [data, setData] = useState<SettingProps[]>(settings);
+  const { getSettings } = useGetDashboardBoxes();
+  const [data, setData] = useState<SettingProps[]>(getSettings());
   const [visible, setVisible] = useState(false);
   const [addVisible, setAddVisible] = useState(false);
   const [settingId, setSettingId] = useState<string | null>(null);
-  const setting = settings.find((s) => s.id === settingId);
+  const setting = getSettings().find((s) => s.id === settingId);
   const { updateOrder } = useUpdateDashboardSettingOrder();
+
+  useEffect(() => {
+    setData(getSettings());
+  }, [visible, addVisible]);
 
   const updateOrderHandler = async () => {
     try {
@@ -79,15 +83,23 @@ export const DashboardSettingList = () => {
             }}
           >
             <Text className={"text-xl"}>{featureMap[item.feature].label}</Text>
-            <Text
+            <View
               style={{
-                textAlign: "right",
                 flex: 1,
                 paddingRight: 20,
               }}
             >
-              {item.argsMap.map((at) => at.type + "= " + at.value).join(", ")}
-            </Text>
+              {item.argsMap.map((at) => (
+                <Text
+                  key={at.type}
+                  style={{
+                    textAlign: "right",
+                  }}
+                >
+                  {at.type + "= " + at.value.toString()}
+                </Text>
+              ))}
+            </View>
           </View>
         </View>
       </TouchableOpacity>
@@ -103,10 +115,19 @@ export const DashboardSettingList = () => {
         renderItem={renderItem}
       />
       <Modal visible={visible} setVisible={setVisible}>
-        <EditDashboardSetting setting={setting} />
+        <EditDashboardSetting
+          setting={setting}
+          updateAfterHandler={() => {
+            setVisible(false);
+          }}
+        />
       </Modal>
       <Modal visible={addVisible} setVisible={setAddVisible}>
-        <RegisterDashboardSetting />
+        <RegisterDashboardSetting
+          registerAfterHandler={() => {
+            setAddVisible(false);
+          }}
+        />
       </Modal>
       <View style={{ flexDirection: "row" }}>
         <View style={{ width: "50%" }}>

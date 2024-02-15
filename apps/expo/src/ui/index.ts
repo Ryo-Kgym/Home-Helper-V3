@@ -1,6 +1,7 @@
 export type { Detail } from "~/ui/Details/detail-type";
 
 export { Amount } from "~/ui/Amount";
+
 export { ButtonAdd as AddButton } from "~/ui/Button/ButtonAdd";
 export { ButtonDelete as DeleteButton } from "~/ui/Button/ButtonDelete";
 export { ButtonFilter as FilterButton } from "~/ui/Button/ButtonFilter";
