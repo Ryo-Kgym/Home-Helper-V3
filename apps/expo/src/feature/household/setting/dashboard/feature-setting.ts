@@ -23,7 +23,7 @@ export const featureSetting: {
   monthly: { component: MonthlyBox, argsTypes: ["month"] },
   monthlyCategory: {
     component: CategoryRankingBox,
-    argsTypes: ["month", "genreType"],
+    argsTypes: ["month", "genreType", "iocomeType"],
   },
   setting: { component: SettingBox, argsTypes: [] },
   reload: { component: ReloadBox, argsTypes: [] },
