@@ -1,6 +1,12 @@
 import { useGetDashboardSettingQuery } from "@v3/graphql/household";
 
-import type { ArgsMapType, ArgsType, Feature, GenreParamType } from "./type";
+import type {
+  ArgsMapType,
+  ArgsType,
+  Feature,
+  GenreParamType,
+  IocomeParamType,
+} from "./type";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { useSaveUserId } from "~/hooks/user/useSaveUserId";
 import { generateBox } from "./generate-box";
@@ -43,5 +49,9 @@ const valueConverter: {
   genreType: (value: string) => ({
     type: "genreType",
     value: value as GenreParamType,
+  }),
+  iocomeType: (value: string) => ({
+    type: "iocomeType",
+    value: value as IocomeParamType,
   }),
 };

@@ -7,7 +7,7 @@ import { featureMap } from "../list/feature-map";
 import { ArgsMapTypesPicker, EditableFeature } from "../ui";
 import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
-const defaultArgsMapTypes: ArgsMapType[] = Array(2).fill({});
+const defaultArgsMapTypes: ArgsMapType[] = Array(3).fill({});
 
 export const RegisterDashboardSetting = ({
   registerAfterHandler,
@@ -60,6 +60,12 @@ export const RegisterDashboardSetting = ({
         args.push({
           type,
           value: "ALL",
+        });
+      }
+      if (type === "iocomeType") {
+        args.push({
+          type,
+          value: "O",
         });
       }
     });

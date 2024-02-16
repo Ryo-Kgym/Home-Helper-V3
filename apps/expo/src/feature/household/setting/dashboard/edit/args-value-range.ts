@@ -18,6 +18,10 @@ const argsValueRange: {
     min: 0,
     max: 0,
   },
+  iocomeType: {
+    min: 0,
+    max: 0,
+  },
 };
 
 export const generateYearOptions = () => {

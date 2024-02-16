@@ -57,4 +57,11 @@ const pickerSetting: Record<
       { label: "変動・固定", value: "ALL" },
     ],
   },
+  iocomeType: {
+    data: [
+      { label: "収入", value: "I" },
+      { label: "支出", value: "O" },
+      { label: "収入・支出", value: "ALL" },
+    ],
+  },
 };

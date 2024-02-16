@@ -1,6 +1,6 @@
 const genreTypeMap = {
-  FIXED: "固定費",
-  FLUCTUATION: "変動費",
+  FIXED: "固定",
+  FLUCTUATION: "変動",
 } as const;
 
 export type GenreType = keyof typeof genreTypeMap;

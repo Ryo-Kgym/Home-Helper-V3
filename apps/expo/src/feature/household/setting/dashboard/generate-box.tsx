@@ -1,5 +1,6 @@
 import type { ArgsMapType, SettingProps } from "./type";
 import type { GenreType } from "~/types/genre-type";
+import type { IocomeType } from "~/types/iocome-type";
 import { featureSetting } from "./feature-setting";
 
 export const generateBox = (
@@ -36,6 +37,7 @@ export const generateBox = (
         },
       });
     }
+
     if (argsTypes.includes("genreType")) {
       appendProps({
         settingId: id,
@@ -46,6 +48,20 @@ export const generateBox = (
           if (value === "FXD") return ["FIXED"];
           if (value === "FLC") return ["FLUCTUATION"];
           return ["FIXED", "FLUCTUATION"];
+        },
+      });
+    }
+
+    if (argsTypes.includes("iocomeType")) {
+      appendProps({
+        settingId: id,
+        argsMap,
+        props,
+        key: "iocomeType",
+        parseToProps: ({ value }): IocomeType[] => {
+          if (value === "I") return ["INCOME"];
+          if (value === "O") return ["OUTCOME"];
+          return ["INCOME", "OUTCOME"];
         },
       });
     }
