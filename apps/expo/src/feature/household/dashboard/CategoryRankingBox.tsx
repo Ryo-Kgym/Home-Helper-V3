@@ -1,30 +1,34 @@
 import { Text, View } from "react-native";
 
 import type { GenreType } from "~/types/genre-type";
+import type { IocomeType } from "~/types/iocome-type";
 import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
 import { getMonth } from "~/func/date/get-month";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
 import { getGenreTypeLabel } from "~/types/genre-type";
+import { getLabel } from "~/types/iocome-type";
 
 export const CategoryRankingBox = ({
   month,
   genreType,
+  iocomeType,
 }: {
   month: Date;
   genreType: GenreType[];
+  iocomeType: IocomeType[];
 }) => {
   const { firstDayOfMonth, lastDayOfMonth, month: monthNum } = getMonth(month);
   const { categoryTotal, calcTotal } = useGetCategoryTotal({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
-    iocomeType: ["OUTCOME"],
+    iocomeType,
     genreType,
   });
 
   return (
     <DashboardFrame
-      label={`${monthNum}月の${generateTitle({ genreType })}支出`}
+      label={`${monthNum}月の${generateTitle({ genreType, iocomeType })}`}
       href={paths.household.categoryRanking({ date: month })}
       size={"50%"}
       scroll={120}
@@ -53,6 +57,15 @@ export const CategoryRankingBox = ({
   );
 };
 
-const generateTitle = ({ genreType }: { genreType: GenreType[] }) => {
-  return genreType.map((g) => getGenreTypeLabel(g)).join("・");
+const generateTitle = ({
+  genreType,
+  iocomeType,
+}: {
+  genreType: GenreType[];
+  iocomeType: IocomeType[];
+}) => {
+  return genreType
+    .map((g) => getGenreTypeLabel(g))
+    .join("・")
+    .concat(iocomeType.map((t) => getLabel(t)).join("・"));
 };
