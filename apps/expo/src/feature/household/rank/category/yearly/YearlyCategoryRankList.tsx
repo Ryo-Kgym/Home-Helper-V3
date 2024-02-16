@@ -18,14 +18,12 @@ export const YearlyCategoryRankList = ({ year }: { year: Date }) => {
   const { firstDayOfYear, lastDateNotGreaterThanToday } = getYear(
     new Date(filterYear, 0, 1, 9),
   );
-  const { categoryTotal, loading } = useGetCategoryTotal({
+  const { categoryTotal } = useGetCategoryTotal({
     fromDate: firstDayOfYear,
     toDate: lastDateNotGreaterThanToday,
     iocomeType: [iocomeType],
     sort: sortBy.amount.desc,
   });
-
-  if (loading) return <Text>loading...</Text>;
 
   return (
     <>
