@@ -13,6 +13,7 @@ export const useDate = () => {
   const getThisFirstDate = () => {
     const date = getNow();
     date.setDate(1);
+    date.setHours(9);
     return date;
   };
 
@@ -20,6 +21,7 @@ export const useDate = () => {
     const date = getNow();
     date.setMonth(date.getMonth() + 1);
     date.setDate(0);
+    date.setHours(9);
     return date;
   };
 
