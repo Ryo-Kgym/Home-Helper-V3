@@ -7,12 +7,17 @@ export type Feature =
   | "setting"
   | "reload";
 
-export type ArgsType = "year" | "month" | "genreType";
+export type ArgsType = "year" | "month" | "genreType" | "iocomeType";
+
+export type GenreParamType = "FLC" | "FXD" | "ALL";
+
+export type IocomeParamType = "I" | "O" | "IO";
 
 export type ArgsMapType =
   | { type: "year"; value: number }
   | { type: "month"; value: number }
-  | { type: "genreType"; value: GenreParamType };
+  | { type: "genreType"; value: GenreParamType }
+  | { type: "iocomeType"; value: IocomeParamType };
 
 export type SettingProps = {
   id: string;
@@ -20,5 +25,3 @@ export type SettingProps = {
   order: number;
   argsMap: ArgsMapType[];
 };
-
-export type GenreParamType = "FLC" | "FXD" | "ALL";
