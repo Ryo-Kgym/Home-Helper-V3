@@ -1,19 +1,15 @@
 import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
-
-dayjs.extend(timezone);
-dayjs.extend(utc);
-dayjs.tz.setDefault("Asia/Tokyo");
 
 export const useDate = () => {
-  const getNow = () =>
-    new Date(dayjs().tz().format("YYYY-MM-DD HH:mm:ss.SSSSSS"));
+  const getNow = () => {
+    const date = new Date();
+    date.setHours(9);
+    return date;
+  };
 
   const getThisFirstDate = () => {
     const date = getNow();
     date.setDate(1);
-    date.setHours(9);
     return date;
   };
 
@@ -21,16 +17,15 @@ export const useDate = () => {
     const date = getNow();
     date.setMonth(date.getMonth() + 1);
     date.setDate(0);
-    date.setHours(9);
     return date;
   };
 
   const convertToFull = (date: Date) => {
-    return dayjs(date).tz().format("YYYY-MM-DD HH:mm:ss.SSSSSS");
+    return dayjs(date).format("YYYY-MM-DD HH:mm:ss.SSSSSS");
   };
 
   const convertToYmd = (date: Date) => {
-    return dayjs(date).tz().format("YYYY-MM-DD");
+    return dayjs(date).format("YYYY-MM-DD");
   };
 
   /**

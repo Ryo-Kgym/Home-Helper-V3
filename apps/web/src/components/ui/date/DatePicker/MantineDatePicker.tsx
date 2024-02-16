@@ -6,7 +6,7 @@ import "dayjs/locale/ja";
 
 import type { MantineSize } from "@mantine/core";
 import type { DateValue } from "@mantine/dates";
-import { DateInput } from "@mantine/dates";
+import { DateInput, DatesProvider } from "@mantine/dates";
 
 export const MantineDatePicker = ({
   value,
@@ -34,23 +34,31 @@ export const MantineDatePicker = ({
       onChange(value);
     }
   };
-
   return (
-    <DateInput
-      value={new Date(value)}
-      onChange={onChangeHandler}
-      label={label}
-      defaultValue={defaultValue}
-      placeholder={placeholder}
-      withAsterisk={required}
-      size={size}
-      valueFormat="YYYY-MM-DD"
-      monthLabelFormat={"YYYY-MM"}
-      monthsListFormat={"MM"}
-      firstDayOfWeek={0}
-      error={error}
-      disabled={disabled}
-      locale="ja"
-    />
+    <DatesProvider
+      settings={{
+        locale: "ja",
+        firstDayOfWeek: 0,
+        timezone: "Asia/Tokyo",
+      }}
+    >
+      <DateInput
+        value={new Date(value)}
+        onChange={(value) => {
+          console.log(value);
+          onChangeHandler(value);
+        }}
+        label={label}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        withAsterisk={required}
+        size={size}
+        valueFormat="YYYY-MM-DD"
+        monthLabelFormat={"YYYY-MM"}
+        monthsListFormat={"MM"}
+        error={error}
+        disabled={disabled}
+      />
+    </DatesProvider>
   );
 };
