@@ -15,7 +15,7 @@ export const CategoryRankingBox = ({
   genreType: GenreType[];
 }) => {
   const { firstDayOfMonth, lastDayOfMonth, month: monthNum } = getMonth(month);
-  const { categoryTotal, loading } = useGetCategoryTotal({
+  const { categoryTotal, calcTotal } = useGetCategoryTotal({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
     iocomeType: ["OUTCOME"],
@@ -28,30 +28,27 @@ export const CategoryRankingBox = ({
       href={paths.household.categoryRanking({ date: month })}
       size={"50%"}
       scroll={120}
+      footer={
+        <View className={"pt-1"}>
+          <Text className={"text-right text-gray-500"}>
+            合計：{calcTotal().toLocaleString()}
+          </Text>
+        </View>
+      }
     >
-      {loading ? (
-        <Text>Loading...</Text>
-      ) : (
-        <>
-          {categoryTotal
-            .sort((a, b) => b.amount - a.amount)
-            .map((c, i) => (
-              <View key={i} className={"flex-row items-center"}>
-                <Text className={"w-1/12 text-xs"}>{i + 1}</Text>
-                <View
-                  className={"w-11/12 flex-row items-center justify-between"}
-                >
-                  <Text className={"text-md text-gray-500"}>
-                    {c.categoryName}
-                  </Text>
-                  <Text className={"text-right text-lg"}>
-                    {c.amount.toLocaleString()}
-                  </Text>
-                </View>
-              </View>
-            ))}
-        </>
-      )}
+      {categoryTotal
+        .sort((a, b) => b.amount - a.amount)
+        .map((c, i) => (
+          <View key={i} className={"flex-row items-center"}>
+            <Text className={"w-1/12 text-xs"}>{i + 1}</Text>
+            <View className={"w-11/12 flex-row items-center justify-between"}>
+              <Text className={"text-md text-gray-500"}>{c.categoryName}</Text>
+              <Text className={"text-right text-lg"}>
+                {c.amount.toLocaleString()}
+              </Text>
+            </View>
+          </View>
+        ))}
     </DashboardFrame>
   );
 };

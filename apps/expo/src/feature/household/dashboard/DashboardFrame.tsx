@@ -8,12 +8,14 @@ export const DashboardFrame = ({
   href,
   size,
   scroll,
+  footer,
 }: {
   label: string;
   children: ReactNode | ReactNode[];
   href: string;
   size: "100%" | "50%" | "25%";
   scroll?: number;
+  footer?: ReactNode;
 }) =>
   scroll ? (
     <View className={`px-1 py-0.5`} style={{ width: size }}>
@@ -33,6 +35,7 @@ export const DashboardFrame = ({
             <Link href={href as "/"}>{children}</Link>
           </Pressable>
         </ScrollView>
+        {footer}
       </View>
     </View>
   ) : (
@@ -50,5 +53,6 @@ export const DashboardFrame = ({
           {children}
         </View>
       </Link>
+      {footer}
     </Pressable>
   );
