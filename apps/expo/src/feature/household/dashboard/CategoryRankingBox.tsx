@@ -15,7 +15,7 @@ export const CategoryRankingBox = ({
   genreType: GenreType[];
 }) => {
   const { firstDayOfMonth, lastDayOfMonth, month: monthNum } = getMonth(month);
-  const { categoryTotal } = useGetCategoryTotal({
+  const { categoryTotal, calcTotal } = useGetCategoryTotal({
     fromDate: firstDayOfMonth,
     toDate: lastDayOfMonth,
     iocomeType: ["OUTCOME"],
@@ -28,6 +28,13 @@ export const CategoryRankingBox = ({
       href={paths.household.categoryRanking({ date: month })}
       size={"50%"}
       scroll={120}
+      footer={
+        <View className={"pt-1"}>
+          <Text className={"text-right text-gray-500"}>
+            合計：{calcTotal().toLocaleString()}
+          </Text>
+        </View>
+      }
     >
       {categoryTotal
         .sort((a, b) => b.amount - a.amount)
