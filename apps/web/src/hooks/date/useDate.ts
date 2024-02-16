@@ -31,6 +31,10 @@ export const useDate = () => {
     return dayjs(date).tz().format("YYYY-MM-DD");
   };
 
+  /**
+   * @deprecated
+   * @param date
+   */
   const offsetDate = (date: Date) => {
     const offset = date.getTimezoneOffset();
     return new Date(date.getTime() - offset * 60 * 1000);
@@ -42,7 +46,6 @@ export const useDate = () => {
     getThisLastDate,
     convertToFull,
     convertToYmd,
-    // Deprecated
     offsetDate,
   };
 };
