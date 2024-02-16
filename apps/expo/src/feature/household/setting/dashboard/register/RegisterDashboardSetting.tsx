@@ -65,7 +65,7 @@ export const RegisterDashboardSetting = ({
       if (type === "iocomeType") {
         args.push({
           type,
-          value: "IO",
+          value: "O",
         });
       }
     });

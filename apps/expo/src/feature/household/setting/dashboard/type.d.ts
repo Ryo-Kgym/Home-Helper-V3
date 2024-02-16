@@ -11,7 +11,7 @@ export type ArgsType = "year" | "month" | "genreType" | "iocomeType";
 
 export type GenreParamType = "FLC" | "FXD" | "ALL";
 
-export type IocomeParamType = "I" | "O" | "IO";
+export type IocomeParamType = "I" | "O";
 
 export type ArgsMapType =
   | { type: "year"; value: number }
