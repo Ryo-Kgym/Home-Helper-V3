@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useGetDetailsByCategoryQuery } from "@v3/graphql/household";
 
 import type { WithAmountType } from "./total-category";
@@ -23,7 +22,6 @@ export const useGetCategoryTotal = ({
   genreType?: GenreType[];
   sort?: (a: WithAmountType, b: WithAmountType) => number;
 }) => {
-  const [loading, setLoading] = useState(false);
   const { groupId } = useSaveGroupId();
   const [{ data }] = useGetDetailsByCategoryQuery({
     variables: {
@@ -61,16 +59,11 @@ export const useGetCategoryTotal = ({
       d.categoryId !== data?.group?.transfer?.outcomeCategoryId,
   }).sort(sort);
 
-  useEffect(() => {
-    if (!categoryTotal) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, [categoryTotal]);
+  const calcTotal = () =>
+    categoryTotal.reduce((acc, cur) => acc + cur.amount, 0);
 
   return {
     categoryTotal,
-    loading,
+    calcTotal,
   };
 };
