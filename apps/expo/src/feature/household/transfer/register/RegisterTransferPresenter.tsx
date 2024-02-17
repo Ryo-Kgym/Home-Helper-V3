@@ -12,6 +12,7 @@ import {
   EditableAmount,
   EditableDate,
   EditableMemo,
+  RegisterButton,
 } from "~/ui";
 
 type FieldType<T> = {
@@ -74,7 +75,7 @@ export const RegisterTransferPresenter = ({
         </View>
         <View className={"h-16 flex-row justify-between"}>
           <View className={"w-1/2"}>
-            <Button title={"登録"} onPress={registerHandler} />
+            <RegisterButton registerHandler={registerHandler} />
           </View>
           <View className={"w-1/2"}>
             <Button title={"リセット"} onPress={resetHandler} />
