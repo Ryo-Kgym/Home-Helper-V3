@@ -7,7 +7,7 @@ export const HouseholdDashboard = () => {
   const boxNodes = getBoxNodes();
 
   return (
-    <ScrollView className={"pt-1"}>
+    <ScrollView className={"my-2"}>
       <View
         style={{
           flexDirection: "row",
