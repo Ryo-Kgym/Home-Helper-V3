@@ -1,20 +1,19 @@
-import { TextInput } from "react-native";
+import { Text, TextInput } from "react-native";
 
-import type { IocomeType } from "~/types/iocome-type";
 import type { EditableProps } from "~/ui/editable/editable-props";
 import { FiledFrame } from "~/ui/FiledFrame";
-import { Amount } from "../Amount";
 
 export const EditableAmount = ({
   value,
   setValue,
-  iocomeType,
   disabled = false,
   defaultValue,
-}: EditableProps<number | null> & { iocomeType: IocomeType }) => (
+}: EditableProps<number | null>) => (
   <FiledFrame>
     {disabled ? (
-      <Amount amount={value} iocomeType={iocomeType} />
+      <Text className={"text-right text-xl text-gray-400"}>
+        {value?.toLocaleString()}
+      </Text>
     ) : (
       <TextInput
         className={"text-right text-xl"}

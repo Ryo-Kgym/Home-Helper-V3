@@ -88,11 +88,7 @@ export const RegisterDailyPresenter = ({
         </View>
         <View>
           <Text>金額</Text>
-          <EditableAmount
-            value={amount.value}
-            setValue={amount.setValue}
-            iocomeType={iocomeType.value}
-          />
+          <EditableAmount value={amount.value} setValue={amount.setValue} />
         </View>
         <View>
           <Text>メモ</Text>
