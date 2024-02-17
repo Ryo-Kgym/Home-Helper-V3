@@ -1,0 +1,1 @@
+export { RegisterSwitcher } from "./RegisterSwitcher";
