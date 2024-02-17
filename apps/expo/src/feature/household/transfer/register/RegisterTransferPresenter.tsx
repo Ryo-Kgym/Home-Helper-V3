@@ -28,6 +28,7 @@ export const RegisterTransferPresenter = ({
   memo,
   resetHandler,
   registerHandler,
+  registerDisabled,
 }: {
   date: FieldType<Date | undefined>;
   fromAccount: FieldType<string>;
@@ -36,6 +37,7 @@ export const RegisterTransferPresenter = ({
   memo: FieldType<string | null>;
   resetHandler: () => void;
   registerHandler: () => void;
+  registerDisabled: boolean;
 }) => (
   <KeyboardAvoidingView
     behavior={"position"}
@@ -75,7 +77,10 @@ export const RegisterTransferPresenter = ({
         </View>
         <View className={"h-16 flex-row justify-between"}>
           <View className={"w-1/2"}>
-            <RegisterButton registerHandler={registerHandler} />
+            <RegisterButton
+              registerHandler={registerHandler}
+              disabled={registerDisabled}
+            />
           </View>
           <View className={"w-1/2"}>
             <Button title={"リセット"} onPress={resetHandler} />

@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import type { IocomeType } from "~/types/iocome-type";
-import { useRegisterDaily } from "~/hooks/household/daily/useRegisterDaily";
 import { RegisterTransferPresenter } from "./RegisterTransferPresenter";
+import { useRegisterTransfer } from "./useRegisterTransfer";
 
 export const RegisterTransferContainer = ({
   initialDate = new Date(),
@@ -10,19 +9,20 @@ export const RegisterTransferContainer = ({
   initialDate?: Date;
 }) => {
   const [date, setDate] = useState<Date | undefined>(initialDate);
-  const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
-  const [accountId, setAccountId] = useState<string>("");
+  const [fromAccountId, setFromAccountId] = useState<string>("");
+  const [toAccountId, setToAccountId] = useState<string>("");
   const [amount, setAmount] = useState<number | null>(null);
   const [memo, setMemo] = useState<string | null>(null);
 
-  const { registerDaily } = useRegisterDaily();
+  const { registerTransfer } = useRegisterTransfer();
 
-  const registerable = typeof amount === "number";
+  const registerable =
+    typeof amount === "number" && amount > 0 && fromAccountId !== toAccountId;
 
   const resetHandler = () => {
     setDate(initialDate);
-    setIocomeType("INCOME");
-    setAccountId("");
+    setFromAccountId("");
+    setToAccountId("");
     setAmount(null);
     setMemo(null);
   };
@@ -31,12 +31,10 @@ export const RegisterTransferContainer = ({
     if (!registerable) return;
 
     try {
-      await registerDaily({
+      await registerTransfer({
         date: date ?? new Date(),
-        iocomeType,
-        genreId: "genreId",
-        categoryId: "categoryId",
-        accountId,
+        fromAccountId,
+        toAccountId,
         amount,
         memo,
       });
@@ -56,12 +54,12 @@ export const RegisterTransferContainer = ({
         setValue: setDate,
       }}
       fromAccount={{
-        value: accountId,
-        setValue: setAccountId,
+        value: fromAccountId,
+        setValue: setFromAccountId,
       }}
       toAccount={{
-        value: accountId,
-        setValue: setAccountId,
+        value: toAccountId,
+        setValue: setToAccountId,
       }}
       amount={{
         value: amount,
@@ -73,6 +71,7 @@ export const RegisterTransferContainer = ({
       }}
       resetHandler={resetHandler}
       registerHandler={registerHandler}
+      registerDisabled={!registerable}
     />
   );
 };
