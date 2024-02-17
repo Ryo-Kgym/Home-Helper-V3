@@ -3836,6 +3836,321 @@ export type HouseholdDepositCategoryStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["String"]>;
 };
 
+/** columns and relationships of "household.favorite_filter" */
+export type HouseholdFavoriteFilter = {
+  __typename?: "HouseholdFavoriteFilter";
+  /** An array relationship */
+  favoriteFilterArgs: Array<HouseholdFavoriteFilterArgs>;
+  /** An aggregate relationship */
+  favoriteFilterArgsAggregate: HouseholdFavoriteFilterArgsAggregate;
+  /** An object relationship */
+  group: Group;
+  groupId: Scalars["String"];
+  id: Scalars["String"];
+  name: Scalars["String"];
+};
+
+/** columns and relationships of "household.favorite_filter" */
+export type HouseholdFavoriteFilterFavoriteFilterArgsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterArgsOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+};
+
+/** columns and relationships of "household.favorite_filter" */
+export type HouseholdFavoriteFilterFavoriteFilterArgsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterArgsOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+};
+
+/** aggregated selection of "household.favorite_filter" */
+export type HouseholdFavoriteFilterAggregate = {
+  __typename?: "HouseholdFavoriteFilterAggregate";
+  aggregate?: Maybe<HouseholdFavoriteFilterAggregateFields>;
+  nodes: Array<HouseholdFavoriteFilter>;
+};
+
+/** aggregate fields of "household.favorite_filter" */
+export type HouseholdFavoriteFilterAggregateFields = {
+  __typename?: "HouseholdFavoriteFilterAggregateFields";
+  count: Scalars["Int"];
+  max?: Maybe<HouseholdFavoriteFilterMaxFields>;
+  min?: Maybe<HouseholdFavoriteFilterMinFields>;
+};
+
+/** aggregate fields of "household.favorite_filter" */
+export type HouseholdFavoriteFilterAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdFavoriteFilterSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** columns and relationships of "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgs = {
+  __typename?: "HouseholdFavoriteFilterArgs";
+  /** An object relationship */
+  favoriteFilter: HouseholdFavoriteFilter;
+  filterId: Scalars["String"];
+  id: Scalars["String"];
+  type: Scalars["String"];
+  value: Scalars["String"];
+};
+
+/** aggregated selection of "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsAggregate = {
+  __typename?: "HouseholdFavoriteFilterArgsAggregate";
+  aggregate?: Maybe<HouseholdFavoriteFilterArgsAggregateFields>;
+  nodes: Array<HouseholdFavoriteFilterArgs>;
+};
+
+export type HouseholdFavoriteFilterArgsAggregateBoolExp = {
+  count?: InputMaybe<HouseholdFavoriteFilterArgsAggregateBoolExpCount>;
+};
+
+/** aggregate fields of "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsAggregateFields = {
+  __typename?: "HouseholdFavoriteFilterArgsAggregateFields";
+  count: Scalars["Int"];
+  max?: Maybe<HouseholdFavoriteFilterArgsMaxFields>;
+  min?: Maybe<HouseholdFavoriteFilterArgsMinFields>;
+};
+
+/** aggregate fields of "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** order by aggregate values of table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdFavoriteFilterArgsMaxOrderBy>;
+  min?: InputMaybe<HouseholdFavoriteFilterArgsMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsArrRelInsertInput = {
+  data: Array<HouseholdFavoriteFilterArgsInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdFavoriteFilterArgsOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "household.favorite_filter_args". All fields are combined with a logical 'AND'. */
+export type HouseholdFavoriteFilterArgsBoolExp = {
+  _and?: InputMaybe<Array<HouseholdFavoriteFilterArgsBoolExp>>;
+  _not?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+  _or?: InputMaybe<Array<HouseholdFavoriteFilterArgsBoolExp>>;
+  favoriteFilter?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+  filterId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  type?: InputMaybe<StringComparisonExp>;
+  value?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household.favorite_filter_args" */
+export enum HouseholdFavoriteFilterArgsConstraint {
+  /** unique or primary key constraint on columns "id" */
+  FavoriteFilterArgsPkey = "favorite_filter_args_pkey",
+}
+
+/** input type for inserting data into table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsInsertInput = {
+  favoriteFilter?: InputMaybe<HouseholdFavoriteFilterObjRelInsertInput>;
+  filterId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  type?: InputMaybe<Scalars["String"]>;
+  value?: InputMaybe<Scalars["String"]>;
+};
+
+/** aggregate max on columns */
+export type HouseholdFavoriteFilterArgsMaxFields = {
+  __typename?: "HouseholdFavoriteFilterArgsMaxFields";
+  filterId?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["String"]>;
+  type?: Maybe<Scalars["String"]>;
+  value?: Maybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsMaxOrderBy = {
+  filterId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+  value?: InputMaybe<OrderBy>;
+};
+
+/** aggregate min on columns */
+export type HouseholdFavoriteFilterArgsMinFields = {
+  __typename?: "HouseholdFavoriteFilterArgsMinFields";
+  filterId?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["String"]>;
+  type?: Maybe<Scalars["String"]>;
+  value?: Maybe<Scalars["String"]>;
+};
+
+/** order by min() on columns of table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsMinOrderBy = {
+  filterId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+  value?: InputMaybe<OrderBy>;
+};
+
+/** response of any mutation on the table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsMutationResponse = {
+  __typename?: "HouseholdFavoriteFilterArgsMutationResponse";
+  /** number of rows affected by the mutation */
+  affectedRows: Scalars["Int"];
+  /** data from the rows affected by the mutation */
+  returning: Array<HouseholdFavoriteFilterArgs>;
+};
+
+/** on_conflict condition type for table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsOnConflict = {
+  constraint: HouseholdFavoriteFilterArgsConstraint;
+  updateColumns?: Array<HouseholdFavoriteFilterArgsUpdateColumn>;
+  where?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.favorite_filter_args". */
+export type HouseholdFavoriteFilterArgsOrderBy = {
+  favoriteFilter?: InputMaybe<HouseholdFavoriteFilterOrderBy>;
+  filterId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+  value?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "household.favorite_filter_args" */
+export enum HouseholdFavoriteFilterArgsSelectColumn {
+  /** column name */
+  FilterId = "filterId",
+  /** column name */
+  Id = "id",
+  /** column name */
+  Type = "type",
+  /** column name */
+  Value = "value",
+}
+
+/** placeholder for update columns of table "household.favorite_filter_args" (current role has no relevant permissions) */
+export enum HouseholdFavoriteFilterArgsUpdateColumn {
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
+}
+
+/** Boolean expression to filter rows from the table "household.favorite_filter". All fields are combined with a logical 'AND'. */
+export type HouseholdFavoriteFilterBoolExp = {
+  _and?: InputMaybe<Array<HouseholdFavoriteFilterBoolExp>>;
+  _not?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+  _or?: InputMaybe<Array<HouseholdFavoriteFilterBoolExp>>;
+  favoriteFilterArgs?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+  favoriteFilterArgsAggregate?: InputMaybe<HouseholdFavoriteFilterArgsAggregateBoolExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household.favorite_filter" */
+export enum HouseholdFavoriteFilterConstraint {
+  /** unique or primary key constraint on columns "id" */
+  FavoriteFilterPkey = "favorite_filter_pkey",
+}
+
+/** input type for inserting data into table "household.favorite_filter" */
+export type HouseholdFavoriteFilterInsertInput = {
+  favoriteFilterArgs?: InputMaybe<HouseholdFavoriteFilterArgsArrRelInsertInput>;
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
+};
+
+/** aggregate max on columns */
+export type HouseholdFavoriteFilterMaxFields = {
+  __typename?: "HouseholdFavoriteFilterMaxFields";
+  groupId?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars["String"]>;
+};
+
+/** aggregate min on columns */
+export type HouseholdFavoriteFilterMinFields = {
+  __typename?: "HouseholdFavoriteFilterMinFields";
+  groupId?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars["String"]>;
+};
+
+/** response of any mutation on the table "household.favorite_filter" */
+export type HouseholdFavoriteFilterMutationResponse = {
+  __typename?: "HouseholdFavoriteFilterMutationResponse";
+  /** number of rows affected by the mutation */
+  affectedRows: Scalars["Int"];
+  /** data from the rows affected by the mutation */
+  returning: Array<HouseholdFavoriteFilter>;
+};
+
+/** input type for inserting object relation for remote table "household.favorite_filter" */
+export type HouseholdFavoriteFilterObjRelInsertInput = {
+  data: HouseholdFavoriteFilterInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdFavoriteFilterOnConflict>;
+};
+
+/** on_conflict condition type for table "household.favorite_filter" */
+export type HouseholdFavoriteFilterOnConflict = {
+  constraint: HouseholdFavoriteFilterConstraint;
+  updateColumns?: Array<HouseholdFavoriteFilterUpdateColumn>;
+  where?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.favorite_filter". */
+export type HouseholdFavoriteFilterOrderBy = {
+  favoriteFilterArgsAggregate?: InputMaybe<HouseholdFavoriteFilterArgsAggregateOrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: household.favorite_filter */
+export type HouseholdFavoriteFilterPkColumnsInput = {
+  id: Scalars["String"];
+};
+
+/** select columns of table "household.favorite_filter" */
+export enum HouseholdFavoriteFilterSelectColumn {
+  /** column name */
+  GroupId = "groupId",
+  /** column name */
+  Id = "id",
+  /** column name */
+  Name = "name",
+}
+
+/** input type for updating data in table "household.favorite_filter" */
+export type HouseholdFavoriteFilterSetInput = {
+  name?: InputMaybe<Scalars["String"]>;
+};
+
+/** update columns of table "household.favorite_filter" */
+export enum HouseholdFavoriteFilterUpdateColumn {
+  /** column name */
+  Name = "name",
+}
+
+export type HouseholdFavoriteFilterUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdFavoriteFilterSetInput>;
+  /** filter the rows which have to be updated */
+  where: HouseholdFavoriteFilterBoolExp;
+};
+
 /** columns and relationships of "household.genre" */
 export type HouseholdGenre = {
   __typename?: "HouseholdGenre";
@@ -5732,6 +6047,13 @@ export type HouseholdDepositCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type HouseholdFavoriteFilterArgsAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+  predicate: IntComparisonExp;
+};
+
 export type HouseholdGenreAggregateBoolExpBool_And = {
   arguments: HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_AndArgumentsColumns;
   distinct?: InputMaybe<Scalars["Boolean"]>;
@@ -5796,6 +6118,14 @@ export type Mutation_Root = {
   deleteHouseholdDashboardSettingArgsByPk?: Maybe<HouseholdDashboardSettingArgs>;
   /** delete single row from the table: "household.dashboard_setting" */
   deleteHouseholdDashboardSettingByPk?: Maybe<HouseholdDashboardSetting>;
+  /** delete data from the table: "household.favorite_filter" */
+  deleteHouseholdFavoriteFilter?: Maybe<HouseholdFavoriteFilterMutationResponse>;
+  /** delete data from the table: "household.favorite_filter_args" */
+  deleteHouseholdFavoriteFilterArgs?: Maybe<HouseholdFavoriteFilterArgsMutationResponse>;
+  /** delete single row from the table: "household.favorite_filter_args" */
+  deleteHouseholdFavoriteFilterArgsByPk?: Maybe<HouseholdFavoriteFilterArgs>;
+  /** delete single row from the table: "household.favorite_filter" */
+  deleteHouseholdFavoriteFilterByPk?: Maybe<HouseholdFavoriteFilter>;
   /** delete data from the table: "household.summary_category" */
   deleteHouseholdSummaryCategory?: Maybe<HouseholdSummaryCategoryMutationResponse>;
   /** delete single row from the table: "household.summary_category" */
@@ -5832,6 +6162,14 @@ export type Mutation_Root = {
   insertHouseholdDashboardSettingArgsOne?: Maybe<HouseholdDashboardSettingArgs>;
   /** insert a single row into the table: "household.dashboard_setting" */
   insertHouseholdDashboardSettingOne?: Maybe<HouseholdDashboardSetting>;
+  /** insert data into the table: "household.favorite_filter" */
+  insertHouseholdFavoriteFilter?: Maybe<HouseholdFavoriteFilterMutationResponse>;
+  /** insert data into the table: "household.favorite_filter_args" */
+  insertHouseholdFavoriteFilterArgs?: Maybe<HouseholdFavoriteFilterArgsMutationResponse>;
+  /** insert a single row into the table: "household.favorite_filter_args" */
+  insertHouseholdFavoriteFilterArgsOne?: Maybe<HouseholdFavoriteFilterArgs>;
+  /** insert a single row into the table: "household.favorite_filter" */
+  insertHouseholdFavoriteFilterOne?: Maybe<HouseholdFavoriteFilter>;
   /** insert data into the table: "household.genre" */
   insertHouseholdGenre?: Maybe<HouseholdGenreMutationResponse>;
   /** insert a single row into the table: "household.genre" */
@@ -5888,6 +6226,14 @@ export type Mutation_Root = {
   updateHouseholdDashboardSettingMany?: Maybe<
     Array<Maybe<HouseholdDashboardSettingMutationResponse>>
   >;
+  /** update data of the table: "household.favorite_filter" */
+  updateHouseholdFavoriteFilter?: Maybe<HouseholdFavoriteFilterMutationResponse>;
+  /** update single row of the table: "household.favorite_filter" */
+  updateHouseholdFavoriteFilterByPk?: Maybe<HouseholdFavoriteFilter>;
+  /** update multiples rows of table: "household.favorite_filter" */
+  updateHouseholdFavoriteFilterMany?: Maybe<
+    Array<Maybe<HouseholdFavoriteFilterMutationResponse>>
+  >;
   /** update data of the table: "household.genre" */
   updateHouseholdGenre?: Maybe<HouseholdGenreMutationResponse>;
   /** update single row of the table: "household.genre" */
@@ -5925,6 +6271,26 @@ export type Mutation_RootDeleteHouseholdDashboardSettingArgsByPkArgs = {
 
 /** mutation root */
 export type Mutation_RootDeleteHouseholdDashboardSettingByPkArgs = {
+  id: Scalars["String"];
+};
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdFavoriteFilterArgs = {
+  where: HouseholdFavoriteFilterBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdFavoriteFilterArgsArgs = {
+  where: HouseholdFavoriteFilterArgsBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdFavoriteFilterArgsByPkArgs = {
+  id: Scalars["String"];
+};
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdFavoriteFilterByPkArgs = {
   id: Scalars["String"];
 };
 
@@ -6032,6 +6398,30 @@ export type Mutation_RootInsertHouseholdDashboardSettingArgsOneArgs = {
 export type Mutation_RootInsertHouseholdDashboardSettingOneArgs = {
   object: HouseholdDashboardSettingInsertInput;
   onConflict?: InputMaybe<HouseholdDashboardSettingOnConflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdFavoriteFilterArgs = {
+  objects: Array<HouseholdFavoriteFilterInsertInput>;
+  onConflict?: InputMaybe<HouseholdFavoriteFilterOnConflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdFavoriteFilterArgsArgs = {
+  objects: Array<HouseholdFavoriteFilterArgsInsertInput>;
+  onConflict?: InputMaybe<HouseholdFavoriteFilterArgsOnConflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdFavoriteFilterArgsOneArgs = {
+  object: HouseholdFavoriteFilterArgsInsertInput;
+  onConflict?: InputMaybe<HouseholdFavoriteFilterArgsOnConflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdFavoriteFilterOneArgs = {
+  object: HouseholdFavoriteFilterInsertInput;
+  onConflict?: InputMaybe<HouseholdFavoriteFilterOnConflict>;
 };
 
 /** mutation root */
@@ -6178,6 +6568,23 @@ export type Mutation_RootUpdateHouseholdDashboardSettingManyArgs = {
 };
 
 /** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterArgs = {
+  _set?: InputMaybe<HouseholdFavoriteFilterSetInput>;
+  where: HouseholdFavoriteFilterBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterByPkArgs = {
+  _set?: InputMaybe<HouseholdFavoriteFilterSetInput>;
+  pkColumns: HouseholdFavoriteFilterPkColumnsInput;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterManyArgs = {
+  updates: Array<HouseholdFavoriteFilterUpdates>;
+};
+
+/** mutation root */
 export type Mutation_RootUpdateHouseholdGenreArgs = {
   _inc?: InputMaybe<HouseholdGenreIncInput>;
   _set?: InputMaybe<HouseholdGenreSetInput>;
@@ -6288,6 +6695,18 @@ export type Query_Root = {
   householdDepositCategoryAggregate: HouseholdDepositCategoryAggregate;
   /** fetch data from the table: "household.deposit_category" using primary key columns */
   householdDepositCategoryByPk?: Maybe<HouseholdDepositCategory>;
+  /** fetch data from the table: "household.favorite_filter" */
+  householdFavoriteFilter: Array<HouseholdFavoriteFilter>;
+  /** fetch aggregated fields from the table: "household.favorite_filter" */
+  householdFavoriteFilterAggregate: HouseholdFavoriteFilterAggregate;
+  /** fetch data from the table: "household.favorite_filter_args" */
+  householdFavoriteFilterArgs: Array<HouseholdFavoriteFilterArgs>;
+  /** fetch aggregated fields from the table: "household.favorite_filter_args" */
+  householdFavoriteFilterArgsAggregate: HouseholdFavoriteFilterArgsAggregate;
+  /** fetch data from the table: "household.favorite_filter_args" using primary key columns */
+  householdFavoriteFilterArgsByPk?: Maybe<HouseholdFavoriteFilterArgs>;
+  /** fetch data from the table: "household.favorite_filter" using primary key columns */
+  householdFavoriteFilterByPk?: Maybe<HouseholdFavoriteFilter>;
   /** fetch data from the table: "household.genre" */
   householdGenre: Array<HouseholdGenre>;
   /** fetch aggregated fields from the table: "household.genre" */
@@ -6655,6 +7074,46 @@ export type Query_RootHouseholdDepositCategoryByPkArgs = {
   categoryId: Scalars["String"];
 };
 
+export type Query_RootHouseholdFavoriteFilterArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+};
+
+export type Query_RootHouseholdFavoriteFilterAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+};
+
+export type Query_RootHouseholdFavoriteFilterArgsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterArgsOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+};
+
+export type Query_RootHouseholdFavoriteFilterArgsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterArgsOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+};
+
+export type Query_RootHouseholdFavoriteFilterArgsByPkArgs = {
+  id: Scalars["String"];
+};
+
+export type Query_RootHouseholdFavoriteFilterByPkArgs = {
+  id: Scalars["String"];
+};
+
 export type Query_RootHouseholdGenreArgs = {
   distinctOn?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -6909,6 +7368,18 @@ export type Subscription_Root = {
   householdDepositCategoryByPk?: Maybe<HouseholdDepositCategory>;
   /** fetch data from the table in a streaming manner: "household.deposit_category" */
   householdDepositCategoryStream: Array<HouseholdDepositCategory>;
+  /** fetch data from the table: "household.favorite_filter" */
+  householdFavoriteFilter: Array<HouseholdFavoriteFilter>;
+  /** fetch aggregated fields from the table: "household.favorite_filter" */
+  householdFavoriteFilterAggregate: HouseholdFavoriteFilterAggregate;
+  /** fetch data from the table: "household.favorite_filter_args" */
+  householdFavoriteFilterArgs: Array<HouseholdFavoriteFilterArgs>;
+  /** fetch aggregated fields from the table: "household.favorite_filter_args" */
+  householdFavoriteFilterArgsAggregate: HouseholdFavoriteFilterArgsAggregate;
+  /** fetch data from the table: "household.favorite_filter_args" using primary key columns */
+  householdFavoriteFilterArgsByPk?: Maybe<HouseholdFavoriteFilterArgs>;
+  /** fetch data from the table: "household.favorite_filter" using primary key columns */
+  householdFavoriteFilterByPk?: Maybe<HouseholdFavoriteFilter>;
   /** fetch data from the table: "household.genre" */
   householdGenre: Array<HouseholdGenre>;
   /** fetch aggregated fields from the table: "household.genre" */
@@ -7382,6 +7853,46 @@ export type Subscription_RootHouseholdDepositCategoryStreamArgs = {
   batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<HouseholdDepositCategoryStreamCursorInput>>;
   where?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+};
+
+export type Subscription_RootHouseholdFavoriteFilterArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+};
+
+export type Subscription_RootHouseholdFavoriteFilterAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+};
+
+export type Subscription_RootHouseholdFavoriteFilterArgsArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterArgsOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+};
+
+export type Subscription_RootHouseholdFavoriteFilterArgsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<HouseholdFavoriteFilterArgsOrderBy>>;
+  where?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
+};
+
+export type Subscription_RootHouseholdFavoriteFilterArgsByPkArgs = {
+  id: Scalars["String"];
+};
+
+export type Subscription_RootHouseholdFavoriteFilterByPkArgs = {
+  id: Scalars["String"];
 };
 
 export type Subscription_RootHouseholdGenreArgs = {
@@ -8842,6 +9353,25 @@ export type GetDetailsByCategoryQuery = {
       };
     }>;
   } | null;
+};
+
+export type GetFavoriteFiltersQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetFavoriteFiltersQuery = {
+  __typename?: "query_root";
+  filters: Array<{
+    __typename: "HouseholdFavoriteFilter";
+    id: string;
+    name: string;
+    args: Array<{
+      __typename: "HouseholdFavoriteFilterArgs";
+      id: string;
+      type: string;
+      value: string;
+    }>;
+  }>;
 };
 
 export const FragDailyDetailFragmentDoc = gql`
@@ -10649,4 +11179,28 @@ export function useGetDetailsByCategoryQuery(
     GetDetailsByCategoryQuery,
     GetDetailsByCategoryQueryVariables
   >({ query: GetDetailsByCategoryDocument, ...options });
+}
+export const GetFavoriteFiltersDocument = gql`
+  query getFavoriteFilters($groupId: String!) {
+    filters: householdFavoriteFilter(where: { groupId: { _eq: $groupId } }) {
+      __typename
+      id
+      name
+      args: favoriteFilterArgs {
+        __typename
+        id
+        type
+        value
+      }
+    }
+  }
+`;
+
+export function useGetFavoriteFiltersQuery(
+  options: Omit<Urql.UseQueryArgs<GetFavoriteFiltersQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetFavoriteFiltersQuery,
+    GetFavoriteFiltersQueryVariables
+  >({ query: GetFavoriteFiltersDocument, ...options });
 }
