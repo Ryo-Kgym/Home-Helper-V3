@@ -9146,6 +9146,18 @@ export type FragCreditCardDetailFragment = {
   };
 };
 
+export type FragFavoriteFilterFragment = {
+  __typename: "HouseholdFavoriteFilter";
+  id: string;
+  name: string;
+  args: Array<{
+    __typename: "HouseholdFavoriteFilterArgs";
+    id: string;
+    type: string;
+    value: string;
+  }>;
+};
+
 export type GetAccountByIdQueryVariables = Exact<{
   accountId: Scalars["String"];
 }>;
@@ -9355,6 +9367,25 @@ export type GetDetailsByCategoryQuery = {
   } | null;
 };
 
+export type GetFavoriteFilterQueryVariables = Exact<{
+  filterId: Scalars["String"];
+}>;
+
+export type GetFavoriteFilterQuery = {
+  __typename?: "query_root";
+  filter?: {
+    __typename: "HouseholdFavoriteFilter";
+    id: string;
+    name: string;
+    args: Array<{
+      __typename: "HouseholdFavoriteFilterArgs";
+      id: string;
+      type: string;
+      value: string;
+    }>;
+  } | null;
+};
+
 export type GetFavoriteFiltersQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -9418,6 +9449,19 @@ export const FragCreditCardDetailFragmentDoc = gql`
         id
         name
       }
+    }
+  }
+`;
+export const FragFavoriteFilterFragmentDoc = gql`
+  fragment fragFavoriteFilter on HouseholdFavoriteFilter {
+    __typename
+    id
+    name
+    args: favoriteFilterArgs {
+      __typename
+      id
+      type
+      value
     }
   }
 `;
@@ -11180,20 +11224,29 @@ export function useGetDetailsByCategoryQuery(
     GetDetailsByCategoryQueryVariables
   >({ query: GetDetailsByCategoryDocument, ...options });
 }
+export const GetFavoriteFilterDocument = gql`
+  query getFavoriteFilter($filterId: String!) {
+    filter: householdFavoriteFilterByPk(id: $filterId) {
+      ...fragFavoriteFilter
+    }
+  }
+  ${FragFavoriteFilterFragmentDoc}
+`;
+
+export function useGetFavoriteFilterQuery(
+  options: Omit<Urql.UseQueryArgs<GetFavoriteFilterQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetFavoriteFilterQuery, GetFavoriteFilterQueryVariables>(
+    { query: GetFavoriteFilterDocument, ...options },
+  );
+}
 export const GetFavoriteFiltersDocument = gql`
   query getFavoriteFilters($groupId: String!) {
     filters: householdFavoriteFilter(where: { groupId: { _eq: $groupId } }) {
-      __typename
-      id
-      name
-      args: favoriteFilterArgs {
-        __typename
-        id
-        type
-        value
-      }
+      ...fragFavoriteFilter
     }
   }
+  ${FragFavoriteFilterFragmentDoc}
 `;
 
 export function useGetFavoriteFiltersQuery(

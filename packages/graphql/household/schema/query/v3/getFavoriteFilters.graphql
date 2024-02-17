@@ -1,13 +1,5 @@
 query getFavoriteFilters($groupId: String!) {
   filters: householdFavoriteFilter(where: { groupId: { _eq: $groupId } }) {
-    __typename
-    id
-    name
-    args: favoriteFilterArgs {
-      __typename
-      id
-      type
-      value
-    }
+    ...fragFavoriteFilter
   }
 }
