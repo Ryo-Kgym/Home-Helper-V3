@@ -46,7 +46,9 @@ export const CategoryRankingBox = ({
           <View key={i} className={"flex-row items-center"}>
             <Text className={"w-1/12 text-xs"}>{i + 1}</Text>
             <View className={"w-11/12 flex-row items-center justify-between"}>
-              <Text className={"text-md text-gray-500"}>{c.categoryName}</Text>
+              <Text className={"text-md text-gray-500"}>
+                {c.categoryName.slice(0, 7)}
+              </Text>
               <Text className={"text-right text-lg"}>
                 {c.amount.toLocaleString()}
               </Text>

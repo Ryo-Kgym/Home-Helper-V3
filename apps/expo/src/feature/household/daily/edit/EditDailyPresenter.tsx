@@ -106,7 +106,6 @@ export const EditDailyPresenter = ({
           <EditableAmount
             value={amount.value}
             setValue={amount.setValue}
-            iocomeType={iocomeType.value}
             defaultValue={amount.default}
           />
         </View>

@@ -7,15 +7,12 @@ import {
   View,
 } from "react-native";
 
-import type { IocomeType } from "~/types/iocome-type";
 import {
   EditableAccount,
   EditableAmount,
-  EditableCategory,
   EditableDate,
-  EditableGenre,
-  EditableIocomeType,
   EditableMemo,
+  RegisterButton,
 } from "~/ui";
 
 type FieldType<T> = {
@@ -23,26 +20,24 @@ type FieldType<T> = {
   setValue: (value: T) => void;
 };
 
-export const RegisterDailyPresenter = ({
+export const RegisterTransferPresenter = ({
   date,
-  iocomeType,
-  genre,
-  category,
   amount,
-  account,
+  fromAccount,
+  toAccount,
   memo,
   resetHandler,
   registerHandler,
+  registerDisabled,
 }: {
   date: FieldType<Date | undefined>;
-  iocomeType: FieldType<IocomeType>;
-  genre: FieldType<string>;
-  category: FieldType<string>;
-  account: FieldType<string>;
+  fromAccount: FieldType<string>;
+  toAccount: FieldType<string>;
   amount: FieldType<number | null>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
   registerHandler: () => void;
+  registerDisabled: boolean;
 }) => (
   <KeyboardAvoidingView
     behavior={"position"}
@@ -60,31 +55,17 @@ export const RegisterDailyPresenter = ({
           />
         </View>
         <View>
-          <Text>タイプ</Text>
-          <EditableIocomeType
-            value={iocomeType.value}
-            setValue={iocomeType.setValue}
-          />
-        </View>
-        <View>
-          <Text>ジャンル</Text>
-          <EditableGenre
-            value={genre.value}
-            setValue={genre.setValue}
-            iocomeType={iocomeType.value}
-          />
-        </View>
-        <View>
-          <Text>カテゴリ</Text>
-          <EditableCategory
-            value={category.value}
-            setValue={category.setValue}
-            genreId={genre.value}
-          />
-        </View>
-        <View>
           <Text>アカウント</Text>
-          <EditableAccount value={account.value} setValue={account.setValue} />
+          <Text className={"text-sm text-gray-500"}>送信元</Text>
+          <EditableAccount
+            value={fromAccount.value}
+            setValue={fromAccount.setValue}
+          />
+          <Text className={"text-sm text-gray-500"}>送信先</Text>
+          <EditableAccount
+            value={toAccount.value}
+            setValue={toAccount.setValue}
+          />
         </View>
         <View>
           <Text>金額</Text>
@@ -96,7 +77,10 @@ export const RegisterDailyPresenter = ({
         </View>
         <View className={"h-16 flex-row justify-between"}>
           <View className={"w-1/2"}>
-            <Button title={"登録"} onPress={registerHandler} />
+            <RegisterButton
+              registerHandler={registerHandler}
+              disabled={registerDisabled}
+            />
           </View>
           <View className={"w-1/2"}>
             <Button title={"リセット"} onPress={resetHandler} />
