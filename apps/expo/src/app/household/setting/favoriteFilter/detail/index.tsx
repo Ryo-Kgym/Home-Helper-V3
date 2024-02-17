@@ -9,7 +9,7 @@ const Page = () => {
     <View>
       <Stack.Screen options={{ title: name as string }} />
       <View className={"w-full"}>
-        <FavoriteFilterDetail id={id as string} />
+        <FavoriteFilterDetail filterId={id as string} />
       </View>
     </View>
   );
