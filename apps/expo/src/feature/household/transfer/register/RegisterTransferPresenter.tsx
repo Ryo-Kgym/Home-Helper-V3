@@ -7,7 +7,6 @@ import {
   View,
 } from "react-native";
 
-import type { IocomeType } from "~/types/iocome-type";
 import {
   EditableAccount,
   EditableAmount,
@@ -22,7 +21,6 @@ type FieldType<T> = {
 
 export const RegisterTransferPresenter = ({
   date,
-  iocomeType,
   amount,
   account,
   memo,
@@ -30,7 +28,6 @@ export const RegisterTransferPresenter = ({
   registerHandler,
 }: {
   date: FieldType<Date | undefined>;
-  iocomeType: FieldType<IocomeType>;
   account: FieldType<string>;
   amount: FieldType<number | null>;
   memo: FieldType<string | null>;

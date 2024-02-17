@@ -55,10 +55,6 @@ export const RegisterTransferContainer = ({
         value: date,
         setValue: setDate,
       }}
-      iocomeType={{
-        value: iocomeType,
-        setValue: setIocomeType,
-      }}
       account={{
         value: accountId,
         setValue: setAccountId,
