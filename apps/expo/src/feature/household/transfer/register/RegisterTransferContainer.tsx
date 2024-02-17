@@ -55,7 +55,11 @@ export const RegisterTransferContainer = ({
         value: date,
         setValue: setDate,
       }}
-      account={{
+      fromAccount={{
+        value: accountId,
+        setValue: setAccountId,
+      }}
+      toAccount={{
         value: accountId,
         setValue: setAccountId,
       }}

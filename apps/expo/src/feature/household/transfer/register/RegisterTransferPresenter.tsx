@@ -22,13 +22,15 @@ type FieldType<T> = {
 export const RegisterTransferPresenter = ({
   date,
   amount,
-  account,
+  fromAccount,
+  toAccount,
   memo,
   resetHandler,
   registerHandler,
 }: {
   date: FieldType<Date | undefined>;
-  account: FieldType<string>;
+  fromAccount: FieldType<string>;
+  toAccount: FieldType<string>;
   amount: FieldType<number | null>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
@@ -51,7 +53,16 @@ export const RegisterTransferPresenter = ({
         </View>
         <View>
           <Text>アカウント</Text>
-          <EditableAccount value={account.value} setValue={account.setValue} />
+          <Text className={"text-sm text-gray-500"}>送信元</Text>
+          <EditableAccount
+            value={fromAccount.value}
+            setValue={fromAccount.setValue}
+          />
+          <Text className={"text-sm text-gray-500"}>送信先</Text>
+          <EditableAccount
+            value={toAccount.value}
+            setValue={toAccount.setValue}
+          />
         </View>
         <View>
           <Text>金額</Text>
