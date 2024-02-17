@@ -36,6 +36,7 @@ export const paths = {
       dashboard: "/household/setting/dashboard" as "/",
       dashboardEdit: ({ id }: { id: string }) =>
         `/household/setting/dashboard/edit/${id}` as "/",
+      favoriteFilter: "/household/setting/favoriteFilter" as "/",
     },
   },
 } as const;
