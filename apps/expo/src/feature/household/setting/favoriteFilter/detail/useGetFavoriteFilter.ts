@@ -32,16 +32,15 @@ export const useGetFavoriteFilter = (filterId: string) => {
     return value;
   };
 
-  const getFavoriteFilterArgs = () => {
-    return favoriteFilterArgs.map((a) => ({
+  const getFavoriteFilterArgs = () =>
+    favoriteFilterArgs.map((a) => ({
       id: a.id,
       key: a.key,
-      value: convertValue({
+      label: convertValue({
         key: a.key,
         value: a.value,
       }),
     }));
-  };
 
   useEffect(() => {
     setCategoryIds(

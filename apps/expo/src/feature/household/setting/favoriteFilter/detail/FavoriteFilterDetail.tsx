@@ -30,7 +30,7 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
               }}
             >
               <Text className={"text-gray-500"}>{item.key}</Text>
-              <Text className={"text-right"}>{item.value}</Text>
+              <Text className={"text-right"}>{item.label}</Text>
             </View>
           </Pressable>
         )}
