@@ -21,7 +21,7 @@ export const FavoriteFilterList = () => {
     <View>
       <FlatList
         data={favoriteFilters}
-        keyExtractor={({ id }) => id as string}
+        keyExtractor={({ id }) => id}
         renderItem={({ item }) => (
           <Pressable
             style={{

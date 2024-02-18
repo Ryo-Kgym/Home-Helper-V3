@@ -29,7 +29,7 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
                 alignItems: "center",
               }}
             >
-              <Text className={"text-xl text-gray-500"}>{item.type}</Text>
+              <Text className={"text-gray-500"}>{item.key}</Text>
               <Text className={"text-right"}>{item.value}</Text>
             </View>
           </Pressable>
