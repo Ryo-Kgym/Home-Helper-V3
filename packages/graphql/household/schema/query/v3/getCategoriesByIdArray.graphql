@@ -2,5 +2,9 @@ query getCategoriesByIdArray($categoryIds: [String!]!) {
   categories: householdCategory(where: { id: { _in: $categoryIds } }) {
     id
     name
+    genre {
+      id
+      name
+    }
   }
 }

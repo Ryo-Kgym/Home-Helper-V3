@@ -5,8 +5,10 @@ export const useConvertCategoryId = (categoryIds: string[]) => {
     variables: { categoryIds },
   });
 
-  const convert = (value: string) =>
-    categoryData?.categories.find((c) => c.id === value)?.name as string;
+  const convert = (value: string) => {
+    const category = categoryData?.categories.find((c) => c.id === value);
+    return category?.genre.name + " - " + category?.name;
+  };
 
   return { convert };
 };

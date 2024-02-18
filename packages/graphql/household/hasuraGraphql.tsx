@@ -9181,6 +9181,7 @@ export type GetCategoriesByIdArrayQuery = {
     __typename?: "HouseholdCategory";
     id: string;
     name: string;
+    genre: { __typename?: "HouseholdGenre"; id: string; name: string };
   }>;
 };
 
@@ -11018,6 +11019,10 @@ export const GetCategoriesByIdArrayDocument = gql`
     categories: householdCategory(where: { id: { _in: $categoryIds } }) {
       id
       name
+      genre {
+        id
+        name
+      }
     }
   }
 `;
