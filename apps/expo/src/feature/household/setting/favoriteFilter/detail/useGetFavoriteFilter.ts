@@ -14,25 +14,25 @@ export const useGetFavoriteFilter = (filterId: string) => {
     variables: { categoryIds },
   });
 
-  const favoriteFilterArgs =
-    data?.filter?.args.map((a) => ({
-      id: a.id,
-      type: a.type,
-      value: a.value,
-    })) ?? [];
+  const favoriteFilterArgs = data?.filter?.args.map((a) => a) ?? [];
+
+  const convertValue = ({ type, value }: { type: string; value: string }) => {
+    if (type === "categoryId") {
+      return categoryData?.categories.find((c) => c.id === value)
+        ?.name as string;
+    }
+    return value;
+  };
 
   const getFavoriteFilterArgs = () => {
-    return favoriteFilterArgs.map((a) => {
-      if (a.type === "categoryId") {
-        return {
-          id: a.id,
-          type: a.type,
-          value: categoryData?.categories.find((c) => c.id === a.value)
-            ?.name as string,
-        };
-      }
-      return a;
-    });
+    return favoriteFilterArgs.map((a) => ({
+      id: a.id,
+      type: a.type,
+      value: convertValue({
+        type: a.type,
+        value: a.value,
+      }),
+    }));
   };
 
   useEffect(() => {
