@@ -27,7 +27,13 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
               paddingRight: 10,
             }}
           >
-            <View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <Text className={"text-xl text-gray-500"}>{item.type}</Text>
               <Text className={"text-right"}>{item.value}</Text>
             </View>
