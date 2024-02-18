@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import {
-  useGetCategoriesByIdArrayQuery,
-  useGetFavoriteFilterQuery,
-} from "@v3/graphql/household";
+import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
+
+import { useConvertCategoryId } from "~/feature/household/setting/favoriteFilter/detail/useConvertCategoryId";
 
 export const useGetFavoriteFilter = (filterId: string) => {
   const [categoryIds, setCategoryIds] = useState<string[]>([]);
@@ -10,16 +9,13 @@ export const useGetFavoriteFilter = (filterId: string) => {
   const [{ data, fetching }] = useGetFavoriteFilterQuery({
     variables: { filterId },
   });
-  const [{ data: categoryData }] = useGetCategoriesByIdArrayQuery({
-    variables: { categoryIds },
-  });
+  const { convert: convertCategoryIdFrom } = useConvertCategoryId(categoryIds);
 
   const favoriteFilterArgs = data?.filter?.args.map((a) => a) ?? [];
 
   const convertValue = ({ type, value }: { type: string; value: string }) => {
     if (type === "categoryId") {
-      return categoryData?.categories.find((c) => c.id === value)
-        ?.name as string;
+      return convertCategoryIdFrom(value);
     }
     return value;
   };
