@@ -3,12 +3,12 @@ import { FlatList, Pressable, Text, View } from "react-native";
 import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
 
 export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
-  const { favoriteFilterArgs } = useGetFavoriteFilter(filterId);
+  const { getFavoriteFilterArgs } = useGetFavoriteFilter(filterId);
 
   return (
     <View>
       <FlatList
-        data={favoriteFilterArgs}
+        data={getFavoriteFilterArgs()}
         keyExtractor={({ id }) => id}
         renderItem={({ item }) => (
           <Pressable
