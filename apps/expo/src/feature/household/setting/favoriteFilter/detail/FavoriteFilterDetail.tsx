@@ -1,19 +1,14 @@
 import { FlatList, Pressable, Text, View } from "react-native";
-import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
+
+import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
 
 export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
-  const [{ data }] = useGetFavoriteFilterQuery({ variables: { filterId } });
-  const args =
-    data?.filter?.args.map((a) => ({
-      id: a.id,
-      type: a.type,
-      value: a.value,
-    })) ?? [];
+  const { favoriteFilterArgs } = useGetFavoriteFilter(filterId);
 
   return (
     <View>
       <FlatList
-        data={args}
+        data={favoriteFilterArgs}
         keyExtractor={({ id }) => id}
         renderItem={({ item }) => (
           <Pressable
