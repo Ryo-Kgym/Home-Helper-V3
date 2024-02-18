@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
 
+import { Modal, RegisterButton } from "~/ui";
+import { AddFavoriteFilterArg } from "../add/AddFavoriteFilterArg";
 import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
 
 export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
   const { getFavoriteFilterArgs } = useGetFavoriteFilter(filterId);
+
+  const [addVisible, setAddVisible] = useState(false);
 
   return (
     <View>
@@ -35,6 +40,10 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
           </Pressable>
         )}
       />
+      <RegisterButton registerHandler={() => setAddVisible(true)} />
+      <Modal visible={addVisible} setVisible={setAddVisible}>
+        <AddFavoriteFilterArg filterId={filterId} />
+      </Modal>
     </View>
   );
 };
