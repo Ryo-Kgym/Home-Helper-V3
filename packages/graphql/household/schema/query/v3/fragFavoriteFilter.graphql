@@ -5,7 +5,7 @@ fragment fragFavoriteFilter on HouseholdFavoriteFilter {
   args: favoriteFilterArgs {
     __typename
     id
-    type
+    key
     value
   }
 }

@@ -15,7 +15,7 @@ export const useGetFavoriteFilter = (filterId: string) => {
   const favoriteFilterArgs =
     data?.filter?.args.map((a) => ({
       id: a.id,
-      key: a.type as FavoriteFilterKey,
+      key: a.key as FavoriteFilterKey,
       value: a.value,
     })) ?? [];
 

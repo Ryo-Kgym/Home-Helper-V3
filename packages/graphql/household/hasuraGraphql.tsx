@@ -3896,7 +3896,7 @@ export type HouseholdFavoriteFilterArgs = {
   favoriteFilter: HouseholdFavoriteFilter;
   filterId: Scalars["String"];
   id: Scalars["String"];
-  type: Scalars["String"];
+  key: Scalars["String"];
   value: Scalars["String"];
 };
 
@@ -3947,7 +3947,7 @@ export type HouseholdFavoriteFilterArgsBoolExp = {
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
   filterId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
-  type?: InputMaybe<StringComparisonExp>;
+  key?: InputMaybe<StringComparisonExp>;
   value?: InputMaybe<StringComparisonExp>;
 };
 
@@ -3962,7 +3962,7 @@ export type HouseholdFavoriteFilterArgsInsertInput = {
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterObjRelInsertInput>;
   filterId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
-  type?: InputMaybe<Scalars["String"]>;
+  key?: InputMaybe<Scalars["String"]>;
   value?: InputMaybe<Scalars["String"]>;
 };
 
@@ -3971,7 +3971,7 @@ export type HouseholdFavoriteFilterArgsMaxFields = {
   __typename?: "HouseholdFavoriteFilterArgsMaxFields";
   filterId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
-  type?: Maybe<Scalars["String"]>;
+  key?: Maybe<Scalars["String"]>;
   value?: Maybe<Scalars["String"]>;
 };
 
@@ -3979,7 +3979,7 @@ export type HouseholdFavoriteFilterArgsMaxFields = {
 export type HouseholdFavoriteFilterArgsMaxOrderBy = {
   filterId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
-  type?: InputMaybe<OrderBy>;
+  key?: InputMaybe<OrderBy>;
   value?: InputMaybe<OrderBy>;
 };
 
@@ -3988,7 +3988,7 @@ export type HouseholdFavoriteFilterArgsMinFields = {
   __typename?: "HouseholdFavoriteFilterArgsMinFields";
   filterId?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
-  type?: Maybe<Scalars["String"]>;
+  key?: Maybe<Scalars["String"]>;
   value?: Maybe<Scalars["String"]>;
 };
 
@@ -3996,7 +3996,7 @@ export type HouseholdFavoriteFilterArgsMinFields = {
 export type HouseholdFavoriteFilterArgsMinOrderBy = {
   filterId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
-  type?: InputMaybe<OrderBy>;
+  key?: InputMaybe<OrderBy>;
   value?: InputMaybe<OrderBy>;
 };
 
@@ -4021,7 +4021,7 @@ export type HouseholdFavoriteFilterArgsOrderBy = {
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterOrderBy>;
   filterId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
-  type?: InputMaybe<OrderBy>;
+  key?: InputMaybe<OrderBy>;
   value?: InputMaybe<OrderBy>;
 };
 
@@ -4032,7 +4032,7 @@ export enum HouseholdFavoriteFilterArgsSelectColumn {
   /** column name */
   Id = "id",
   /** column name */
-  Type = "type",
+  Key = "key",
   /** column name */
   Value = "value",
 }
@@ -9153,7 +9153,7 @@ export type FragFavoriteFilterFragment = {
   args: Array<{
     __typename: "HouseholdFavoriteFilterArgs";
     id: string;
-    type: string;
+    key: string;
     value: string;
   }>;
 };
@@ -9393,7 +9393,7 @@ export type GetFavoriteFilterQuery = {
     args: Array<{
       __typename: "HouseholdFavoriteFilterArgs";
       id: string;
-      type: string;
+      key: string;
       value: string;
     }>;
   } | null;
@@ -9412,7 +9412,7 @@ export type GetFavoriteFiltersQuery = {
     args: Array<{
       __typename: "HouseholdFavoriteFilterArgs";
       id: string;
-      type: string;
+      key: string;
       value: string;
     }>;
   }>;
@@ -9473,7 +9473,7 @@ export const FragFavoriteFilterFragmentDoc = gql`
     args: favoriteFilterArgs {
       __typename
       id
-      type
+      key
       value
     }
   }

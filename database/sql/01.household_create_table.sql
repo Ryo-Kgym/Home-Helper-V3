@@ -25,6 +25,6 @@ create table household.favorite_filter(
 create table household.favorite_filter_args(
     id varchar(26) not null primary key,
     filter_id varchar(26) not null references household.favorite_filter(id),
-    type varchar(32) not null,
+    key varchar(32) not null,
     value varchar(32) not null
 );
