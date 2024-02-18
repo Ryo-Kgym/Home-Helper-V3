@@ -1,4 +1,4 @@
-export const favoriteFilterKeyArray = {
+export const favoriteFilterArgKeyArray = {
   categoryId: {
     label: "カテゴリ",
   },
@@ -7,4 +7,4 @@ export const favoriteFilterKeyArray = {
   },
 };
 
-export type FavoriteFilterKey = keyof typeof favoriteFilterKeyArray;
+export type FavoriteFilterArgKey = keyof typeof favoriteFilterArgKeyArray;

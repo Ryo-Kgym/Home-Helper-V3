@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
 
-import type { FavoriteFilterKey } from "../favorite-filter-type";
+import type { FavoriteFilterArgKey } from "../favorite-filter-type";
 import { useConvertCategoryId } from "./useConvertCategoryId";
 
 export const useGetFavoriteFilter = (filterId: string) => {
@@ -15,7 +15,7 @@ export const useGetFavoriteFilter = (filterId: string) => {
   const favoriteFilterArgs =
     data?.filter?.args.map((a) => ({
       id: a.id,
-      key: a.key as FavoriteFilterKey,
+      key: a.key as FavoriteFilterArgKey,
       value: a.value,
     })) ?? [];
 
@@ -23,7 +23,7 @@ export const useGetFavoriteFilter = (filterId: string) => {
     key,
     value,
   }: {
-    key: FavoriteFilterKey;
+    key: FavoriteFilterArgKey;
     value: string;
   }) => {
     if (key === "categoryId") {
