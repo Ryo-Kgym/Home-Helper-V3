@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
 
-import { useConvertCategoryId } from "~/feature/household/setting/favoriteFilter/detail/useConvertCategoryId";
+import type { FavoriteFilterKey } from "../favorite-filter-type";
+import { useConvertCategoryId } from "./useConvertCategoryId";
 
 export const useGetFavoriteFilter = (filterId: string) => {
   const [categoryIds, setCategoryIds] = useState<string[]>([]);
@@ -11,10 +12,21 @@ export const useGetFavoriteFilter = (filterId: string) => {
   });
   const { convert: convertCategoryIdFrom } = useConvertCategoryId(categoryIds);
 
-  const favoriteFilterArgs = data?.filter?.args.map((a) => a) ?? [];
+  const favoriteFilterArgs =
+    data?.filter?.args.map((a) => ({
+      id: a.id,
+      key: a.type as FavoriteFilterKey,
+      value: a.value,
+    })) ?? [];
 
-  const convertValue = ({ type, value }: { type: string; value: string }) => {
-    if (type === "categoryId") {
+  const convertValue = ({
+    key,
+    value,
+  }: {
+    key: FavoriteFilterKey;
+    value: string;
+  }) => {
+    if (key === "categoryId") {
       return convertCategoryIdFrom(value);
     }
     return value;
@@ -23,9 +35,9 @@ export const useGetFavoriteFilter = (filterId: string) => {
   const getFavoriteFilterArgs = () => {
     return favoriteFilterArgs.map((a) => ({
       id: a.id,
-      type: a.type,
+      key: a.key,
       value: convertValue({
-        type: a.type,
+        key: a.key,
         value: a.value,
       }),
     }));
@@ -34,7 +46,7 @@ export const useGetFavoriteFilter = (filterId: string) => {
   useEffect(() => {
     setCategoryIds(
       favoriteFilterArgs
-        .filter((a) => a.type === "categoryId")
+        .filter((a) => a.key === "categoryId")
         .map((a) => a.value),
     );
   }, [fetching]);
