@@ -9,19 +9,13 @@ export const useRegisterFavoriteFilter = () => {
   const [, insertMutation] = useInsertFavoriteFilterMutation();
 
   const registerFavoriteFilter = async ({ name }: { name: string }) => {
-    try {
-      const { error } = await insertMutation({
-        filterId: generateId(),
-        groupId,
-        name,
-      });
-      if (error) {
-        throw error;
-      }
-      alert("登録しました");
-    } catch (e) {
-      console.error(e);
-      alert("登録に失敗しました");
+    const { error } = await insertMutation({
+      filterId: generateId(),
+      groupId,
+      name,
+    });
+    if (error) {
+      throw error;
     }
   };
 
