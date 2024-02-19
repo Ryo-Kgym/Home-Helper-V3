@@ -1,13 +1,19 @@
 export type Feature =
   | "register"
   | "balance"
+  | "favoriteFilter"
   | "yearly"
   | "monthly"
   | "monthlyCategory"
   | "setting"
   | "reload";
 
-export type ArgsType = "year" | "month" | "genreType" | "iocomeType";
+export type ArgsType =
+  | "year"
+  | "month"
+  | "genreType"
+  | "iocomeType"
+  | "filterId";
 
 export type GenreParamType = "FLC" | "FXD" | "ALL";
 
@@ -17,7 +23,8 @@ export type ArgsMapType =
   | { type: "year"; value: number }
   | { type: "month"; value: number }
   | { type: "genreType"; value: GenreParamType }
-  | { type: "iocomeType"; value: IocomeParamType };
+  | { type: "iocomeType"; value: IocomeParamType }
+  | { type: "filterId"; value: string };
 
 export type SettingProps = {
   id: string;

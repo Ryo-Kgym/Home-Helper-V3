@@ -64,4 +64,7 @@ const pickerSetting: Record<
       { label: "収入・支出", value: "ALL" },
     ],
   },
+  filterId: {
+    data: [],
+  },
 };

@@ -1,6 +1,7 @@
 import type { ArgsType, Feature } from "./type";
 import { BalanceBox } from "~/feature/household/dashboard/BalanceBox";
 import { CategoryRankingBox } from "~/feature/household/dashboard/CategoryRankingBox";
+import { FavoriteFilterBox } from "~/feature/household/dashboard/FavoriteFilterBox";
 import { MonthlyBox } from "~/feature/household/dashboard/MonthlyBox";
 import { RegisterBox } from "~/feature/household/dashboard/RegisterBox";
 import { ReloadBox } from "~/feature/household/dashboard/ReloadBox";
@@ -19,6 +20,7 @@ export const featureSetting: {
     argsTypes: [],
   },
   balance: { component: BalanceBox, argsTypes: [] },
+  favoriteFilter: { component: FavoriteFilterBox, argsTypes: ["filterId"] },
   yearly: { component: YearlyBox, argsTypes: ["year"] },
   monthly: { component: MonthlyBox, argsTypes: ["month"] },
   monthlyCategory: {
