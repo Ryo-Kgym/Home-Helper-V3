@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
 
+import { AddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/addArg/AddFavoriteFilterArg";
 import { Modal, RegisterButton } from "~/ui";
-import { AddFavoriteFilterArg } from "../add/AddFavoriteFilterArg";
 import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
 
 export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Text, View } from "react-native";
 
 import type { FavoriteFilterArgKey } from "../favorite-filter-type";
-import { useAddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/add/useAddFavoriteFilterArg";
+import { useAddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/addArg/useAddFavoriteFilterArg";
 import { RegisterButton } from "~/ui";
 import { FavoriteFilterArgKeyPicker, FavoriteFilterArgValueInput } from "../ui";
 
