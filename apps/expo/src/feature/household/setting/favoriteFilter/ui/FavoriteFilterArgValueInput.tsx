@@ -1,6 +1,5 @@
-import { Text } from "react-native";
-
 import type { FavoriteFilterArgKey } from "../favorite-filter-type";
+import { CategoryIdInput, YearInput } from "./_input";
 
 export const FavoriteFilterArgValueInput = ({
   argKey,
@@ -8,22 +7,26 @@ export const FavoriteFilterArgValueInput = ({
   setValue,
 }: {
   argKey: FavoriteFilterArgKey;
-  value: string;
-  setValue: (value: string) => void;
-}) => inputMap[argKey].Component({ value, setValue });
+} & FavoriteFilterArgValueInputProps) =>
+  inputMap[argKey].Component({ value, setValue });
 
 const inputMap: {
   [key in FavoriteFilterArgKey]: {
-    Component: React.FC<{
-      value: string;
-      setValue: (value: string) => void;
-    }>;
+    Component: FavoriteFilterArgValueInputComponent;
   };
 } = {
   categoryId: {
-    Component: () => <Text>categoryId</Text>,
+    Component: CategoryIdInput,
   },
   year: {
-    Component: () => <Text>year</Text>,
+    Component: YearInput,
   },
 };
+
+export type FavoriteFilterArgValueInputProps = {
+  value: string;
+  setValue: (value: string) => void;
+};
+
+export type FavoriteFilterArgValueInputComponent =
+  React.FC<FavoriteFilterArgValueInputProps>;
