@@ -8370,6 +8370,20 @@ export type InsertDashboardSettingArgsMutation = {
   } | null;
 };
 
+export type InsertFavoriteFilterMutationVariables = Exact<{
+  filterId: Scalars["String"];
+  name: Scalars["String"];
+  groupId: Scalars["String"];
+}>;
+
+export type InsertFavoriteFilterMutation = {
+  __typename?: "mutation_root";
+  insertHouseholdFavoriteFilterOne?: {
+    __typename?: "HouseholdFavoriteFilter";
+    id: string;
+  } | null;
+};
+
 export type InsertFavoriteFilterArgMutationVariables = Exact<{
   argId: Scalars["String"];
   filterId: Scalars["String"];
@@ -10006,6 +10020,26 @@ export function useInsertDashboardSettingArgsMutation() {
     InsertDashboardSettingArgsMutation,
     InsertDashboardSettingArgsMutationVariables
   >(InsertDashboardSettingArgsDocument);
+}
+export const InsertFavoriteFilterDocument = gql`
+  mutation insertFavoriteFilter(
+    $filterId: String!
+    $name: String!
+    $groupId: String!
+  ) {
+    insertHouseholdFavoriteFilterOne(
+      object: { id: $filterId, name: $name, groupId: $groupId }
+    ) {
+      id
+    }
+  }
+`;
+
+export function useInsertFavoriteFilterMutation() {
+  return Urql.useMutation<
+    InsertFavoriteFilterMutation,
+    InsertFavoriteFilterMutationVariables
+  >(InsertFavoriteFilterDocument);
 }
 export const InsertFavoriteFilterArgDocument = gql`
   mutation insertFavoriteFilterArg(
