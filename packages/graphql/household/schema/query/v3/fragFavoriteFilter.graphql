@@ -1,0 +1,11 @@
+fragment fragFavoriteFilter on HouseholdFavoriteFilter {
+  __typename
+  id
+  name
+  args: favoriteFilterArgs {
+    __typename
+    id
+    key
+    value
+  }
+}

@@ -1,0 +1,5 @@
+query getFavoriteFilter($filterId: String!) {
+  filter: householdFavoriteFilterByPk(id: $filterId) {
+    ...fragFavoriteFilter
+  }
+}

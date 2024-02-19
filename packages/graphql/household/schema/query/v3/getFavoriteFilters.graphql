@@ -1,0 +1,5 @@
+query getFavoriteFilters($groupId: String!) {
+  filters: householdFavoriteFilter(where: { groupId: { _eq: $groupId } }) {
+    ...fragFavoriteFilter
+  }
+}

@@ -1,0 +1,13 @@
+mutation insertFavoriteFilterArg(
+  $argId: String!
+  $filterId: String!
+  $key: String!
+  $value: String!
+) {
+  insertArg: insertHouseholdFavoriteFilterArgsOne(
+    object: { id: $argId, filterId: $filterId, key: $key, value: $value }
+  ) {
+    id
+    __typename
+  }
+}

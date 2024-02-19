@@ -10,6 +10,10 @@ export const Setting = () => {
       href: paths.household.setting.dashboard,
       label: "ダッシュボード",
     },
+    {
+      href: paths.household.setting.favoriteFilter,
+      label: "お気に入り条件",
+    },
   ];
 
   return (
