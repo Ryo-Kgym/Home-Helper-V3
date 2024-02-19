@@ -8370,6 +8370,18 @@ export type InsertDashboardSettingArgsMutation = {
   } | null;
 };
 
+export type InsertFavoriteFilterArgMutationVariables = Exact<{
+  argId: Scalars["String"];
+  filterId: Scalars["String"];
+  key: Scalars["String"];
+  value: Scalars["String"];
+}>;
+
+export type InsertFavoriteFilterArgMutation = {
+  __typename?: "mutation_root";
+  insertArg?: { __typename: "HouseholdFavoriteFilterArgs"; id: string } | null;
+};
+
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   genreId: Scalars["String"];
@@ -9994,6 +10006,28 @@ export function useInsertDashboardSettingArgsMutation() {
     InsertDashboardSettingArgsMutation,
     InsertDashboardSettingArgsMutationVariables
   >(InsertDashboardSettingArgsDocument);
+}
+export const InsertFavoriteFilterArgDocument = gql`
+  mutation insertFavoriteFilterArg(
+    $argId: String!
+    $filterId: String!
+    $key: String!
+    $value: String!
+  ) {
+    insertArg: insertHouseholdFavoriteFilterArgsOne(
+      object: { id: $argId, filterId: $filterId, key: $key, value: $value }
+    ) {
+      id
+      __typename
+    }
+  }
+`;
+
+export function useInsertFavoriteFilterArgMutation() {
+  return Urql.useMutation<
+    InsertFavoriteFilterArgMutation,
+    InsertFavoriteFilterArgMutationVariables
+  >(InsertFavoriteFilterArgDocument);
 }
 export const UpdateCreditCardDetailByIdDocument = gql`
   mutation updateCreditCardDetailById(

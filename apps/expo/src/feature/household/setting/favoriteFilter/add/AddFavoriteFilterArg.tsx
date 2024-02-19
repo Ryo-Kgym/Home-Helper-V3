@@ -2,14 +2,27 @@ import { useState } from "react";
 import { Text, View } from "react-native";
 
 import type { FavoriteFilterArgKey } from "../favorite-filter-type";
+import { useAddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/add/useAddFavoriteFilterArg";
 import { RegisterButton } from "~/ui";
 import { FavoriteFilterArgKeyPicker, FavoriteFilterArgValueInput } from "../ui";
 
 export const AddFavoriteFilterArg = ({ filterId }: { filterId: string }) => {
-  filterId;
   const [key, setKey] = useState<FavoriteFilterArgKey>("categoryId");
   const [value, setValue] = useState<string>("");
-  const addHandler = () => undefined;
+  const { addFavoriteFilterArg } = useAddFavoriteFilterArg();
+  const addHandler = async () => {
+    try {
+      await addFavoriteFilterArg({
+        filterId,
+        key,
+        value,
+      });
+      alert("登録しました");
+    } catch (e) {
+      console.error(e);
+      alert("登録に失敗しました");
+    }
+  };
 
   return (
     <View>
