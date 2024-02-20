@@ -1,3 +1,4 @@
+import type { GetFavoriteFilterQuery } from "@v3/graphql/household";
 import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
 
 export const useGetFavoriteFilter = (filterId: string) => {
@@ -6,23 +7,37 @@ export const useGetFavoriteFilter = (filterId: string) => {
   });
 
   const getFilter = (): FavoriteFilter => {
-    const categoryIdList =
-      data?.filter?.args
-        .filter((f) => f.key === "categoryId")
-        .map((f) => f.value) ?? [];
+    const categoryIdList = generateCategoryIdList(data);
 
     return {
       categoryIdList,
-      fromDate: new Date("2023-01-01"),
-      toDate: new Date("2024-12-31"),
+      ...generateDate(data),
     };
   };
 
-  return { getFilter };
+  const getProfile = () => ({
+    id: filterId,
+    name: data?.filter?.name,
+  });
+
+  return { getFilter, getProfile };
 };
 
 type FavoriteFilter = {
   categoryIdList: string[];
   fromDate: Date;
   toDate: Date;
+};
+
+const generateCategoryIdList = (data: GetFavoriteFilterQuery | undefined) =>
+  data?.filter?.args
+    .filter((f) => f.key === "categoryId")
+    .map((f) => f.value) ?? [];
+
+const generateDate = (data: GetFavoriteFilterQuery | undefined) => {
+  const year = data?.filter?.args.find((f) => f.key === "year")?.value;
+  const fromDate = new Date(`${year}-01-01`);
+  const toDate = new Date(`${year}-12-31`);
+
+  return { fromDate, toDate };
 };
