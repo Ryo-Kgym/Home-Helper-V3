@@ -2,7 +2,7 @@ import type { GetFavoriteFilterQuery } from "@v3/graphql/household";
 import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
 
 export const useGetFavoriteFilter = (filterId: string) => {
-  const [{ data }] = useGetFavoriteFilterQuery({
+  const [{ data, fetching }] = useGetFavoriteFilterQuery({
     variables: { filterId },
   });
 
@@ -17,10 +17,10 @@ export const useGetFavoriteFilter = (filterId: string) => {
 
   const getProfile = () => ({
     id: filterId,
-    name: data?.filter?.name,
+    name: data?.filter?.name ?? "",
   });
 
-  return { getFilter, getProfile };
+  return { getFilter, getProfile, loading: fetching };
 };
 
 type FavoriteFilter = {

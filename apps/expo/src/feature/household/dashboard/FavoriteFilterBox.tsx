@@ -54,9 +54,18 @@ export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
       size={"100%"}
       scroll={120}
       footer={
-        <View className={"pt-1"}>
-          <Text className={"text-right text-gray-500"}>
-            合計：{income.calcTotal().toLocaleString()}
+        <View
+          className={"pt-1"}
+          style={{
+            flexDirection: "row",
+            gap: 2,
+          }}
+        >
+          <Text className={"w-1/2 pr-2 text-right text-gray-500"}>
+            収入：{income.calcTotal().toLocaleString()}
+          </Text>
+          <Text className={"w-1/2 pr-2 text-right text-gray-500"}>
+            支出：{outcome.calcTotal().toLocaleString()}
           </Text>
         </View>
       }
