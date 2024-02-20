@@ -1,32 +1,40 @@
 import type { GetFavoriteFilterQuery } from "@v3/graphql/household";
 import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
 
+import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
+import { genreTypeArray } from "~/types/genre-type";
+
 export const useGetFavoriteFilter = (filterId: string) => {
-  const [{ data, fetching }] = useGetFavoriteFilterQuery({
+  const [{ data }] = useGetFavoriteFilterQuery({
     variables: { filterId },
   });
 
-  const getFilter = (): FavoriteFilter => {
-    const categoryIdList = generateCategoryIdList(data);
+  const categoryIdList = generateCategoryIdList(data);
+  const { fromDate, toDate } = generateDate(data);
 
-    return {
-      categoryIdList,
-      ...generateDate(data),
-    };
-  };
-
-  const getProfile = () => ({
-    id: filterId,
-    name: data?.filter?.name ?? "",
+  const income = useGetCategoryTotal({
+    fromDate,
+    toDate,
+    iocomeType: ["INCOME"],
+    genreType: genreTypeArray,
+    filter: (d) => categoryIdList.includes(d.categoryId),
   });
 
-  return { getFilter, getProfile, loading: fetching };
-};
+  const outcome = useGetCategoryTotal({
+    fromDate,
+    toDate,
+    iocomeType: ["OUTCOME"],
+    genreType: genreTypeArray,
+    filter: (d) => categoryIdList.includes(d.categoryId),
+  });
 
-type FavoriteFilter = {
-  categoryIdList: string[];
-  fromDate: Date;
-  toDate: Date;
+  return {
+    income,
+    outcome,
+    loading:
+      income.categoryTotal.length === 0 && outcome.categoryTotal.length === 0,
+    name: data?.filter?.name ?? "",
+  };
 };
 
 const generateCategoryIdList = (data: GetFavoriteFilterQuery | undefined) =>
