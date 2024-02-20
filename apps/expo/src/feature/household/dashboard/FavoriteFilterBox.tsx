@@ -8,8 +8,10 @@ import { genreTypeArray } from "~/types/genre-type";
 
 export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
   const { getFilter, getProfile } = useGetFavoriteFilter(filterId);
-  const { categoryIdList, fromDate, toDate } = getFilter();
+  const filter = getFilter();
   const { name } = getProfile();
+
+  const { fromDate, toDate, categoryIdList } = filter;
 
   const income = useGetCategoryTotal({
     fromDate,
@@ -26,26 +28,6 @@ export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
     genreType: genreTypeArray,
     filter: (d) => categoryIdList.includes(d.categoryId),
   });
-
-  const Render = ({ categoryTotal }: { categoryTotal: WithAmountType[] }) => (
-    <View className={"w-1/2"}>
-      {categoryTotal
-        .sort((a, b) => b.amount - a.amount)
-        .map((c, i) => (
-          <View key={i} className={"flex-row items-center"}>
-            <Text className={"w-[4%] text-xs"}>{i + 1}</Text>
-            <View className={"w-11/12 flex-row items-center justify-between"}>
-              <Text className={"text-md text-gray-500"}>
-                {c.categoryName.slice(0, 7)}
-              </Text>
-              <Text className={"text-right text-lg"}>
-                {c.amount.toLocaleString()}
-              </Text>
-            </View>
-          </View>
-        ))}
-    </View>
-  );
 
   return (
     <DashboardFrame
@@ -76,9 +58,29 @@ export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
           gap: 2,
         }}
       >
-        <Render categoryTotal={income.categoryTotal} />
-        <Render categoryTotal={outcome.categoryTotal} />
+        <IocomeBox categoryTotal={income.categoryTotal} />
+        <IocomeBox categoryTotal={outcome.categoryTotal} />
       </View>
     </DashboardFrame>
   );
 };
+
+const IocomeBox = ({ categoryTotal }: { categoryTotal: WithAmountType[] }) => (
+  <View className={"w-1/2"}>
+    {categoryTotal
+      .sort((a, b) => b.amount - a.amount)
+      .map((c, i) => (
+        <View key={i} className={"flex-row items-center"}>
+          <Text className={"w-[4%] text-xs"}>{i + 1}</Text>
+          <View className={"w-11/12 flex-row items-center justify-between"}>
+            <Text className={"text-md text-gray-500"}>
+              {c.categoryName.slice(0, 7)}
+            </Text>
+            <Text className={"text-right text-lg"}>
+              {c.amount.toLocaleString()}
+            </Text>
+          </View>
+        </View>
+      ))}
+  </View>
+);
