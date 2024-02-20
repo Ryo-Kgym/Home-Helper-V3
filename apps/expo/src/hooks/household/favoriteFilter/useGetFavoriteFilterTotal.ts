@@ -4,7 +4,7 @@ import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
 import { genreTypeArray } from "~/types/genre-type";
 
-export const useGetFavoriteFilter = (filterId: string) => {
+export const useGetFavoriteFilterTotal = (filterId: string) => {
   const [{ data }] = useGetFavoriteFilterQuery({
     variables: { filterId },
   });

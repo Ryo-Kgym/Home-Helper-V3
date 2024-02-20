@@ -2,10 +2,11 @@ import { Text, View } from "react-native";
 
 import type { WithAmountType } from "~/hooks/household/total/total-category";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
-import { useGetFavoriteFilter } from "~/hooks/household/favoriteFilter/useGetFavoriteFilter";
+import { useGetFavoriteFilterTotal } from "~/hooks/household/favoriteFilter/useGetFavoriteFilterTotal";
 
 export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
-  const { income, outcome, name, loading } = useGetFavoriteFilter(filterId);
+  const { income, outcome, name, loading } =
+    useGetFavoriteFilterTotal(filterId);
 
   if (loading) {
     return null;
