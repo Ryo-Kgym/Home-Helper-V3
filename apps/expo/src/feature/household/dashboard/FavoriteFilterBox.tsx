@@ -1,15 +1,21 @@
 import { Text, View } from "react-native";
 
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
+import { useGetFavoriteFilter } from "~/hooks/household/favoriteFilter/useGetFavoriteFilter";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
+import { genreTypeArray } from "~/types/genre-type";
+import { iocomeTypeArray } from "~/types/iocome-type";
 
 export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
-  filterId;
+  const { getFilter } = useGetFavoriteFilter(filterId);
+  const { categoryIdList, fromDate, toDate } = getFilter();
+
   const { categoryTotal, calcTotal } = useGetCategoryTotal({
-    fromDate: new Date("2024-01-01"),
-    toDate: new Date("2024-12-31"),
-    iocomeType: [],
-    genreType: [],
+    fromDate,
+    toDate,
+    iocomeType: iocomeTypeArray,
+    genreType: genreTypeArray,
+    filter: (d) => categoryIdList.includes(d.categoryId),
   });
 
   return (

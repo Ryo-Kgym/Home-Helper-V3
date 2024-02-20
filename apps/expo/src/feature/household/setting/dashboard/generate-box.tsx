@@ -66,6 +66,16 @@ export const generateBox = (
       });
     }
 
+    if (argsTypes.includes("filterId")) {
+      appendProps({
+        settingId: id,
+        argsMap,
+        props,
+        key: "filterId",
+        parseToProps: ({ value }) => value,
+      });
+    }
+
     return <Component key={index} {...props} />;
   });
 
