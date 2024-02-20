@@ -14,12 +14,14 @@ export const useGetCategoryTotal = ({
   toDate,
   iocomeType = iocomeTypeArray,
   genreType = genreTypeArray,
+  filter = () => true,
   sort = sortBy.amount.desc,
 }: {
   fromDate: Date;
   toDate: Date;
   iocomeType?: IocomeType[];
   genreType?: GenreType[];
+  filter?: (d: WithAmountType) => boolean;
   sort?: (a: WithAmountType, b: WithAmountType) => number;
 }) => {
   const { groupId } = useSaveGroupId();
@@ -53,6 +55,8 @@ export const useGetCategoryTotal = ({
   const categoryTotal = totalCategory({
     details: [...dailyDetails, ...creditCardDetails],
     filter: (d) =>
+      filter &&
+      filter(d) &&
       genreType.includes(d.genreType) &&
       // カテゴリ：振替は除外する。
       d.categoryId !== data?.group?.transfer?.incomeCategoryId &&
