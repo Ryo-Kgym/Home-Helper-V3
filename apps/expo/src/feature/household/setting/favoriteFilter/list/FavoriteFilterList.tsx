@@ -4,9 +4,9 @@ import { useRouter } from "expo-router";
 import { useGetFavoriteFiltersQuery } from "@v3/graphql/household";
 
 import { paths } from "~/app/paths";
+import { RegisterFavoriteFilter } from "~/feature/household/setting/favoriteFilter/registerFilter/RegisterFavoriteFilter";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { Modal, RegisterButton } from "~/ui";
-import { RegisterFavoriteFilter } from "../addFilter/RegisterFavoriteFilter";
 
 export const FavoriteFilterList = () => {
   const [addVisible, setAddVisible] = useState(false);

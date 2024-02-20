@@ -54,4 +54,8 @@ const valueConverter: {
     type: "iocomeType",
     value: value as IocomeParamType,
   }),
+  filterId: (value: string) => ({
+    type: "filterId",
+    value,
+  }),
 };

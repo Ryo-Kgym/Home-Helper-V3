@@ -17,6 +17,10 @@ export const featureMap: {
     label: "残高",
     argsTypes: [],
   },
+  favoriteFilter: {
+    label: "お気に入り条件",
+    argsTypes: ["filterId"],
+  },
   yearly: {
     label: "年間収支",
     argsTypes: ["year"],

@@ -41,35 +41,7 @@ export const RegisterDashboardSetting = ({
 
   useEffect(() => {
     // featureが変化した時にargsMapTypesを初期化する
-    const args: ArgsMapType[] = [];
-
-    featureMap[feature].argsTypes.map((type) => {
-      if (type === "year") {
-        args.push({
-          type,
-          value: 0, // 今年
-        });
-      }
-      if (type === "month") {
-        args.push({
-          type,
-          value: 0, // 今月
-        });
-      }
-      if (type === "genreType") {
-        args.push({
-          type,
-          value: "ALL",
-        });
-      }
-      if (type === "iocomeType") {
-        args.push({
-          type,
-          value: "O",
-        });
-      }
-    });
-
+    const args = initArgsMapTypes(feature);
     setArgsMapTypes(args.length ? args : defaultArgsMapTypes);
   }, [feature]);
 
@@ -105,4 +77,43 @@ export const RegisterDashboardSetting = ({
       </View>
     </View>
   );
+};
+
+const initArgsMapTypes = (feature: Feature) => {
+  const args: ArgsMapType[] = [];
+
+  featureMap[feature].argsTypes.map((type) => {
+    if (type === "year") {
+      args.push({
+        type,
+        value: 0, // 今年
+      });
+    }
+    if (type === "month") {
+      args.push({
+        type,
+        value: 0, // 今月
+      });
+    }
+    if (type === "genreType") {
+      args.push({
+        type,
+        value: "ALL",
+      });
+    }
+    if (type === "iocomeType") {
+      args.push({
+        type,
+        value: "O",
+      });
+    }
+    if (type === "filterId") {
+      args.push({
+        type,
+        value: "",
+      });
+    }
+  });
+
+  return args.length ? args : defaultArgsMapTypes;
 };
