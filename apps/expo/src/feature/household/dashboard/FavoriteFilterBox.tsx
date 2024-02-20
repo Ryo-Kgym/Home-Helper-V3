@@ -6,8 +6,8 @@ import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal
 export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
   filterId;
   const { categoryTotal, calcTotal } = useGetCategoryTotal({
-    fromDate: new Date(),
-    toDate: new Date(),
+    fromDate: new Date("2024-01-01"),
+    toDate: new Date("2024-12-31"),
     iocomeType: [],
     genreType: [],
   });
