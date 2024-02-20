@@ -68,6 +68,12 @@ export const RegisterDashboardSetting = ({
           value: "O",
         });
       }
+      if (type === "filterId") {
+        args.push({
+          type,
+          value: "",
+        });
+      }
     });
 
     setArgsMapTypes(args.length ? args : defaultArgsMapTypes);
