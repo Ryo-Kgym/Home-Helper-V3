@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Stack, useGlobalSearchParams } from "expo-router";
 
-import { EditCreditCardDetail } from "~/feature/household/creditCardDetail";
+import { SplitCreditCardDetail } from "~/feature/household/creditCardDetail";
 
 const Page = () => {
   const { id } = useGlobalSearchParams();
@@ -9,7 +9,7 @@ const Page = () => {
     <View>
       <Stack.Screen options={{ headerShown: false }} />
       <View className={"w-full p-5"}>
-        <EditCreditCardDetail id={id as string} />
+        <SplitCreditCardDetail id={id as string} />
       </View>
     </View>
   );
