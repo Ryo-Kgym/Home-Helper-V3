@@ -27,6 +27,7 @@ export const SplitCreditCardDetailPresenter = ({
   genre,
   category,
   amount,
+  splitAmount,
   memo,
   resetHandler,
   updateHandler,
@@ -36,6 +37,7 @@ export const SplitCreditCardDetailPresenter = ({
   genre: FieldType<string>;
   category: FieldType<string>;
   amount: FieldType<number | null>;
+  splitAmount: FieldType<number | null>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
   updateHandler: () => void;
@@ -48,6 +50,18 @@ export const SplitCreditCardDetailPresenter = ({
   >
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View className={"gap-3"}>
+        <Text>分割前</Text>
+        <View>
+          <Text>金額</Text>
+          <EditableAmount
+            value={amount.value}
+            setValue={amount.setValue}
+            defaultValue={amount.default}
+            disabled
+          />
+        </View>
+        <View className={"w-full border-b-2 border-gray-300"}></View>
+        <Text>分割後</Text>
         <View>
           <Text>ジャンル</Text>
           <EditableGenre
@@ -69,10 +83,9 @@ export const SplitCreditCardDetailPresenter = ({
         <View>
           <Text>金額</Text>
           <EditableAmount
-            value={amount.value}
-            setValue={amount.setValue}
-            defaultValue={amount.default}
-            disabled
+            value={splitAmount.value}
+            setValue={splitAmount.setValue}
+            defaultValue={splitAmount.default}
           />
         </View>
         <View>
