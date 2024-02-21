@@ -7,7 +7,7 @@ const Page = () => {
   const { id } = useLocalSearchParams();
   return (
     <View>
-      <Stack.Screen options={{ title: "" }} />
+      <Stack.Screen options={{ headerShown: false }} />
       <View className={"w-full p-5"}>
         <EditCreditCardDetail id={id as string} />
       </View>
