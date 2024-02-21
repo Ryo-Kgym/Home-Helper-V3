@@ -9,11 +9,9 @@ import { SplitCreditCardDetailPresenter } from "./SplitCreditCardDetailPresenter
 export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
   const { creditCardDetail, loading } = useGetCreditCardDetailById({ id });
 
-  const [date, setDate] = useState<Date | undefined>(creditCardDetail.date);
   const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
   const [genreId, setGenreId] = useState<string>("");
   const [categoryId, setCategoryId] = useState<string>("");
-  const [accountId, setAccountId] = useState<string>("");
   const [amount, setAmount] = useState<number | null>(null);
   const [memo, setMemo] = useState<string | null>(null);
 
@@ -21,11 +19,9 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
   const { back } = useRouter();
 
   const resetHandler = () => {
-    setDate(creditCardDetail.date);
     setIocomeType(creditCardDetail.genre.iocomeType);
     setGenreId(creditCardDetail.genre.id);
     setCategoryId(creditCardDetail.category.id);
-    setAccountId(creditCardDetail.account.id);
     setAmount(creditCardDetail.amount);
     setMemo(creditCardDetail.memo);
   };
@@ -48,23 +44,15 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
   };
 
   useEffect(() => {
-    setDate(creditCardDetail.date);
     setIocomeType(creditCardDetail.genre.iocomeType);
     setGenreId(creditCardDetail.genre.id);
     setCategoryId(creditCardDetail.category.id);
-    setAccountId(creditCardDetail.account.id);
     setAmount(creditCardDetail.amount);
     setMemo(creditCardDetail.memo);
   }, [loading]);
 
   return (
     <SplitCreditCardDetailPresenter
-      id={id}
-      date={{
-        value: date,
-        default: creditCardDetail.date,
-        setValue: setDate,
-      }}
       iocomeType={{
         value: iocomeType,
         default: creditCardDetail.genre.iocomeType,
@@ -79,11 +67,6 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
         value: categoryId,
         default: creditCardDetail.category.id,
         setValue: setCategoryId,
-      }}
-      account={{
-        value: accountId,
-        default: creditCardDetail.account.id,
-        setValue: setAccountId,
       }}
       amount={{
         value: amount,

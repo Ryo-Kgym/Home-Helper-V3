@@ -8,12 +8,9 @@ import {
 
 import type { IocomeType } from "~/types/iocome-type";
 import {
-  EditableAccount,
   EditableAmount,
   EditableCategory,
-  EditableDate,
   EditableGenre,
-  EditableIocomeType,
   EditableMemo,
   ResetButton,
   UpdateButton,
@@ -26,23 +23,18 @@ type FieldType<T> = {
 };
 
 export const SplitCreditCardDetailPresenter = ({
-  date,
   iocomeType,
   genre,
   category,
   amount,
-  account,
   memo,
   resetHandler,
   updateHandler,
   disabled,
 }: {
-  id: string;
-  date: FieldType<Date | undefined>;
   iocomeType: FieldType<IocomeType>;
   genre: FieldType<string>;
   category: FieldType<string>;
-  account: FieldType<string>;
   amount: FieldType<number | null>;
   memo: FieldType<string | null>;
   resetHandler: () => void;
@@ -56,24 +48,6 @@ export const SplitCreditCardDetailPresenter = ({
   >
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View className={"gap-3"}>
-        <View>
-          <Text>日付</Text>
-          <EditableDate
-            value={date.value}
-            setValue={date.setValue}
-            loadingValue={"-"}
-            disabled
-          />
-        </View>
-        <View>
-          <Text>タイプ</Text>
-          <EditableIocomeType
-            value={iocomeType.value}
-            setValue={iocomeType.setValue}
-            defaultValue={iocomeType.default}
-            disabled
-          />
-        </View>
         <View>
           <Text>ジャンル</Text>
           <EditableGenre
@@ -90,15 +64,6 @@ export const SplitCreditCardDetailPresenter = ({
             setValue={category.setValue}
             defaultValue={category.default}
             genreId={genre.value}
-          />
-        </View>
-        <View>
-          <Text>アカウント</Text>
-          <EditableAccount
-            value={account.value}
-            setValue={account.setValue}
-            defaultValue={account.default}
-            disabled
           />
         </View>
         <View>
