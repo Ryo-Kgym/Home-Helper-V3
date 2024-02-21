@@ -8396,6 +8396,19 @@ export type InsertFavoriteFilterArgMutation = {
   insertArg?: { __typename: "HouseholdFavoriteFilterArgs"; id: string } | null;
 };
 
+export type UpdateCreditCardDetailAmountByIdMutationVariables = Exact<{
+  id: Scalars["String"];
+  amount: Scalars["numeric"];
+}>;
+
+export type UpdateCreditCardDetailAmountByIdMutation = {
+  __typename?: "mutation_root";
+  updateHouseholdCreditCardDetailByPk?: {
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+  } | null;
+};
+
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   genreId: Scalars["String"];
@@ -10062,6 +10075,23 @@ export function useInsertFavoriteFilterArgMutation() {
     InsertFavoriteFilterArgMutation,
     InsertFavoriteFilterArgMutationVariables
   >(InsertFavoriteFilterArgDocument);
+}
+export const UpdateCreditCardDetailAmountByIdDocument = gql`
+  mutation updateCreditCardDetailAmountById($id: String!, $amount: numeric!) {
+    updateHouseholdCreditCardDetailByPk(
+      pkColumns: { id: $id }
+      _set: { amount: $amount }
+    ) {
+      id
+    }
+  }
+`;
+
+export function useUpdateCreditCardDetailAmountByIdMutation() {
+  return Urql.useMutation<
+    UpdateCreditCardDetailAmountByIdMutation,
+    UpdateCreditCardDetailAmountByIdMutationVariables
+  >(UpdateCreditCardDetailAmountByIdDocument);
 }
 export const UpdateCreditCardDetailByIdDocument = gql`
   mutation updateCreditCardDetailById(
