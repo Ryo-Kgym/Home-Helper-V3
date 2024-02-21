@@ -18,6 +18,8 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
 
   const { split } = useSplitCreditCardDetail();
 
+  const updatable = splitAmount && splitAmount > 0;
+
   const resetHandler = () => {
     setAmount(creditCardDetail.amount);
 
@@ -91,7 +93,7 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
       }}
       resetHandler={resetHandler}
       updateHandler={updateHandler}
-      disabled={loading}
+      disabled={loading || !updatable}
     />
   );
 };
