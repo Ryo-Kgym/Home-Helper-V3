@@ -8311,6 +8311,18 @@ export type DeleteDashboardSettingMutation = {
   } | null;
 };
 
+export type DeleteFavoriteFilterArgMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type DeleteFavoriteFilterArgMutation = {
+  __typename?: "mutation_root";
+  deleteHouseholdFavoriteFilterArgsByPk?: {
+    __typename?: "HouseholdFavoriteFilterArgs";
+    id: string;
+  } | null;
+};
+
 export type DeleteInsertDashboardSettingArgsMutationVariables = Exact<{
   settingId: Scalars["String"];
   objects:
@@ -9948,6 +9960,20 @@ export function useDeleteDashboardSettingMutation() {
     DeleteDashboardSettingMutation,
     DeleteDashboardSettingMutationVariables
   >(DeleteDashboardSettingDocument);
+}
+export const DeleteFavoriteFilterArgDocument = gql`
+  mutation deleteFavoriteFilterArg($id: String!) {
+    deleteHouseholdFavoriteFilterArgsByPk(id: $id) {
+      id
+    }
+  }
+`;
+
+export function useDeleteFavoriteFilterArgMutation() {
+  return Urql.useMutation<
+    DeleteFavoriteFilterArgMutation,
+    DeleteFavoriteFilterArgMutationVariables
+  >(DeleteFavoriteFilterArgDocument);
 }
 export const DeleteInsertDashboardSettingArgsDocument = gql`
   mutation deleteInsertDashboardSettingArgs(

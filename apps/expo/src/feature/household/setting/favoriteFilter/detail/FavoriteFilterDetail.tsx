@@ -3,15 +3,25 @@ import { Pressable, Text, View } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 
 import { AddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/addArg/AddFavoriteFilterArg";
+import { useDeleteFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/deleteArg/useDeleteFavoriteFilterArg";
 import { Modal, RegisterButton } from "~/ui";
 import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
 
 export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
   const { getFavoriteFilterArgs } = useGetFavoriteFilter(filterId);
+  const { deleteFavoriteFilterArg } = useDeleteFavoriteFilterArg();
 
   const [addVisible, setAddVisible] = useState(false);
 
-  const deleteHandler = (id: string) => undefined;
+  const deleteHandler = async (id: string) => {
+    try {
+      await deleteFavoriteFilterArg({ id });
+      alert("削除しました");
+    } catch (e) {
+      console.error(e);
+      alert("削除に失敗しました");
+    }
+  };
 
   return (
     <View>
@@ -64,7 +74,6 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
             </View>
           </Pressable>
         )}
-        // leftOpenValue={75}
         rightOpenValue={-75}
       />
       <RegisterButton registerHandler={() => setAddVisible(true)} />

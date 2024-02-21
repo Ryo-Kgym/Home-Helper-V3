@@ -1,0 +1,5 @@
+mutation deleteFavoriteFilterArg($id: String!) {
+  deleteHouseholdFavoriteFilterArgsByPk(id: $id) {
+    id
+  }
+}
