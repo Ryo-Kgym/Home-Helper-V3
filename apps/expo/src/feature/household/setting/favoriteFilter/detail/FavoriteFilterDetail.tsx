@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
+import { SwipeListView } from "react-native-swipe-list-view";
 
 import { AddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/addArg/AddFavoriteFilterArg";
 import { Modal, RegisterButton } from "~/ui";
@@ -10,9 +11,11 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
 
   const [addVisible, setAddVisible] = useState(false);
 
+  const deleteHandler = (id: string) => undefined;
+
   return (
     <View>
-      <FlatList
+      <SwipeListView
         data={getFavoriteFilterArgs()}
         keyExtractor={({ id }) => id}
         renderItem={({ item }) => (
@@ -25,6 +28,7 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
               paddingBottom: 8,
               paddingLeft: 10,
               paddingRight: 10,
+              backgroundColor: "white",
             }}
           >
             <View
@@ -39,6 +43,29 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
             </View>
           </Pressable>
         )}
+        renderHiddenItem={(data) => (
+          <Pressable
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+            onPress={() => deleteHandler(data.item.id)}
+          >
+            <View
+              style={{
+                alignItems: "center",
+                backgroundColor: "red",
+                width: 75,
+                paddingTop: 10,
+                paddingBottom: 8,
+              }}
+            >
+              <Text className={"text-center text-xl text-white"}>削除</Text>
+            </View>
+          </Pressable>
+        )}
+        // leftOpenValue={75}
+        rightOpenValue={-75}
       />
       <RegisterButton registerHandler={() => setAddVisible(true)} />
       <Modal visible={addVisible} setVisible={setAddVisible}>
