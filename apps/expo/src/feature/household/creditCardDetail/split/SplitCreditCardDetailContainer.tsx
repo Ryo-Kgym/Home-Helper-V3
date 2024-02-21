@@ -15,12 +15,11 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
   const [memo, setMemo] = useState<string | null>(null);
 
   const resetHandler = () => {
-    setIocomeType(creditCardDetail.genre.iocomeType);
     setGenreId(creditCardDetail.genre.id);
     setCategoryId(creditCardDetail.category.id);
     setAmount(creditCardDetail.amount);
     setSplitAmount(0);
-    setMemo(creditCardDetail.memo);
+    setMemo(null);
   };
 
   const updateHandler = () => undefined;
@@ -38,7 +37,7 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
       iocomeType={{
         value: iocomeType,
         default: creditCardDetail.genre.iocomeType,
-        setValue: setIocomeType,
+        setValue: () => undefined,
       }}
       genre={{
         value: genreId,
