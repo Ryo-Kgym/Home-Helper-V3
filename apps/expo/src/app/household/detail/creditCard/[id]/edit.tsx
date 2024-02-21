@@ -1,10 +1,10 @@
 import { View } from "react-native";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useGlobalSearchParams } from "expo-router";
 
 import { EditCreditCardDetail } from "~/feature/household/creditCardDetail";
 
 const Page = () => {
-  const { id } = useLocalSearchParams();
+  const { id } = useGlobalSearchParams();
   return (
     <View>
       <Stack.Screen options={{ headerShown: false }} />
