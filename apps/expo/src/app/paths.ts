@@ -13,6 +13,14 @@ export const paths = {
       `/household/detailList/account/${accountId}` as "/",
     detailListByCreditCardSummary: ({ summaryId }: { summaryId: string }) =>
       `/household/detailList/creditCardSummary/${summaryId}` as "/",
+    detailListByFavoriteFilter: ({
+      filterId,
+      name,
+    }: {
+      filterId: string;
+      name: string;
+    }) =>
+      `/household/detailList/favoriteFilter/${filterId}?name=${name}` as "/",
     categoryRanking: ({ date }: { date: Date }) =>
       `/household/detailList/categoryRanking/${date
         .toISOString()

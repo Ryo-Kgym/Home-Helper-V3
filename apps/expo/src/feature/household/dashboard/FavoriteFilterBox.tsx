@@ -1,12 +1,36 @@
 import { Text, View } from "react-native";
 
 import type { WithAmountType } from "~/hooks/household/total/total-category";
+import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
-import { useGetFavoriteFilterTotal } from "~/hooks/household/favoriteFilter/useGetFavoriteFilterTotal";
+import { useConvertFavoriteFilter } from "~/hooks/household/favoriteFilter/useConvertFavoriteFilter";
+import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
+import { genreTypeArray } from "~/types/genre-type";
 
 export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
-  const { income, outcome, name, loading } =
-    useGetFavoriteFilterTotal(filterId);
+  const {
+    filter: { fromDate, toDate, categoryIdList },
+    name,
+  } = useConvertFavoriteFilter(filterId);
+
+  const income = useGetCategoryTotal({
+    fromDate,
+    toDate,
+    iocomeType: ["INCOME"],
+    genreType: genreTypeArray,
+    filter: (d) => categoryIdList.includes(d.categoryId),
+  });
+
+  const outcome = useGetCategoryTotal({
+    fromDate,
+    toDate,
+    iocomeType: ["OUTCOME"],
+    genreType: genreTypeArray,
+    filter: (d) => categoryIdList.includes(d.categoryId),
+  });
+
+  const loading =
+    income.categoryTotal.length === 0 && outcome.categoryTotal.length === 0;
 
   if (loading) {
     return null;
@@ -15,7 +39,7 @@ export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
   return (
     <DashboardFrame
       label={`${name}`}
-      href={"/"}
+      href={paths.household.detailListByFavoriteFilter({ filterId, name })}
       size={"100%"}
       scroll={120}
       footer={
