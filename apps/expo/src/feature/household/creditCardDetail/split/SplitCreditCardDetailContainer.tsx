@@ -1,53 +1,75 @@
 import { useEffect, useState } from "react";
 
 import type { IocomeType } from "~/types/iocome-type";
+import { useSplitCreditCardDetail } from "~/feature/household/creditCardDetail/split/useSplitCreditCardDetail";
 import { useGetCreditCardDetailById } from "~/hooks/household/credit_card/useGetCreditCardDetailById";
 import { SplitCreditCardDetailPresenter } from "./SplitCreditCardDetailPresenter";
 
 export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
   const { creditCardDetail, loading } = useGetCreditCardDetailById({ id });
 
-  const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
-  const [genreId, setGenreId] = useState<string>("");
-  const [categoryId, setCategoryId] = useState<string>("");
   const [amount, setAmount] = useState<number | null>(null);
+
+  const [splitIocomeType, setSplitIocomeType] = useState<IocomeType>("INCOME");
+  const [splitGenreId, setSplitGenreId] = useState<string>("");
+  const [splitCategoryId, setSplitCategoryId] = useState<string>("");
   const [splitAmount, setSplitAmount] = useState<number | null>(null);
-  const [memo, setMemo] = useState<string | null>(null);
+  const [splitMemo, setSplitMemo] = useState<string | null>(null);
+
+  const { split } = useSplitCreditCardDetail();
 
   const resetHandler = () => {
-    setGenreId(creditCardDetail.genre.id);
-    setCategoryId(creditCardDetail.category.id);
     setAmount(creditCardDetail.amount);
+
+    setSplitGenreId(creditCardDetail.genre.id);
+    setSplitCategoryId(creditCardDetail.category.id);
     setSplitAmount(0);
-    setMemo(null);
+    setSplitMemo(null);
   };
 
-  const updateHandler = () => undefined;
+  const updateHandler = async () => {
+    try {
+      await split({
+        original: creditCardDetail,
+        split: {
+          genreId: splitGenreId,
+          categoryId: splitCategoryId,
+          amount: splitAmount ?? 0,
+          memo: splitMemo ?? "",
+        },
+      });
+      alert("分割しました");
+    } catch (e) {
+      console.error(e);
+      alert("分割に失敗しました");
+    }
+  };
 
   useEffect(() => {
-    setIocomeType(creditCardDetail.genre.iocomeType);
-    setGenreId(creditCardDetail.genre.id);
-    setCategoryId(creditCardDetail.category.id);
     setAmount(creditCardDetail.amount);
+
+    setSplitIocomeType(creditCardDetail.genre.iocomeType);
+    setSplitGenreId(creditCardDetail.genre.id);
+    setSplitCategoryId(creditCardDetail.category.id);
     setSplitAmount(0);
   }, [loading]);
 
   return (
     <SplitCreditCardDetailPresenter
       iocomeType={{
-        value: iocomeType,
+        value: splitIocomeType,
         default: creditCardDetail.genre.iocomeType,
         setValue: () => undefined,
       }}
       genre={{
-        value: genreId,
+        value: splitGenreId,
         default: creditCardDetail.genre.id,
-        setValue: setGenreId,
+        setValue: setSplitGenreId,
       }}
       category={{
-        value: categoryId,
+        value: splitCategoryId,
         default: creditCardDetail.category.id,
-        setValue: setCategoryId,
+        setValue: setSplitCategoryId,
       }}
       amount={{
         value: amount,
@@ -63,9 +85,9 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
         },
       }}
       memo={{
-        value: memo,
+        value: splitMemo,
         default: creditCardDetail.memo,
-        setValue: setMemo,
+        setValue: setSplitMemo,
       }}
       resetHandler={resetHandler}
       updateHandler={updateHandler}

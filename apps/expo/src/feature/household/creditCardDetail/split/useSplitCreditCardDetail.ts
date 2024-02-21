@@ -29,28 +29,33 @@ export const useSplitCreditCardDetail = () => {
       memo: string;
     };
   }) => {
-    await originalUpdateMutation({
-      id: original.id,
-      amount: original.amount - split.amount,
-    });
-    if (originalUpdateResult.error) {
-      throw originalUpdateResult.error;
-    }
+    try {
+      await originalUpdateMutation({
+        id: original.id,
+        amount: original.amount - split.amount,
+      });
+      if (originalUpdateResult.error) {
+        throw originalUpdateResult.error;
+      }
 
-    await splitInsertMutation({
-      id: generateId(),
-      date: original.date,
-      iocomeType: original.genre.iocomeType,
-      genreId: split.genreId,
-      categoryId: split.categoryId,
-      amount: split.amount,
-      memo: split.memo,
-      summaryId: original.summaryId,
-      userId,
-      groupId,
-    });
-    if (splitInsertResult.error) {
-      throw splitInsertResult.error;
+      await splitInsertMutation({
+        id: generateId(),
+        date: original.date,
+        iocomeType: original.genre.iocomeType,
+        genreId: split.genreId,
+        categoryId: split.categoryId,
+        amount: split.amount,
+        memo: split.memo,
+        summaryId: original.summaryId,
+        userId,
+        groupId,
+      });
+      if (splitInsertResult.error) {
+        throw splitInsertResult.error;
+      }
+    } catch (e) {
+      console.error(e);
+      throw e;
     }
   };
 
