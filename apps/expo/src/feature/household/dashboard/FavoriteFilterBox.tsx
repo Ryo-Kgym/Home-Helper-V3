@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 
 import type { WithAmountType } from "~/hooks/household/total/total-category";
+import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
 import { useConvertFavoriteFilter } from "~/hooks/household/favoriteFilter/useConvertFavoriteFilter";
 import { useGetCategoryTotal } from "~/hooks/household/total/useGetCategoryTotal";
@@ -38,7 +39,7 @@ export const FavoriteFilterBox = ({ filterId }: { filterId: string }) => {
   return (
     <DashboardFrame
       label={`${name}`}
-      href={"/"}
+      href={paths.household.detailListByFavoriteFilter({ filterId, name })}
       size={"100%"}
       scroll={120}
       footer={

@@ -2,33 +2,34 @@ import type { ComponentProps } from "react";
 import { useRouter } from "expo-router";
 
 import { paths } from "~/app/paths";
-import { getYear } from "~/func/date/get-year";
 import { useGetCreditCardDetailList } from "~/hooks/household/credit_card/useGetCreditCardDetailList";
 import { useGetDailyList } from "~/hooks/household/daily/useGetDailyList";
+import { useConvertFavoriteFilter } from "~/hooks/household/favoriteFilter/useConvertFavoriteFilter";
 import { Details, sortBy } from "~/ui";
 
 export const DetailListByFavoriteFilter = ({
-  year,
-  categoryId,
+  filterId,
 }: {
-  year: Date;
-  categoryId: string;
+  filterId: string;
 }) => {
-  const { firstDayOfYear, lastDateNotGreaterThanToday } = getYear(year);
+  const {
+    filter: { categoryIdList, fromDate, toDate },
+  } = useConvertFavoriteFilter(filterId);
+
   const { push } = useRouter();
 
   const { dailyDetailList } = useGetDailyList({
-    fromDate: firstDayOfYear,
-    toDate: lastDateNotGreaterThanToday,
+    fromDate,
+    toDate,
   });
   const { creditCardDetailList } = useGetCreditCardDetailList({
-    fromDate: firstDayOfYear,
-    toDate: lastDateNotGreaterThanToday,
+    fromDate,
+    toDate,
   });
 
   const details: ComponentProps<typeof Details>["details"] = [
     ...dailyDetailList
-      .filter((d) => d.category.id === categoryId)
+      .filter((d) => categoryIdList.includes(d.category.id))
       .map((d) => ({
         id: d.id,
         date: d.date,
@@ -43,7 +44,7 @@ export const DetailListByFavoriteFilter = ({
         type: "daily",
       })),
     ...creditCardDetailList
-      .filter((d) => d.category.id === categoryId)
+      .filter((d) => categoryIdList.includes(d.category.id))
       .map((d) => ({
         id: d.id,
         date: d.date,
