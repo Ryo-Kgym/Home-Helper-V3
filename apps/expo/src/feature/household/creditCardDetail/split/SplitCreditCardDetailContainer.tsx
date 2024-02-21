@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 
 import type { IocomeType } from "~/types/iocome-type";
 import { useSplitCreditCardDetail } from "~/feature/household/creditCardDetail/split/useSplitCreditCardDetail";
@@ -17,7 +18,7 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
   const [splitMemo, setSplitMemo] = useState<string | null>(null);
 
   const { split } = useSplitCreditCardDetail();
-
+  const { back } = useRouter();
   const updatable = splitAmount && splitAmount > 0;
 
   const resetHandler = () => {
@@ -41,6 +42,7 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
         },
       });
       alert("分割しました");
+      back();
     } catch (e) {
       console.error(e);
       alert("分割に失敗しました");
