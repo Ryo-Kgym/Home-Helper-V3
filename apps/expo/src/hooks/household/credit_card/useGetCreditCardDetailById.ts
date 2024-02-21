@@ -24,6 +24,7 @@ export const useGetCreditCardDetailById = ({ id }: { id: string }) => {
       iocomeType: data?.creditCardDetail?.genre?.iocomeType as IocomeType,
     },
     memo: data?.creditCardDetail?.memo ?? null,
+    summaryId: data?.creditCardDetail?.summary.id ?? "",
   };
 
   return { creditCardDetail, loading };

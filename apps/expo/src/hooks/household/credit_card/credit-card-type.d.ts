@@ -17,4 +17,5 @@ export type CreditCardDetail = {
   account: { id: string; name: string };
   amount: number;
   memo: string | null;
+  summaryId: string;
 };

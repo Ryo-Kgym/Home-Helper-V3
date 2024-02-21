@@ -33,6 +33,7 @@ export const useGetCreditCardDetailBySummaryId = ({
       },
       amount: d.amount as number,
       memo: d.memo ?? null,
+      summaryId: d.id,
     })) ?? [];
 
   return { creditCardDetailList };
