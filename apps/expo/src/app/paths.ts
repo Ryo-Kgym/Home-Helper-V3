@@ -8,7 +8,7 @@ export const paths = {
     registerDaily: "/household/register" as "/",
     daily: ({ id }: { id: string }) => `/household/detail/daily/${id}` as "/",
     creditCardDetail: ({ id }: { id: string }) =>
-      `/household/detail/creditCard/${id}` as "/",
+      `/household/detail/creditCard/${id}/edit` as "/",
     detailListByAccount: ({ accountId }: { accountId: string }) =>
       `/household/detailList/account/${accountId}` as "/",
     detailListByCreditCardSummary: ({ summaryId }: { summaryId: string }) =>

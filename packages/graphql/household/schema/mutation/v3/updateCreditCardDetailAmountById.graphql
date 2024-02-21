@@ -1,0 +1,8 @@
+mutation updateCreditCardDetailAmountById($id: String!, $amount: numeric!) {
+  updateHouseholdCreditCardDetailByPk(
+    pkColumns: { id: $id }
+    _set: { amount: $amount }
+  ) {
+    id
+  }
+}
