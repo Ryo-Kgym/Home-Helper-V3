@@ -5,12 +5,13 @@ import type { FavoriteFilterArgValueInputComponent } from "../FavoriteFilterArgV
 import type { IocomeType } from "~/types/iocome-type";
 import { EditableCategory, EditableGenre, EditableIocomeType } from "~/ui";
 
-export const CategoryIdInput: FavoriteFilterArgValueInputComponent = ({
-  value,
-  setValue,
-}) => {
-  const [iocomeType, setIocomeType] = useState<IocomeType>("INCOME");
-  const [genreId, setGenreId] = useState<string>("");
+export const CategoryIdInput: FavoriteFilterArgValueInputComponent<{
+  genre: { id: string; iocomeType: IocomeType };
+}> = ({ value, setValue, option }) => {
+  const [iocomeType, setIocomeType] = useState<IocomeType>(
+    option?.genre.iocomeType ?? "INCOME",
+  );
+  const [genreId, setGenreId] = useState<string>(option?.genre.id ?? "");
 
   return (
     <View className={"gap-3"}>

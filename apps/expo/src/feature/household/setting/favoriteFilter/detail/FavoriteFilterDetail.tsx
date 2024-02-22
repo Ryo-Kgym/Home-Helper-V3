@@ -21,7 +21,7 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
     id: "",
     key: "categoryId",
     value: "",
-    category: undefined,
+    option: undefined,
   });
 
   const deleteHandler = async (id: string) => {
@@ -52,7 +52,12 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
               backgroundColor: "white",
             }}
             onLongPress={() => {
-              setEditArg(item);
+              setEditArg({
+                id: item.id,
+                key: item.key,
+                value: item.value,
+                option: item.category,
+              });
               setEditVisible(true);
             }}
           >

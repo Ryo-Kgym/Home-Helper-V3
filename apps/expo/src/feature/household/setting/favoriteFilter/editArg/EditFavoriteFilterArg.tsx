@@ -15,10 +15,8 @@ export const EditFavoriteFilterArg = ({
     id: string;
     key: FavoriteFilterArgKey;
     value: string;
-    category:
+    option:
       | {
-          id: string;
-          name: string;
           genre: { id: string; iocomeType: IocomeType };
         }
       | undefined;
@@ -52,6 +50,7 @@ export const EditFavoriteFilterArg = ({
         argKey={key}
         value={value}
         setValue={setValue}
+        option={arg.option}
       />
       <UpdateButton updateHandler={editHandler} disabled={!active} />
     </View>
