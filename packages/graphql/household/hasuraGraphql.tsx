@@ -4025,6 +4025,11 @@ export type HouseholdFavoriteFilterArgsOrderBy = {
   value?: InputMaybe<OrderBy>;
 };
 
+/** primary key columns input for table: household.favorite_filter_args */
+export type HouseholdFavoriteFilterArgsPkColumnsInput = {
+  id: Scalars["String"];
+};
+
 /** select columns of table "household.favorite_filter_args" */
 export enum HouseholdFavoriteFilterArgsSelectColumn {
   /** column name */
@@ -4037,11 +4042,26 @@ export enum HouseholdFavoriteFilterArgsSelectColumn {
   Value = "value",
 }
 
-/** placeholder for update columns of table "household.favorite_filter_args" (current role has no relevant permissions) */
+/** input type for updating data in table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsSetInput = {
+  key?: InputMaybe<Scalars["String"]>;
+  value?: InputMaybe<Scalars["String"]>;
+};
+
+/** update columns of table "household.favorite_filter_args" */
 export enum HouseholdFavoriteFilterArgsUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
+  /** column name */
+  Key = "key",
+  /** column name */
+  Value = "value",
 }
+
+export type HouseholdFavoriteFilterArgsUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdFavoriteFilterArgsSetInput>;
+  /** filter the rows which have to be updated */
+  where: HouseholdFavoriteFilterArgsBoolExp;
+};
 
 /** Boolean expression to filter rows from the table "household.favorite_filter". All fields are combined with a logical 'AND'. */
 export type HouseholdFavoriteFilterBoolExp = {
@@ -6228,6 +6248,14 @@ export type Mutation_Root = {
   >;
   /** update data of the table: "household.favorite_filter" */
   updateHouseholdFavoriteFilter?: Maybe<HouseholdFavoriteFilterMutationResponse>;
+  /** update data of the table: "household.favorite_filter_args" */
+  updateHouseholdFavoriteFilterArgs?: Maybe<HouseholdFavoriteFilterArgsMutationResponse>;
+  /** update single row of the table: "household.favorite_filter_args" */
+  updateHouseholdFavoriteFilterArgsByPk?: Maybe<HouseholdFavoriteFilterArgs>;
+  /** update multiples rows of table: "household.favorite_filter_args" */
+  updateHouseholdFavoriteFilterArgsMany?: Maybe<
+    Array<Maybe<HouseholdFavoriteFilterArgsMutationResponse>>
+  >;
   /** update single row of the table: "household.favorite_filter" */
   updateHouseholdFavoriteFilterByPk?: Maybe<HouseholdFavoriteFilter>;
   /** update multiples rows of table: "household.favorite_filter" */
@@ -6571,6 +6599,23 @@ export type Mutation_RootUpdateHouseholdDashboardSettingManyArgs = {
 export type Mutation_RootUpdateHouseholdFavoriteFilterArgs = {
   _set?: InputMaybe<HouseholdFavoriteFilterSetInput>;
   where: HouseholdFavoriteFilterBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterArgsArgs = {
+  _set?: InputMaybe<HouseholdFavoriteFilterArgsSetInput>;
+  where: HouseholdFavoriteFilterArgsBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterArgsByPkArgs = {
+  _set?: InputMaybe<HouseholdFavoriteFilterArgsSetInput>;
+  pkColumns: HouseholdFavoriteFilterArgsPkColumnsInput;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterArgsManyArgs = {
+  updates: Array<HouseholdFavoriteFilterArgsUpdates>;
 };
 
 /** mutation root */
@@ -8476,6 +8521,16 @@ export type UpdateFavoriteFilterMutation = {
   } | null;
 };
 
+export type UpdateFavoriteFilterArgMutationVariables = Exact<{
+  argId: Scalars["String"];
+  value: Scalars["String"];
+}>;
+
+export type UpdateFavoriteFilterArgMutation = {
+  __typename?: "mutation_root";
+  insertArg?: { __typename: "HouseholdFavoriteFilterArgs"; id: string } | null;
+};
+
 export type GetAccountBalanceListQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
@@ -10211,6 +10266,24 @@ export function useUpdateFavoriteFilterMutation() {
     UpdateFavoriteFilterMutation,
     UpdateFavoriteFilterMutationVariables
   >(UpdateFavoriteFilterDocument);
+}
+export const UpdateFavoriteFilterArgDocument = gql`
+  mutation updateFavoriteFilterArg($argId: String!, $value: String!) {
+    insertArg: updateHouseholdFavoriteFilterArgsByPk(
+      pkColumns: { id: $argId }
+      _set: { value: $value }
+    ) {
+      id
+      __typename
+    }
+  }
+`;
+
+export function useUpdateFavoriteFilterArgMutation() {
+  return Urql.useMutation<
+    UpdateFavoriteFilterArgMutation,
+    UpdateFavoriteFilterArgMutationVariables
+  >(UpdateFavoriteFilterArgDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList(

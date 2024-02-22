@@ -1,37 +1,25 @@
-import { useInsertFavoriteFilterArgMutation } from "@v3/graphql/household";
-
-import type { FavoriteFilterArgKey } from "~/feature/household/setting/favoriteFilter/favorite-filter-type";
-import { useGenerateId } from "~/hooks/id/useGenerateId";
+import { useUpdateFavoriteFilterArgMutation } from "@v3/graphql/household";
 
 export const useEditFavoriteFilterArg = () => {
-  const { generateId } = useGenerateId();
-  const [, insertMutation] = useInsertFavoriteFilterArgMutation();
+  const [, updateMutation] = useUpdateFavoriteFilterArgMutation();
 
-  const addFavoriteFilterArg = async ({
-    filterId,
-    key,
+  const editFavoriteFilterArg = async ({
+    argId,
     value,
   }: {
-    filterId: string;
-    key: FavoriteFilterArgKey;
+    argId: string;
     value: string;
   }) => {
-    try {
-      const { error } = await insertMutation({
-        argId: generateId(),
-        filterId,
-        key,
-        value,
-      });
-      if (error) {
-        throw error;
-      }
-    } catch (e) {
-      console.error(e);
+    const { error } = await updateMutation({
+      argId,
+      value,
+    });
+    if (error) {
+      throw error;
     }
   };
 
   return {
-    addFavoriteFilterArg,
+    editFavoriteFilterArg,
   };
 };

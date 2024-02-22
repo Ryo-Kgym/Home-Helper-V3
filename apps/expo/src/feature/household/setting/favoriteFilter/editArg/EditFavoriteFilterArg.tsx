@@ -2,38 +2,46 @@ import { useState } from "react";
 import { Text, View } from "react-native";
 
 import type { FavoriteFilterArgKey } from "../favorite-filter-type";
-import { useAddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/addArg/useAddFavoriteFilterArg";
-import { RegisterButton } from "~/ui";
+import { UpdateButton } from "~/ui";
 import { FavoriteFilterArgKeyPicker, FavoriteFilterArgValueInput } from "../ui";
+import { useEditFavoriteFilterArg } from "./useEditFavoriteFilterArg";
 
-export const EditFavoriteFilterArg = ({ filterId }: { filterId: string }) => {
+export const EditFavoriteFilterArg = ({
+  argId,
+  updateAfterHandler = () => undefined,
+}: {
+  argId: string;
+  updateAfterHandler?: () => void;
+}) => {
   const [key, setKey] = useState<FavoriteFilterArgKey>("categoryId");
   const [value, setValue] = useState<string>("");
-  const { addFavoriteFilterArg } = useAddFavoriteFilterArg();
-  const addHandler = async () => {
+  const { editFavoriteFilterArg } = useEditFavoriteFilterArg();
+  const active = !!value && !!key;
+
+  const editHandler = async () => {
     try {
-      await addFavoriteFilterArg({
-        filterId,
-        key,
+      await editFavoriteFilterArg({
+        argId,
         value,
       });
-      alert("登録しました");
+      alert("更新しました");
+      updateAfterHandler();
     } catch (e) {
       console.error(e);
-      alert("登録に失敗しました");
+      alert("更新に失敗しました");
     }
   };
 
   return (
     <View>
       <Text>Key</Text>
-      <FavoriteFilterArgKeyPicker value={key} setValue={setKey} />
+      <FavoriteFilterArgKeyPicker value={key} setValue={setKey} disabled />
       <FavoriteFilterArgValueInput
         argKey={key}
         value={value}
         setValue={setValue}
       />
-      <RegisterButton registerHandler={addHandler} />
+      <UpdateButton updateHandler={editHandler} disabled={!active} />
     </View>
   );
 };

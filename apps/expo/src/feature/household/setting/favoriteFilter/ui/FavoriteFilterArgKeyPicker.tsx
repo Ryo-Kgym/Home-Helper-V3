@@ -5,9 +5,11 @@ import { favoriteFilterArgKeyArray } from "../favorite-filter-type";
 export const FavoriteFilterArgKeyPicker = ({
   value,
   setValue,
+  disabled,
 }: {
   value: FavoriteFilterArgKey;
   setValue: (value: FavoriteFilterArgKey) => void;
+  disabled?: boolean;
 }) => (
   <Picker
     value={value}
@@ -16,5 +18,6 @@ export const FavoriteFilterArgKeyPicker = ({
       value: k as FavoriteFilterArgKey,
       label: favoriteFilterArgKeyArray[k as FavoriteFilterArgKey].label,
     }))}
+    disabled={disabled}
   />
 );
