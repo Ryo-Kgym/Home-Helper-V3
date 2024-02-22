@@ -9,7 +9,7 @@ import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { Modal, RegisterButton } from "~/ui";
 
 export const FavoriteFilterList = () => {
-  const [addVisible, setAddVisible] = useState(false);
+  const [registerVisible, setRegisterVisible] = useState(false);
 
   const { push } = useRouter();
   const { groupId } = useSaveGroupId();
@@ -52,8 +52,8 @@ export const FavoriteFilterList = () => {
           </Pressable>
         )}
       />
-      <RegisterButton registerHandler={() => setAddVisible(true)} />
-      <Modal visible={addVisible} setVisible={setAddVisible}>
+      <RegisterButton registerHandler={() => setRegisterVisible(true)} />
+      <Modal visible={registerVisible} setVisible={setRegisterVisible}>
         <RegisterFavoriteFilter />
       </Modal>
     </View>
