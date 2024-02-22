@@ -21,6 +21,7 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
     id: "",
     key: "categoryId",
     value: "",
+    category: undefined,
   });
 
   const deleteHandler = async (id: string) => {

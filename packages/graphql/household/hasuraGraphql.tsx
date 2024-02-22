@@ -3894,6 +3894,8 @@ export type HouseholdFavoriteFilterArgs = {
   __typename?: "HouseholdFavoriteFilterArgs";
   /** An object relationship */
   favoriteFilter: HouseholdFavoriteFilter;
+  /** An object relationship */
+  favoriteFilterArgCategoryId?: Maybe<HouseholdCategory>;
   filterId: Scalars["String"];
   id: Scalars["String"];
   key: Scalars["String"];
@@ -3945,6 +3947,7 @@ export type HouseholdFavoriteFilterArgsBoolExp = {
   _not?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
   _or?: InputMaybe<Array<HouseholdFavoriteFilterArgsBoolExp>>;
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+  favoriteFilterArgCategoryId?: InputMaybe<HouseholdCategoryBoolExp>;
   filterId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   key?: InputMaybe<StringComparisonExp>;
@@ -3960,6 +3963,7 @@ export enum HouseholdFavoriteFilterArgsConstraint {
 /** input type for inserting data into table "household.favorite_filter_args" */
 export type HouseholdFavoriteFilterArgsInsertInput = {
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterObjRelInsertInput>;
+  favoriteFilterArgCategoryId?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   filterId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   key?: InputMaybe<Scalars["String"]>;
@@ -4019,6 +4023,7 @@ export type HouseholdFavoriteFilterArgsOnConflict = {
 /** Ordering options when selecting data from "household.favorite_filter_args". */
 export type HouseholdFavoriteFilterArgsOrderBy = {
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterOrderBy>;
+  favoriteFilterArgCategoryId?: InputMaybe<HouseholdCategoryOrderBy>;
   filterId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   key?: InputMaybe<OrderBy>;
@@ -9274,6 +9279,18 @@ export type FragFavoriteFilterFragment = {
     id: string;
     key: string;
     value: string;
+    category?: {
+      __typename: "HouseholdCategory";
+      id: string;
+      name: string;
+      genre: {
+        __typename: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+        genreType: string;
+      };
+    } | null;
   }>;
 };
 
@@ -9515,6 +9532,18 @@ export type GetFavoriteFilterQuery = {
       id: string;
       key: string;
       value: string;
+      category?: {
+        __typename: "HouseholdCategory";
+        id: string;
+        name: string;
+        genre: {
+          __typename: "HouseholdGenre";
+          id: string;
+          name: string;
+          iocomeType: string;
+          genreType: string;
+        };
+      } | null;
     }>;
   } | null;
 };
@@ -9534,6 +9563,18 @@ export type GetFavoriteFiltersQuery = {
       id: string;
       key: string;
       value: string;
+      category?: {
+        __typename: "HouseholdCategory";
+        id: string;
+        name: string;
+        genre: {
+          __typename: "HouseholdGenre";
+          id: string;
+          name: string;
+          iocomeType: string;
+          genreType: string;
+        };
+      } | null;
     }>;
   }>;
 };
@@ -9595,6 +9636,18 @@ export const FragFavoriteFilterFragmentDoc = gql`
       id
       key
       value
+      category: favoriteFilterArgCategoryId {
+        __typename
+        id
+        name
+        genre {
+          __typename
+          id
+          name
+          iocomeType
+          genreType
+        }
+      }
     }
   }
 `;

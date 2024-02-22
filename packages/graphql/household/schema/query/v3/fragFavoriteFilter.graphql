@@ -7,5 +7,17 @@ fragment fragFavoriteFilter on HouseholdFavoriteFilter {
     id
     key
     value
+    category: favoriteFilterArgCategoryId {
+      __typename
+      id
+      name
+      genre {
+        __typename
+        id
+        name
+        iocomeType
+        genreType
+      }
+    }
   }
 }
