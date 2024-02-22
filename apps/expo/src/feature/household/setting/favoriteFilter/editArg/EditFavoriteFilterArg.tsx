@@ -7,21 +7,25 @@ import { FavoriteFilterArgKeyPicker, FavoriteFilterArgValueInput } from "../ui";
 import { useEditFavoriteFilterArg } from "./useEditFavoriteFilterArg";
 
 export const EditFavoriteFilterArg = ({
-  argId,
+  arg,
   updateAfterHandler = () => undefined,
 }: {
-  argId: string;
+  arg: {
+    id: string;
+    key: FavoriteFilterArgKey;
+    value: string;
+  };
   updateAfterHandler?: () => void;
 }) => {
-  const [key, setKey] = useState<FavoriteFilterArgKey>("categoryId");
-  const [value, setValue] = useState<string>("");
+  const [key, setKey] = useState<FavoriteFilterArgKey>(arg.key);
+  const [value, setValue] = useState<string>(arg.value);
   const { editFavoriteFilterArg } = useEditFavoriteFilterArg();
   const active = !!value && !!key;
 
   const editHandler = async () => {
     try {
       await editFavoriteFilterArg({
-        argId,
+        argId: arg.id,
         value,
       });
       alert("更新しました");

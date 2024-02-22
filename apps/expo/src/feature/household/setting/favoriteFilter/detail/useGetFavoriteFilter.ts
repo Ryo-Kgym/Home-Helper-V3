@@ -36,6 +36,7 @@ export const useGetFavoriteFilter = (filterId: string) => {
     favoriteFilterArgs.map((a) => ({
       id: a.id,
       key: a.key,
+      value: a.value,
       label: convertValue({
         key: a.key,
         value: a.value,

@@ -1,9 +1,11 @@
+import type { ComponentProps } from "react";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 
 import { AddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/addArg/AddFavoriteFilterArg";
 import { useDeleteFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/deleteArg/useDeleteFavoriteFilterArg";
+import { EditFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/editArg/EditFavoriteFilterArg";
 import { Modal, RegisterButton } from "~/ui";
 import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
 
@@ -12,6 +14,14 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
   const { deleteFavoriteFilterArg } = useDeleteFavoriteFilterArg();
 
   const [addVisible, setAddVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
+  const [editArg, setEditArg] = useState<
+    ComponentProps<typeof EditFavoriteFilterArg>["arg"]
+  >({
+    id: "",
+    key: "categoryId",
+    value: "",
+  });
 
   const deleteHandler = async (id: string) => {
     try {
@@ -39,6 +49,10 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
               paddingLeft: 10,
               paddingRight: 10,
               backgroundColor: "white",
+            }}
+            onLongPress={() => {
+              setEditArg(item);
+              setEditVisible(true);
             }}
           >
             <View
@@ -79,6 +93,9 @@ export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
       <RegisterButton registerHandler={() => setAddVisible(true)} />
       <Modal visible={addVisible} setVisible={setAddVisible}>
         <AddFavoriteFilterArg filterId={filterId} />
+      </Modal>
+      <Modal visible={editVisible} setVisible={setEditVisible}>
+        <EditFavoriteFilterArg arg={editArg} />
       </Modal>
     </View>
   );
