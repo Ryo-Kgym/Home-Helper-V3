@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
 
-import { RegisterButton, UpdateButton } from "~/ui";
+import { UpdateButton } from "~/ui";
 import { TextField } from "~/ui/TextField";
 import { useEditFavoriteFilter } from "./useEditFavoriteFilter";
 
 export const EditFavoriteFilter = ({
-  filterId,
+  filter,
   updateAfterHandler = () => undefined,
 }: {
-  filterId: string;
+  filter: {
+    id: string;
+    name: string;
+  };
   updateAfterHandler?: () => void;
 }) => {
-  const [filterName, setFilterName] = useState<string>("");
+  const [filterName, setFilterName] = useState<string>(filter.name);
   const { editFavoriteFilter } = useEditFavoriteFilter();
 
   const updateHandler = async () => {
     try {
       await editFavoriteFilter({
-        filterId,
+        filterId: filter.id,
         name: filterName,
       });
       alert("更新しました");

@@ -1,3 +1,4 @@
+import type { ComponentProps } from "react";
 import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
@@ -12,7 +13,12 @@ import { Modal, RegisterButton } from "~/ui";
 export const FavoriteFilterList = () => {
   const [registerVisible, setRegisterVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
-  const [editFilterId, setEditFilterId] = useState<string>("");
+  const [editFilter, setEditFilter] = useState<
+    ComponentProps<typeof EditFavoriteFilter>["filter"]
+  >({
+    id: "",
+    name: "",
+  });
 
   const { push } = useRouter();
   const { groupId } = useSaveGroupId();
@@ -49,7 +55,7 @@ export const FavoriteFilterList = () => {
               );
             }}
             onLongPress={() => {
-              setEditFilterId(item.id);
+              setEditFilter(item);
               setEditVisible(true);
             }}
           >
@@ -64,7 +70,10 @@ export const FavoriteFilterList = () => {
         <RegisterFavoriteFilter />
       </Modal>
       <Modal visible={editVisible} setVisible={setEditVisible}>
-        <EditFavoriteFilter filterId={editFilterId} />
+        <EditFavoriteFilter
+          filter={editFilter}
+          updateAfterHandler={() => setEditVisible(false)}
+        />
       </Modal>
     </View>
   );
