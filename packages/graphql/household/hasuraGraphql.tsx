@@ -8463,6 +8463,19 @@ export type UpdateDashboardSettingOrderMutation = {
   } | null;
 };
 
+export type UpdateFavoriteFilterMutationVariables = Exact<{
+  filterId: Scalars["String"];
+  name: Scalars["String"];
+}>;
+
+export type UpdateFavoriteFilterMutation = {
+  __typename?: "mutation_root";
+  updateHouseholdFavoriteFilterByPk?: {
+    __typename: "HouseholdFavoriteFilter";
+    id: string;
+  } | null;
+};
+
 export type GetAccountBalanceListQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
@@ -10180,6 +10193,24 @@ export function useUpdateDashboardSettingOrderMutation() {
     UpdateDashboardSettingOrderMutation,
     UpdateDashboardSettingOrderMutationVariables
   >(UpdateDashboardSettingOrderDocument);
+}
+export const UpdateFavoriteFilterDocument = gql`
+  mutation updateFavoriteFilter($filterId: String!, $name: String!) {
+    updateHouseholdFavoriteFilterByPk(
+      pkColumns: { id: $filterId }
+      _set: { name: $name }
+    ) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useUpdateFavoriteFilterMutation() {
+  return Urql.useMutation<
+    UpdateFavoriteFilterMutation,
+    UpdateFavoriteFilterMutationVariables
+  >(UpdateFavoriteFilterDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList(

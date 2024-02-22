@@ -1,17 +1,17 @@
-import { useInsertFavoriteFilterMutation } from "@v3/graphql/household";
-
-import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
-import { useGenerateId } from "~/hooks/id/useGenerateId";
+import { useUpdateFavoriteFilterMutation } from "@v3/graphql/household";
 
 export const useEditFavoriteFilter = () => {
-  const { groupId } = useSaveGroupId();
-  const { generateId } = useGenerateId();
-  const [, insertMutation] = useInsertFavoriteFilterMutation();
+  const [, updateMutation] = useUpdateFavoriteFilterMutation();
 
-  const editFavoriteFilter = async ({ name }: { name: string }) => {
-    const { error } = await insertMutation({
-      filterId: generateId(),
-      groupId,
+  const editFavoriteFilter = async ({
+    filterId,
+    name,
+  }: {
+    filterId: string;
+    name: string;
+  }) => {
+    const { error } = await updateMutation({
+      filterId,
       name,
     });
     if (error) {

@@ -4,12 +4,15 @@ import { useRouter } from "expo-router";
 import { useGetFavoriteFiltersQuery } from "@v3/graphql/household";
 
 import { paths } from "~/app/paths";
+import { EditFavoriteFilter } from "~/feature/household/setting/favoriteFilter/editFilter/EditFavoriteFilter";
 import { RegisterFavoriteFilter } from "~/feature/household/setting/favoriteFilter/registerFilter/RegisterFavoriteFilter";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { Modal, RegisterButton } from "~/ui";
 
 export const FavoriteFilterList = () => {
   const [registerVisible, setRegisterVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
+  const [editFilterId, setEditFilterId] = useState<string>("");
 
   const { push } = useRouter();
   const { groupId } = useSaveGroupId();
@@ -45,6 +48,10 @@ export const FavoriteFilterList = () => {
                 }),
               );
             }}
+            onLongPress={() => {
+              setEditFilterId(item.id);
+              setEditVisible(true);
+            }}
           >
             <View>
               <Text className={"text-xl"}>{item.name}</Text>
@@ -55,6 +62,9 @@ export const FavoriteFilterList = () => {
       <RegisterButton registerHandler={() => setRegisterVisible(true)} />
       <Modal visible={registerVisible} setVisible={setRegisterVisible}>
         <RegisterFavoriteFilter />
+      </Modal>
+      <Modal visible={editVisible} setVisible={setEditVisible}>
+        <EditFavoriteFilter filterId={editFilterId} />
       </Modal>
     </View>
   );
