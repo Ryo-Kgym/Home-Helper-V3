@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 
-import { AddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/addArg/AddFavoriteFilterArg";
-import { useDeleteFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/deleteArg/useDeleteFavoriteFilterArg";
-import { EditFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/editArg/EditFavoriteFilterArg";
+import { AddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/argAdd/AddFavoriteFilterArg";
+import { useDeleteFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/argDelete/useDeleteFavoriteFilterArg";
+import { EditFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/argEdit/EditFavoriteFilterArg";
 import { Modal, RegisterButton } from "~/ui";
 import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
 
