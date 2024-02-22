@@ -9307,20 +9307,6 @@ export type GetAccountByIdQuery = {
   } | null;
 };
 
-export type GetCategoriesByIdArrayQueryVariables = Exact<{
-  categoryIds: Array<Scalars["String"]> | Scalars["String"];
-}>;
-
-export type GetCategoriesByIdArrayQuery = {
-  __typename?: "query_root";
-  categories: Array<{
-    __typename?: "HouseholdCategory";
-    id: string;
-    name: string;
-    genre: { __typename?: "HouseholdGenre"; id: string; name: string };
-  }>;
-};
-
 export type GetCreditCardDetailByIdQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
@@ -11294,30 +11280,6 @@ export function useGetAccountByIdQuery(
     query: GetAccountByIdDocument,
     ...options,
   });
-}
-export const GetCategoriesByIdArrayDocument = gql`
-  query getCategoriesByIdArray($categoryIds: [String!]!) {
-    categories: householdCategory(where: { id: { _in: $categoryIds } }) {
-      id
-      name
-      genre {
-        id
-        name
-      }
-    }
-  }
-`;
-
-export function useGetCategoriesByIdArrayQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCategoriesByIdArrayQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCategoriesByIdArrayQuery,
-    GetCategoriesByIdArrayQueryVariables
-  >({ query: GetCategoriesByIdArrayDocument, ...options });
 }
 export const GetCreditCardDetailByIdDocument = gql`
   query getCreditCardDetailById($id: String!) {

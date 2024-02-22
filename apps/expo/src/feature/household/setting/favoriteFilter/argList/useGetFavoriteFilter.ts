@@ -1,19 +1,14 @@
-import { useEffect, useState } from "react";
 import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
 
 import type { FavoriteFilterArgKey } from "../favorite-filter-type";
 import type { IocomeType } from "~/types/iocome-type";
-import { useConvertCategoryId } from "./useConvertCategoryId";
 
 export const useGetFavoriteFilter = (filterId: string) => {
-  const [categoryIds, setCategoryIds] = useState<string[]>([]);
-
-  const [{ data, fetching }] = useGetFavoriteFilterQuery({
+  const [{ data }] = useGetFavoriteFilterQuery({
     variables: { filterId },
   });
-  const { convert: convertCategoryIdFrom } = useConvertCategoryId(categoryIds);
 
-  const favoriteFilterArgs =
+  const favoriteFilterArgs: FavoriteFilterArgsType[] =
     data?.filter?.args.map((a) => ({
       id: a.id,
       key: a.key as FavoriteFilterArgKey,
@@ -32,15 +27,9 @@ export const useGetFavoriteFilter = (filterId: string) => {
           : undefined,
     })) ?? [];
 
-  const convertValue = ({
-    key,
-    value,
-  }: {
-    key: FavoriteFilterArgKey;
-    value: string;
-  }) => {
-    if (key === "categoryId") {
-      return convertCategoryIdFrom(value);
+  const convertValue = ({ key, value, category }: FavoriteFilterArgsType) => {
+    if (category && key === "categoryId") {
+      return category.genre.name + " - " + category.name;
     }
     return value;
   };
@@ -49,18 +38,24 @@ export const useGetFavoriteFilter = (filterId: string) => {
     favoriteFilterArgs.map((a) => ({
       ...a,
       label: convertValue({
-        key: a.key,
-        value: a.value,
+        ...a,
       }),
     }));
 
-  useEffect(() => {
-    setCategoryIds(
-      favoriteFilterArgs
-        .filter((a) => a.key === "categoryId")
-        .map((a) => a.value),
-    );
-  }, [fetching]);
-
   return { getFavoriteFilterArgs };
+};
+
+type FavoriteFilterArgsType = {
+  id: string;
+  key: FavoriteFilterArgKey;
+  value: string;
+  category?: {
+    id: string;
+    name: string;
+    genre: {
+      id: string;
+      name: string;
+      iocomeType: IocomeType;
+    };
+  };
 };
