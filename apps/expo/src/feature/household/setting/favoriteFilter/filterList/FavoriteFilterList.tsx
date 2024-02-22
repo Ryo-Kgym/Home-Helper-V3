@@ -1,15 +1,24 @@
+import type { ComponentProps } from "react";
 import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useGetFavoriteFiltersQuery } from "@v3/graphql/household";
 
 import { paths } from "~/app/paths";
-import { RegisterFavoriteFilter } from "~/feature/household/setting/favoriteFilter/registerFilter/RegisterFavoriteFilter";
+import { EditFavoriteFilter } from "~/feature/household/setting/favoriteFilter/filterEdit/EditFavoriteFilter";
+import { RegisterFavoriteFilter } from "~/feature/household/setting/favoriteFilter/filterRegister/RegisterFavoriteFilter";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { Modal, RegisterButton } from "~/ui";
 
 export const FavoriteFilterList = () => {
-  const [addVisible, setAddVisible] = useState(false);
+  const [registerVisible, setRegisterVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
+  const [editFilter, setEditFilter] = useState<
+    ComponentProps<typeof EditFavoriteFilter>["filter"]
+  >({
+    id: "",
+    name: "",
+  });
 
   const { push } = useRouter();
   const { groupId } = useSaveGroupId();
@@ -45,6 +54,10 @@ export const FavoriteFilterList = () => {
                 }),
               );
             }}
+            onLongPress={() => {
+              setEditFilter(item);
+              setEditVisible(true);
+            }}
           >
             <View>
               <Text className={"text-xl"}>{item.name}</Text>
@@ -52,9 +65,15 @@ export const FavoriteFilterList = () => {
           </Pressable>
         )}
       />
-      <RegisterButton registerHandler={() => setAddVisible(true)} />
-      <Modal visible={addVisible} setVisible={setAddVisible}>
+      <RegisterButton registerHandler={() => setRegisterVisible(true)} />
+      <Modal visible={registerVisible} setVisible={setRegisterVisible}>
         <RegisterFavoriteFilter />
+      </Modal>
+      <Modal visible={editVisible} setVisible={setEditVisible}>
+        <EditFavoriteFilter
+          filter={editFilter}
+          updateAfterHandler={() => setEditVisible(false)}
+        />
       </Modal>
     </View>
   );

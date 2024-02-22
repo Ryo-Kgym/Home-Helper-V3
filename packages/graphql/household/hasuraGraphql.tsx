@@ -3894,6 +3894,8 @@ export type HouseholdFavoriteFilterArgs = {
   __typename?: "HouseholdFavoriteFilterArgs";
   /** An object relationship */
   favoriteFilter: HouseholdFavoriteFilter;
+  /** An object relationship */
+  favoriteFilterArgCategoryId?: Maybe<HouseholdCategory>;
   filterId: Scalars["String"];
   id: Scalars["String"];
   key: Scalars["String"];
@@ -3945,6 +3947,7 @@ export type HouseholdFavoriteFilterArgsBoolExp = {
   _not?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
   _or?: InputMaybe<Array<HouseholdFavoriteFilterArgsBoolExp>>;
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+  favoriteFilterArgCategoryId?: InputMaybe<HouseholdCategoryBoolExp>;
   filterId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   key?: InputMaybe<StringComparisonExp>;
@@ -3960,6 +3963,7 @@ export enum HouseholdFavoriteFilterArgsConstraint {
 /** input type for inserting data into table "household.favorite_filter_args" */
 export type HouseholdFavoriteFilterArgsInsertInput = {
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterObjRelInsertInput>;
+  favoriteFilterArgCategoryId?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   filterId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   key?: InputMaybe<Scalars["String"]>;
@@ -4019,10 +4023,16 @@ export type HouseholdFavoriteFilterArgsOnConflict = {
 /** Ordering options when selecting data from "household.favorite_filter_args". */
 export type HouseholdFavoriteFilterArgsOrderBy = {
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterOrderBy>;
+  favoriteFilterArgCategoryId?: InputMaybe<HouseholdCategoryOrderBy>;
   filterId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   key?: InputMaybe<OrderBy>;
   value?: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: household.favorite_filter_args */
+export type HouseholdFavoriteFilterArgsPkColumnsInput = {
+  id: Scalars["String"];
 };
 
 /** select columns of table "household.favorite_filter_args" */
@@ -4037,11 +4047,26 @@ export enum HouseholdFavoriteFilterArgsSelectColumn {
   Value = "value",
 }
 
-/** placeholder for update columns of table "household.favorite_filter_args" (current role has no relevant permissions) */
+/** input type for updating data in table "household.favorite_filter_args" */
+export type HouseholdFavoriteFilterArgsSetInput = {
+  key?: InputMaybe<Scalars["String"]>;
+  value?: InputMaybe<Scalars["String"]>;
+};
+
+/** update columns of table "household.favorite_filter_args" */
 export enum HouseholdFavoriteFilterArgsUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
+  /** column name */
+  Key = "key",
+  /** column name */
+  Value = "value",
 }
+
+export type HouseholdFavoriteFilterArgsUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdFavoriteFilterArgsSetInput>;
+  /** filter the rows which have to be updated */
+  where: HouseholdFavoriteFilterArgsBoolExp;
+};
 
 /** Boolean expression to filter rows from the table "household.favorite_filter". All fields are combined with a logical 'AND'. */
 export type HouseholdFavoriteFilterBoolExp = {
@@ -6228,6 +6253,14 @@ export type Mutation_Root = {
   >;
   /** update data of the table: "household.favorite_filter" */
   updateHouseholdFavoriteFilter?: Maybe<HouseholdFavoriteFilterMutationResponse>;
+  /** update data of the table: "household.favorite_filter_args" */
+  updateHouseholdFavoriteFilterArgs?: Maybe<HouseholdFavoriteFilterArgsMutationResponse>;
+  /** update single row of the table: "household.favorite_filter_args" */
+  updateHouseholdFavoriteFilterArgsByPk?: Maybe<HouseholdFavoriteFilterArgs>;
+  /** update multiples rows of table: "household.favorite_filter_args" */
+  updateHouseholdFavoriteFilterArgsMany?: Maybe<
+    Array<Maybe<HouseholdFavoriteFilterArgsMutationResponse>>
+  >;
   /** update single row of the table: "household.favorite_filter" */
   updateHouseholdFavoriteFilterByPk?: Maybe<HouseholdFavoriteFilter>;
   /** update multiples rows of table: "household.favorite_filter" */
@@ -6571,6 +6604,23 @@ export type Mutation_RootUpdateHouseholdDashboardSettingManyArgs = {
 export type Mutation_RootUpdateHouseholdFavoriteFilterArgs = {
   _set?: InputMaybe<HouseholdFavoriteFilterSetInput>;
   where: HouseholdFavoriteFilterBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterArgsArgs = {
+  _set?: InputMaybe<HouseholdFavoriteFilterArgsSetInput>;
+  where: HouseholdFavoriteFilterArgsBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterArgsByPkArgs = {
+  _set?: InputMaybe<HouseholdFavoriteFilterArgsSetInput>;
+  pkColumns: HouseholdFavoriteFilterArgsPkColumnsInput;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdFavoriteFilterArgsManyArgs = {
+  updates: Array<HouseholdFavoriteFilterArgsUpdates>;
 };
 
 /** mutation root */
@@ -8311,6 +8361,18 @@ export type DeleteDashboardSettingMutation = {
   } | null;
 };
 
+export type DeleteFavoriteFilterArgMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type DeleteFavoriteFilterArgMutation = {
+  __typename?: "mutation_root";
+  deleteHouseholdFavoriteFilterArgsByPk?: {
+    __typename?: "HouseholdFavoriteFilterArgs";
+    id: string;
+  } | null;
+};
+
 export type DeleteInsertDashboardSettingArgsMutationVariables = Exact<{
   settingId: Scalars["String"];
   objects:
@@ -8449,6 +8511,29 @@ export type UpdateDashboardSettingOrderMutation = {
     __typename: "HouseholdDashboardSetting";
     id: string;
   } | null;
+};
+
+export type UpdateFavoriteFilterMutationVariables = Exact<{
+  filterId: Scalars["String"];
+  name: Scalars["String"];
+}>;
+
+export type UpdateFavoriteFilterMutation = {
+  __typename?: "mutation_root";
+  updateHouseholdFavoriteFilterByPk?: {
+    __typename: "HouseholdFavoriteFilter";
+    id: string;
+  } | null;
+};
+
+export type UpdateFavoriteFilterArgMutationVariables = Exact<{
+  argId: Scalars["String"];
+  value: Scalars["String"];
+}>;
+
+export type UpdateFavoriteFilterArgMutation = {
+  __typename?: "mutation_root";
+  insertArg?: { __typename: "HouseholdFavoriteFilterArgs"; id: string } | null;
 };
 
 export type GetAccountBalanceListQueryVariables = Exact<{
@@ -9194,6 +9279,18 @@ export type FragFavoriteFilterFragment = {
     id: string;
     key: string;
     value: string;
+    category?: {
+      __typename: "HouseholdCategory";
+      id: string;
+      name: string;
+      genre: {
+        __typename: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+        genreType: string;
+      };
+    } | null;
   }>;
 };
 
@@ -9208,20 +9305,6 @@ export type GetAccountByIdQuery = {
     id: string;
     name: string;
   } | null;
-};
-
-export type GetCategoriesByIdArrayQueryVariables = Exact<{
-  categoryIds: Array<Scalars["String"]> | Scalars["String"];
-}>;
-
-export type GetCategoriesByIdArrayQuery = {
-  __typename?: "query_root";
-  categories: Array<{
-    __typename?: "HouseholdCategory";
-    id: string;
-    name: string;
-    genre: { __typename?: "HouseholdGenre"; id: string; name: string };
-  }>;
 };
 
 export type GetCreditCardDetailByIdQueryVariables = Exact<{
@@ -9435,6 +9518,18 @@ export type GetFavoriteFilterQuery = {
       id: string;
       key: string;
       value: string;
+      category?: {
+        __typename: "HouseholdCategory";
+        id: string;
+        name: string;
+        genre: {
+          __typename: "HouseholdGenre";
+          id: string;
+          name: string;
+          iocomeType: string;
+          genreType: string;
+        };
+      } | null;
     }>;
   } | null;
 };
@@ -9454,6 +9549,18 @@ export type GetFavoriteFiltersQuery = {
       id: string;
       key: string;
       value: string;
+      category?: {
+        __typename: "HouseholdCategory";
+        id: string;
+        name: string;
+        genre: {
+          __typename: "HouseholdGenre";
+          id: string;
+          name: string;
+          iocomeType: string;
+          genreType: string;
+        };
+      } | null;
     }>;
   }>;
 };
@@ -9515,6 +9622,18 @@ export const FragFavoriteFilterFragmentDoc = gql`
       id
       key
       value
+      category: favoriteFilterArgCategoryId {
+        __typename
+        id
+        name
+        genre {
+          __typename
+          id
+          name
+          iocomeType
+          genreType
+        }
+      }
     }
   }
 `;
@@ -9949,6 +10068,20 @@ export function useDeleteDashboardSettingMutation() {
     DeleteDashboardSettingMutationVariables
   >(DeleteDashboardSettingDocument);
 }
+export const DeleteFavoriteFilterArgDocument = gql`
+  mutation deleteFavoriteFilterArg($id: String!) {
+    deleteHouseholdFavoriteFilterArgsByPk(id: $id) {
+      id
+    }
+  }
+`;
+
+export function useDeleteFavoriteFilterArgMutation() {
+  return Urql.useMutation<
+    DeleteFavoriteFilterArgMutation,
+    DeleteFavoriteFilterArgMutationVariables
+  >(DeleteFavoriteFilterArgDocument);
+}
 export const DeleteInsertDashboardSettingArgsDocument = gql`
   mutation deleteInsertDashboardSettingArgs(
     $settingId: String!
@@ -10154,6 +10287,42 @@ export function useUpdateDashboardSettingOrderMutation() {
     UpdateDashboardSettingOrderMutation,
     UpdateDashboardSettingOrderMutationVariables
   >(UpdateDashboardSettingOrderDocument);
+}
+export const UpdateFavoriteFilterDocument = gql`
+  mutation updateFavoriteFilter($filterId: String!, $name: String!) {
+    updateHouseholdFavoriteFilterByPk(
+      pkColumns: { id: $filterId }
+      _set: { name: $name }
+    ) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useUpdateFavoriteFilterMutation() {
+  return Urql.useMutation<
+    UpdateFavoriteFilterMutation,
+    UpdateFavoriteFilterMutationVariables
+  >(UpdateFavoriteFilterDocument);
+}
+export const UpdateFavoriteFilterArgDocument = gql`
+  mutation updateFavoriteFilterArg($argId: String!, $value: String!) {
+    insertArg: updateHouseholdFavoriteFilterArgsByPk(
+      pkColumns: { id: $argId }
+      _set: { value: $value }
+    ) {
+      id
+      __typename
+    }
+  }
+`;
+
+export function useUpdateFavoriteFilterArgMutation() {
+  return Urql.useMutation<
+    UpdateFavoriteFilterArgMutation,
+    UpdateFavoriteFilterArgMutationVariables
+  >(UpdateFavoriteFilterArgDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList(
@@ -11111,30 +11280,6 @@ export function useGetAccountByIdQuery(
     query: GetAccountByIdDocument,
     ...options,
   });
-}
-export const GetCategoriesByIdArrayDocument = gql`
-  query getCategoriesByIdArray($categoryIds: [String!]!) {
-    categories: householdCategory(where: { id: { _in: $categoryIds } }) {
-      id
-      name
-      genre {
-        id
-        name
-      }
-    }
-  }
-`;
-
-export function useGetCategoriesByIdArrayQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCategoriesByIdArrayQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCategoriesByIdArrayQuery,
-    GetCategoriesByIdArrayQueryVariables
-  >({ query: GetCategoriesByIdArrayDocument, ...options });
 }
 export const GetCreditCardDetailByIdDocument = gql`
   query getCreditCardDetailById($id: String!) {

@@ -1,18 +1,20 @@
 import type { FavoriteFilterArgKey } from "../favorite-filter-type";
 import { CategoryIdInput, YearInput } from "./_input";
 
-export const FavoriteFilterArgValueInput = ({
+export const FavoriteFilterArgValueInput = <O,>({
   argKey,
   value,
   setValue,
+  option,
 }: {
   argKey: FavoriteFilterArgKey;
-} & FavoriteFilterArgValueInputProps) =>
-  inputMap[argKey].Component({ value, setValue });
+} & FavoriteFilterArgValueInputProps<O>) =>
+  inputMap[argKey].Component({ value, setValue, option });
 
 const inputMap: {
   [key in FavoriteFilterArgKey]: {
-    Component: FavoriteFilterArgValueInputComponent;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Component: FavoriteFilterArgValueInputComponent<any>;
   };
 } = {
   categoryId: {
@@ -23,10 +25,12 @@ const inputMap: {
   },
 };
 
-export type FavoriteFilterArgValueInputProps = {
+export type FavoriteFilterArgValueInputProps<O> = {
   value: string;
   setValue: (value: string) => void;
+  option?: O;
 };
 
-export type FavoriteFilterArgValueInputComponent =
-  React.FC<FavoriteFilterArgValueInputProps>;
+export type FavoriteFilterArgValueInputComponent<O = undefined> = React.FC<
+  FavoriteFilterArgValueInputProps<O>
+>;
