@@ -65,10 +65,11 @@ export const useRegisterCreditCard = ({
     try {
       await createCreditCardSummaryMutation(summaryVariableList);
 
-      detailVariableList.map(async (variable) => {
-        await createCreditCardDetailMutation(variable);
-        console.debug(result.data?.insertCreditCardDetail);
-      });
+      await Promise.all(
+        detailVariableList.map(async (detail) => {
+          await createCreditCardDetailMutation(detail);
+        }),
+      );
     } catch (e) {
       console.error(e);
     }
