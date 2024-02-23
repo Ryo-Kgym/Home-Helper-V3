@@ -71,7 +71,7 @@
     "@next/eslint-plugin-next": "^14.0.4",
     "@types/encoding-japanese": "^2.0.5",
     "@types/node": "^20.10.6",
-    "@types/react": "^18.2.46",
+    "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.18",
     "@types/uuid": "^9.0.7",
     "@types/jest": "^29.5.11",
