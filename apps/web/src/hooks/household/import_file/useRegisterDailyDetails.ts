@@ -39,8 +39,10 @@ export const useRegisterDailyDetails = ({
 
   const registerDailyDetails = async () => {
     try {
-      createDailyDetailVariableList.map(
-        async (variable) => await createDailyDetailMutation(variable),
+      await Promise.all(
+        createDailyDetailVariableList.map(async (variable) => {
+          await createDailyDetailMutation(variable);
+        }),
       );
     } catch (e) {
       console.error(e);

@@ -39,7 +39,7 @@ export const useCreateSummaryCategories = () => {
   }: UseCreateSummaryCategoriesArgs) => {
     try {
       await _deleteSummaryCategories();
-      await _insertSummaryCategories({ selectedCategories });
+      await Promise.all(await _insertSummaryCategories({ selectedCategories }));
     } catch (e) {
       console.error(e);
     }
