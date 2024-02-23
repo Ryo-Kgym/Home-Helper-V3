@@ -35,7 +35,7 @@ export const useRegisterCreditCard = ({
   const [, createCreditCardSummaryMutation] =
     useCreateCreditCardSummaryMutation();
 
-  const [result, createCreditCardDetailMutation] =
+  const [, createCreditCardDetailMutation] =
     useCreateCreditCardDetailMutation();
 
   const summaryVariableList = {
