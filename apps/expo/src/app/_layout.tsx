@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Provider as UrqlProvider } from "urql";
 
+import "react-native-url-polyfill/auto";
 import "../styles.css";
 
 import { datasource } from "~/config/datasource";
