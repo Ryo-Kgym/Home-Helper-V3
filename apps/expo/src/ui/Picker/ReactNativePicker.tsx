@@ -1,16 +1,13 @@
 import { Picker } from "@react-native-picker/picker";
 
+import type { PickerProps } from "~/ui/Picker/props";
+
 export const ReactNativePicker = <T,>({
   value,
   setValue,
   data,
   disabled = false,
-}: {
-  value: T;
-  setValue: (value: T) => void;
-  data: { value: T; label: string }[];
-  disabled?: boolean;
-}) => (
+}: PickerProps<T>) => (
   <Picker
     selectedValue={value}
     onValueChange={setValue}
