@@ -1,6 +1,6 @@
-import { Picker as RNPicker } from "@react-native-picker/picker";
+import { Picker } from "@react-native-picker/picker";
 
-export const Picker = <T,>({
+export const ReactNativePicker = <T,>({
   value,
   setValue,
   data,
@@ -11,7 +11,7 @@ export const Picker = <T,>({
   data: { value: T; label: string }[];
   disabled?: boolean;
 }) => (
-  <RNPicker
+  <Picker
     selectedValue={value}
     onValueChange={setValue}
     itemStyle={{ height: 60, fontSize: 18 }}
@@ -25,7 +25,7 @@ export const Picker = <T,>({
           (disabled && d.value === value),
       )
       .map((d) => (
-        <RNPicker.Item key={String(d.value)} label={d.label} value={d.value} />
+        <Picker.Item key={String(d.value)} label={d.label} value={d.value} />
       ))}
-  </RNPicker>
+  </Picker>
 );
