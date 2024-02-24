@@ -33,6 +33,7 @@ export const RegisterDailyPresenter = ({
   memo,
   resetHandler,
   registerHandler,
+  disabled,
 }: {
   date: FieldType<Date | undefined>;
   iocomeType: FieldType<IocomeType>;
@@ -43,6 +44,7 @@ export const RegisterDailyPresenter = ({
   memo: FieldType<string | null>;
   resetHandler: () => void;
   registerHandler: () => void;
+  disabled: boolean;
 }) => (
   <KeyboardAvoidingView
     behavior={"position"}
@@ -96,7 +98,11 @@ export const RegisterDailyPresenter = ({
         </View>
         <View className={"h-16 flex-row justify-between"}>
           <View className={"w-1/2"}>
-            <Button title={"登録"} onPress={registerHandler} />
+            <Button
+              title={"登録"}
+              onPress={registerHandler}
+              disabled={disabled}
+            />
           </View>
           <View className={"w-1/2"}>
             <Button title={"リセット"} onPress={resetHandler} />

@@ -19,7 +19,12 @@ export const RegisterDailyContainer = ({
 
   const { registerDaily } = useRegisterDaily();
 
-  const registerable = typeof amount === "number";
+  const registerable =
+    typeof amount === "number" &&
+    !!genreId &&
+    !!categoryId &&
+    !!accountId &&
+    !!date;
 
   const resetHandler = () => {
     setDate(initialDate);
@@ -85,6 +90,7 @@ export const RegisterDailyContainer = ({
       }}
       resetHandler={resetHandler}
       registerHandler={registerHandler}
+      disabled={!registerable}
     />
   );
 };
