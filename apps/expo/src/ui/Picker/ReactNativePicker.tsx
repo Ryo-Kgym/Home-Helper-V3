@@ -1,23 +1,25 @@
 import { useState } from "react";
-import { Button } from "react-native";
+import { Button, Text } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
 import type { PickerProps } from "./props";
 import { Modal } from "../Modal";
 
 export const ReactNativePicker = <T,>({
+  title,
   value,
   setValue,
   data,
   disabled = false,
+  description,
 }: PickerProps<T>) => {
   const [open, setOpen] = useState(false);
-  const title = data.filter((d) => d.value === value)[0]?.label ?? "未選択";
+  const label = data.filter((d) => d.value === value)[0]?.label ?? "未選択";
 
   return (
     <>
-      <Button title={title} onPress={() => setOpen(true)} disabled={disabled} />
-      <Modal visible={open} setVisible={setOpen}>
+      <Button title={label} onPress={() => setOpen(true)} disabled={disabled} />
+      <Modal title={title} visible={open} setVisible={setOpen}>
         <Picker
           selectedValue={value ?? data[0]?.value}
           onValueChange={setValue}
@@ -39,6 +41,11 @@ export const ReactNativePicker = <T,>({
               />
             ))}
         </Picker>
+        {typeof description === "string" ? (
+          <Text>{description}</Text>
+        ) : (
+          description
+        )}
       </Modal>
     </>
   );

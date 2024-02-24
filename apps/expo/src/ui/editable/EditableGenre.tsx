@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Text, View } from "react-native";
 import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
 
 import type { IocomeType } from "~/types/iocome-type";
@@ -28,6 +29,34 @@ export const EditableGenre = ({
       label: genre.genreName,
     })) ?? [];
 
+  const selectedCategories =
+    data?.allGenresList
+      .filter((g) => g.genreId === value)
+      .flatMap((g) =>
+        g.categoriesByGenreIdList.map((c) => ({
+          id: c.categoryId,
+          name: c.categoryName,
+        })),
+      ) ?? [];
+
+  const description = (
+    <View>
+      <Text>カテゴリ</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: 8,
+          padding: 8,
+        }}
+      >
+        {selectedCategories.map((c) => (
+          <Text key={c.id}>{c.name}</Text>
+        ))}
+      </View>
+    </View>
+  );
+
   useEffect(
     () => {
       if (!value && genres[0]) {
@@ -38,5 +67,13 @@ export const EditableGenre = ({
     [genres],
   );
 
-  return <Picker value={value} setValue={setValue} data={genres} />;
+  return (
+    <Picker
+      title={"ジャンル"}
+      value={value}
+      setValue={setValue}
+      data={genres}
+      description={description}
+    />
+  );
 };
