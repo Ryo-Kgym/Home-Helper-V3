@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Button } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
-import type { PickerProps } from "~/ui/Picker/props";
-import { Modal } from "~/ui";
+import type { PickerProps } from "./props";
+import { Modal } from "../Modal";
 
 export const ReactNativePicker = <T,>({
   value,
@@ -19,7 +19,7 @@ export const ReactNativePicker = <T,>({
       <Button title={title} onPress={() => setOpen(true)} disabled={disabled} />
       <Modal visible={open} setVisible={setOpen}>
         <Picker
-          selectedValue={value}
+          selectedValue={value ?? data[0]?.value}
           onValueChange={setValue}
           itemStyle={{ height: 250, fontSize: 18 }}
         >
