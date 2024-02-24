@@ -3,4 +3,5 @@ export type PickerProps<T> = {
   setValue: (value: T) => void;
   data: { value: T; label: string }[];
   disabled?: boolean;
+  description?: React.ReactNode;
 };

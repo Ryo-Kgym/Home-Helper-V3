@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "react-native";
+import { Button, Text } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
 import type { PickerProps } from "./props";
@@ -10,6 +10,7 @@ export const ReactNativePicker = <T,>({
   setValue,
   data,
   disabled = false,
+  description,
 }: PickerProps<T>) => {
   const [open, setOpen] = useState(false);
   const title = data.filter((d) => d.value === value)[0]?.label ?? "未選択";
@@ -39,6 +40,11 @@ export const ReactNativePicker = <T,>({
               />
             ))}
         </Picker>
+        {typeof description === "string" ? (
+          <Text>{description}</Text>
+        ) : (
+          description
+        )}
       </Modal>
     </>
   );
