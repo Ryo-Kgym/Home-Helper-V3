@@ -37,5 +37,12 @@ export const EditableCategory = ({
     [categories],
   );
 
-  return <Picker value={value} setValue={setValue} data={categories} />;
+  return (
+    <Picker
+      title={"カテゴリ"}
+      value={value}
+      setValue={setValue}
+      data={categories}
+    />
+  );
 };

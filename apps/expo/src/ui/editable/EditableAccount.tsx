@@ -34,6 +34,7 @@ export const EditableAccount = ({
 
   return (
     <Picker
+      title={"アカウント"}
       value={value}
       setValue={setValue}
       disabled={disabled}
