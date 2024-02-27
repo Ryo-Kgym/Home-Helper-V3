@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { SelectAppContainer } from "@app/top/_material/SelectAppContainer";
+import { SelectAppClient } from "@feature/app/list/SelectAppClient";
 
-const SelectAppPage = () => <SelectAppContainer />;
+const SelectAppPage = () => <SelectAppClient />;
 export default SelectAppPage;

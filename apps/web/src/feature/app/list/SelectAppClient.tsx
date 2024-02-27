@@ -7,9 +7,10 @@
 import type { LinkProps } from "@components/atoms/Card";
 import { LinkList } from "@components/atoms/Card";
 import { useGroup } from "@hooks/group/useGroup";
-import { useGetAppsQuery } from "@v3/graphql/public";
 
-export const SelectAppContainer = () => {
+import { useGetAppsQuery } from "../../../../../../packages/graphql/public";
+
+export const SelectAppClient = () => {
   const { groupId } = useGroup();
   const [{ data }] = useGetAppsQuery({
     variables: { groupId },
