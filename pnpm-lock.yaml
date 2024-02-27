@@ -249,6 +249,9 @@ importers:
       '@mantine/tiptap':
         specifier: ^7.4.0
         version: 7.5.3(@mantine/core@7.5.3)(@mantine/hooks@7.5.3)(@tiptap/extension-link@2.2.3)(@tiptap/react@2.2.3)(react-dom@18.2.0)(react@18.2.0)
+      '@oneforall/domain':
+        specifier: ^1.0.0
+        version: link:../../packages/domain
       '@tabler/icons':
         specifier: ^1.119.0
         version: 1.119.0(react-dom@18.2.0)(react@18.2.0)
