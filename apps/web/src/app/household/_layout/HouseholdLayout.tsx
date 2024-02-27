@@ -11,12 +11,14 @@ export const HouseholdLayout = ({
 }: {
   children: React.ReactNode;
 }) => (
-  <NavbarSection header={"家計簿アプリ"} naviArray={householdNavis}>
-    {children}
-    <div className={"z-100 absolute bottom-16 right-5"}>
-      <RegisterDailyButton />
-    </div>
-  </NavbarSection>
+  <div className={"bg-white text-black"}>
+    <NavbarSection header={"家計簿アプリ"} naviArray={householdNavis}>
+      {children}
+      <div className={"z-100 absolute bottom-16 right-5"}>
+        <RegisterDailyButton />
+      </div>
+    </NavbarSection>
+  </div>
 );
 
 const householdNavis: Navi[] = [
