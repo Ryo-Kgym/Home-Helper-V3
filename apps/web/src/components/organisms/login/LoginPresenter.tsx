@@ -9,7 +9,7 @@ export const LoginPresenter = ({
 }: {
   message: string | undefined;
 }) => (
-  <div className="flex flex-col items-center justify-center min-h-screen py-2">
+  <div className="flex min-h-screen flex-col items-center justify-center py-2">
     <Title />
     <ButtonArea>
       <LoginButton />
@@ -19,7 +19,7 @@ export const LoginPresenter = ({
 );
 
 const Title = () => (
-  <h1 className="text-6xl font-bold">うちのアプリへ ようこそ！</h1>
+  <h1 className="font-serif text-6xl font-bold text-yellow-400">One for All</h1>
 );
 
 const ButtonArea = ({
@@ -27,7 +27,7 @@ const ButtonArea = ({
 }: {
   children: React.ReactNode | React.ReactNode[];
 }) => (
-  <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
+  <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
     {children}
   </div>
 );
