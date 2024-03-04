@@ -1,35 +1,34 @@
 "use client";
 
 import type { FieldKind } from "@oneforall/domain/field/type";
-import { useState } from "react";
-import { Select } from "@components/ui/v4/select";
-import { SwitchingField } from "@feature/app/create/SwitchingField";
+import { useEffect, useState } from "react";
+import { AppAddField } from "@feature/app/create/AppAddField";
 
 export const CreateAppClient = () => {
-  const [fieldKind, setFieldKind] = useState<FieldKind>("text");
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<AppFieldValue>({});
+
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
 
   return (
     <div>
       <div className={"text-3xl"}>CreateAppClient</div>
-      <div className={"grid grid-cols-2"}>
-        <Select
-          label={"フィールドの選択"}
-          value={fieldKind}
-          setValue={setFieldKind}
-          data={[
-            { label: "Text", value: "text" },
-            { label: "SelectBox", value: "selectBox" },
-            { label: "MultipleText", value: "multipleText" },
-          ]}
-        />
-        <SwitchingField
-          label={"フィールドの入力"}
-          value={value}
-          setValue={setValue}
-          fieldKind={fieldKind}
-        />
+      <div className={"grid grid-cols-2 gap-4"}>
+        <AppAddField index={0} value={value} setValue={setValue} />
+        <AppAddField index={1} value={value} setValue={setValue} />
+        <AppAddField index={2} value={value} setValue={setValue} />
       </div>
     </div>
   );
 };
+
+export type AppFieldValue = NonNullable<
+  Record<
+    number,
+    {
+      fieldName: string;
+      fieldKind: FieldKind;
+    }
+  >
+>;
