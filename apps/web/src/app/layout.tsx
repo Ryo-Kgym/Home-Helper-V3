@@ -22,7 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
     <head>
       <ColorSchemeScript />
     </head>
-    <body className={"bg-blue-700 text-yellow-400"}>
+    <body>
       <ClerkProvider>
         <ClientsProviders>{children}</ClientsProviders>
       </ClerkProvider>
