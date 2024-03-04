@@ -1,9 +1,30 @@
 "use client";
 
+import type { FieldKind } from "@oneforall/domain/field/type";
+import { useState } from "react";
+import { Select } from "@components/ui/v4/select";
+
 export const CreateAppClient = () => {
+  const [fieldKind, setFieldKind] = useState<FieldKind>("text");
+
   return (
     <div>
-      <h1>CreateAppClient</h1>
+      <div className={"text-3xl"}>CreateAppClient</div>
+      <div className={"grid grid-cols-2"}>
+        <div>Select Field</div>
+        <div>
+          <Select
+            value={fieldKind}
+            setValue={setFieldKind}
+            data={[
+              { label: "Text", value: "text" },
+              { label: "SelectBox", value: "selectBox" },
+              { label: "MultipleText", value: "multipleText" },
+            ]}
+          />
+        </div>
+        <div>Layout</div>
+      </div>
     </div>
   );
 };
