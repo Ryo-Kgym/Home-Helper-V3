@@ -1,6 +1,7 @@
 import type { FieldValueProps } from "@components/ui/v4/property";
 import type { FieldKind } from "@oneforall/domain/field/type";
 import { Select } from "@components/ui/v4/select";
+import { TextInput } from "@components/ui/v4/textInput";
 
 export const SwitchingField = ({
   value,
@@ -9,13 +10,7 @@ export const SwitchingField = ({
 }: FieldValueProps<string> & { fieldKind: FieldKind }) => {
   switch (fieldKind) {
     case "text":
-      return (
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      );
+      return <TextInput label={"Text"} value={value} setValue={setValue} />;
     case "selectBox":
       return (
         <Select
