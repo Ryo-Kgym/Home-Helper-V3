@@ -1,5 +1,6 @@
 import type { SelectProps } from "@components/ui/v4/select/index";
 import { useState } from "react";
+import { FieldFrame } from "@components/ui/v4/FieldFrame";
 
 export const Select = <T extends string | number>({
   value,
@@ -9,9 +10,9 @@ export const Select = <T extends string | number>({
   const [openOption, setOpenOption] = useState(false);
 
   return (
-    <div className={""}>
+    <FieldFrame>
       <input
-        className={"cursor-pointer rounded-md border-2 border-gray-300 p-2"}
+        className={"w-full cursor-pointer p-2 focus:outline-none"}
         value={value}
         readOnly
         onClick={() => setOpenOption(true)}
@@ -37,6 +38,6 @@ export const Select = <T extends string | number>({
             ))}
         </div>
       </div>
-    </div>
+    </FieldFrame>
   );
 };
