@@ -1,5 +1,6 @@
 import type { FieldValueProps } from "@components/ui/v4/property";
 import type { FieldKind } from "@oneforall/domain/field/type";
+import { MultiTextInput } from "@components/ui/v4/multiTextInput/MultiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 
@@ -26,10 +27,10 @@ export const SwitchingField = ({
       );
     case "multipleText":
       return (
-        <textarea
+        <MultiTextInput
+          label={"MultipleText"}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className={"w-full"}
+          setValue={setValue}
         />
       );
   }
