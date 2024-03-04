@@ -11,9 +11,9 @@ export const CreateAppClient = () => {
     <div>
       <div className={"text-3xl"}>CreateAppClient</div>
       <div className={"grid grid-cols-2"}>
-        <div>Select Field</div>
         <div>
           <Select
+            label={"フィールドの選択"}
             value={fieldKind}
             setValue={setFieldKind}
             data={[

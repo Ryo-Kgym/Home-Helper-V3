@@ -1,7 +1,7 @@
+import type { FieldProps } from "@components/ui/v4/property";
+
 export { Select } from "@components/ui/v4/select/Select";
 
 export type SelectProps<T extends string | number> = {
-  value: T;
-  setValue: (value: T) => void;
   data: { label: string; value: T }[];
-};
+} & FieldProps<T>;
