@@ -31,6 +31,7 @@ export const AppAddField = ({
             },
           });
         }}
+        required
       />
       <Select
         label={"フィールドの選択"}
