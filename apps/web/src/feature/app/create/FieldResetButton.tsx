@@ -15,7 +15,7 @@ export const FieldResetButton = ({
         setFieldCount(0);
       }}
     >
-      リセット
+      フィールドリセット
     </button>
   );
 };
