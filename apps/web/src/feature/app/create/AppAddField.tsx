@@ -3,6 +3,7 @@ import type { FieldKind } from "@oneforall/domain/field/type";
 import { useState } from "react";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
+import { fieldKindArray } from "@oneforall/domain/field/type";
 
 export const AppAddField = ({
   index,
@@ -47,11 +48,10 @@ export const AppAddField = ({
             },
           });
         }}
-        data={[
-          { label: "Text", value: "text" },
-          { label: "SelectBox", value: "selectBox" },
-          { label: "MultipleText", value: "multipleText" },
-        ]}
+        data={fieldKindArray.map((f) => ({
+          label: f,
+          value: f,
+        }))}
       />
     </>
   );

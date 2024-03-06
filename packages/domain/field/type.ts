@@ -19,3 +19,9 @@ export type FieldProperties = {
 };
 
 export type FieldKind = keyof FieldProperties;
+
+export const fieldKindArray: FieldKind[] = [
+  "text",
+  "selectBox",
+  "multipleText",
+];
