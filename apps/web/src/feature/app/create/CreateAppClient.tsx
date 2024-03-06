@@ -14,7 +14,7 @@ export const CreateAppClient = () => {
   return (
     <div>
       <div className={"text-3xl"}>CreateAppClient</div>
-      <div className={"grid grid-cols-2 gap-4"}>
+      <div className={"space-y-2"}>
         <AppAddField index={0} value={value} setValue={setValue} />
         <AppAddField index={1} value={value} setValue={setValue} />
         <AppAddField index={2} value={value} setValue={setValue} />

@@ -14,27 +14,11 @@ export const AppAddField = ({
   value: AppFieldValue;
   setValue: (value: AppFieldValue) => void;
 }) => {
-  const [fieldName, setFieldName] = useState<string>(""); // [1
+  const [fieldName, setFieldName] = useState<string>("");
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
 
   return (
-    <>
-      <TextInput
-        label={"フィールド名"}
-        value={fieldName}
-        setValue={(v) => {
-          setFieldName(v);
-          setValue({
-            ...value,
-            [index]: {
-              fieldName: v,
-              fieldKind,
-            },
-          });
-        }}
-        required
-        placeholder={"フィールド名を入力してください"}
-      />
+    <div className={"space-y-2 border-2 border-gray-500 p-2"}>
       <Select
         label={"フィールドの選択"}
         value={fieldKind}
@@ -53,6 +37,22 @@ export const AppAddField = ({
           value: f,
         }))}
       />
-    </>
+      <TextInput
+        label={"フィールド名"}
+        value={fieldName}
+        setValue={(v) => {
+          setFieldName(v);
+          setValue({
+            ...value,
+            [index]: {
+              fieldName: v,
+              fieldKind,
+            },
+          });
+        }}
+        required
+        placeholder={"フィールド名を入力してください"}
+      />
+    </div>
   );
 };
