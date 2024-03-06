@@ -3,8 +3,10 @@
 import type { FieldKind } from "@oneforall/domain/field/type";
 import { useEffect, useState } from "react";
 import { AppAddField } from "@feature/app/create/AppAddField";
+import { AppNameInput } from "@feature/app/create/AppNameInput";
 
 export const CreateAppClient = () => {
+  const [appName, setAppName] = useState<string>("");
   const [value, setValue] = useState<AppFieldValue>({});
 
   useEffect(() => {
@@ -12,14 +14,12 @@ export const CreateAppClient = () => {
   }, [value]);
 
   return (
-    <div>
-      <div className={"text-3xl"}>CreateAppClient</div>
-      <div className={"space-y-2"}>
-        <AppAddField index={0} value={value} setValue={setValue} />
-        <AppAddField index={1} value={value} setValue={setValue} />
-        <AppAddField index={2} value={value} setValue={setValue} />
-      </div>
-    </div>
+    <>
+      <AppNameInput appName={appName} setAppName={setAppName} />
+      <AppAddField index={0} value={value} setValue={setValue} />
+      <AppAddField index={1} value={value} setValue={setValue} />
+      <AppAddField index={2} value={value} setValue={setValue} />
+    </>
   );
 };
 
