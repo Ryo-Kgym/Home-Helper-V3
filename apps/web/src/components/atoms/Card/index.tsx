@@ -32,7 +32,7 @@ const Card = ({ back, label, href, handleClick }: LinkProps) => {
   return (
     <div
       className={
-        "rounded-2xl border-2 border-gray-300 bg-red-600 shadow hover:border-blue-500"
+        "rounded-2xl border-2 border-gray-300 shadow hover:border-blue-500"
       }
     >
       <Link href={href} onClick={handleClick}>
