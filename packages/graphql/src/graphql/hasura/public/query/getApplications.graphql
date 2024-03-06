@@ -1,4 +1,4 @@
-query getApps($groupId: String!) {
+query getApplications($groupId: String!) {
   group: groupApplication(where: { groupId: { _eq: $groupId } }) {
     app: application {
       id

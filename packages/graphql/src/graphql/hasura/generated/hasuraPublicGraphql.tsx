@@ -7008,7 +7008,7 @@ export const GetAppsDocument = gql`
   }
 `;
 
-export function useGetAppsQuery(
+export function useGetApplicationsQuery(
   options: Omit<Urql.UseQueryArgs<GetAppsQueryVariables>, "query">,
 ) {
   return Urql.useQuery<GetAppsQuery, GetAppsQueryVariables>({
