@@ -15,11 +15,10 @@ export const FieldAddButton = ({
       className={"p-2 hover:bg-blue-100 active:bg-blue-300"}
       onClick={() => {
         setValue((prev) => {
-          const newCount = fieldCount + 1;
-          setFieldCount(newCount);
+          setFieldCount(fieldCount + 1);
           return {
             ...prev,
-            [newCount]: {
+            [fieldCount]: {
               fieldName: "",
               fieldKind: "text",
             },
