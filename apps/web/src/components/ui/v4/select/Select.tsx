@@ -18,7 +18,7 @@ export const Select = <T extends string | number>({
         readOnly
         onClick={() => setOpenOption(true)}
       />
-      <div className={"absolute z-10 pl-5"}>
+      <div className={"absolute z-10 bg-white pl-5"}>
         {data
           .filter((_) => openOption)
           .map((item) => (
