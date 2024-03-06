@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AppAddField } from "@feature/app/create/AppAddField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
+import { FieldResetButton } from "@feature/app/create/FieldResetButton";
 
 export const CreateAppClient = () => {
   const [appName, setAppName] = useState<string>("");
@@ -19,11 +20,14 @@ export const CreateAppClient = () => {
     <>
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
-        <FieldAddButton
-          setValue={setValue}
-          fieldCount={fieldCount}
-          setFieldCount={setFieldCount}
-        />
+        <div className={"grid grid-cols-2 gap-2"}>
+          <FieldAddButton
+            setValue={setValue}
+            fieldCount={fieldCount}
+            setFieldCount={setFieldCount}
+          />
+          <FieldResetButton setValue={setValue} setFieldCount={setFieldCount} />
+        </div>
       </div>
       <div id={"field"} className={"space-y-2"}>
         {Object.values(value).map((field, index) => (
