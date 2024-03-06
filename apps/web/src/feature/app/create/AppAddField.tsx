@@ -1,4 +1,4 @@
-import type { AppFieldValue } from "@feature/app/create/CreateAppClient";
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
 import { useState } from "react";
 import { Select } from "@components/ui/v4/select";

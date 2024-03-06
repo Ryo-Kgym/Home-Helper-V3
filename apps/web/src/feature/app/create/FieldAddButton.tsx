@@ -1,4 +1,4 @@
-import type { AppFieldValue } from "@feature/app/create/CreateAppClient";
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import React from "react";
 
 export const FieldAddButton = ({

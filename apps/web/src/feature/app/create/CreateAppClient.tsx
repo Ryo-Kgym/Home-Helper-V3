@@ -1,6 +1,6 @@
 "use client";
 
-import type { FieldKind } from "@oneforall/domain/field/type";
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useEffect, useState } from "react";
 import { AppAddField } from "@feature/app/create/AppAddField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
@@ -42,13 +42,3 @@ export const CreateAppClient = () => {
     </>
   );
 };
-
-export type AppFieldValue = NonNullable<
-  Record<
-    number,
-    {
-      fieldName: string;
-      fieldKind: FieldKind;
-    }
-  >
->;

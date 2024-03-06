@@ -1,4 +1,4 @@
-import type { AppFieldValue } from "@feature/app/create/CreateAppClient";
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 
 export const FieldResetButton = ({
   setValue,
