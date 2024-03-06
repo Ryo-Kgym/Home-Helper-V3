@@ -20,8 +20,23 @@ export type FieldProperties = {
 
 export type FieldKind = keyof FieldProperties;
 
-export const fieldKindArray: FieldKind[] = [
-  "text",
-  "selectBox",
-  "multipleText",
-];
+export const fieldKindArray: Record<
+  FieldKind,
+  {
+    fieldKind: FieldKind;
+    description: string;
+  }
+> = {
+  text: {
+    fieldKind: "text",
+    description: "テキスト",
+  },
+  selectBox: {
+    fieldKind: "selectBox",
+    description: "選択肢",
+  },
+  multipleText: {
+    fieldKind: "multipleText",
+    description: "複数テキスト",
+  },
+};

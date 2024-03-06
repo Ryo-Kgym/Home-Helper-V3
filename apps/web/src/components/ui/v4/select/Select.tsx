@@ -9,12 +9,13 @@ export const Select = <T extends string | number>({
   data,
 }: SelectProps<T>) => {
   const [openOption, setOpenOption] = useState(false);
+  const selectedFieldName = data.find((d) => d.value === value)?.label ?? "";
 
   return (
     <FieldContainer label={label}>
       <input
         className={"w-full cursor-pointer p-2 focus:outline-none"}
-        value={value}
+        value={selectedFieldName}
         readOnly
         onClick={() => setOpenOption(true)}
       />

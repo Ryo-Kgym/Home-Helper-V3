@@ -17,6 +17,11 @@ export const AppField = ({
   const [fieldName, setFieldName] = useState<string>("");
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
 
+  const data = Object.values(fieldKindArray).map((f) => ({
+    label: f.description,
+    value: f.fieldKind,
+  }));
+
   return (
     <div
       id={`field-${index}`}
@@ -35,10 +40,7 @@ export const AppField = ({
             },
           });
         }}
-        data={fieldKindArray.map((f) => ({
-          label: f,
-          value: f,
-        }))}
+        data={data}
       />
       <TextInput
         label={"フィールド名"}
