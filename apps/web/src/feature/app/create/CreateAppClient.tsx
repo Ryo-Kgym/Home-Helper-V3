@@ -1,7 +1,6 @@
 "use client";
 
 import type { FieldKind } from "@oneforall/domain/field/type";
-import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { AppAddField } from "@feature/app/create/AppAddField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
@@ -10,7 +9,7 @@ import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 export const CreateAppClient = () => {
   const [appName, setAppName] = useState<string>("");
   const [value, setValue] = useState<AppFieldValue>({});
-  const [fieldComponent, setFieldComponent] = useState<ReactNode>([]);
+  const [fieldCount, setFieldCount] = useState<number>(0);
 
   useEffect(() => {
     console.log(value);
@@ -21,26 +20,20 @@ export const CreateAppClient = () => {
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <FieldAddButton
-          clickHandler={() => {
-            const fieldIndex =
-              document.getElementById("field")?.childElementCount ?? 0;
-
-            setFieldComponent(
-              <>
-                <AppAddField
-                  key={`field-${fieldIndex}`}
-                  index={fieldIndex}
-                  value={value}
-                  setValue={setValue}
-                />
-                {fieldComponent}
-              </>,
-            );
-          }}
+          setValue={setValue}
+          fieldCount={fieldCount}
+          setFieldCount={setFieldCount}
         />
       </div>
       <div id={"field"} className={"space-y-2"}>
-        {fieldComponent}
+        {Object.values(value).map((field, index) => (
+          <AppAddField
+            key={`field-${index}`}
+            index={index}
+            value={value}
+            setValue={setValue}
+          />
+        ))}
       </div>
     </>
   );

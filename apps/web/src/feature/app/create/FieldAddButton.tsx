@@ -1,12 +1,31 @@
+import type { AppFieldValue } from "@feature/app/create/CreateAppClient";
+import React from "react";
+
 export const FieldAddButton = ({
-  clickHandler,
+  setValue,
+  fieldCount,
+  setFieldCount,
 }: {
-  clickHandler: () => void;
+  setValue: React.Dispatch<React.SetStateAction<AppFieldValue>>;
+  fieldCount: number;
+  setFieldCount: (fieldCount: number) => void;
 }) => {
   return (
     <button
       className={"p-2 hover:bg-blue-100 active:bg-blue-300"}
-      onClick={clickHandler}
+      onClick={() => {
+        setValue((prev) => {
+          const newCount = fieldCount + 1;
+          setFieldCount(newCount);
+          return {
+            ...prev,
+            [newCount]: {
+              fieldName: "",
+              fieldKind: "text",
+            },
+          };
+        });
+      }}
     >
       フィールド追加
     </button>
