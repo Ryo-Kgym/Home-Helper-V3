@@ -1,4 +1,5 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
+import { Button } from "@components/ui/v4/button";
 
 export const FieldResetButton = ({
   setValue,
@@ -6,16 +7,13 @@ export const FieldResetButton = ({
 }: {
   setValue: React.Dispatch<React.SetStateAction<AppFieldValue>>;
   setFieldCount: React.Dispatch<React.SetStateAction<number>>;
-}) => {
-  return (
-    <button
-      className={"p-2 hover:bg-gray-100 active:bg-gray-300"}
-      onClick={() => {
-        setValue({});
-        setFieldCount(0);
-      }}
-    >
-      フィールドリセット
-    </button>
-  );
-};
+}) => (
+  <Button
+    label="フィールドリセット"
+    clickHandler={() => {
+      setValue({});
+      setFieldCount(0);
+    }}
+    type={"reset"}
+  />
+);

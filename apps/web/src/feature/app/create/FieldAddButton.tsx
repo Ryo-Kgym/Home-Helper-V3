@@ -1,5 +1,6 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import React from "react";
+import { Button } from "@components/ui/v4/button";
 
 export const FieldAddButton = ({
   setValue,
@@ -9,24 +10,21 @@ export const FieldAddButton = ({
   setValue: React.Dispatch<React.SetStateAction<AppFieldValue>>;
   fieldCount: number;
   setFieldCount: (fieldCount: number) => void;
-}) => {
-  return (
-    <button
-      className={"p-2 hover:bg-blue-100 active:bg-blue-300"}
-      onClick={() => {
-        setValue((prev) => {
-          setFieldCount(fieldCount + 1);
-          return {
-            ...prev,
-            [fieldCount]: {
-              fieldName: "",
-              fieldKind: "text",
-            },
-          };
-        });
-      }}
-    >
-      フィールド追加
-    </button>
-  );
-};
+}) => (
+  <Button
+    label="フィールド追加"
+    clickHandler={() => {
+      setValue((prev) => {
+        setFieldCount(fieldCount + 1);
+        return {
+          ...prev,
+          [fieldCount]: {
+            fieldName: "",
+            fieldKind: "text",
+          },
+        };
+      });
+    }}
+    type={"add"}
+  />
+);

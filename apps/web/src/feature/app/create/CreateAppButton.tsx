@@ -1,4 +1,5 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
+import { Button } from "@components/ui/v4/button";
 
 export const CreateAppButton = ({
   appName,
@@ -12,15 +13,10 @@ export const CreateAppButton = ({
     Object.values(value).length > 0 &&
     Object.values(value).every((field) => field.fieldName);
 
-  const bgColor = creatable
-    ? "bg-green-200 hover:bg-green-100 active:bg-green-300"
-    : "bg-gray-200 cursor-not-allowed";
-  const textColor = creatable ? "text-black" : "text-gray-500";
-
   return (
-    <button
-      className={`p-2 ${bgColor} ${textColor}`}
-      onClick={() => {
+    <Button
+      label="アプリ作成"
+      clickHandler={() => {
         console.log({
           app: {
             name: appName,
@@ -29,8 +25,7 @@ export const CreateAppButton = ({
         });
       }}
       disabled={!creatable}
-    >
-      アプリ作成
-    </button>
+      type={"create"}
+    />
   );
 };
