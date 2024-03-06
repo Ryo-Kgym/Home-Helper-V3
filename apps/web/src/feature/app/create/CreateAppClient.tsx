@@ -2,7 +2,7 @@
 
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useState } from "react";
-import { AppAddField } from "@feature/app/create/AppAddField";
+import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { CreateAppButton } from "@feature/app/create/CreateAppButton";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
@@ -29,7 +29,7 @@ export const CreateAppClient = () => {
       </div>
       <div id={"field"} className={"space-y-2"}>
         {Object.values(value).map((field, index) => (
-          <AppAddField
+          <AppField
             key={`field-${index}`}
             index={index}
             value={value}

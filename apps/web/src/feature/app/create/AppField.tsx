@@ -5,7 +5,7 @@ import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
-export const AppAddField = ({
+export const AppField = ({
   index,
   value,
   setValue,
