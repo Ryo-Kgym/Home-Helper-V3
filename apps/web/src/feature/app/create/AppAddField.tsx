@@ -18,7 +18,10 @@ export const AppAddField = ({
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
 
   return (
-    <div className={"space-y-2 border-2 border-gray-500 p-2"}>
+    <div
+      id={`field-${index}`}
+      className={"space-y-2 border-2 border-gray-500 p-2"}
+    >
       <Select
         label={"フィールドの選択"}
         value={fieldKind}
