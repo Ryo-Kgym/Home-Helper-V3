@@ -18,7 +18,7 @@ export const CreateAppClient = () => {
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
-          <CreateAppButton appName={appName} value={value} />
+          <CreateAppButton appName={appName} fields={value} />
           <FieldAddButton
             setValue={setValue}
             fieldCount={fieldCount}

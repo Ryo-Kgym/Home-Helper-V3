@@ -1,28 +1,30 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { Button } from "@components/ui/v4/button";
+import { useCreateApp } from "@feature/app/create/useCreateApp";
 
 export const CreateAppButton = ({
   appName,
-  value,
+  fields,
 }: {
   appName: string;
-  value: AppFieldValue;
+  fields: AppFieldValue;
 }) => {
   const creatable =
     !!appName &&
-    Object.values(value).length > 0 &&
-    Object.values(value).every((field) => field.fieldName);
+    Object.values(fields).length > 0 &&
+    Object.values(fields).every((field) => field.fieldName);
+
+  const { createApp } = useCreateApp();
 
   return (
     <Button
       label="アプリ作成"
-      clickHandler={() => {
-        console.log({
-          app: {
-            name: appName,
-          },
-          fields: value,
-        });
+      clickHandler={async () => {
+        try {
+          await createApp({ appName, fields });
+        } catch (e) {
+          console.error(e);
+        }
       }}
       disabled={!creatable}
       type={"create"}
