@@ -32,6 +32,7 @@ export const AppAddField = ({
           });
         }}
         required
+        placeholder={"フィールド名を入力してください"}
       />
       <Select
         label={"フィールドの選択"}

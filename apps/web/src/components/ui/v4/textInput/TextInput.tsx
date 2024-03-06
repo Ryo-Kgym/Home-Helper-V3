@@ -6,6 +6,7 @@ export const TextInput = ({
   value,
   setValue,
   required = false,
+  placeholder,
 }: FieldValueProps<string>) => {
   const requiredStyle = required && !value ? "bg-red-100" : "bg-inherit";
 
@@ -16,6 +17,7 @@ export const TextInput = ({
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        placeholder={placeholder}
       />
     </FieldContainer>
   );
