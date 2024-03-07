@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { SelectAppClient } from "@feature/app/list/SelectAppClient";
+import { SelectApp } from "@feature/app/list";
 
-const SelectAppPage = () => <SelectAppClient />;
+const SelectAppPage = () => <SelectApp />;
 export default SelectAppPage;
