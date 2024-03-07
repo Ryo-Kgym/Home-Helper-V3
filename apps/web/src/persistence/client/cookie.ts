@@ -1,9 +1,9 @@
-import { cookies } from "next/headers";
+import cookie from "js-cookie";
 
 export const saveCookie = ({ key, value }: { key: string; value: string }) => {
-  cookies().set(key, value);
+  cookie.set(key, value);
 };
 
 export const getCookieValue = (key: string): string | undefined => {
-  return cookies().get(key)?.value;
+  return cookie.get()[key] as string | undefined;
 };
