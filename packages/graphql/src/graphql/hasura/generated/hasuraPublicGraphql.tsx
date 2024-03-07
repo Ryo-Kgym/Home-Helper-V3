@@ -3664,15 +3664,19 @@ export type GetApplicationsQueryVariables = Exact<{
 
 export type GetApplicationsQuery = {
   __typename?: "query_root";
-  group: Array<{
-    __typename?: "GroupApplication";
-    app: {
-      __typename?: "Application";
-      id: string;
-      name: string;
-      topUrl: string;
-    };
-  }>;
+  group?: {
+    __typename?: "Group";
+    groupApplications: Array<{
+      __typename?: "GroupApplication";
+      application: {
+        __typename?: "Application";
+        id: string;
+        name: string;
+        topUrl: string;
+      };
+    }>;
+    apps: Array<{ __typename?: "App"; id: string; name?: string | null }>;
+  } | null;
 };
 
 export const InsertAppDocument = gql`
@@ -3705,11 +3709,17 @@ export function useInsertAppMutation() {
 }
 export const GetApplicationsDocument = gql`
   query getApplications($groupId: String!) {
-    group: groupApplication(where: { groupId: { _eq: $groupId } }) {
-      app: application {
+    group: groupByPk(id: $groupId) {
+      groupApplications {
+        application {
+          id
+          name
+          topUrl
+        }
+      }
+      apps {
         id
         name
-        topUrl
       }
     }
   }

@@ -1,9 +1,15 @@
 query getApplications($groupId: String!) {
-  group: groupApplication(where: { groupId: { _eq: $groupId } }) {
-    app: application {
+  group: groupByPk(id: $groupId) {
+    groupApplications {
+      application {
+        id
+        name
+        topUrl
+      }
+    }
+    apps {
       id
       name
-      topUrl
     }
   }
 }
