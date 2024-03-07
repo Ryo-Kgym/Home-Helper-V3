@@ -9,7 +9,7 @@ import { useAuth } from "@hooks/authentication/useAuth";
 import { useGetGroup } from "@hooks/group/useGetGroup";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
-import { saveUser } from "@persistence/client";
+import { saveUser } from "persistence/browser/client";
 
 export const SelectGroupContainer = () => {
   const { save: userSave } = useUser();

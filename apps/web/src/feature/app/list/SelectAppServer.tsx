@@ -1,6 +1,6 @@
 import { SelectAppClient } from "@feature/app/list/SelectAppClient";
+import { findUser } from "@persistence/browser/server/find-user";
 import { fetchQuery } from "@persistence/database/fetchQuery";
-import { findUser } from "@persistence/server/find-user";
 import { GetApplicationsDocument } from "@v3/graphql/public/type";
 
 export const SelectAppServer = async () => {

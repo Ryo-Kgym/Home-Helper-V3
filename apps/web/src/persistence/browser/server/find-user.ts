@@ -1,5 +1,5 @@
 import type { User } from "@type/user";
-import { getCookieValue } from "@persistence/server/cookie";
+import { getCookieValue } from "@persistence/browser/server/cookie";
 
 export const findUser = async (): Promise<User> => {
   const value = getCookieValue("user");
