@@ -9,7 +9,7 @@ import { useAuth } from "@hooks/authentication/useAuth";
 import { useGetGroup } from "@hooks/group/useGetGroup";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
-import { saveUserId } from "@persistence/client";
+import { saveUser } from "@persistence/client";
 
 export const SelectGroupContainer = () => {
   const { save: userSave } = useUser();
@@ -34,7 +34,10 @@ export const SelectGroupContainer = () => {
       handleClick: async () => {
         userSave(user!);
         groupSave(group);
-        await saveUserId(user!);
+        await saveUser({
+          ...user!,
+          group,
+        });
       },
     })) ?? [],
   );
