@@ -3595,6 +3595,20 @@ export type InsertAppMutation = {
   insertAppOne?: { __typename: "App"; id: string } | null;
 };
 
+export type GetAppQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetAppQuery = {
+  __typename?: "query_root";
+  app?: {
+    __typename: "App";
+    id: string;
+    name?: string | null;
+    fields?: string | null;
+  } | null;
+};
+
 export type GetApplicationsQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -3759,6 +3773,61 @@ export const InsertAppDocument = {
     },
   ],
 } as unknown as DocumentNode<InsertAppMutation, InsertAppMutationVariables>;
+export const GetAppDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getApp" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "app" },
+            name: { kind: "Name", value: "appByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "appId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "fields" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetAppQuery, GetAppQueryVariables>;
 export const GetApplicationsDocument = {
   kind: "Document",
   definitions: [

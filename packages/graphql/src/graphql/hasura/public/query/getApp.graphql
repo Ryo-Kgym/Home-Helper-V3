@@ -1,0 +1,8 @@
+query getApp($appId: String!) {
+  app: appByPk(id: $appId) {
+    __typename
+    id
+    name
+    fields
+  }
+}
