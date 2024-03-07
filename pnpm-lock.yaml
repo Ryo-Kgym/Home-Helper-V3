@@ -267,9 +267,6 @@ importers:
       '@tiptap/starter-kit':
         specifier: ^2.1.13
         version: 2.2.3(@tiptap/pm@2.2.3)
-      '@types/js-cookie':
-        specifier: ^3.0.6
-        version: 3.0.6
       '@v3/graphql':
         specifier: workspace:^3.0.0
         version: link:../../packages/graphql
@@ -364,6 +361,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
+      '@types/js-cookie':
+        specifier: ^3.0.6
+        version: 3.0.6
       '@types/node':
         specifier: ^20.10.6
         version: 20.11.20
@@ -5994,7 +5994,7 @@ packages:
 
   /@types/js-cookie@3.0.6:
     resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
-    dev: false
+    dev: true
 
   /@types/js-yaml@4.0.9:
     resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
