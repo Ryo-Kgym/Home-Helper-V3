@@ -9,6 +9,7 @@ import { useAuth } from "@hooks/authentication/useAuth";
 import { useGetGroup } from "@hooks/group/useGetGroup";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
+import { saveUser } from "persistence/browser/client";
 
 export const SelectGroupContainer = () => {
   const { save: userSave } = useUser();
@@ -30,9 +31,13 @@ export const SelectGroupContainer = () => {
       href: "/top",
       label: group.name,
       back: false,
-      handleClick: () => {
+      handleClick: async () => {
         userSave(user!);
         groupSave(group);
+        await saveUser({
+          ...user!,
+          group,
+        });
       },
     })) ?? [],
   );

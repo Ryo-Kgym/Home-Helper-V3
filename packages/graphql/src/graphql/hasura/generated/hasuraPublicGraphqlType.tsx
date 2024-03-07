@@ -1,5 +1,4 @@
-import gql from "graphql-tag";
-import * as Urql from "urql";
+import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -12,7 +11,6 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -57,10 +55,9 @@ export type AffiliationBoolExp = {
 };
 
 /** unique or primary key constraints on table "affiliation" */
-export enum AffiliationConstraint {
+export type AffiliationConstraint =
   /** unique or primary key constraint on columns "id" */
-  AffiliationPkey = "affiliation_pkey",
-}
+  "affiliation_pkey";
 
 /** input type for inserting data into table "affiliation" */
 export type AffiliationInsertInput = {
@@ -105,16 +102,15 @@ export type AffiliationOrderBy = {
 };
 
 /** select columns of table "affiliation" */
-export enum AffiliationSelectColumn {
+export type AffiliationSelectColumn =
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  GroupRole = "groupRole",
+  | "groupRole"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  UserId = "userId",
-}
+  | "userId";
 
 /** Streaming cursor of the table "affiliation" */
 export type AffiliationStreamCursorInput = {
@@ -133,10 +129,9 @@ export type AffiliationStreamCursorValueInput = {
 };
 
 /** placeholder for update columns of table "affiliation" (current role has no relevant permissions) */
-export enum AffiliationUpdateColumn {
+export type AffiliationUpdateColumn =
   /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
+  "_PLACEHOLDER";
 
 /** order by aggregate values of table "app" */
 export type AppAggregateOrderBy = {
@@ -167,10 +162,9 @@ export type AppBoolExp = {
 };
 
 /** unique or primary key constraints on table "app" */
-export enum AppConstraint {
+export type AppConstraint =
   /** unique or primary key constraint on columns "id" */
-  AppPkey = "app_pkey",
-}
+  "app_pkey";
 
 /** input type for inserting data into table "app" */
 export type AppInsertInput = {
@@ -224,18 +218,17 @@ export type AppPkColumnsInput = {
 };
 
 /** select columns of table "app" */
-export enum AppSelectColumn {
+export type AppSelectColumn =
   /** column name */
-  CreateUserId = "createUserId",
+  | "createUserId"
   /** column name */
-  Fields = "fields",
+  | "fields"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Name = "name",
-}
+  | "name";
 
 /** input type for updating data in table "app" */
 export type AppSetInput = {
@@ -261,12 +254,11 @@ export type AppStreamCursorValueInput = {
 };
 
 /** update columns of table "app" */
-export enum AppUpdateColumn {
+export type AppUpdateColumn =
   /** column name */
-  Fields = "fields",
+  | "fields"
   /** column name */
-  Name = "name",
-}
+  | "name";
 
 export type AppUpdates = {
   /** sets the columns of the filtered rows to the given values */
@@ -298,16 +290,15 @@ export type ApplicationOrderBy = {
 };
 
 /** select columns of table "application" */
-export enum ApplicationSelectColumn {
+export type ApplicationSelectColumn =
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Name = "name",
+  | "name"
   /** column name */
-  TopUrl = "topUrl",
+  | "topUrl"
   /** column name */
-  ValidFlag = "validFlag",
-}
+  | "validFlag";
 
 /** Streaming cursor of the table "application" */
 export type ApplicationStreamCursorInput = {
@@ -339,12 +330,11 @@ export type BooleanComparisonExp = {
 };
 
 /** ordering argument of a cursor */
-export enum CursorOrdering {
+export type CursorOrdering =
   /** ascending ordering of the cursor */
-  Asc = "ASC",
+  | "ASC"
   /** descending ordering of the cursor */
-  Desc = "DESC",
-}
+  | "DESC";
 
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
 export type DateComparisonExp = {
@@ -406,14 +396,13 @@ export type GroupApplicationOrderBy = {
 };
 
 /** select columns of table "group_application" */
-export enum GroupApplicationSelectColumn {
+export type GroupApplicationSelectColumn =
   /** column name */
-  ApplicationId = "applicationId",
+  | "applicationId"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
-}
+  | "id";
 
 /** Streaming cursor of the table "group_application" */
 export type GroupApplicationStreamCursorInput = {
@@ -485,12 +474,11 @@ export type GroupOrderBy = {
 };
 
 /** select columns of table "group" */
-export enum GroupSelectColumn {
+export type GroupSelectColumn =
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Name = "name",
-}
+  | "name";
 
 /** Streaming cursor of the table "group" */
 export type GroupStreamCursorInput = {
@@ -552,10 +540,9 @@ export type HouseholdAccountBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.account" */
-export enum HouseholdAccountConstraint {
+export type HouseholdAccountConstraint =
   /** unique or primary key constraint on columns "id" */
-  AccountPkey = "account_pkey",
-}
+  "account_pkey";
 
 /** input type for inserting data into table "household.account" */
 export type HouseholdAccountInsertInput = {
@@ -612,30 +599,27 @@ export type HouseholdAccountOrderBy = {
 };
 
 /** select columns of table "household.account" */
-export enum HouseholdAccountSelectColumn {
+export type HouseholdAccountSelectColumn =
   /** column name */
-  DisplayOrder = "displayOrder",
+  | "displayOrder"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Name = "name",
+  | "name"
   /** column name */
-  ValidFlag = "validFlag",
-}
+  | "validFlag";
 
 /** select "householdAccountAggregateBoolExpBool_andArgumentsColumns" columns of table "household.account" */
-export enum HouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_AndArgumentsColumns {
+export type HouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_AndArgumentsColumns =
   /** column name */
-  ValidFlag = "validFlag",
-}
+  "validFlag";
 
 /** select "householdAccountAggregateBoolExpBool_orArgumentsColumns" columns of table "household.account" */
-export enum HouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_OrArgumentsColumns {
+export type HouseholdAccountSelectColumnHouseholdAccountAggregateBoolExpBool_OrArgumentsColumns =
   /** column name */
-  ValidFlag = "validFlag",
-}
+  "validFlag";
 
 /** order by stddev() on columns of table "household.account" */
 export type HouseholdAccountStddevOrderBy = {
@@ -675,10 +659,9 @@ export type HouseholdAccountSumOrderBy = {
 };
 
 /** placeholder for update columns of table "household.account" (current role has no relevant permissions) */
-export enum HouseholdAccountUpdateColumn {
+export type HouseholdAccountUpdateColumn =
   /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
+  "_PLACEHOLDER";
 
 /** order by varPop() on columns of table "household.account" */
 export type HouseholdAccountVarPopOrderBy = {
@@ -784,30 +767,29 @@ export type HouseholdAllDetailViewOrderBy = {
 };
 
 /** select columns of table "household.all_detail_view" */
-export enum HouseholdAllDetailViewSelectColumn {
+export type HouseholdAllDetailViewSelectColumn =
   /** column name */
-  AccountId = "accountId",
+  | "accountId"
   /** column name */
-  CategoryId = "categoryId",
+  | "categoryId"
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Memo = "memo",
+  | "memo"
   /** column name */
-  OriginalAmount = "originalAmount",
+  | "originalAmount"
   /** column name */
-  SignedAmount = "signedAmount",
+  | "signedAmount"
   /** column name */
-  Type = "type",
-}
+  | "type";
 
 /** order by stddev() on columns of table "household.all_detail_view" */
 export type HouseholdAllDetailViewStddevOrderBy = {
@@ -926,10 +908,9 @@ export type HouseholdCategoryBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.category" */
-export enum HouseholdCategoryConstraint {
+export type HouseholdCategoryConstraint =
   /** unique or primary key constraint on columns "id" */
-  CategoryPkey = "category_pkey",
-}
+  "category_pkey";
 
 /** input type for incrementing numeric columns in table "household.category" */
 export type HouseholdCategoryIncInput = {
@@ -1005,20 +986,19 @@ export type HouseholdCategoryPkColumnsInput = {
 };
 
 /** select columns of table "household.category" */
-export enum HouseholdCategorySelectColumn {
+export type HouseholdCategorySelectColumn =
   /** column name */
-  DisplayOrder = "displayOrder",
+  | "displayOrder"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Name = "name",
+  | "name"
   /** column name */
-  ValidFlag = "validFlag",
-}
+  | "validFlag";
 
 /** input type for updating data in table "household.category" */
 export type HouseholdCategorySetInput = {
@@ -1069,20 +1049,19 @@ export type HouseholdCategorySumOrderBy = {
 };
 
 /** update columns of table "household.category" */
-export enum HouseholdCategoryUpdateColumn {
+export type HouseholdCategoryUpdateColumn =
   /** column name */
-  DisplayOrder = "displayOrder",
+  | "displayOrder"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Name = "name",
+  | "name"
   /** column name */
-  ValidFlag = "validFlag",
-}
+  | "validFlag";
 
 export type HouseholdCategoryUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -1162,10 +1141,9 @@ export type HouseholdCreditCardDetailBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.credit_card_detail" */
-export enum HouseholdCreditCardDetailConstraint {
+export type HouseholdCreditCardDetailConstraint =
   /** unique or primary key constraint on columns "id" */
-  CreditCardDetailPkey = "credit_card_detail_pkey",
-}
+  "credit_card_detail_pkey";
 
 /** input type for incrementing numeric columns in table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailIncInput = {
@@ -1250,28 +1228,27 @@ export type HouseholdCreditCardDetailPkColumnsInput = {
 };
 
 /** select columns of table "household.credit_card_detail" */
-export enum HouseholdCreditCardDetailSelectColumn {
+export type HouseholdCreditCardDetailSelectColumn =
   /** column name */
-  Amount = "amount",
+  | "amount"
   /** column name */
-  CategoryId = "categoryId",
+  | "categoryId"
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Memo = "memo",
+  | "memo"
   /** column name */
-  SummaryId = "summaryId",
+  | "summaryId"
   /** column name */
-  UserId = "userId",
-}
+  | "userId";
 
 /** input type for updating data in table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailSetInput = {
@@ -1330,28 +1307,27 @@ export type HouseholdCreditCardDetailSumOrderBy = {
 };
 
 /** update columns of table "household.credit_card_detail" */
-export enum HouseholdCreditCardDetailUpdateColumn {
+export type HouseholdCreditCardDetailUpdateColumn =
   /** column name */
-  Amount = "amount",
+  | "amount"
   /** column name */
-  CategoryId = "categoryId",
+  | "categoryId"
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Memo = "memo",
+  | "memo"
   /** column name */
-  SummaryId = "summaryId",
+  | "summaryId"
   /** column name */
-  UserId = "userId",
-}
+  | "userId";
 
 export type HouseholdCreditCardDetailUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -1428,10 +1404,9 @@ export type HouseholdCreditCardSummaryBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.credit_card_summary" */
-export enum HouseholdCreditCardSummaryConstraint {
+export type HouseholdCreditCardSummaryConstraint =
   /** unique or primary key constraint on columns "id" */
-  CreditCardSummaryPkey = "credit_card_summary_pkey",
-}
+  "credit_card_summary_pkey";
 
 /** input type for incrementing numeric columns in table "household.credit_card_summary" */
 export type HouseholdCreditCardSummaryIncInput = {
@@ -1508,22 +1483,21 @@ export type HouseholdCreditCardSummaryPkColumnsInput = {
 };
 
 /** select columns of table "household.credit_card_summary" */
-export enum HouseholdCreditCardSummarySelectColumn {
+export type HouseholdCreditCardSummarySelectColumn =
   /** column name */
-  AccountId = "accountId",
+  | "accountId"
   /** column name */
-  Count = "count",
+  | "count"
   /** column name */
-  CreditCard = "creditCard",
+  | "creditCard"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  TotalAmount = "totalAmount",
+  | "totalAmount"
   /** column name */
-  WithdrawalDate = "withdrawalDate",
-}
+  | "withdrawalDate";
 
 /** input type for updating data in table "household.credit_card_summary" */
 export type HouseholdCreditCardSummarySetInput = {
@@ -1605,22 +1579,21 @@ export type HouseholdCreditCardSummaryTotalByAccountViewOrderBy = {
 };
 
 /** select columns of table "household.credit_card_summary_total_by_account_view" */
-export enum HouseholdCreditCardSummaryTotalByAccountViewSelectColumn {
+export type HouseholdCreditCardSummaryTotalByAccountViewSelectColumn =
   /** column name */
-  AccountId = "accountId",
+  | "accountId"
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  DisplayOrder = "displayOrder",
+  | "displayOrder"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Name = "name",
+  | "name"
   /** column name */
-  Total = "total",
-}
+  | "total";
 
 /** Streaming cursor of the table "household_credit_card_summary_total_by_account_view" */
 export type HouseholdCreditCardSummaryTotalByAccountViewStreamCursorInput = {
@@ -1643,22 +1616,21 @@ export type HouseholdCreditCardSummaryTotalByAccountViewStreamCursorValueInput =
   };
 
 /** update columns of table "household.credit_card_summary" */
-export enum HouseholdCreditCardSummaryUpdateColumn {
+export type HouseholdCreditCardSummaryUpdateColumn =
   /** column name */
-  AccountId = "accountId",
+  | "accountId"
   /** column name */
-  Count = "count",
+  | "count"
   /** column name */
-  CreditCard = "creditCard",
+  | "creditCard"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  TotalAmount = "totalAmount",
+  | "totalAmount"
   /** column name */
-  WithdrawalDate = "withdrawalDate",
-}
+  | "withdrawalDate";
 
 export type HouseholdCreditCardSummaryUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -1741,10 +1713,9 @@ export type HouseholdDailyDetailBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.daily_detail" */
-export enum HouseholdDailyDetailConstraint {
+export type HouseholdDailyDetailConstraint =
   /** unique or primary key constraint on columns "id" */
-  DailyDetailPkey = "daily_detail_pkey",
-}
+  "daily_detail_pkey";
 
 /** input type for incrementing numeric columns in table "household.daily_detail" */
 export type HouseholdDailyDetailIncInput = {
@@ -1829,28 +1800,27 @@ export type HouseholdDailyDetailPkColumnsInput = {
 };
 
 /** select columns of table "household.daily_detail" */
-export enum HouseholdDailyDetailSelectColumn {
+export type HouseholdDailyDetailSelectColumn =
   /** column name */
-  AccountId = "accountId",
+  | "accountId"
   /** column name */
-  Amount = "amount",
+  | "amount"
   /** column name */
-  CategoryId = "categoryId",
+  | "categoryId"
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Memo = "memo",
+  | "memo"
   /** column name */
-  UserId = "userId",
-}
+  | "userId";
 
 /** input type for updating data in table "household.daily_detail" */
 export type HouseholdDailyDetailSetInput = {
@@ -1909,28 +1879,27 @@ export type HouseholdDailyDetailSumOrderBy = {
 };
 
 /** update columns of table "household.daily_detail" */
-export enum HouseholdDailyDetailUpdateColumn {
+export type HouseholdDailyDetailUpdateColumn =
   /** column name */
-  AccountId = "accountId",
+  | "accountId"
   /** column name */
-  Amount = "amount",
+  | "amount"
   /** column name */
-  CategoryId = "categoryId",
+  | "categoryId"
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Memo = "memo",
+  | "memo"
   /** column name */
-  UserId = "userId",
-}
+  | "userId";
 
 export type HouseholdDailyDetailUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -1976,16 +1945,15 @@ export type HouseholdDailyTotalViewOrderBy = {
 };
 
 /** select columns of table "household.daily_total_view" */
-export enum HouseholdDailyTotalViewSelectColumn {
+export type HouseholdDailyTotalViewSelectColumn =
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Total = "total",
-}
+  | "total";
 
 /** Streaming cursor of the table "household_daily_total_view" */
 export type HouseholdDailyTotalViewStreamCursorInput = {
@@ -2030,10 +1998,9 @@ export type HouseholdDashboardSettingArgsBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.dashboard_setting_args" */
-export enum HouseholdDashboardSettingArgsConstraint {
+export type HouseholdDashboardSettingArgsConstraint =
   /** unique or primary key constraint on columns "id" */
-  DashboardSettingArgsPkey = "dashboard_setting_args_pkey",
-}
+  "dashboard_setting_args_pkey";
 
 /** input type for inserting data into table "household.dashboard_setting_args" */
 export type HouseholdDashboardSettingArgsInsertInput = {
@@ -2077,16 +2044,15 @@ export type HouseholdDashboardSettingArgsOrderBy = {
 };
 
 /** select columns of table "household.dashboard_setting_args" */
-export enum HouseholdDashboardSettingArgsSelectColumn {
+export type HouseholdDashboardSettingArgsSelectColumn =
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  SettingId = "settingId",
+  | "settingId"
   /** column name */
-  Type = "type",
+  | "type"
   /** column name */
-  Value = "value",
-}
+  | "value";
 
 /** Streaming cursor of the table "household_dashboard_setting_args" */
 export type HouseholdDashboardSettingArgsStreamCursorInput = {
@@ -2105,10 +2071,9 @@ export type HouseholdDashboardSettingArgsStreamCursorValueInput = {
 };
 
 /** placeholder for update columns of table "household.dashboard_setting_args" (current role has no relevant permissions) */
-export enum HouseholdDashboardSettingArgsUpdateColumn {
+export type HouseholdDashboardSettingArgsUpdateColumn =
   /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
+  "_PLACEHOLDER";
 
 /** Boolean expression to filter rows from the table "household.dashboard_setting". All fields are combined with a logical 'AND'. */
 export type HouseholdDashboardSettingBoolExp = {
@@ -2126,10 +2091,9 @@ export type HouseholdDashboardSettingBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.dashboard_setting" */
-export enum HouseholdDashboardSettingConstraint {
+export type HouseholdDashboardSettingConstraint =
   /** unique or primary key constraint on columns "id" */
-  DashboardSettingPkey = "dashboard_setting_pkey",
-}
+  "dashboard_setting_pkey";
 
 /** input type for incrementing numeric columns in table "household.dashboard_setting" */
 export type HouseholdDashboardSettingIncInput = {
@@ -2179,18 +2143,17 @@ export type HouseholdDashboardSettingPkColumnsInput = {
 };
 
 /** select columns of table "household.dashboard_setting" */
-export enum HouseholdDashboardSettingSelectColumn {
+export type HouseholdDashboardSettingSelectColumn =
   /** column name */
-  Feature = "feature",
+  | "feature"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Order = "order",
+  | "order"
   /** column name */
-  UserId = "userId",
-}
+  | "userId";
 
 /** input type for updating data in table "household.dashboard_setting" */
 export type HouseholdDashboardSettingSetInput = {
@@ -2219,18 +2182,17 @@ export type HouseholdDashboardSettingStreamCursorValueInput = {
 };
 
 /** update columns of table "household.dashboard_setting" */
-export enum HouseholdDashboardSettingUpdateColumn {
+export type HouseholdDashboardSettingUpdateColumn =
   /** column name */
-  Feature = "feature",
+  | "feature"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Order = "order",
+  | "order"
   /** column name */
-  UserId = "userId",
-}
+  | "userId";
 
 export type HouseholdDashboardSettingUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -2284,12 +2246,11 @@ export type HouseholdDepositCategoryOrderBy = {
 };
 
 /** select columns of table "household.deposit_category" */
-export enum HouseholdDepositCategorySelectColumn {
+export type HouseholdDepositCategorySelectColumn =
   /** column name */
-  CategoryId = "categoryId",
+  | "categoryId"
   /** column name */
-  GroupId = "groupId",
-}
+  | "groupId";
 
 /** Streaming cursor of the table "household_deposit_category" */
 export type HouseholdDepositCategoryStreamCursorInput = {
@@ -2337,10 +2298,9 @@ export type HouseholdFavoriteFilterArgsBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.favorite_filter_args" */
-export enum HouseholdFavoriteFilterArgsConstraint {
+export type HouseholdFavoriteFilterArgsConstraint =
   /** unique or primary key constraint on columns "id" */
-  FavoriteFilterArgsPkey = "favorite_filter_args_pkey",
-}
+  "favorite_filter_args_pkey";
 
 /** input type for inserting data into table "household.favorite_filter_args" */
 export type HouseholdFavoriteFilterArgsInsertInput = {
@@ -2391,16 +2351,15 @@ export type HouseholdFavoriteFilterArgsPkColumnsInput = {
 };
 
 /** select columns of table "household.favorite_filter_args" */
-export enum HouseholdFavoriteFilterArgsSelectColumn {
+export type HouseholdFavoriteFilterArgsSelectColumn =
   /** column name */
-  FilterId = "filterId",
+  | "filterId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Key = "key",
+  | "key"
   /** column name */
-  Value = "value",
-}
+  | "value";
 
 /** input type for updating data in table "household.favorite_filter_args" */
 export type HouseholdFavoriteFilterArgsSetInput = {
@@ -2409,12 +2368,11 @@ export type HouseholdFavoriteFilterArgsSetInput = {
 };
 
 /** update columns of table "household.favorite_filter_args" */
-export enum HouseholdFavoriteFilterArgsUpdateColumn {
+export type HouseholdFavoriteFilterArgsUpdateColumn =
   /** column name */
-  Key = "key",
+  | "key"
   /** column name */
-  Value = "value",
-}
+  | "value";
 
 export type HouseholdFavoriteFilterArgsUpdates = {
   /** sets the columns of the filtered rows to the given values */
@@ -2437,10 +2395,9 @@ export type HouseholdFavoriteFilterBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.favorite_filter" */
-export enum HouseholdFavoriteFilterConstraint {
+export type HouseholdFavoriteFilterConstraint =
   /** unique or primary key constraint on columns "id" */
-  FavoriteFilterPkey = "favorite_filter_pkey",
-}
+  "favorite_filter_pkey";
 
 /** input type for inserting data into table "household.favorite_filter" */
 export type HouseholdFavoriteFilterInsertInput = {
@@ -2479,14 +2436,13 @@ export type HouseholdFavoriteFilterPkColumnsInput = {
 };
 
 /** select columns of table "household.favorite_filter" */
-export enum HouseholdFavoriteFilterSelectColumn {
+export type HouseholdFavoriteFilterSelectColumn =
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Name = "name",
-}
+  | "name";
 
 /** input type for updating data in table "household.favorite_filter" */
 export type HouseholdFavoriteFilterSetInput = {
@@ -2494,10 +2450,9 @@ export type HouseholdFavoriteFilterSetInput = {
 };
 
 /** update columns of table "household.favorite_filter" */
-export enum HouseholdFavoriteFilterUpdateColumn {
+export type HouseholdFavoriteFilterUpdateColumn =
   /** column name */
-  Name = "name",
-}
+  "name";
 
 export type HouseholdFavoriteFilterUpdates = {
   /** sets the columns of the filtered rows to the given values */
@@ -2553,10 +2508,9 @@ export type HouseholdGenreBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.genre" */
-export enum HouseholdGenreConstraint {
+export type HouseholdGenreConstraint =
   /** unique or primary key constraint on columns "id" */
-  GenrePkey = "genre_pkey",
-}
+  "genre_pkey";
 
 /** input type for incrementing numeric columns in table "household.genre" */
 export type HouseholdGenreIncInput = {
@@ -2632,34 +2586,31 @@ export type HouseholdGenrePkColumnsInput = {
 };
 
 /** select columns of table "household.genre" */
-export enum HouseholdGenreSelectColumn {
+export type HouseholdGenreSelectColumn =
   /** column name */
-  DisplayOrder = "displayOrder",
+  | "displayOrder"
   /** column name */
-  GenreType = "genreType",
+  | "genreType"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Name = "name",
+  | "name"
   /** column name */
-  ValidFlag = "validFlag",
-}
+  | "validFlag";
 
 /** select "householdGenreAggregateBoolExpBool_andArgumentsColumns" columns of table "household.genre" */
-export enum HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_AndArgumentsColumns {
+export type HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_AndArgumentsColumns =
   /** column name */
-  ValidFlag = "validFlag",
-}
+  "validFlag";
 
 /** select "householdGenreAggregateBoolExpBool_orArgumentsColumns" columns of table "household.genre" */
-export enum HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_OrArgumentsColumns {
+export type HouseholdGenreSelectColumnHouseholdGenreAggregateBoolExpBool_OrArgumentsColumns =
   /** column name */
-  ValidFlag = "validFlag",
-}
+  "validFlag";
 
 /** input type for updating data in table "household.genre" */
 export type HouseholdGenreSetInput = {
@@ -2712,22 +2663,21 @@ export type HouseholdGenreSumOrderBy = {
 };
 
 /** update columns of table "household.genre" */
-export enum HouseholdGenreUpdateColumn {
+export type HouseholdGenreUpdateColumn =
   /** column name */
-  DisplayOrder = "displayOrder",
+  | "displayOrder"
   /** column name */
-  GenreType = "genreType",
+  | "genreType"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Name = "name",
+  | "name"
   /** column name */
-  ValidFlag = "validFlag",
-}
+  | "validFlag";
 
 export type HouseholdGenreUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -2779,10 +2729,9 @@ export type HouseholdImportFileHistoryBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.import_file_history" */
-export enum HouseholdImportFileHistoryConstraint {
+export type HouseholdImportFileHistoryConstraint =
   /** unique or primary key constraint on columns "id" */
-  ImportFileHistoryPkey = "import_file_history_pkey",
-}
+  "import_file_history_pkey";
 
 /** input type for inserting data into table "household.import_file_history" */
 export type HouseholdImportFileHistoryInsertInput = {
@@ -2833,20 +2782,19 @@ export type HouseholdImportFileHistoryOrderBy = {
 };
 
 /** select columns of table "household.import_file_history" */
-export enum HouseholdImportFileHistorySelectColumn {
+export type HouseholdImportFileHistorySelectColumn =
   /** column name */
-  FileName = "fileName",
+  | "fileName"
   /** column name */
-  FileType = "fileType",
+  | "fileType"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  ImportDatetime = "importDatetime",
+  | "importDatetime"
   /** column name */
-  ImportUserId = "importUserId",
-}
+  | "importUserId";
 
 /** Streaming cursor of the table "household_import_file_history" */
 export type HouseholdImportFileHistoryStreamCursorInput = {
@@ -2867,10 +2815,9 @@ export type HouseholdImportFileHistoryStreamCursorValueInput = {
 };
 
 /** placeholder for update columns of table "household.import_file_history" (current role has no relevant permissions) */
-export enum HouseholdImportFileHistoryUpdateColumn {
+export type HouseholdImportFileHistoryUpdateColumn =
   /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
+  "_PLACEHOLDER";
 
 export type HouseholdSummaryCategoryAggregateBoolExp = {
   count?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExpCount>;
@@ -2917,10 +2864,9 @@ export type HouseholdSummaryCategoryBoolExp = {
 };
 
 /** unique or primary key constraints on table "household.summary_category" */
-export enum HouseholdSummaryCategoryConstraint {
+export type HouseholdSummaryCategoryConstraint =
   /** unique or primary key constraint on columns "id" */
-  SummaryCategoryByGroupPkey = "summary_category_by_group_pkey",
-}
+  "summary_category_by_group_pkey";
 
 /** input type for inserting data into table "household.summary_category" */
 export type HouseholdSummaryCategoryInsertInput = {
@@ -2965,16 +2911,15 @@ export type HouseholdSummaryCategoryOrderBy = {
 };
 
 /** select columns of table "household.summary_category" */
-export enum HouseholdSummaryCategorySelectColumn {
+export type HouseholdSummaryCategorySelectColumn =
   /** column name */
-  CategoryId = "categoryId",
+  | "categoryId"
   /** column name */
-  DisplayOrder = "displayOrder",
+  | "displayOrder"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  Id = "id",
-}
+  | "id";
 
 /** order by stddev() on columns of table "household.summary_category" */
 export type HouseholdSummaryCategoryStddevOrderBy = {
@@ -3013,10 +2958,9 @@ export type HouseholdSummaryCategorySumOrderBy = {
 };
 
 /** placeholder for update columns of table "household.summary_category" (current role has no relevant permissions) */
-export enum HouseholdSummaryCategoryUpdateColumn {
+export type HouseholdSummaryCategoryUpdateColumn =
   /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
+  "_PLACEHOLDER";
 
 /** order by varPop() on columns of table "household.summary_category" */
 export type HouseholdSummaryCategoryVarPopOrderBy = {
@@ -3111,24 +3055,23 @@ export type HouseholdTotalByCategoryViewOrderBy = {
 };
 
 /** select columns of table "household.total_by_category_view" */
-export enum HouseholdTotalByCategoryViewSelectColumn {
+export type HouseholdTotalByCategoryViewSelectColumn =
   /** column name */
-  CategoryId = "categoryId",
+  | "categoryId"
   /** column name */
-  CategoryName = "categoryName",
+  | "categoryName"
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GenreName = "genreName",
+  | "genreName"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Total = "total",
-}
+  | "total";
 
 /** order by stddev() on columns of table "household.total_by_category_view" */
 export type HouseholdTotalByCategoryViewStddevOrderBy = {
@@ -3209,20 +3152,19 @@ export type HouseholdTotalByGenreViewOrderBy = {
 };
 
 /** select columns of table "household.total_by_genre_view" */
-export enum HouseholdTotalByGenreViewSelectColumn {
+export type HouseholdTotalByGenreViewSelectColumn =
   /** column name */
-  Date = "date",
+  | "date"
   /** column name */
-  GenreId = "genreId",
+  | "genreId"
   /** column name */
-  GenreName = "genreName",
+  | "genreName"
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  IocomeType = "iocomeType",
+  | "iocomeType"
   /** column name */
-  Total = "total",
-}
+  | "total";
 
 /** Streaming cursor of the table "household_total_by_genre_view" */
 export type HouseholdTotalByGenreViewStreamCursorInput = {
@@ -3291,14 +3233,13 @@ export type HouseholdTransferCategoryOrderBy = {
 };
 
 /** select columns of table "household.transfer_category" */
-export enum HouseholdTransferCategorySelectColumn {
+export type HouseholdTransferCategorySelectColumn =
   /** column name */
-  GroupId = "groupId",
+  | "groupId"
   /** column name */
-  IncomeCategoryId = "incomeCategoryId",
+  | "incomeCategoryId"
   /** column name */
-  OutcomeCategoryId = "outcomeCategoryId",
-}
+  | "outcomeCategoryId";
 
 /** Streaming cursor of the table "household_transfer_category" */
 export type HouseholdTransferCategoryStreamCursorInput = {
@@ -3342,20 +3283,19 @@ export type NumericComparisonExp = {
 };
 
 /** column ordering options */
-export enum OrderBy {
+export type OrderBy =
   /** in ascending order, nulls last */
-  Asc = "ASC",
+  | "ASC"
   /** in ascending order, nulls first */
-  AscNullsFirst = "ASC_NULLS_FIRST",
+  | "ASC_NULLS_FIRST"
   /** in ascending order, nulls last */
-  AscNullsLast = "ASC_NULLS_LAST",
+  | "ASC_NULLS_LAST"
   /** in descending order, nulls first */
-  Desc = "DESC",
+  | "DESC"
   /** in descending order, nulls first */
-  DescNullsFirst = "DESC_NULLS_FIRST",
+  | "DESC_NULLS_FIRST"
   /** in descending order, nulls last */
-  DescNullsLast = "DESC_NULLS_LAST",
-}
+  | "DESC_NULLS_LAST";
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
@@ -3422,12 +3362,11 @@ export type UserBoolExp = {
 };
 
 /** unique or primary key constraints on table "user" */
-export enum UserConstraint {
+export type UserConstraint =
   /** unique or primary key constraint on columns "email" */
-  UserEmailKey = "user_email_key",
+  | "user_email_key"
   /** unique or primary key constraint on columns "id" */
-  UserPkey = "user_pkey",
-}
+  | "user_pkey";
 
 /** input type for inserting data into table "user" */
 export type UserInsertInput = {
@@ -3468,16 +3407,15 @@ export type UserOrderBy = {
 };
 
 /** select columns of table "user" */
-export enum UserSelectColumn {
+export type UserSelectColumn =
   /** column name */
-  DisplayOrder = "displayOrder",
+  | "displayOrder"
   /** column name */
-  Email = "email",
+  | "email"
   /** column name */
-  Id = "id",
+  | "id"
   /** column name */
-  Name = "name",
-}
+  | "name";
 
 /** Streaming cursor of the table "user" */
 export type UserStreamCursorInput = {
@@ -3496,10 +3434,9 @@ export type UserStreamCursorValueInput = {
 };
 
 /** placeholder for update columns of table "user" (current role has no relevant permissions) */
-export enum UserUpdateColumn {
+export type UserUpdateColumn =
   /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
+  "_PLACEHOLDER";
 
 export type AffiliationAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<AffiliationSelectColumn>>;
@@ -3675,51 +3612,234 @@ export type GetApplicationsQuery = {
   }>;
 };
 
-export const InsertAppDocument = gql`
-  mutation insertApp(
-    $id: String!
-    $name: String!
-    $fields: String!
-    $createUserId: String!
-    $groupId: String!
-  ) {
-    insertAppOne(
-      object: {
-        id: $id
-        name: $name
-        fields: $fields
-        createUserId: $createUserId
-        groupId: $groupId
-      }
-    ) {
-      __typename
-      id
-    }
-  }
-`;
-
-export function useInsertAppMutation() {
-  return Urql.useMutation<InsertAppMutation, InsertAppMutationVariables>(
-    InsertAppDocument,
-  );
-}
-export const GetApplicationsDocument = gql`
-  query getApplications($groupId: String!) {
-    group: groupApplication(where: { groupId: { _eq: $groupId } }) {
-      app: application {
-        id
-        name
-        topUrl
-      }
-    }
-  }
-`;
-
-export function useGetApplicationsQuery(
-  options: Omit<Urql.UseQueryArgs<GetApplicationsQueryVariables>, "query">,
-) {
-  return Urql.useQuery<GetApplicationsQuery, GetApplicationsQueryVariables>({
-    query: GetApplicationsDocument,
-    ...options,
-  });
-}
+export const InsertAppDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "insertApp" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "fields" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "createUserId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertAppOne" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "object" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "id" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "name" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "name" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "fields" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "fields" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "createUserId" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "createUserId" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "groupId" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "groupId" },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<InsertAppMutation, InsertAppMutationVariables>;
+export const GetApplicationsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getApplications" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "group" },
+            name: { kind: "Name", value: "groupApplication" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "groupId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "groupId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "app" },
+                  name: { kind: "Name", value: "application" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "topUrl" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetApplicationsQuery,
+  GetApplicationsQueryVariables
+>;

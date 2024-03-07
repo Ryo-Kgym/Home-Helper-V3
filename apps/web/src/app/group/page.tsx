@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { SelectGroupContainer } from "./_material/SelectGroupContainer";
+import { SelectGroup } from "@feature/group/select";
 
-const SelectGroupPage = () => <SelectGroupContainer />;
+const SelectGroupPage = () => <SelectGroup />;
 export default SelectGroupPage;

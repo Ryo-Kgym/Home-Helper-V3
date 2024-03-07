@@ -1,0 +1,20 @@
+mutation insertApp(
+  $id: String!
+  $name: String!
+  $fields: String!
+  $createUserId: String!
+  $groupId: String!
+) {
+  insertAppOne(
+    object: {
+      id: $id
+      name: $name
+      fields: $fields
+      createUserId: $createUserId
+      groupId: $groupId
+    }
+  ) {
+    __typename
+    id
+  }
+}

@@ -32,11 +32,11 @@ const Card = ({ back, label, href, handleClick }: LinkProps) => {
   return (
     <div
       className={
-        "border-2 rounded-2xl border-gray-300 hover:border-blue-500 shadow"
+        "rounded-2xl border-2 border-gray-300 shadow hover:border-blue-500"
       }
     >
       <Link href={href} onClick={handleClick}>
-        <div className={"text-2xl p-[2em]"}>{text}</div>
+        <div className={"p-[2em] text-2xl font-bold"}>{text}</div>
       </Link>
     </div>
   );
