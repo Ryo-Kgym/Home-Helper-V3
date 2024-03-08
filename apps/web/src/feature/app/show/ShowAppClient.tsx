@@ -4,6 +4,7 @@ import type { App } from "@feature/app/schema/app-schema";
 import type { Record, RecordList } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { AddRecordButton } from "@feature/app/show/AddRecordButton";
+import { DeleteRecordButton } from "@feature/app/show/DeleteRecordButton";
 import { RecordCell } from "@feature/app/show/RecordCell";
 import { SaveRecordButton } from "@feature/app/show/SaveRecordButton";
 
@@ -17,12 +18,6 @@ export const ShowAppClient = ({
   const [records, setRecords] = useState<RecordList>({});
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [addingRecord, setAddingRecord] = useState<boolean>(false);
-
-  const deleteRecordHandler = (recordId: string) => {
-    const newRecords = { ...records };
-    delete newRecords[recordId];
-    setRecords(newRecords);
-  };
 
   return (
     <div className={"space-y-10"}>
@@ -78,12 +73,11 @@ export const ShowAppClient = ({
                   setAddingRecord={setAddingRecord}
                   recordTemplate={recordTemplate}
                 />
-                <button
-                  onClick={() => deleteRecordHandler(recordId)}
-                  className={"text-red-500"}
-                >
-                  削除
-                </button>
+                <DeleteRecordButton
+                  recordId={recordId}
+                  records={records}
+                  setRecords={setRecords}
+                />
               </td>
             </tr>
           ))}
