@@ -1,11 +1,15 @@
 import { z } from "zod";
 
-export const recordSchema = z.record(
-  z.object({
-    fieldKind: z.enum(["text", "selectBox", "multipleText"]),
-    value: z.string(),
-  }),
-);
+export const recordColumnSchema = z.object({
+  fieldId: z.string(),
+  fieldKind: z.enum(["text", "selectBox", "multipleText"]),
+  value: z.string(),
+  confirmed: z.boolean().default(true),
+});
+
+export type RecordColumn = z.infer<typeof recordColumnSchema>;
+
+export const recordSchema = z.record(recordColumnSchema);
 
 export type Record = z.infer<typeof recordSchema>;
 
