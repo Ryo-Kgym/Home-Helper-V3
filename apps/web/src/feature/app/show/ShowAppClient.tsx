@@ -1,6 +1,33 @@
+"use client";
+
 import type { App } from "@feature/app/schema/app-schema";
+import type { RecordList } from "@feature/app/schema/record-schema";
+import { useState } from "react";
 
 export const ShowAppClient = ({ app }: { app: App }) => {
+  const [records, setRecords] = useState<RecordList>({
+    1: {
+      1: {
+        fieldKind: "text",
+        value: "aaa1",
+      },
+      2: {
+        fieldKind: "text",
+        value: "bbb1",
+      },
+    },
+    2: {
+      1: {
+        fieldKind: "text",
+        value: "aaa2",
+      },
+      2: {
+        fieldKind: "text",
+        value: "bbb2",
+      },
+    },
+  });
+
   return (
     <div className={"space-y-10"}>
       <div
@@ -13,6 +40,7 @@ export const ShowAppClient = ({ app }: { app: App }) => {
       <table>
         <thead>
           <tr className={"bg-gray-50"}>
+            <td className={"border border-gray-300 p-2"}>{"ID"}</td>
             {Object.values(app.fields).map((field) => (
               <td
                 key={field.fieldName}
@@ -23,6 +51,18 @@ export const ShowAppClient = ({ app }: { app: App }) => {
             ))}
           </tr>
         </thead>
+        <tbody>
+          {Object.entries(records).map(([recordId, record]) => (
+            <tr key={recordId} className={"border border-gray-300"}>
+              <td className={"border border-gray-300 p-2"}>{recordId}</td>
+              {Object.entries(record).map(([fieldId, field]) => (
+                <td key={fieldId} className={"border border-gray-300 p-2"}>
+                  {field.value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
