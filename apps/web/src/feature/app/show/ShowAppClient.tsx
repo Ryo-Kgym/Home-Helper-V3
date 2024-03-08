@@ -5,6 +5,7 @@ import type { Record, RecordList } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { AddRecordButton } from "@feature/app/show/AddRecordButton";
 import { RecordCell } from "@feature/app/show/RecordCell";
+import { SaveRecordButton } from "@feature/app/show/SaveRecordButton";
 
 export const ShowAppClient = ({
   app,
@@ -16,26 +17,6 @@ export const ShowAppClient = ({
   const [records, setRecords] = useState<RecordList>({});
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [addingRecord, setAddingRecord] = useState<boolean>(false);
-
-  const saveRecordHandler = (recordId: string) => {
-    setRecords({
-      ...records,
-      [recordId]: {
-        ...Object.entries(newRecord).reduce(
-          (acc, [fieldId, column]) => ({
-            ...acc,
-            [fieldId]: {
-              ...column,
-              confirmed: true,
-            },
-          }),
-          {},
-        ),
-      },
-    });
-    setNewRecord(recordTemplate);
-    setAddingRecord(false);
-  };
 
   const deleteRecordHandler = (recordId: string) => {
     const newRecords = { ...records };
@@ -87,9 +68,16 @@ export const ShowAppClient = ({
                 </td>
               ))}
               <td className={"space-x-2 border border-gray-300 p-2"}>
-                <button onClick={() => saveRecordHandler(recordId)}>
-                  保存
-                </button>
+                <SaveRecordButton
+                  recordId={recordId}
+                  records={records}
+                  setRecords={setRecords}
+                  newRecord={newRecord}
+                  setNewRecord={setNewRecord}
+                  addingRecord={addingRecord}
+                  setAddingRecord={setAddingRecord}
+                  recordTemplate={recordTemplate}
+                />
                 <button
                   onClick={() => deleteRecordHandler(recordId)}
                   className={"text-red-500"}
