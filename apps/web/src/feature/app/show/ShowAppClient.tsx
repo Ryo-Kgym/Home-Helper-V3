@@ -5,54 +5,57 @@ import type { Record, RecordList } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { RecordCell } from "@feature/app/show/RecordCell";
 
-export const ShowAppClient = ({ app }: { app: App }) => {
+export const ShowAppClient = ({
+  app,
+  recordTemplate,
+}: {
+  app: App;
+  recordTemplate: Record;
+}) => {
   const [records, setRecords] = useState<RecordList>({});
-  const [newRecord, setNewRecord] = useState<Record>({
-    1: {
-      fieldId: "1",
-      fieldKind: "text",
-      value: "",
-      confirmed: false,
-    },
-    2: {
-      fieldId: "2",
-      fieldKind: "selectBox",
-      value: "",
-      confirmed: false,
-    },
-    3: {
-      fieldId: "3",
-      fieldKind: "multipleText",
-      value: "",
-      confirmed: false,
-    },
-  });
+  const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
+  const [addingRecord, setAddingRecord] = useState<boolean>(false);
 
   const addRecordHandler = () => {
-    const newRecordId = Object.keys(records).length + 1;
+    if (addingRecord) return;
+
+    setAddingRecord(true);
+    const newRecordId =
+      Object.keys(records).length > 0
+        ? Math.max(
+            ...Object.keys(records).map((recordId) => parseInt(recordId)),
+          ) + 1
+        : 1;
     setRecords({
       ...records,
-      [newRecordId]: {
-        1: {
-          fieldId: "1",
-          fieldKind: "text",
-          value: `aaa${newRecordId}`,
-          confirmed: false,
-        },
-        2: {
-          fieldId: "2",
-          fieldKind: "selectBox",
-          value: `bbb${newRecordId}`,
-          confirmed: false,
-        },
-        3: {
-          fieldId: "3",
-          fieldKind: "multipleText",
-          value: `ccc${newRecordId}`,
-          confirmed: false,
-        },
+      [newRecordId]: recordTemplate,
+    });
+  };
+
+  const saveRecordHandler = (recordId: string) => {
+    setRecords({
+      ...records,
+      [recordId]: {
+        ...Object.entries(newRecord).reduce(
+          (acc, [fieldId, column]) => ({
+            ...acc,
+            [fieldId]: {
+              ...column,
+              confirmed: true,
+            },
+          }),
+          {},
+        ),
       },
     });
+    setNewRecord(recordTemplate);
+    setAddingRecord(false);
+  };
+
+  const deleteRecordHandler = (recordId: string) => {
+    const newRecords = { ...records };
+    delete newRecords[recordId];
+    setRecords(newRecords);
   };
 
   return (
@@ -93,8 +96,15 @@ export const ShowAppClient = ({ app }: { app: App }) => {
                 </td>
               ))}
               <td className={"space-x-2 border border-gray-300 p-2"}>
-                <button>保存</button>
-                <button>削除</button>
+                <button onClick={() => saveRecordHandler(recordId)}>
+                  保存
+                </button>
+                <button
+                  onClick={() => deleteRecordHandler(recordId)}
+                  className={"text-red-500"}
+                >
+                  削除
+                </button>
               </td>
             </tr>
           ))}

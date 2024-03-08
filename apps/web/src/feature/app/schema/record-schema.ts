@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const recordColumnSchema = z.object({
-  fieldId: z.string(),
+  fieldId: z.number(),
   fieldKind: z.enum(["text", "selectBox", "multipleText"]),
   value: z.string(),
   confirmed: z.boolean().default(true),
