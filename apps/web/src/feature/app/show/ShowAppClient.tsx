@@ -3,6 +3,7 @@
 import type { App } from "@feature/app/schema/app-schema";
 import type { Record, RecordList } from "@feature/app/schema/record-schema";
 import { useState } from "react";
+import { AddRecordButton } from "@feature/app/show/AddRecordButton";
 import { RecordCell } from "@feature/app/show/RecordCell";
 
 export const ShowAppClient = ({
@@ -15,22 +16,6 @@ export const ShowAppClient = ({
   const [records, setRecords] = useState<RecordList>({});
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [addingRecord, setAddingRecord] = useState<boolean>(false);
-
-  const addRecordHandler = () => {
-    if (addingRecord) return;
-
-    setAddingRecord(true);
-    const newRecordId =
-      Object.keys(records).length > 0
-        ? Math.max(
-            ...Object.keys(records).map((recordId) => parseInt(recordId)),
-          ) + 1
-        : 1;
-    setRecords({
-      ...records,
-      [newRecordId]: recordTemplate,
-    });
-  };
 
   const saveRecordHandler = (recordId: string) => {
     setRecords({
@@ -65,7 +50,13 @@ export const ShowAppClient = ({
       >
         <div className={"text-3xl"}>{app.name}</div>
         <button>アプリ設定変更</button>
-        <button onClick={addRecordHandler}>レコード追加</button>
+        <AddRecordButton
+          addingRecord={addingRecord}
+          setAddingRecord={setAddingRecord}
+          records={records}
+          setRecords={setRecords}
+          recordTemplate={recordTemplate}
+        />
       </div>
       <table>
         <thead>
