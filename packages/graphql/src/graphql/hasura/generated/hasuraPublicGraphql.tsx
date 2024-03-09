@@ -3840,6 +3840,18 @@ export type InsertAppMutation = {
   insertAppOne?: { __typename: "App"; id: string } | null;
 };
 
+export type InsertRecordMutationVariables = Exact<{
+  id: Scalars["String"];
+  appId: Scalars["String"];
+  appRecordOrder: Scalars["Int"];
+  columns: Scalars["String"];
+}>;
+
+export type InsertRecordMutation = {
+  __typename?: "mutation_root";
+  insertRecordOne?: { __typename: "Record"; id: string } | null;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -3915,6 +3927,32 @@ export const InsertAppDocument = gql`
 export function useInsertAppMutation() {
   return Urql.useMutation<InsertAppMutation, InsertAppMutationVariables>(
     InsertAppDocument,
+  );
+}
+export const InsertRecordDocument = gql`
+  mutation insertRecord(
+    $id: String!
+    $appId: String!
+    $appRecordOrder: Int!
+    $columns: String!
+  ) {
+    insertRecordOne(
+      object: {
+        id: $id
+        appId: $appId
+        appRecordOrder: $appRecordOrder
+        columns: $columns
+      }
+    ) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useInsertRecordMutation() {
+  return Urql.useMutation<InsertRecordMutation, InsertRecordMutationVariables>(
+    InsertRecordDocument,
   );
 }
 export const GetAppDocument = gql`
