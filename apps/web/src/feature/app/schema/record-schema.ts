@@ -15,9 +15,9 @@ export type Record = z.infer<typeof recordSchema>;
 
 export const recordsSchema = z.record(
   z.object({
-    index: z.number(),
+    recordId: z.string(),
     columns: recordSchema,
   }),
-); // recordId
+); // record.index
 
 export type Records = z.infer<typeof recordsSchema>;

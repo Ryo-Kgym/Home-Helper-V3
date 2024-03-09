@@ -52,39 +52,41 @@ export const ShowAppClient = ({
           </tr>
         </thead>
         <tbody>
-          {Object.entries(records).map(([recordId, record]) => (
-            <tr key={recordId} className={"border border-gray-300"}>
-              <td className={"border border-gray-300 p-2"}>{record.index}</td>
-              {Object.entries(record.columns).map(([fieldId, column]) => (
-                <td key={fieldId} className={"border border-gray-300 p-2"}>
-                  <RecordCell
-                    fieldId={fieldId}
-                    column={column}
+          {Object.entries(records).map(
+            ([recordIndex, { recordId, columns }]) => (
+              <tr key={recordId} className={"border border-gray-300"}>
+                <td className={"border border-gray-300 p-2"}>{recordIndex}</td>
+                {Object.entries(columns).map(([fieldId, column]) => (
+                  <td key={fieldId} className={"border border-gray-300 p-2"}>
+                    <RecordCell
+                      fieldId={fieldId}
+                      column={column}
+                      newRecord={newRecord}
+                      setNewRecord={setNewRecord}
+                    />
+                  </td>
+                ))}
+                <td className={"space-x-2 border border-gray-300 p-2"}>
+                  <SaveRecordButton
+                    appId={app.id}
+                    recordId={recordId}
+                    records={records}
+                    setRecords={setRecords}
                     newRecord={newRecord}
                     setNewRecord={setNewRecord}
+                    addingRecord={addingRecord}
+                    setAddingRecord={setAddingRecord}
+                    recordTemplate={recordTemplate}
+                  />
+                  <DeleteRecordButton
+                    recordId={recordId}
+                    records={records}
+                    setRecords={setRecords}
                   />
                 </td>
-              ))}
-              <td className={"space-x-2 border border-gray-300 p-2"}>
-                <SaveRecordButton
-                  appId={app.id}
-                  recordId={recordId}
-                  records={records}
-                  setRecords={setRecords}
-                  newRecord={newRecord}
-                  setNewRecord={setNewRecord}
-                  addingRecord={addingRecord}
-                  setAddingRecord={setAddingRecord}
-                  recordTemplate={recordTemplate}
-                />
-                <DeleteRecordButton
-                  recordId={recordId}
-                  records={records}
-                  setRecords={setRecords}
-                />
-              </td>
-            </tr>
-          ))}
+              </tr>
+            ),
+          )}
         </tbody>
       </table>
     </div>
