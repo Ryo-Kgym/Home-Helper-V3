@@ -3,8 +3,9 @@ import { z } from "zod";
 export const fieldKindSchema = z.enum(["text", "selectBox", "multipleText"]);
 
 export const fieldSchema = z.object({
-  fieldName: z.string().nullable(),
+  fieldName: z.string(),
   fieldKind: fieldKindSchema,
+  fieldIndex: z.number(),
 });
 
 export type Field = z.infer<typeof fieldSchema>;

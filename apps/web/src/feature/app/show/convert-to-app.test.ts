@@ -13,7 +13,7 @@ describe("convertToApp", () => {
         fields: [
           {
             __typename: "Field",
-            id: "1111",
+            id: "11111",
             index: 1,
             name: "Field 1",
             fieldKind: "text",
@@ -35,8 +35,12 @@ describe("convertToApp", () => {
       id: "1",
       name: "My App",
       fields: {
-        1: { fieldName: "Field 1", fieldKind: "text" },
-        2: { fieldName: "Field 2", fieldKind: "selectBox" },
+        "11111": { fieldName: "Field 1", fieldKind: "text", fieldIndex: 1 },
+        "22222": {
+          fieldName: "Field 2",
+          fieldKind: "selectBox",
+          fieldIndex: 2,
+        },
       },
     };
 

@@ -7,9 +7,10 @@ export const convertToApp = async (data: GetAppQuery): Promise<App> => {
     (acc, f) =>
       ({
         ...acc,
-        [f.index!.toString()]: {
+        [f.id]: {
           fieldName: f.name,
           fieldKind: f.fieldKind,
+          fieldIndex: f.index,
         },
       }) as Fields,
     {},
