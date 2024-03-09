@@ -28,19 +28,6 @@ export const SaveRecordButton = ({
   const saveRecordHandler = async (recordId: string) => {
     if (!addingRecord) return;
 
-    const record: Record = {
-      ...Object.entries(newRecord).reduce(
-        (acc, [fieldId, column]) => ({
-          ...acc,
-          [fieldId]: {
-            ...column,
-            editing: false,
-          },
-        }),
-        {},
-      ),
-    };
-
     try {
       const { error } = await mut({
         id: generateId(),
@@ -48,9 +35,10 @@ export const SaveRecordButton = ({
         index: parseInt(recordId),
         columns: JSON.stringify({
           ...Object.entries(newRecord).reduce(
-            (acc, [fieldId, { value }]) => ({
+            (acc, [fieldId, { fieldKind, value }]) => ({
               ...acc,
               [fieldId]: {
+                fieldKind,
                 value,
               },
             }),
@@ -64,10 +52,11 @@ export const SaveRecordButton = ({
         ...records,
         [recordId]: {
           ...Object.entries(newRecord).reduce(
-            (acc, [fieldId, column]) => ({
+            (acc, [fieldId, { fieldKind, value }]) => ({
               ...acc,
               [fieldId]: {
-                ...column,
+                fieldKind,
+                value,
                 editing: false,
               },
             }),

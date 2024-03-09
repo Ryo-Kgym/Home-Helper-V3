@@ -2,7 +2,7 @@ import type { App, Fields } from "@feature/app/schema/app-schema";
 import type { GetAppQuery } from "@v3/graphql/public/type";
 import { appSchema, fieldsSchema } from "@feature/app/schema";
 
-export const convertToApp = async (data: GetAppQuery): Promise<App> => {
+export const convertToApp = (data: GetAppQuery): App => {
   const fieldsData = data?.app?.fields.reduce(
     (acc, f) =>
       ({

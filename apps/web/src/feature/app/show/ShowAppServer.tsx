@@ -1,4 +1,3 @@
-import type { Records } from "@feature/app/schema/record-schema";
 import { makeRecordTemplate } from "@feature/app/schema/make-record-template";
 import { convertToApp } from "@feature/app/show/convert-to-app";
 import { convertToRecords } from "@feature/app/show/convert-to-records";
@@ -8,10 +7,10 @@ import { GetAppDocument, GetRecordsDocument } from "@v3/graphql/public/type";
 
 export const ShowAppServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });
-  const app = await convertToApp(data);
+  const app = convertToApp(data);
 
   const { data: recordData } = await fetchQuery(GetRecordsDocument, { appId });
-  const records: Records = await convertToRecords(recordData);
+  const records = convertToRecords(recordData);
 
   const recordTemplate = makeRecordTemplate(app.fields);
 

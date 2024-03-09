@@ -10,7 +10,7 @@ describe("convertToRecords", () => {
         {
           __typename: "Record",
           id: "record-1",
-          appRecordOrder: 1,
+          index: 1,
           columns: JSON.stringify({
             0: {
               fieldId: 0,
@@ -29,7 +29,7 @@ describe("convertToRecords", () => {
         {
           __typename: "Record",
           id: "record-2",
-          appRecordOrder: 2,
+          index: 2,
           columns: JSON.stringify({
             0: {
               fieldId: 0,
@@ -51,13 +51,11 @@ describe("convertToRecords", () => {
     expect(records).toEqual({
       1: {
         0: {
-          fieldId: 0,
           fieldKind: "text",
           value: "Record 1",
           editing: false,
         },
         1: {
-          fieldId: 1,
           fieldKind: "text",
           value: "Record 2",
           editing: false,
@@ -65,13 +63,11 @@ describe("convertToRecords", () => {
       },
       2: {
         0: {
-          fieldId: 0,
           fieldKind: "text",
           value: "Record 1",
           editing: false,
         },
         1: {
-          fieldId: 1,
           fieldKind: "text",
           value: "Record 2",
           editing: false,
