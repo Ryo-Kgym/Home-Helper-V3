@@ -19,9 +19,14 @@ export const DeleteRecordButton = ({
         throw error;
       }
 
-      const newRecords = { ...records };
-      delete newRecords[recordId];
-      setRecords(newRecords);
+      const copiedRecords = { ...records };
+      Object.entries(copiedRecords).forEach(([key, value]) => {
+        if (value.recordId === recordId) {
+          delete copiedRecords[key];
+        }
+      });
+
+      setRecords(copiedRecords);
       alert("削除しました");
     } catch (e) {
       console.error(e);
