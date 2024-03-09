@@ -4,9 +4,7 @@ import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { AddRecordButton } from "@feature/app/show/AddRecordButton";
-import { DeleteRecordButton } from "@feature/app/show/DeleteRecordButton";
-import { RecordCell } from "@feature/app/show/RecordCell";
-import { SaveRecordButton } from "@feature/app/show/SaveRecordButton";
+import { ShowAppListRow } from "@feature/app/show/ShowAppListRow";
 
 export const ShowAppClient = ({
   app,
@@ -58,37 +56,21 @@ export const ShowAppClient = ({
         <tbody>
           {Object.entries(records).map(
             ([recordIndex, { recordId, columns, isEditing }]) => (
-              <tr key={recordId} className={"border border-gray-300"}>
-                <td className={"border border-gray-300 p-2"}>{recordIndex}</td>
-                {Object.entries(columns).map(([fieldId, column]) => (
-                  <td key={fieldId} className={"border border-gray-300 p-2"}>
-                    <RecordCell
-                      fieldId={fieldId}
-                      isEditing={isEditing}
-                      column={column}
-                      newRecord={newRecord}
-                      setNewRecord={setNewRecord}
-                    />
-                  </td>
-                ))}
-                <td className={"space-x-2 border border-gray-300 p-2"}>
-                  <SaveRecordButton
-                    appId={app.id}
-                    records={records}
-                    setRecords={setRecords}
-                    newRecord={newRecord}
-                    setNewRecord={setNewRecord}
-                    addingRecord={addingRecord}
-                    setAddingRecord={setAddingRecord}
-                    recordTemplate={recordTemplate}
-                  />
-                  <DeleteRecordButton
-                    recordId={recordId}
-                    records={records}
-                    setRecords={setRecords}
-                  />
-                </td>
-              </tr>
+              <ShowAppListRow
+                key={recordId}
+                recordId={recordId}
+                recordIndex={parseInt(recordIndex)}
+                columns={columns}
+                isEditing={isEditing}
+                newRecord={newRecord}
+                setNewRecord={setNewRecord}
+                app={app}
+                records={records}
+                setRecords={setRecords}
+                addingRecord={addingRecord}
+                setAddingRecord={setAddingRecord}
+                recordTemplate={recordTemplate}
+              />
             ),
           )}
         </tbody>
