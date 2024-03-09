@@ -158,6 +158,7 @@ export type AppBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
+  records?: InputMaybe<RecordBoolExp>;
   user?: InputMaybe<UserBoolExp>;
 };
 
@@ -173,6 +174,7 @@ export type AppInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
+  records?: InputMaybe<RecordArrRelInsertInput>;
   user?: InputMaybe<UserObjRelInsertInput>;
 };
 
@@ -194,6 +196,13 @@ export type AppMinOrderBy = {
   name?: InputMaybe<OrderBy>;
 };
 
+/** input type for inserting object relation for remote table "app" */
+export type AppObjRelInsertInput = {
+  data: AppInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<AppOnConflict>;
+};
+
 /** on_conflict condition type for table "app" */
 export type AppOnConflict = {
   constraint: AppConstraint;
@@ -209,6 +218,7 @@ export type AppOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
   user?: InputMaybe<UserOrderBy>;
 };
 
@@ -3297,6 +3307,175 @@ export type OrderBy =
   /** in descending order, nulls last */
   | "DESC_NULLS_LAST";
 
+/** order by aggregate values of table "record" */
+export type RecordAggregateOrderBy = {
+  avg?: InputMaybe<RecordAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<RecordMaxOrderBy>;
+  min?: InputMaybe<RecordMinOrderBy>;
+  stddev?: InputMaybe<RecordStddevOrderBy>;
+  stddevPop?: InputMaybe<RecordStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<RecordStddevSampOrderBy>;
+  sum?: InputMaybe<RecordSumOrderBy>;
+  varPop?: InputMaybe<RecordVarPopOrderBy>;
+  varSamp?: InputMaybe<RecordVarSampOrderBy>;
+  variance?: InputMaybe<RecordVarianceOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "record" */
+export type RecordArrRelInsertInput = {
+  data: Array<RecordInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<RecordOnConflict>;
+};
+
+/** order by avg() on columns of table "record" */
+export type RecordAvgOrderBy = {
+  appRecordOrder?: InputMaybe<OrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "record". All fields are combined with a logical 'AND'. */
+export type RecordBoolExp = {
+  _and?: InputMaybe<Array<RecordBoolExp>>;
+  _not?: InputMaybe<RecordBoolExp>;
+  _or?: InputMaybe<Array<RecordBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
+  appId?: InputMaybe<StringComparisonExp>;
+  appRecordOrder?: InputMaybe<IntComparisonExp>;
+  columns?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "record" */
+export type RecordConstraint =
+  /** unique or primary key constraint on columns "id" */
+  "record_pkey";
+
+/** input type for inserting data into table "record" */
+export type RecordInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
+  appId?: InputMaybe<Scalars["String"]>;
+  appRecordOrder?: InputMaybe<Scalars["Int"]>;
+  columns?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "record" */
+export type RecordMaxOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  appRecordOrder?: InputMaybe<OrderBy>;
+  columns?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "record" */
+export type RecordMinOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  appRecordOrder?: InputMaybe<OrderBy>;
+  columns?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "record" */
+export type RecordOnConflict = {
+  constraint: RecordConstraint;
+  updateColumns?: Array<RecordUpdateColumn>;
+  where?: InputMaybe<RecordBoolExp>;
+};
+
+/** Ordering options when selecting data from "record". */
+export type RecordOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
+  appId?: InputMaybe<OrderBy>;
+  appRecordOrder?: InputMaybe<OrderBy>;
+  columns?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: record */
+export type RecordPkColumnsInput = {
+  id: Scalars["String"];
+};
+
+/** select columns of table "record" */
+export type RecordSelectColumn =
+  /** column name */
+  | "appId"
+  /** column name */
+  | "appRecordOrder"
+  /** column name */
+  | "columns"
+  /** column name */
+  | "id";
+
+/** input type for updating data in table "record" */
+export type RecordSetInput = {
+  columns?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by stddev() on columns of table "record" */
+export type RecordStddevOrderBy = {
+  appRecordOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "record" */
+export type RecordStddevPopOrderBy = {
+  appRecordOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "record" */
+export type RecordStddevSampOrderBy = {
+  appRecordOrder?: InputMaybe<OrderBy>;
+};
+
+/** Streaming cursor of the table "record" */
+export type RecordStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: RecordStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type RecordStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  appRecordOrder?: InputMaybe<Scalars["Int"]>;
+  columns?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by sum() on columns of table "record" */
+export type RecordSumOrderBy = {
+  appRecordOrder?: InputMaybe<OrderBy>;
+};
+
+/** update columns of table "record" */
+export type RecordUpdateColumn =
+  /** column name */
+  "columns";
+
+export type RecordUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<RecordSetInput>;
+  /** filter the rows which have to be updated */
+  where: RecordBoolExp;
+};
+
+/** order by varPop() on columns of table "record" */
+export type RecordVarPopOrderBy = {
+  appRecordOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "record" */
+export type RecordVarSampOrderBy = {
+  appRecordOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "record" */
+export type RecordVarianceOrderBy = {
+  appRecordOrder?: InputMaybe<OrderBy>;
+};
+
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
   _eq?: InputMaybe<Scalars["String"]>;
@@ -3630,6 +3809,20 @@ export type GetApplicationsQuery = {
   } | null;
 };
 
+export type GetRecordsQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetRecordsQuery = {
+  __typename?: "query_root";
+  records: Array<{
+    __typename: "Record";
+    id: string;
+    appRecordOrder?: number | null;
+    columns?: string | null;
+  }>;
+};
+
 export const InsertAppDocument = {
   kind: "Document",
   definitions: [
@@ -3923,3 +4116,79 @@ export const GetApplicationsDocument = {
   GetApplicationsQuery,
   GetApplicationsQueryVariables
 >;
+export const GetRecordsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getRecords" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "records" },
+            name: { kind: "Name", value: "record" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "appRecordOrder" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "columns" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetRecordsQuery, GetRecordsQueryVariables>;

@@ -1,0 +1,8 @@
+query getRecords($appId: String!) {
+  records: record(where: { id: { _eq: $appId } }) {
+    __typename
+    id
+    appRecordOrder
+    columns
+  }
+}
