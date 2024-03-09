@@ -11,10 +11,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript } from "@mantine/core";
 import { ClientsProviders } from "app/_provider/ClientsProviders";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const metadata: Metadata = {
-  title: "Home-Helper",
-  description: "うちのアプリです",
+export const metadata: Metadata = {
+  title: "One for All",
+  description: "アプリを作るアプリ",
 };
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
