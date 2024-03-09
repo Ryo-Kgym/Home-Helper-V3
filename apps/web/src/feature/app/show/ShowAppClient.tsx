@@ -58,6 +58,7 @@ export const ShowAppClient = ({
               {Object.entries(record).map(([fieldId, column]) => (
                 <td key={fieldId} className={"border border-gray-300 p-2"}>
                   <RecordCell
+                    fieldId={fieldId}
                     column={column}
                     newRecord={newRecord}
                     setNewRecord={setNewRecord}

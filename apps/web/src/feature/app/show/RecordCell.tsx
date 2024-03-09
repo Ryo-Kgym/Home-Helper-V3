@@ -4,10 +4,12 @@ import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 
 export const RecordCell = ({
+  fieldId,
   column,
   newRecord,
   setNewRecord,
 }: {
+  fieldId: string;
   column: RecordColumn;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
@@ -15,7 +17,7 @@ export const RecordCell = ({
   const changeHandler = (value: string) => {
     setNewRecord({
       ...newRecord,
-      [column.fieldId]: {
+      [fieldId]: {
         ...column,
         value,
       },
@@ -31,7 +33,7 @@ export const RecordCell = ({
       return (
         <TextInput
           label={""}
-          value={newRecord[column.fieldId]!.value}
+          value={newRecord[fieldId]!.value}
           setValue={changeHandler}
         />
       );
@@ -39,7 +41,7 @@ export const RecordCell = ({
       return (
         <Select
           label={""}
-          value={newRecord[column.fieldId]!.value}
+          value={newRecord[fieldId]!.value}
           setValue={changeHandler}
           data={[
             { label: "aaa", value: "aaa" },
@@ -52,7 +54,7 @@ export const RecordCell = ({
       return (
         <MultiTextInput
           label={""}
-          value={newRecord[column.fieldId]!.value}
+          value={newRecord[fieldId]!.value}
           setValue={changeHandler}
         />
       );
