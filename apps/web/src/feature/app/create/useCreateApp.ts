@@ -27,6 +27,7 @@ export const useCreateApp = () => {
         name: f.fieldName,
         index: parseInt(index),
         fieldKind: f.fieldKind,
+        options: f.options,
       })),
       createUserId: userId,
       groupId,

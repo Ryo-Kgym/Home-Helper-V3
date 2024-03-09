@@ -19,6 +19,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   date: any;
+  json: any;
   numeric: any;
   timestamp: any;
 };
@@ -389,6 +390,7 @@ export type FieldBoolExp = {
   id?: InputMaybe<StringComparisonExp>;
   index?: InputMaybe<IntComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
+  options?: InputMaybe<JsonComparisonExp>;
 };
 
 /** unique or primary key constraints on table "field" */
@@ -409,6 +411,7 @@ export type FieldInsertInput = {
   id?: InputMaybe<Scalars["String"]>;
   index?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
+  options?: InputMaybe<Scalars["json"]>;
 };
 
 /** order by max() on columns of table "field" */
@@ -444,6 +447,7 @@ export type FieldOrderBy = {
   id?: InputMaybe<OrderBy>;
   index?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  options?: InputMaybe<OrderBy>;
 };
 
 /** primary key columns input for table: field */
@@ -462,13 +466,16 @@ export type FieldSelectColumn =
   /** column name */
   | "index"
   /** column name */
-  | "name";
+  | "name"
+  /** column name */
+  | "options";
 
 /** input type for updating data in table "field" */
 export type FieldSetInput = {
   fieldKind?: InputMaybe<Scalars["String"]>;
   index?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
+  options?: InputMaybe<Scalars["json"]>;
 };
 
 /** order by stddev() on columns of table "field" */
@@ -501,6 +508,7 @@ export type FieldStreamCursorValueInput = {
   id?: InputMaybe<Scalars["String"]>;
   index?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
+  options?: InputMaybe<Scalars["json"]>;
 };
 
 /** order by sum() on columns of table "field" */
@@ -515,7 +523,9 @@ export type FieldUpdateColumn =
   /** column name */
   | "index"
   /** column name */
-  | "name";
+  | "name"
+  /** column name */
+  | "options";
 
 export type FieldUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -3461,6 +3471,19 @@ export type IntComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["Int"]>>;
 };
 
+/** Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'. */
+export type JsonComparisonExp = {
+  _eq?: InputMaybe<Scalars["json"]>;
+  _gt?: InputMaybe<Scalars["json"]>;
+  _gte?: InputMaybe<Scalars["json"]>;
+  _in?: InputMaybe<Array<Scalars["json"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["json"]>;
+  _lte?: InputMaybe<Scalars["json"]>;
+  _neq?: InputMaybe<Scalars["json"]>;
+  _nin?: InputMaybe<Array<Scalars["json"]>>;
+};
+
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
 export type NumericComparisonExp = {
   _eq?: InputMaybe<Scalars["numeric"]>;
@@ -3990,13 +4013,14 @@ export type GetAppQuery = {
   app?: {
     __typename: "App";
     id: string;
-    name?: string | null;
+    name: string;
     fields: Array<{
       __typename: "Field";
       id: string;
-      name?: string | null;
-      index?: number | null;
-      fieldKind?: string | null;
+      name: string;
+      index: number;
+      fieldKind: string;
+      options?: any | null;
     }>;
   } | null;
 };
@@ -4018,7 +4042,7 @@ export type GetApplicationsQuery = {
         topUrl: string;
       };
     }>;
-    apps: Array<{ __typename?: "App"; id: string; name?: string | null }>;
+    apps: Array<{ __typename?: "App"; id: string; name: string }>;
   } | null;
 };
 
@@ -4032,7 +4056,7 @@ export type GetRecordsQuery = {
     __typename: "Record";
     id: string;
     index: number;
-    columns?: string | null;
+    columns: string;
   }>;
 };
 
@@ -4442,6 +4466,10 @@ export const GetAppDocument = {
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "fieldKind" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "options" },
                       },
                     ],
                   },

@@ -19,14 +19,14 @@ export const Select = <T extends string | number>({
         readOnly
         onClick={() => setOpenOption(true)}
       />
-      <div className={"absolute z-10 bg-white pl-5"}>
+      <div className={"absolute z-10 ml-10 bg-white"}>
         {data
           .filter((_) => openOption)
           .map((item) => (
             <div key={item.value}>
               <button
                 className={
-                  "w-full rounded-md border-2 border-gray-300 bg-inherit p-1 text-left hover:bg-gray-200"
+                  "w-full rounded-md border-2 border-gray-300 bg-inherit px-3 py-1 text-left hover:bg-gray-200"
                 }
                 onClick={() => {
                   setValue(item.value);

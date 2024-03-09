@@ -9,6 +9,7 @@ query getApp($appId: String!) {
       name
       index
       fieldKind
+      options
     }
   }
 }

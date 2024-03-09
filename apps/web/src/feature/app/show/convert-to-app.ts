@@ -11,6 +11,7 @@ export const convertToApp = (data: GetAppQuery): App => {
           fieldName: f.name,
           fieldKind: f.fieldKind,
           fieldIndex: f.index,
+          options: f.options,
         },
       }) as Fields,
     {},

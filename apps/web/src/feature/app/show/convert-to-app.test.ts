@@ -17,6 +17,7 @@ describe("convertToApp", () => {
             index: 1,
             name: "Field 1",
             fieldKind: "text",
+            options: {},
           },
           {
             __typename: "Field",
@@ -24,6 +25,7 @@ describe("convertToApp", () => {
             index: 2,
             name: "Field 2",
             fieldKind: "selectBox",
+            options: { selector: "a,b" },
           },
         ],
       },
@@ -35,11 +37,19 @@ describe("convertToApp", () => {
       id: "1",
       name: "My App",
       fields: {
-        "11111": { fieldName: "Field 1", fieldKind: "text", fieldIndex: 1 },
+        "11111": {
+          fieldName: "Field 1",
+          fieldKind: "text",
+          fieldIndex: 1,
+          options: {},
+        },
         "22222": {
           fieldName: "Field 2",
           fieldKind: "selectBox",
           fieldIndex: 2,
+          options: {
+            selector: "a,b",
+          },
         },
       },
     };

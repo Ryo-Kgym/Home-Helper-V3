@@ -21,6 +21,7 @@ export const FieldAddButton = ({
           [fieldCount]: {
             fieldName: "",
             fieldKind: "text",
+            options: {},
           },
         };
       });
