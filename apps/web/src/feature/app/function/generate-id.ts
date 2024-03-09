@@ -1,1 +1,1 @@
-export const generateId = () => new Date().getTime().toString();
+export const generateId = (seq = 0) => (new Date().getTime() + seq).toString();
