@@ -8,9 +8,7 @@ export const convertToRecords = (recordData: GetRecordsQuery): Records => {
     (acc, r) =>
       ({
         ...acc,
-        [r.index!.toString()]: recordSchema.parse(
-          JSON.parse(r.columns ?? "{}"),
-        ),
+        [r.index.toString()]: recordSchema.parse(JSON.parse(r.columns ?? "{}")),
       }) as Records,
     {},
   );

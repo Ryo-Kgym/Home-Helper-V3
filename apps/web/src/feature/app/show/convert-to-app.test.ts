@@ -29,7 +29,7 @@ describe("convertToApp", () => {
       },
     };
 
-    const app = await convertToApp(data);
+    const app = convertToApp(data);
 
     const expected: App = {
       id: "1",
