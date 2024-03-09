@@ -44,25 +44,35 @@ export const FileImportContainer = () => {
     null,
   );
 
-  const tableProps: TableProps[] = loadData.map((d) => {
-    return {
-      keyPrefix: "load",
-      columns: [
-        { value: d.date.toISOString().slice(0, 10), align: "center" },
-        { value: d.note, align: "left" },
-        {
-          value: <FormatPrice iocomeType={d.iocomeType} price={d.price} />,
-          align: "right",
+  const tableProps: TableProps[] = loadData
+    .filter((d, index) => {
+      // d.date がDate型でない場合はエラーを出力
+      if (Number.isNaN(d.date.getTime())) {
+        console.error("Found invalid date at index", index, ":", d.date);
+        return false;
+      }
+
+      return true;
+    })
+    .map((d) => {
+      return {
+        keyPrefix: "load",
+        columns: [
+          { value: d.date.toISOString().slice(0, 10), align: "center" },
+          { value: d.note, align: "left" },
+          {
+            value: <FormatPrice iocomeType={d.iocomeType} price={d.price} />,
+            align: "right",
+          },
+          { value: d.genreName, align: "left" },
+          { value: d.categoryName, align: "left" },
+        ],
+        onClick: () => {
+          setOpened(true);
+          setInitialValues(d);
         },
-        { value: d.genreName, align: "left" },
-        { value: d.categoryName, align: "left" },
-      ],
-      onClick: () => {
-        setOpened(true);
-        setInitialValues(d);
-      },
-    };
-  });
+      };
+    });
 
   const { registerImported } = useCreateImportFile({
     fileType: fileType!,
