@@ -46,13 +46,34 @@ export const SaveRecordButton = ({
         id: generateId(),
         appId,
         index: parseInt(recordId),
-        columns: JSON.stringify(record),
+        columns: JSON.stringify({
+          ...Object.entries(newRecord).reduce(
+            (acc, [fieldId, { value }]) => ({
+              ...acc,
+              [fieldId]: {
+                value,
+              },
+            }),
+            {},
+          ),
+        }),
       });
       if (error) throw error;
 
       setRecords({
         ...records,
-        [recordId]: record,
+        [recordId]: {
+          ...Object.entries(newRecord).reduce(
+            (acc, [fieldId, column]) => ({
+              ...acc,
+              [fieldId]: {
+                ...column,
+                editing: false,
+              },
+            }),
+            {},
+          ),
+        },
       });
       setNewRecord(recordTemplate);
       setAddingRecord(false);
