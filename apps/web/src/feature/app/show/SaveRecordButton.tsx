@@ -35,7 +35,7 @@ export const SaveRecordButton = ({
           ...acc,
           [fieldId]: {
             ...column,
-            confirmed: true,
+            editing: false,
           },
         }),
         {},

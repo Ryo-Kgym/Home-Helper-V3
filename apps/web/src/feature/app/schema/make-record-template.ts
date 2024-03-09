@@ -9,7 +9,7 @@ export const makeRecordTemplate = (fields: Field): Record =>
         fieldId: parseInt(fieldId),
         fieldKind: field.fieldKind,
         value: "",
-        confirmed: false,
+        editing: true,
       },
     }),
     {},

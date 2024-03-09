@@ -15,8 +15,8 @@ describe("makeRecordTemplate", () => {
     const actual = makeRecordTemplate(fields);
 
     expect(actual).toEqual({
-      1: { fieldId: 1, fieldKind: "text", value: "", confirmed: false },
-      2: { fieldId: 2, fieldKind: "selectBox", value: "", confirmed: false },
+      1: { fieldId: 1, fieldKind: "text", value: "", editing: true },
+      2: { fieldId: 2, fieldKind: "selectBox", value: "", editing: true },
     });
   });
 });

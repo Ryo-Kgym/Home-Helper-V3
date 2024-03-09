@@ -22,7 +22,7 @@ export const RecordCell = ({
     });
   };
 
-  if (column.confirmed) {
+  if (!column.editing) {
     return <div>{column.value}</div>;
   }
 

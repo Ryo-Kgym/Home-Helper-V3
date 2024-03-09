@@ -4,7 +4,7 @@ export const recordColumnSchema = z.object({
   fieldId: z.number(),
   fieldKind: z.enum(["text", "selectBox", "multipleText"]),
   value: z.string(),
-  confirmed: z.boolean().default(true),
+  editing: z.boolean().default(false),
 });
 
 export type RecordColumn = z.infer<typeof recordColumnSchema>;
