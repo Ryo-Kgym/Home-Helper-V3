@@ -13,8 +13,8 @@ const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
       encodingFrom: "SJIS",
       encodingType: "array",
       splitSeparator: "\r\n",
-      headerRows: 1,
-      footerRows: 4,
+      headerRows: 0,
+      footerRows: 2,
     },
   ],
   [
