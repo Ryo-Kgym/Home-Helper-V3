@@ -3576,7 +3576,7 @@ export type RecordArrRelInsertInput = {
 
 /** order by avg() on columns of table "record" */
 export type RecordAvgOrderBy = {
-  appRecordOrder?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** Boolean expression to filter rows from the table "record". All fields are combined with a logical 'AND'. */
@@ -3586,9 +3586,9 @@ export type RecordBoolExp = {
   _or?: InputMaybe<Array<RecordBoolExp>>;
   app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
-  appRecordOrder?: InputMaybe<IntComparisonExp>;
   columns?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  index?: InputMaybe<IntComparisonExp>;
 };
 
 /** unique or primary key constraints on table "record" */
@@ -3601,25 +3601,25 @@ export enum RecordConstraint {
 export type RecordInsertInput = {
   app?: InputMaybe<AppObjRelInsertInput>;
   appId?: InputMaybe<Scalars["String"]>;
-  appRecordOrder?: InputMaybe<Scalars["Int"]>;
   columns?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  index?: InputMaybe<Scalars["Int"]>;
 };
 
 /** order by max() on columns of table "record" */
 export type RecordMaxOrderBy = {
   appId?: InputMaybe<OrderBy>;
-  appRecordOrder?: InputMaybe<OrderBy>;
   columns?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "record" */
 export type RecordMinOrderBy = {
   appId?: InputMaybe<OrderBy>;
-  appRecordOrder?: InputMaybe<OrderBy>;
   columns?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** on_conflict condition type for table "record" */
@@ -3633,9 +3633,9 @@ export type RecordOnConflict = {
 export type RecordOrderBy = {
   app?: InputMaybe<AppOrderBy>;
   appId?: InputMaybe<OrderBy>;
-  appRecordOrder?: InputMaybe<OrderBy>;
   columns?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** primary key columns input for table: record */
@@ -3648,11 +3648,11 @@ export enum RecordSelectColumn {
   /** column name */
   AppId = "appId",
   /** column name */
-  AppRecordOrder = "appRecordOrder",
-  /** column name */
   Columns = "columns",
   /** column name */
   Id = "id",
+  /** column name */
+  Index = "index",
 }
 
 /** input type for updating data in table "record" */
@@ -3662,17 +3662,17 @@ export type RecordSetInput = {
 
 /** order by stddev() on columns of table "record" */
 export type RecordStddevOrderBy = {
-  appRecordOrder?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** order by stddevPop() on columns of table "record" */
 export type RecordStddevPopOrderBy = {
-  appRecordOrder?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** order by stddevSamp() on columns of table "record" */
 export type RecordStddevSampOrderBy = {
-  appRecordOrder?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** Streaming cursor of the table "record" */
@@ -3686,14 +3686,14 @@ export type RecordStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type RecordStreamCursorValueInput = {
   appId?: InputMaybe<Scalars["String"]>;
-  appRecordOrder?: InputMaybe<Scalars["Int"]>;
   columns?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  index?: InputMaybe<Scalars["Int"]>;
 };
 
 /** order by sum() on columns of table "record" */
 export type RecordSumOrderBy = {
-  appRecordOrder?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** update columns of table "record" */
@@ -3711,17 +3711,17 @@ export type RecordUpdates = {
 
 /** order by varPop() on columns of table "record" */
 export type RecordVarPopOrderBy = {
-  appRecordOrder?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** order by varSamp() on columns of table "record" */
 export type RecordVarSampOrderBy = {
-  appRecordOrder?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** order by variance() on columns of table "record" */
 export type RecordVarianceOrderBy = {
-  appRecordOrder?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
@@ -4032,7 +4032,7 @@ export type InsertAppMutation = {
 export type InsertRecordMutationVariables = Exact<{
   id: Scalars["String"];
   appId: Scalars["String"];
-  appRecordOrder: Scalars["Int"];
+  index: Scalars["Int"];
   columns: Scalars["String"];
 }>;
 
@@ -4091,7 +4091,7 @@ export type GetRecordsQuery = {
   records: Array<{
     __typename: "Record";
     id: string;
-    appRecordOrder?: number | null;
+    index: number;
     columns?: string | null;
   }>;
 };
@@ -4131,16 +4131,11 @@ export const InsertRecordDocument = gql`
   mutation insertRecord(
     $id: String!
     $appId: String!
-    $appRecordOrder: Int!
+    $index: Int!
     $columns: String!
   ) {
     insertRecordOne(
-      object: {
-        id: $id
-        appId: $appId
-        appRecordOrder: $appRecordOrder
-        columns: $columns
-      }
+      object: { id: $id, appId: $appId, index: $index, columns: $columns }
     ) {
       __typename
       id
@@ -4209,7 +4204,7 @@ export const GetRecordsDocument = gql`
     records: record(where: { appId: { _eq: $appId } }) {
       __typename
       id
-      appRecordOrder
+      index
       columns
     }
   }

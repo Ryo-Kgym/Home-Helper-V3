@@ -11,7 +11,7 @@ export const ShowAppServer = async ({ appId }: { appId: string }) => {
   const app = await convertToApp(data);
 
   const { data: recordData } = await fetchQuery(GetRecordsDocument, { appId });
-  const records: RecordList = convertToRecords(recordData);
+  const records: RecordList = await convertToRecords(recordData);
 
   const recordTemplate = makeRecordTemplate(app.fields);
 

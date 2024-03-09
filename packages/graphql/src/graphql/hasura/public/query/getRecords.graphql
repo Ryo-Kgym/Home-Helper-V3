@@ -2,7 +2,7 @@ query getRecords($appId: String!) {
   records: record(where: { appId: { _eq: $appId } }) {
     __typename
     id
-    appRecordOrder
+    index
     columns
   }
 }

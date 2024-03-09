@@ -1,14 +1,14 @@
 mutation insertRecord(
   $id: String!
   $appId: String!
-  $appRecordOrder: Int!
+  $index: Int!
   $columns: String!
 ) {
   insertRecordOne(
     object: {
       id: $id
       appId: $appId
-      appRecordOrder: $appRecordOrder
+      index: $index
       columns: $columns
     }
   ) {
