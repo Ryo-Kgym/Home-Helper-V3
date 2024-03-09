@@ -1,4 +1,4 @@
-import type { RecordList } from "@feature/app/schema/record-schema";
+import type { Records } from "@feature/app/schema/record-schema";
 import type { GetRecordsQuery } from "@v3/graphql/public/type";
 
 import { convertToRecords } from "./convert-to-records";
@@ -77,6 +77,6 @@ describe("convertToRecords", () => {
           editing: false,
         },
       },
-    } as RecordList);
+    } as Records);
   });
 });

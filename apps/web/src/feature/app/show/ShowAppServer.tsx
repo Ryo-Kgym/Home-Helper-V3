@@ -1,4 +1,4 @@
-import type { RecordList } from "@feature/app/schema/record-schema";
+import type { Records } from "@feature/app/schema/record-schema";
 import { makeRecordTemplate } from "@feature/app/schema/make-record-template";
 import { convertToApp } from "@feature/app/show/convert-to-app";
 import { convertToRecords } from "@feature/app/show/convert-to-records";
@@ -11,7 +11,7 @@ export const ShowAppServer = async ({ appId }: { appId: string }) => {
   const app = await convertToApp(data);
 
   const { data: recordData } = await fetchQuery(GetRecordsDocument, { appId });
-  const records: RecordList = await convertToRecords(recordData);
+  const records: Records = await convertToRecords(recordData);
 
   const recordTemplate = makeRecordTemplate(app.fields);
 

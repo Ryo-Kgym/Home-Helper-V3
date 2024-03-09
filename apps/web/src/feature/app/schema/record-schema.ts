@@ -14,6 +14,6 @@ export const recordSchema = z.record(recordColumnSchema);
 
 export type Record = z.infer<typeof recordSchema>;
 
-export const recordListSchema = z.record(recordSchema);
+export const recordsSchema = z.record(recordSchema);
 
-export type RecordList = z.infer<typeof recordListSchema>;
+export type Records = z.infer<typeof recordsSchema>;

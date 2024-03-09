@@ -1,4 +1,4 @@
-import type { RecordList } from "@feature/app/schema/record-schema";
+import type { Records } from "@feature/app/schema/record-schema";
 
 export const DeleteRecordButton = ({
   recordId,
@@ -6,8 +6,8 @@ export const DeleteRecordButton = ({
   setRecords,
 }: {
   recordId: string;
-  records: RecordList;
-  setRecords: (records: RecordList) => void;
+  records: Records;
+  setRecords: (records: Records) => void;
 }) => {
   const deleteRecordHandler = (recordId: string) => {
     const newRecords = { ...records };

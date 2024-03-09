@@ -1,11 +1,11 @@
-import type { RecordList } from "@feature/app/schema/record-schema";
+import type { Records } from "@feature/app/schema/record-schema";
 import type { GetRecordsQuery } from "@v3/graphql/public/type";
 import { recordSchema } from "@feature/app/schema";
-import { recordListSchema } from "@feature/app/schema/record-schema";
+import { recordsSchema } from "@feature/app/schema/record-schema";
 
 export const convertToRecords = async (
   recordData: GetRecordsQuery,
-): Promise<RecordList> => {
+): Promise<Records> => {
   const recordsData = recordData.records.reduce(
     (acc, r) =>
       ({
@@ -13,8 +13,8 @@ export const convertToRecords = async (
         [r.index!.toString()]: recordSchema.parse(
           JSON.parse(r.columns ?? "{}"),
         ),
-      }) as RecordList,
+      }) as Records,
     {},
   );
-  return recordListSchema.parse(recordsData);
+  return recordsSchema.parse(recordsData);
 };

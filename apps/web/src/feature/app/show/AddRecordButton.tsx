@@ -1,4 +1,4 @@
-import type { Record, RecordList } from "@feature/app/schema/record-schema";
+import type { Record, Records } from "@feature/app/schema/record-schema";
 
 export const AddRecordButton = ({
   addingRecord,
@@ -9,8 +9,8 @@ export const AddRecordButton = ({
 }: {
   addingRecord: boolean;
   setAddingRecord: React.Dispatch<React.SetStateAction<boolean>>;
-  records: RecordList;
-  setRecords: React.Dispatch<React.SetStateAction<RecordList>>;
+  records: Records;
+  setRecords: React.Dispatch<React.SetStateAction<Records>>;
   recordTemplate: Record;
 }) => {
   const addRecordHandler = () => {

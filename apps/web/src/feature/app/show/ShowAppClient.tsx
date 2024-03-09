@@ -1,7 +1,7 @@
 "use client";
 
 import type { App } from "@feature/app/schema/app-schema";
-import type { Record, RecordList } from "@feature/app/schema/record-schema";
+import type { Record, Records } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { AddRecordButton } from "@feature/app/show/AddRecordButton";
 import { DeleteRecordButton } from "@feature/app/show/DeleteRecordButton";
@@ -15,9 +15,9 @@ export const ShowAppClient = ({
 }: {
   app: App;
   recordTemplate: Record;
-  records: RecordList;
+  records: Records;
 }) => {
-  const [records, setRecords] = useState<RecordList>(defaultRecords);
+  const [records, setRecords] = useState<Records>(defaultRecords);
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [addingRecord, setAddingRecord] = useState<boolean>(false);
 
