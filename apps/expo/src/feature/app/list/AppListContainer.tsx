@@ -14,8 +14,8 @@ export const AppListContainer = () => {
   if (fetching) return <Text>Loading...</Text>;
 
   const apps =
-    data?.group.map((g) => ({
-      appName: g.app.name,
+    data?.group?.groupApplications.map((g) => ({
+      appName: g.application.name,
       path: paths.household.dashboard,
     })) ?? [];
 
