@@ -4002,7 +4002,7 @@ export function useGetApplicationsQuery(
 }
 export const GetRecordsDocument = gql`
   query getRecords($appId: String!) {
-    records: record(where: { id: { _eq: $appId } }) {
+    records: record(where: { appId: { _eq: $appId } }) {
       __typename
       id
       appRecordOrder

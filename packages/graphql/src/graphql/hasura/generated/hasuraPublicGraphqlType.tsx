@@ -4291,7 +4291,7 @@ export const GetRecordsDocument = {
                   fields: [
                     {
                       kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
+                      name: { kind: "Name", value: "appId" },
                       value: {
                         kind: "ObjectValue",
                         fields: [
