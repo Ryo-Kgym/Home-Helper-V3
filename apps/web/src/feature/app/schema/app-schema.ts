@@ -1,18 +1,22 @@
 import { z } from "zod";
 
-export const fieldSchema = z.record(
-  z.object({
-    fieldName: z.string().nullable(),
-    fieldKind: z.enum(["text", "selectBox", "multipleText"]),
-  }),
-);
+export const fieldKindSchema = z.enum(["text", "selectBox", "multipleText"]);
+
+export const fieldSchema = z.object({
+  fieldName: z.string().nullable(),
+  fieldKind: fieldKindSchema,
+});
 
 export type Field = z.infer<typeof fieldSchema>;
+
+export const fieldsSchema = z.record(fieldSchema);
+
+export type Fields = z.infer<typeof fieldsSchema>;
 
 export const appSchema = z.object({
   id: z.string(),
   name: z.string(),
-  fields: fieldSchema,
+  fields: fieldsSchema,
 });
 
 export type App = z.infer<typeof appSchema>;

@@ -1,10 +1,10 @@
-import type { Field } from "@feature/app/schema/app-schema";
+import type { Fields } from "@feature/app/schema/app-schema";
 
 import { makeRecordTemplate } from "./make-record-template";
 
 describe("makeRecordTemplate", () => {
   it("should make a record template", () => {
-    const fields: Field = {
+    const fields: Fields = {
       1: { fieldName: "test1", fieldKind: "text" },
       2: {
         fieldName: "test2",

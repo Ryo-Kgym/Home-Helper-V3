@@ -1,8 +1,9 @@
+import { fieldKindSchema } from "@feature/app/schema/app-schema";
 import { z } from "zod";
 
 export const recordColumnSchema = z.object({
   fieldId: z.number(),
-  fieldKind: z.enum(["text", "selectBox", "multipleText"]),
+  fieldKind: fieldKindSchema,
   value: z.string(),
   editing: z.boolean().default(false),
 });
