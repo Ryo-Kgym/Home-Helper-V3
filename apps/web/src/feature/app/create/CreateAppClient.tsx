@@ -27,7 +27,7 @@ export const CreateAppClient = () => {
           <FieldResetButton setValue={setValue} setFieldCount={setFieldCount} />
         </div>
       </div>
-      <div id={"field"} className={"space-y-2"}>
+      <div className={"space-y-2"}>
         {Object.values(value).map((field, index) => (
           <AppField
             key={`field-${index}`}
