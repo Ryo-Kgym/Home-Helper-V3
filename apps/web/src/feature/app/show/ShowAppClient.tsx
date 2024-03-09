@@ -11,11 +11,13 @@ import { SaveRecordButton } from "@feature/app/show/SaveRecordButton";
 export const ShowAppClient = ({
   app,
   recordTemplate,
+  records: defaultRecords,
 }: {
   app: App;
   recordTemplate: Record;
+  records: RecordList;
 }) => {
-  const [records, setRecords] = useState<RecordList>({});
+  const [records, setRecords] = useState<RecordList>(defaultRecords);
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [addingRecord, setAddingRecord] = useState<boolean>(false);
 
