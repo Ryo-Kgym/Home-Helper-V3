@@ -28,6 +28,7 @@ export const AddRecordButton = ({
       [newRecordIndex]: {
         recordId: generateId(),
         columns: recordTemplate,
+        isEditing: true,
       },
     });
   };

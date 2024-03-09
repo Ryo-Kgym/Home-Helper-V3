@@ -4,7 +4,6 @@ import { z } from "zod";
 export const recordColumnSchema = z.object({
   fieldKind: fieldKindSchema,
   value: z.string(),
-  editing: z.boolean().default(false),
 });
 
 export type RecordColumn = z.infer<typeof recordColumnSchema>;
@@ -16,6 +15,7 @@ export type Record = z.infer<typeof recordSchema>;
 export const recordsSchema = z.record(
   z.object({
     recordId: z.string(),
+    isEditing: z.boolean().default(false),
     columns: recordSchema,
   }),
 ); // record.index

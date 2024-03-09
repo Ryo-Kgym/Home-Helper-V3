@@ -5,18 +5,19 @@ import { makeRecordTemplate } from "./make-record-template";
 describe("makeRecordTemplate", () => {
   it("should make a record template", () => {
     const fields: Fields = {
-      1: { fieldName: "test1", fieldKind: "text" },
-      2: {
+      "11111": { fieldName: "test1", fieldKind: "text", fieldIndex: 0 },
+      "22222": {
         fieldName: "test2",
         fieldKind: "selectBox",
+        fieldIndex: 1,
       },
     };
 
     const actual = makeRecordTemplate(fields);
 
     expect(actual).toEqual({
-      1: { fieldId: 1, fieldKind: "text", value: "", editing: true },
-      2: { fieldId: 2, fieldKind: "selectBox", value: "", editing: true },
+      "11111": { fieldKind: "text", value: "" },
+      "22222": { fieldKind: "selectBox", value: "" },
     });
   });
 });

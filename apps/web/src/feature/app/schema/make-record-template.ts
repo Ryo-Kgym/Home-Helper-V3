@@ -6,10 +6,8 @@ export const makeRecordTemplate = (fields: Fields): Record =>
     (acc, [fieldId, field]) => ({
       ...acc,
       [fieldId]: {
-        fieldId: parseInt(fieldId),
         fieldKind: field.fieldKind,
         value: "",
-        editing: true,
       },
     }),
     {},

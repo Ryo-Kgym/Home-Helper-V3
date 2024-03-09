@@ -11,6 +11,7 @@ export const convertToRecords = (recordData: GetRecordsQuery): Records => {
         [r.index]: {
           recordId: r.id,
           columns: recordSchema.parse(JSON.parse(r.columns ?? "{}")),
+          isEditing: false,
         },
       }) as Records,
     {},

@@ -5,11 +5,13 @@ import { TextInput } from "@components/ui/v4/textInput";
 
 export const RecordCell = ({
   fieldId,
+  isEditing,
   column,
   newRecord,
   setNewRecord,
 }: {
   fieldId: string;
+  isEditing: boolean;
   column: RecordColumn;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
@@ -24,7 +26,7 @@ export const RecordCell = ({
     });
   };
 
-  if (!column.editing) {
+  if (!isEditing) {
     return <div>{column.value}</div>;
   }
 

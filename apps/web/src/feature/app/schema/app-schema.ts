@@ -10,7 +10,7 @@ export const fieldSchema = z.object({
 
 export type Field = z.infer<typeof fieldSchema>;
 
-export const fieldsSchema = z.record(fieldSchema);
+export const fieldsSchema = z.record(fieldSchema); // fieldId
 
 export type Fields = z.infer<typeof fieldsSchema>;
 
