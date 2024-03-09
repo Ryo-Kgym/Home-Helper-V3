@@ -22,6 +22,7 @@ export const CreateAppButton = ({
       clickHandler={async () => {
         try {
           await createApp({ appName, fields });
+          alert("アプリを作成しました");
         } catch (e) {
           console.error(e);
         }
