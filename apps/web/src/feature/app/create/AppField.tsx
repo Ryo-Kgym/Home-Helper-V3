@@ -25,7 +25,7 @@ export const AppField = ({
   return (
     <div
       id={`field-${index}`}
-      className={"space-y-2 border-2 border-gray-500 p-2"}
+      className={"grid grid-cols-2 gap-2 border-2 border-gray-500 p-2"}
     >
       <Select
         label={"フィールドの選択"}
