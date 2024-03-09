@@ -1,9 +1,9 @@
 import type { Record, Records } from "@feature/app/schema/record-schema";
+import { generateId } from "@feature/app/function/generate-id";
 import { useInsertRecordMutation } from "@v3/graphql/public";
 
 export const SaveRecordButton = ({
   appId,
-  recordId,
   records,
   setRecords,
   newRecord,
@@ -13,7 +13,6 @@ export const SaveRecordButton = ({
   recordTemplate,
 }: {
   appId: string;
-  recordId: string;
   records: Records;
   setRecords: (records: Records) => void;
   newRecord: Record;
@@ -24,12 +23,13 @@ export const SaveRecordButton = ({
 }) => {
   const [, mut] = useInsertRecordMutation();
 
-  const saveRecordHandler = async (recordId: string) => {
+  const saveRecordHandler = async () => {
     if (!addingRecord) return;
 
     const newRecordIndex = Math.max(
       ...Object.keys(records).map((n) => parseInt(n)),
     );
+    const recordId: string = generateId();
 
     try {
       const { error } = await mut({
@@ -79,5 +79,5 @@ export const SaveRecordButton = ({
     }
   };
 
-  return <button onClick={() => saveRecordHandler(recordId)}>保存</button>;
+  return <button onClick={saveRecordHandler}>保存</button>;
 };
