@@ -9,10 +9,15 @@ export const recordColumnSchema = z.object({
 
 export type RecordColumn = z.infer<typeof recordColumnSchema>;
 
-export const recordSchema = z.record(recordColumnSchema);
+export const recordSchema = z.record(recordColumnSchema); // fieldId
 
 export type Record = z.infer<typeof recordSchema>;
 
-export const recordsSchema = z.record(recordSchema);
+export const recordsSchema = z.record(
+  z.object({
+    index: z.number(),
+    columns: recordSchema,
+  }),
+); // recordId
 
 export type Records = z.infer<typeof recordsSchema>;

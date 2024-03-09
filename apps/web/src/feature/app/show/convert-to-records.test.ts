@@ -9,7 +9,7 @@ describe("convertToRecords", () => {
       records: [
         {
           __typename: "Record",
-          id: "record-1",
+          id: "11111",
           index: 1,
           columns: JSON.stringify({
             0: {
@@ -28,7 +28,7 @@ describe("convertToRecords", () => {
         },
         {
           __typename: "Record",
-          id: "record-2",
+          id: "22222",
           index: 2,
           columns: JSON.stringify({
             0: {
@@ -49,28 +49,34 @@ describe("convertToRecords", () => {
     };
     const records = convertToRecords(recordData);
     expect(records).toEqual({
-      1: {
-        0: {
-          fieldKind: "text",
-          value: "Record 1",
-          editing: false,
-        },
-        1: {
-          fieldKind: "text",
-          value: "Record 2",
-          editing: false,
+      "11111": {
+        index: 1,
+        columns: {
+          0: {
+            fieldKind: "text",
+            value: "Record 1",
+            editing: false,
+          },
+          1: {
+            fieldKind: "text",
+            value: "Record 2",
+            editing: false,
+          },
         },
       },
-      2: {
-        0: {
-          fieldKind: "text",
-          value: "Record 1",
-          editing: false,
-        },
-        1: {
-          fieldKind: "text",
-          value: "Record 2",
-          editing: false,
+      "22222": {
+        index: 2,
+        columns: {
+          0: {
+            fieldKind: "text",
+            value: "Record 1",
+            editing: false,
+          },
+          1: {
+            fieldKind: "text",
+            value: "Record 2",
+            editing: false,
+          },
         },
       },
     } as Records);

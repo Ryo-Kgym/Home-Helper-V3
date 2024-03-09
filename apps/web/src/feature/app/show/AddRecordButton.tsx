@@ -17,15 +17,16 @@ export const AddRecordButton = ({
     if (addingRecord) return;
 
     setAddingRecord(true);
-    const newRecordId =
+    const newRecordIndex =
       Object.keys(records).length > 0
-        ? Math.max(
-            ...Object.keys(records).map((recordId) => parseInt(recordId)),
-          ) + 1
+        ? Math.max(...Object.values(records).map(({ index }) => index)) + 1
         : 1;
     setRecords({
       ...records,
-      [newRecordId]: recordTemplate,
+      [Infinity]: {
+        index: newRecordIndex,
+        columns: recordTemplate,
+      },
     });
   };
 

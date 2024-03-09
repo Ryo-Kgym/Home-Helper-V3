@@ -28,11 +28,16 @@ export const SaveRecordButton = ({
   const saveRecordHandler = async (recordId: string) => {
     if (!addingRecord) return;
 
+    const newRecordIndex =
+      Object.keys(records).length > 0
+        ? Math.max(...Object.values(records).map(({ index }) => index)) + 1
+        : 1;
+
     try {
       const { error } = await mut({
         id: generateId(),
         appId,
-        index: parseInt(recordId),
+        index: newRecordIndex,
         columns: JSON.stringify({
           ...Object.entries(newRecord).reduce(
             (acc, [fieldId, { fieldKind, value }]) => ({
@@ -51,17 +56,20 @@ export const SaveRecordButton = ({
       setRecords({
         ...records,
         [recordId]: {
-          ...Object.entries(newRecord).reduce(
-            (acc, [fieldId, { fieldKind, value }]) => ({
-              ...acc,
-              [fieldId]: {
-                fieldKind,
-                value,
-                editing: false,
-              },
-            }),
-            {},
-          ),
+          index: newRecordIndex,
+          columns: {
+            ...Object.entries(newRecord).reduce(
+              (acc, [fieldId, { fieldKind, value }]) => ({
+                ...acc,
+                [fieldId]: {
+                  fieldKind,
+                  value,
+                  editing: false,
+                },
+              }),
+              {},
+            ),
+          },
         },
       });
       setNewRecord(recordTemplate);

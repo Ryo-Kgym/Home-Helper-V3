@@ -4012,6 +4012,15 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type DeleteRecordMutationVariables = Exact<{
+  recordId: Scalars["String"];
+}>;
+
+export type DeleteRecordMutation = {
+  __typename?: "mutation_root";
+  deleteRecordByPk?: { __typename: "Record"; id: string } | null;
+};
+
 export type InsertAppMutationVariables = Exact<{
   id: Scalars["String"];
   name: Scalars["String"];
@@ -4096,6 +4105,20 @@ export type GetRecordsQuery = {
   }>;
 };
 
+export const DeleteRecordDocument = gql`
+  mutation deleteRecord($recordId: String!) {
+    deleteRecordByPk(id: $recordId) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useDeleteRecordMutation() {
+  return Urql.useMutation<DeleteRecordMutation, DeleteRecordMutationVariables>(
+    DeleteRecordDocument,
+  );
+}
 export const InsertAppDocument = gql`
   mutation insertApp(
     $id: String!

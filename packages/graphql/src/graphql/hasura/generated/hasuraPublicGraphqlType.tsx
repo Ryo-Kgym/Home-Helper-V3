@@ -3943,6 +3943,15 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type DeleteRecordMutationVariables = Exact<{
+  recordId: Scalars["String"];
+}>;
+
+export type DeleteRecordMutation = {
+  __typename?: "mutation_root";
+  deleteRecordByPk?: { __typename: "Record"; id: string } | null;
+};
+
 export type InsertAppMutationVariables = Exact<{
   id: Scalars["String"];
   name: Scalars["String"];
@@ -4027,6 +4036,61 @@ export type GetRecordsQuery = {
   }>;
 };
 
+export const DeleteRecordDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "deleteRecord" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "recordId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteRecordByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "recordId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  DeleteRecordMutation,
+  DeleteRecordMutationVariables
+>;
 export const InsertAppDocument = {
   kind: "Document",
   definitions: [

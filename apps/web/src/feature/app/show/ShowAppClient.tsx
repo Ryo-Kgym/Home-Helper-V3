@@ -54,8 +54,8 @@ export const ShowAppClient = ({
         <tbody>
           {Object.entries(records).map(([recordId, record]) => (
             <tr key={recordId} className={"border border-gray-300"}>
-              <td className={"border border-gray-300 p-2"}>{recordId}</td>
-              {Object.entries(record).map(([fieldId, column]) => (
+              <td className={"border border-gray-300 p-2"}>{record.index}</td>
+              {Object.entries(record.columns).map(([fieldId, column]) => (
                 <td key={fieldId} className={"border border-gray-300 p-2"}>
                   <RecordCell
                     fieldId={fieldId}
