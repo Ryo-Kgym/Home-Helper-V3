@@ -1,0 +1,6 @@
+mutation deleteRecord($recordId: String!) {
+  deleteRecordByPk(id: $recordId) {
+    __typename
+    id
+  }
+}

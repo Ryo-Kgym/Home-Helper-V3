@@ -1,15 +1,7 @@
-import type { App } from "../schema/app-schema";
-import { convertToApp } from "./convert-to-app";
+import type { App } from "@feature/app/schema";
+import type { GetAppQuery } from "@v3/graphql/public/type";
 
-type GetAppQuery = {
-  __typename?: "query_root";
-  app?: {
-    __typename: "App";
-    id: string;
-    name?: string | null;
-    fields?: string | null;
-  } | null;
-};
+import { convertToApp } from "./convert-to-app";
 
 describe("convertToApp", () => {
   it("converts a GetAppQuery to an App", async () => {
@@ -18,21 +10,37 @@ describe("convertToApp", () => {
         __typename: "App",
         id: "1",
         name: "My App",
-        fields: JSON.stringify({
-          field1: { fieldName: "Field 1", fieldKind: "text" },
-          field2: { fieldName: "Field 2", fieldKind: "selectBox" },
-        }),
+        fields: [
+          {
+            __typename: "Field",
+            id: "11111",
+            index: 1,
+            name: "Field 1",
+            fieldKind: "text",
+          },
+          {
+            __typename: "Field",
+            id: "22222",
+            index: 2,
+            name: "Field 2",
+            fieldKind: "selectBox",
+          },
+        ],
       },
     };
 
-    const app = await convertToApp(data);
+    const app = convertToApp(data);
 
     const expected: App = {
       id: "1",
       name: "My App",
       fields: {
-        field1: { fieldName: "Field 1", fieldKind: "text" },
-        field2: { fieldName: "Field 2", fieldKind: "selectBox" },
+        "11111": { fieldName: "Field 1", fieldKind: "text", fieldIndex: 1 },
+        "22222": {
+          fieldName: "Field 2",
+          fieldKind: "selectBox",
+          fieldIndex: 2,
+        },
       },
     };
 

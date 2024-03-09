@@ -3,6 +3,12 @@ query getApp($appId: String!) {
     __typename
     id
     name
-    fields
+    fields {
+      __typename
+      id
+      name
+      index
+      fieldKind
+    }
   }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import type { App } from "@feature/app/schema/app-schema";
-import type { Record, RecordList } from "@feature/app/schema/record-schema";
+import type { Record, Records } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { AddRecordButton } from "@feature/app/show/AddRecordButton";
 import { DeleteRecordButton } from "@feature/app/show/DeleteRecordButton";
@@ -11,13 +11,24 @@ import { SaveRecordButton } from "@feature/app/show/SaveRecordButton";
 export const ShowAppClient = ({
   app,
   recordTemplate,
+  records: defaultRecords,
 }: {
   app: App;
   recordTemplate: Record;
+  records: Records;
 }) => {
-  const [records, setRecords] = useState<RecordList>({});
+  const [records, setRecords] = useState<Records>(defaultRecords);
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [addingRecord, setAddingRecord] = useState<boolean>(false);
+
+  const headerItems = [
+    { key: "no", fieldName: "No." },
+    ...Object.values(app.fields).map((field) => ({
+      key: field.fieldIndex.toString(),
+      fieldName: field.fieldName,
+    })),
+    { key: "actions", fieldName: "" },
+  ];
 
   return (
     <div className={"space-y-10"}>
@@ -37,50 +48,49 @@ export const ShowAppClient = ({
       <table>
         <thead>
           <tr className={"bg-gray-50"}>
-            <td className={"border border-gray-300 p-2"}>{"ID"}</td>
-            {Object.values(app.fields).map((field) => (
-              <td
-                key={field.fieldName}
-                className={"border border-gray-300 p-2"}
-              >
-                {field.fieldName}
+            {headerItems.map(({ key, fieldName }) => (
+              <td key={key} className={"border border-gray-300 p-2 font-bold"}>
+                {fieldName}
               </td>
             ))}
-            <td className={"border border-gray-300 p-2"}>{""}</td>
           </tr>
         </thead>
         <tbody>
-          {Object.entries(records).map(([recordId, record]) => (
-            <tr key={recordId} className={"border border-gray-300"}>
-              <td className={"border border-gray-300 p-2"}>{recordId}</td>
-              {Object.entries(record).map(([fieldId, column]) => (
-                <td key={fieldId} className={"border border-gray-300 p-2"}>
-                  <RecordCell
-                    column={column}
+          {Object.entries(records).map(
+            ([recordIndex, { recordId, columns, isEditing }]) => (
+              <tr key={recordId} className={"border border-gray-300"}>
+                <td className={"border border-gray-300 p-2"}>{recordIndex}</td>
+                {Object.entries(columns).map(([fieldId, column]) => (
+                  <td key={fieldId} className={"border border-gray-300 p-2"}>
+                    <RecordCell
+                      fieldId={fieldId}
+                      isEditing={isEditing}
+                      column={column}
+                      newRecord={newRecord}
+                      setNewRecord={setNewRecord}
+                    />
+                  </td>
+                ))}
+                <td className={"space-x-2 border border-gray-300 p-2"}>
+                  <SaveRecordButton
+                    appId={app.id}
+                    records={records}
+                    setRecords={setRecords}
                     newRecord={newRecord}
                     setNewRecord={setNewRecord}
+                    addingRecord={addingRecord}
+                    setAddingRecord={setAddingRecord}
+                    recordTemplate={recordTemplate}
+                  />
+                  <DeleteRecordButton
+                    recordId={recordId}
+                    records={records}
+                    setRecords={setRecords}
                   />
                 </td>
-              ))}
-              <td className={"space-x-2 border border-gray-300 p-2"}>
-                <SaveRecordButton
-                  recordId={recordId}
-                  records={records}
-                  setRecords={setRecords}
-                  newRecord={newRecord}
-                  setNewRecord={setNewRecord}
-                  addingRecord={addingRecord}
-                  setAddingRecord={setAddingRecord}
-                  recordTemplate={recordTemplate}
-                />
-                <DeleteRecordButton
-                  recordId={recordId}
-                  records={records}
-                  setRecords={setRecords}
-                />
-              </td>
-            </tr>
-          ))}
+              </tr>
+            ),
+          )}
         </tbody>
       </table>
     </div>

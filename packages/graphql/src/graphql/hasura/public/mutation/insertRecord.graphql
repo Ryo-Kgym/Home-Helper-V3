@@ -1,0 +1,18 @@
+mutation insertRecord(
+  $id: String!
+  $appId: String!
+  $index: Int!
+  $columns: String!
+) {
+  insertRecordOne(
+    object: {
+      id: $id
+      appId: $appId
+      index: $index
+      columns: $columns
+    }
+  ) {
+    __typename
+    id
+  }
+}

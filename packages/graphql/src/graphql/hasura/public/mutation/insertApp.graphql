@@ -1,7 +1,7 @@
 mutation insertApp(
   $id: String!
   $name: String!
-  $fields: String!
+  $fields: [FieldInsertInput!]!
   $createUserId: String!
   $groupId: String!
 ) {
@@ -9,12 +9,17 @@ mutation insertApp(
     object: {
       id: $id
       name: $name
-      fields: $fields
       createUserId: $createUserId
       groupId: $groupId
     }
   ) {
     __typename
     id
+  }
+  insertField(
+    objects: $fields
+  ) {
+    __typename
+affectedRows
   }
 }

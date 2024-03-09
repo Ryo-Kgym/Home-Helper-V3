@@ -1,14 +1,13 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
+import { generateId } from "@feature/app/function/generate-id";
 import { useGroup } from "@hooks/group/useGroup";
-import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
 import { useInsertAppMutation } from "@v3/graphql/public";
 
 export const useCreateApp = () => {
-  const { generate } = useGenerateId();
   const { userId } = useUser();
   const { groupId } = useGroup();
-  const [res, mutation] = useInsertAppMutation();
+  const [, mutation] = useInsertAppMutation();
 
   const createApp = async ({
     appName,
@@ -17,15 +16,23 @@ export const useCreateApp = () => {
     appName: string;
     fields: AppFieldValue;
   }) => {
-    await mutation({
-      id: generate(),
+    const appId = generateId();
+
+    const { error } = await mutation({
+      id: appId,
       name: appName,
-      fields: JSON.stringify(fields),
+      fields: Object.entries(fields).map(([index, f]) => ({
+        id: generateId(parseInt(index)),
+        appId,
+        name: f.fieldName,
+        index: parseInt(index),
+        fieldKind: f.fieldKind,
+      })),
       createUserId: userId,
       groupId,
     });
-    if (res.error) {
-      throw res.error;
+    if (error) {
+      throw error;
     }
   };
 
