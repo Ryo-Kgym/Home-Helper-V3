@@ -64,6 +64,7 @@ export const ShowAppClient = ({
               ))}
               <td className={"space-x-2 border border-gray-300 p-2"}>
                 <SaveRecordButton
+                  appId={app.id}
                   recordId={recordId}
                   records={records}
                   setRecords={setRecords}
