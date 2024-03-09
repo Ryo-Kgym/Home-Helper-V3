@@ -21,6 +21,15 @@ export const ShowAppClient = ({
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [addingRecord, setAddingRecord] = useState<boolean>(false);
 
+  const headerItems = [
+    { key: "no", fieldName: "No." },
+    ...Object.values(app.fields).map((field) => ({
+      key: field.fieldIndex.toString(),
+      fieldName: field.fieldName,
+    })),
+    { key: "actions", fieldName: "" },
+  ];
+
   return (
     <div className={"space-y-10"}>
       <div
@@ -39,16 +48,11 @@ export const ShowAppClient = ({
       <table>
         <thead>
           <tr className={"bg-gray-50"}>
-            <td className={"border border-gray-300 p-2"}>{"ID"}</td>
-            {Object.values(app.fields).map((field) => (
-              <td
-                key={field.fieldName}
-                className={"border border-gray-300 p-2"}
-              >
-                {field.fieldName}
+            {headerItems.map(({ key, fieldName }) => (
+              <td key={key} className={"border border-gray-300 p-2 font-bold"}>
+                {fieldName}
               </td>
             ))}
-            <td className={"border border-gray-300 p-2"}>{""}</td>
           </tr>
         </thead>
         <tbody>
