@@ -41,6 +41,7 @@ export const ShowAppListRow = ({
             column={column}
             newRecord={newRecord}
             setNewRecord={setNewRecord}
+            fields={app.fields}
           />
         </td>
       ))}

@@ -1,3 +1,4 @@
+import type { Fields } from "@feature/app/schema";
 import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
@@ -9,13 +10,27 @@ export const RecordCell = ({
   column,
   newRecord,
   setNewRecord,
+  fields,
 }: {
   fieldId: string;
   isEditing: boolean;
   column: RecordColumn;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
+  fields: Fields;
 }) => {
+  const field = fields[fieldId];
+  if (!field) {
+    console.error(`field not found: ${fieldId}`);
+    return null;
+  }
+  if (field.fieldKind !== column.fieldKind) {
+    console.error(
+      `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,
+    );
+    return null;
+  }
+
   const changeHandler = (value: string) => {
     setNewRecord({
       ...newRecord,
@@ -30,7 +45,7 @@ export const RecordCell = ({
     return <div>{column.value}</div>;
   }
 
-  switch (column.fieldKind) {
+  switch (field.fieldKind) {
     case "text":
       return (
         <TextInput
@@ -45,11 +60,9 @@ export const RecordCell = ({
           label={""}
           value={newRecord[fieldId]!.value}
           setValue={changeHandler}
-          data={[
-            { label: "aaa", value: "aaa" },
-            { label: "bbb", value: "bbb" },
-            { label: "ccc", value: "ccc" },
-          ]}
+          data={field.options.selector
+            .split(",")
+            .map((option) => ({ label: option, value: option }))}
         />
       );
     case "multipleText":
