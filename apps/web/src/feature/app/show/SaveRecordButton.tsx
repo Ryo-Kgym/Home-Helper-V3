@@ -22,20 +22,21 @@ export const SaveRecordButton = ({
   const saveRecordHandler = (recordId: string) => {
     if (!addingRecord) return;
 
+    const record: Record = {
+      ...Object.entries(newRecord).reduce(
+        (acc, [fieldId, column]) => ({
+          ...acc,
+          [fieldId]: {
+            ...column,
+            confirmed: true,
+          },
+        }),
+        {},
+      ),
+    };
     setRecords({
       ...records,
-      [recordId]: {
-        ...Object.entries(newRecord).reduce(
-          (acc, [fieldId, column]) => ({
-            ...acc,
-            [fieldId]: {
-              ...column,
-              confirmed: true,
-            },
-          }),
-          {},
-        ),
-      },
+      [recordId]: record,
     });
     setNewRecord(recordTemplate);
     setAddingRecord(false);
