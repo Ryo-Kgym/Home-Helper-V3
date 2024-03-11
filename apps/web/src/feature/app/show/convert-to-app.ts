@@ -18,6 +18,7 @@ export const convertToApp = (data: GetAppQuery): App => {
   );
 
   const fields = fieldsSchema.parse(fieldsData);
+
   return appSchema.parse({
     id: data?.app?.id,
     name: data?.app?.name ?? "",

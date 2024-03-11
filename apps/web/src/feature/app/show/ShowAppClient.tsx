@@ -2,7 +2,7 @@
 
 import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddRecordButton } from "@feature/app/show/AddRecordButton";
 import { ShowAppListRow } from "@feature/app/show/ShowAppListRow";
 

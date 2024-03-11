@@ -4091,6 +4091,12 @@ export type GetAppQuery = {
       fieldKind: string;
       options?: any | null;
     }>;
+    records: Array<{
+      __typename: "Record";
+      id: string;
+      index: number;
+      columns: string;
+    }>;
   } | null;
 };
 
@@ -4113,20 +4119,6 @@ export type GetApplicationsQuery = {
     }>;
     apps: Array<{ __typename?: "App"; id: string; name: string }>;
   } | null;
-};
-
-export type GetRecordsQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetRecordsQuery = {
-  __typename?: "query_root";
-  records: Array<{
-    __typename: "Record";
-    id: string;
-    index: number;
-    columns: string;
-  }>;
 };
 
 export const DeleteRecordDocument = gql`
@@ -4209,6 +4201,12 @@ export const GetAppDocument = gql`
         fieldKind
         options
       }
+      records {
+        __typename
+        id
+        index
+        columns
+      }
     }
   }
 `;
@@ -4244,25 +4242,6 @@ export function useGetApplicationsQuery(
 ) {
   return Urql.useQuery<GetApplicationsQuery, GetApplicationsQueryVariables>({
     query: GetApplicationsDocument,
-    ...options,
-  });
-}
-export const GetRecordsDocument = gql`
-  query getRecords($appId: String!) {
-    records: record(where: { appId: { _eq: $appId } }) {
-      __typename
-      id
-      index
-      columns
-    }
-  }
-`;
-
-export function useGetRecordsQuery(
-  options: Omit<Urql.UseQueryArgs<GetRecordsQueryVariables>, "query">,
-) {
-  return Urql.useQuery<GetRecordsQuery, GetRecordsQueryVariables>({
-    query: GetRecordsDocument,
     ...options,
   });
 }

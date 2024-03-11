@@ -11,5 +11,11 @@ query getApp($appId: String!) {
       fieldKind
       options
     }
+    records {
+      __typename
+      id
+      index
+      columns
+    }
   }
 }
