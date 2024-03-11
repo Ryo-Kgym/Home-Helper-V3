@@ -2,8 +2,9 @@
 
 import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AddRecordButton } from "@feature/app/show/AddRecordButton";
+import { RedirectSettingButton } from "@feature/app/show/RedirectSettingButton";
 import { ShowAppListRow } from "@feature/app/show/ShowAppListRow";
 
 export const ShowAppClient = ({
@@ -34,7 +35,7 @@ export const ShowAppClient = ({
         className={"flex w-full items-end space-x-5 border-b-2 border-gray-300"}
       >
         <div className={"text-3xl"}>{app.name}</div>
-        <button>アプリ設定変更</button>
+        <RedirectSettingButton appId={app.id} />
         <AddRecordButton
           addingRecord={addingRecord}
           setAddingRecord={setAddingRecord}
