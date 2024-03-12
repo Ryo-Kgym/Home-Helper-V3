@@ -1,7 +1,7 @@
-import { EditApp } from "@feature/app/edit";
+import { ModifyApp } from "feature/app/modify";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
-  <EditApp appId={id} />
+  <ModifyApp appId={id} />
 );
 
 export default Page;

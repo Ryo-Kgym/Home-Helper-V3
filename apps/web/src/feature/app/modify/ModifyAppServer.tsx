@@ -1,9 +1,9 @@
-import { EditAppClient } from "@feature/app/edit/EditAppClient";
+import { ModifyAppClient } from "@feature/app/modify/ModifyAppClient";
 import { convertToApp } from "@feature/app/show/convert-to-app";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetAppDocument } from "@v3/graphql/public/type";
 
-export const EditAppServer = async ({ appId }: { appId: string }) => {
+export const ModifyAppServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });
   const app = convertToApp(data);
 
@@ -18,5 +18,5 @@ export const EditAppServer = async ({ appId }: { appId: string }) => {
     ]),
   );
 
-  return <EditAppClient appName={app.name} fields={fields} />;
+  return <ModifyAppClient appName={app.name} fields={fields} />;
 };
