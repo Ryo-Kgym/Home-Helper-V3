@@ -5,6 +5,6 @@ export const paths = {
     setting: ({ id }: { id: string }) => `/app/setting/${id}`,
   },
   group: {
-    select: "/group/select",
+    select: "/group",
   },
 };
