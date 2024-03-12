@@ -1,0 +1,19 @@
+mutation updateApp(
+  $id: String!
+  $name: String!
+  $updateFields: [FieldUpdates!]!
+  $insertFields: [FieldInsertInput!]!
+) {
+  updateAppByPk(pkColumns: { id: $id }, _set: { name: $name }) {
+    __typename
+    id
+  }
+  insertField(objects: $insertFields) {
+    __typename
+    affectedRows
+  }
+  updateFieldMany(updates: $updateFields) {
+    __typename
+    affectedRows
+  }
+}

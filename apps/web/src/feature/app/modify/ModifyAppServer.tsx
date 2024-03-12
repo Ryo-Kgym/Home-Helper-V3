@@ -18,5 +18,5 @@ export const ModifyAppServer = async ({ appId }: { appId: string }) => {
     ]),
   );
 
-  return <ModifyAppClient appName={app.name} fields={fields} />;
+  return <ModifyAppClient appId={appId} appName={app.name} fields={fields} />;
 };

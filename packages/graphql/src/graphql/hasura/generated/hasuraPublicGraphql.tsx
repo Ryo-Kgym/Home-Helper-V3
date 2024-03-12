@@ -4073,6 +4073,26 @@ export type InsertRecordMutation = {
   insertRecordOne?: { __typename: "Record"; id: string } | null;
 };
 
+export type UpdateAppMutationVariables = Exact<{
+  id: Scalars["String"];
+  name: Scalars["String"];
+  updateFields: Array<FieldUpdates> | FieldUpdates;
+  insertFields: Array<FieldInsertInput> | FieldInsertInput;
+}>;
+
+export type UpdateAppMutation = {
+  __typename?: "mutation_root";
+  updateAppByPk?: { __typename: "App"; id: string } | null;
+  insertField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
+  updateFieldMany?: Array<{
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null> | null;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -4185,6 +4205,33 @@ export const InsertRecordDocument = gql`
 export function useInsertRecordMutation() {
   return Urql.useMutation<InsertRecordMutation, InsertRecordMutationVariables>(
     InsertRecordDocument,
+  );
+}
+export const UpdateAppDocument = gql`
+  mutation updateApp(
+    $id: String!
+    $name: String!
+    $updateFields: [FieldUpdates!]!
+    $insertFields: [FieldInsertInput!]!
+  ) {
+    updateAppByPk(pkColumns: { id: $id }, _set: { name: $name }) {
+      __typename
+      id
+    }
+    insertField(objects: $insertFields) {
+      __typename
+      affectedRows
+    }
+    updateFieldMany(updates: $updateFields) {
+      __typename
+      affectedRows
+    }
+  }
+`;
+
+export function useUpdateAppMutation() {
+  return Urql.useMutation<UpdateAppMutation, UpdateAppMutationVariables>(
+    UpdateAppDocument,
   );
 }
 export const GetAppDocument = gql`

@@ -3,9 +3,11 @@ import { Button } from "@components/ui/v4/button";
 import { useModifyApp } from "@feature/app/modify/useModifyApp";
 
 export const ModifyAppButton = ({
+  appId,
   appName,
   fields,
 }: {
+  appId: string;
   appName: string;
   fields: AppFieldValue;
 }) => {
@@ -14,7 +16,7 @@ export const ModifyAppButton = ({
     Object.values(fields).length > 0 &&
     Object.values(fields).every((field) => field.fieldName);
 
-  const { modifyApp } = useModifyApp();
+  const { modifyApp } = useModifyApp({ appId });
 
   return (
     <Button

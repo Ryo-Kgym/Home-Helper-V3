@@ -8,9 +8,11 @@ import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import { ModifyAppButton } from "@feature/app/modify/ModifyAppButton";
 
 export const ModifyAppClient = ({
+  appId,
   appName: defaultAppName,
   fields: defaultFields,
 }: {
+  appId: string;
   appName: string;
   fields: AppFieldValue;
 }) => {
@@ -25,7 +27,7 @@ export const ModifyAppClient = ({
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
-          <ModifyAppButton appName={appName} fields={value} />
+          <ModifyAppButton appId={appId} appName={appName} fields={value} />
           <FieldAddButton
             setValue={setValue}
             fieldCount={fieldCount}
