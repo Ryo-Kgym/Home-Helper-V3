@@ -1,3 +1,4 @@
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { ModifyAppClient } from "@feature/app/modify/ModifyAppClient";
 import { convertToApp } from "@feature/app/show/convert-to-app";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
@@ -13,10 +14,11 @@ export const ModifyAppServer = async ({ appId }: { appId: string }) => {
       {
         fieldName: f.fieldName,
         fieldKind: f.fieldKind,
-        options: f.options as Record<string, never>,
+        options: f.options,
+        mode: "modify",
       },
     ]),
-  );
+  ) as AppFieldValue;
 
   return <ModifyAppClient appId={appId} appName={app.name} fields={fields} />;
 };

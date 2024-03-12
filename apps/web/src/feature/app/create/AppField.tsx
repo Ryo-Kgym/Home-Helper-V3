@@ -14,16 +14,13 @@ export const AppField = ({
     fieldName: "",
     fieldKind: "text",
     options: {},
+    mode: "add",
   },
 }: {
   index: number;
   value: AppFieldValue;
   setValue: (value: AppFieldValue) => void;
-  defaultField?: {
-    fieldName: string;
-    fieldKind: FieldKind;
-    options: Record<string, never>;
-  };
+  defaultField?: AppFieldValue[number];
 }) => {
   const [fieldName, setFieldName] = useState<string>(defaultField.fieldName);
   const [fieldKind, setFieldKind] = useState<FieldKind>(defaultField.fieldKind);
@@ -58,6 +55,7 @@ export const AppField = ({
               fieldName,
               fieldKind: v,
               options,
+              mode: defaultField.mode,
             },
           });
         }}
@@ -74,6 +72,7 @@ export const AppField = ({
               fieldName: v,
               fieldKind,
               options,
+              mode: defaultField.mode,
             },
           });
         }}
@@ -90,6 +89,7 @@ export const AppField = ({
               fieldName,
               fieldKind,
               options: v,
+              mode: defaultField.mode,
             },
           });
         }}

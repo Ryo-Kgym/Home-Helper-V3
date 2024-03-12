@@ -22,6 +22,7 @@ export const FieldAddButton = ({
             fieldName: "",
             fieldKind: "text",
             options: {},
+            mode: "add",
           },
         };
       });

@@ -7,6 +7,7 @@ export type AppFieldValue = NonNullable<
       fieldName: string;
       fieldKind: FieldKind;
       options: Record<string, never>;
+      mode: "add" | "modify";
     }
   >
 >;
