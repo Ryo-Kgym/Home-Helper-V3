@@ -10,14 +10,26 @@ export const AppField = ({
   index,
   value,
   setValue,
+  defaultField = {
+    fieldName: "",
+    fieldKind: "text",
+    options: {},
+  },
 }: {
   index: number;
   value: AppFieldValue;
   setValue: (value: AppFieldValue) => void;
+  defaultField?: {
+    fieldName: string;
+    fieldKind: FieldKind;
+    options: Record<string, never>;
+  };
 }) => {
-  const [fieldName, setFieldName] = useState<string>("");
-  const [fieldKind, setFieldKind] = useState<FieldKind>("text");
-  const [options, setOptions] = useState<Record<string, never>>({});
+  const [fieldName, setFieldName] = useState<string>(defaultField.fieldName);
+  const [fieldKind, setFieldKind] = useState<FieldKind>(defaultField.fieldKind);
+  const [options, setOptions] = useState<Record<string, never>>(
+    defaultField.options,
+  );
 
   const data = Object.values(fieldKindArray).map((f) => ({
     label: f.description,
@@ -25,7 +37,9 @@ export const AppField = ({
   }));
 
   useEffect(() => {
-    setOptions({});
+    if (!defaultField) {
+      setOptions({});
+    }
   }, [fieldKind]);
 
   return (
