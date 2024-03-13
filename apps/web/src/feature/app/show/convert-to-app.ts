@@ -8,6 +8,7 @@ export const convertToApp = (data: GetAppQuery): App => {
       ({
         ...acc,
         [f.id]: {
+          id: f.id,
           fieldName: f.name,
           fieldKind: f.fieldKind,
           fieldIndex: f.index,

@@ -49,15 +49,33 @@ export const AppField = ({
         value={fieldKind}
         setValue={(v) => {
           setFieldKind(v);
-          setValue({
-            ...value,
-            [index]: {
-              fieldName,
-              fieldKind: v,
-              options,
-              mode: defaultField.mode,
-            },
-          });
+          switch (defaultField.mode) {
+            case "add": {
+              setValue({
+                ...value,
+                [index]: {
+                  fieldName,
+                  fieldKind: v,
+                  options,
+                  mode: defaultField.mode,
+                },
+              });
+              break;
+            }
+            case "modify": {
+              setValue({
+                ...value,
+                [index]: {
+                  fieldName,
+                  fieldKind: v,
+                  options,
+                  id: defaultField.id,
+                  mode: defaultField.mode,
+                },
+              });
+              break;
+            }
+          }
         }}
         data={data}
       />
@@ -66,15 +84,33 @@ export const AppField = ({
         value={fieldName}
         setValue={(v) => {
           setFieldName(v);
-          setValue({
-            ...value,
-            [index]: {
-              fieldName: v,
-              fieldKind,
-              options,
-              mode: defaultField.mode,
-            },
-          });
+          switch (defaultField.mode) {
+            case "add": {
+              setValue({
+                ...value,
+                [index]: {
+                  fieldName: v,
+                  fieldKind,
+                  options,
+                  mode: defaultField.mode,
+                },
+              });
+              break;
+            }
+            case "modify": {
+              setValue({
+                ...value,
+                [index]: {
+                  fieldName: v,
+                  fieldKind,
+                  options,
+                  id: defaultField.id,
+                  mode: defaultField.mode,
+                },
+              });
+              break;
+            }
+          }
         }}
         required
         placeholder={"フィールド名を入力してください"}
@@ -83,15 +119,33 @@ export const AppField = ({
         options={options}
         setOptions={(v) => {
           setOptions(v);
-          setValue({
-            ...value,
-            [index]: {
-              fieldName,
-              fieldKind,
-              options: v,
-              mode: defaultField.mode,
-            },
-          });
+          switch (defaultField.mode) {
+            case "add": {
+              setValue({
+                ...value,
+                [index]: {
+                  fieldName,
+                  fieldKind,
+                  options: v,
+                  mode: defaultField.mode,
+                },
+              });
+              break;
+            }
+            case "modify": {
+              setValue({
+                ...value,
+                [index]: {
+                  fieldName,
+                  fieldKind,
+                  options: v,
+                  id: defaultField.id,
+                  mode: defaultField.mode,
+                },
+              });
+              break;
+            }
+          }
         }}
         fieldKind={fieldKind}
       />

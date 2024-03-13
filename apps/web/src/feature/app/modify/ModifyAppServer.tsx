@@ -9,12 +9,13 @@ export const ModifyAppServer = async ({ appId }: { appId: string }) => {
   const app = convertToApp(data);
 
   const fields = Object.fromEntries(
-    Object.values(app.fields).map((f) => [
+    Object.entries(app.fields).map(([id, f]) => [
       f.fieldIndex,
       {
         fieldName: f.fieldName,
         fieldKind: f.fieldKind,
         options: f.options,
+        id,
         mode: "modify",
       },
     ]),
