@@ -4639,6 +4639,27 @@ export const GetAppDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "fields" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ListValue",
+                        values: [
+                          {
+                            kind: "ObjectValue",
+                            fields: [
+                              {
+                                kind: "ObjectField",
+                                name: { kind: "Name", value: "index" },
+                                value: { kind: "EnumValue", value: "ASC" },
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [

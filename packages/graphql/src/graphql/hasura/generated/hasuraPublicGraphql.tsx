@@ -4240,7 +4240,7 @@ export const GetAppDocument = gql`
       __typename
       id
       name
-      fields {
+      fields(orderBy: [{ index: ASC }]) {
         __typename
         id
         name
