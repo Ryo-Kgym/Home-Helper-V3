@@ -33,11 +33,11 @@ export const ShowAppListRow = ({
         <td key={field.id} className={"border border-gray-300 p-2"}>
           <RecordCell
             fieldId={field.id}
+            fields={app.fields}
             isEditing={record.isEditing}
             column={record.columns[field.id]}
             newRecord={newRecord}
             setNewRecord={setNewRecord}
-            fields={app.fields}
           />
         </td>
       ))}
