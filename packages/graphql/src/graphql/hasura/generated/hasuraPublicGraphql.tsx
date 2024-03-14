@@ -4078,6 +4078,7 @@ export type UpdateAppMutationVariables = Exact<{
   name: Scalars["String"];
   updateFields: Array<FieldUpdates> | FieldUpdates;
   insertFields: Array<FieldInsertInput> | FieldInsertInput;
+  deleteFieldIds: Array<Scalars["String"]> | Scalars["String"];
 }>;
 
 export type UpdateAppMutation = {
@@ -4091,6 +4092,10 @@ export type UpdateAppMutation = {
     __typename: "FieldMutationResponse";
     affectedRows: number;
   } | null> | null;
+  deleteField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
 };
 
 export type GetAppQueryVariables = Exact<{
@@ -4213,6 +4218,7 @@ export const UpdateAppDocument = gql`
     $name: String!
     $updateFields: [FieldUpdates!]!
     $insertFields: [FieldInsertInput!]!
+    $deleteFieldIds: [String!]!
   ) {
     updateAppByPk(pkColumns: { id: $id }, _set: { name: $name }) {
       __typename
@@ -4223,6 +4229,10 @@ export const UpdateAppDocument = gql`
       affectedRows
     }
     updateFieldMany(updates: $updateFields) {
+      __typename
+      affectedRows
+    }
+    deleteField(where: { id: { _in: $deleteFieldIds } }) {
       __typename
       affectedRows
     }

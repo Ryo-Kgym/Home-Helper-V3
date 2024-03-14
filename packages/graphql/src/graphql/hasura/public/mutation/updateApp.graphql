@@ -3,6 +3,7 @@ mutation updateApp(
   $name: String!
   $updateFields: [FieldUpdates!]!
   $insertFields: [FieldInsertInput!]!
+  $deleteFieldIds: [String!]!
 ) {
   updateAppByPk(pkColumns: { id: $id }, _set: { name: $name }) {
     __typename
@@ -13,6 +14,10 @@ mutation updateApp(
     affectedRows
   }
   updateFieldMany(updates: $updateFields) {
+    __typename
+    affectedRows
+  }
+  deleteField(where: { id: { _in: $deleteFieldIds } }) {
     __typename
     affectedRows
   }

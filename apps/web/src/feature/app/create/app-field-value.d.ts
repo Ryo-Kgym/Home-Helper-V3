@@ -16,5 +16,12 @@ export type AppFieldValue = NonNullable<
         id: string;
         mode: "modify";
       }
+    | {
+        fieldName: string;
+        fieldKind: FieldKind;
+        options: Record<string, never>;
+        id: string;
+        mode: "delete";
+      }
   >
 >;

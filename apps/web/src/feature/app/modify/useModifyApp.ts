@@ -43,11 +43,23 @@ export const useModifyApp = ({ appId }: { appId: string }) => {
         };
       }) as FieldUpdates[];
 
+    const deleteFieldIds = Object.values(fields)
+      .filter((f) => f.mode === "delete")
+      .map((f) => {
+        if (f.mode !== "delete") {
+          // filterしているので、到達しない
+          throw new Error("mode is not delete");
+        }
+
+        return f.id;
+      });
+
     const { error } = await mutation({
       id: appId,
       name: appName,
       insertFields,
       updateFields,
+      deleteFieldIds,
     });
     if (error) {
       throw error;

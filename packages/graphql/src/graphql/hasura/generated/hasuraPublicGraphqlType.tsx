@@ -4009,6 +4009,7 @@ export type UpdateAppMutationVariables = Exact<{
   name: Scalars["String"];
   updateFields: Array<FieldUpdates> | FieldUpdates;
   insertFields: Array<FieldInsertInput> | FieldInsertInput;
+  deleteFieldIds: Array<Scalars["String"]> | Scalars["String"];
 }>;
 
 export type UpdateAppMutation = {
@@ -4022,6 +4023,10 @@ export type UpdateAppMutation = {
     __typename: "FieldMutationResponse";
     affectedRows: number;
   } | null> | null;
+  deleteField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
 };
 
 export type GetAppQueryVariables = Exact<{
@@ -4486,6 +4491,26 @@ export const UpdateAppDocument = {
             },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "deleteFieldIds" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "String" },
+                },
+              },
+            },
+          },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -4571,6 +4596,48 @@ export const UpdateAppDocument = {
                 value: {
                   kind: "Variable",
                   name: { kind: "Name", value: "updateFields" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteField" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_in" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "deleteFieldIds" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
               },
             ],
