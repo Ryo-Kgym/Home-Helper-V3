@@ -29,12 +29,12 @@ export const ShowAppListRow = ({
   return (
     <tr className={"border border-gray-300"}>
       <td className={"border border-gray-300 p-2"}>{recordIndex}</td>
-      {Object.entries(record.columns).map(([fieldId, column]) => (
-        <td key={fieldId} className={"border border-gray-300 p-2"}>
+      {Object.entries(app.fields).map(([, field]) => (
+        <td key={field.id} className={"border border-gray-300 p-2"}>
           <RecordCell
-            fieldId={fieldId}
+            fieldId={field.id}
             isEditing={record.isEditing}
-            column={column}
+            column={record.columns[field.id]}
             newRecord={newRecord}
             setNewRecord={setNewRecord}
             fields={app.fields}
