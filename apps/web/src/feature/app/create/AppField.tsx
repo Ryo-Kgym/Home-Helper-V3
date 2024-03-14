@@ -50,7 +50,7 @@ export const AppField = ({
       <div className={"grid grid-cols-3 gap-2"}>
         <Select
           label={"フィールドの選択"}
-          disabled={defaultField.mode === "modify"}
+          disabled={defaultField.mode !== "add"}
           value={fieldKind}
           setValue={(v) => {
             setFieldKind(v);
@@ -119,6 +119,7 @@ export const AppField = ({
           }}
           required
           placeholder={"フィールド名を入力してください"}
+          disabled={defaultField.mode === "delete"}
         />
         <FieldOptions
           options={options}
@@ -153,6 +154,7 @@ export const AppField = ({
             }
           }}
           fieldKind={fieldKind}
+          disabled={defaultField.mode === "delete"}
         />
       </div>
     </div>
