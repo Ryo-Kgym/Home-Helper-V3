@@ -55,25 +55,21 @@ export const ShowAppClient = ({
           </tr>
         </thead>
         <tbody>
-          {Object.entries(records).map(
-            ([recordIndex, { recordId, columns, isEditing }]) => (
-              <ShowAppListRow
-                key={recordId}
-                recordId={recordId}
-                recordIndex={parseInt(recordIndex)}
-                columns={columns}
-                isEditing={isEditing}
-                newRecord={newRecord}
-                setNewRecord={setNewRecord}
-                app={app}
-                records={records}
-                setRecords={setRecords}
-                addingRecord={addingRecord}
-                setAddingRecord={setAddingRecord}
-                recordTemplate={recordTemplate}
-              />
-            ),
-          )}
+          {Object.entries(records).map(([recordIndex, record]) => (
+            <ShowAppListRow
+              key={record.recordId}
+              record={record}
+              recordIndex={parseInt(recordIndex)}
+              newRecord={newRecord}
+              setNewRecord={setNewRecord}
+              app={app}
+              records={records}
+              setRecords={setRecords}
+              addingRecord={addingRecord}
+              setAddingRecord={setAddingRecord}
+              recordTemplate={recordTemplate}
+            />
+          ))}
         </tbody>
       </table>
     </div>

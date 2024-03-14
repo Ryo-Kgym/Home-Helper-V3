@@ -4,10 +4,8 @@ import { RecordCell } from "@feature/app/show/RecordCell";
 import { SaveRecordButton } from "@feature/app/show/SaveRecordButton";
 
 export const ShowAppListRow = ({
-  recordId,
+  record,
   recordIndex,
-  columns,
-  isEditing,
   newRecord,
   setNewRecord,
   app,
@@ -17,10 +15,8 @@ export const ShowAppListRow = ({
   setAddingRecord,
   recordTemplate,
 }: {
-  recordId: string;
+  record: Records[number];
   recordIndex: number;
-  columns: Record;
-  isEditing: boolean;
   newRecord: Record;
   setNewRecord: (record: Record) => void;
   app: App;
@@ -33,11 +29,11 @@ export const ShowAppListRow = ({
   return (
     <tr className={"border border-gray-300"}>
       <td className={"border border-gray-300 p-2"}>{recordIndex}</td>
-      {Object.entries(columns).map(([fieldId, column]) => (
+      {Object.entries(record.columns).map(([fieldId, column]) => (
         <td key={fieldId} className={"border border-gray-300 p-2"}>
           <RecordCell
             fieldId={fieldId}
-            isEditing={isEditing}
+            isEditing={record.isEditing}
             column={column}
             newRecord={newRecord}
             setNewRecord={setNewRecord}
@@ -57,7 +53,7 @@ export const ShowAppListRow = ({
           recordTemplate={recordTemplate}
         />
         <DeleteRecordButton
-          recordId={recordId}
+          recordId={record.recordId}
           records={records}
           setRecords={setRecords}
         />
