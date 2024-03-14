@@ -23,10 +23,10 @@ export const CreateAppClient = () => {
         </div>
       </div>
       <div className={"space-y-2"}>
-        {Object.values(value).map((field, index) => (
+        {Object.keys(value).map((index) => (
           <AppField
             key={`field-${index}`}
-            index={index}
+            index={parseInt(index)}
             value={value}
             setValue={setValue}
           />
