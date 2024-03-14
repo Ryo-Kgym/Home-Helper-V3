@@ -4073,6 +4073,31 @@ export type InsertRecordMutation = {
   insertRecordOne?: { __typename: "Record"; id: string } | null;
 };
 
+export type UpdateAppMutationVariables = Exact<{
+  id: Scalars["String"];
+  name: Scalars["String"];
+  updateFields: Array<FieldUpdates> | FieldUpdates;
+  insertFields: Array<FieldInsertInput> | FieldInsertInput;
+  deleteFieldIds: Array<Scalars["String"]> | Scalars["String"];
+}>;
+
+export type UpdateAppMutation = {
+  __typename?: "mutation_root";
+  updateAppByPk?: { __typename: "App"; id: string } | null;
+  insertField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
+  updateFieldMany?: Array<{
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null> | null;
+  deleteField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -4090,6 +4115,12 @@ export type GetAppQuery = {
       index: number;
       fieldKind: string;
       options?: any | null;
+    }>;
+    records: Array<{
+      __typename: "Record";
+      id: string;
+      index: number;
+      columns: string;
     }>;
   } | null;
 };
@@ -4113,20 +4144,6 @@ export type GetApplicationsQuery = {
     }>;
     apps: Array<{ __typename?: "App"; id: string; name: string }>;
   } | null;
-};
-
-export type GetRecordsQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetRecordsQuery = {
-  __typename?: "query_root";
-  records: Array<{
-    __typename: "Record";
-    id: string;
-    index: number;
-    columns: string;
-  }>;
 };
 
 export const DeleteRecordDocument = gql`
@@ -4195,19 +4212,57 @@ export function useInsertRecordMutation() {
     InsertRecordDocument,
   );
 }
+export const UpdateAppDocument = gql`
+  mutation updateApp(
+    $id: String!
+    $name: String!
+    $updateFields: [FieldUpdates!]!
+    $insertFields: [FieldInsertInput!]!
+    $deleteFieldIds: [String!]!
+  ) {
+    updateAppByPk(pkColumns: { id: $id }, _set: { name: $name }) {
+      __typename
+      id
+    }
+    insertField(objects: $insertFields) {
+      __typename
+      affectedRows
+    }
+    updateFieldMany(updates: $updateFields) {
+      __typename
+      affectedRows
+    }
+    deleteField(where: { id: { _in: $deleteFieldIds } }) {
+      __typename
+      affectedRows
+    }
+  }
+`;
+
+export function useUpdateAppMutation() {
+  return Urql.useMutation<UpdateAppMutation, UpdateAppMutationVariables>(
+    UpdateAppDocument,
+  );
+}
 export const GetAppDocument = gql`
   query getApp($appId: String!) {
     app: appByPk(id: $appId) {
       __typename
       id
       name
-      fields {
+      fields(orderBy: [{ index: ASC }]) {
         __typename
         id
         name
         index
         fieldKind
         options
+      }
+      records {
+        __typename
+        id
+        index
+        columns
       }
     }
   }
@@ -4244,25 +4299,6 @@ export function useGetApplicationsQuery(
 ) {
   return Urql.useQuery<GetApplicationsQuery, GetApplicationsQueryVariables>({
     query: GetApplicationsDocument,
-    ...options,
-  });
-}
-export const GetRecordsDocument = gql`
-  query getRecords($appId: String!) {
-    records: record(where: { appId: { _eq: $appId } }) {
-      __typename
-      id
-      index
-      columns
-    }
-  }
-`;
-
-export function useGetRecordsQuery(
-  options: Omit<Urql.UseQueryArgs<GetRecordsQueryVariables>, "query">,
-) {
-  return Urql.useQuery<GetRecordsQuery, GetRecordsQueryVariables>({
-    query: GetRecordsDocument,
     ...options,
   });
 }

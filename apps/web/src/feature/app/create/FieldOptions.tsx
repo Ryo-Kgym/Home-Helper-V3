@@ -5,11 +5,12 @@ export const FieldOptions = ({
   options,
   setOptions,
   fieldKind,
+  disabled,
 }: {
   options: Record<string, never>;
   setOptions: (options: Record<string, never>) => void;
-
   fieldKind: FieldKind;
+  disabled?: boolean;
 }) => {
   switch (fieldKind) {
     case "selectBox":
@@ -25,6 +26,7 @@ export const FieldOptions = ({
           }}
           placeholder={"カンマ区切りで入力してください"}
           required
+          disabled={disabled}
         />
       );
     default:

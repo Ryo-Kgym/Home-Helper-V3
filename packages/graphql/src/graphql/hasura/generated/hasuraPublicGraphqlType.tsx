@@ -4004,6 +4004,31 @@ export type InsertRecordMutation = {
   insertRecordOne?: { __typename: "Record"; id: string } | null;
 };
 
+export type UpdateAppMutationVariables = Exact<{
+  id: Scalars["String"];
+  name: Scalars["String"];
+  updateFields: Array<FieldUpdates> | FieldUpdates;
+  insertFields: Array<FieldInsertInput> | FieldInsertInput;
+  deleteFieldIds: Array<Scalars["String"]> | Scalars["String"];
+}>;
+
+export type UpdateAppMutation = {
+  __typename?: "mutation_root";
+  updateAppByPk?: { __typename: "App"; id: string } | null;
+  insertField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
+  updateFieldMany?: Array<{
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null> | null;
+  deleteField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -4021,6 +4046,12 @@ export type GetAppQuery = {
       index: number;
       fieldKind: string;
       options?: any | null;
+    }>;
+    records: Array<{
+      __typename: "Record";
+      id: string;
+      index: number;
+      columns: string;
     }>;
   } | null;
 };
@@ -4044,20 +4075,6 @@ export type GetApplicationsQuery = {
     }>;
     apps: Array<{ __typename?: "App"; id: string; name: string }>;
   } | null;
-};
-
-export type GetRecordsQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetRecordsQuery = {
-  __typename?: "query_root";
-  records: Array<{
-    __typename: "Record";
-    id: string;
-    index: number;
-    columns: string;
-  }>;
 };
 
 export const DeleteRecordDocument = {
@@ -4404,6 +4421,242 @@ export const InsertRecordDocument = {
   InsertRecordMutation,
   InsertRecordMutationVariables
 >;
+export const UpdateAppDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "updateApp" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "updateFields" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "FieldUpdates" },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "insertFields" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "FieldInsertInput" },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "deleteFieldIds" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "String" },
+                },
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateAppByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "pkColumns" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "id" },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "_set" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "name" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "name" },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertField" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "objects" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "insertFields" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateFieldMany" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "updates" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "updateFields" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteField" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_in" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "deleteFieldIds" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateAppMutation, UpdateAppMutationVariables>;
 export const GetAppDocument = {
   kind: "Document",
   definitions: [
@@ -4453,6 +4706,27 @@ export const GetAppDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "fields" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ListValue",
+                        values: [
+                          {
+                            kind: "ObjectValue",
+                            fields: [
+                              {
+                                kind: "ObjectField",
+                                name: { kind: "Name", value: "index" },
+                                value: { kind: "EnumValue", value: "ASC" },
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
@@ -4470,6 +4744,25 @@ export const GetAppDocument = {
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "options" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "records" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "index" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "columns" },
                       },
                     ],
                   },
@@ -4577,76 +4870,3 @@ export const GetApplicationsDocument = {
   GetApplicationsQuery,
   GetApplicationsQueryVariables
 >;
-export const GetRecordsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getRecords" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "records" },
-            name: { kind: "Name", value: "record" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "index" } },
-                { kind: "Field", name: { kind: "Name", value: "columns" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetRecordsQuery, GetRecordsQueryVariables>;

@@ -4,4 +4,5 @@ export type FieldValueProps<T> = {
   setValue: (value: T) => void;
   required?: boolean;
   placeholder?: string;
+  disabled?: boolean;
 };

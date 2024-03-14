@@ -8,6 +8,7 @@ export const convertToApp = (data: GetAppQuery): App => {
       ({
         ...acc,
         [f.id]: {
+          id: f.id,
           fieldName: f.name,
           fieldKind: f.fieldKind,
           fieldIndex: f.index,
@@ -18,6 +19,7 @@ export const convertToApp = (data: GetAppQuery): App => {
   );
 
   const fields = fieldsSchema.parse(fieldsData);
+
   return appSchema.parse({
     id: data?.app?.id,
     name: data?.app?.name ?? "",

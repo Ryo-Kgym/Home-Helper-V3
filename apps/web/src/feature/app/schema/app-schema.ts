@@ -4,12 +4,14 @@ export const fieldKindSchema = z.enum(["text", "selectBox", "multipleText"]);
 
 export const fieldSchema = z.union([
   z.object({
+    id: z.string(),
     fieldName: z.string(),
     fieldKind: z.enum(["text", "multipleText"]),
     fieldIndex: z.number(),
     options: z.object({}),
   }),
   z.object({
+    id: z.string(),
     fieldName: z.string(),
     fieldKind: z.enum(["selectBox"]),
     fieldIndex: z.number(),

@@ -6,6 +6,9 @@ const makeClient = () => {
   return createClient({
     url: process.env.ONEFORALL_GRAPHQL_ENDPOINT!,
     exchanges: [cacheExchange, fetchExchange],
+    fetchOptions: {
+      cache: "no-store",
+    },
   });
 };
 

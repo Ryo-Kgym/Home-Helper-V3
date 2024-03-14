@@ -6,18 +6,21 @@ import { TextInput } from "@components/ui/v4/textInput";
 
 export const RecordCell = ({
   fieldId,
+  fields,
   isEditing,
-  column,
+  column = {
+    fieldKind: fields[fieldId]?.fieldKind ?? "text",
+    value: "",
+  },
   newRecord,
   setNewRecord,
-  fields,
 }: {
   fieldId: string;
+  fields: Fields;
   isEditing: boolean;
-  column: RecordColumn;
+  column: RecordColumn | undefined;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
-  fields: Fields;
 }) => {
   const field = fields[fieldId];
   if (!field) {
