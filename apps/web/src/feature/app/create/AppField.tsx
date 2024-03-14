@@ -40,7 +40,7 @@ export const AppField = ({
     }
   }, [fieldKind]);
 
-  const deleteModeStyle = defaultField.mode === "delete" ? "bg-red-300" : "";
+  const deleteModeStyle = defaultField.mode === "delete" ? "bg-red-100" : "";
   return (
     <div
       id={`field-${index}`}
