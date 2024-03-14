@@ -19,11 +19,11 @@ export const DeleteFieldButton = ({
         ...value,
         [index]: {
           ...value[index],
-          mode: "add",
+          mode: "modify",
         },
       };
       setValue(newValue as AppFieldValue);
-    } else {
+    } else if (currentMode === "modify") {
       const newValue = {
         ...value,
         [index]: {
@@ -32,6 +32,10 @@ export const DeleteFieldButton = ({
         },
       };
       setValue(newValue as AppFieldValue);
+    } else if (currentMode === "add") {
+      const newValue = { ...value };
+      delete newValue[index];
+      setValue(newValue);
     }
   };
 

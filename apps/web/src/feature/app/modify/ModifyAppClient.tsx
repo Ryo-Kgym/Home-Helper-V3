@@ -20,9 +20,6 @@ export const ModifyAppClient = ({
 }) => {
   const [appName, setAppName] = useState<string>(defaultAppName);
   const [value, setValue] = useState<AppFieldValue>(defaultFields);
-  const [fieldCount, setFieldCount] = useState<number>(
-    Object.keys(value).length,
-  );
 
   return (
     <div className={"space-y-10"}>
@@ -34,11 +31,7 @@ export const ModifyAppClient = ({
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
           <ModifyAppButton appId={appId} appName={appName} fields={value} />
-          <FieldAddButton
-            setValue={setValue}
-            fieldCount={fieldCount}
-            setFieldCount={setFieldCount}
-          />
+          <FieldAddButton value={value} setValue={setValue} />
         </div>
       </div>
       <div className={"space-y-2"}>

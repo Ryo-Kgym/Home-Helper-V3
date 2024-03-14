@@ -3,22 +3,22 @@ import React from "react";
 import { Button } from "@components/ui/v4/button";
 
 export const FieldAddButton = ({
+  value,
   setValue,
-  fieldCount,
-  setFieldCount,
 }: {
+  value: AppFieldValue;
   setValue: React.Dispatch<React.SetStateAction<AppFieldValue>>;
-  fieldCount: number;
-  setFieldCount: (fieldCount: number) => void;
 }) => (
   <Button
     label="フィールド追加"
     clickHandler={() => {
+      const nextIndex =
+        Math.max(...Object.keys(value).map((v) => parseInt(v))) + 1;
+
       setValue((prev) => {
-        setFieldCount(fieldCount + 1);
         return {
           ...prev,
-          [fieldCount]: {
+          [nextIndex]: {
             fieldName: "",
             fieldKind: "text",
             options: {},
