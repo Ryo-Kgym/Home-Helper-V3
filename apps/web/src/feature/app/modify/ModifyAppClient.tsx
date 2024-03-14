@@ -7,6 +7,7 @@ import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import { ModifyAppButton } from "@feature/app/modify/ModifyAppButton";
+import { RedirectShowButton } from "@feature/app/modify/RedirectShowButton";
 
 export const ModifyAppClient = ({
   appId,
@@ -27,6 +28,7 @@ export const ModifyAppClient = ({
     <div className={"space-y-10"}>
       <Title>
         <div className={"text-3xl"}>{"アプリ設定"}</div>
+        <RedirectShowButton appId={appId} />
       </Title>
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
