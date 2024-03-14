@@ -3,6 +3,7 @@
 import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import { useState } from "react";
+import { Title } from "@components/ui/v4/frame/Title";
 import { AddRecordButton } from "@feature/app/show/AddRecordButton";
 import { RedirectSettingButton } from "@feature/app/show/RedirectSettingButton";
 import { ShowAppListRow } from "@feature/app/show/ShowAppListRow";
@@ -31,9 +32,7 @@ export const ShowAppClient = ({
 
   return (
     <div className={"space-y-10"}>
-      <div
-        className={"flex w-full items-end space-x-5 border-b-2 border-gray-300"}
-      >
+      <Title>
         <div className={"text-3xl"}>{app.name}</div>
         <RedirectSettingButton appId={app.id} />
         <AddRecordButton
@@ -43,7 +42,7 @@ export const ShowAppClient = ({
           setRecords={setRecords}
           recordTemplate={recordTemplate}
         />
-      </div>
+      </Title>
       <table>
         <thead>
           <tr className={"bg-gray-50"}>
