@@ -7,6 +7,7 @@ export const Select = <T extends string | number>({
   value,
   setValue,
   data,
+  disabled,
 }: SelectProps<T>) => {
   const [openOption, setOpenOption] = useState(false);
   const selectedFieldName = data.find((d) => d.value === value)?.label ?? "";
@@ -14,10 +15,13 @@ export const Select = <T extends string | number>({
   return (
     <FieldContainer label={label}>
       <input
-        className={"w-full cursor-pointer p-2 focus:outline-none"}
+        className={
+          "w-full cursor-pointer p-2 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-200"
+        }
         value={selectedFieldName}
         readOnly
         onClick={() => setOpenOption(true)}
+        disabled={disabled}
       />
       <div className={"absolute z-10 ml-10 bg-white"}>
         {data

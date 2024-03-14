@@ -46,6 +46,7 @@ export const AppField = ({
     >
       <Select
         label={"フィールドの選択"}
+        disabled={defaultField.mode === "modify"}
         value={fieldKind}
         setValue={(v) => {
           setFieldKind(v);
