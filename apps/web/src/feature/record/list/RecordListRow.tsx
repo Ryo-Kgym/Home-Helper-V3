@@ -1,7 +1,7 @@
 import type { App, Record, Records } from "@feature/app/schema";
 import { DeleteRecordButton } from "@feature/record/list/DeleteRecordButton";
 import { RecordCell } from "@feature/record/list/RecordCell";
-import { SaveRecordButton } from "@feature/record/list/SaveRecordButton";
+import { SaveNewRecordButton } from "@feature/record/list/SaveNewRecordButton";
 
 export const RecordListRow = ({
   record,
@@ -42,7 +42,7 @@ export const RecordListRow = ({
         </td>
       ))}
       <td className={"space-x-2 border border-gray-300 p-2"}>
-        <SaveRecordButton
+        <SaveNewRecordButton
           appId={app.id}
           records={records}
           setRecords={setRecords}
