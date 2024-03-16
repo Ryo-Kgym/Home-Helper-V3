@@ -1,5 +1,6 @@
 import type { Record, Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
+import { CancelButton } from "@feature/record/list/CancelButton";
 import { ModifyRecordButton } from "@feature/record/list/ModifyRecordButton";
 import { SaveNewRecordButton } from "@feature/record/list/SaveNewRecordButton";
 
@@ -34,7 +35,7 @@ export const RecordRowOperation = (props: {
           />
         );
       case "cancel":
-        return null;
+        return <CancelButton key={`operation-${index}`} {...props} />;
     }
   });
 };
@@ -46,7 +47,7 @@ const getOperationButtonList = (
 } => {
   if (isEditing) {
     return {
-      add: ["insert", "cancel"],
+      add: ["insert", "delete"],
       modify: ["update", "cancel"],
       show: [],
     };
