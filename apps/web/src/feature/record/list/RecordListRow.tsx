@@ -36,12 +36,12 @@ export const RecordListRow = ({
             fieldId={field.id}
             fields={app.fields}
             isEditing={record.isEditing}
-            column={record.columns[field.id]}
             newRecord={newRecord}
             setNewRecord={setNewRecord}
             mode={mode}
             records={records}
             setRecords={setRecords}
+            column={record.columns[field.id]!}
           />
         </td>
       ))}
