@@ -1,7 +1,7 @@
 import type { App, Record, Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
+import { RecordCell } from "@feature/record/list/cell/RecordCell";
 import { RecordRowOperation } from "@feature/record/list/operation/RecordRowOperation";
-import { RecordCell } from "@feature/record/list/RecordCell";
 
 export const RecordListRow = ({
   record,
