@@ -23,18 +23,25 @@ export const RecordRowOperation = ({
   recordTemplate: Record;
   appId: string;
 }) => {
+  if (record.isEditing) {
+    return (
+      <>
+        <SaveNewRecordButton
+          appId={appId}
+          records={records}
+          setRecords={setRecords}
+          newRecord={newRecord}
+          setNewRecord={setNewRecord}
+          addingRecord={addingRecord}
+          setAddingRecord={setAddingRecord}
+          recordTemplate={recordTemplate}
+        />
+      </>
+    );
+  }
+
   return (
     <>
-      <SaveNewRecordButton
-        appId={appId}
-        records={records}
-        setRecords={setRecords}
-        newRecord={newRecord}
-        setNewRecord={setNewRecord}
-        addingRecord={addingRecord}
-        setAddingRecord={setAddingRecord}
-        recordTemplate={recordTemplate}
-      />
       <DeleteRecordButton
         recordId={record.recordId}
         records={records}
