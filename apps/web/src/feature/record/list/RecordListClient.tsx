@@ -19,7 +19,7 @@ export const RecordListClient = ({
 }) => {
   const [records, setRecords] = useState<Records>(defaultRecords);
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
-  const [addingRecord, setAddingRecord] = useState<boolean>(false);
+  const [isAddingRecord, setIsAddingRecord] = useState<boolean>(false);
 
   const headerItems = [
     { key: "no", fieldName: "No." },
@@ -36,8 +36,8 @@ export const RecordListClient = ({
         <div className={"text-3xl"}>{app.name}</div>
         <RedirectSettingButton appId={app.id} />
         <AddRecordButton
-          addingRecord={addingRecord}
-          setAddingRecord={setAddingRecord}
+          addingRecord={isAddingRecord}
+          setAddingRecord={setIsAddingRecord}
           records={records}
           setRecords={setRecords}
           recordTemplate={recordTemplate}
@@ -64,8 +64,8 @@ export const RecordListClient = ({
               app={app}
               records={records}
               setRecords={setRecords}
-              isAddingRecord={addingRecord}
-              setAddingRecord={setAddingRecord}
+              isAddingRecord={isAddingRecord}
+              setIsAddingRecord={setIsAddingRecord}
               recordTemplate={recordTemplate}
             />
           ))}

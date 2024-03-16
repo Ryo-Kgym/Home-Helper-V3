@@ -11,7 +11,7 @@ export const RecordListRow = ({
   records,
   setRecords,
   isAddingRecord,
-  setAddingRecord,
+  setIsAddingRecord,
   recordTemplate,
 }: {
   record: Records[number];
@@ -22,7 +22,7 @@ export const RecordListRow = ({
   records: Records;
   setRecords: (records: Records) => void;
   isAddingRecord: boolean;
-  setAddingRecord: (addingRecord: boolean) => void;
+  setIsAddingRecord: (isAddingRecord: boolean) => void;
   recordTemplate: Record;
 }) => {
   return (
@@ -48,8 +48,8 @@ export const RecordListRow = ({
           setRecords={setRecords}
           newRecord={newRecord}
           setNewRecord={setNewRecord}
-          addingRecord={isAddingRecord}
-          setAddingRecord={setAddingRecord}
+          isAddingRecord={isAddingRecord}
+          setIsAddingRecord={setIsAddingRecord}
           recordTemplate={recordTemplate}
           appId={app.id}
         />
