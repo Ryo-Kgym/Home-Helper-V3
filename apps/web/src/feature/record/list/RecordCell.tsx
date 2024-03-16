@@ -14,6 +14,7 @@ export const RecordCell = ({
   },
   newRecord,
   setNewRecord,
+  isAddingRecord,
 }: {
   fieldId: string;
   fields: Fields;
@@ -21,6 +22,7 @@ export const RecordCell = ({
   column: RecordColumn | undefined;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
+  isAddingRecord: boolean;
 }) => {
   const field = fields[fieldId];
   if (!field) {
@@ -48,20 +50,16 @@ export const RecordCell = ({
     return <div>{column.value}</div>;
   }
 
+  const value = isAddingRecord ? newRecord[fieldId]!.value : column.value;
+
   switch (field.fieldKind) {
     case "text":
-      return (
-        <TextInput
-          label={""}
-          value={newRecord[fieldId]!.value}
-          setValue={changeHandler}
-        />
-      );
+      return <TextInput label={""} value={value} setValue={changeHandler} />;
     case "selectBox":
       return (
         <Select
           label={""}
-          value={newRecord[fieldId]!.value}
+          value={value}
           setValue={changeHandler}
           data={field.options.selector
             .split(",")
@@ -70,11 +68,7 @@ export const RecordCell = ({
       );
     case "multipleText":
       return (
-        <MultiTextInput
-          label={""}
-          value={newRecord[fieldId]!.value}
-          setValue={changeHandler}
-        />
+        <MultiTextInput label={""} value={value} setValue={changeHandler} />
       );
   }
 };

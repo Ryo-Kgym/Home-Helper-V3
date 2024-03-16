@@ -1,5 +1,6 @@
 import type { Record, Records } from "@feature/app/schema";
 import { DeleteRecordButton } from "@feature/record/list/DeleteRecordButton";
+import { ModifyRecordButton } from "@feature/record/list/ModifyRecordButton";
 import { SaveNewRecordButton } from "@feature/record/list/SaveNewRecordButton";
 
 export const RecordRowOperation = ({
@@ -42,6 +43,11 @@ export const RecordRowOperation = ({
 
   return (
     <>
+      <ModifyRecordButton
+        record={record}
+        records={records}
+        setRecords={setRecords}
+      />
       <DeleteRecordButton
         recordId={record.recordId}
         records={records}

@@ -64,7 +64,7 @@ export const RecordListClient = ({
               app={app}
               records={records}
               setRecords={setRecords}
-              addingRecord={addingRecord}
+              isAddingRecord={addingRecord}
               setAddingRecord={setAddingRecord}
               recordTemplate={recordTemplate}
             />
