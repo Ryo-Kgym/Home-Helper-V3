@@ -32,6 +32,7 @@ export const RecordListRow = ({
       {Object.entries(app.fields).map(([, field]) => (
         <td key={field.id} className={"border border-gray-300 p-2"}>
           <RecordCell
+            record={record}
             fieldId={field.id}
             fields={app.fields}
             isEditing={record.isEditing}
@@ -39,6 +40,8 @@ export const RecordListRow = ({
             newRecord={newRecord}
             setNewRecord={setNewRecord}
             mode={mode}
+            records={records}
+            setRecords={setRecords}
           />
         </td>
       ))}

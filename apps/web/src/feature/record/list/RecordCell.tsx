@@ -1,4 +1,4 @@
-import type { Fields } from "@feature/app/schema";
+import type { Fields, Records } from "@feature/app/schema";
 import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
@@ -6,6 +6,7 @@ import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 
 export const RecordCell = ({
+  record,
   fieldId,
   fields,
   isEditing,
@@ -16,7 +17,10 @@ export const RecordCell = ({
   newRecord,
   setNewRecord,
   mode,
+  records,
+  setRecords,
 }: {
+  record: Records[number];
   fieldId: string;
   fields: Fields;
   isEditing: boolean;
@@ -24,6 +28,8 @@ export const RecordCell = ({
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
   mode: RecordListMode;
+  records: Records;
+  setRecords: (records: Records) => void;
 }) => {
   const field = fields[fieldId];
   if (!field) {
@@ -38,13 +44,21 @@ export const RecordCell = ({
   }
 
   const changeHandler = (value: string) => {
-    setNewRecord({
-      ...newRecord,
-      [fieldId]: {
-        ...column,
-        value,
-      },
-    });
+    if (mode === "add") {
+      setNewRecord({
+        ...newRecord,
+        [fieldId]: {
+          ...column,
+          value,
+        },
+      });
+    }
+    if (mode === "modify") {
+      const col = record.columns[fieldId];
+      if (!col) return;
+      col.value = value;
+      setRecords({ ...records });
+    }
   };
 
   if (!isEditing) {

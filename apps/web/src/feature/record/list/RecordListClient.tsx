@@ -45,7 +45,7 @@ export const RecordListClient = ({
           recordTemplate={recordTemplate}
         />
       </Title>
-      <table>
+      <table width={"100%"}>
         <thead>
           <tr className={"bg-gray-50"}>
             {headerItems.map(({ key, fieldName }) => (
