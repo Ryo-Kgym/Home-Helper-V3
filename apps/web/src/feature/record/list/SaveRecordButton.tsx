@@ -73,12 +73,12 @@ export const SaveRecordButton = ({
       });
       setNewRecord(recordTemplate);
       setAddingRecord(false);
-      alert("保存しました");
+      alert("レコードを追加しました");
     } catch (e) {
       console.error(e);
-      alert("保存に失敗しました");
+      alert("レコード追加に失敗しました");
     }
   };
 
-  return <button onClick={saveRecordHandler}>保存</button>;
+  return <button onClick={saveRecordHandler}>追加</button>;
 };
