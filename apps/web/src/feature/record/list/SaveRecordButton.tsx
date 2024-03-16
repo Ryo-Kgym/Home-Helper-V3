@@ -1,7 +1,6 @@
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import { generateId } from "@feature/app/function/generate-id";
-
-import { useInsertRecordMutation } from "../../../../../../packages/graphql/public";
+import { useInsertRecordMutation } from "@v3/graphql/public";
 
 export const SaveRecordButton = ({
   appId,
