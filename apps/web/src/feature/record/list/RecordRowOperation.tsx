@@ -1,20 +1,11 @@
 import type { Record, Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
-import { DeleteRecordButton } from "@feature/record/list/DeleteRecordButton";
 import { ModifyRecordButton } from "@feature/record/list/ModifyRecordButton";
 import { SaveNewRecordButton } from "@feature/record/list/SaveNewRecordButton";
 
-export const RecordRowOperation = ({
-  record,
-  records,
-  setRecords,
-  newRecord,
-  setNewRecord,
-  mode,
-  setMode,
-  recordTemplate,
-  appId,
-}: {
+import { DeleteRecordButton } from "./DeleteRecordButton";
+
+export const RecordRowOperation = (props: {
   record: Records[number];
   records: Records;
   setRecords: (records: Records) => void;
@@ -25,34 +16,46 @@ export const RecordRowOperation = ({
   recordTemplate: Record;
   appId: string;
 }) => {
-  switch (mode) {
-    case "add":
-      return (
-        <SaveNewRecordButton
-          appId={appId}
-          records={records}
-          setRecords={setRecords}
-          newRecord={newRecord}
-          setNewRecord={setNewRecord}
-          mode={mode}
-          setMode={setMode}
-          recordTemplate={recordTemplate}
-        />
-      );
-    case "show":
-      return (
-        <>
-          <ModifyRecordButton
-            record={record}
-            records={records}
-            setRecords={setRecords}
-          />
+  const ope = getOperationButtonList(props.record.isEditing);
+  return ope[props.mode].map((buttonType, index) => {
+    switch (buttonType) {
+      case "insert":
+        return <SaveNewRecordButton key={`operation-${index}`} {...props} />;
+      case "update":
+        return null;
+      case "modify":
+        return <ModifyRecordButton key={`operation-${index}`} {...props} />;
+      case "delete":
+        return (
           <DeleteRecordButton
-            recordId={record.recordId}
-            records={records}
-            setRecords={setRecords}
+            key={`operation-${index}`}
+            recordId={props.record.recordId}
+            {...props}
           />
-        </>
-      );
-  }
+        );
+      case "cancel":
+        return null;
+    }
+  });
 };
+
+const getOperationButtonList = (
+  isEditing: boolean,
+): {
+  [mode in RecordListMode]: ButtonType[];
+} => {
+  if (isEditing) {
+    return {
+      add: ["insert", "cancel"],
+      modify: ["update", "cancel"],
+      show: [],
+    };
+  }
+  return {
+    add: [],
+    modify: [],
+    show: ["modify", "delete"],
+  };
+};
+
+type ButtonType = "insert" | "update" | "modify" | "delete" | "cancel";
