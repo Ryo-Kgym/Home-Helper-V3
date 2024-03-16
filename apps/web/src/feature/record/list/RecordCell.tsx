@@ -1,5 +1,6 @@
 import type { Fields } from "@feature/app/schema";
 import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
+import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
@@ -14,7 +15,7 @@ export const RecordCell = ({
   },
   newRecord,
   setNewRecord,
-  isAddingRecord,
+  mode,
 }: {
   fieldId: string;
   fields: Fields;
@@ -22,7 +23,7 @@ export const RecordCell = ({
   column: RecordColumn | undefined;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
-  isAddingRecord: boolean;
+  mode: RecordListMode;
 }) => {
   const field = fields[fieldId];
   if (!field) {
@@ -50,7 +51,7 @@ export const RecordCell = ({
     return <div>{column.value}</div>;
   }
 
-  const value = isAddingRecord ? newRecord[fieldId]!.value : column.value;
+  const value = mode === "add" ? newRecord[fieldId]!.value : column.value;
 
   switch (field.fieldKind) {
     case "text":

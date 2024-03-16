@@ -1,4 +1,5 @@
 import type { App, Record, Records } from "@feature/app/schema";
+import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { RecordCell } from "@feature/record/list/RecordCell";
 import { RecordRowOperation } from "@feature/record/list/RecordRowOperation";
 
@@ -10,8 +11,8 @@ export const RecordListRow = ({
   app,
   records,
   setRecords,
-  isAddingRecord,
-  setIsAddingRecord,
+  mode,
+  setMode,
   recordTemplate,
 }: {
   record: Records[number];
@@ -21,8 +22,8 @@ export const RecordListRow = ({
   app: App;
   records: Records;
   setRecords: (records: Records) => void;
-  isAddingRecord: boolean;
-  setIsAddingRecord: (isAddingRecord: boolean) => void;
+  mode: RecordListMode;
+  setMode: (mode: RecordListMode) => void;
   recordTemplate: Record;
 }) => {
   return (
@@ -37,7 +38,7 @@ export const RecordListRow = ({
             column={record.columns[field.id]}
             newRecord={newRecord}
             setNewRecord={setNewRecord}
-            isAddingRecord={isAddingRecord}
+            mode={mode}
           />
         </td>
       ))}
@@ -48,8 +49,8 @@ export const RecordListRow = ({
           setRecords={setRecords}
           newRecord={newRecord}
           setNewRecord={setNewRecord}
-          isAddingRecord={isAddingRecord}
-          setIsAddingRecord={setIsAddingRecord}
+          mode={mode}
+          setMode={setMode}
           recordTemplate={recordTemplate}
           appId={app.id}
         />

@@ -8,6 +8,8 @@ import { AddRecordButton } from "@feature/record/list/AddRecordButton";
 import { RecordListRow } from "@feature/record/list/RecordListRow";
 import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
 
+export type RecordListMode = "add" | "modify" | "show";
+
 export const RecordListClient = ({
   app,
   recordTemplate,
@@ -19,7 +21,7 @@ export const RecordListClient = ({
 }) => {
   const [records, setRecords] = useState<Records>(defaultRecords);
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
-  const [isAddingRecord, setIsAddingRecord] = useState<boolean>(false);
+  const [mode, setMode] = useState<RecordListMode>("show");
 
   const headerItems = [
     { key: "no", fieldName: "No." },
@@ -36,8 +38,8 @@ export const RecordListClient = ({
         <div className={"text-3xl"}>{app.name}</div>
         <RedirectSettingButton appId={app.id} />
         <AddRecordButton
-          addingRecord={isAddingRecord}
-          setAddingRecord={setIsAddingRecord}
+          mode={mode}
+          setMode={setMode}
           records={records}
           setRecords={setRecords}
           recordTemplate={recordTemplate}
@@ -64,8 +66,8 @@ export const RecordListClient = ({
               app={app}
               records={records}
               setRecords={setRecords}
-              isAddingRecord={isAddingRecord}
-              setIsAddingRecord={setIsAddingRecord}
+              mode={mode}
+              setMode={setMode}
               recordTemplate={recordTemplate}
             />
           ))}

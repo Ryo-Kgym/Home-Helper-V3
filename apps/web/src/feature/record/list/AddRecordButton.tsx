@@ -1,23 +1,24 @@
 import type { Record, Records } from "@feature/app/schema/record-schema";
+import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { generateId } from "@feature/app/function/generate-id";
 
 export const AddRecordButton = ({
-  addingRecord,
-  setAddingRecord,
+  mode,
+  setMode,
   records,
   setRecords,
   recordTemplate,
 }: {
-  addingRecord: boolean;
-  setAddingRecord: React.Dispatch<React.SetStateAction<boolean>>;
+  mode: RecordListMode;
+  setMode: (mode: RecordListMode) => void;
   records: Records;
   setRecords: React.Dispatch<React.SetStateAction<Records>>;
   recordTemplate: Record;
 }) => {
   const addRecordHandler = () => {
-    if (addingRecord) return;
+    if (mode === "add") return;
 
-    setAddingRecord(true);
+    setMode("add");
 
     const newRecordIndex =
       Object.keys(records).length > 0

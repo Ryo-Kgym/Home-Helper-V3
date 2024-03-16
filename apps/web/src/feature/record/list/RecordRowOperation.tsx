@@ -1,4 +1,5 @@
 import type { Record, Records } from "@feature/app/schema";
+import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { DeleteRecordButton } from "@feature/record/list/DeleteRecordButton";
 import { ModifyRecordButton } from "@feature/record/list/ModifyRecordButton";
 import { SaveNewRecordButton } from "@feature/record/list/SaveNewRecordButton";
@@ -9,8 +10,8 @@ export const RecordRowOperation = ({
   setRecords,
   newRecord,
   setNewRecord,
-  isAddingRecord,
-  setIsAddingRecord,
+  mode,
+  setMode,
   recordTemplate,
   appId,
 }: {
@@ -19,40 +20,39 @@ export const RecordRowOperation = ({
   setRecords: (records: Records) => void;
   newRecord: Record;
   setNewRecord: (record: Record) => void;
-  isAddingRecord: boolean;
-  setIsAddingRecord: (isAddingRecord: boolean) => void;
+  mode: RecordListMode;
+  setMode: (mode: RecordListMode) => void;
   recordTemplate: Record;
   appId: string;
 }) => {
-  if (record.isEditing) {
-    return (
-      <>
+  switch (mode) {
+    case "add":
+      return (
         <SaveNewRecordButton
           appId={appId}
           records={records}
           setRecords={setRecords}
           newRecord={newRecord}
           setNewRecord={setNewRecord}
-          addingRecord={isAddingRecord}
-          setAddingRecord={setIsAddingRecord}
+          mode={mode}
+          setMode={setMode}
           recordTemplate={recordTemplate}
         />
-      </>
-    );
+      );
+    case "show":
+      return (
+        <>
+          <ModifyRecordButton
+            record={record}
+            records={records}
+            setRecords={setRecords}
+          />
+          <DeleteRecordButton
+            recordId={record.recordId}
+            records={records}
+            setRecords={setRecords}
+          />
+        </>
+      );
   }
-
-  return (
-    <>
-      <ModifyRecordButton
-        record={record}
-        records={records}
-        setRecords={setRecords}
-      />
-      <DeleteRecordButton
-        recordId={record.recordId}
-        records={records}
-        setRecords={setRecords}
-      />
-    </>
-  );
 };
