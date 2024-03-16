@@ -1,11 +1,12 @@
 import { makeRecordTemplate } from "@feature/app/schema/make-record-template";
-import { convertToApp } from "@feature/app/show/convert-to-app";
-import { convertToRecords } from "@feature/app/show/convert-to-records";
-import { ShowAppClient } from "@feature/app/show/ShowAppClient";
+import { convertToApp } from "@feature/record/list/convert-to-app";
+import { convertToRecords } from "@feature/record/list/convert-to-records";
+import { RecordListClient } from "@feature/record/list/RecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
-import { GetAppDocument } from "@v3/graphql/public/type";
 
-export const ShowAppServer = async ({ appId }: { appId: string }) => {
+import { GetAppDocument } from "../../../../../../packages/graphql/public/type";
+
+export const RecordListServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });
   const app = convertToApp(data);
   const records = convertToRecords(data?.app?.records ?? []);
@@ -13,7 +14,7 @@ export const ShowAppServer = async ({ appId }: { appId: string }) => {
   const recordTemplate = makeRecordTemplate(app.fields);
 
   return (
-    <ShowAppClient
+    <RecordListClient
       app={app}
       recordTemplate={recordTemplate}
       records={records}

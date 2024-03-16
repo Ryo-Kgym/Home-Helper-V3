@@ -1,9 +1,9 @@
 import type { App, Record, Records } from "@feature/app/schema";
-import { DeleteRecordButton } from "@feature/app/show/DeleteRecordButton";
-import { RecordCell } from "@feature/app/show/RecordCell";
-import { SaveRecordButton } from "@feature/app/show/SaveRecordButton";
+import { DeleteRecordButton } from "@feature/record/list/DeleteRecordButton";
+import { RecordCell } from "@feature/record/list/RecordCell";
+import { SaveRecordButton } from "@feature/record/list/SaveRecordButton";
 
-export const ShowAppListRow = ({
+export const RecordListRow = ({
   record,
   recordIndex,
   newRecord,

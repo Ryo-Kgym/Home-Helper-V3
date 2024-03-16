@@ -1,7 +1,8 @@
 import type { Records } from "@feature/app/schema/record-schema";
-import type { GetAppQuery } from "@v3/graphql/public/type";
 import { recordSchema } from "@feature/app/schema";
 import { recordsSchema } from "@feature/app/schema/record-schema";
+
+import type { GetAppQuery } from "../../../../../../packages/graphql/public/type";
 
 export const convertToRecords = (
   recordData: NonNullable<GetAppQuery["app"]>["records"],

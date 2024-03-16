@@ -4,11 +4,11 @@ import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AddRecordButton } from "@feature/app/show/AddRecordButton";
-import { RedirectSettingButton } from "@feature/app/show/RedirectSettingButton";
-import { ShowAppListRow } from "@feature/app/show/ShowAppListRow";
+import { AddRecordButton } from "@feature/record/list/AddRecordButton";
+import { RecordListRow } from "@feature/record/list/RecordListRow";
+import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
 
-export const ShowAppClient = ({
+export const RecordListClient = ({
   app,
   recordTemplate,
   records: defaultRecords,
@@ -55,7 +55,7 @@ export const ShowAppClient = ({
         </thead>
         <tbody>
           {Object.entries(records).map(([recordIndex, record]) => (
-            <ShowAppListRow
+            <RecordListRow
               key={record.recordId}
               record={record}
               recordIndex={parseInt(recordIndex)}

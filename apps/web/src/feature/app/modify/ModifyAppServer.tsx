@@ -1,6 +1,6 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { ModifyAppClient } from "@feature/app/modify/ModifyAppClient";
-import { convertToApp } from "@feature/app/show/convert-to-app";
+import { convertToApp } from "@feature/record/list/convert-to-app";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetAppDocument } from "@v3/graphql/public/type";
 
