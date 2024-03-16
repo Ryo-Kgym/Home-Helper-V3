@@ -1,8 +1,8 @@
 import type { Record, Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
-import { CancelButton } from "@feature/record/list/CancelButton";
-import { ModifyRecordButton } from "@feature/record/list/ModifyRecordButton";
-import { SaveNewRecordButton } from "@feature/record/list/SaveNewRecordButton";
+import { CancelButton } from "@feature/record/list/operation/CancelButton";
+import { ModifyRecordButton } from "@feature/record/list/operation/ModifyRecordButton";
+import { SaveNewRecordButton } from "@feature/record/list/operation/SaveNewRecordButton";
 
 import { DeleteRecordButton } from "./DeleteRecordButton";
 

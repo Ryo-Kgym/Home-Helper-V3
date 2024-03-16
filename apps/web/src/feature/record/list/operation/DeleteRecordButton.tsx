@@ -1,7 +1,7 @@
 import type { Records } from "@feature/app/schema/record-schema";
 
-import type { RecordListMode } from "./RecordListClient";
-import { useDeleteRecordMutation } from "../../../../../../packages/graphql/public";
+import type { RecordListMode } from "../RecordListClient";
+import { useDeleteRecordMutation } from "../../../../../../../packages/graphql/public";
 
 export const DeleteRecordButton = ({
   recordId,

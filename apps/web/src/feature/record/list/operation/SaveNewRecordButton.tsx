@@ -1,7 +1,8 @@
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { generateId } from "@feature/app/function/generate-id";
-import { useInsertRecordMutation } from "@v3/graphql/public";
+
+import { useInsertRecordMutation } from "../../../../../../../packages/graphql/public";
 
 export const SaveNewRecordButton = ({
   appId,
