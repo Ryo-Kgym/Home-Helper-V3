@@ -19,7 +19,7 @@ export const RecordListClient = ({
   recordTemplate: Record;
   records: Records;
 }) => {
-  const [records, setRecords] = useState<Records>(defaultRecords);
+  const [records, setRecords] = useState<Records>({ ...defaultRecords });
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [mode, setMode] = useState<RecordListMode>("show");
 
@@ -69,6 +69,7 @@ export const RecordListClient = ({
               mode={mode}
               setMode={setMode}
               recordTemplate={recordTemplate}
+              defaultRecords={defaultRecords}
             />
           ))}
         </tbody>

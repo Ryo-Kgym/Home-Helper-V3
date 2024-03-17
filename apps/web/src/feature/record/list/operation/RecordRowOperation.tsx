@@ -1,22 +1,20 @@
-import type { Record, Records } from "@feature/app/schema";
+import type { Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
+import type { ComponentProps } from "react";
 import { CancelButton } from "@feature/record/list/operation/CancelButton";
 import { ModifyRecordButton } from "@feature/record/list/operation/ModifyRecordButton";
 import { SaveNewRecordButton } from "@feature/record/list/operation/SaveNewRecordButton";
 
 import { DeleteRecordButton } from "./DeleteRecordButton";
 
-export const RecordRowOperation = (props: {
-  record: Records[number];
-  records: Records;
-  setRecords: (records: Records) => void;
-  newRecord: Record;
-  setNewRecord: (record: Record) => void;
-  mode: RecordListMode;
-  setMode: (mode: RecordListMode) => void;
-  recordTemplate: Record;
-  appId: string;
-}) => {
+export const RecordRowOperation = (
+  props: // prettier-ignore
+  { record: Records[number] }
+    & ComponentProps<typeof SaveNewRecordButton>
+    & ComponentProps<typeof ModifyRecordButton>
+    & ComponentProps<typeof DeleteRecordButton>
+    & ComponentProps<typeof CancelButton>,
+) => {
   const ope = getOperationButtonList(props.record.isEditing);
   return ope[props.mode].map((buttonType, index) => {
     switch (buttonType) {
@@ -27,13 +25,7 @@ export const RecordRowOperation = (props: {
       case "modify":
         return <ModifyRecordButton key={`operation-${index}`} {...props} />;
       case "delete":
-        return (
-          <DeleteRecordButton
-            key={`operation-${index}`}
-            recordId={props.record.recordId}
-            {...props}
-          />
-        );
+        return <DeleteRecordButton key={`operation-${index}`} {...props} />;
       case "cancel":
         return <CancelButton key={`operation-${index}`} {...props} />;
     }

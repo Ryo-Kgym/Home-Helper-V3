@@ -1,8 +1,7 @@
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { generateId } from "@feature/app/function/generate-id";
-
-import { useInsertRecordMutation } from "../../../../../../../packages/graphql/public";
+import { useInsertRecordMutation } from "@v3/graphql/public";
 
 export const SaveNewRecordButton = ({
   appId,
@@ -26,7 +25,7 @@ export const SaveNewRecordButton = ({
   const [, mut] = useInsertRecordMutation();
 
   const saveRecordHandler = async () => {
-    if (!mode) return;
+    if (mode === "add") return;
 
     const newRecordIndex = Math.max(
       ...Object.keys(records).map((n) => parseInt(n)),

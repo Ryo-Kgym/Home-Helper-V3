@@ -14,6 +14,7 @@ export const RecordListRow = ({
   mode,
   setMode,
   recordTemplate,
+  defaultRecords,
 }: {
   record: Records[number];
   recordIndex: number;
@@ -25,6 +26,7 @@ export const RecordListRow = ({
   mode: RecordListMode;
   setMode: (mode: RecordListMode) => void;
   recordTemplate: Record;
+  defaultRecords: Records;
 }) => {
   return (
     <tr className={"border border-gray-300"}>
@@ -59,6 +61,8 @@ export const RecordListRow = ({
           setMode={setMode}
           recordTemplate={recordTemplate}
           appId={app.id}
+          defaultRecords={defaultRecords}
+          recordId={record.recordId}
         />
       </td>
     </tr>
