@@ -5,7 +5,7 @@ import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 
 export const ModifyCell = ({
-  record,
+  recordIndex,
   fieldId,
   fields,
   column = {
@@ -15,7 +15,7 @@ export const ModifyCell = ({
   records,
   setRecords,
 }: {
-  record: Records[number];
+  recordIndex: number;
   fieldId: string;
   fields: Fields;
   column: RecordColumn | undefined;
@@ -35,10 +35,11 @@ export const ModifyCell = ({
   }
 
   const changeHandler = (value: string) => {
-    const col = record.columns[fieldId];
+    const copiedRecords = { ...records };
+    const col = copiedRecords[recordIndex]?.columns[fieldId];
     if (!col) return;
     col.value = value;
-    setRecords({ ...records });
+    setRecords(copiedRecords);
   };
 
   const value = column.value;

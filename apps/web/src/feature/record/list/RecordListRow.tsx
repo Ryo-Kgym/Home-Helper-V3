@@ -34,6 +34,7 @@ export const RecordListRow = ({
       {Object.entries(app.fields).map(([, field]) => (
         <td key={field.id} className={"border border-gray-300 p-2"}>
           <RecordCell
+            recordIndex={recordIndex}
             record={record}
             fieldId={field.id}
             fields={app.fields}
