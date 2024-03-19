@@ -9,7 +9,6 @@ export const SaveNewRecordButton = ({
   setRecords,
   newRecord,
   setNewRecord,
-  mode,
   setMode,
   recordTemplate,
 }: {
@@ -18,15 +17,12 @@ export const SaveNewRecordButton = ({
   setRecords: (records: Records) => void;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
-  mode: RecordListMode;
   setMode: (mode: RecordListMode) => void;
   recordTemplate: Record;
 }) => {
   const [, mut] = useInsertRecordMutation();
 
   const saveRecordHandler = async () => {
-    if (mode === "add") return;
-
     const newRecordIndex = Math.max(
       ...Object.keys(records).map((n) => parseInt(n)),
     );
