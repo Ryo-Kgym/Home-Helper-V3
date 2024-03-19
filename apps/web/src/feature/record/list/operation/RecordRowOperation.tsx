@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { CancelButton } from "@feature/record/list/operation/CancelButton";
 import { ModifyRecordButton } from "@feature/record/list/operation/ModifyRecordButton";
 import { SaveNewRecordButton } from "@feature/record/list/operation/SaveNewRecordButton";
+import { UpdateRecordButton } from "@feature/record/list/operation/UpdateRecordButton";
 
 import { DeleteRecordButton } from "./DeleteRecordButton";
 
@@ -21,7 +22,7 @@ export const RecordRowOperation = (
       case "insert":
         return <SaveNewRecordButton key={`operation-${index}`} {...props} />;
       case "update":
-        return null;
+        return <UpdateRecordButton key={`operation-${index}`} {...props} />;
       case "modify":
         return <ModifyRecordButton key={`operation-${index}`} {...props} />;
       case "delete":
