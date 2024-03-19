@@ -1,5 +1,6 @@
 import type { App, Record, Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
+import { Table } from "@components/ui/v4/table";
 import { RecordCell } from "@feature/record/list/cell/RecordCell";
 import { RecordRowOperation } from "@feature/record/list/operation/RecordRowOperation";
 
@@ -27,42 +28,40 @@ export const RecordListRow = ({
   setMode: (mode: RecordListMode) => void;
   recordTemplate: Record;
   defaultRecords: Records;
-}) => {
-  return (
-    <tr className={"border border-gray-300"}>
-      <td className={"border border-gray-300 p-2"}>{recordIndex}</td>
-      {Object.entries(app.fields).map(([, field]) => (
-        <td key={field.id} className={"border border-gray-300 p-2"}>
-          <RecordCell
-            recordIndex={recordIndex}
-            fieldId={field.id}
-            fields={app.fields}
-            isEditing={record.isEditing}
-            newRecord={newRecord}
-            setNewRecord={setNewRecord}
-            mode={mode}
-            records={records}
-            setRecords={setRecords}
-            column={record.columns[field.id]!}
-          />
-        </td>
-      ))}
-      <td className={"space-x-2 border border-gray-300 p-2"}>
-        <RecordRowOperation
+}) => (
+  <>
+    <Table.BodyTd align={"right"}>{recordIndex}</Table.BodyTd>
+    {Object.entries(app.fields).map(([, field]) => (
+      <Table.BodyTd key={field.id}>
+        <RecordCell
           recordIndex={recordIndex}
-          record={record}
-          records={records}
-          setRecords={setRecords}
+          fieldId={field.id}
+          fields={app.fields}
+          isEditing={record.isEditing}
           newRecord={newRecord}
           setNewRecord={setNewRecord}
           mode={mode}
-          setMode={setMode}
-          recordTemplate={recordTemplate}
-          appId={app.id}
-          defaultRecords={defaultRecords}
-          recordId={record.recordId}
+          records={records}
+          setRecords={setRecords}
+          column={record.columns[field.id]!}
         />
-      </td>
-    </tr>
-  );
-};
+      </Table.BodyTd>
+    ))}
+    <Table.BodyTd>
+      <RecordRowOperation
+        recordIndex={recordIndex}
+        record={record}
+        records={records}
+        setRecords={setRecords}
+        newRecord={newRecord}
+        setNewRecord={setNewRecord}
+        mode={mode}
+        setMode={setMode}
+        recordTemplate={recordTemplate}
+        appId={app.id}
+        defaultRecords={defaultRecords}
+        recordId={record.recordId}
+      />
+    </Table.BodyTd>
+  </>
+);

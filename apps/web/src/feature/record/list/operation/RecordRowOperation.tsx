@@ -1,12 +1,12 @@
 import type { Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import type { ComponentProps } from "react";
-import { CancelButton } from "@feature/record/list/operation/CancelButton";
-import { ModifyRecordButton } from "@feature/record/list/operation/ModifyRecordButton";
-import { SaveNewRecordButton } from "@feature/record/list/operation/SaveNewRecordButton";
-import { UpdateRecordButton } from "@feature/record/list/operation/UpdateRecordButton";
 
+import { CancelButton } from "./CancelButton";
 import { DeleteRecordButton } from "./DeleteRecordButton";
+import { ModifyRecordButton } from "./ModifyRecordButton";
+import { SaveNewRecordButton } from "./SaveNewRecordButton";
+import { UpdateRecordButton } from "./UpdateRecordButton";
 
 export const RecordRowOperation = (
   props: // prettier-ignore
@@ -17,20 +17,26 @@ export const RecordRowOperation = (
     & ComponentProps<typeof CancelButton>,
 ) => {
   const ope = getOperationButtonList(props.record.isEditing);
-  return ope[props.mode].map((buttonType, index) => {
-    switch (buttonType) {
-      case "insert":
-        return <SaveNewRecordButton key={`operation-${index}`} {...props} />;
-      case "update":
-        return <UpdateRecordButton key={`operation-${index}`} {...props} />;
-      case "modify":
-        return <ModifyRecordButton key={`operation-${index}`} {...props} />;
-      case "delete":
-        return <DeleteRecordButton key={`operation-${index}`} {...props} />;
-      case "cancel":
-        return <CancelButton key={`operation-${index}`} {...props} />;
-    }
-  });
+  return (
+    <div className={"flex space-x-3"}>
+      {ope[props.mode].map((buttonType, index) => {
+        switch (buttonType) {
+          case "insert":
+            return (
+              <SaveNewRecordButton key={`operation-${index}`} {...props} />
+            );
+          case "update":
+            return <UpdateRecordButton key={`operation-${index}`} {...props} />;
+          case "modify":
+            return <ModifyRecordButton key={`operation-${index}`} {...props} />;
+          case "delete":
+            return <DeleteRecordButton key={`operation-${index}`} {...props} />;
+          case "cancel":
+            return <CancelButton key={`operation-${index}`} {...props} />;
+        }
+      })}
+    </div>
+  );
 };
 
 const getOperationButtonList = (

@@ -4,6 +4,7 @@ import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
+import { Table } from "@components/ui/v4/table";
 import { AddRecordButton } from "@feature/record/list/AddRecordButton";
 import { RecordListRow } from "@feature/record/list/RecordListRow";
 import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
@@ -26,12 +27,11 @@ export const RecordListClient = ({
   const [mode, setMode] = useState<RecordListMode>("show");
 
   const headerItems = [
-    { key: "no", fieldName: "No." },
+    { name: "No." },
     ...Object.values(app.fields).map((field) => ({
-      key: field.fieldIndex.toString(),
-      fieldName: field.fieldName,
+      name: field.fieldName,
     })),
-    { key: "actions", fieldName: "" },
+    { name: "" },
   ];
 
   const setRecords = (records: Records) =>
@@ -50,18 +50,11 @@ export const RecordListClient = ({
           recordTemplate={recordTemplate}
         />
       </Title>
-      <table width={"100%"}>
-        <thead>
-          <tr className={"bg-gray-50"}>
-            {headerItems.map(({ key, fieldName }) => (
-              <td key={key} className={"border border-gray-300 p-2 font-bold"}>
-                {fieldName}
-              </td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(records).map(([recordIndex, record]) => (
+      <Table>
+        <Table.Header headerItems={headerItems} />
+        <Table.Body
+          data={Object.entries(records)}
+          renderItem={([recordIndex, record]) => (
             <RecordListRow
               key={record.recordId}
               record={record}
@@ -76,9 +69,9 @@ export const RecordListClient = ({
               recordTemplate={recordTemplate}
               defaultRecords={defaultRecords}
             />
-          ))}
-        </tbody>
-      </table>
+          )}
+        />
+      </Table>
     </div>
   );
 };
