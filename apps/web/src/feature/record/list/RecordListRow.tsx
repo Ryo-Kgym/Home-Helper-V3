@@ -48,9 +48,6 @@ export const RecordListRow = ({
         </td>
       ))}
       <td className={"space-x-2 border border-gray-300 p-2"}>
-        <div>
-          isEditing: {record.isEditing ? "T" : "F"}, mode: {mode}
-        </div>
         <RecordRowOperation
           recordIndex={recordIndex}
           record={record}

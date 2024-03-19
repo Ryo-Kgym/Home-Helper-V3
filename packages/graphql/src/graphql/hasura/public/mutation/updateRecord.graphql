@@ -1,0 +1,5 @@
+mutation updateRecord($id: String!, $columns: json!) {
+  updateRecordByPk(_set: { columns: $columns }, pkColumns: { id: $id }) {
+    id
+  }
+}
