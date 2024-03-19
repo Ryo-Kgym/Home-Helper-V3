@@ -2,7 +2,7 @@ mutation insertRecord(
   $id: String!
   $appId: String!
   $index: Int!
-  $columns: String!
+  $columns: json!
 ) {
   insertRecordOne(
     object: {

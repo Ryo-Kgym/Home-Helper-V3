@@ -1,6 +1,6 @@
 import type { App } from "@feature/app/schema";
-import type { GetAppQuery } from "@v3/graphql/public/type";
 
+import type { GetAppQuery } from "../../../../../../packages/graphql/public/type";
 import { convertToApp } from "./convert-to-app";
 
 describe("convertToApp", () => {

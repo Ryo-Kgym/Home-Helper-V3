@@ -1,26 +1,26 @@
-import type { Fields } from "@feature/app/schema";
-import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
+import type { Fields, Records } from "@feature/app/schema";
+import type { RecordColumn } from "@feature/app/schema/record-schema";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 
-export const RecordCell = ({
+export const ModifyCell = ({
+  recordIndex,
   fieldId,
   fields,
-  isEditing,
   column = {
     fieldKind: fields[fieldId]?.fieldKind ?? "text",
     value: "",
   },
-  newRecord,
-  setNewRecord,
+  records,
+  setRecords,
 }: {
+  recordIndex: number;
   fieldId: string;
   fields: Fields;
-  isEditing: boolean;
   column: RecordColumn | undefined;
-  newRecord: Record;
-  setNewRecord: (newRecord: Record) => void;
+  records: Records;
+  setRecords: (records: Records) => void;
 }) => {
   const field = fields[fieldId];
   if (!field) {
@@ -35,33 +35,23 @@ export const RecordCell = ({
   }
 
   const changeHandler = (value: string) => {
-    setNewRecord({
-      ...newRecord,
-      [fieldId]: {
-        ...column,
-        value,
-      },
-    });
+    const copiedRecords = { ...records };
+    const col = copiedRecords[recordIndex]?.columns[fieldId];
+    if (!col) return;
+    col.value = value;
+    setRecords(copiedRecords);
   };
 
-  if (!isEditing) {
-    return <div>{column.value}</div>;
-  }
+  const value = column.value;
 
   switch (field.fieldKind) {
     case "text":
-      return (
-        <TextInput
-          label={""}
-          value={newRecord[fieldId]!.value}
-          setValue={changeHandler}
-        />
-      );
+      return <TextInput label={""} value={value} setValue={changeHandler} />;
     case "selectBox":
       return (
         <Select
           label={""}
-          value={newRecord[fieldId]!.value}
+          value={value}
           setValue={changeHandler}
           data={field.options.selector
             .split(",")
@@ -70,11 +60,7 @@ export const RecordCell = ({
       );
     case "multipleText":
       return (
-        <MultiTextInput
-          label={""}
-          value={newRecord[fieldId]!.value}
-          setValue={changeHandler}
-        />
+        <MultiTextInput label={""} value={value} setValue={changeHandler} />
       );
   }
 };

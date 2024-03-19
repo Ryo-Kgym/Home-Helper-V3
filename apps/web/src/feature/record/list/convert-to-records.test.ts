@@ -1,5 +1,4 @@
-import type { GetAppQuery } from "@v3/graphql/public/type";
-
+import type { GetAppQuery } from "../../../../../../packages/graphql/public/type";
 import { convertToRecords } from "./convert-to-records";
 
 describe("convertToRecords", () => {

@@ -4,11 +4,14 @@ import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AddRecordButton } from "@feature/app/show/AddRecordButton";
-import { RedirectSettingButton } from "@feature/app/show/RedirectSettingButton";
-import { ShowAppListRow } from "@feature/app/show/ShowAppListRow";
+import { Table } from "@components/ui/v4/table";
+import { AddRecordButton } from "@feature/record/list/AddRecordButton";
+import { RecordListRow } from "@feature/record/list/RecordListRow";
+import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
 
-export const ShowAppClient = ({
+export type RecordListMode = "add" | "modify" | "show";
+
+export const RecordListClient = ({
   app,
   recordTemplate,
   records: defaultRecords,
@@ -17,18 +20,22 @@ export const ShowAppClient = ({
   recordTemplate: Record;
   records: Records;
 }) => {
-  const [records, setRecords] = useState<Records>(defaultRecords);
+  const [records, setRecordsBase] = useState<Records>(
+    structuredClone(defaultRecords),
+  );
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
-  const [addingRecord, setAddingRecord] = useState<boolean>(false);
+  const [mode, setMode] = useState<RecordListMode>("show");
 
   const headerItems = [
-    { key: "no", fieldName: "No." },
+    { name: "No." },
     ...Object.values(app.fields).map((field) => ({
-      key: field.fieldIndex.toString(),
-      fieldName: field.fieldName,
+      name: field.fieldName,
     })),
-    { key: "actions", fieldName: "" },
+    { name: "" },
   ];
+
+  const setRecords = (records: Records) =>
+    setRecordsBase(structuredClone(records));
 
   return (
     <div className={"space-y-10"}>
@@ -36,26 +43,19 @@ export const ShowAppClient = ({
         <div className={"text-3xl"}>{app.name}</div>
         <RedirectSettingButton appId={app.id} />
         <AddRecordButton
-          addingRecord={addingRecord}
-          setAddingRecord={setAddingRecord}
+          mode={mode}
+          setMode={setMode}
           records={records}
           setRecords={setRecords}
           recordTemplate={recordTemplate}
         />
       </Title>
-      <table>
-        <thead>
-          <tr className={"bg-gray-50"}>
-            {headerItems.map(({ key, fieldName }) => (
-              <td key={key} className={"border border-gray-300 p-2 font-bold"}>
-                {fieldName}
-              </td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(records).map(([recordIndex, record]) => (
-            <ShowAppListRow
+      <Table>
+        <Table.Header headerItems={headerItems} />
+        <Table.Body
+          data={Object.entries(records)}
+          renderItem={([recordIndex, record]) => (
+            <RecordListRow
               key={record.recordId}
               record={record}
               recordIndex={parseInt(recordIndex)}
@@ -64,13 +64,14 @@ export const ShowAppClient = ({
               app={app}
               records={records}
               setRecords={setRecords}
-              addingRecord={addingRecord}
-              setAddingRecord={setAddingRecord}
+              mode={mode}
+              setMode={setMode}
               recordTemplate={recordTemplate}
+              defaultRecords={defaultRecords}
             />
-          ))}
-        </tbody>
-      </table>
+          )}
+        />
+      </Table>
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import { ShowApp } from "@feature/app/show";
+import { RecordList } from "@feature/record/list";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
-  <ShowApp appId={id} />
+  <RecordList appId={id} />
 );
 
 export default Page;
