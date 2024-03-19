@@ -35,7 +35,6 @@ export const RecordListRow = ({
         <td key={field.id} className={"border border-gray-300 p-2"}>
           <RecordCell
             recordIndex={recordIndex}
-            record={record}
             fieldId={field.id}
             fields={app.fields}
             isEditing={record.isEditing}
@@ -53,6 +52,7 @@ export const RecordListRow = ({
           isEditing: {record.isEditing ? "T" : "F"}, mode: {mode}
         </div>
         <RecordRowOperation
+          recordIndex={recordIndex}
           record={record}
           records={records}
           setRecords={setRecords}

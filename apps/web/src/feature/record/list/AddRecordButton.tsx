@@ -12,7 +12,7 @@ export const AddRecordButton = ({
   mode: RecordListMode;
   setMode: (mode: RecordListMode) => void;
   records: Records;
-  setRecords: React.Dispatch<React.SetStateAction<Records>>;
+  setRecords: (records: Records) => void;
   recordTemplate: Record;
 }) => {
   const addRecordHandler = () => {

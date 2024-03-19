@@ -2,26 +2,24 @@ import type { Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 
 export const ModifyRecordButton = ({
-  record,
+  recordIndex,
   records,
   setRecords,
   setMode,
 }: {
-  record: Records[number];
+  recordIndex: number;
   records: Records;
   setRecords: (records: Records) => void;
   setMode: (mode: RecordListMode) => void;
 }) => {
   const openModify = () => {
+    const copiedRecords = { ...records };
+    const copiedRecord = copiedRecords[recordIndex];
+    if (!copiedRecord) return;
     setMode("modify");
-    const targetValue = Object.values(records).find(
-      (r) => r.recordId === record.recordId,
-    );
+    copiedRecord.isEditing = true;
 
-    if (targetValue) {
-      targetValue.isEditing = true;
-      setRecords({ ...records });
-    }
+    setRecords(copiedRecords);
   };
 
   return <button onClick={openModify}>編集</button>;

@@ -19,7 +19,9 @@ export const RecordListClient = ({
   recordTemplate: Record;
   records: Records;
 }) => {
-  const [records, setRecords] = useState<Records>({ ...defaultRecords });
+  const [records, setRecordsBase] = useState<Records>(
+    structuredClone(defaultRecords),
+  );
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [mode, setMode] = useState<RecordListMode>("show");
 
@@ -31,6 +33,9 @@ export const RecordListClient = ({
     })),
     { key: "actions", fieldName: "" },
   ];
+
+  const setRecords = (records: Records) =>
+    setRecordsBase(structuredClone(records));
 
   return (
     <div className={"space-y-10"}>
