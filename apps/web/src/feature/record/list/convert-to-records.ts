@@ -7,17 +7,15 @@ import type { GetAppQuery } from "../../../../../../packages/graphql/public/type
 export const convertToRecords = (
   recordData: NonNullable<GetAppQuery["app"]>["records"],
 ): Records => {
-  const recordsData = recordData.reduce(
-    (acc, r) =>
-      ({
-        ...acc,
-        [r.index]: {
-          recordId: r.id,
-          columns: recordSchema.parse(JSON.parse(r.columns ?? "{}")),
-          isEditing: false,
-        },
-      }) as Records,
-    {},
+  const recordsData = Object.fromEntries(
+    recordData.map((r) => [
+      r.index,
+      {
+        recordId: r.id,
+        columns: recordSchema.parse(r.columns),
+        isEditing: false,
+      },
+    ]),
   );
   return recordsSchema.parse(recordsData);
 };

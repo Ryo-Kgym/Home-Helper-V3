@@ -3546,7 +3546,7 @@ export type RecordBoolExp = {
   _or?: InputMaybe<Array<RecordBoolExp>>;
   app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
-  columns?: InputMaybe<StringComparisonExp>;
+  columns?: InputMaybe<JsonComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   index?: InputMaybe<IntComparisonExp>;
 };
@@ -3556,11 +3556,16 @@ export type RecordConstraint =
   /** unique or primary key constraint on columns "id" */
   "record_pkey";
 
+/** input type for incrementing numeric columns in table "record" */
+export type RecordIncInput = {
+  index?: InputMaybe<Scalars["Int"]>;
+};
+
 /** input type for inserting data into table "record" */
 export type RecordInsertInput = {
   app?: InputMaybe<AppObjRelInsertInput>;
   appId?: InputMaybe<Scalars["String"]>;
-  columns?: InputMaybe<Scalars["String"]>;
+  columns?: InputMaybe<Scalars["json"]>;
   id?: InputMaybe<Scalars["String"]>;
   index?: InputMaybe<Scalars["Int"]>;
 };
@@ -3568,7 +3573,6 @@ export type RecordInsertInput = {
 /** order by max() on columns of table "record" */
 export type RecordMaxOrderBy = {
   appId?: InputMaybe<OrderBy>;
-  columns?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   index?: InputMaybe<OrderBy>;
 };
@@ -3576,7 +3580,6 @@ export type RecordMaxOrderBy = {
 /** order by min() on columns of table "record" */
 export type RecordMinOrderBy = {
   appId?: InputMaybe<OrderBy>;
-  columns?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   index?: InputMaybe<OrderBy>;
 };
@@ -3615,7 +3618,8 @@ export type RecordSelectColumn =
 
 /** input type for updating data in table "record" */
 export type RecordSetInput = {
-  columns?: InputMaybe<Scalars["String"]>;
+  columns?: InputMaybe<Scalars["json"]>;
+  index?: InputMaybe<Scalars["Int"]>;
 };
 
 /** order by stddev() on columns of table "record" */
@@ -3644,7 +3648,7 @@ export type RecordStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type RecordStreamCursorValueInput = {
   appId?: InputMaybe<Scalars["String"]>;
-  columns?: InputMaybe<Scalars["String"]>;
+  columns?: InputMaybe<Scalars["json"]>;
   id?: InputMaybe<Scalars["String"]>;
   index?: InputMaybe<Scalars["Int"]>;
 };
@@ -3657,9 +3661,13 @@ export type RecordSumOrderBy = {
 /** update columns of table "record" */
 export type RecordUpdateColumn =
   /** column name */
-  "columns";
+  | "columns"
+  /** column name */
+  | "index";
 
 export type RecordUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<RecordIncInput>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<RecordSetInput>;
   /** filter the rows which have to be updated */
@@ -3996,7 +4004,7 @@ export type InsertRecordMutationVariables = Exact<{
   id: Scalars["String"];
   appId: Scalars["String"];
   index: Scalars["Int"];
-  columns: Scalars["String"];
+  columns: Scalars["json"];
 }>;
 
 export type InsertRecordMutation = {
@@ -4029,6 +4037,16 @@ export type UpdateAppMutation = {
   } | null;
 };
 
+export type UpdateRecordMutationVariables = Exact<{
+  id: Scalars["String"];
+  columns: Scalars["json"];
+}>;
+
+export type UpdateRecordMutation = {
+  __typename?: "mutation_root";
+  updateRecordByPk?: { __typename?: "Record"; id: string } | null;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -4051,7 +4069,7 @@ export type GetAppQuery = {
       __typename: "Record";
       id: string;
       index: number;
-      columns: string;
+      columns: any;
     }>;
   } | null;
 };
@@ -4349,10 +4367,7 @@ export const InsertRecordDocument = {
           },
           type: {
             kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
+            type: { kind: "NamedType", name: { kind: "Name", value: "json" } },
           },
         },
       ],
@@ -4657,6 +4672,94 @@ export const UpdateAppDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateAppMutation, UpdateAppMutationVariables>;
+export const UpdateRecordDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "updateRecord" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "columns" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "json" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateRecordByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "_set" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "columns" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "columns" },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "pkColumns" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "id" },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateRecordMutation,
+  UpdateRecordMutationVariables
+>;
 export const GetAppDocument = {
   kind: "Document",
   definitions: [

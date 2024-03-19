@@ -33,18 +33,9 @@ export const SaveNewRecordButton = ({
         id: recordId,
         appId,
         index: newRecordIndex,
-        columns: JSON.stringify({
-          ...Object.entries(newRecord).reduce(
-            (acc, [fieldId, { fieldKind, value }]) => ({
-              ...acc,
-              [fieldId]: {
-                fieldKind,
-                value,
-              },
-            }),
-            {},
-          ),
-        }),
+        columns: Object.fromEntries(
+          Object.entries(newRecord).map(([fieldId, value]) => [fieldId, value]),
+        ),
       });
       if (error) throw error;
 
@@ -52,19 +43,15 @@ export const SaveNewRecordButton = ({
         ...records,
         [newRecordIndex]: {
           recordId,
-          columns: {
-            ...Object.entries(newRecord).reduce(
-              (acc, [fieldId, { fieldKind, value }]) => ({
-                ...acc,
-                [fieldId]: {
-                  fieldKind,
-                  value,
-                  editing: false,
-                },
-              }),
-              {},
-            ),
-          },
+          columns: Object.fromEntries(
+            Object.entries(newRecord).map(([fieldId, value]) => [
+              fieldId,
+              {
+                ...value,
+                editing: false,
+              },
+            ]),
+          ),
         },
       });
       setNewRecord(recordTemplate);
