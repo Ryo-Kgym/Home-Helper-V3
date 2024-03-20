@@ -3,13 +3,34 @@
 import type { App, Records } from "@feature/app/schema";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";
+import { convertRecords } from "@feature/record/import/convert-records";
+import { loadImportFile } from "@feature/record/import/load-import-file";
+import { selectSingleFile } from "@feature/record/import/select-single-file";
 
 export const ImportPreview = ({ app }: { app: App }) => {
-  const [previewRecords] = useState<Records>(mockRecords);
+  const [previewRecords, setPreviewRecords] = useState<Records>({});
+
+  const fileChangeHandler = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { file, isEmpty } = selectSingleFile(event);
+    if (isEmpty) return;
+
+    const { data } = await loadImportFile(file);
+    console.log("[load import file]", data);
+
+    const records = convertRecords(data);
+    setPreviewRecords(records);
+
+    console.log("[converted records]", records);
+  };
 
   return (
     <div>
       <div>プレビュー</div>
+      <div>
+        <input type="file" accept=".csv" onChange={fileChangeHandler} />
+      </div>
       <Table>
         <Table.Header
           headerItems={Object.values(app.fields).map((f) => ({
@@ -29,75 +50,4 @@ export const ImportPreview = ({ app }: { app: App }) => {
       </Table>
     </div>
   );
-};
-
-const mockRecords: Records = {
-  "1": {
-    recordId: "1",
-    isEditing: false,
-    columns: {
-      "1": {
-        fieldKind: "text",
-        value: "2024-01-01",
-      },
-      "2": {
-        fieldKind: "text",
-        value: "Amazon",
-      },
-      "3": {
-        fieldKind: "text",
-        value: "1234",
-      },
-      "4": {
-        fieldKind: "text",
-        value: "",
-      },
-      "5": {
-        fieldKind: "text",
-        value: "",
-      },
-      "6": {
-        fieldKind: "text",
-        value: "",
-      },
-      "7": {
-        fieldKind: "multipleText",
-        value: "memomemo",
-      },
-    },
-  },
-  "2": {
-    recordId: "2",
-    isEditing: false,
-    columns: {
-      "1": {
-        fieldKind: "text",
-        value: "2024-01-01",
-      },
-      "2": {
-        fieldKind: "text",
-        value: "Amazon",
-      },
-      "3": {
-        fieldKind: "text",
-        value: "1234",
-      },
-      "4": {
-        fieldKind: "text",
-        value: "",
-      },
-      "5": {
-        fieldKind: "text",
-        value: "",
-      },
-      "6": {
-        fieldKind: "text",
-        value: "",
-      },
-      "7": {
-        fieldKind: "multipleText",
-        value: "memomemo",
-      },
-    },
-  },
 };
