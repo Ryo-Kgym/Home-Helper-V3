@@ -35,6 +35,8 @@ export const useCreateApp = () => {
     if (error) {
       throw error;
     }
+
+    return { appId };
   };
 
   return {
