@@ -1,0 +1,9 @@
+mutation insertImportFileRecords($objects: [ImportFileRecordInsertInput!]!) {
+  insertImportFileRecord(objects: $objects) {
+    __typename
+    affectedRows
+    returning {
+      id
+    }
+  }
+}

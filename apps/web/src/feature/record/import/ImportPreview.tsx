@@ -6,6 +6,7 @@ import { Table } from "@components/ui/v4/table";
 import { convertRecords } from "@feature/record/import/convert-records";
 import { loadImportFile } from "@feature/record/import/load-import-file";
 import { selectSingleFile } from "@feature/record/import/select-single-file";
+import { useInsertImportFileRecords } from "@feature/record/import/useInsertImportFileRecords";
 
 export const ImportPreview = ({
   app,
@@ -15,6 +16,11 @@ export const ImportPreview = ({
   importFileSettings: ImportFileSettings;
 }) => {
   const [previewRecords, setPreviewRecords] = useState<Records>({});
+  const [fileName, setFileName] = useState<string>("");
+
+  const { insertImportFileRecords } = useInsertImportFileRecords({
+    appId: app.id,
+  });
 
   const fileChangeHandler = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -27,15 +33,30 @@ export const ImportPreview = ({
 
     const records = convertRecords(data);
     setPreviewRecords(records);
+    setFileName(file.name);
 
     console.log("[converted records]", records);
+  };
+
+  const importClickHandler = async () => {
+    try {
+      await insertImportFileRecords(previewRecords, fileName);
+      setPreviewRecords({});
+      setFileName("");
+      alert("取込が完了しました");
+    } catch (e) {
+      console.error(e);
+      alert("取込に失敗しました");
+    }
   };
 
   return (
     <div>
       <div>プレビュー</div>
-      <div>
+      <div className={"flex space-x-4"}>
         <input type="file" accept=".csv" onChange={fileChangeHandler} />
+        <div>{fileName}</div>
+        <button onClick={importClickHandler}>取込</button>
       </div>
       <Table>
         <Table.Header

@@ -24,6 +24,7 @@ export type Scalars = {
   json: any;
   numeric: any;
   timestamp: any;
+  timestamptz: any;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -163,6 +164,7 @@ export type AppBoolExp = {
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
   importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
@@ -181,6 +183,7 @@ export type AppInsertInput = {
   fields?: InputMaybe<FieldArrRelInsertInput>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
   importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
   name?: InputMaybe<Scalars["String"]>;
   records?: InputMaybe<RecordArrRelInsertInput>;
@@ -224,6 +227,7 @@ export type AppOrderBy = {
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
   importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
   name?: InputMaybe<OrderBy>;
   recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
@@ -3523,6 +3527,247 @@ export type HouseholdTransferCategoryStreamCursorValueInput = {
   outcomeCategoryId?: InputMaybe<Scalars["String"]>;
 };
 
+/** Boolean expression to filter rows from the table "import_file_history". All fields are combined with a logical 'AND'. */
+export type ImportFileHistoryBoolExp = {
+  _and?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
+  _not?: InputMaybe<ImportFileHistoryBoolExp>;
+  _or?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
+  appId?: InputMaybe<StringComparisonExp>;
+  count?: InputMaybe<IntComparisonExp>;
+  fileName?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  importDatetime?: InputMaybe<TimestamptzComparisonExp>;
+};
+
+/** unique or primary key constraints on table "import_file_history" */
+export enum ImportFileHistoryConstraint {
+  /** unique or primary key constraint on columns "id" */
+  ImportFileHistoryPkey = "import_file_history_pkey",
+}
+
+/** input type for inserting data into table "import_file_history" */
+export type ImportFileHistoryInsertInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  count?: InputMaybe<Scalars["Int"]>;
+  fileName?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  importDatetime?: InputMaybe<Scalars["timestamptz"]>;
+};
+
+/** on_conflict condition type for table "import_file_history" */
+export type ImportFileHistoryOnConflict = {
+  constraint: ImportFileHistoryConstraint;
+  updateColumns?: Array<ImportFileHistoryUpdateColumn>;
+  where?: InputMaybe<ImportFileHistoryBoolExp>;
+};
+
+/** Ordering options when selecting data from "import_file_history". */
+export type ImportFileHistoryOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  fileName?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "import_file_history" */
+export enum ImportFileHistorySelectColumn {
+  /** column name */
+  AppId = "appId",
+  /** column name */
+  Count = "count",
+  /** column name */
+  FileName = "fileName",
+  /** column name */
+  Id = "id",
+  /** column name */
+  ImportDatetime = "importDatetime",
+}
+
+/** Streaming cursor of the table "import_file_history" */
+export type ImportFileHistoryStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ImportFileHistoryStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ImportFileHistoryStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  count?: InputMaybe<Scalars["Int"]>;
+  fileName?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  importDatetime?: InputMaybe<Scalars["timestamptz"]>;
+};
+
+/** placeholder for update columns of table "import_file_history" (current role has no relevant permissions) */
+export enum ImportFileHistoryUpdateColumn {
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
+}
+
+/** order by aggregate values of table "import_file_record" */
+export type ImportFileRecordAggregateOrderBy = {
+  avg?: InputMaybe<ImportFileRecordAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<ImportFileRecordMaxOrderBy>;
+  min?: InputMaybe<ImportFileRecordMinOrderBy>;
+  stddev?: InputMaybe<ImportFileRecordStddevOrderBy>;
+  stddevPop?: InputMaybe<ImportFileRecordStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<ImportFileRecordStddevSampOrderBy>;
+  sum?: InputMaybe<ImportFileRecordSumOrderBy>;
+  varPop?: InputMaybe<ImportFileRecordVarPopOrderBy>;
+  varSamp?: InputMaybe<ImportFileRecordVarSampOrderBy>;
+  variance?: InputMaybe<ImportFileRecordVarianceOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "import_file_record" */
+export type ImportFileRecordArrRelInsertInput = {
+  data: Array<ImportFileRecordInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileRecordOnConflict>;
+};
+
+/** order by avg() on columns of table "import_file_record" */
+export type ImportFileRecordAvgOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "import_file_record". All fields are combined with a logical 'AND'. */
+export type ImportFileRecordBoolExp = {
+  _and?: InputMaybe<Array<ImportFileRecordBoolExp>>;
+  _not?: InputMaybe<ImportFileRecordBoolExp>;
+  _or?: InputMaybe<Array<ImportFileRecordBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
+  appId?: InputMaybe<StringComparisonExp>;
+  columns?: InputMaybe<JsonComparisonExp>;
+  historyId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  index?: InputMaybe<IntComparisonExp>;
+};
+
+/** unique or primary key constraints on table "import_file_record" */
+export enum ImportFileRecordConstraint {
+  /** unique or primary key constraint on columns "id" */
+  ImportFileRecordPkey = "import_file_record_pkey",
+}
+
+/** input type for inserting data into table "import_file_record" */
+export type ImportFileRecordInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
+  appId?: InputMaybe<Scalars["String"]>;
+  columns?: InputMaybe<Scalars["json"]>;
+  historyId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  index?: InputMaybe<Scalars["Int"]>;
+};
+
+/** order by max() on columns of table "import_file_record" */
+export type ImportFileRecordMaxOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  historyId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "import_file_record" */
+export type ImportFileRecordMinOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  historyId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "import_file_record" */
+export type ImportFileRecordOnConflict = {
+  constraint: ImportFileRecordConstraint;
+  updateColumns?: Array<ImportFileRecordUpdateColumn>;
+  where?: InputMaybe<ImportFileRecordBoolExp>;
+};
+
+/** Ordering options when selecting data from "import_file_record". */
+export type ImportFileRecordOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
+  appId?: InputMaybe<OrderBy>;
+  columns?: InputMaybe<OrderBy>;
+  historyId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "import_file_record" */
+export enum ImportFileRecordSelectColumn {
+  /** column name */
+  AppId = "appId",
+  /** column name */
+  Columns = "columns",
+  /** column name */
+  HistoryId = "historyId",
+  /** column name */
+  Id = "id",
+  /** column name */
+  Index = "index",
+}
+
+/** order by stddev() on columns of table "import_file_record" */
+export type ImportFileRecordStddevOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "import_file_record" */
+export type ImportFileRecordStddevPopOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "import_file_record" */
+export type ImportFileRecordStddevSampOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** Streaming cursor of the table "import_file_record" */
+export type ImportFileRecordStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ImportFileRecordStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ImportFileRecordStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  columns?: InputMaybe<Scalars["json"]>;
+  historyId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  index?: InputMaybe<Scalars["Int"]>;
+};
+
+/** order by sum() on columns of table "import_file_record" */
+export type ImportFileRecordSumOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** placeholder for update columns of table "import_file_record" (current role has no relevant permissions) */
+export enum ImportFileRecordUpdateColumn {
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
+}
+
+/** order by varPop() on columns of table "import_file_record" */
+export type ImportFileRecordVarPopOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "import_file_record" */
+export type ImportFileRecordVarSampOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "import_file_record" */
+export type ImportFileRecordVarianceOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
 /** Boolean expression to filter rows from the table "import_file_setting". All fields are combined with a logical 'AND'. */
 export type ImportFileSettingBoolExp = {
   _and?: InputMaybe<Array<ImportFileSettingBoolExp>>;
@@ -3893,6 +4138,19 @@ export type TimestampComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["timestamp"]>>;
 };
 
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
+export type TimestamptzComparisonExp = {
+  _eq?: InputMaybe<Scalars["timestamptz"]>;
+  _gt?: InputMaybe<Scalars["timestamptz"]>;
+  _gte?: InputMaybe<Scalars["timestamptz"]>;
+  _in?: InputMaybe<Array<Scalars["timestamptz"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["timestamptz"]>;
+  _lte?: InputMaybe<Scalars["timestamptz"]>;
+  _neq?: InputMaybe<Scalars["timestamptz"]>;
+  _nin?: InputMaybe<Array<Scalars["timestamptz"]>>;
+};
+
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
 export type UserBoolExp = {
   _and?: InputMaybe<Array<UserBoolExp>>;
@@ -4161,6 +4419,35 @@ export type InsertAppMutation = {
   } | null;
 };
 
+export type InsertImportFileHistoryMutationVariables = Exact<{
+  id: Scalars["String"];
+  appId: Scalars["String"];
+  fileName: Scalars["String"];
+  importDatetime: Scalars["timestamptz"];
+  count: Scalars["Int"];
+}>;
+
+export type InsertImportFileHistoryMutation = {
+  __typename?: "mutation_root";
+  insertImportFileHistoryOne?: {
+    __typename?: "ImportFileHistory";
+    id: string;
+  } | null;
+};
+
+export type InsertImportFileRecordsMutationVariables = Exact<{
+  objects: Array<ImportFileRecordInsertInput> | ImportFileRecordInsertInput;
+}>;
+
+export type InsertImportFileRecordsMutation = {
+  __typename?: "mutation_root";
+  insertImportFileRecord?: {
+    __typename: "ImportFileRecordMutationResponse";
+    affectedRows: number;
+    returning: Array<{ __typename?: "ImportFileRecord"; id: string }>;
+  } | null;
+};
+
 export type InsertRecordMutationVariables = Exact<{
   id: Scalars["String"];
   appId: Scalars["String"];
@@ -4313,6 +4600,52 @@ export function useInsertAppMutation() {
   return Urql.useMutation<InsertAppMutation, InsertAppMutationVariables>(
     InsertAppDocument,
   );
+}
+export const InsertImportFileHistoryDocument = gql`
+  mutation insertImportFileHistory(
+    $id: String!
+    $appId: String!
+    $fileName: String!
+    $importDatetime: timestamptz!
+    $count: Int!
+  ) {
+    insertImportFileHistoryOne(
+      object: {
+        id: $id
+        appId: $appId
+        fileName: $fileName
+        importDatetime: $importDatetime
+        count: $count
+      }
+    ) {
+      id
+    }
+  }
+`;
+
+export function useInsertImportFileHistoryMutation() {
+  return Urql.useMutation<
+    InsertImportFileHistoryMutation,
+    InsertImportFileHistoryMutationVariables
+  >(InsertImportFileHistoryDocument);
+}
+export const InsertImportFileRecordsDocument = gql`
+  mutation insertImportFileRecords($objects: [ImportFileRecordInsertInput!]!) {
+    insertImportFileRecord(objects: $objects) {
+      __typename
+      affectedRows
+      returning {
+        id
+      }
+    }
+  }
+`;
+
+export function useInsertImportFileRecordsMutation() {
+  return Urql.useMutation<
+    InsertImportFileRecordsMutation,
+    InsertImportFileRecordsMutationVariables
+  >(InsertImportFileRecordsDocument);
 }
 export const InsertRecordDocument = gql`
   mutation insertRecord(
