@@ -1,8 +1,10 @@
-import { FileType } from "@provider/file/FileType";
-import { getSetting } from "@provider/file/loader/csv/CsvFileSetting";
+import type { CsvFileSetting } from "@provider/file/loader/csv/CsvFileSetting";
 import { decodeCsv, separateRows } from "@provider/file/loader/csv/loadCsvFile";
 
-export const loadImportFile = async (file: File) => {
+export const loadImportFile = async (
+  file: File,
+  importFileSettings: CsvFileSetting,
+) => {
   const {
     encodingTo,
     encodingFrom,
@@ -10,7 +12,7 @@ export const loadImportFile = async (file: File) => {
     splitSeparator,
     headerRows,
     footerRows,
-  } = getSetting(FileType.SMBC_CSV);
+  } = importFileSettings;
 
   const readFile = await file.stream().getReader().read();
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

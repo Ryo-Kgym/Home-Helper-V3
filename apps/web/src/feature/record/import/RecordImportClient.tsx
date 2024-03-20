@@ -1,6 +1,7 @@
 "use client";
 
 import type { App } from "@feature/app/schema";
+import type { CsvFileSetting } from "@provider/file/loader/csv/CsvFileSetting";
 import { Title } from "@components/ui/v4/frame/Title";
 import { RedirectListButton } from "@feature/app/modify/RedirectListButton";
 import { RedirectImportButton } from "@feature/record/list/RedirectImportButton";
@@ -9,7 +10,13 @@ import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButto
 import { ImportHistory } from "./ImportHistory";
 import { ImportPreview } from "./ImportPreview";
 
-export const RecordImportClient = ({ app }: { app: App }) => {
+export const RecordImportClient = ({
+  app,
+  importFileSettings,
+}: {
+  app: App;
+  importFileSettings: CsvFileSetting;
+}) => {
   return (
     <div className={"space-y-10"}>
       <Title>
@@ -19,7 +26,7 @@ export const RecordImportClient = ({ app }: { app: App }) => {
         <RedirectImportButton appId={app.id} />
       </Title>
       <ImportHistory />
-      <ImportPreview app={app} />
+      <ImportPreview app={app} importFileSettings={importFileSettings} />
     </div>
   );
 };

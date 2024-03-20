@@ -14,7 +14,7 @@ const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
       encodingType: "array",
       splitSeparator: "\r\n",
       headerRows: 0,
-      footerRows: 2,
+      footerRows: 1,
     },
   ],
   [
@@ -54,7 +54,7 @@ const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
   ],
 ]);
 
-type CsvFileSetting = {
+export type CsvFileSetting = {
   encodingTo: Encoding.Encoding;
   encodingFrom: Encoding.Encoding;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,13 +1,20 @@
 "use client";
 
 import type { App, Records } from "@feature/app/schema";
+import type { CsvFileSetting } from "@provider/file/loader/csv/CsvFileSetting";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";
 import { convertRecords } from "@feature/record/import/convert-records";
 import { loadImportFile } from "@feature/record/import/load-import-file";
 import { selectSingleFile } from "@feature/record/import/select-single-file";
 
-export const ImportPreview = ({ app }: { app: App }) => {
+export const ImportPreview = ({
+  app,
+  importFileSettings,
+}: {
+  app: App;
+  importFileSettings: CsvFileSetting;
+}) => {
   const [previewRecords, setPreviewRecords] = useState<Records>({});
 
   const fileChangeHandler = async (
@@ -16,7 +23,7 @@ export const ImportPreview = ({ app }: { app: App }) => {
     const { file, isEmpty } = selectSingleFile(event);
     if (isEmpty) return;
 
-    const { data } = await loadImportFile(file);
+    const { data } = await loadImportFile(file, importFileSettings);
     console.log("[load import file]", data);
 
     const records = convertRecords(data);
