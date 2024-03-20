@@ -2,10 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type Encoding from "encoding-japanese";
+import type { ImportFileSettings } from "@feature/app/schema";
 import { FileType } from "@provider/file/FileType";
 
-const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
+const CsvFileSettingMap = new Map<FileType, ImportFileSettings>([
   [
     FileType.SMBC_CSV,
     {
@@ -54,17 +54,6 @@ const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
   ],
 ]);
 
-export type CsvFileSetting = {
-  encodingTo: Encoding.Encoding;
-  encodingFrom: Encoding.Encoding;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  encodingType: any;
-  splitSeparator: string;
-  headerRows?: number;
-  footerRows?: number;
-  quotation?: string;
-};
-
-export const getSetting = (fileType: FileType): CsvFileSetting => {
+export const getSetting = (fileType: FileType): ImportFileSettings => {
   return CsvFileSettingMap.get(fileType)!;
 };

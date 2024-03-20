@@ -1,7 +1,6 @@
 "use client";
 
-import type { App, Records } from "@feature/app/schema";
-import type { CsvFileSetting } from "@provider/file/loader/csv/CsvFileSetting";
+import type { App, ImportFileSettings, Records } from "@feature/app/schema";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";
 import { convertRecords } from "@feature/record/import/convert-records";
@@ -13,7 +12,7 @@ export const ImportPreview = ({
   importFileSettings,
 }: {
   app: App;
-  importFileSettings: CsvFileSetting;
+  importFileSettings: ImportFileSettings;
 }) => {
   const [previewRecords, setPreviewRecords] = useState<Records>({});
 

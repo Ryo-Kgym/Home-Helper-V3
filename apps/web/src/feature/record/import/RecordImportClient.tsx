@@ -1,7 +1,6 @@
 "use client";
 
-import type { App } from "@feature/app/schema";
-import type { CsvFileSetting } from "@provider/file/loader/csv/CsvFileSetting";
+import type { App, ImportFileSettings } from "@feature/app/schema";
 import { Title } from "@components/ui/v4/frame/Title";
 import { RedirectListButton } from "@feature/app/modify/RedirectListButton";
 import { RedirectImportButton } from "@feature/record/list/RedirectImportButton";
@@ -15,7 +14,7 @@ export const RecordImportClient = ({
   importFileSettings,
 }: {
   app: App;
-  importFileSettings: CsvFileSetting;
+  importFileSettings: ImportFileSettings;
 }) => {
   return (
     <div className={"space-y-10"}>

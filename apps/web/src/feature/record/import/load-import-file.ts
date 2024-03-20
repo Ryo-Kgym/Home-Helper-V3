@@ -1,9 +1,9 @@
-import type { CsvFileSetting } from "@provider/file/loader/csv/CsvFileSetting";
+import type { ImportFileSettings } from "@feature/app/schema";
 import { decodeCsv, separateRows } from "@provider/file/loader/csv/loadCsvFile";
 
 export const loadImportFile = async (
   file: File,
-  importFileSettings: CsvFileSetting,
+  importFileSettings: ImportFileSettings,
 ) => {
   const {
     encodingTo,
@@ -12,6 +12,7 @@ export const loadImportFile = async (
     splitSeparator,
     headerRows,
     footerRows,
+    splitter,
   } = importFileSettings;
 
   const readFile = await file.stream().getReader().read();
@@ -19,7 +20,7 @@ export const loadImportFile = async (
   // @ts-expect-error
   const csv = decodeCsv(readFile, encodingTo, encodingFrom, encodingType);
   const rows = separateRows(csv, splitSeparator, headerRows, footerRows);
-  const data = rows.map((r) => r.split(","));
+  const data = rows.map((r) => r.split(splitter));
 
   return { data, rowLength: rows.length };
 };

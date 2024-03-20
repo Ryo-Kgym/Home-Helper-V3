@@ -163,6 +163,7 @@ export type AppBoolExp = {
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
   user?: InputMaybe<UserBoolExp>;
@@ -180,6 +181,7 @@ export type AppInsertInput = {
   fields?: InputMaybe<FieldArrRelInsertInput>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
   name?: InputMaybe<Scalars["String"]>;
   records?: InputMaybe<RecordArrRelInsertInput>;
   user?: InputMaybe<UserObjRelInsertInput>;
@@ -222,6 +224,7 @@ export type AppOrderBy = {
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
   name?: InputMaybe<OrderBy>;
   recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
   user?: InputMaybe<UserOrderBy>;
@@ -3520,6 +3523,95 @@ export type HouseholdTransferCategoryStreamCursorValueInput = {
   outcomeCategoryId?: InputMaybe<Scalars["String"]>;
 };
 
+/** Boolean expression to filter rows from the table "import_file_setting". All fields are combined with a logical 'AND'. */
+export type ImportFileSettingBoolExp = {
+  _and?: InputMaybe<Array<ImportFileSettingBoolExp>>;
+  _not?: InputMaybe<ImportFileSettingBoolExp>;
+  _or?: InputMaybe<Array<ImportFileSettingBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
+  appId?: InputMaybe<StringComparisonExp>;
+  settings?: InputMaybe<JsonComparisonExp>;
+};
+
+/** unique or primary key constraints on table "import_file_setting" */
+export enum ImportFileSettingConstraint {
+  /** unique or primary key constraint on columns "app_id" */
+  ImportFileSettingPkey = "import_file_setting_pkey",
+}
+
+/** input type for inserting data into table "import_file_setting" */
+export type ImportFileSettingInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
+  appId?: InputMaybe<Scalars["String"]>;
+  settings?: InputMaybe<Scalars["json"]>;
+};
+
+/** input type for inserting object relation for remote table "import_file_setting" */
+export type ImportFileSettingObjRelInsertInput = {
+  data: ImportFileSettingInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileSettingOnConflict>;
+};
+
+/** on_conflict condition type for table "import_file_setting" */
+export type ImportFileSettingOnConflict = {
+  constraint: ImportFileSettingConstraint;
+  updateColumns?: Array<ImportFileSettingUpdateColumn>;
+  where?: InputMaybe<ImportFileSettingBoolExp>;
+};
+
+/** Ordering options when selecting data from "import_file_setting". */
+export type ImportFileSettingOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
+  appId?: InputMaybe<OrderBy>;
+  settings?: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: import_file_setting */
+export type ImportFileSettingPkColumnsInput = {
+  appId: Scalars["String"];
+};
+
+/** select columns of table "import_file_setting" */
+export enum ImportFileSettingSelectColumn {
+  /** column name */
+  AppId = "appId",
+  /** column name */
+  Settings = "settings",
+}
+
+/** input type for updating data in table "import_file_setting" */
+export type ImportFileSettingSetInput = {
+  settings?: InputMaybe<Scalars["json"]>;
+};
+
+/** Streaming cursor of the table "import_file_setting" */
+export type ImportFileSettingStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ImportFileSettingStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ImportFileSettingStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  settings?: InputMaybe<Scalars["json"]>;
+};
+
+/** update columns of table "import_file_setting" */
+export enum ImportFileSettingUpdateColumn {
+  /** column name */
+  Settings = "settings",
+}
+
+export type ImportFileSettingUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ImportFileSettingSetInput>;
+  /** filter the rows which have to be updated */
+  where: ImportFileSettingBoolExp;
+};
+
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type IntComparisonExp = {
   _eq?: InputMaybe<Scalars["Int"]>;
@@ -4164,6 +4256,19 @@ export type GetApplicationsQuery = {
   } | null;
 };
 
+export type GetImportFileSettingsQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetImportFileSettingsQuery = {
+  __typename?: "query_root";
+  importFileSetting?: {
+    __typename: "ImportFileSetting";
+    settings: any;
+    id: string;
+  } | null;
+};
+
 export const DeleteRecordDocument = gql`
   mutation deleteRecord($recordId: String!) {
     deleteRecordByPk(id: $recordId) {
@@ -4332,4 +4437,25 @@ export function useGetApplicationsQuery(
     query: GetApplicationsDocument,
     ...options,
   });
+}
+export const GetImportFileSettingsDocument = gql`
+  query getImportFileSettings($appId: String!) {
+    importFileSetting: importFileSettingByPk(appId: $appId) {
+      __typename
+      id: appId
+      settings
+    }
+  }
+`;
+
+export function useGetImportFileSettingsQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetImportFileSettingsQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetImportFileSettingsQuery,
+    GetImportFileSettingsQueryVariables
+  >({ query: GetImportFileSettingsDocument, ...options });
 }
