@@ -7,6 +7,7 @@ import { Title } from "@components/ui/v4/frame/Title";
 import { Table } from "@components/ui/v4/table";
 import { AddRecordButton } from "@feature/record/list/AddRecordButton";
 import { RecordListRow } from "@feature/record/list/RecordListRow";
+import { RedirectImportButton } from "@feature/record/list/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
 
 export type RecordListMode = "add" | "modify" | "show";
@@ -49,6 +50,7 @@ export const RecordListClient = ({
           setRecords={setRecords}
           recordTemplate={recordTemplate}
         />
+        <RedirectImportButton appId={app.id} />
       </Title>
       <Table>
         <Table.Header headerItems={headerItems} />
