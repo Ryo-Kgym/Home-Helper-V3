@@ -12,9 +12,11 @@ import { ImportPreview } from "./ImportPreview";
 export const RecordImportClient = ({
   app,
   importFileSettings,
+  importHistories,
 }: {
   app: App;
   importFileSettings: ImportFileSettings;
+  importHistories: ImportHistory[];
 }) => {
   return (
     <div className={"space-y-10"}>
@@ -24,7 +26,7 @@ export const RecordImportClient = ({
         <RedirectListButton appId={app.id} />
         <RedirectImportButton appId={app.id} />
       </Title>
-      <ImportHistory />
+      <ImportHistory importHistories={importHistories} />
       <ImportPreview app={app} importFileSettings={importFileSettings} />
     </div>
   );

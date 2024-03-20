@@ -1,7 +1,0 @@
-query getImportFileSettings($appId: String!) {
-  importFileSetting: importFileSettingByPk(appId: $appId) {
-    __typename
-    id: appId
-    settings
-  }
-}

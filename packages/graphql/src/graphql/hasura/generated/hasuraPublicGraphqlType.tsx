@@ -159,6 +159,7 @@ export type AppBoolExp = {
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  importFileHistories?: InputMaybe<ImportFileHistoryBoolExp>;
   importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
   importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
@@ -177,6 +178,7 @@ export type AppInsertInput = {
   fields?: InputMaybe<FieldArrRelInsertInput>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  importFileHistories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
   importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
   importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
   name?: InputMaybe<Scalars["String"]>;
@@ -221,6 +223,7 @@ export type AppOrderBy = {
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  importFileHistoriesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
   importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
   importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
   name?: InputMaybe<OrderBy>;
@@ -3465,16 +3468,45 @@ export type HouseholdTransferCategoryStreamCursorValueInput = {
   outcomeCategoryId?: InputMaybe<Scalars["String"]>;
 };
 
+/** order by aggregate values of table "import_file_history" */
+export type ImportFileHistoryAggregateOrderBy = {
+  avg?: InputMaybe<ImportFileHistoryAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<ImportFileHistoryMaxOrderBy>;
+  min?: InputMaybe<ImportFileHistoryMinOrderBy>;
+  stddev?: InputMaybe<ImportFileHistoryStddevOrderBy>;
+  stddevPop?: InputMaybe<ImportFileHistoryStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<ImportFileHistoryStddevSampOrderBy>;
+  sum?: InputMaybe<ImportFileHistorySumOrderBy>;
+  varPop?: InputMaybe<ImportFileHistoryVarPopOrderBy>;
+  varSamp?: InputMaybe<ImportFileHistoryVarSampOrderBy>;
+  variance?: InputMaybe<ImportFileHistoryVarianceOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "import_file_history" */
+export type ImportFileHistoryArrRelInsertInput = {
+  data: Array<ImportFileHistoryInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
+};
+
+/** order by avg() on columns of table "import_file_history" */
+export type ImportFileHistoryAvgOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
 /** Boolean expression to filter rows from the table "import_file_history". All fields are combined with a logical 'AND'. */
 export type ImportFileHistoryBoolExp = {
   _and?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
   _not?: InputMaybe<ImportFileHistoryBoolExp>;
   _or?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
   count?: InputMaybe<IntComparisonExp>;
   fileName?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   importDatetime?: InputMaybe<TimestamptzComparisonExp>;
+  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
 };
 
 /** unique or primary key constraints on table "import_file_history" */
@@ -3484,11 +3516,38 @@ export type ImportFileHistoryConstraint =
 
 /** input type for inserting data into table "import_file_history" */
 export type ImportFileHistoryInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
   appId?: InputMaybe<Scalars["String"]>;
   count?: InputMaybe<Scalars["Int"]>;
   fileName?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   importDatetime?: InputMaybe<Scalars["timestamptz"]>;
+  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
+};
+
+/** order by max() on columns of table "import_file_history" */
+export type ImportFileHistoryMaxOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  fileName?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "import_file_history" */
+export type ImportFileHistoryMinOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  fileName?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+};
+
+/** input type for inserting object relation for remote table "import_file_history" */
+export type ImportFileHistoryObjRelInsertInput = {
+  data: ImportFileHistoryInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
 };
 
 /** on_conflict condition type for table "import_file_history" */
@@ -3500,11 +3559,13 @@ export type ImportFileHistoryOnConflict = {
 
 /** Ordering options when selecting data from "import_file_history". */
 export type ImportFileHistoryOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
   appId?: InputMaybe<OrderBy>;
   count?: InputMaybe<OrderBy>;
   fileName?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   importDatetime?: InputMaybe<OrderBy>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
 };
 
 /** select columns of table "import_file_history" */
@@ -3519,6 +3580,21 @@ export type ImportFileHistorySelectColumn =
   | "id"
   /** column name */
   | "importDatetime";
+
+/** order by stddev() on columns of table "import_file_history" */
+export type ImportFileHistoryStddevOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "import_file_history" */
+export type ImportFileHistoryStddevPopOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "import_file_history" */
+export type ImportFileHistoryStddevSampOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
 
 /** Streaming cursor of the table "import_file_history" */
 export type ImportFileHistoryStreamCursorInput = {
@@ -3537,10 +3613,30 @@ export type ImportFileHistoryStreamCursorValueInput = {
   importDatetime?: InputMaybe<Scalars["timestamptz"]>;
 };
 
+/** order by sum() on columns of table "import_file_history" */
+export type ImportFileHistorySumOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
 /** placeholder for update columns of table "import_file_history" (current role has no relevant permissions) */
 export type ImportFileHistoryUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
+
+/** order by varPop() on columns of table "import_file_history" */
+export type ImportFileHistoryVarPopOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "import_file_history" */
+export type ImportFileHistoryVarSampOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "import_file_history" */
+export type ImportFileHistoryVarianceOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
 
 /** order by aggregate values of table "import_file_record" */
 export type ImportFileRecordAggregateOrderBy = {
@@ -3579,6 +3675,7 @@ export type ImportFileRecordBoolExp = {
   columns?: InputMaybe<JsonComparisonExp>;
   historyId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  importFileHistory?: InputMaybe<ImportFileHistoryBoolExp>;
   index?: InputMaybe<IntComparisonExp>;
 };
 
@@ -3594,6 +3691,7 @@ export type ImportFileRecordInsertInput = {
   columns?: InputMaybe<Scalars["json"]>;
   historyId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  importFileHistory?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
   index?: InputMaybe<Scalars["Int"]>;
 };
 
@@ -3627,6 +3725,7 @@ export type ImportFileRecordOrderBy = {
   columns?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  importFileHistory?: InputMaybe<ImportFileHistoryOrderBy>;
   index?: InputMaybe<OrderBy>;
 };
 
@@ -4465,17 +4564,30 @@ export type GetApplicationsQuery = {
   } | null;
 };
 
-export type GetImportFileSettingsQueryVariables = Exact<{
+export type GetImportFileQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
 
-export type GetImportFileSettingsQuery = {
+export type GetImportFileQuery = {
   __typename?: "query_root";
   importFileSetting?: {
     __typename: "ImportFileSetting";
     settings: any;
     id: string;
   } | null;
+  importFileHistories: Array<{
+    __typename: "ImportFileHistory";
+    count: number;
+    fileName: string;
+    importDatetime: any;
+    id: string;
+    importFileRecords: Array<{
+      __typename: "ImportFileRecord";
+      id: string;
+      index: number;
+      columns: any;
+    }>;
+  }>;
 };
 
 export const DeleteRecordDocument = {
@@ -5575,13 +5687,13 @@ export const GetApplicationsDocument = {
   GetApplicationsQuery,
   GetApplicationsQueryVariables
 >;
-export const GetImportFileSettingsDocument = {
+export const GetImportFileDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "getImportFileSettings" },
+      name: { kind: "Name", value: "getImportFile" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -5628,11 +5740,91 @@ export const GetImportFileSettingsDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "importFileHistories" },
+            name: { kind: "Name", value: "importFileHistory" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "importDatetime" },
+                      value: { kind: "EnumValue", value: "DESC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "id" },
+                  name: { kind: "Name", value: "appId" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+                { kind: "Field", name: { kind: "Name", value: "fileName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importDatetime" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importFileRecords" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "index" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "columns" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
   ],
-} as unknown as DocumentNode<
-  GetImportFileSettingsQuery,
-  GetImportFileSettingsQueryVariables
->;
+} as unknown as DocumentNode<GetImportFileQuery, GetImportFileQueryVariables>;

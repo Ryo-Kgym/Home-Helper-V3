@@ -1,10 +1,7 @@
 import { importFileSettingsSchema } from "@feature/app/schema/import-file-settings-schema";
 import { convertToApp } from "@feature/record/list/convert-to-app";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
-import {
-  GetAppDocument,
-  GetImportFileSettingsDocument,
-} from "@v3/graphql/public/type";
+import { GetAppDocument, GetImportFileDocument } from "@v3/graphql/public/type";
 
 import { RecordImportClient } from "./RecordImportClient";
 
@@ -12,17 +9,24 @@ export const RecordImportServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });
   const app = convertToApp(data);
 
-  const { data: settingData } = await fetchQuery(
-    GetImportFileSettingsDocument,
-    {
-      appId,
-    },
-  );
+  const { data: importFileData } = await fetchQuery(GetImportFileDocument, {
+    appId,
+  });
   const importFileSettings = importFileSettingsSchema.parse(
-    settingData.importFileSetting?.settings,
+    importFileData.importFileSetting?.settings,
   );
 
+  const importHistories = importFileData.importFileHistories.map((h) => ({
+    importDate: h.importDatetime,
+    fileName: h.fileName,
+    importCount: h.count,
+  }));
+
   return (
-    <RecordImportClient app={app} importFileSettings={importFileSettings} />
+    <RecordImportClient
+      app={app}
+      importFileSettings={importFileSettings}
+      importHistories={importHistories}
+    />
   );
 };
