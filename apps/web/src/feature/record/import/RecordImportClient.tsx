@@ -6,6 +6,9 @@ import { RedirectListButton } from "@feature/app/modify/RedirectListButton";
 import { RedirectImportButton } from "@feature/record/list/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
 
+import { ImportHistory } from "./ImportHistory";
+import { ImportPreview } from "./ImportPreview";
+
 export const RecordImportClient = ({ app }: { app: App }) => {
   return (
     <div className={"space-y-10"}>
@@ -15,6 +18,8 @@ export const RecordImportClient = ({ app }: { app: App }) => {
         <RedirectListButton appId={app.id} />
         <RedirectImportButton appId={app.id} />
       </Title>
+      <ImportHistory />
+      <ImportPreview app={app} />
     </div>
   );
 };
