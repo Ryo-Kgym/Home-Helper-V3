@@ -8,8 +8,8 @@ query getImportFile($appId: String!) {
     where: { appId: { _eq: $appId } }
     orderBy: { importDatetime: DESC }
   ) {
+    id
     __typename
-    id: appId
     count
     fileName
     importDatetime

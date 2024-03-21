@@ -1,13 +1,20 @@
-import type { ImportHistoryType, Records } from "@feature/app/schema";
+import type { ImportFileHistory, Records } from "@feature/app/schema";
 import { Table } from "@components/ui/v4/table";
 
-export const ImportHistory = ({
+export const ImportHistoryList = ({
   importHistories,
+  setPreviewRecords,
 }: {
-  importHistories: ImportHistoryType[];
+  importHistories: ImportFileHistory[];
   setPreviewRecords: (records: Records) => void;
 }) => {
-  const fetchImportFileRecords = async () => {};
+  const fetchImportFileRecords = async (historyId: string) => {
+    const history = importHistories.find((h) => h.id === historyId);
+    if (!history) {
+      return;
+    }
+    setPreviewRecords(history.importFileRecords);
+  };
 
   return (
     <div>
@@ -31,7 +38,9 @@ export const ImportHistory = ({
               <Table.BodyTd>{item.fileName}</Table.BodyTd>
               <Table.BodyTd>{item.importCount}</Table.BodyTd>
               <Table.BodyTd>
-                <button onClick={fetchImportFileRecords}>表示</button>
+                <button onClick={() => fetchImportFileRecords(item.id)}>
+                  表示
+                </button>
               </Table.BodyTd>
             </>
           )}

@@ -2,8 +2,8 @@
 
 import type {
   App,
+  ImportFileHistory,
   ImportFileSettings,
-  ImportHistoryType,
   Records,
 } from "@feature/app/schema";
 import { useState } from "react";
@@ -12,7 +12,7 @@ import { RedirectListButton } from "@feature/app/modify/RedirectListButton";
 import { RedirectImportButton } from "@feature/record/list/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
 
-import { ImportHistory } from "./ImportHistory";
+import { ImportHistoryList } from "./ImportHistoryList";
 import { ImportPreview } from "./ImportPreview";
 
 export const RecordImportClient = ({
@@ -22,7 +22,7 @@ export const RecordImportClient = ({
 }: {
   app: App;
   importFileSettings: ImportFileSettings;
-  importHistories: ImportHistoryType[];
+  importHistories: ImportFileHistory[];
 }) => {
   const [previewRecords, setPreviewRecords] = useState<Records>({});
   return (
@@ -33,7 +33,7 @@ export const RecordImportClient = ({
         <RedirectListButton appId={app.id} />
         <RedirectImportButton appId={app.id} />
       </Title>
-      <ImportHistory
+      <ImportHistoryList
         importHistories={importHistories}
         setPreviewRecords={setPreviewRecords}
       />

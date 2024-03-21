@@ -4655,10 +4655,10 @@ export type GetImportFileQuery = {
   } | null;
   importFileHistories: Array<{
     __typename: "ImportFileHistory";
+    id: string;
     count: number;
     fileName: string;
     importDatetime: any;
-    id: string;
     importFileRecords: Array<{
       __typename: "ImportFileRecord";
       id: string;
@@ -4894,8 +4894,8 @@ export const GetImportFileDocument = gql`
       where: { appId: { _eq: $appId } }
       orderBy: { importDatetime: DESC }
     ) {
+      id
       __typename
-      id: appId
       count
       fileName
       importDatetime

@@ -4577,10 +4577,10 @@ export type GetImportFileQuery = {
   } | null;
   importFileHistories: Array<{
     __typename: "ImportFileHistory";
+    id: string;
     count: number;
     fileName: string;
     importDatetime: any;
-    id: string;
     importFileRecords: Array<{
       __typename: "ImportFileRecord";
       id: string;
@@ -5789,12 +5789,8 @@ export const GetImportFileDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "id" },
-                  name: { kind: "Name", value: "appId" },
-                },
                 { kind: "Field", name: { kind: "Name", value: "count" } },
                 { kind: "Field", name: { kind: "Name", value: "fileName" } },
                 {

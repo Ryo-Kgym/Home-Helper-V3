@@ -1,3 +1,4 @@
+import { recordSchema } from "@feature/app/schema";
 import { importFileSettingsSchema } from "@feature/app/schema/import-file-settings-schema";
 import { convertToApp } from "@feature/record/list/convert-to-app";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
@@ -17,9 +18,20 @@ export const RecordImportServer = async ({ appId }: { appId: string }) => {
   );
 
   const importHistories = importFileData.importFileHistories.map((h) => ({
+    id: h.id,
     importDate: h.importDatetime,
     fileName: h.fileName,
     importCount: h.count,
+    importFileRecords: Object.fromEntries(
+      h.importFileRecords.map((r) => [
+        r.index,
+        {
+          recordId: r.id,
+          isEditing: false,
+          columns: recordSchema.parse(r.columns),
+        },
+      ]),
+    ),
   }));
 
   return (
