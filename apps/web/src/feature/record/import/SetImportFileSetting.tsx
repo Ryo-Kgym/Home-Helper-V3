@@ -6,6 +6,7 @@ import { EncodingSelect } from "@feature/record/import/EncodingSelect";
 import { EncodingTypeSelect } from "@feature/record/import/EncodingTypeSelect";
 import { LineBreakCodeSelect } from "@feature/record/import/LineBreakCodeSelect";
 import { QuotationSelect } from "@feature/record/import/QuotationSelect";
+import { SplitterSelect } from "@feature/record/import/SplitterSelect";
 
 export const SetImportFileSetting = ({
   appId,
@@ -57,6 +58,12 @@ export const SetImportFileSetting = ({
         <QuotationSelect
           value={settings.quotation}
           setValue={(value) => setSettings({ ...settings, quotation: value })}
+        />
+      </Section>
+      <Section title={"区切り文字"}>
+        <SplitterSelect
+          value={settings.splitter}
+          setValue={(value) => setSettings({ ...settings, splitter: value })}
         />
       </Section>
 
