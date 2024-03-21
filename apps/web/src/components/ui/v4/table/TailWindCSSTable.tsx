@@ -32,6 +32,13 @@ const Body = <T,>({
         {renderItem(item)}
       </tr>
     ))}
+    {data.length === 0 && (
+      <tr>
+        <td colSpan={100} className={"border border-gray-300 p-2 text-center"}>
+          No data
+        </td>
+      </tr>
+    )}
   </tbody>
 );
 
