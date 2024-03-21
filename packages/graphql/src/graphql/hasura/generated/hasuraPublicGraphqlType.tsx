@@ -4414,6 +4414,22 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type DeleteImportFileHistoryMutationVariables = Exact<{
+  historyId: Scalars["String"];
+}>;
+
+export type DeleteImportFileHistoryMutation = {
+  __typename?: "mutation_root";
+  deleteImportFileRecord?: {
+    __typename: "ImportFileRecordMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteImportFileHistoryByPk?: {
+    __typename: "ImportFileHistory";
+    id: string;
+  } | null;
+};
+
 export type DeleteRecordMutationVariables = Exact<{
   recordId: Scalars["String"];
 }>;
@@ -4606,6 +4622,103 @@ export type GetImportFileQuery = {
   }>;
 };
 
+export const DeleteImportFileHistoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "deleteImportFileHistory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "historyId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteImportFileRecord" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "historyId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "historyId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteImportFileHistoryByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "historyId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  DeleteImportFileHistoryMutation,
+  DeleteImportFileHistoryMutationVariables
+>;
 export const DeleteRecordDocument = {
   kind: "Document",
   definitions: [

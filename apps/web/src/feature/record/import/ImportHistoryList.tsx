@@ -1,16 +1,19 @@
 import type { ImportFileHistory, Records } from "@feature/app/schema";
 import { Button } from "@components/ui/v4/button";
 import { Table } from "@components/ui/v4/table";
+import { DeleteImportFileHistoryButton } from "@feature/record/import/DeleteImportFileHistoryButton";
 
 export const ImportHistoryList = ({
-  importHistories,
+  histories,
+  setHistories,
   setPreviewRecords,
 }: {
-  importHistories: ImportFileHistory[];
+  histories: ImportFileHistory[];
+  setHistories: (histories: ImportFileHistory[]) => void;
   setPreviewRecords: (records: Records) => void;
 }) => {
   const fetchImportFileRecords = async (historyId: string) => {
-    const history = importHistories.find((h) => h.id === historyId);
+    const history = histories.find((h) => h.id === historyId);
     if (!history) {
       return;
     }
@@ -25,24 +28,32 @@ export const ImportHistoryList = ({
           headerItems={[
             { name: "取込日時" },
             { name: "ファイル名" },
-            { name: "取込件数" },
+            { name: "件数" },
             { name: "表示" },
+            { name: "削除" },
           ]}
         />
         <Table.Body
-          data={importHistories}
-          renderItem={(item) => (
+          data={histories}
+          renderItem={(history) => (
             <>
               <Table.BodyTd>
-                {new Date(item.importDate).toISOString()}
+                {new Date(history.importDate).toISOString()}
               </Table.BodyTd>
-              <Table.BodyTd>{item.fileName}</Table.BodyTd>
-              <Table.BodyTd>{item.importCount}</Table.BodyTd>
-              <Table.BodyTd>
+              <Table.BodyTd>{history.fileName}</Table.BodyTd>
+              <Table.BodyTd align={"right"}>{history.importCount}</Table.BodyTd>
+              <Table.BodyTd align={"center"}>
                 <Button
                   type="display"
                   label="表示"
-                  clickHandler={() => fetchImportFileRecords(item.id)}
+                  clickHandler={() => fetchImportFileRecords(history.id)}
+                />
+              </Table.BodyTd>
+              <Table.BodyTd align={"center"}>
+                <DeleteImportFileHistoryButton
+                  historyId={history.id}
+                  histories={histories}
+                  setHistories={setHistories}
                 />
               </Table.BodyTd>
             </>

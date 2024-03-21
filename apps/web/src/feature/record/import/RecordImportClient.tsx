@@ -43,7 +43,8 @@ export const RecordImportClient = ({
           <RedirectImportButton appId={app.id} />
         </Title>
         <ImportHistoryList
-          importHistories={histories}
+          histories={histories}
+          setHistories={setHistories}
           setPreviewRecords={setPreviewRecords}
         />
         <ImportPreview

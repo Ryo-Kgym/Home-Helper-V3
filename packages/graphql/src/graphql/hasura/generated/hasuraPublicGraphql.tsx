@@ -4492,6 +4492,22 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type DeleteImportFileHistoryMutationVariables = Exact<{
+  historyId: Scalars["String"];
+}>;
+
+export type DeleteImportFileHistoryMutation = {
+  __typename?: "mutation_root";
+  deleteImportFileRecord?: {
+    __typename: "ImportFileRecordMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteImportFileHistoryByPk?: {
+    __typename: "ImportFileHistory";
+    id: string;
+  } | null;
+};
+
 export type DeleteRecordMutationVariables = Exact<{
   recordId: Scalars["String"];
 }>;
@@ -4684,6 +4700,25 @@ export type GetImportFileQuery = {
   }>;
 };
 
+export const DeleteImportFileHistoryDocument = gql`
+  mutation deleteImportFileHistory($historyId: String!) {
+    deleteImportFileRecord(where: { historyId: { _eq: $historyId } }) {
+      __typename
+      affectedRows
+    }
+    deleteImportFileHistoryByPk(id: $historyId) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useDeleteImportFileHistoryMutation() {
+  return Urql.useMutation<
+    DeleteImportFileHistoryMutation,
+    DeleteImportFileHistoryMutationVariables
+  >(DeleteImportFileHistoryDocument);
+}
 export const DeleteRecordDocument = gql`
   mutation deleteRecord($recordId: String!) {
     deleteRecordByPk(id: $recordId) {
