@@ -27,15 +27,26 @@ const encodingSchema = z.enum([
 
 const encodingTypeSchema = z.enum(["array"]);
 
-export const importFileSettingsSchema = z.object({
-  encodingTo: encodingSchema,
-  encodingFrom: encodingSchema,
-  encodingType: encodingTypeSchema,
-  splitSeparator: z.string(),
-  headerRows: z.number().default(0),
-  footerRows: z.number().default(0),
-  quotation: z.string().default(""),
-  splitter: z.string().default(","),
-});
+export const importFileSettingsSchema = z
+  .object({
+    encodingTo: encodingSchema,
+    encodingFrom: encodingSchema,
+    encodingType: encodingTypeSchema,
+    splitSeparator: z.string(),
+    headerRows: z.number(),
+    footerRows: z.number(),
+    quotation: z.string().default(""),
+    splitter: z.string().default(","),
+  })
+  .default({
+    encodingTo: "UNICODE",
+    encodingFrom: "UTF8",
+    encodingType: "array",
+    splitSeparator: "\n",
+    headerRows: 0,
+    footerRows: 0,
+    quotation: '"',
+    splitter: ",",
+  });
 
 export type ImportFileSettings = z.infer<typeof importFileSettingsSchema>;
