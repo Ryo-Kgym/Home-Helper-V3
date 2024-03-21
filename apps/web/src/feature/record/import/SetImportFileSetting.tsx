@@ -2,6 +2,7 @@ import type { ImportFileSettings } from "@feature/app/schema";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
+import { NumberInput } from "@components/ui/v4/textInput";
 import { EncodingSelect } from "@feature/record/import/EncodingSelect";
 import { EncodingTypeSelect } from "@feature/record/import/EncodingTypeSelect";
 import { LineBreakCodeSelect } from "@feature/record/import/LineBreakCodeSelect";
@@ -52,6 +53,24 @@ export const SetImportFileSetting = ({
           setValue={(value) =>
             setSettings({ ...settings, splitSeparator: value })
           }
+        />
+      </Section>
+      <Section title={"ヘッダー行数"}>
+        <NumberInput
+          value={settings.headerRows}
+          setValue={(value) =>
+            setSettings({ ...settings, headerRows: value ? value : 0 })
+          }
+          label={""}
+        />
+      </Section>
+      <Section title={"フッター"}>
+        <NumberInput
+          value={settings.footerRows}
+          setValue={(value) =>
+            setSettings({ ...settings, footerRows: value ? value : 0 })
+          }
+          label={""}
         />
       </Section>
       <Section title={"引用符"}>
