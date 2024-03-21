@@ -25,7 +25,11 @@ const encodingSchema = z.enum([
   "AUTO",
 ]);
 
+export type Encoding = z.infer<typeof encodingSchema>;
+
 const encodingTypeSchema = z.enum(["array"]);
+
+export type EncodingType = z.infer<typeof encodingTypeSchema>;
 
 export const importFileSettingsSchema = z
   .object({
