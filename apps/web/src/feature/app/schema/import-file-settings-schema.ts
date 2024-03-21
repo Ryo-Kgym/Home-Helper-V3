@@ -31,16 +31,28 @@ const encodingTypeSchema = z.enum(["array"]);
 
 export type EncodingType = z.infer<typeof encodingTypeSchema>;
 
+const lineBreakCodeSchema = z.enum(["\n", "\r\n"]);
+
+export type LineBreakCode = z.infer<typeof lineBreakCodeSchema>;
+
+const quotationSchema = z.enum(["", '"', "'"]);
+
+export type Quotation = z.infer<typeof quotationSchema>;
+
+const splitterSchema = z.enum([",", ";", "\t"]);
+
+export type Splitter = z.infer<typeof splitterSchema>;
+
 export const importFileSettingsSchema = z
   .object({
     encodingTo: encodingSchema,
     encodingFrom: encodingSchema,
     encodingType: encodingTypeSchema,
-    splitSeparator: z.string(),
-    headerRows: z.number(),
-    footerRows: z.number(),
-    quotation: z.string().default(""),
-    splitter: z.string().default(","),
+    splitSeparator: lineBreakCodeSchema,
+    headerRows: z.number().min(0),
+    footerRows: z.number().min(0),
+    quotation: quotationSchema.default(""),
+    splitter: splitterSchema.default(","),
   })
   .default({
     encodingTo: "UNICODE",
@@ -49,7 +61,7 @@ export const importFileSettingsSchema = z
     splitSeparator: "\n",
     headerRows: 0,
     footerRows: 0,
-    quotation: '"',
+    quotation: "",
     splitter: ",",
   });
 

@@ -13,6 +13,9 @@ export const RecordImportServer = async ({ appId }: { appId: string }) => {
   const { data: importFileData } = await fetchQuery(GetImportFileDocument, {
     appId,
   });
+
+  const requiredInitializeSettings = !importFileData.importFileSetting;
+
   const importFileSettings = importFileSettingsSchema.parse(
     importFileData.importFileSetting?.settings,
   );
@@ -39,6 +42,7 @@ export const RecordImportServer = async ({ appId }: { appId: string }) => {
       app={app}
       importFileSettings={importFileSettings}
       importHistories={importHistories}
+      requiredInitializeSettings={requiredInitializeSettings}
     />
   );
 };

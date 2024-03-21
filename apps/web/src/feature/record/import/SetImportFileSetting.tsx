@@ -1,28 +1,56 @@
-import type { Encoding, EncodingType } from "@feature/app/schema";
+import type { ImportFileSettings } from "@feature/app/schema";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { EncodingSelect } from "@feature/record/import/EncodingSelect";
 import { EncodingTypeSelect } from "@feature/record/import/EncodingTypeSelect";
+import { LineBreakCodeSelect } from "@feature/record/import/LineBreakCodeSelect";
 
-export const SetImportFileSetting = ({ appId }: { appId: string }) => {
-  const [encodingFrom, setEncodingFrom] = useState<Encoding>("UNICODE");
-  const [encodingTo, setEncodingTo] = useState<Encoding>("UNICODE");
-  const [type, setType] = useState<EncodingType>("array");
+export const SetImportFileSetting = ({
+  appId,
+  importFileSettings: defaultSettings,
+}: {
+  appId: string;
+  importFileSettings: ImportFileSettings;
+}) => {
+  const [settings, setSettings] = useState<ImportFileSettings>(defaultSettings);
 
-  const setHandler = () => {};
+  const setHandler = () => {
+    appId;
+  };
 
   return (
     <div className={"space-y-5"}>
       <div>ファイル取込設定</div>
       <Section title={"変換前エンコード"}>
-        <EncodingSelect value={encodingFrom} setValue={setEncodingFrom} />
+        <EncodingSelect
+          value={settings.encodingFrom}
+          setValue={(value) =>
+            setSettings({ ...settings, encodingFrom: value })
+          }
+        />
       </Section>
       <Section title={"変換後エンコード"}>
-        <EncodingSelect value={encodingTo} setValue={setEncodingTo} />
+        <EncodingSelect
+          value={settings.encodingTo}
+          setValue={(value) => setSettings({ ...settings, encodingTo: value })}
+        />
       </Section>
       <Section title={"タイプ"}>
-        <EncodingTypeSelect value={type} setValue={setType} />
+        <EncodingTypeSelect
+          value={settings.encodingType}
+          setValue={(value) =>
+            setSettings({ ...settings, encodingType: value })
+          }
+        />
+      </Section>
+      <Section title={"改行コード"}>
+        <LineBreakCodeSelect
+          value={settings.splitSeparator}
+          setValue={(value) =>
+            setSettings({ ...settings, splitSeparator: value })
+          }
+        />
       </Section>
 
       <Button label={"設定"} clickHandler={setHandler} type={"modify"} />
