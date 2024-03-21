@@ -20,7 +20,7 @@ import { ImportPreview } from "./ImportPreview";
 export const RecordImportClient = ({
   app,
   importFileSettings,
-  importHistories,
+  importHistories: defaultImportHistories,
   requiredInitializeSettings,
 }: {
   app: App;
@@ -28,6 +28,9 @@ export const RecordImportClient = ({
   importHistories: ImportFileHistory[];
   requiredInitializeSettings: boolean;
 }) => {
+  const [histories, setHistories] = useState<ImportFileHistory[]>(
+    defaultImportHistories,
+  );
   const [previewRecords, setPreviewRecords] = useState<Records>({});
   const [isOpen, setIsOpen] = useState<boolean>(requiredInitializeSettings);
   return (
@@ -40,13 +43,15 @@ export const RecordImportClient = ({
           <RedirectImportButton appId={app.id} />
         </Title>
         <ImportHistoryList
-          importHistories={importHistories}
+          importHistories={histories}
           setPreviewRecords={setPreviewRecords}
         />
         <ImportPreview
           app={app}
           importFileSettings={importFileSettings}
           previewRecords={previewRecords}
+          histories={histories}
+          setHistories={setHistories}
           setPreviewRecords={setPreviewRecords}
         />
       </div>

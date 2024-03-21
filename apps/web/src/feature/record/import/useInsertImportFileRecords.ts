@@ -1,4 +1,4 @@
-import type { Records } from "@feature/app/schema";
+import type { ImportFileHistory, Records } from "@feature/app/schema";
 import { generateId } from "@feature/app/function/generate-id";
 import {
   useInsertImportFileHistoryMutation,
@@ -15,7 +15,7 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   ) => {
     const historyId = generateId();
 
-    const { error: historyError } = await mutHistory({
+    const { data, error: historyError } = await mutHistory({
       id: historyId,
       appId,
       fileName,
@@ -38,6 +38,20 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
     if (recordsError) {
       throw recordsError;
     }
+
+    if (!data?.insertImportFileHistoryOne) {
+      throw new Error("insertImportFileHistoryOne is not found");
+    }
+
+    const importFileHistory: ImportFileHistory = {
+      id: historyId,
+      importDate: data.insertImportFileHistoryOne.importDatetime ?? new Date(),
+      fileName,
+      importCount: data.insertImportFileHistoryOne.count ?? 0,
+      importFileRecords: records,
+    };
+
+    return { importFileHistory };
   };
 
   return { insertImportFileRecords };

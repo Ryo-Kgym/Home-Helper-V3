@@ -4531,6 +4531,9 @@ export type InsertImportFileHistoryMutation = {
   insertImportFileHistoryOne?: {
     __typename?: "ImportFileHistory";
     id: string;
+    fileName: string;
+    importDatetime: any;
+    count: number;
   } | null;
 };
 
@@ -4744,6 +4747,9 @@ export const InsertImportFileHistoryDocument = gql`
       }
     ) {
       id
+      fileName
+      importDatetime
+      count
     }
   }
 `;

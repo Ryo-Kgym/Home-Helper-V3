@@ -15,5 +15,8 @@ mutation insertImportFileHistory(
     }
   ) {
     id
+    fileName
+    importDatetime
+    count
   }
 }

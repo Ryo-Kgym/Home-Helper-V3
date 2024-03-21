@@ -4453,6 +4453,9 @@ export type InsertImportFileHistoryMutation = {
   insertImportFileHistoryOne?: {
     __typename?: "ImportFileHistory";
     id: string;
+    fileName: string;
+    importDatetime: any;
+    count: number;
   } | null;
 };
 
@@ -4957,6 +4960,12 @@ export const InsertImportFileHistoryDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "fileName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importDatetime" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
               ],
             },
           },

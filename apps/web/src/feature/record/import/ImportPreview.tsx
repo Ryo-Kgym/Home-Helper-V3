@@ -1,6 +1,11 @@
 "use client";
 
-import type { App, ImportFileSettings, Records } from "@feature/app/schema";
+import type {
+  App,
+  ImportFileHistory,
+  ImportFileSettings,
+  Records,
+} from "@feature/app/schema";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";
 import { convertRecords } from "@feature/record/import/convert-records";
@@ -12,11 +17,15 @@ export const ImportPreview = ({
   app,
   importFileSettings,
   previewRecords,
+  histories,
+  setHistories,
   setPreviewRecords,
 }: {
   app: App;
   importFileSettings: ImportFileSettings;
   previewRecords: Records;
+  histories: ImportFileHistory[];
+  setHistories: (histories: ImportFileHistory[]) => void;
   setPreviewRecords: (records: Records) => void;
 }) => {
   const [fileName, setFileName] = useState<string>("");
@@ -43,9 +52,13 @@ export const ImportPreview = ({
 
   const importClickHandler = async () => {
     try {
-      await insertImportFileRecords(previewRecords, fileName);
+      const { importFileHistory } = await insertImportFileRecords(
+        previewRecords,
+        fileName,
+      );
       setPreviewRecords({});
       setFileName("");
+      setHistories([...histories, importFileHistory]);
       alert("取込が完了しました");
     } catch (e) {
       console.error(e);
