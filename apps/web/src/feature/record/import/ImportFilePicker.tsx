@@ -3,7 +3,8 @@ import type {
   ImportFileSettings,
   Records,
 } from "@feature/app/schema";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Button } from "@components/ui/v4/button";
 import { convertRecords } from "@feature/record/import/convert-records";
 import { loadImportFile } from "@feature/record/import/load-import-file";
 import { selectSingleFile } from "@feature/record/import/select-single-file";
@@ -25,6 +26,7 @@ export const ImportFilePicker = ({
   setPreviewRecords: (records: Records) => void;
 }) => {
   const [fileName, setFileName] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { insertImportFileRecords } = useInsertImportFileRecords({
     appId: appId,
@@ -62,11 +64,33 @@ export const ImportFilePicker = ({
     }
   };
 
+  const resetClickHandler = () => {
+    setPreviewRecords({});
+    setFileName("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   return (
-    <div className={"flex space-x-4"}>
-      <input type="file" accept=".csv" onChange={fileChangeHandler} />
-      <div>{fileName}</div>
-      <button onClick={importClickHandler}>取込</button>
+    <div className={"flex items-center space-x-4"}>
+      <input
+        type="file"
+        ref={fileInputRef}
+        accept=".csv"
+        onChange={fileChangeHandler}
+      />
+      <Button
+        label={"取込"}
+        clickHandler={importClickHandler}
+        type={"add"}
+        disabled={Object.keys(previewRecords).length === 0}
+      />
+      <Button
+        label={"リセット"}
+        clickHandler={resetClickHandler}
+        type={"reset"}
+      />
     </div>
   );
 };
