@@ -11,11 +11,14 @@ import { useInsertImportFileRecords } from "@feature/record/import/useInsertImpo
 export const ImportPreview = ({
   app,
   importFileSettings,
+  previewRecords,
+  setPreviewRecords,
 }: {
   app: App;
   importFileSettings: ImportFileSettings;
+  previewRecords: Records;
+  setPreviewRecords: (records: Records) => void;
 }) => {
-  const [previewRecords, setPreviewRecords] = useState<Records>({});
   const [fileName, setFileName] = useState<string>("");
 
   const { insertImportFileRecords } = useInsertImportFileRecords({
