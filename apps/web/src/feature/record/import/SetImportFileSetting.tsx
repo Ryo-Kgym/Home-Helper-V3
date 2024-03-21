@@ -5,6 +5,7 @@ import { Button } from "@components/ui/v4/button";
 import { EncodingSelect } from "@feature/record/import/EncodingSelect";
 import { EncodingTypeSelect } from "@feature/record/import/EncodingTypeSelect";
 import { LineBreakCodeSelect } from "@feature/record/import/LineBreakCodeSelect";
+import { QuotationSelect } from "@feature/record/import/QuotationSelect";
 
 export const SetImportFileSetting = ({
   appId,
@@ -50,6 +51,12 @@ export const SetImportFileSetting = ({
           setValue={(value) =>
             setSettings({ ...settings, splitSeparator: value })
           }
+        />
+      </Section>
+      <Section title={"引用符"}>
+        <QuotationSelect
+          value={settings.quotation}
+          setValue={(value) => setSettings({ ...settings, quotation: value })}
         />
       </Section>
 
