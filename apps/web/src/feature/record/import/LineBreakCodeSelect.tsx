@@ -10,9 +10,9 @@ export const LineBreakCodeSelect = ({
 }) => {
   return (
     <Select
-      data={Object.entries(lineBreakCodeArray).map(([k, v]) => ({
-        value: v,
-        label: `${k}`,
+      data={Object.values(lineBreakCodeArray).map((v) => ({
+        value: v.value,
+        label: v.label,
       }))}
       label={""}
       value={value}
@@ -21,7 +21,16 @@ export const LineBreakCodeSelect = ({
   );
 };
 
-const lineBreakCodeArray: Record<string, LineBreakCode> = {
-  LF: "\n",
-  CRLF: "\r\n",
+const lineBreakCodeArray: Record<
+  string,
+  { value: LineBreakCode; label: string }
+> = {
+  lf: {
+    value: "\n",
+    label: "LF ( ¥n )",
+  },
+  crlf: {
+    value: "\r\n",
+    label: "CRLF ( ¥r¥n )",
+  },
 };
