@@ -11,6 +11,7 @@ import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
 import { RedirectListButton } from "@feature/app/modify/RedirectListButton";
 import { SetImportFileSetting } from "@feature/record/import/SetImportFileSetting";
+import { OpenSettingButton } from "@feature/record/list/OpenSettingButton";
 import { RedirectImportButton } from "@feature/record/list/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
 
@@ -41,6 +42,7 @@ export const RecordImportClient = ({
           <RedirectSettingButton appId={app.id} />
           <RedirectListButton appId={app.id} />
           <RedirectImportButton appId={app.id} />
+          <OpenSettingButton onOpen={() => setIsOpen(true)} />
         </Title>
         <ImportHistoryList
           histories={histories}
