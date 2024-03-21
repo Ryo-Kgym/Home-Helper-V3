@@ -1,4 +1,5 @@
 import type { ImportFileHistory, Records } from "@feature/app/schema";
+import { Button } from "@components/ui/v4/button";
 import { Table } from "@components/ui/v4/table";
 
 export const ImportHistoryList = ({
@@ -38,9 +39,11 @@ export const ImportHistoryList = ({
               <Table.BodyTd>{item.fileName}</Table.BodyTd>
               <Table.BodyTd>{item.importCount}</Table.BodyTd>
               <Table.BodyTd>
-                <button onClick={() => fetchImportFileRecords(item.id)}>
-                  表示
-                </button>
+                <Button
+                  type="display"
+                  label="表示"
+                  clickHandler={() => fetchImportFileRecords(item.id)}
+                />
               </Table.BodyTd>
             </>
           )}

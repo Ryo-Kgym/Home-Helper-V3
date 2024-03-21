@@ -53,4 +53,9 @@ const typeAttribute: Record<
     hoverBgColor: "hover:bg-yellow-300",
     activeBgColor: "active:bg-yellow-500",
   },
+  display: {
+    enableBgColor: "bg-gray-100",
+    hoverBgColor: "hover:bg-gray-100",
+    activeBgColor: "active:bg-gray-200",
+  },
 };
