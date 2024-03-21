@@ -4469,6 +4469,19 @@ export type InsertImportFileRecordsMutation = {
   } | null;
 };
 
+export type InsertImportFileSettingMutationVariables = Exact<{
+  appId: Scalars["String"];
+  settings: Scalars["json"];
+}>;
+
+export type InsertImportFileSettingMutation = {
+  __typename?: "mutation_root";
+  insertImportFileSettingOne?: {
+    __typename: "ImportFileSetting";
+    appId: string;
+  } | null;
+};
+
 export type InsertRecordMutationVariables = Exact<{
   id: Scalars["String"];
   appId: Scalars["String"];
@@ -5028,6 +5041,89 @@ export const InsertImportFileRecordsDocument = {
 } as unknown as DocumentNode<
   InsertImportFileRecordsMutation,
   InsertImportFileRecordsMutationVariables
+>;
+export const InsertImportFileSettingDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "insertImportFileSetting" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "settings" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "json" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertImportFileSettingOne" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "object" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "appId" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "settings" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "settings" },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  InsertImportFileSettingMutation,
+  InsertImportFileSettingMutationVariables
 >;
 export const InsertRecordDocument = {
   kind: "Document",

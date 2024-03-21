@@ -4547,6 +4547,19 @@ export type InsertImportFileRecordsMutation = {
   } | null;
 };
 
+export type InsertImportFileSettingMutationVariables = Exact<{
+  appId: Scalars["String"];
+  settings: Scalars["json"];
+}>;
+
+export type InsertImportFileSettingMutation = {
+  __typename?: "mutation_root";
+  insertImportFileSettingOne?: {
+    __typename: "ImportFileSetting";
+    appId: string;
+  } | null;
+};
+
 export type InsertRecordMutationVariables = Exact<{
   id: Scalars["String"];
   appId: Scalars["String"];
@@ -4758,6 +4771,21 @@ export function useInsertImportFileRecordsMutation() {
     InsertImportFileRecordsMutation,
     InsertImportFileRecordsMutationVariables
   >(InsertImportFileRecordsDocument);
+}
+export const InsertImportFileSettingDocument = gql`
+  mutation insertImportFileSetting($appId: String!, $settings: json!) {
+    insertImportFileSettingOne(object: { appId: $appId, settings: $settings }) {
+      __typename
+      appId
+    }
+  }
+`;
+
+export function useInsertImportFileSettingMutation() {
+  return Urql.useMutation<
+    InsertImportFileSettingMutation,
+    InsertImportFileSettingMutationVariables
+  >(InsertImportFileSettingDocument);
 }
 export const InsertRecordDocument = gql`
   mutation insertRecord(

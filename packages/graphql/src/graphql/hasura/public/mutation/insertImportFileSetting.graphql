@@ -1,0 +1,6 @@
+mutation insertImportFileSetting($appId: String!, $settings: json!) {
+  insertImportFileSettingOne(object: { appId: $appId, settings: $settings }) {
+    __typename
+    appId
+  }
+}

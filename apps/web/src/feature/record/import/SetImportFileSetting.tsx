@@ -8,18 +8,38 @@ import { EncodingTypeSelect } from "@feature/record/import/EncodingTypeSelect";
 import { LineBreakCodeSelect } from "@feature/record/import/LineBreakCodeSelect";
 import { QuotationSelect } from "@feature/record/import/QuotationSelect";
 import { SplitterSelect } from "@feature/record/import/SplitterSelect";
+import { useInsertImportFileSettingMutation } from "@v3/graphql/public";
 
 export const SetImportFileSetting = ({
   appId,
   importFileSettings: defaultSettings,
+  setAfterHandler,
 }: {
   appId: string;
   importFileSettings: ImportFileSettings;
+  setAfterHandler: () => void;
 }) => {
-  const [settings, setSettings] = useState<ImportFileSettings>(defaultSettings);
+  const [settings, setSettings] = useState<ImportFileSettings>(
+    structuredClone(defaultSettings),
+  );
 
-  const setHandler = () => {
-    appId;
+  const [, mut] = useInsertImportFileSettingMutation();
+
+  const setHandler = async () => {
+    try {
+      const { error } = await mut({
+        appId,
+        settings,
+      });
+      if (error) {
+        console.error(error);
+      }
+      alert("設定しました");
+      setAfterHandler();
+    } catch (e) {
+      console.error(e);
+      alert("設定に失敗した。");
+    }
   };
 
   return (

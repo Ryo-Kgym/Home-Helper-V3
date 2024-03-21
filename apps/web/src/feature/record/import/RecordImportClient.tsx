@@ -55,6 +55,7 @@ export const RecordImportClient = ({
           <SetImportFileSetting
             appId={app.id}
             importFileSettings={importFileSettings}
+            setAfterHandler={() => setIsOpen(false)}
           />
         </Modal.Body>
       </Modal>
