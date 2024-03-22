@@ -168,6 +168,7 @@ export type AppBoolExp = {
   importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
+  recordsAggregate?: InputMaybe<RecordAggregateBoolExp>;
   user?: InputMaybe<UserBoolExp>;
 };
 
@@ -4020,6 +4021,10 @@ export enum OrderBy {
   DescNullsLast = "DESC_NULLS_LAST",
 }
 
+export type RecordAggregateBoolExp = {
+  count?: InputMaybe<RecordAggregateBoolExpCount>;
+};
+
 /** order by aggregate values of table "record" */
 export type RecordAggregateOrderBy = {
   avg?: InputMaybe<RecordAvgOrderBy>;
@@ -4511,6 +4516,13 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type RecordAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<RecordSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<RecordBoolExp>;
+  predicate: IntComparisonExp;
+};
+
 export type DeleteImportFileHistoryMutationVariables = Exact<{
   historyId: Scalars["String"];
 }>;
@@ -4520,6 +4532,7 @@ export type DeleteImportFileHistoryMutation = {
   deleteImportFileRecord?: {
     __typename: "ImportFileRecordMutationResponse";
     affectedRows: number;
+    returning: Array<{ __typename?: "ImportFileRecord"; recordId: string }>;
   } | null;
   deleteImportFileHistoryByPk?: {
     __typename: "ImportFileHistory";
@@ -4726,11 +4739,29 @@ export type GetImportFileQuery = {
   }>;
 };
 
+export type GetMaxRecordIndexQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetMaxRecordIndexQuery = {
+  __typename?: "query_root";
+  recordAggregate: {
+    __typename?: "RecordAggregate";
+    aggregate?: {
+      __typename?: "RecordAggregateFields";
+      max?: { __typename?: "RecordMaxFields"; index?: number | null } | null;
+    } | null;
+  };
+};
+
 export const DeleteImportFileHistoryDocument = gql`
   mutation deleteImportFileHistory($historyId: String!) {
     deleteImportFileRecord(where: { historyId: { _eq: $historyId } }) {
       __typename
       affectedRows
+      returning {
+        recordId
+      }
     }
     deleteImportFileHistoryByPk(id: $historyId) {
       __typename
@@ -5032,4 +5063,23 @@ export function useGetImportFileQuery(
     query: GetImportFileDocument,
     ...options,
   });
+}
+export const GetMaxRecordIndexDocument = gql`
+  query getMaxRecordIndex($appId: String!) {
+    recordAggregate(where: { appId: { _eq: $appId } }) {
+      aggregate {
+        max {
+          index
+        }
+      }
+    }
+  }
+`;
+
+export function useGetMaxRecordIndexQuery(
+  options: Omit<Urql.UseQueryArgs<GetMaxRecordIndexQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetMaxRecordIndexQuery, GetMaxRecordIndexQueryVariables>(
+    { query: GetMaxRecordIndexDocument, ...options },
+  );
 }

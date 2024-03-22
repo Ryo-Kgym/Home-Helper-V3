@@ -1,4 +1,5 @@
 import type {
+  Fields,
   ImportFileHistory,
   ImportFileSettings,
   Records,
@@ -12,6 +13,7 @@ import { useInsertImportFileRecords } from "@feature/record/import/useInsertImpo
 
 export const ImportFilePicker = ({
   appId,
+  fields,
   importFileSettings,
   previewRecords,
   setPreviewRecords,
@@ -19,6 +21,7 @@ export const ImportFilePicker = ({
   histories,
 }: {
   appId: string;
+  fields: Fields;
   importFileSettings: ImportFileSettings;
   previewRecords: Records;
   histories: ImportFileHistory[];
@@ -29,7 +32,7 @@ export const ImportFilePicker = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { insertImportFileRecords } = useInsertImportFileRecords({
-    appId: appId,
+    appId,
   });
 
   const fileChangeHandler = async (
@@ -41,7 +44,7 @@ export const ImportFilePicker = ({
     const { data } = await loadImportFile(file, importFileSettings);
     console.log("[load import file]", data);
 
-    const records = convertRecords(data);
+    const records = convertRecords(data, fields);
 
     if (Object.keys(records).length === 0) {
       alert("取込に失敗しました。設定を見直してください。");

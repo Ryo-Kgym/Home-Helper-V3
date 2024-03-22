@@ -163,6 +163,7 @@ export type AppBoolExp = {
   importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
+  recordsAggregate?: InputMaybe<RecordAggregateBoolExp>;
   user?: InputMaybe<UserBoolExp>;
 };
 
@@ -3948,6 +3949,10 @@ export type OrderBy =
   /** in descending order, nulls last */
   | "DESC_NULLS_LAST";
 
+export type RecordAggregateBoolExp = {
+  count?: InputMaybe<RecordAggregateBoolExpCount>;
+};
+
 /** order by aggregate values of table "record" */
 export type RecordAggregateOrderBy = {
   avg?: InputMaybe<RecordAvgOrderBy>;
@@ -4433,6 +4438,13 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type RecordAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<RecordSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<RecordBoolExp>;
+  predicate: IntComparisonExp;
+};
+
 export type DeleteImportFileHistoryMutationVariables = Exact<{
   historyId: Scalars["String"];
 }>;
@@ -4442,6 +4454,7 @@ export type DeleteImportFileHistoryMutation = {
   deleteImportFileRecord?: {
     __typename: "ImportFileRecordMutationResponse";
     affectedRows: number;
+    returning: Array<{ __typename?: "ImportFileRecord"; recordId: string }>;
   } | null;
   deleteImportFileHistoryByPk?: {
     __typename: "ImportFileHistory";
@@ -4648,6 +4661,21 @@ export type GetImportFileQuery = {
   }>;
 };
 
+export type GetMaxRecordIndexQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetMaxRecordIndexQuery = {
+  __typename?: "query_root";
+  recordAggregate: {
+    __typename?: "RecordAggregate";
+    aggregate?: {
+      __typename?: "RecordAggregateFields";
+      max?: { __typename?: "RecordMaxFields"; index?: number | null } | null;
+    } | null;
+  };
+};
+
 export const DeleteImportFileHistoryDocument = {
   kind: "Document",
   definitions: [
@@ -4712,6 +4740,19 @@ export const DeleteImportFileHistoryDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "affectedRows" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "returning" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "recordId" },
+                      },
+                    ],
+                  },
                 },
               ],
             },
@@ -6196,3 +6237,96 @@ export const GetImportFileDocument = {
     },
   ],
 } as unknown as DocumentNode<GetImportFileQuery, GetImportFileQueryVariables>;
+export const GetMaxRecordIndexDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getMaxRecordIndex" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "recordAggregate" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "aggregate" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "max" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "index" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMaxRecordIndexQuery,
+  GetMaxRecordIndexQueryVariables
+>;

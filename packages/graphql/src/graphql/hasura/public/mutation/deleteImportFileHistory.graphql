@@ -2,6 +2,9 @@ mutation deleteImportFileHistory($historyId: String!) {
   deleteImportFileRecord(where: { historyId: { _eq: $historyId } }) {
     __typename
     affectedRows
+    returning {
+      recordId
+    }
   }
   deleteImportFileHistoryByPk(id: $historyId) {
     __typename

@@ -1,6 +1,9 @@
 import type { ImportFileHistory } from "@feature/app/schema";
 import Trash from "@components/ui/v4/icon/Trash";
-import { useDeleteImportFileHistoryMutation } from "@v3/graphql/public";
+import {
+  useDeleteImportFileHistoryMutation,
+  useDeleteRecordMutation,
+} from "@v3/graphql/public";
 
 export const DeleteImportFileHistoryButton = ({
   historyId,
@@ -12,13 +15,18 @@ export const DeleteImportFileHistoryButton = ({
   setHistories: (histories: ImportFileHistory[]) => void;
 }) => {
   const [, mut] = useDeleteImportFileHistoryMutation();
+  const [, recordMut] = useDeleteRecordMutation();
 
   const deleteHandler = async () => {
     try {
-      const { error } = await mut({ historyId });
+      const { data, error } = await mut({ historyId });
       if (error) {
         throw error;
       }
+      data?.deleteImportFileRecord?.returning.forEach(({ recordId }) =>
+        recordMut({ recordId }),
+      );
+
       alert("削除しました");
       setHistories(histories.filter((h) => h.id !== historyId));
     } catch (e) {

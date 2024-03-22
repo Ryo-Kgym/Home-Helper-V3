@@ -29,6 +29,7 @@ export const ImportPreview = ({
       <div>プレビュー</div>
       <ImportFilePicker
         appId={app.id}
+        fields={app.fields}
         importFileSettings={importFileSettings}
         previewRecords={previewRecords}
         setHistories={setHistories}
