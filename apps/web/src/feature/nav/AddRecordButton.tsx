@@ -34,5 +34,9 @@ export const AddRecordButton = ({
     });
   };
 
-  return <button onClick={addRecordHandler}>レコード追加</button>;
+  return (
+    <button className={"bg-inherit"} onClick={addRecordHandler}>
+      レコード追加
+    </button>
+  );
 };

@@ -9,11 +9,11 @@ import type {
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
-import { RedirectListButton } from "@feature/app/modify/RedirectListButton";
+import { OpenSettingButton } from "@feature/nav/OpenSettingButton";
+import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
+import { RedirectListButton } from "@feature/nav/RedirectListButton";
+import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
 import { SetImportFileSetting } from "@feature/record/import/SetImportFileSetting";
-import { OpenSettingButton } from "@feature/record/list/OpenSettingButton";
-import { RedirectImportButton } from "@feature/record/list/RedirectImportButton";
-import { RedirectSettingButton } from "@feature/record/list/RedirectSettingButton";
 
 import { ImportHistoryList } from "./ImportHistoryList";
 import { ImportPreview } from "./ImportPreview";
