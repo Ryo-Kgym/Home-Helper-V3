@@ -1,6 +1,7 @@
 import type { ImportFileHistory, Records } from "@feature/app/schema";
 import { generateId } from "@feature/app/function/generate-id";
 import {
+  useGetMaxRecordIndexQuery,
   useInsertImportFileHistoryMutation,
   useInsertImportFileRecordsMutation,
 } from "@v3/graphql/public";
@@ -8,6 +9,9 @@ import {
 export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   const [, mutHistory] = useInsertImportFileHistoryMutation();
   const [, mutRecords] = useInsertImportFileRecordsMutation();
+  const [{ data: maxRecordIndexData }] = useGetMaxRecordIndexQuery({
+    variables: { appId },
+  });
 
   const insertImportFileRecords = async (
     records: Records,
@@ -50,6 +54,9 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   };
 
   const insertRecords = async (records: Records, historyId: string) => {
+    const currentMaxIndex =
+      maxRecordIndexData?.recordAggregate.aggregate?.max?.index ?? 0;
+
     const recordIds = Object.values(records).map((v, index) =>
       generateId(index),
     );
@@ -59,7 +66,7 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
         id: recordIds[index],
         appId,
         columns,
-        index,
+        index: currentMaxIndex + index + 1,
       })),
       relationObjects: recordIds.map((recordId) => ({
         recordId,

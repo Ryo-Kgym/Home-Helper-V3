@@ -1,0 +1,9 @@
+query getMaxRecordIndex($appId: String!) {
+  recordAggregate(where: { appId: { _eq: $appId } }) {
+    aggregate {
+      max {
+        index
+      }
+    }
+  }
+}
