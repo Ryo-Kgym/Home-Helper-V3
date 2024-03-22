@@ -42,6 +42,12 @@ export const ImportFilePicker = ({
     console.log("[load import file]", data);
 
     const records = convertRecords(data);
+
+    if (Object.keys(records).length === 0) {
+      alert("取込に失敗しました。設定を見直してください。");
+      resetClickHandler();
+      return;
+    }
     setPreviewRecords(records);
     setFileName(file.name);
 
