@@ -22,6 +22,7 @@ export type Scalars = {
   json: any;
   numeric: any;
   timestamp: any;
+  timestamptz: any;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -158,8 +159,11 @@ export type AppBoolExp = {
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  importFileHistories?: InputMaybe<ImportFileHistoryBoolExp>;
+  importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
+  recordsAggregate?: InputMaybe<RecordAggregateBoolExp>;
   user?: InputMaybe<UserBoolExp>;
 };
 
@@ -174,6 +178,8 @@ export type AppInsertInput = {
   fields?: InputMaybe<FieldArrRelInsertInput>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  importFileHistories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
+  importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
   name?: InputMaybe<Scalars["String"]>;
   records?: InputMaybe<RecordArrRelInsertInput>;
   user?: InputMaybe<UserObjRelInsertInput>;
@@ -216,6 +222,8 @@ export type AppOrderBy = {
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  importFileHistoriesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
+  importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
   name?: InputMaybe<OrderBy>;
   recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
   user?: InputMaybe<UserOrderBy>;
@@ -638,6 +646,7 @@ export type GroupBoolExp = {
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
+  dashboardSettings?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
   genres?: InputMaybe<HouseholdGenreBoolExp>;
@@ -664,6 +673,7 @@ export type GroupOrderBy = {
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateOrderBy>;
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  dashboardSettingsAggregate?: InputMaybe<HouseholdDashboardSettingAggregateOrderBy>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
   genresAggregate?: InputMaybe<HouseholdGenreAggregateOrderBy>;
   groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
@@ -2173,6 +2183,21 @@ export type HouseholdDailyTotalViewStreamCursorValueInput = {
   total?: InputMaybe<Scalars["numeric"]>;
 };
 
+/** order by aggregate values of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdDashboardSettingAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdDashboardSettingMaxOrderBy>;
+  min?: InputMaybe<HouseholdDashboardSettingMinOrderBy>;
+  stddev?: InputMaybe<HouseholdDashboardSettingStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdDashboardSettingStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdDashboardSettingStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdDashboardSettingSumOrderBy>;
+  varPop?: InputMaybe<HouseholdDashboardSettingVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdDashboardSettingVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdDashboardSettingVarianceOrderBy>;
+};
+
 /** order by aggregate values of table "household.dashboard_setting_args" */
 export type HouseholdDashboardSettingArgsAggregateOrderBy = {
   count?: InputMaybe<OrderBy>;
@@ -2277,6 +2302,11 @@ export type HouseholdDashboardSettingArgsUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
 
+/** order by avg() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingAvgOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
 /** Boolean expression to filter rows from the table "household.dashboard_setting". All fields are combined with a logical 'AND'. */
 export type HouseholdDashboardSettingBoolExp = {
   _and?: InputMaybe<Array<HouseholdDashboardSettingBoolExp>>;
@@ -2311,6 +2341,24 @@ export type HouseholdDashboardSettingInsertInput = {
   order?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
   userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingMaxOrderBy = {
+  feature?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  order?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingMinOrderBy = {
+  feature?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  order?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
 };
 
 /** input type for inserting object relation for remote table "household.dashboard_setting" */
@@ -2366,6 +2414,21 @@ export type HouseholdDashboardSettingSetInput = {
   userId?: InputMaybe<Scalars["String"]>;
 };
 
+/** order by stddev() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingStddevOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingStddevPopOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingStddevSampOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
 /** Streaming cursor of the table "household_dashboard_setting" */
 export type HouseholdDashboardSettingStreamCursorInput = {
   /** Stream column input with initial value */
@@ -2381,6 +2444,11 @@ export type HouseholdDashboardSettingStreamCursorValueInput = {
   id?: InputMaybe<Scalars["String"]>;
   order?: InputMaybe<Scalars["Int"]>;
   userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by sum() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingSumOrderBy = {
+  order?: InputMaybe<OrderBy>;
 };
 
 /** update columns of table "household.dashboard_setting" */
@@ -2403,6 +2471,21 @@ export type HouseholdDashboardSettingUpdates = {
   _set?: InputMaybe<HouseholdDashboardSettingSetInput>;
   /** filter the rows which have to be updated */
   where: HouseholdDashboardSettingBoolExp;
+};
+
+/** order by varPop() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingVarPopOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingVarSampOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingVarianceOrderBy = {
+  order?: InputMaybe<OrderBy>;
 };
 
 export type HouseholdDepositCategoryAggregateBoolExp = {
@@ -3458,6 +3541,360 @@ export type HouseholdTransferCategoryStreamCursorValueInput = {
   outcomeCategoryId?: InputMaybe<Scalars["String"]>;
 };
 
+/** order by aggregate values of table "import_file_history" */
+export type ImportFileHistoryAggregateOrderBy = {
+  avg?: InputMaybe<ImportFileHistoryAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<ImportFileHistoryMaxOrderBy>;
+  min?: InputMaybe<ImportFileHistoryMinOrderBy>;
+  stddev?: InputMaybe<ImportFileHistoryStddevOrderBy>;
+  stddevPop?: InputMaybe<ImportFileHistoryStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<ImportFileHistoryStddevSampOrderBy>;
+  sum?: InputMaybe<ImportFileHistorySumOrderBy>;
+  varPop?: InputMaybe<ImportFileHistoryVarPopOrderBy>;
+  varSamp?: InputMaybe<ImportFileHistoryVarSampOrderBy>;
+  variance?: InputMaybe<ImportFileHistoryVarianceOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "import_file_history" */
+export type ImportFileHistoryArrRelInsertInput = {
+  data: Array<ImportFileHistoryInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
+};
+
+/** order by avg() on columns of table "import_file_history" */
+export type ImportFileHistoryAvgOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "import_file_history". All fields are combined with a logical 'AND'. */
+export type ImportFileHistoryBoolExp = {
+  _and?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
+  _not?: InputMaybe<ImportFileHistoryBoolExp>;
+  _or?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
+  appId?: InputMaybe<StringComparisonExp>;
+  count?: InputMaybe<IntComparisonExp>;
+  fileName?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  importDatetime?: InputMaybe<TimestamptzComparisonExp>;
+  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
+};
+
+/** unique or primary key constraints on table "import_file_history" */
+export type ImportFileHistoryConstraint =
+  /** unique or primary key constraint on columns "id" */
+  "import_file_history_pkey";
+
+/** input type for inserting data into table "import_file_history" */
+export type ImportFileHistoryInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
+  appId?: InputMaybe<Scalars["String"]>;
+  count?: InputMaybe<Scalars["Int"]>;
+  fileName?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  importDatetime?: InputMaybe<Scalars["timestamptz"]>;
+  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
+};
+
+/** order by max() on columns of table "import_file_history" */
+export type ImportFileHistoryMaxOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  fileName?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "import_file_history" */
+export type ImportFileHistoryMinOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  fileName?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+};
+
+/** input type for inserting object relation for remote table "import_file_history" */
+export type ImportFileHistoryObjRelInsertInput = {
+  data: ImportFileHistoryInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
+};
+
+/** on_conflict condition type for table "import_file_history" */
+export type ImportFileHistoryOnConflict = {
+  constraint: ImportFileHistoryConstraint;
+  updateColumns?: Array<ImportFileHistoryUpdateColumn>;
+  where?: InputMaybe<ImportFileHistoryBoolExp>;
+};
+
+/** Ordering options when selecting data from "import_file_history". */
+export type ImportFileHistoryOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
+  appId?: InputMaybe<OrderBy>;
+  count?: InputMaybe<OrderBy>;
+  fileName?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  importDatetime?: InputMaybe<OrderBy>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
+};
+
+/** select columns of table "import_file_history" */
+export type ImportFileHistorySelectColumn =
+  /** column name */
+  | "appId"
+  /** column name */
+  | "count"
+  /** column name */
+  | "fileName"
+  /** column name */
+  | "id"
+  /** column name */
+  | "importDatetime";
+
+/** order by stddev() on columns of table "import_file_history" */
+export type ImportFileHistoryStddevOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "import_file_history" */
+export type ImportFileHistoryStddevPopOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "import_file_history" */
+export type ImportFileHistoryStddevSampOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** Streaming cursor of the table "import_file_history" */
+export type ImportFileHistoryStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ImportFileHistoryStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ImportFileHistoryStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  count?: InputMaybe<Scalars["Int"]>;
+  fileName?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  importDatetime?: InputMaybe<Scalars["timestamptz"]>;
+};
+
+/** order by sum() on columns of table "import_file_history" */
+export type ImportFileHistorySumOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** placeholder for update columns of table "import_file_history" (current role has no relevant permissions) */
+export type ImportFileHistoryUpdateColumn =
+  /** placeholder (do not use) */
+  "_PLACEHOLDER";
+
+/** order by varPop() on columns of table "import_file_history" */
+export type ImportFileHistoryVarPopOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "import_file_history" */
+export type ImportFileHistoryVarSampOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "import_file_history" */
+export type ImportFileHistoryVarianceOrderBy = {
+  count?: InputMaybe<OrderBy>;
+};
+
+/** order by aggregate values of table "import_file_record" */
+export type ImportFileRecordAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<ImportFileRecordMaxOrderBy>;
+  min?: InputMaybe<ImportFileRecordMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "import_file_record" */
+export type ImportFileRecordArrRelInsertInput = {
+  data: Array<ImportFileRecordInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileRecordOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "import_file_record". All fields are combined with a logical 'AND'. */
+export type ImportFileRecordBoolExp = {
+  _and?: InputMaybe<Array<ImportFileRecordBoolExp>>;
+  _not?: InputMaybe<ImportFileRecordBoolExp>;
+  _or?: InputMaybe<Array<ImportFileRecordBoolExp>>;
+  historyId?: InputMaybe<StringComparisonExp>;
+  importFileHistory?: InputMaybe<ImportFileHistoryBoolExp>;
+  record?: InputMaybe<RecordBoolExp>;
+  recordId?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "import_file_record" */
+export type ImportFileRecordConstraint =
+  /** unique or primary key constraint on columns "record_id" */
+  "import_file_record_pkey";
+
+/** input type for inserting data into table "import_file_record" */
+export type ImportFileRecordInsertInput = {
+  historyId?: InputMaybe<Scalars["String"]>;
+  importFileHistory?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
+  record?: InputMaybe<RecordObjRelInsertInput>;
+  recordId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "import_file_record" */
+export type ImportFileRecordMaxOrderBy = {
+  historyId?: InputMaybe<OrderBy>;
+  recordId?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "import_file_record" */
+export type ImportFileRecordMinOrderBy = {
+  historyId?: InputMaybe<OrderBy>;
+  recordId?: InputMaybe<OrderBy>;
+};
+
+/** input type for inserting object relation for remote table "import_file_record" */
+export type ImportFileRecordObjRelInsertInput = {
+  data: ImportFileRecordInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileRecordOnConflict>;
+};
+
+/** on_conflict condition type for table "import_file_record" */
+export type ImportFileRecordOnConflict = {
+  constraint: ImportFileRecordConstraint;
+  updateColumns?: Array<ImportFileRecordUpdateColumn>;
+  where?: InputMaybe<ImportFileRecordBoolExp>;
+};
+
+/** Ordering options when selecting data from "import_file_record". */
+export type ImportFileRecordOrderBy = {
+  historyId?: InputMaybe<OrderBy>;
+  importFileHistory?: InputMaybe<ImportFileHistoryOrderBy>;
+  record?: InputMaybe<RecordOrderBy>;
+  recordId?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "import_file_record" */
+export type ImportFileRecordSelectColumn =
+  /** column name */
+  | "historyId"
+  /** column name */
+  | "recordId";
+
+/** Streaming cursor of the table "import_file_record" */
+export type ImportFileRecordStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ImportFileRecordStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ImportFileRecordStreamCursorValueInput = {
+  historyId?: InputMaybe<Scalars["String"]>;
+  recordId?: InputMaybe<Scalars["String"]>;
+};
+
+/** placeholder for update columns of table "import_file_record" (current role has no relevant permissions) */
+export type ImportFileRecordUpdateColumn =
+  /** placeholder (do not use) */
+  "_PLACEHOLDER";
+
+/** Boolean expression to filter rows from the table "import_file_setting". All fields are combined with a logical 'AND'. */
+export type ImportFileSettingBoolExp = {
+  _and?: InputMaybe<Array<ImportFileSettingBoolExp>>;
+  _not?: InputMaybe<ImportFileSettingBoolExp>;
+  _or?: InputMaybe<Array<ImportFileSettingBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
+  appId?: InputMaybe<StringComparisonExp>;
+  settings?: InputMaybe<JsonComparisonExp>;
+};
+
+/** unique or primary key constraints on table "import_file_setting" */
+export type ImportFileSettingConstraint =
+  /** unique or primary key constraint on columns "app_id" */
+  "import_file_setting_pkey";
+
+/** input type for inserting data into table "import_file_setting" */
+export type ImportFileSettingInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
+  appId?: InputMaybe<Scalars["String"]>;
+  settings?: InputMaybe<Scalars["json"]>;
+};
+
+/** input type for inserting object relation for remote table "import_file_setting" */
+export type ImportFileSettingObjRelInsertInput = {
+  data: ImportFileSettingInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileSettingOnConflict>;
+};
+
+/** on_conflict condition type for table "import_file_setting" */
+export type ImportFileSettingOnConflict = {
+  constraint: ImportFileSettingConstraint;
+  updateColumns?: Array<ImportFileSettingUpdateColumn>;
+  where?: InputMaybe<ImportFileSettingBoolExp>;
+};
+
+/** Ordering options when selecting data from "import_file_setting". */
+export type ImportFileSettingOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
+  appId?: InputMaybe<OrderBy>;
+  settings?: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: import_file_setting */
+export type ImportFileSettingPkColumnsInput = {
+  appId: Scalars["String"];
+};
+
+/** select columns of table "import_file_setting" */
+export type ImportFileSettingSelectColumn =
+  /** column name */
+  | "appId"
+  /** column name */
+  | "settings";
+
+/** input type for updating data in table "import_file_setting" */
+export type ImportFileSettingSetInput = {
+  settings?: InputMaybe<Scalars["json"]>;
+};
+
+/** Streaming cursor of the table "import_file_setting" */
+export type ImportFileSettingStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ImportFileSettingStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ImportFileSettingStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  settings?: InputMaybe<Scalars["json"]>;
+};
+
+/** update columns of table "import_file_setting" */
+export type ImportFileSettingUpdateColumn =
+  /** column name */
+  "settings";
+
+export type ImportFileSettingUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ImportFileSettingSetInput>;
+  /** filter the rows which have to be updated */
+  where: ImportFileSettingBoolExp;
+};
+
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type IntComparisonExp = {
   _eq?: InputMaybe<Scalars["Int"]>;
@@ -3512,6 +3949,10 @@ export type OrderBy =
   /** in descending order, nulls last */
   | "DESC_NULLS_LAST";
 
+export type RecordAggregateBoolExp = {
+  count?: InputMaybe<RecordAggregateBoolExpCount>;
+};
+
 /** order by aggregate values of table "record" */
 export type RecordAggregateOrderBy = {
   avg?: InputMaybe<RecordAvgOrderBy>;
@@ -3548,6 +3989,7 @@ export type RecordBoolExp = {
   appId?: InputMaybe<StringComparisonExp>;
   columns?: InputMaybe<JsonComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  importFileRecord?: InputMaybe<ImportFileRecordBoolExp>;
   index?: InputMaybe<IntComparisonExp>;
 };
 
@@ -3567,6 +4009,7 @@ export type RecordInsertInput = {
   appId?: InputMaybe<Scalars["String"]>;
   columns?: InputMaybe<Scalars["json"]>;
   id?: InputMaybe<Scalars["String"]>;
+  importFileRecord?: InputMaybe<ImportFileRecordObjRelInsertInput>;
   index?: InputMaybe<Scalars["Int"]>;
 };
 
@@ -3584,6 +4027,13 @@ export type RecordMinOrderBy = {
   index?: InputMaybe<OrderBy>;
 };
 
+/** input type for inserting object relation for remote table "record" */
+export type RecordObjRelInsertInput = {
+  data: RecordInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<RecordOnConflict>;
+};
+
 /** on_conflict condition type for table "record" */
 export type RecordOnConflict = {
   constraint: RecordConstraint;
@@ -3597,6 +4047,7 @@ export type RecordOrderBy = {
   appId?: InputMaybe<OrderBy>;
   columns?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  importFileRecord?: InputMaybe<ImportFileRecordOrderBy>;
   index?: InputMaybe<OrderBy>;
 };
 
@@ -3733,6 +4184,19 @@ export type TimestampComparisonExp = {
   _lte?: InputMaybe<Scalars["timestamp"]>;
   _neq?: InputMaybe<Scalars["timestamp"]>;
   _nin?: InputMaybe<Array<Scalars["timestamp"]>>;
+};
+
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
+export type TimestamptzComparisonExp = {
+  _eq?: InputMaybe<Scalars["timestamptz"]>;
+  _gt?: InputMaybe<Scalars["timestamptz"]>;
+  _gte?: InputMaybe<Scalars["timestamptz"]>;
+  _in?: InputMaybe<Array<Scalars["timestamptz"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["timestamptz"]>;
+  _lte?: InputMaybe<Scalars["timestamptz"]>;
+  _neq?: InputMaybe<Scalars["timestamptz"]>;
+  _nin?: InputMaybe<Array<Scalars["timestamptz"]>>;
 };
 
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
@@ -3974,6 +4438,30 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type RecordAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<RecordSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<RecordBoolExp>;
+  predicate: IntComparisonExp;
+};
+
+export type DeleteImportFileHistoryMutationVariables = Exact<{
+  historyId: Scalars["String"];
+}>;
+
+export type DeleteImportFileHistoryMutation = {
+  __typename?: "mutation_root";
+  deleteImportFileRecord?: {
+    __typename: "ImportFileRecordMutationResponse";
+    affectedRows: number;
+    returning: Array<{ __typename?: "ImportFileRecord"; recordId: string }>;
+  } | null;
+  deleteImportFileHistoryByPk?: {
+    __typename: "ImportFileHistory";
+    id: string;
+  } | null;
+};
+
 export type DeleteRecordMutationVariables = Exact<{
   recordId: Scalars["String"];
 }>;
@@ -3997,6 +4485,60 @@ export type InsertAppMutation = {
   insertField?: {
     __typename: "FieldMutationResponse";
     affectedRows: number;
+  } | null;
+};
+
+export type InsertImportFileHistoryMutationVariables = Exact<{
+  id: Scalars["String"];
+  appId: Scalars["String"];
+  fileName: Scalars["String"];
+  importDatetime: Scalars["timestamptz"];
+  count: Scalars["Int"];
+}>;
+
+export type InsertImportFileHistoryMutation = {
+  __typename?: "mutation_root";
+  insertImportFileHistoryOne?: {
+    __typename?: "ImportFileHistory";
+    id: string;
+    fileName: string;
+    importDatetime: any;
+    count: number;
+  } | null;
+};
+
+export type InsertImportFileRecordsMutationVariables = Exact<{
+  recordObjects: Array<RecordInsertInput> | RecordInsertInput;
+  relationObjects:
+    | Array<ImportFileRecordInsertInput>
+    | ImportFileRecordInsertInput;
+}>;
+
+export type InsertImportFileRecordsMutation = {
+  __typename?: "mutation_root";
+  insertRecord?: {
+    __typename: "RecordMutationResponse";
+    affectedRows: number;
+    returning: Array<{ __typename?: "Record"; id: string }>;
+  } | null;
+  insertImportFileRecord?: {
+    __typename: "ImportFileRecordMutationResponse";
+    affectedRows: number;
+    returning: Array<{ __typename?: "ImportFileRecord"; recordId: string }>;
+  } | null;
+};
+
+export type InsertImportFileSettingMutationVariables = Exact<{
+  appId: Scalars["String"];
+  settings: Scalars["json"];
+}>;
+
+export type InsertImportFileSettingMutation = {
+  __typename?: "mutation_root";
+  insertImportFileSettingOne?: {
+    __typename: "ImportFileSetting";
+    appId: string;
+    settings: any;
   } | null;
 };
 
@@ -4095,6 +4637,155 @@ export type GetApplicationsQuery = {
   } | null;
 };
 
+export type GetImportFileQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetImportFileQuery = {
+  __typename?: "query_root";
+  importFileSetting?: {
+    __typename: "ImportFileSetting";
+    settings: any;
+    id: string;
+  } | null;
+  importFileHistories: Array<{
+    __typename: "ImportFileHistory";
+    id: string;
+    count: number;
+    fileName: string;
+    importDatetime: any;
+    importFileRecords: Array<{
+      __typename: "ImportFileRecord";
+      record: { __typename: "Record"; id: string; index: number; columns: any };
+    }>;
+  }>;
+};
+
+export type GetMaxRecordIndexQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetMaxRecordIndexQuery = {
+  __typename?: "query_root";
+  recordAggregate: {
+    __typename?: "RecordAggregate";
+    aggregate?: {
+      __typename?: "RecordAggregateFields";
+      max?: { __typename?: "RecordMaxFields"; index?: number | null } | null;
+    } | null;
+  };
+};
+
+export const DeleteImportFileHistoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "deleteImportFileHistory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "historyId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteImportFileRecord" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "historyId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "historyId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "returning" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "recordId" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteImportFileHistoryByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "historyId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  DeleteImportFileHistoryMutation,
+  DeleteImportFileHistoryMutationVariables
+>;
 export const DeleteRecordDocument = {
   kind: "Document",
   definitions: [
@@ -4315,6 +5006,423 @@ export const InsertAppDocument = {
     },
   ],
 } as unknown as DocumentNode<InsertAppMutation, InsertAppMutationVariables>;
+export const InsertImportFileHistoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "insertImportFileHistory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "fileName" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "importDatetime" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "timestamptz" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "count" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertImportFileHistoryOne" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "object" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "id" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "appId" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "fileName" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "fileName" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "importDatetime" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "importDatetime" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "count" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "count" },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "fileName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importDatetime" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  InsertImportFileHistoryMutation,
+  InsertImportFileHistoryMutationVariables
+>;
+export const InsertImportFileRecordsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "insertImportFileRecords" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "recordObjects" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "RecordInsertInput" },
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "relationObjects" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "ImportFileRecordInsertInput" },
+                },
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertRecord" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "objects" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "recordObjects" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "returning" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertImportFileRecord" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "objects" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "relationObjects" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "returning" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "recordId" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  InsertImportFileRecordsMutation,
+  InsertImportFileRecordsMutationVariables
+>;
+export const InsertImportFileSettingDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "insertImportFileSetting" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "settings" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "json" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertImportFileSettingOne" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "object" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "appId" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "settings" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "settings" },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "onConflict" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "constraint" },
+                      value: {
+                        kind: "EnumValue",
+                        value: "import_file_setting_pkey",
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "updateColumns" },
+                      value: {
+                        kind: "ListValue",
+                        values: [{ kind: "EnumValue", value: "settings" }],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "appId" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "appId" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "settings" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  InsertImportFileSettingMutation,
+  InsertImportFileSettingMutationVariables
+>;
 export const InsertRecordDocument = {
   kind: "Document",
   definitions: [
@@ -4972,4 +6080,253 @@ export const GetApplicationsDocument = {
 } as unknown as DocumentNode<
   GetApplicationsQuery,
   GetApplicationsQueryVariables
+>;
+export const GetImportFileDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getImportFile" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "importFileSetting" },
+            name: { kind: "Name", value: "importFileSettingByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "appId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "appId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "id" },
+                  name: { kind: "Name", value: "appId" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "settings" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "importFileHistories" },
+            name: { kind: "Name", value: "importFileHistory" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "importDatetime" },
+                      value: { kind: "EnumValue", value: "DESC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+                { kind: "Field", name: { kind: "Name", value: "fileName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importDatetime" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importFileRecords" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "record" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "index" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "columns" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetImportFileQuery, GetImportFileQueryVariables>;
+export const GetMaxRecordIndexDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getMaxRecordIndex" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "recordAggregate" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "aggregate" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "max" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "index" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMaxRecordIndexQuery,
+  GetMaxRecordIndexQueryVariables
 >;

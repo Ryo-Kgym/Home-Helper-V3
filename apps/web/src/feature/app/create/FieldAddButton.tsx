@@ -7,26 +7,34 @@ export const FieldAddButton = ({
   setValue,
 }: {
   value: AppFieldValue;
-  setValue: React.Dispatch<React.SetStateAction<AppFieldValue>>;
-}) => (
-  <Button
-    label="フィールド追加"
-    clickHandler={() => {
-      const nextIndex =
-        Math.max(...Object.keys(value).map((v) => parseInt(v))) + 1;
+  setValue: (value: AppFieldValue) => void;
+}) => {
+  const calcNextIndex = () => {
+    if (Object.keys(value).length === 0) return 0;
 
-      setValue((prev) => {
-        return {
-          ...prev,
+    const nextIndex =
+      Math.max(...Object.keys(value).map((v) => parseInt(v) ?? 0)) + 1;
+    console.log("nextIndex", nextIndex);
+    return nextIndex;
+  };
+
+  return (
+    <Button
+      label="フィールド追加"
+      clickHandler={() => {
+        const nextIndex = calcNextIndex();
+
+        setValue({
+          ...value,
           [nextIndex]: {
             fieldName: "",
             fieldKind: "text",
             options: {},
             mode: "add",
           },
-        };
-      });
-    }}
-    type={"add"}
-  />
-);
+        });
+      }}
+      type={"add"}
+    />
+  );
+};

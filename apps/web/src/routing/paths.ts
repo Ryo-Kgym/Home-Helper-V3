@@ -3,6 +3,7 @@ export const paths = {
     create: "/app/create",
     show: ({ id }: { id: string }) => `/app/show/${id}`,
     setting: ({ id }: { id: string }) => `/app/setting/${id}`,
+    import: ({ id }: { id: string }) => `/app/import/${id}`,
   },
   group: {
     select: "/group",

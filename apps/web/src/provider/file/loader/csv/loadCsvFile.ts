@@ -56,7 +56,7 @@ export async function loadCsvFile({ file, fileType }: loadFileArgs) {
  * @param from
  * @param type
  */
-const decodeCsv = (
+export const decodeCsv = (
   readFile: ReadableStreamReadResult<Uint8Array>,
   to: Encoding.Encoding,
   from: Encoding.Encoding,
@@ -79,7 +79,7 @@ const decodeCsv = (
  * @param headerRows
  * @param footerRows
  */
-const separateRows = (
+export const separateRows = (
   csv: string,
   splitSeparator: string,
   headerRows?: number,

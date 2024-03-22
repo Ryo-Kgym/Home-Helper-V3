@@ -7,7 +7,7 @@ import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import { ModifyAppButton } from "@feature/app/modify/ModifyAppButton";
-import { RedirectListButton } from "@feature/app/modify/RedirectListButton";
+import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
 export const ModifyAppClient = ({
   appId,

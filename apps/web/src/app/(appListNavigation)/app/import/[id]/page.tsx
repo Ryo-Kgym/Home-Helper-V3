@@ -1,7 +1,7 @@
-import { ModifyApp } from "feature/app/modify";
+import { RecordImport } from "@feature/record/import";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
-  <ModifyApp appId={id} />
+  <RecordImport appId={id} />
 );
 
 export default Page;

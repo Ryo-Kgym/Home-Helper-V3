@@ -1,5 +1,6 @@
 import type { Record, Records } from "@feature/app/schema/record-schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
+import { notify } from "@components/ui/v4/notify/notify";
 import { generateId } from "@feature/app/function/generate-id";
 import { useInsertRecordMutation } from "@v3/graphql/public";
 
@@ -56,10 +57,10 @@ export const SaveNewRecordButton = ({
       });
       setNewRecord(recordTemplate);
       setMode("show");
-      alert("レコードを追加しました");
+      notify("レコードを追加しました");
     } catch (e) {
       console.error(e);
-      alert("レコード追加に失敗しました");
+      notify("レコード追加に失敗しました");
     }
   };
 

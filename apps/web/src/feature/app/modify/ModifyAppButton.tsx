@@ -1,5 +1,6 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { Button } from "@components/ui/v4/button";
+import { notify } from "@components/ui/v4/notify/notify";
 import { useModifyApp } from "@feature/app/modify/useModifyApp";
 
 export const ModifyAppButton = ({
@@ -24,7 +25,7 @@ export const ModifyAppButton = ({
       clickHandler={async () => {
         try {
           await modifyApp({ appName, fields });
-          alert("アプリを更新しました");
+          notify("アプリを更新しました");
         } catch (e) {
           console.error(e);
         }

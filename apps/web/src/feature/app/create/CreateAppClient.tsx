@@ -2,6 +2,7 @@
 
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useState } from "react";
+import { Title } from "@components/ui/v4/frame/Title";
 import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { CreateAppButton } from "@feature/app/create/CreateAppButton";
@@ -13,7 +14,10 @@ export const CreateAppClient = () => {
   const [value, setValue] = useState<AppFieldValue>({});
 
   return (
-    <>
+    <div className={"space-y-10"}>
+      <Title>
+        <div className={"text-3xl"}>アプリ作成</div>
+      </Title>
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
@@ -32,6 +36,6 @@ export const CreateAppClient = () => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };

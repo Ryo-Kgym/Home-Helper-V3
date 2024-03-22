@@ -11,7 +11,7 @@ export const SelectAppServer = async () => {
     groupId: group.id,
   });
 
-  const appList: LinkProps[] = [
+  const appList: AppListType[] = [
     ...(data?.group?.groupApplications.map((ga) => ({
       label: ga.application.name ?? "",
       href: ga.application.topUrl ?? "",
@@ -25,3 +25,5 @@ export const SelectAppServer = async () => {
 
   return <SelectAppClient data={appList} />;
 };
+
+export type AppListType = LinkProps;

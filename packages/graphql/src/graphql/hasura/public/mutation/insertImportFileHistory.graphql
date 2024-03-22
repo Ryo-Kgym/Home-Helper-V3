@@ -1,0 +1,22 @@
+mutation insertImportFileHistory(
+  $id: String!
+  $appId: String!
+  $fileName: String!
+  $importDatetime: timestamptz!
+  $count: Int!
+) {
+  insertImportFileHistoryOne(
+    object: {
+      id: $id
+      appId: $appId
+      fileName: $fileName
+      importDatetime: $importDatetime
+      count: $count
+    }
+  ) {
+    id
+    fileName
+    importDatetime
+    count
+  }
+}

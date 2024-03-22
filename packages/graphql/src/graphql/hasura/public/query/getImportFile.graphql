@@ -1,0 +1,26 @@
+query getImportFile($appId: String!) {
+  importFileSetting: importFileSettingByPk(appId: $appId) {
+    __typename
+    id: appId
+    settings
+  }
+  importFileHistories: importFileHistory(
+    where: { appId: { _eq: $appId } }
+    orderBy: { importDatetime: DESC }
+  ) {
+    id
+    __typename
+    count
+    fileName
+    importDatetime
+    importFileRecords {
+      __typename
+      record {
+        __typename
+        id
+        index
+        columns
+      }
+    }
+  }
+}

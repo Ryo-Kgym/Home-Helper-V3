@@ -4,24 +4,76 @@
 
 "use client";
 
-import type { LinkProps } from "@components/atoms/Card";
-import { LinkList } from "@components/atoms/Card";
+import React from "react";
+import { useRouter } from "next/navigation";
+import { Modal } from "@components/ui/v4/modal";
 import { paths } from "@routing/paths";
 
-export const SelectAppClient = ({ data }: { data: LinkProps[] }) => {
+import type { AppListType } from "./SelectAppServer";
+
+export const SelectAppClient = ({ data }: { data: AppListType[] }) => {
+  const { push } = useRouter();
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <LinkList
-      props={[
-        {
-          label: "戻る",
-          href: paths.group.select,
-          back: true,
-        },
-        {
-          label: "アプリ新規作成",
-          href: paths.app.create,
-        },
-      ].concat(data)}
-    />
+    <>
+      <div>
+        <div className={"grid grid-cols-3"}>
+          {[
+            {
+              label: "グループ選択へ",
+              back: true,
+              onClick: () => push(paths.group.select),
+            },
+            {
+              label: "アプリ新規作成",
+              onClick: () => push(paths.app.create),
+            },
+            {
+              label: "アプリ一覧",
+              onClick: () => setIsOpen(true),
+            },
+          ].map((props) => (
+            <LinkBox key={props.label} {...props} />
+          ))}
+        </div>
+      </div>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <Modal.Body>
+          <div>アプリ一覧</div>
+          <div>
+            {data.map((props) => (
+              <LinkBox
+                key={props.label}
+                {...props}
+                onClick={() => push(props.href)}
+              />
+            ))}
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
+
+const LinkBox = ({
+  label,
+  back,
+  onClick,
+}: {
+  label: string;
+  back?: boolean;
+  onClick: () => void;
+}) => (
+  <div>
+    <button
+      key={label}
+      className={
+        "w-full border-2 border-gray-300 bg-inherit py-3 hover:bg-blue-100"
+      }
+      onClick={onClick}
+    >
+      {back ? "<-" : ""} {label}
+    </button>
+  </div>
+);
