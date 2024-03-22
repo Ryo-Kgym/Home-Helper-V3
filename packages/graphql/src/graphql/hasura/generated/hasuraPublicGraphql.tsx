@@ -165,7 +165,6 @@ export type AppBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   importFileHistories?: InputMaybe<ImportFileHistoryBoolExp>;
-  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
   importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
@@ -185,7 +184,6 @@ export type AppInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   importFileHistories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
-  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
   importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
   name?: InputMaybe<Scalars["String"]>;
   records?: InputMaybe<RecordArrRelInsertInput>;
@@ -230,7 +228,6 @@ export type AppOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
   importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
   name?: InputMaybe<OrderBy>;
   recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
@@ -662,6 +659,7 @@ export type GroupBoolExp = {
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
+  dashboardSettings?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
   genres?: InputMaybe<HouseholdGenreBoolExp>;
@@ -688,6 +686,7 @@ export type GroupOrderBy = {
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateOrderBy>;
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  dashboardSettingsAggregate?: InputMaybe<HouseholdDashboardSettingAggregateOrderBy>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
   genresAggregate?: InputMaybe<HouseholdGenreAggregateOrderBy>;
   groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
@@ -2218,6 +2217,21 @@ export type HouseholdDailyTotalViewStreamCursorValueInput = {
   total?: InputMaybe<Scalars["numeric"]>;
 };
 
+/** order by aggregate values of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdDashboardSettingAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdDashboardSettingMaxOrderBy>;
+  min?: InputMaybe<HouseholdDashboardSettingMinOrderBy>;
+  stddev?: InputMaybe<HouseholdDashboardSettingStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdDashboardSettingStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdDashboardSettingStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdDashboardSettingSumOrderBy>;
+  varPop?: InputMaybe<HouseholdDashboardSettingVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdDashboardSettingVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdDashboardSettingVarianceOrderBy>;
+};
+
 /** order by aggregate values of table "household.dashboard_setting_args" */
 export type HouseholdDashboardSettingArgsAggregateOrderBy = {
   count?: InputMaybe<OrderBy>;
@@ -2325,6 +2339,11 @@ export enum HouseholdDashboardSettingArgsUpdateColumn {
   Placeholder = "_PLACEHOLDER",
 }
 
+/** order by avg() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingAvgOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
 /** Boolean expression to filter rows from the table "household.dashboard_setting". All fields are combined with a logical 'AND'. */
 export type HouseholdDashboardSettingBoolExp = {
   _and?: InputMaybe<Array<HouseholdDashboardSettingBoolExp>>;
@@ -2360,6 +2379,24 @@ export type HouseholdDashboardSettingInsertInput = {
   order?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
   userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingMaxOrderBy = {
+  feature?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  order?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingMinOrderBy = {
+  feature?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  order?: InputMaybe<OrderBy>;
+  userId?: InputMaybe<OrderBy>;
 };
 
 /** input type for inserting object relation for remote table "household.dashboard_setting" */
@@ -2416,6 +2453,21 @@ export type HouseholdDashboardSettingSetInput = {
   userId?: InputMaybe<Scalars["String"]>;
 };
 
+/** order by stddev() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingStddevOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingStddevPopOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingStddevSampOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
 /** Streaming cursor of the table "household_dashboard_setting" */
 export type HouseholdDashboardSettingStreamCursorInput = {
   /** Stream column input with initial value */
@@ -2431,6 +2483,11 @@ export type HouseholdDashboardSettingStreamCursorValueInput = {
   id?: InputMaybe<Scalars["String"]>;
   order?: InputMaybe<Scalars["Int"]>;
   userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by sum() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingSumOrderBy = {
+  order?: InputMaybe<OrderBy>;
 };
 
 /** update columns of table "household.dashboard_setting" */
@@ -2454,6 +2511,21 @@ export type HouseholdDashboardSettingUpdates = {
   _set?: InputMaybe<HouseholdDashboardSettingSetInput>;
   /** filter the rows which have to be updated */
   where: HouseholdDashboardSettingBoolExp;
+};
+
+/** order by varPop() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingVarPopOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingVarSampOrderBy = {
+  order?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "household.dashboard_setting" */
+export type HouseholdDashboardSettingVarianceOrderBy = {
+  order?: InputMaybe<OrderBy>;
 };
 
 export type HouseholdDepositCategoryAggregateBoolExp = {
@@ -3705,17 +3777,9 @@ export type ImportFileHistoryVarianceOrderBy = {
 
 /** order by aggregate values of table "import_file_record" */
 export type ImportFileRecordAggregateOrderBy = {
-  avg?: InputMaybe<ImportFileRecordAvgOrderBy>;
   count?: InputMaybe<OrderBy>;
   max?: InputMaybe<ImportFileRecordMaxOrderBy>;
   min?: InputMaybe<ImportFileRecordMinOrderBy>;
-  stddev?: InputMaybe<ImportFileRecordStddevOrderBy>;
-  stddevPop?: InputMaybe<ImportFileRecordStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<ImportFileRecordStddevSampOrderBy>;
-  sum?: InputMaybe<ImportFileRecordSumOrderBy>;
-  varPop?: InputMaybe<ImportFileRecordVarPopOrderBy>;
-  varSamp?: InputMaybe<ImportFileRecordVarSampOrderBy>;
-  variance?: InputMaybe<ImportFileRecordVarianceOrderBy>;
 };
 
 /** input type for inserting array relation for remote table "import_file_record" */
@@ -3725,56 +3789,48 @@ export type ImportFileRecordArrRelInsertInput = {
   onConflict?: InputMaybe<ImportFileRecordOnConflict>;
 };
 
-/** order by avg() on columns of table "import_file_record" */
-export type ImportFileRecordAvgOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
 /** Boolean expression to filter rows from the table "import_file_record". All fields are combined with a logical 'AND'. */
 export type ImportFileRecordBoolExp = {
   _and?: InputMaybe<Array<ImportFileRecordBoolExp>>;
   _not?: InputMaybe<ImportFileRecordBoolExp>;
   _or?: InputMaybe<Array<ImportFileRecordBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  columns?: InputMaybe<JsonComparisonExp>;
   historyId?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
   importFileHistory?: InputMaybe<ImportFileHistoryBoolExp>;
-  index?: InputMaybe<IntComparisonExp>;
+  record?: InputMaybe<RecordBoolExp>;
+  recordId?: InputMaybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "import_file_record" */
 export enum ImportFileRecordConstraint {
-  /** unique or primary key constraint on columns "id" */
+  /** unique or primary key constraint on columns "record_id" */
   ImportFileRecordPkey = "import_file_record_pkey",
 }
 
 /** input type for inserting data into table "import_file_record" */
 export type ImportFileRecordInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  columns?: InputMaybe<Scalars["json"]>;
   historyId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
   importFileHistory?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
-  index?: InputMaybe<Scalars["Int"]>;
+  record?: InputMaybe<RecordObjRelInsertInput>;
+  recordId?: InputMaybe<Scalars["String"]>;
 };
 
 /** order by max() on columns of table "import_file_record" */
 export type ImportFileRecordMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
+  recordId?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "import_file_record" */
 export type ImportFileRecordMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
+  recordId?: InputMaybe<OrderBy>;
+};
+
+/** input type for inserting object relation for remote table "import_file_record" */
+export type ImportFileRecordObjRelInsertInput = {
+  data: ImportFileRecordInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<ImportFileRecordOnConflict>;
 };
 
 /** on_conflict condition type for table "import_file_record" */
@@ -3786,43 +3842,19 @@ export type ImportFileRecordOnConflict = {
 
 /** Ordering options when selecting data from "import_file_record". */
 export type ImportFileRecordOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  columns?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
   importFileHistory?: InputMaybe<ImportFileHistoryOrderBy>;
-  index?: InputMaybe<OrderBy>;
+  record?: InputMaybe<RecordOrderBy>;
+  recordId?: InputMaybe<OrderBy>;
 };
 
 /** select columns of table "import_file_record" */
 export enum ImportFileRecordSelectColumn {
   /** column name */
-  AppId = "appId",
-  /** column name */
-  Columns = "columns",
-  /** column name */
   HistoryId = "historyId",
   /** column name */
-  Id = "id",
-  /** column name */
-  Index = "index",
+  RecordId = "recordId",
 }
-
-/** order by stddev() on columns of table "import_file_record" */
-export type ImportFileRecordStddevOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "import_file_record" */
-export type ImportFileRecordStddevPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "import_file_record" */
-export type ImportFileRecordStddevSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
 
 /** Streaming cursor of the table "import_file_record" */
 export type ImportFileRecordStreamCursorInput = {
@@ -3834,16 +3866,8 @@ export type ImportFileRecordStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ImportFileRecordStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  columns?: InputMaybe<Scalars["json"]>;
   historyId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** order by sum() on columns of table "import_file_record" */
-export type ImportFileRecordSumOrderBy = {
-  index?: InputMaybe<OrderBy>;
+  recordId?: InputMaybe<Scalars["String"]>;
 };
 
 /** placeholder for update columns of table "import_file_record" (current role has no relevant permissions) */
@@ -3851,21 +3875,6 @@ export enum ImportFileRecordUpdateColumn {
   /** placeholder (do not use) */
   Placeholder = "_PLACEHOLDER",
 }
-
-/** order by varPop() on columns of table "import_file_record" */
-export type ImportFileRecordVarPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "import_file_record" */
-export type ImportFileRecordVarSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "import_file_record" */
-export type ImportFileRecordVarianceOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
 
 /** Boolean expression to filter rows from the table "import_file_setting". All fields are combined with a logical 'AND'. */
 export type ImportFileSettingBoolExp = {
@@ -4047,6 +4056,7 @@ export type RecordBoolExp = {
   appId?: InputMaybe<StringComparisonExp>;
   columns?: InputMaybe<JsonComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  importFileRecord?: InputMaybe<ImportFileRecordBoolExp>;
   index?: InputMaybe<IntComparisonExp>;
 };
 
@@ -4067,6 +4077,7 @@ export type RecordInsertInput = {
   appId?: InputMaybe<Scalars["String"]>;
   columns?: InputMaybe<Scalars["json"]>;
   id?: InputMaybe<Scalars["String"]>;
+  importFileRecord?: InputMaybe<ImportFileRecordObjRelInsertInput>;
   index?: InputMaybe<Scalars["Int"]>;
 };
 
@@ -4084,6 +4095,13 @@ export type RecordMinOrderBy = {
   index?: InputMaybe<OrderBy>;
 };
 
+/** input type for inserting object relation for remote table "record" */
+export type RecordObjRelInsertInput = {
+  data: RecordInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<RecordOnConflict>;
+};
+
 /** on_conflict condition type for table "record" */
 export type RecordOnConflict = {
   constraint: RecordConstraint;
@@ -4097,6 +4115,7 @@ export type RecordOrderBy = {
   appId?: InputMaybe<OrderBy>;
   columns?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  importFileRecord?: InputMaybe<ImportFileRecordOrderBy>;
   index?: InputMaybe<OrderBy>;
 };
 
@@ -4554,15 +4573,23 @@ export type InsertImportFileHistoryMutation = {
 };
 
 export type InsertImportFileRecordsMutationVariables = Exact<{
-  objects: Array<ImportFileRecordInsertInput> | ImportFileRecordInsertInput;
+  recordObjects: Array<RecordInsertInput> | RecordInsertInput;
+  relationObjects:
+    | Array<ImportFileRecordInsertInput>
+    | ImportFileRecordInsertInput;
 }>;
 
 export type InsertImportFileRecordsMutation = {
   __typename?: "mutation_root";
+  insertRecord?: {
+    __typename: "RecordMutationResponse";
+    affectedRows: number;
+    returning: Array<{ __typename?: "Record"; id: string }>;
+  } | null;
   insertImportFileRecord?: {
     __typename: "ImportFileRecordMutationResponse";
     affectedRows: number;
-    returning: Array<{ __typename?: "ImportFileRecord"; id: string }>;
+    returning: Array<{ __typename?: "ImportFileRecord"; recordId: string }>;
   } | null;
 };
 
@@ -4694,9 +4721,7 @@ export type GetImportFileQuery = {
     importDatetime: any;
     importFileRecords: Array<{
       __typename: "ImportFileRecord";
-      id: string;
-      index: number;
-      columns: any;
+      record: { __typename: "Record"; id: string; index: number; columns: any };
     }>;
   }>;
 };
@@ -4797,12 +4822,22 @@ export function useInsertImportFileHistoryMutation() {
   >(InsertImportFileHistoryDocument);
 }
 export const InsertImportFileRecordsDocument = gql`
-  mutation insertImportFileRecords($objects: [ImportFileRecordInsertInput!]!) {
-    insertImportFileRecord(objects: $objects) {
+  mutation insertImportFileRecords(
+    $recordObjects: [RecordInsertInput!]!
+    $relationObjects: [ImportFileRecordInsertInput!]!
+  ) {
+    insertRecord(objects: $recordObjects) {
       __typename
       affectedRows
       returning {
         id
+      }
+    }
+    insertImportFileRecord(objects: $relationObjects) {
+      __typename
+      affectedRows
+      returning {
+        recordId
       }
     }
   }
@@ -4979,9 +5014,12 @@ export const GetImportFileDocument = gql`
       importDatetime
       importFileRecords {
         __typename
-        id
-        index
-        columns
+        record {
+          __typename
+          id
+          index
+          columns
+        }
       }
     }
   }

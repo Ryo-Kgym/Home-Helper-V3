@@ -1,9 +1,19 @@
-mutation insertImportFileRecords($objects: [ImportFileRecordInsertInput!]!) {
-  insertImportFileRecord(objects: $objects) {
+mutation insertImportFileRecords(
+  $recordObjects: [RecordInsertInput!]!
+  $relationObjects: [ImportFileRecordInsertInput!]!
+) {
+  insertRecord(objects: $recordObjects) {
     __typename
     affectedRows
     returning {
       id
+    }
+  }
+  insertImportFileRecord(objects: $relationObjects) {
+    __typename
+    affectedRows
+    returning {
+      recordId
     }
   }
 }

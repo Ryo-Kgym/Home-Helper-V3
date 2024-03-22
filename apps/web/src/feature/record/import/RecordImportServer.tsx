@@ -27,11 +27,11 @@ export const RecordImportServer = async ({ appId }: { appId: string }) => {
     importCount: h.count,
     importFileRecords: Object.fromEntries(
       h.importFileRecords.map((r) => [
-        r.index,
+        r.record.index,
         {
-          recordId: r.id,
+          recordId: r.record.id,
           isEditing: false,
-          columns: recordSchema.parse(r.columns),
+          columns: recordSchema.parse(r.record.columns),
         },
       ]),
     ),

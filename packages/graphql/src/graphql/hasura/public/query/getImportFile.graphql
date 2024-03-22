@@ -15,9 +15,12 @@ query getImportFile($appId: String!) {
     importDatetime
     importFileRecords {
       __typename
-      id
-      index
-      columns
+      record {
+        __typename
+        id
+        index
+        columns
+      }
     }
   }
 }
