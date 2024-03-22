@@ -24,9 +24,9 @@ export const DeleteImportFileHistoryButton = ({
       if (error) {
         throw error;
       }
-      data?.deleteImportFileRecord?.returning.forEach(({ recordId }) =>
-        recordMut({ recordId }),
-      );
+      data?.deleteImportFileRecord?.returning.forEach(({ recordId }) => {
+        void recordMut({ recordId });
+      });
 
       notify("削除しました"); // TODO import_file_settingも
       setHistories(histories.filter((h) => h.id !== historyId));
