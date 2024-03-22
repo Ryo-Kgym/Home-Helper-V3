@@ -7,7 +7,7 @@ export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
   }
 
   return (
-    <button
+    <div
       className={
         "absolute left-0 top-0 z-50 m-0 flex h-full w-full items-center justify-center bg-black/50"
       }
@@ -15,19 +15,35 @@ export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
         event.stopPropagation();
         onClose();
       }}
+      tabIndex={0}
+      role="button"
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.stopPropagation();
+          onClose();
+        }
+      }}
     >
-      <button
+      <div
         className={
           "h-2/3 min-h-[200px] w-2/3 max-w-[750px] overflow-y-scroll bg-white p-5 text-left"
         }
         onClick={(event) => {
           event.stopPropagation();
         }}
+        tabIndex={0}
+        role="button"
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.stopPropagation();
+            onClose();
+          }
+        }}
       >
         <Header onClose={onClose} />
         {children}
-      </button>
-    </button>
+      </div>
+    </div>
   );
 };
 
