@@ -1,6 +1,7 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useRouter } from "next/navigation";
 import { Button } from "@components/ui/v4/button";
+import { notify } from "@components/ui/v4/notify/notify";
 import { useCreateApp } from "@feature/app/create/useCreateApp";
 import { paths } from "@routing/paths";
 
@@ -25,7 +26,7 @@ export const CreateAppButton = ({
       clickHandler={async () => {
         try {
           const { appId } = await createApp({ appName, fields });
-          alert("アプリを作成しました");
+          notify("アプリを作成しました");
 
           push(paths.app.show({ id: appId }));
         } catch (e) {

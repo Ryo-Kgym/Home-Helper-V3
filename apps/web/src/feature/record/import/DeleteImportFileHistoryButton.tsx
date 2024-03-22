@@ -1,5 +1,6 @@
 import type { ImportFileHistory } from "@feature/app/schema";
 import Trash from "@components/ui/v4/icon/Trash";
+import { notify } from "@components/ui/v4/notify/notify";
 import {
   useDeleteImportFileHistoryMutation,
   useDeleteRecordMutation,
@@ -27,11 +28,11 @@ export const DeleteImportFileHistoryButton = ({
         recordMut({ recordId }),
       );
 
-      alert("削除しました");
+      notify("削除しました"); // TODO import_file_settingも
       setHistories(histories.filter((h) => h.id !== historyId));
     } catch (e) {
       console.error(e);
-      alert("削除に失敗しました");
+      notify("削除に失敗しました");
     }
   };
 

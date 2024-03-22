@@ -1,6 +1,7 @@
 import type { ImportFileSettings } from "@feature/app/schema";
 import type { ReactNode } from "react";
 import { Button } from "@components/ui/v4/button";
+import { notify } from "@components/ui/v4/notify/notify";
 import { NumberInput } from "@components/ui/v4/textInput";
 import { importFileSettingsSchema } from "@feature/app/schema";
 import { EncodingSelect } from "@feature/record/import/EncodingSelect";
@@ -32,7 +33,7 @@ export const SetImportFileSetting = ({
       if (error) {
         throw error;
       }
-      alert("設定しました");
+      notify("設定しました");
       setImportFileSettings(
         importFileSettingsSchema.parse(
           data?.insertImportFileSettingOne?.settings,
@@ -41,7 +42,7 @@ export const SetImportFileSetting = ({
       setAfterHandler();
     } catch (e) {
       console.error(e);
-      alert("設定に失敗した。");
+      notify("設定に失敗した。");
     }
   };
 

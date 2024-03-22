@@ -1,5 +1,6 @@
 import type { Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
+import { notify } from "@components/ui/v4/notify/notify";
 import { useUpdateRecordMutation } from "@v3/graphql/public";
 
 export const UpdateRecordButton = ({
@@ -24,10 +25,10 @@ export const UpdateRecordButton = ({
       }
 
       setMode("show");
-      alert("レコードを更新しました");
+      notify("レコードを更新しました");
     } catch (e) {
       console.error(e);
-      alert("レコード更新に更新しました");
+      notify("レコード更新に更新しました");
     }
   };
 

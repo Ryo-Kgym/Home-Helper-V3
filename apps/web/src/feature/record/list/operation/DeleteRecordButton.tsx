@@ -1,4 +1,5 @@
 import type { Records } from "@feature/app/schema/record-schema";
+import { notify } from "@components/ui/v4/notify/notify";
 
 import type { RecordListMode } from "../RecordListClient";
 import { useDeleteRecordMutation } from "../../../../../../../packages/graphql/public";
@@ -35,7 +36,7 @@ export const DeleteRecordButton = ({
           throw error;
         }
         setRecordsState();
-        alert("削除しました");
+        notify("削除しました");
       }
 
       if (mode === "add") {
@@ -44,7 +45,7 @@ export const DeleteRecordButton = ({
       }
     } catch (e) {
       console.error(e);
-      alert("削除に失敗しました");
+      notify("削除に失敗しました");
     }
   };
 

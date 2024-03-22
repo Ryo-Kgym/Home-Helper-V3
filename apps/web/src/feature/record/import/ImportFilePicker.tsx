@@ -6,6 +6,7 @@ import type {
 } from "@feature/app/schema";
 import { useRef, useState } from "react";
 import { Button } from "@components/ui/v4/button";
+import { notify } from "@components/ui/v4/notify/notify";
 import { convertRecords } from "@feature/record/import/convert-records";
 import { loadImportFile } from "@feature/record/import/load-import-file";
 import { selectSingleFile } from "@feature/record/import/select-single-file";
@@ -47,7 +48,7 @@ export const ImportFilePicker = ({
     const records = convertRecords(data, fields);
 
     if (Object.keys(records).length === 0) {
-      alert("取込に失敗しました。設定を見直してください。");
+      notify("取込に失敗しました。設定を見直してください。");
       resetClickHandler();
       return;
     }
@@ -63,12 +64,12 @@ export const ImportFilePicker = ({
         previewRecords,
         fileName,
       );
-      alert("取込が完了しました");
+      notify("取込が完了しました");
       setHistories([...histories, importFileHistory]);
       resetClickHandler();
     } catch (e) {
       console.error(e);
-      alert("取込に失敗しました");
+      notify("取込に失敗しました");
     }
   };
 
