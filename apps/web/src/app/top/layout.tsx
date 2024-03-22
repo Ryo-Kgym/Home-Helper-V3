@@ -1,13 +1,11 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
+import type { ReactNode } from "react";
+import { SelectApp } from "@feature/app/list";
 
-import { SelectPageLayout } from "@app/_layout/SelectPageLayout";
-
-const Layout = ({ children }: { children: React.ReactNode }) => (
-  <SelectPageLayout title={"アプリを選択してください"}>
+const Layout = ({ children }: { children: ReactNode }) => (
+  <div>
+    <SelectApp />
     {children}
-  </SelectPageLayout>
+  </div>
 );
 
 export default Layout;

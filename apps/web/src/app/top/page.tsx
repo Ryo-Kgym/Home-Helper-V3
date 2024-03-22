@@ -2,7 +2,5 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { SelectApp } from "@feature/app/list";
-
-const SelectAppPage = () => <SelectApp />;
+const SelectAppPage = () => <div>お知らせ</div>;
 export default SelectAppPage;
