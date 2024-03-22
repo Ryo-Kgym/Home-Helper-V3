@@ -15,6 +15,8 @@ const CsvFileSettingMap = new Map<FileType, ImportFileSettings>([
       splitSeparator: "\r\n",
       headerRows: 0,
       footerRows: 1,
+      quotation: "",
+      splitter: ",",
     },
   ],
   [
@@ -27,6 +29,7 @@ const CsvFileSettingMap = new Map<FileType, ImportFileSettings>([
       headerRows: 1,
       footerRows: 1,
       quotation: '"',
+      splitter: ",",
     },
   ],
   [
@@ -38,6 +41,8 @@ const CsvFileSettingMap = new Map<FileType, ImportFileSettings>([
       splitSeparator: "\r\n",
       headerRows: 1,
       footerRows: 1,
+      quotation: "",
+      splitter: ",",
     },
   ],
   [
@@ -50,6 +55,7 @@ const CsvFileSettingMap = new Map<FileType, ImportFileSettings>([
       headerRows: 1,
       footerRows: 1,
       quotation: '"',
+      splitter: ",",
     },
   ],
 ]);
