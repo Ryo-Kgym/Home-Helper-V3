@@ -63,10 +63,9 @@ export const ImportFilePicker = ({
         previewRecords,
         fileName,
       );
-      setPreviewRecords({});
-      setFileName("");
-      setHistories([...histories, importFileHistory]);
       alert("取込が完了しました");
+      setHistories([...histories, importFileHistory]);
+      resetClickHandler();
     } catch (e) {
       console.error(e);
       alert("取込に失敗しました");
@@ -81,6 +80,8 @@ export const ImportFilePicker = ({
     }
   };
 
+  const importDisabled = Object.keys(previewRecords).length === 0 || !fileName;
+
   return (
     <div className={"flex items-center space-x-4"}>
       <input
@@ -93,7 +94,7 @@ export const ImportFilePicker = ({
         label={"取込"}
         clickHandler={importClickHandler}
         type={"add"}
-        disabled={Object.keys(previewRecords).length === 0}
+        disabled={importDisabled}
       />
       <Button
         label={"リセット"}
