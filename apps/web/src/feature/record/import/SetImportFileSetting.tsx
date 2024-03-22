@@ -1,8 +1,8 @@
 import type { ImportFileSettings } from "@feature/app/schema";
 import type { ReactNode } from "react";
-import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { NumberInput } from "@components/ui/v4/textInput";
+import { importFileSettingsSchema } from "@feature/app/schema";
 import { EncodingSelect } from "@feature/record/import/EncodingSelect";
 import { EncodingTypeSelect } from "@feature/record/import/EncodingTypeSelect";
 import { LineBreakCodeSelect } from "@feature/record/import/LineBreakCodeSelect";
@@ -12,29 +12,32 @@ import { useInsertImportFileSettingMutation } from "@v3/graphql/public";
 
 export const SetImportFileSetting = ({
   appId,
-  importFileSettings: defaultSettings,
+  importFileSettings: settings,
+  setImportFileSettings,
   setAfterHandler,
 }: {
   appId: string;
   importFileSettings: ImportFileSettings;
+  setImportFileSettings: (settings: ImportFileSettings) => void;
   setAfterHandler: () => void;
 }) => {
-  const [settings, setSettings] = useState<ImportFileSettings>(
-    structuredClone(defaultSettings),
-  );
-
   const [, mut] = useInsertImportFileSettingMutation();
 
   const setHandler = async () => {
     try {
-      const { error } = await mut({
+      const { data, error } = await mut({
         appId,
         settings,
       });
       if (error) {
-        console.error(error);
+        throw error;
       }
       alert("設定しました");
+      setImportFileSettings(
+        importFileSettingsSchema.parse(
+          data?.insertImportFileSettingOne?.settings,
+        ),
+      );
       setAfterHandler();
     } catch (e) {
       console.error(e);
@@ -49,21 +52,23 @@ export const SetImportFileSetting = ({
         <EncodingSelect
           value={settings.encodingFrom}
           setValue={(value) =>
-            setSettings({ ...settings, encodingFrom: value })
+            setImportFileSettings({ ...settings, encodingFrom: value })
           }
         />
       </Section>
       <Section title={"変換後エンコード"}>
         <EncodingSelect
           value={settings.encodingTo}
-          setValue={(value) => setSettings({ ...settings, encodingTo: value })}
+          setValue={(value) =>
+            setImportFileSettings({ ...settings, encodingTo: value })
+          }
         />
       </Section>
       <Section title={"タイプ"}>
         <EncodingTypeSelect
           value={settings.encodingType}
           setValue={(value) =>
-            setSettings({ ...settings, encodingType: value })
+            setImportFileSettings({ ...settings, encodingType: value })
           }
         />
       </Section>
@@ -71,7 +76,7 @@ export const SetImportFileSetting = ({
         <LineBreakCodeSelect
           value={settings.splitSeparator}
           setValue={(value) =>
-            setSettings({ ...settings, splitSeparator: value })
+            setImportFileSettings({ ...settings, splitSeparator: value })
           }
         />
       </Section>
@@ -79,7 +84,10 @@ export const SetImportFileSetting = ({
         <NumberInput
           value={settings.headerRows}
           setValue={(value) =>
-            setSettings({ ...settings, headerRows: value ? value : 0 })
+            setImportFileSettings({
+              ...settings,
+              headerRows: value ? value : 0,
+            })
           }
           label={""}
         />
@@ -88,7 +96,10 @@ export const SetImportFileSetting = ({
         <NumberInput
           value={settings.footerRows}
           setValue={(value) =>
-            setSettings({ ...settings, footerRows: value ? value : 0 })
+            setImportFileSettings({
+              ...settings,
+              footerRows: value ? value : 0,
+            })
           }
           label={""}
         />
@@ -96,13 +107,17 @@ export const SetImportFileSetting = ({
       <Section title={"引用符"}>
         <QuotationSelect
           value={settings.quotation}
-          setValue={(value) => setSettings({ ...settings, quotation: value })}
+          setValue={(value) =>
+            setImportFileSettings({ ...settings, quotation: value })
+          }
         />
       </Section>
       <Section title={"区切り文字"}>
         <SplitterSelect
           value={settings.splitter}
-          setValue={(value) => setSettings({ ...settings, splitter: value })}
+          setValue={(value) =>
+            setImportFileSettings({ ...settings, splitter: value })
+          }
         />
       </Section>
 

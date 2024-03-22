@@ -20,7 +20,7 @@ import { ImportPreview } from "./ImportPreview";
 
 export const RecordImportClient = ({
   app,
-  importFileSettings,
+  importFileSettings: defaultSettings,
   importHistories: defaultImportHistories,
   requiredInitializeSettings,
 }: {
@@ -32,6 +32,7 @@ export const RecordImportClient = ({
   const [histories, setHistories] = useState<ImportFileHistory[]>(
     defaultImportHistories,
   );
+  const [settings, setSettings] = useState<ImportFileSettings>(defaultSettings);
   const [previewRecords, setPreviewRecords] = useState<Records>({});
   const [isOpen, setIsOpen] = useState<boolean>(requiredInitializeSettings);
   return (
@@ -51,7 +52,7 @@ export const RecordImportClient = ({
         />
         <ImportPreview
           app={app}
-          importFileSettings={importFileSettings}
+          importFileSettings={settings}
           previewRecords={previewRecords}
           histories={histories}
           setHistories={setHistories}
@@ -62,7 +63,8 @@ export const RecordImportClient = ({
         <Modal.Body>
           <SetImportFileSetting
             appId={app.id}
-            importFileSettings={importFileSettings}
+            importFileSettings={settings}
+            setImportFileSettings={setSettings}
             setAfterHandler={() => setIsOpen(false)}
           />
         </Modal.Body>

@@ -4498,6 +4498,7 @@ export type InsertImportFileSettingMutation = {
   insertImportFileSettingOne?: {
     __typename: "ImportFileSetting";
     appId: string;
+    settings: any;
   } | null;
 };
 
@@ -5230,12 +5231,64 @@ export const InsertImportFileSettingDocument = {
                   ],
                 },
               },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "onConflict" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "constraint" },
+                      value: {
+                        kind: "EnumValue",
+                        value: "import_file_setting_pkey",
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "updateColumns" },
+                      value: {
+                        kind: "ListValue",
+                        values: [{ kind: "EnumValue", value: "settings" }],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "appId" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "appId" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
             ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "appId" } },
+                { kind: "Field", name: { kind: "Name", value: "settings" } },
               ],
             },
           },

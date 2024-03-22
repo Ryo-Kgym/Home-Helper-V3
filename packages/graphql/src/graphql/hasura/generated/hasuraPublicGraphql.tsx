@@ -4576,6 +4576,7 @@ export type InsertImportFileSettingMutation = {
   insertImportFileSettingOne?: {
     __typename: "ImportFileSetting";
     appId: string;
+    settings: any;
   } | null;
 };
 
@@ -4815,9 +4816,17 @@ export function useInsertImportFileRecordsMutation() {
 }
 export const InsertImportFileSettingDocument = gql`
   mutation insertImportFileSetting($appId: String!, $settings: json!) {
-    insertImportFileSettingOne(object: { appId: $appId, settings: $settings }) {
+    insertImportFileSettingOne(
+      object: { appId: $appId, settings: $settings }
+      onConflict: {
+        constraint: import_file_setting_pkey
+        updateColumns: [settings]
+        where: { appId: { _eq: $appId } }
+      }
+    ) {
       __typename
       appId
+      settings
     }
   }
 `;
