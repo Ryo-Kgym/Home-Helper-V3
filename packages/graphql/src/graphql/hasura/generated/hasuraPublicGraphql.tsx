@@ -4702,8 +4702,10 @@ export type GetApplicationsQuery = {
   __typename?: "query_root";
   group?: {
     __typename?: "Group";
+    id: string;
     groupApplications: Array<{
       __typename?: "GroupApplication";
+      id: string;
       application: {
         __typename?: "Application";
         id: string;
@@ -4734,6 +4736,7 @@ export type GetImportFileQuery = {
     importDatetime: any;
     importFileRecords: Array<{
       __typename: "ImportFileRecord";
+      id: string;
       record: { __typename: "Record"; id: string; index: number; columns: any };
     }>;
   }>;
@@ -5004,7 +5007,9 @@ export function useGetAppQuery(
 export const GetApplicationsDocument = gql`
   query getApplications($groupId: String!) {
     group: groupByPk(id: $groupId) {
+      id
       groupApplications {
+        id
         application {
           id
           name
@@ -5044,6 +5049,7 @@ export const GetImportFileDocument = gql`
       fileName
       importDatetime
       importFileRecords {
+        id: recordId
         __typename
         record {
           __typename

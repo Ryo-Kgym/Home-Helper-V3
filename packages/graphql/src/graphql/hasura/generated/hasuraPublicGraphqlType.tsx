@@ -4624,8 +4624,10 @@ export type GetApplicationsQuery = {
   __typename?: "query_root";
   group?: {
     __typename?: "Group";
+    id: string;
     groupApplications: Array<{
       __typename?: "GroupApplication";
+      id: string;
       application: {
         __typename?: "Application";
         id: string;
@@ -4656,6 +4658,7 @@ export type GetImportFileQuery = {
     importDatetime: any;
     importFileRecords: Array<{
       __typename: "ImportFileRecord";
+      id: string;
       record: { __typename: "Record"; id: string; index: number; columns: any };
     }>;
   }>;
@@ -6029,12 +6032,14 @@ export const GetApplicationsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "groupApplications" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "application" },
@@ -6197,6 +6202,11 @@ export const GetImportFileDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "id" },
+                        name: { kind: "Name", value: "recordId" },
+                      },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "__typename" },
