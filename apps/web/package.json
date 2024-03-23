@@ -40,6 +40,8 @@
     "@tiptap/extension-link": "^2.1.13",
     "@tiptap/react": "^2.1.13",
     "@tiptap/starter-kit": "^2.1.13",
+    "@urql/core": "^4.3.0",
+    "@urql/exchange-graphcache": "^6.5.0",
     "@urql/next": "^1.1.1",
     "@v3/graphql": "workspace:^3.0.0",
     "dayjs": "^1.11.10",
