@@ -4667,6 +4667,25 @@ export type UpdateRecordMutation = {
   updateRecordByPk?: { __typename?: "Record"; id: string } | null;
 };
 
+export type GetUserByEmailQueryVariables = Exact<{
+  email: Scalars["String"];
+}>;
+
+export type GetUserByEmailQuery = {
+  __typename?: "query_root";
+  userByEmail: Array<{
+    __typename?: "User";
+    email: string;
+    id: string;
+    name?: string | null;
+    affiliation: Array<{
+      __typename?: "Affiliation";
+      groupRole: string;
+      group: { __typename?: "Group"; id: string; name: string };
+    }>;
+  }>;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -4702,8 +4721,10 @@ export type GetApplicationsQuery = {
   __typename?: "query_root";
   group?: {
     __typename?: "Group";
+    id: string;
     groupApplications: Array<{
       __typename?: "GroupApplication";
+      id: string;
       application: {
         __typename?: "Application";
         id: string;
@@ -4734,6 +4755,7 @@ export type GetImportFileQuery = {
     importDatetime: any;
     importFileRecords: Array<{
       __typename: "ImportFileRecord";
+      id: string;
       record: { __typename: "Record"; id: string; index: number; columns: any };
     }>;
   }>;
@@ -4969,6 +4991,31 @@ export function useUpdateRecordMutation() {
     UpdateRecordDocument,
   );
 }
+export const GetUserByEmailDocument = gql`
+  query GetUserByEmail($email: String!) {
+    userByEmail: user(where: { email: { _eq: $email } }) {
+      email
+      id
+      name
+      affiliation: affiliations {
+        group: group {
+          id
+          name
+        }
+        groupRole
+      }
+    }
+  }
+`;
+
+export function useGetUserByEmailQuery(
+  options: Omit<Urql.UseQueryArgs<GetUserByEmailQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetUserByEmailQuery, GetUserByEmailQueryVariables>({
+    query: GetUserByEmailDocument,
+    ...options,
+  });
+}
 export const GetAppDocument = gql`
   query getApp($appId: String!) {
     app: appByPk(id: $appId) {
@@ -5004,7 +5051,9 @@ export function useGetAppQuery(
 export const GetApplicationsDocument = gql`
   query getApplications($groupId: String!) {
     group: groupByPk(id: $groupId) {
+      id
       groupApplications {
+        id
         application {
           id
           name
@@ -5044,6 +5093,7 @@ export const GetImportFileDocument = gql`
       fileName
       importDatetime
       importFileRecords {
+        id: recordId
         __typename
         record {
           __typename

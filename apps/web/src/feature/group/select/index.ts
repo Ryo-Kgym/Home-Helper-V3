@@ -1,1 +1,1 @@
-export { SelectGroupContainer as SelectGroup } from "./SelectGroupContainer";
+export { SelectGroupServer as SelectGroup } from "./SelectGroupServer";

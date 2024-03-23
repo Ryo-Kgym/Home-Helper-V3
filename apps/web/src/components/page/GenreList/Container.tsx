@@ -16,7 +16,6 @@ import { useGetAllGenreQuery } from "@v3/graphql/household";
 import { Presenter_ } from "./Presenter";
 
 export const Container_ = () => {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
   const { groupId } = useGroup();
   const [{ data, fetching }] = useGetAllGenreQuery({

@@ -1,6 +1,8 @@
 query getApplications($groupId: String!) {
   group: groupByPk(id: $groupId) {
+    id
     groupApplications {
+      id
       application {
         id
         name

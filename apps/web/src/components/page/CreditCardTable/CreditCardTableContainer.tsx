@@ -14,7 +14,6 @@ import { CreditCardTablePresenter } from "./CreditCardTablePresenter";
 
 export const CreditCardTableContainer = () => {
   const { groupId } = useGroup();
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
 
   const [{ data }] = useGetCreditCardListQuery({ variables: { groupId } });

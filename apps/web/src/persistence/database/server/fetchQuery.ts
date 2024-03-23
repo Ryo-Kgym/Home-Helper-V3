@@ -1,11 +1,19 @@
 import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
+import { createClient, fetchExchange } from "@urql/core";
+import { cacheExchange } from "@urql/exchange-graphcache";
 import { registerUrql } from "@urql/next/rsc";
-import { cacheExchange, createClient, fetchExchange } from "urql/core";
 
 const makeClient = () => {
   return createClient({
     url: process.env.ONEFORALL_GRAPHQL_ENDPOINT!,
-    exchanges: [cacheExchange, fetchExchange],
+    exchanges: [
+      cacheExchange({
+        updates: {
+          Mutation: {},
+        },
+      }),
+      fetchExchange,
+    ],
     fetchOptions: {
       cache: "no-store",
     },
