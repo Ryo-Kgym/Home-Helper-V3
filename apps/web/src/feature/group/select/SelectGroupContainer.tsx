@@ -4,17 +4,23 @@
 
 "use client";
 
+import type { Group } from "@domain/model/Group";
+import type { User } from "@domain/model/User";
 import { LinkList } from "@components/atoms/Card";
 import { useAuth } from "@hooks/authentication/useAuth";
-import { useGetGroup } from "@hooks/group/useGetGroup";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
 import { saveUser } from "persistence/browser/client";
 
-export const SelectGroupContainer = () => {
+export const SelectGroupContainer = ({
+  user,
+  groups,
+}: {
+  user: User;
+  groups: Group[];
+}) => {
   const { save: userSave } = useUser();
   const { save: groupSave } = useGroup();
-  const { user, groups: data } = useGetGroup();
   const { logout } = useAuth();
 
   const linkProps = [
@@ -27,15 +33,15 @@ export const SelectGroupContainer = () => {
       },
     },
   ].concat(
-    data.map(({ group }) => ({
+    groups.map((group) => ({
       href: "/top",
       label: group.name,
       back: false,
       handleClick: async () => {
-        userSave(user!);
-        groupSave(group);
+        userSave(user); // TODO 削除
+        groupSave(group); // TODO 削除
         await saveUser({
-          ...user!,
+          ...user,
           group,
         });
       },

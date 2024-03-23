@@ -4589,6 +4589,25 @@ export type UpdateRecordMutation = {
   updateRecordByPk?: { __typename?: "Record"; id: string } | null;
 };
 
+export type GetUserByEmailQueryVariables = Exact<{
+  email: Scalars["String"];
+}>;
+
+export type GetUserByEmailQuery = {
+  __typename?: "query_root";
+  userByEmail: Array<{
+    __typename?: "User";
+    email: string;
+    id: string;
+    name?: string | null;
+    affiliation: Array<{
+      __typename?: "Affiliation";
+      groupRole: string;
+      group: { __typename?: "Group"; id: string; name: string };
+    }>;
+  }>;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -5871,6 +5890,110 @@ export const UpdateRecordDocument = {
   UpdateRecordMutation,
   UpdateRecordMutationVariables
 >;
+export const GetUserByEmailDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserByEmail" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "email" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "userByEmail" },
+            name: { kind: "Name", value: "user" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "email" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "email" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "email" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "affiliation" },
+                  name: { kind: "Name", value: "affiliations" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "group" },
+                        name: { kind: "Name", value: "group" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "groupRole" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserByEmailQuery, GetUserByEmailQueryVariables>;
 export const GetAppDocument = {
   kind: "Document",
   definitions: [

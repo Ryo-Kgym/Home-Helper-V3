@@ -4667,6 +4667,25 @@ export type UpdateRecordMutation = {
   updateRecordByPk?: { __typename?: "Record"; id: string } | null;
 };
 
+export type GetUserByEmailQueryVariables = Exact<{
+  email: Scalars["String"];
+}>;
+
+export type GetUserByEmailQuery = {
+  __typename?: "query_root";
+  userByEmail: Array<{
+    __typename?: "User";
+    email: string;
+    id: string;
+    name?: string | null;
+    affiliation: Array<{
+      __typename?: "Affiliation";
+      groupRole: string;
+      group: { __typename?: "Group"; id: string; name: string };
+    }>;
+  }>;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -4971,6 +4990,31 @@ export function useUpdateRecordMutation() {
   return Urql.useMutation<UpdateRecordMutation, UpdateRecordMutationVariables>(
     UpdateRecordDocument,
   );
+}
+export const GetUserByEmailDocument = gql`
+  query GetUserByEmail($email: String!) {
+    userByEmail: user(where: { email: { _eq: $email } }) {
+      email
+      id
+      name
+      affiliation: affiliations {
+        group: group {
+          id
+          name
+        }
+        groupRole
+      }
+    }
+  }
+`;
+
+export function useGetUserByEmailQuery(
+  options: Omit<Urql.UseQueryArgs<GetUserByEmailQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetUserByEmailQuery, GetUserByEmailQueryVariables>({
+    query: GetUserByEmailDocument,
+    ...options,
+  });
 }
 export const GetAppDocument = gql`
   query getApp($appId: String!) {
