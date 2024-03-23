@@ -11,7 +11,6 @@ import { useGroup } from "@hooks/group/useGroup";
 import { useGetAllCategoriesQuery } from "@v3/graphql/household";
 
 export const Container_ = () => {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
   const { groupId } = useGroup();
   const [{ data, fetching }] = useGetAllCategoriesQuery({

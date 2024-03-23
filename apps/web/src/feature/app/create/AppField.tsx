@@ -38,6 +38,7 @@ export const AppField = ({
     if (!defaultField) {
       setOptions({});
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fieldKind]);
 
   const deleteModeStyle = defaultField.mode === "delete" ? "bg-red-100" : "";

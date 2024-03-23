@@ -13,7 +13,6 @@ export const useAuth = () => {
   const { save: saveGroup } = useGroup();
   const { setMessage } = useMessage();
   const { signOut, session } = useClerk();
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
 
   const logout = async () => {

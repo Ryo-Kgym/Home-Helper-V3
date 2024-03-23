@@ -13,7 +13,6 @@ export const MantineRoutingTabs = ({
   tabs,
   children,
 }: RoutingTabsProps) => {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
 
   return (

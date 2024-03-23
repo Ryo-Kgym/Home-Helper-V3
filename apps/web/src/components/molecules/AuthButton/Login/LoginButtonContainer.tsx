@@ -8,7 +8,6 @@ import { AuthButtonPresenter } from "@components/molecules/AuthButton/AuthButton
 import { useUser } from "@hooks/user/useUser";
 
 export const LoginButtonContainer = () => {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
   const { hasUserId } = useUser();
 

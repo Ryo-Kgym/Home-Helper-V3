@@ -17,7 +17,6 @@ type CreditCardDetailTableContainerProps = {
 export const Container_ = ({
   creditCardSummaryId,
 }: CreditCardDetailTableContainerProps) => {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { push } = useRouter();
 
   const [{ data }] = useGetCreditCardDetailBySummaryIdQuery({
