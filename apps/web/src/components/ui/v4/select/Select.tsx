@@ -8,20 +8,22 @@ export const Select = <T extends string | number>({
   setValue,
   data,
   disabled,
+  required,
+  placeholder,
 }: SelectProps<T>) => {
   const [openOption, setOpenOption] = useState(false);
   const selectedFieldName = data.find((d) => d.value === value)?.label ?? "";
+  const requiredBgColor = required && !value ? "bg-red-100" : "";
 
   return (
     <FieldContainer label={label}>
       <input
-        className={
-          "w-full cursor-pointer p-2 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-200"
-        }
+        className={`w-full cursor-pointer p-2 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-200 ${requiredBgColor}`}
         value={selectedFieldName}
         readOnly
         onClick={() => setOpenOption(true)}
         disabled={disabled}
+        placeholder={placeholder}
       />
       <div className={"absolute z-10 ml-10 bg-white"}>
         {data
