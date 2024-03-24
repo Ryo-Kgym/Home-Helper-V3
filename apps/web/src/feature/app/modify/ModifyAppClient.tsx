@@ -23,8 +23,7 @@ export const ModifyAppClient = ({
 
   return (
     <div className={"space-y-10"}>
-      <Title>
-        <div className={"text-3xl"}>{"アプリ設定"}</div>
+      <Title title={"アプリ設定"}>
         <RedirectListButton appId={appId} />
       </Title>
       <div className={"grid grid-cols-2 gap-2"}>

@@ -15,9 +15,7 @@ export const CreateAppClient = () => {
 
   return (
     <div className={"space-y-10"}>
-      <Title>
-        <div className={"text-3xl"}>アプリ作成</div>
-      </Title>
+      <Title title={"アプリ作成"} />
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>

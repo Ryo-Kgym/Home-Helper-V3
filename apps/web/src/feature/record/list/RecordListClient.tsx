@@ -40,8 +40,7 @@ export const RecordListClient = ({
 
   return (
     <div className={"space-y-10"}>
-      <Title>
-        <div className={"text-3xl"}>{app.name}</div>
+      <Title title={app.name}>
         <RedirectSettingButton appId={app.id} />
         <AddRecordButton
           mode={mode}
