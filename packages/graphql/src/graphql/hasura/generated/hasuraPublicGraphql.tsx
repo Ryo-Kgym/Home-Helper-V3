@@ -4713,6 +4713,24 @@ export type GetAppQuery = {
   } | null;
 };
 
+export type GetAppFieldListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetAppFieldListQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    id: string;
+    apps: Array<{
+      __typename?: "App";
+      id: string;
+      name: string;
+      fields: Array<{ __typename?: "Field"; id: string; name: string }>;
+    }>;
+  } | null;
+};
+
 export type GetApplicationsQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -5045,6 +5063,30 @@ export function useGetAppQuery(
 ) {
   return Urql.useQuery<GetAppQuery, GetAppQueryVariables>({
     query: GetAppDocument,
+    ...options,
+  });
+}
+export const GetAppFieldListDocument = gql`
+  query getAppFieldList($groupId: String!) {
+    group: groupByPk(id: $groupId) {
+      id
+      apps {
+        id
+        name
+        fields(orderBy: { index: ASC }) {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
+export function useGetAppFieldListQuery(
+  options: Omit<Urql.UseQueryArgs<GetAppFieldListQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAppFieldListQuery, GetAppFieldListQueryVariables>({
+    query: GetAppFieldListDocument,
     ...options,
   });
 }

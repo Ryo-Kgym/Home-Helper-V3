@@ -1,0 +1,13 @@
+query getAppFieldList($groupId: String!) {
+  group: groupByPk(id: $groupId) {
+    id
+    apps {
+      id
+      name
+      fields(orderBy: { index: ASC }) {
+        id
+        name
+      }
+    }
+  }
+}
