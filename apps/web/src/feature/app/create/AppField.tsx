@@ -48,7 +48,7 @@ export const AppField = ({
       className={`flex gap-2 border-2 border-gray-500 p-2 ${deleteModeStyle}`}
     >
       <DeleteFieldButton index={index} value={value} setValue={setValue} />
-      <div className={"grid grid-cols-3 gap-2"}>
+      <div className={"flex flex-1 gap-2"}>
         <Select
           label={"フィールドの選択"}
           disabled={defaultField.mode !== "add"}
