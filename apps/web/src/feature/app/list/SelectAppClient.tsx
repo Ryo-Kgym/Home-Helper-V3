@@ -9,9 +9,11 @@ import { useRouter } from "next/navigation";
 import { Modal } from "@components/ui/v4/modal";
 import { paths } from "@routing/paths";
 
-import type { AppListType } from "./SelectAppServer";
+import { useGetAppList } from "./useGetAppList";
 
-export const SelectAppClient = ({ data }: { data: AppListType[] }) => {
+export const SelectAppClient = () => {
+  const { appList } = useGetAppList();
+
   const { push } = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -42,7 +44,7 @@ export const SelectAppClient = ({ data }: { data: AppListType[] }) => {
         <Modal.Body>
           <div>アプリ一覧</div>
           <div>
-            {data.map((props) => (
+            {appList.map((props) => (
               <LinkBox
                 key={props.label}
                 {...props}
