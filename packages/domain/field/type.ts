@@ -16,6 +16,9 @@ export type FieldProperties = {
   multipleText: {
     name: "MultipleText";
   } & BaseProperties;
+  lookup: {
+    name: "Lookup";
+  } & BaseProperties;
 };
 
 export type FieldKind = keyof FieldProperties;
@@ -38,5 +41,9 @@ export const fieldKindArray: Record<
   multipleText: {
     fieldKind: "multipleText",
     description: "複数テキスト",
+  },
+  lookup: {
+    fieldKind: "lookup",
+    description: "既存アプリから参照",
   },
 };
