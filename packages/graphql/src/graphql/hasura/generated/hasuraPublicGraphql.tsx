@@ -4686,6 +4686,13 @@ export type GetUserByEmailQuery = {
   }>;
 };
 
+export type FragRecordsFragment = {
+  __typename: "Record";
+  id: string;
+  index: number;
+  columns: any;
+};
+
 export type GetAppQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -4794,6 +4801,28 @@ export type GetMaxRecordIndexQuery = {
   };
 };
 
+export type GetRecordsQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetRecordsQuery = {
+  __typename?: "query_root";
+  records: Array<{
+    __typename: "Record";
+    id: string;
+    index: number;
+    columns: any;
+  }>;
+};
+
+export const FragRecordsFragmentDoc = gql`
+  fragment fragRecords on Record {
+    __typename
+    id
+    index
+    columns
+  }
+`;
 export const DeleteImportFileHistoryDocument = gql`
   mutation deleteImportFileHistory($historyId: String!) {
     deleteImportFileRecord(where: { historyId: { _eq: $historyId } }) {
@@ -5049,13 +5078,11 @@ export const GetAppDocument = gql`
         options
       }
       records {
-        __typename
-        id
-        index
-        columns
+        ...fragRecords
       }
     }
   }
+  ${FragRecordsFragmentDoc}
 `;
 
 export function useGetAppQuery(
@@ -5174,4 +5201,24 @@ export function useGetMaxRecordIndexQuery(
   return Urql.useQuery<GetMaxRecordIndexQuery, GetMaxRecordIndexQueryVariables>(
     { query: GetMaxRecordIndexDocument, ...options },
   );
+}
+export const GetRecordsDocument = gql`
+  query getRecords($appId: String!) {
+    records: record(
+      where: { appId: { _eq: $appId } }
+      orderBy: { index: ASC }
+    ) {
+      ...fragRecords
+    }
+  }
+  ${FragRecordsFragmentDoc}
+`;
+
+export function useGetRecordsQuery(
+  options: Omit<Urql.UseQueryArgs<GetRecordsQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetRecordsQuery, GetRecordsQueryVariables>({
+    query: GetRecordsDocument,
+    ...options,
+  });
 }

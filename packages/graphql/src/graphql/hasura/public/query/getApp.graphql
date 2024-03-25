@@ -12,10 +12,7 @@ query getApp($appId: String!) {
       options
     }
     records {
-      __typename
-      id
-      index
-      columns
+      ...fragRecords
     }
   }
 }
