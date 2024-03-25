@@ -7,10 +7,9 @@ import { TextInput } from "@components/ui/v4/textInput";
 export const ModifyCell = ({
   field,
   recordIndex,
-  fieldId,
   fields,
   column = {
-    fieldKind: fields[fieldId]?.fieldKind ?? "text",
+    fieldKind: fields[field.id]?.fieldKind ?? "text",
     value: "",
   },
   records,
@@ -18,7 +17,6 @@ export const ModifyCell = ({
 }: {
   field: Field;
   recordIndex: number;
-  fieldId: string;
   fields: Fields;
   column: RecordColumn | undefined;
   records: Records;
@@ -33,7 +31,7 @@ export const ModifyCell = ({
 
   const changeHandler = (value: string) => {
     const copiedRecords = { ...records };
-    const col = copiedRecords[recordIndex]?.columns[fieldId];
+    const col = copiedRecords[recordIndex]?.columns[field.id];
     if (!col) return;
     col.value = value;
     setRecords(copiedRecords);

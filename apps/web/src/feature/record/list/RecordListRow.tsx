@@ -35,7 +35,6 @@ export const RecordListRow = ({
       <Table.BodyTd key={field.id}>
         <RecordCell
           recordIndex={recordIndex}
-          fieldId={field.id}
           fields={app.fields}
           field={field}
           isEditing={record.isEditing}
@@ -45,7 +44,6 @@ export const RecordListRow = ({
           records={records}
           setRecords={setRecords}
           column={record.columns[field.id]!}
-          options={field.options}
         />
       </Table.BodyTd>
     ))}

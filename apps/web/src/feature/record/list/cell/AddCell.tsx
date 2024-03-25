@@ -1,9 +1,4 @@
-import type {
-  Field,
-  FieldOptions,
-  FieldOptionsLookup,
-  Fields,
-} from "@feature/app/schema";
+import type { Field, Fields } from "@feature/app/schema";
 import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
@@ -12,23 +7,19 @@ import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFac
 
 export const AddCell = ({
   field,
-  fieldId,
   fields,
   column = {
-    fieldKind: fields[fieldId]?.fieldKind ?? "text",
+    fieldKind: fields[field.id]?.fieldKind ?? "text",
     value: "",
   },
   newRecord,
   setNewRecord,
-  options,
 }: {
   field: Field;
-  fieldId: string;
   fields: Fields;
   column: RecordColumn | undefined;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
-  options: FieldOptions;
 }) => {
   if (field.fieldKind !== column.fieldKind) {
     console.error(
@@ -40,14 +31,14 @@ export const AddCell = ({
   const changeHandler = (value: string) => {
     setNewRecord({
       ...newRecord,
-      [fieldId]: {
+      [field.id]: {
         ...column,
         value,
       },
     });
   };
 
-  const value = newRecord[fieldId]!.value;
+  const value = newRecord[field.id]!.value;
 
   switch (field.fieldKind) {
     case "text":
@@ -72,7 +63,7 @@ export const AddCell = ({
         <AddCellLookupFactory
           value={value}
           changeHandler={changeHandler}
-          options={options as FieldOptionsLookup} // FIXME: type assertion
+          options={field.options}
         />
       );
     }
