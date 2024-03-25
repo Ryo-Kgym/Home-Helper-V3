@@ -1,4 +1,5 @@
 import type {
+  Field,
   FieldOptions,
   FieldOptionsLookup,
   Fields,
@@ -10,6 +11,7 @@ import { TextInput } from "@components/ui/v4/textInput";
 import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFactory";
 
 export const AddCell = ({
+  field,
   fieldId,
   fields,
   column = {
@@ -20,6 +22,7 @@ export const AddCell = ({
   setNewRecord,
   options,
 }: {
+  field: Field;
   fieldId: string;
   fields: Fields;
   column: RecordColumn | undefined;
@@ -27,11 +30,6 @@ export const AddCell = ({
   setNewRecord: (newRecord: Record) => void;
   options: FieldOptions;
 }) => {
-  const field = fields[fieldId];
-  if (!field) {
-    console.error(`field not found: ${fieldId}`);
-    return null;
-  }
   if (field.fieldKind !== column.fieldKind) {
     console.error(
       `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,

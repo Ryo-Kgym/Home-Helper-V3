@@ -1,28 +1,20 @@
 import type {
+  Field,
   FieldOptions,
   FieldOptionsLookup,
-  Fields,
 } from "@feature/app/schema";
 import type { RecordColumn } from "@feature/app/schema/record-schema";
 import { ShowCellLookupFactory } from "@feature/record/list/cell/ShowCellLookupFactory";
 
 export const ShowCell = ({
-  fieldId,
-  fields,
+  field,
   column,
   options,
 }: {
-  fieldId: string;
-  fields: Fields;
+  field: Field;
   column: RecordColumn;
   options: FieldOptions;
 }) => {
-  const field = fields[fieldId];
-
-  if (!field) {
-    console.error(`field not found: ${fieldId}`);
-    return null;
-  }
   if (field.fieldKind !== column.fieldKind) {
     console.error(
       `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,

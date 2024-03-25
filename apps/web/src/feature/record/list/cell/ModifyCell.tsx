@@ -1,10 +1,11 @@
-import type { Fields, Records } from "@feature/app/schema";
+import type { Field, Fields, Records } from "@feature/app/schema";
 import type { RecordColumn } from "@feature/app/schema/record-schema";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 
 export const ModifyCell = ({
+  field,
   recordIndex,
   fieldId,
   fields,
@@ -15,6 +16,7 @@ export const ModifyCell = ({
   records,
   setRecords,
 }: {
+  field: Field;
   recordIndex: number;
   fieldId: string;
   fields: Fields;
@@ -22,11 +24,6 @@ export const ModifyCell = ({
   records: Records;
   setRecords: (records: Records) => void;
 }) => {
-  const field = fields[fieldId];
-  if (!field) {
-    console.error(`field not found: ${fieldId}`);
-    return null;
-  }
   if (field.fieldKind !== column.fieldKind) {
     console.error(
       `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,

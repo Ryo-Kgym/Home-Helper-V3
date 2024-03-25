@@ -37,6 +37,7 @@ export const RecordListRow = ({
           recordIndex={recordIndex}
           fieldId={field.id}
           fields={app.fields}
+          field={field}
           isEditing={record.isEditing}
           newRecord={newRecord}
           setNewRecord={setNewRecord}
