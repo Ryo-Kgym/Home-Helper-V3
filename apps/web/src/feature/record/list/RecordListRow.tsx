@@ -31,7 +31,7 @@ export const RecordListRow = ({
 }) => (
   <>
     <Table.BodyTd align={"right"}>{recordIndex}</Table.BodyTd>
-    {Object.entries(app.fields).map(([, field]) => (
+    {Object.values(app.fields).map((field) => (
       <Table.BodyTd key={field.id}>
         <RecordCell
           recordIndex={recordIndex}
@@ -44,6 +44,7 @@ export const RecordListRow = ({
           records={records}
           setRecords={setRecords}
           column={record.columns[field.id]!}
+          options={field.options}
         />
       </Table.BodyTd>
     ))}
