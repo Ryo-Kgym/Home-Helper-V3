@@ -43,7 +43,7 @@ export const RecordListRow = ({
           mode={mode}
           records={records}
           setRecords={setRecords}
-          column={record.columns[field.id]!}
+          column={record.columns[field.id]}
         />
       </Table.BodyTd>
     ))}
