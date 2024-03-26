@@ -4,10 +4,13 @@ import { ShowCellLookupFactory } from "@feature/record/list/cell/ShowCellLookupF
 
 export const ShowCell = ({
   field,
-  column,
+  column = {
+    fieldKind: field.fieldKind,
+    value: "",
+  },
 }: {
   field: Field;
-  column: RecordColumn;
+  column: RecordColumn | undefined;
 }) => {
   if (field.fieldKind !== column.fieldKind) {
     console.error(
