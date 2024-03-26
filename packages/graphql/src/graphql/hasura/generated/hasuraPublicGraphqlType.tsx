@@ -4602,6 +4602,7 @@ export type GetUserByEmailQuery = {
     name?: string | null;
     affiliation: Array<{
       __typename?: "Affiliation";
+      id: string;
       groupRole: string;
       group: { __typename?: "Group"; id: string; name: string };
     }>;
@@ -6022,6 +6023,7 @@ export const GetUserByEmailDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       {
                         kind: "Field",
                         alias: { kind: "Name", value: "group" },

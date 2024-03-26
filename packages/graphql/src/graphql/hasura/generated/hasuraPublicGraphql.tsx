@@ -4680,6 +4680,7 @@ export type GetUserByEmailQuery = {
     name?: string | null;
     affiliation: Array<{
       __typename?: "Affiliation";
+      id: string;
       groupRole: string;
       group: { __typename?: "Group"; id: string; name: string };
     }>;
@@ -5045,6 +5046,7 @@ export const GetUserByEmailDocument = gql`
       id
       name
       affiliation: affiliations {
+        id
         group: group {
           id
           name
