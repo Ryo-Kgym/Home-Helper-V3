@@ -35,6 +35,7 @@ export const RecordListRow = ({
       <Table.BodyTd key={field.id}>
         <RecordCell
           recordIndex={recordIndex}
+          record={record}
           fields={app.fields}
           field={field}
           isEditing={record.isEditing}

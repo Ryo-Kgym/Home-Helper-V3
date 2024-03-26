@@ -7,6 +7,7 @@ import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFac
 
 export const ModifyCell = ({
   field,
+  record,
   recordIndex,
   fields,
   column = {
@@ -17,6 +18,7 @@ export const ModifyCell = ({
   setRecords,
 }: {
   field: Field;
+  record: Records[number];
   recordIndex: number;
   fields: Fields;
   column: RecordColumn | undefined;
@@ -31,11 +33,26 @@ export const ModifyCell = ({
   }
 
   const changeHandler = (value: string) => {
+    const newColumn = {
+      [field.id]: {
+        ...column,
+        value,
+      },
+    };
+
     const copiedRecords = { ...records };
-    const col = copiedRecords[recordIndex]?.columns[field.id];
-    if (!col) return;
-    col.value = value;
-    setRecords(copiedRecords);
+    const columns = copiedRecords[recordIndex]?.columns;
+
+    setRecords({
+      ...records,
+      [recordIndex]: {
+        ...record,
+        columns: {
+          ...columns,
+          ...newColumn,
+        },
+      },
+    });
   };
 
   const value = column.value;
