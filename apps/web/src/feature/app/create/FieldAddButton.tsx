@@ -11,11 +11,7 @@ export const FieldAddButton = ({
 }) => {
   const calcNextIndex = () => {
     if (Object.keys(value).length === 0) return 0;
-
-    const nextIndex =
-      Math.max(...Object.keys(value).map((v) => parseInt(v) ?? 0)) + 1;
-    console.log("nextIndex", nextIndex);
-    return nextIndex;
+    return Math.max(...Object.keys(value).map((v) => parseInt(v) ?? 0)) + 1;
   };
 
   return (

@@ -10,15 +10,12 @@ export const fieldKindSchema = z.enum([
 export const fieldOptionsTextSchema = z.object({});
 export const fieldOptionsMultipleTextSchema = z.object({});
 export const fieldOptionsSelectBoxSchema = z.object({
-  selector: z.union([
-    z
-      .object({
-        label: z.string(),
-        value: z.string(),
-      })
-      .array(),
-    z.string(), // TODO あとで削除
-  ]),
+  selector: z
+    .object({
+      label: z.string(),
+      value: z.string(),
+    })
+    .array(),
 });
 export const fieldOptionsLookupSchema = z.object({
   appId: z.string(),
