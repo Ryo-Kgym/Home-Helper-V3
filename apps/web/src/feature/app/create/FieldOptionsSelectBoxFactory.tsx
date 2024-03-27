@@ -1,11 +1,15 @@
-import type { FieldOptionsFactoryProps } from "@feature/app/create/field-options-factory";
+import type { SelectBoxOptions } from "@feature/app/create/app-field-value";
 import { TextInput } from "@components/ui/v4/textInput";
 
 export const FieldOptionsSelectBoxFactory = ({
   options,
   setOptions,
   disabled,
-}: FieldOptionsFactoryProps) => {
+}: {
+  options: SelectBoxOptions;
+  setOptions: (options: SelectBoxOptions) => void;
+  disabled?: boolean;
+}) => {
   return (
     <TextInput
       label={"選択肢"}

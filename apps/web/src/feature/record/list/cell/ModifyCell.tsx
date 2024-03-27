@@ -54,9 +54,7 @@ export const ModifyCell = ({
           label={""}
           value={value}
           setValue={changeHandler}
-          data={field.options.selector
-            .split(",")
-            .map((option) => ({ label: option, value: option }))}
+          data={field.options.selector}
         />
       );
     case "multipleText":

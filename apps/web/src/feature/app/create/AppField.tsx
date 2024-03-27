@@ -25,7 +25,7 @@ export const AppField = ({
 }) => {
   const [fieldName, setFieldName] = useState<string>(defaultField.fieldName);
   const [fieldKind, setFieldKind] = useState<FieldKind>(defaultField.fieldKind);
-  const [options, setOptions] = useState<Record<string, never>>(
+  const [options, setOptions] = useState<AppFieldValue[number]["options"]>(
     defaultField.options,
   );
 
@@ -110,6 +110,7 @@ export const AppField = ({
           disabled={defaultField.mode === "delete"}
         />
         <FieldOptions
+          appFieldValue={value[index]!}
           options={options}
           setOptions={(v) => {
             setOptions(v);
@@ -141,7 +142,6 @@ export const AppField = ({
               }
             }
           }}
-          fieldKind={fieldKind}
           disabled={defaultField.mode === "delete"}
         />
       </div>

@@ -1,18 +1,33 @@
-import type { FieldOptionsFactoryProps } from "@feature/app/create/field-options-factory";
-import type { FieldKind } from "@oneforall/domain/field/type";
+import type {
+  AppFieldValue,
+  AppFieldValueOptions,
+} from "@feature/app/create/app-field-value";
 import { FieldOptionsLookupFactory } from "@feature/app/create/FieldOptionsLookupFactory";
 import { FieldOptionsSelectBoxFactory } from "@feature/app/create/FieldOptionsSelectBoxFactory";
 
-export const FieldOptions = (
-  props: {
-    fieldKind: FieldKind;
-  } & FieldOptionsFactoryProps,
-) => {
-  switch (props.fieldKind) {
+export const FieldOptions = (props: {
+  appFieldValue: AppFieldValue[number];
+  options: AppFieldValueOptions;
+  setOptions: (options: AppFieldValueOptions) => void;
+  disabled: boolean;
+}) => {
+  switch (props.appFieldValue.fieldKind) {
     case "selectBox":
-      return <FieldOptionsSelectBoxFactory {...props} />;
+      return (
+        <FieldOptionsSelectBoxFactory
+          options={props.appFieldValue.options}
+          setOptions={props.setOptions}
+          disabled={props.disabled}
+        />
+      );
     case "lookup":
-      return <FieldOptionsLookupFactory {...props} />;
+      return (
+        <FieldOptionsLookupFactory
+          options={props.appFieldValue.options}
+          setOptions={props.setOptions}
+          disabled={props.disabled}
+        />
+      );
     default:
       return undefined;
   }

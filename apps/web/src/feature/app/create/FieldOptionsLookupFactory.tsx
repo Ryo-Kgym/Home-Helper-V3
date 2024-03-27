@@ -1,4 +1,4 @@
-import type { FieldOptionsFactoryProps } from "@feature/app/create/field-options-factory";
+import type { LookupOptions } from "@feature/app/create/app-field-value";
 import { useEffect, useState } from "react";
 import { Select } from "@components/ui/v4/select";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
@@ -8,7 +8,11 @@ export const FieldOptionsLookupFactory = ({
   options,
   setOptions,
   disabled,
-}: FieldOptionsFactoryProps) => {
+}: {
+  options: LookupOptions;
+  setOptions: (options: LookupOptions) => void;
+  disabled?: boolean;
+}) => {
   const [appId, setAppId] = useState<string>("");
   const [selectFieldId, setSelectFieldId] = useState<string>("");
 
@@ -17,10 +21,14 @@ export const FieldOptionsLookupFactory = ({
     variables: { groupId: group.id },
   });
 
-  useEffect(() => {
-    setAppId(options.appId ?? "");
-    setSelectFieldId(options.selectFieldId ?? "");
-  }, [data]);
+  useEffect(
+    () => {
+      setAppId(options.appId ?? "");
+      setSelectFieldId(options.selectFieldId ?? "");
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [data],
+  );
 
   return (
     <>
