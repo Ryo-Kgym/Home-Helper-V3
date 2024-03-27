@@ -1,5 +1,5 @@
 import type { FieldOptionsFactoryProps } from "@feature/app/create/field-options-factory";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Select } from "@components/ui/v4/select";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetAppFieldListQuery } from "@v3/graphql/public";
@@ -17,11 +17,16 @@ export const FieldOptionsLookupFactory = ({
     variables: { groupId: group.id },
   });
 
+  useEffect(() => {
+    setAppId(options.appId ?? "");
+    setSelectFieldId(options.selectFieldId ?? "");
+  }, [data]);
+
   return (
     <>
       <Select
         label={"参照先のアプリ名"}
-        value={options.appId ?? appId}
+        value={appId}
         setValue={setAppId}
         data={
           data?.group?.apps.map((a) => ({
@@ -35,7 +40,7 @@ export const FieldOptionsLookupFactory = ({
       />
       <Select
         label={"選択したいフィールド名"}
-        value={options.selectFieldId ?? selectFieldId}
+        value={selectFieldId}
         setValue={setSelectFieldId}
         data={
           data?.group?.apps
