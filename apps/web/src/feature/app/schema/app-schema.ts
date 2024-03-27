@@ -16,6 +16,7 @@ export const fieldOptionsLookupSchema = z.object({
   appId: z.string(),
   selectFieldId: z.string(),
   saveFieldId: z.string(),
+  label: z.string().optional(),
 });
 export const fieldOptionsSchema = z.union([
   fieldOptionsTextSchema,

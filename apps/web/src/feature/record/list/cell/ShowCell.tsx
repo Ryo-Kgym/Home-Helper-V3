@@ -21,9 +21,7 @@ export const ShowCell = ({
 
   switch (field.fieldKind) {
     case "lookup": {
-      return (
-        <ShowCellLookupFactory value={column.value} options={field.options} />
-      );
+      return <ShowCellLookupFactory options={field.options} />;
     }
   }
   return <div>{column.value}</div>;
