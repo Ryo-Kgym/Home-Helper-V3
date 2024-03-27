@@ -10,7 +10,15 @@ export const fieldKindSchema = z.enum([
 export const fieldOptionsTextSchema = z.object({});
 export const fieldOptionsMultipleTextSchema = z.object({});
 export const fieldOptionsSelectBoxSchema = z.object({
-  selector: z.string(),
+  selector: z.union([
+    z
+      .object({
+        label: z.string(),
+        value: z.string(),
+      })
+      .array(),
+    z.string(), // TODO あとで削除
+  ]),
 });
 export const fieldOptionsLookupSchema = z.object({
   appId: z.string(),
@@ -25,6 +33,7 @@ export const fieldOptionsSchema = z.union([
   fieldOptionsLookupSchema,
 ]);
 
+export type FieldOptionsSelectBox = z.infer<typeof fieldOptionsSelectBoxSchema>;
 export type FieldOptionsLookup = z.infer<typeof fieldOptionsLookupSchema>;
 
 export type FieldOptions = z.infer<typeof fieldOptionsSchema>;

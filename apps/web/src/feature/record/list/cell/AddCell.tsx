@@ -1,9 +1,9 @@
 import type { Field, Fields } from "@feature/app/schema";
 import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
-import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFactory";
+import { AddCellSelectBoxFactory } from "@feature/record/list/cell/AddCellSelectBoxFactory";
 
 export const AddCell = ({
   field,
@@ -45,13 +45,10 @@ export const AddCell = ({
       return <TextInput label={""} value={value} setValue={changeHandler} />;
     case "selectBox":
       return (
-        <Select
-          label={""}
+        <AddCellSelectBoxFactory
           value={value}
-          setValue={changeHandler}
-          data={field.options.selector
-            .split(",")
-            .map((option) => ({ label: option, value: option }))}
+          changeHandler={changeHandler}
+          options={field.options}
         />
       );
     case "multipleText":
