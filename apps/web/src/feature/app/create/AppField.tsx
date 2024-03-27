@@ -68,19 +68,6 @@ export const AppField = ({
                 });
                 break;
               }
-              case "modify": {
-                setValue({
-                  ...value,
-                  [index]: {
-                    fieldName,
-                    fieldKind: v,
-                    options,
-                    id: defaultField.id,
-                    mode: defaultField.mode,
-                  },
-                });
-                break;
-              }
             }
           }}
           data={data}
