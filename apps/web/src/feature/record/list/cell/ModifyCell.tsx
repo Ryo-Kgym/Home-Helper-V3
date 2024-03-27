@@ -8,22 +8,18 @@ import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFac
 export const ModifyCell = ({
   field,
   record,
-  recordIndex,
+  setRecord,
   fields,
   column = {
     fieldKind: fields[field.id]?.fieldKind ?? "text",
     value: "",
   },
-  records,
-  setRecords,
 }: {
   field: Field;
   record: Records[number];
-  recordIndex: number;
+  setRecord: (record: Records[number]) => void;
   fields: Fields;
   column: RecordColumn | undefined;
-  records: Records;
-  setRecords: (records: Records) => void;
 }) => {
   if (field.fieldKind !== column.fieldKind) {
     console.error(
@@ -33,26 +29,18 @@ export const ModifyCell = ({
   }
 
   const changeHandler = (value: string) => {
-    const newColumn = {
-      [field.id]: {
-        ...column,
-        value,
+    const newRecord = {
+      ...record,
+      columns: {
+        ...record.columns,
+        [field.id]: {
+          ...record.columns[field.id]!,
+          value,
+        },
       },
     };
 
-    const copiedRecords = { ...records };
-    const columns = copiedRecords[recordIndex]?.columns;
-
-    setRecords({
-      ...records,
-      [recordIndex]: {
-        ...record,
-        columns: {
-          ...columns,
-          ...newColumn,
-        },
-      },
-    });
+    setRecord(newRecord);
   };
 
   const value = column.value;

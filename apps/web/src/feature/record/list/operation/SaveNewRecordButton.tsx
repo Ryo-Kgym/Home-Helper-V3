@@ -20,6 +20,7 @@ export const SaveNewRecordButton = ({
   setNewRecord: (newRecord: Record) => void;
   setMode: (mode: RecordListMode) => void;
   recordTemplate: Record;
+  setRecord: (record: Records[number]) => void;
 }) => {
   const [, mut] = useInsertRecordMutation();
 

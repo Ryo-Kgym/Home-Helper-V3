@@ -64,7 +64,6 @@ export const RecordListClient = ({
               mode={mode}
               setMode={setMode}
               recordTemplate={recordTemplate}
-              defaultRecords={defaultRecords}
             />
           )}
         />
