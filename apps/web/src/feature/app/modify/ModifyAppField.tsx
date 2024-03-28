@@ -1,30 +1,23 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
-import type { FieldKind } from "@oneforall/domain/field/type";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { DeleteFieldButton } from "@feature/app/create/DeleteFieldButton";
-import { FieldOptions } from "@feature/app/create/FieldOptions";
+import { ModifyFieldOptions } from "@feature/app/modify/ModifyFieldOptions";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
 export const ModifyAppField = ({
   index,
   value,
   setValue,
-  defaultField = {
-    fieldName: "",
-    fieldKind: "text",
-    options: {},
-    mode: "add",
-  },
+  defaultField,
 }: {
   index: number;
   value: AppFieldValue;
   setValue: (value: AppFieldValue) => void;
-  defaultField?: AppFieldValue[number];
+  defaultField: AppFieldValue[number];
 }) => {
   const [fieldName, setFieldName] = useState<string>(defaultField.fieldName);
-  const [fieldKind, setFieldKind] = useState<FieldKind>(defaultField.fieldKind);
   const [options, setOptions] = useState<AppFieldValue[number]["options"]>(
     defaultField.options,
   );
@@ -34,42 +27,24 @@ export const ModifyAppField = ({
     value: f.fieldKind,
   }));
 
-  useEffect(() => {
-    if (!defaultField) {
-      setOptions({});
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fieldKind]);
-
   const deleteModeStyle = defaultField.mode === "delete" ? "bg-red-100" : "";
+
+  if (value[index]?.mode == "add") {
+    return null;
+  }
+
   return (
     <div
       id={`field-${index}`}
-      className={`flex gap-2 border-2 border-gray-500 p-2 ${deleteModeStyle}`}
+      className={`flex items-center gap-2 border-2 border-gray-500 p-2 ${deleteModeStyle}`}
     >
       <DeleteFieldButton index={index} value={value} setValue={setValue} />
       <div className={"flex flex-1 gap-2"}>
         <Select
           label={"フィールドの選択"}
-          disabled={defaultField.mode !== "add"}
-          value={fieldKind}
-          setValue={(v) => {
-            setFieldKind(v);
-            switch (defaultField.mode) {
-              case "add": {
-                setValue({
-                  ...value,
-                  [index]: {
-                    fieldName,
-                    fieldKind: v,
-                    options,
-                    mode: defaultField.mode,
-                  },
-                });
-                break;
-              }
-            }
-          }}
+          disabled={true}
+          value={defaultField.fieldKind}
+          setValue={() => undefined}
           data={data}
         />
         <TextInput
@@ -78,24 +53,12 @@ export const ModifyAppField = ({
           setValue={(v) => {
             setFieldName(v);
             switch (defaultField.mode) {
-              case "add": {
-                setValue({
-                  ...value,
-                  [index]: {
-                    fieldName: v,
-                    fieldKind,
-                    options,
-                    mode: defaultField.mode,
-                  },
-                });
-                break;
-              }
               case "modify": {
                 setValue({
                   ...value,
                   [index]: {
                     fieldName: v,
-                    fieldKind,
+                    fieldKind: defaultField.fieldKind,
                     options,
                     id: defaultField.id,
                     mode: defaultField.mode,
@@ -109,30 +72,18 @@ export const ModifyAppField = ({
           placeholder={"フィールド名を入力してください"}
           disabled={defaultField.mode === "delete"}
         />
-        <FieldOptions
+        <ModifyFieldOptions
           appFieldValue={value[index]!}
           options={options}
           setOptions={(v) => {
             setOptions(v);
             switch (defaultField.mode) {
-              case "add": {
-                setValue({
-                  ...value,
-                  [index]: {
-                    fieldName,
-                    fieldKind,
-                    options: v,
-                    mode: defaultField.mode,
-                  },
-                });
-                break;
-              }
               case "modify": {
                 setValue({
                   ...value,
                   [index]: {
                     fieldName,
-                    fieldKind,
+                    fieldKind: defaultField.fieldKind,
                     options: v,
                     id: defaultField.id,
                     mode: defaultField.mode,

@@ -25,10 +25,16 @@ export const AddAppField = ({
     value: f.fieldKind,
   }));
 
+  if (value[index]?.mode !== "add") {
+    return null;
+  }
+
   return (
     <div
       id={`field-${index}`}
-      className={"flex gap-2 border-2 border-gray-500 p-2"}
+      className={
+        "flex items-center gap-2 border-2 border-gray-500 bg-green-50 p-2"
+      }
     >
       <DeleteFieldButton index={index} value={value} setValue={setValue} />
       <div className={"flex flex-1 gap-2"}>

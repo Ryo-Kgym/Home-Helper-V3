@@ -4,11 +4,23 @@ const simpleKindOptionsSchema = z.object({});
 
 export type SimpleKindOptions = z.infer<typeof simpleKindOptionsSchema>;
 
-const selectBoxOptionsSchema = z.object({
+const addSelectBoxOptionsSchema = z.object({
   selector: z.string(),
 });
 
-export type SelectBoxOptions = z.infer<typeof selectBoxOptionsSchema>;
+const modifySelectBoxOptionsSchema = z.object({
+  selector: z
+    .object({
+      value: z.string(),
+      label: z.string(),
+    })
+    .array(),
+});
+
+export type SelectBoxOptions = z.infer<typeof addSelectBoxOptionsSchema>;
+export type ModifySelectBoxOptions = z.infer<
+  typeof modifySelectBoxOptionsSchema
+>;
 
 const lookupOptionsSchema = z.object({
   appId: z.string(),
@@ -19,13 +31,28 @@ const lookupOptionsSchema = z.object({
 
 export type LookupOptions = z.infer<typeof lookupOptionsSchema>;
 
-const appFieldValueOptionsSchema = z.union([
+const addAppFieldValueOptionsSchema = z.union([
   simpleKindOptionsSchema,
-  selectBoxOptionsSchema,
+  addSelectBoxOptionsSchema,
   lookupOptionsSchema,
 ]);
 
-export type AppFieldValueOptions = z.infer<typeof appFieldValueOptionsSchema>;
+const modifyAppFieldValueOptionsSchema = z.union([
+  simpleKindOptionsSchema,
+  modifySelectBoxOptionsSchema,
+  lookupOptionsSchema,
+]);
+
+export type AddAppFieldValueOptions = z.infer<
+  typeof addAppFieldValueOptionsSchema
+>;
+export type ModifyAppFieldValueOptions = z.infer<
+  typeof modifyAppFieldValueOptionsSchema
+>;
+
+export type AppFieldValueOptions =
+  | AddAppFieldValueOptions
+  | ModifyAppFieldValueOptions;
 
 const simpleKindSchema = z.object({
   fieldKind: z.enum(["text", "multipleText"]),
@@ -34,12 +61,12 @@ const simpleKindSchema = z.object({
 
 const addSelectBoxSchema = z.object({
   fieldKind: z.enum(["selectBox"]),
-  options: selectBoxOptionsSchema,
+  options: addSelectBoxOptionsSchema,
 });
 
 const modifySelectBoxSchema = z.object({
   fieldKind: z.enum(["selectBox"]),
-  options: selectBoxOptionsSchema,
+  options: modifySelectBoxOptionsSchema,
 });
 
 const lookupSchema = z.object({

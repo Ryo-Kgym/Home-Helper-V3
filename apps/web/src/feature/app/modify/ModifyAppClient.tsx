@@ -3,6 +3,7 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
+import { AddAppField } from "@feature/app/create/AddAppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import { ModifyAppField } from "@feature/app/modify/ModifyAppField";
@@ -34,15 +35,27 @@ export const ModifyAppClient = ({
         </div>
       </div>
       <div className={"space-y-2"}>
-        {Object.entries(value).map(([index, field]) => (
-          <ModifyAppField
-            key={`field-${index}`}
-            index={parseInt(index)}
-            value={value}
-            setValue={setValue}
-            defaultField={field}
-          />
-        ))}
+        {Object.entries(value).map(([index, field]) => {
+          if (field.mode === "add") {
+            return (
+              <AddAppField
+                key={`field-${index}`}
+                index={parseInt(index)}
+                value={value}
+                setValue={setValue}
+              />
+            );
+          }
+          return (
+            <ModifyAppField
+              key={`field-${index}`}
+              index={parseInt(index)}
+              value={value}
+              setValue={setValue}
+              defaultField={field}
+            />
+          );
+        })}
       </div>
     </div>
   );

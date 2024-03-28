@@ -1,22 +1,22 @@
 import type {
-  AddAppFieldValueOptions,
   AppFieldValue,
+  ModifyAppFieldValueOptions,
 } from "@feature/app/create/app-field-value";
 import { FieldOptionsLookupFactory } from "@feature/app/create/FieldOptionsLookupFactory";
-import { FieldOptionsSelectBoxFactory } from "@feature/app/create/FieldOptionsSelectBoxFactory";
+import { ModifyFieldOptionsSelectBoxFactory } from "@feature/app/modify/ModifyFieldOptionsSelectBoxFactory";
 
-export const FieldOptions = (props: {
+export const ModifyFieldOptions = (props: {
   appFieldValue: AppFieldValue[number];
-  options: AddAppFieldValueOptions;
-  setOptions: (options: AddAppFieldValueOptions) => void;
+  options: ModifyAppFieldValueOptions;
+  setOptions: (options: ModifyAppFieldValueOptions) => void;
   disabled?: boolean;
 }) => {
-  if (props.appFieldValue.mode !== "add") return null;
+  if (props.appFieldValue.mode === "add") return null;
 
   switch (props.appFieldValue.fieldKind) {
     case "selectBox":
       return (
-        <FieldOptionsSelectBoxFactory
+        <ModifyFieldOptionsSelectBoxFactory
           options={props.appFieldValue.options}
           setOptions={props.setOptions}
           disabled={props.disabled}
