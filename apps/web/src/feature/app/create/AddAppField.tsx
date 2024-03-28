@@ -1,6 +1,6 @@
 import type { AppFieldOptions } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Modal } from "@components/ui/v4/modal";
 import { Select } from "@components/ui/v4/select";
@@ -29,6 +29,10 @@ export const AddAppField = ({ index }: { index: number }) => {
     options,
     mode: "add",
   });
+
+  useEffect(() => {
+    setOptions({});
+  }, [fieldKind]);
 
   return (
     <div

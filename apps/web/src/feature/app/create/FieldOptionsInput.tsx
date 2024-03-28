@@ -1,8 +1,14 @@
-import type { AppFieldOptions } from "@feature/app/create/app-field-value";
+import type {
+  AppFieldOptions,
+  SelectBoxOptions,
+} from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
+import { FieldOptionsSelectBox } from "@feature/app/create/FieldOptionsSelectBox";
 
 export const FieldOptionsInput = ({
   fieldKind,
+  options,
+  setOptions,
 }: {
   fieldKind: FieldKind;
   options: AppFieldOptions;
@@ -10,12 +16,17 @@ export const FieldOptionsInput = ({
 }) => {
   switch (fieldKind) {
     case "selectBox": {
-      return <div></div>;
+      return (
+        <FieldOptionsSelectBox
+          options={options as SelectBoxOptions} // TODO Type cast
+          setOptions={setOptions}
+        />
+      );
     }
     case "lookup": {
       return <div></div>;
     }
   }
 
-  return null;
+  return <div>設定なし</div>;
 };

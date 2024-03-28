@@ -9,8 +9,10 @@ const selectBoxOptionsSchema = z.object({
       label: z.string().min(1),
     })
     .array()
-    .min(2),
+    .min(1),
 });
+
+export type SelectBoxOptions = z.infer<typeof selectBoxOptionsSchema>;
 
 const lookupOptionsSchema = z.object({
   appId: z.string(),
