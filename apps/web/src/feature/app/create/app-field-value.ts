@@ -19,45 +19,50 @@ const lookupOptionsSchema = z.object({
 });
 
 const simpleKindSchema = z.object({
+  fieldName: z.string(),
   fieldKind: z.enum(["text", "multipleText"]),
   options: simpleKindOptionsSchema,
 });
 
 const selectBoxSchema = z.object({
+  fieldName: z.string(),
   fieldKind: z.enum(["selectBox"]),
   options: selectBoxOptionsSchema,
 });
 
 const lookupSchema = z.object({
+  fieldName: z.string(),
   fieldKind: z.enum(["lookup"]),
   options: lookupOptionsSchema,
 });
 
-const optionSchema = z.union([simpleKindSchema, selectBoxSchema, lookupSchema]);
+const fieldAttributeSchema = z.union([
+  simpleKindSchema,
+  selectBoxSchema,
+  lookupSchema,
+]);
 
 const appFieldValueSchema = z.record(
   z.union([
     z
       .object({
         mode: z.enum(["add"]),
-        fieldName: z.string(),
       })
-      .and(optionSchema),
+      .and(fieldAttributeSchema),
     z
       .object({
         mode: z.enum(["modify"]),
         id: z.string(),
-        fieldName: z.string(),
       })
-      .and(optionSchema),
+      .and(fieldAttributeSchema),
     z
       .object({
         mode: z.enum(["delete"]),
         id: z.string(),
-        fieldName: z.string(),
       })
-      .and(optionSchema),
+      .and(fieldAttributeSchema),
   ]),
 );
 
 export type AppFieldValue = NonNullable<z.infer<typeof appFieldValueSchema>>;
+export type AppFieldOptions = AppFieldValue[number]["options"];
