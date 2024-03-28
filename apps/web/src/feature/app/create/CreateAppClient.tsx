@@ -11,7 +11,7 @@ import { FieldResetButton } from "@feature/app/create/FieldResetButton";
 
 export const CreateAppClient = () => {
   const [appName, setAppName] = useState<string>("");
-  const [value, setValue] = useState<AppFieldValue>({});
+  const [appFieldValue, setAppFieldValue] = useState<AppFieldValue>({});
 
   return (
     <div className={"space-y-10"}>
@@ -19,13 +19,13 @@ export const CreateAppClient = () => {
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
-          <CreateAppButton appName={appName} fields={value} />
-          <FieldAddButton value={value} setValue={setValue} />
-          <FieldResetButton setValue={setValue} />
+          <CreateAppButton appName={appName} fields={appFieldValue} />
+          <FieldAddButton value={appFieldValue} setValue={setAppFieldValue} />
+          <FieldResetButton setValue={setAppFieldValue} />
         </div>
       </div>
       <div className={"space-y-2"}>
-        {Object.keys(value).map((index) => (
+        {Object.keys(appFieldValue).map((index) => (
           <AddAppField key={`field-${index}`} />
         ))}
       </div>
