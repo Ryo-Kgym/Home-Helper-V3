@@ -5,10 +5,11 @@ const simpleKindOptionsSchema = z.object({});
 const selectBoxOptionsSchema = z.object({
   selector: z
     .object({
-      value: z.string(),
-      label: z.string(),
+      value: z.string().min(1),
+      label: z.string().min(1),
     })
-    .array(),
+    .array()
+    .min(2),
 });
 
 const lookupOptionsSchema = z.object({
@@ -19,19 +20,19 @@ const lookupOptionsSchema = z.object({
 });
 
 const simpleKindSchema = z.object({
-  fieldName: z.string(),
+  fieldName: z.string().min(1),
   fieldKind: z.enum(["text", "multipleText"]),
   options: simpleKindOptionsSchema,
 });
 
 const selectBoxSchema = z.object({
-  fieldName: z.string(),
+  fieldName: z.string().min(1),
   fieldKind: z.enum(["selectBox"]),
   options: selectBoxOptionsSchema,
 });
 
 const lookupSchema = z.object({
-  fieldName: z.string(),
+  fieldName: z.string().min(1),
   fieldKind: z.enum(["lookup"]),
   options: lookupOptionsSchema,
 });
@@ -42,25 +43,31 @@ const fieldAttributeSchema = z.union([
   lookupSchema,
 ]);
 
+export const addAppFieldValueSchema = z
+  .object({
+    mode: z.enum(["add"]),
+  })
+  .and(fieldAttributeSchema);
+
+export const modifyAppFieldValueSchema = z
+  .object({
+    mode: z.enum(["modify"]),
+    id: z.string(),
+  })
+  .and(fieldAttributeSchema);
+
+export const deleteAppFieldValueSchema = z
+  .object({
+    mode: z.enum(["delete"]),
+    id: z.string(),
+  })
+  .and(fieldAttributeSchema);
+
 const appFieldValueSchema = z.record(
   z.union([
-    z
-      .object({
-        mode: z.enum(["add"]),
-      })
-      .and(fieldAttributeSchema),
-    z
-      .object({
-        mode: z.enum(["modify"]),
-        id: z.string(),
-      })
-      .and(fieldAttributeSchema),
-    z
-      .object({
-        mode: z.enum(["delete"]),
-        id: z.string(),
-      })
-      .and(fieldAttributeSchema),
+    addAppFieldValueSchema,
+    modifyAppFieldValueSchema,
+    deleteAppFieldValueSchema,
   ]),
 );
 

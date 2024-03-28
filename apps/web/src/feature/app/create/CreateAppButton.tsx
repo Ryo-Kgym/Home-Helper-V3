@@ -2,19 +2,15 @@ import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useRouter } from "next/navigation";
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
+import { useGetAppFieldValue } from "@feature/app/create/useAppFieldValueState";
 import { useCreateApp } from "@feature/app/create/useCreateApp";
 import { generateId } from "@feature/app/function/generate-id";
 import { paths } from "@routing/paths";
 
-export const CreateAppButton = ({
-  appName,
-  fields,
-}: {
-  appName: string;
-  fields: AppFieldValue;
-}) => {
+export const CreateAppButton = ({ appName }: { appName: string }) => {
   const { push } = useRouter();
   const { createApp } = useCreateApp();
+  const fields = useGetAppFieldValue();
 
   const creatable =
     !!appName &&
@@ -22,12 +18,8 @@ export const CreateAppButton = ({
     Object.values(fields).every((field) => field.fieldName);
 
   const clickHandler = async () => {
-    const newField = Object.fromEntries(
-      Object.entries(fields).map(([key, value]) => convertField(key, value)),
-    );
-
     try {
-      const { appId } = await createApp({ appName, fields: newField });
+      const { appId } = await createApp({ appName, fields });
       notify("アプリを作成しました");
 
       push(paths.app.show({ id: appId }));
