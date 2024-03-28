@@ -9,7 +9,7 @@ export const FieldOptions = (props: {
   appFieldValue: AppFieldValue[number];
   options: AppFieldValueOptions;
   setOptions: (options: AppFieldValueOptions) => void;
-  disabled: boolean;
+  disabled?: boolean;
 }) => {
   switch (props.appFieldValue.fieldKind) {
     case "selectBox":
