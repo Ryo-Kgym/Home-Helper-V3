@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-const noTypeOptionsSchema = z.object({});
+const simpleKindOptionsSchema = z.object({});
 
-export type NoTypeOptions = z.infer<typeof noTypeOptionsSchema>;
+export type SimpleKindOptions = z.infer<typeof simpleKindOptionsSchema>;
 
 const selectBoxOptionsSchema = z.object({
   selector: z.string(),
@@ -20,16 +20,16 @@ const lookupOptionsSchema = z.object({
 export type LookupOptions = z.infer<typeof lookupOptionsSchema>;
 
 const appFieldValueOptionsSchema = z.union([
-  noTypeOptionsSchema,
+  simpleKindOptionsSchema,
   selectBoxOptionsSchema,
   lookupOptionsSchema,
 ]);
 
 export type AppFieldValueOptions = z.infer<typeof appFieldValueOptionsSchema>;
 
-const noTypeSchema = z.object({
+const simpleKindSchema = z.object({
   fieldKind: z.enum(["text", "multipleText"]),
-  options: noTypeOptionsSchema,
+  options: simpleKindOptionsSchema,
 });
 
 const selectBoxSchema = z.object({
@@ -42,7 +42,11 @@ const lookupSchema = z.object({
   options: lookupOptionsSchema,
 });
 
-const optionsSchema = z.union([noTypeSchema, selectBoxSchema, lookupSchema]);
+const optionsSchema = z.union([
+  simpleKindSchema,
+  selectBoxSchema,
+  lookupSchema,
+]);
 
 const appFieldValueSchema = z.record(
   z.union([
