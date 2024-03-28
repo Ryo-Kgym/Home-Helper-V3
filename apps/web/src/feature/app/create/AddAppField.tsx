@@ -1,35 +1,20 @@
-import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
 import { useState } from "react";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
-export const AddAppField = ({
-  index,
-  value,
-  setValue,
-}: {
-  index: number;
-  value: AppFieldValue;
-  setValue: (value: AppFieldValue) => void;
-}) => {
+export const AddAppField = () => {
   const [fieldName, setFieldName] = useState<string>("");
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
-  const [options] = useState<AppFieldValue[number]["options"]>({});
 
   const data = Object.values(fieldKindArray).map((f) => ({
     label: f.description,
     value: f.fieldKind,
   }));
 
-  if (value[index]?.mode !== "add") {
-    return null;
-  }
-
   return (
     <div
-      id={`field-${index}`}
       className={
         "flex items-center gap-2 border-2 border-gray-500 bg-green-50 p-2"
       }
@@ -40,15 +25,6 @@ export const AddAppField = ({
           value={fieldKind}
           setValue={(v) => {
             setFieldKind(v);
-            setValue({
-              ...value,
-              [index]: {
-                fieldName,
-                fieldKind: v,
-                options,
-                mode: "add",
-              },
-            });
           }}
           data={data}
         />
@@ -57,15 +33,6 @@ export const AddAppField = ({
           value={fieldName}
           setValue={(v) => {
             setFieldName(v);
-            setValue({
-              ...value,
-              [index]: {
-                fieldName: v,
-                fieldKind,
-                options,
-                mode: "add",
-              },
-            });
           }}
           required
           placeholder={"フィールド名を入力してください"}

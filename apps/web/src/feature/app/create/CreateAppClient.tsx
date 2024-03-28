@@ -26,12 +26,7 @@ export const CreateAppClient = () => {
       </div>
       <div className={"space-y-2"}>
         {Object.keys(value).map((index) => (
-          <AddAppField
-            key={`field-${index}`}
-            index={parseInt(index)}
-            value={value}
-            setValue={setValue}
-          />
+          <AddAppField key={`field-${index}`} />
         ))}
       </div>
     </div>

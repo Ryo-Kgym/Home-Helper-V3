@@ -37,14 +37,7 @@ export const ModifyAppClient = ({
       <div className={"space-y-2"}>
         {Object.entries(value).map(([index, field]) => {
           if (field.mode === "add") {
-            return (
-              <AddAppField
-                key={`field-${index}`}
-                index={parseInt(index)}
-                value={value}
-                setValue={setValue}
-              />
-            );
+            return <AddAppField key={`field-${index}`} />;
           }
           return (
             <ModifyAppField
