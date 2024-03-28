@@ -1,10 +1,16 @@
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
 import { useState } from "react";
+import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
-export const AddAppField = () => {
+export const AddAppField = ({
+  pushFieldHandler,
+}: {
+  pushFieldHandler: (isEditing: boolean, value: AppFieldValue[number]) => void;
+}) => {
   const [fieldName, setFieldName] = useState<string>("");
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
 
@@ -12,6 +18,8 @@ export const AddAppField = () => {
     label: f.description,
     value: f.fieldKind,
   }));
+
+  const isEditing = fieldName === "";
 
   return (
     <div
@@ -36,6 +44,19 @@ export const AddAppField = () => {
           }}
           required
           placeholder={"フィールド名を入力してください"}
+        />
+        <Button
+          label={"追加"}
+          clickHandler={() =>
+            pushFieldHandler(isEditing, {
+              fieldName,
+              fieldKind: "text",
+              options: {},
+              mode: "add",
+            })
+          }
+          type={"add"}
+          disabled={isEditing}
         />
       </div>
     </div>
