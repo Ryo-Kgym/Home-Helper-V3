@@ -5,8 +5,8 @@ import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
-import { ModifyAppButton } from "@feature/app/modify/ModifyAppButton";
 import { ModifyAppField } from "@feature/app/modify/ModifyAppField";
+import { UpdateAppButton } from "@feature/app/modify/UpdateAppButton";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
 export const ModifyAppClient = ({
@@ -29,7 +29,7 @@ export const ModifyAppClient = ({
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
-          <ModifyAppButton appId={appId} appName={appName} fields={value} />
+          <UpdateAppButton appId={appId} appName={appName} fields={value} />
           <FieldAddButton value={value} setValue={setValue} />
         </div>
       </div>
