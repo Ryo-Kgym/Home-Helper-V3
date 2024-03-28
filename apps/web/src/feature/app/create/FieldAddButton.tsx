@@ -14,10 +14,14 @@ export const FieldAddButton = ({
     return Math.max(...Object.keys(value).map((v) => parseInt(v) ?? 0)) + 1;
   };
 
+  const addable = Object.values(value).every((v) => v.fieldName !== "");
+
   return (
     <Button
       label="フィールド追加"
       clickHandler={() => {
+        if (!addable) return;
+
         const nextIndex = calcNextIndex();
 
         setValue({
@@ -31,6 +35,7 @@ export const FieldAddButton = ({
         });
       }}
       type={"add"}
+      disabled={!addable}
     />
   );
 };
