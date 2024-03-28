@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { DeleteFieldButton } from "@feature/app/create/DeleteFieldButton";
-import { FieldOptions } from "@feature/app/create/FieldOptions";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
 export const AddAppField = ({
@@ -18,7 +17,7 @@ export const AddAppField = ({
 }) => {
   const [fieldName, setFieldName] = useState<string>("");
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
-  const [options, setOptions] = useState<AppFieldValue[number]["options"]>({});
+  const [options] = useState<AppFieldValue[number]["options"]>({});
 
   const data = Object.values(fieldKindArray).map((f) => ({
     label: f.description,
@@ -72,22 +71,6 @@ export const AddAppField = ({
           }}
           required
           placeholder={"フィールド名を入力してください"}
-        />
-        <FieldOptions
-          appFieldValue={value[index]!}
-          options={options}
-          setOptions={(v) => {
-            setOptions(v);
-            setValue({
-              ...value,
-              [index]: {
-                fieldName,
-                fieldKind,
-                options: v,
-                mode: "add",
-              },
-            });
-          }}
         />
       </div>
     </div>

@@ -50,7 +50,7 @@ export const convertField = (key: string, value: AppFieldValue[number]) => {
   if (value.mode === "add") {
     if (value.fieldKind === "selectBox") {
       const options = {
-        selector: value.options.selector.split(",").map((s, index) => ({
+        selector: value.options.selector.map((s, index) => ({
           label: s,
           value: generateId(index),
         })),

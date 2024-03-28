@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { DeleteFieldButton } from "@feature/app/create/DeleteFieldButton";
-import { ModifyFieldOptions } from "@feature/app/modify/ModifyFieldOptions";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
 export const ModifyAppField = ({
@@ -18,7 +17,7 @@ export const ModifyAppField = ({
   defaultField: AppFieldValue[number];
 }) => {
   const [fieldName, setFieldName] = useState<string>(defaultField.fieldName);
-  const [options, setOptions] = useState<AppFieldValue[number]["options"]>(
+  const [options] = useState<AppFieldValue[number]["options"]>(
     defaultField.options,
   );
 
@@ -70,29 +69,6 @@ export const ModifyAppField = ({
           }}
           required
           placeholder={"フィールド名を入力してください"}
-          disabled={defaultField.mode === "delete"}
-        />
-        <ModifyFieldOptions
-          appFieldValue={value[index]!}
-          options={options}
-          setOptions={(v) => {
-            setOptions(v);
-            switch (defaultField.mode) {
-              case "modify": {
-                setValue({
-                  ...value,
-                  [index]: {
-                    fieldName,
-                    fieldKind: defaultField.fieldKind,
-                    options: v,
-                    id: defaultField.id,
-                    mode: defaultField.mode,
-                  },
-                });
-                break;
-              }
-            }
-          }}
           disabled={defaultField.mode === "delete"}
         />
       </div>
