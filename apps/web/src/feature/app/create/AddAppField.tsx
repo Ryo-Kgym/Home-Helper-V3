@@ -15,6 +15,7 @@ export const AddAppField = ({ index }: { index: number }) => {
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
   const [options, setOptions] = useState<AppFieldOptions>({});
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [saved, setSaved] = useState<boolean>(false);
 
   const save = useSaveAppFieldValue();
 
@@ -40,6 +41,7 @@ export const AddAppField = ({ index }: { index: number }) => {
         "flex items-center gap-2 border-2 border-gray-500 bg-green-50 p-2"
       }
     >
+      <div className={"text-gray-500"}>{saved ? "済" : "未"}</div>
       <div className={"flex flex-1 gap-2"}>
         <Select
           label={"フィールドの選択"}
@@ -73,6 +75,7 @@ export const AddAppField = ({ index }: { index: number }) => {
               return;
             }
             save(index, parseResult.data);
+            setSaved(true);
           }}
           type={"save"}
           disabled={!parseResult.success}
