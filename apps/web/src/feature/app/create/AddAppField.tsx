@@ -3,7 +3,6 @@ import type { FieldKind } from "@oneforall/domain/field/type";
 import { useState } from "react";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
-import { DeleteFieldButton } from "@feature/app/create/DeleteFieldButton";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
 export const AddAppField = ({
@@ -35,7 +34,6 @@ export const AddAppField = ({
         "flex items-center gap-2 border-2 border-gray-500 bg-green-50 p-2"
       }
     >
-      <DeleteFieldButton index={index} value={value} setValue={setValue} />
       <div className={"flex flex-1 gap-2"}>
         <Select
           label={"フィールドの選択"}
