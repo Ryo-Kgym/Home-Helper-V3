@@ -1,6 +1,7 @@
 import type { Field } from "@feature/app/schema";
 import type { RecordColumn } from "@feature/app/schema/record-schema";
 import { ShowCellLookupFactory } from "@feature/record/list/cell/ShowCellLookupFactory";
+import { ShowCellSelectBoxFactory } from "@feature/record/list/cell/ShowCellSelectBoxFactory";
 
 export const ShowCell = ({
   field,
@@ -20,6 +21,14 @@ export const ShowCell = ({
   }
 
   switch (field.fieldKind) {
+    case "selectBox": {
+      return (
+        <ShowCellSelectBoxFactory
+          value={column.value}
+          options={field.options}
+        />
+      );
+    }
     case "lookup": {
       return <ShowCellLookupFactory options={field.options} />;
     }
