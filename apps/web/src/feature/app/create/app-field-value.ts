@@ -32,7 +32,12 @@ const simpleKindSchema = z.object({
   options: simpleKindOptionsSchema,
 });
 
-const selectBoxSchema = z.object({
+const addSelectBoxSchema = z.object({
+  fieldKind: z.enum(["selectBox"]),
+  options: selectBoxOptionsSchema,
+});
+
+const modifySelectBoxSchema = z.object({
   fieldKind: z.enum(["selectBox"]),
   options: selectBoxOptionsSchema,
 });
@@ -42,9 +47,15 @@ const lookupSchema = z.object({
   options: lookupOptionsSchema,
 });
 
-const optionsSchema = z.union([
+const addOptionsSchema = z.union([
   simpleKindSchema,
-  selectBoxSchema,
+  addSelectBoxSchema,
+  lookupSchema,
+]);
+
+const modifyOptionSchema = z.union([
+  simpleKindSchema,
+  modifySelectBoxSchema,
   lookupSchema,
 ]);
 
@@ -55,21 +66,21 @@ const appFieldValueSchema = z.record(
         mode: z.enum(["add"]),
         fieldName: z.string(),
       })
-      .and(optionsSchema),
+      .and(addOptionsSchema),
     z
       .object({
         mode: z.enum(["modify"]),
         id: z.string(),
         fieldName: z.string(),
       })
-      .and(optionsSchema),
+      .and(modifyOptionSchema),
     z
       .object({
         mode: z.enum(["delete"]),
         id: z.string(),
         fieldName: z.string(),
       })
-      .and(optionsSchema),
+      .and(modifyOptionSchema),
   ]),
 );
 

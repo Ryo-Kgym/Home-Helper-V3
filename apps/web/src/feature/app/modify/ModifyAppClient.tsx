@@ -3,10 +3,10 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import { ModifyAppButton } from "@feature/app/modify/ModifyAppButton";
+import { ModifyAppField } from "@feature/app/modify/ModifyAppField";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
 export const ModifyAppClient = ({
@@ -35,7 +35,7 @@ export const ModifyAppClient = ({
       </div>
       <div className={"space-y-2"}>
         {Object.entries(value).map(([index, field]) => (
-          <AppField
+          <ModifyAppField
             key={`field-${index}`}
             index={parseInt(index)}
             value={value}
