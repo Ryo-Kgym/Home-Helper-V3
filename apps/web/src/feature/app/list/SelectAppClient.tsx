@@ -4,18 +4,17 @@
 
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Modal } from "@components/ui/v4/modal";
 import { paths } from "@routing/paths";
 
-import { useGetAppList } from "./useGetAppList";
+import type { AppListType } from "./fetch-app-list";
 
-export const SelectAppClient = () => {
-  const { appList } = useGetAppList();
-
+export const SelectAppClient = ({ appList }: { appList: AppListType[] }) => {
   const { push } = useRouter();
-  const [isOpen, setIsOpen] = React.useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>

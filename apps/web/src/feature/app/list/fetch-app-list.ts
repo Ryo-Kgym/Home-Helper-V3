@@ -1,15 +1,10 @@
 import type { LinkProps } from "@components/atoms/Card";
-import { useFindUser } from "@persistence/browser/client/useFindUser";
+import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { paths } from "@routing/paths";
-import { useGetApplicationsQuery } from "@v3/graphql/public";
+import { GetApplicationsDocument } from "@v3/graphql/public/type";
 
-export const useGetAppList = () => {
-  const { group } = useFindUser();
-  const [{ data }] = useGetApplicationsQuery({
-    variables: {
-      groupId: group.id,
-    },
-  });
+export const fetchAppList = async ({ groupId }: { groupId: string }) => {
+  const { data } = await fetchQuery(GetApplicationsDocument, { groupId });
 
   const appList: AppListType[] = [
     ...(data?.group?.groupApplications.map((ga) => ({
