@@ -1,0 +1,5 @@
+query getRecords($appId: String!) {
+    records: record(where: { appId: { _eq: $appId } }, orderBy: { index: ASC }) {
+    ...fragRecords
+  }
+}

@@ -18,7 +18,7 @@ export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
       tabIndex={0}
       role="button"
       onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
+        if (event.key === "Escape") {
           event.stopPropagation();
           onClose();
         }
@@ -34,7 +34,7 @@ export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
         tabIndex={0}
         role="button"
         onKeyDown={(event) => {
-          if (event.key === "Enter" || event.key === " ") {
+          if (event.key === "Escape") {
             event.stopPropagation();
             onClose();
           }

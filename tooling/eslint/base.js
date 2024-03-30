@@ -13,7 +13,7 @@ const config = {
   },
   parser: "@typescript-eslint/parser",
   parserOptions: { project: true },
-  plugins: ["@typescript-eslint", "import"],
+  plugins: ["@typescript-eslint", "import", "import-access"],
   rules: {
     "turbo/no-undeclared-env-vars": "off",
     "@typescript-eslint/no-unused-vars": [
@@ -35,6 +35,7 @@ const config = {
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/unbound-method": "off",
+    "import-access/jsdoc": ["error"],
   },
   ignorePatterns: [
     "**/hasuraGraphql.tsx",

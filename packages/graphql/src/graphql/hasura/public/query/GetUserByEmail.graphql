@@ -4,6 +4,7 @@ query GetUserByEmail($email: String!) {
     id
     name
     affiliation: affiliations {
+      id
       group: group {
         id
         name

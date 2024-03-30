@@ -1,32 +1,25 @@
-import type { Fields, Records } from "@feature/app/schema";
+import type { Field, Records } from "@feature/app/schema";
 import type { RecordColumn } from "@feature/app/schema/record-schema";
+import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/cell-factory-change-handler";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
+import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFactory";
 
 export const ModifyCell = ({
-  recordIndex,
-  fieldId,
-  fields,
+  field,
+  record,
+  setRecord,
   column = {
-    fieldKind: fields[fieldId]?.fieldKind ?? "text",
+    fieldKind: field.fieldKind,
     value: "",
   },
-  records,
-  setRecords,
 }: {
-  recordIndex: number;
-  fieldId: string;
-  fields: Fields;
+  field: Field;
+  record: Records[number];
+  setRecord: (record: Records[number]) => void;
   column: RecordColumn | undefined;
-  records: Records;
-  setRecords: (records: Records) => void;
 }) => {
-  const field = fields[fieldId];
-  if (!field) {
-    console.error(`field not found: ${fieldId}`);
-    return null;
-  }
   if (field.fieldKind !== column.fieldKind) {
     console.error(
       `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,
@@ -34,12 +27,21 @@ export const ModifyCell = ({
     return null;
   }
 
-  const changeHandler = (value: string) => {
-    const copiedRecords = { ...records };
-    const col = copiedRecords[recordIndex]?.columns[fieldId];
-    if (!col) return;
-    col.value = value;
-    setRecords(copiedRecords);
+  const changeHandler: ModifyCellFactoryChangeHandler = (value, options) => {
+    const newRecord = {
+      ...record,
+      columns: {
+        ...record.columns,
+        [field.id]: {
+          ...record.columns[field.id]!,
+          value,
+          options,
+          fieldKind: field.fieldKind,
+        },
+      },
+    };
+
+    setRecord(newRecord);
   };
 
   const value = column.value;
@@ -53,14 +55,22 @@ export const ModifyCell = ({
           label={""}
           value={value}
           setValue={changeHandler}
-          data={field.options.selector
-            .split(",")
-            .map((option) => ({ label: option, value: option }))}
+          data={field.options.selector}
         />
       );
     case "multipleText":
       return (
         <MultiTextInput label={""} value={value} setValue={changeHandler} />
       );
+    case "lookup": {
+      return (
+        // Add を同じものを使用する。不都合が発生すれば、別途コンポーネントを作成する
+        <AddCellLookupFactory
+          value={value}
+          changeHandler={changeHandler}
+          options={field.options}
+        />
+      );
+    }
   }
 };

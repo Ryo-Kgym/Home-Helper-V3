@@ -4,16 +4,31 @@
 
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Modal } from "@components/ui/v4/modal";
+import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { paths } from "@routing/paths";
 
-import type { AppListType } from "./SelectAppServer";
+import type { AppListType } from "./fetch-app-list";
 
-export const SelectAppClient = ({ data }: { data: AppListType[] }) => {
+export const SelectAppClient = ({
+  groupId,
+  appList,
+}: {
+  groupId: string;
+  appList: AppListType[];
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const { push } = useRouter();
-  const [isOpen, setIsOpen] = React.useState(false);
+  const { group } = useFindUser();
+
+  useEffect(() => {
+    if (!!group.id && group.id !== groupId) {
+      window.location.reload();
+    }
+  }, [group.id, groupId]);
 
   return (
     <>
@@ -42,7 +57,7 @@ export const SelectAppClient = ({ data }: { data: AppListType[] }) => {
         <Modal.Body>
           <div>アプリ一覧</div>
           <div>
-            {data.map((props) => (
+            {appList.map((props) => (
               <LinkBox
                 key={props.label}
                 {...props}

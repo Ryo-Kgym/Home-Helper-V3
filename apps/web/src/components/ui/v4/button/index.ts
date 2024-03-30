@@ -4,5 +4,5 @@ export type ButtonProps = {
   label: string;
   clickHandler: () => void;
   disabled?: boolean;
-  type: "create" | "add" | "reset" | "modify" | "display";
+  type: "create" | "add" | "reset" | "modify" | "display" | "save";
 };

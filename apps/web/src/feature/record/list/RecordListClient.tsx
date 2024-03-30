@@ -9,6 +9,7 @@ import { AddRecordButton } from "@feature/nav/AddRecordButton";
 import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
 import { RecordListRow } from "@feature/record/list/RecordListRow";
+import { useStateRecords } from "@feature/record/list/useStateRecords";
 
 export type RecordListMode = "add" | "modify" | "show";
 
@@ -21,9 +22,7 @@ export const RecordListClient = ({
   recordTemplate: Record;
   records: Records;
 }) => {
-  const [records, setRecordsBase] = useState<Records>(
-    structuredClone(defaultRecords),
-  );
+  const { records, setRecords } = useStateRecords(defaultRecords);
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
   const [mode, setMode] = useState<RecordListMode>("show");
 
@@ -35,13 +34,9 @@ export const RecordListClient = ({
     { name: "" },
   ];
 
-  const setRecords = (records: Records) =>
-    setRecordsBase(structuredClone(records));
-
   return (
     <div className={"space-y-10"}>
-      <Title>
-        <div className={"text-3xl"}>{app.name}</div>
+      <Title title={app.name}>
         <RedirectSettingButton appId={app.id} />
         <AddRecordButton
           mode={mode}
@@ -69,7 +64,6 @@ export const RecordListClient = ({
               mode={mode}
               setMode={setMode}
               recordTemplate={recordTemplate}
-              defaultRecords={defaultRecords}
             />
           )}
         />

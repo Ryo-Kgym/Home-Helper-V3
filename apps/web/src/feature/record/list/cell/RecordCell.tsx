@@ -8,12 +8,12 @@ import { ShowCell } from "./ShowCell";
 
 export const RecordCell = (
   // prettier-ignore
-  props: { mode: RecordListMode; isEditing: boolean }
+  props: { mode: RecordListMode }
     & ComponentProps<typeof AddCell>
     & ComponentProps<typeof ModifyCell>
     & ComponentProps<typeof ShowCell>,
 ) => {
-  const Cell = getCellComponent(props.isEditing)[props.mode];
+  const Cell = getCellComponent(props.record.isEditing)[props.mode];
   return <Cell {...props} />;
 };
 

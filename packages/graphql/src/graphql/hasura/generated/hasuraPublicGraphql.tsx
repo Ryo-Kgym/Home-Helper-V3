@@ -4680,10 +4680,18 @@ export type GetUserByEmailQuery = {
     name?: string | null;
     affiliation: Array<{
       __typename?: "Affiliation";
+      id: string;
       groupRole: string;
       group: { __typename?: "Group"; id: string; name: string };
     }>;
   }>;
+};
+
+export type FragRecordsFragment = {
+  __typename: "Record";
+  id: string;
+  index: number;
+  columns: any;
 };
 
 export type GetAppQueryVariables = Exact<{
@@ -4709,6 +4717,24 @@ export type GetAppQuery = {
       id: string;
       index: number;
       columns: any;
+    }>;
+  } | null;
+};
+
+export type GetAppFieldListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetAppFieldListQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    id: string;
+    apps: Array<{
+      __typename?: "App";
+      id: string;
+      name: string;
+      fields: Array<{ __typename?: "Field"; id: string; name: string }>;
     }>;
   } | null;
 };
@@ -4776,6 +4802,28 @@ export type GetMaxRecordIndexQuery = {
   };
 };
 
+export type GetRecordsQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetRecordsQuery = {
+  __typename?: "query_root";
+  records: Array<{
+    __typename: "Record";
+    id: string;
+    index: number;
+    columns: any;
+  }>;
+};
+
+export const FragRecordsFragmentDoc = gql`
+  fragment fragRecords on Record {
+    __typename
+    id
+    index
+    columns
+  }
+`;
 export const DeleteImportFileHistoryDocument = gql`
   mutation deleteImportFileHistory($historyId: String!) {
     deleteImportFileRecord(where: { historyId: { _eq: $historyId } }) {
@@ -4998,6 +5046,7 @@ export const GetUserByEmailDocument = gql`
       id
       name
       affiliation: affiliations {
+        id
         group: group {
           id
           name
@@ -5031,13 +5080,11 @@ export const GetAppDocument = gql`
         options
       }
       records {
-        __typename
-        id
-        index
-        columns
+        ...fragRecords
       }
     }
   }
+  ${FragRecordsFragmentDoc}
 `;
 
 export function useGetAppQuery(
@@ -5045,6 +5092,30 @@ export function useGetAppQuery(
 ) {
   return Urql.useQuery<GetAppQuery, GetAppQueryVariables>({
     query: GetAppDocument,
+    ...options,
+  });
+}
+export const GetAppFieldListDocument = gql`
+  query getAppFieldList($groupId: String!) {
+    group: groupByPk(id: $groupId) {
+      id
+      apps {
+        id
+        name
+        fields(orderBy: { index: ASC }) {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
+export function useGetAppFieldListQuery(
+  options: Omit<Urql.UseQueryArgs<GetAppFieldListQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAppFieldListQuery, GetAppFieldListQueryVariables>({
+    query: GetAppFieldListDocument,
     ...options,
   });
 }
@@ -5132,4 +5203,24 @@ export function useGetMaxRecordIndexQuery(
   return Urql.useQuery<GetMaxRecordIndexQuery, GetMaxRecordIndexQueryVariables>(
     { query: GetMaxRecordIndexDocument, ...options },
   );
+}
+export const GetRecordsDocument = gql`
+  query getRecords($appId: String!) {
+    records: record(
+      where: { appId: { _eq: $appId } }
+      orderBy: { index: ASC }
+    ) {
+      ...fragRecords
+    }
+  }
+  ${FragRecordsFragmentDoc}
+`;
+
+export function useGetRecordsQuery(
+  options: Omit<Urql.UseQueryArgs<GetRecordsQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetRecordsQuery, GetRecordsQueryVariables>({
+    query: GetRecordsDocument,
+    ...options,
+  });
 }

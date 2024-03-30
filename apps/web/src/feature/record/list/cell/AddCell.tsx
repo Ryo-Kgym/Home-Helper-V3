@@ -1,30 +1,27 @@
-import type { Fields } from "@feature/app/schema";
+import type { Field, Fields } from "@feature/app/schema";
 import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
+import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/cell-factory-change-handler";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
-import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
+import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFactory";
+import { AddCellSelectBoxFactory } from "@feature/record/list/cell/AddCellSelectBoxFactory";
 
 export const AddCell = ({
-  fieldId,
+  field,
   fields,
   column = {
-    fieldKind: fields[fieldId]?.fieldKind ?? "text",
+    fieldKind: fields[field.id]?.fieldKind ?? "text",
     value: "",
   },
   newRecord,
   setNewRecord,
 }: {
-  fieldId: string;
+  field: Field;
   fields: Fields;
   column: RecordColumn | undefined;
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
 }) => {
-  const field = fields[fieldId];
-  if (!field) {
-    console.error(`field not found: ${fieldId}`);
-    return null;
-  }
   if (field.fieldKind !== column.fieldKind) {
     console.error(
       `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,
@@ -32,35 +29,42 @@ export const AddCell = ({
     return null;
   }
 
-  const changeHandler = (value: string) => {
+  const changeHandler: ModifyCellFactoryChangeHandler = (value, options) => {
     setNewRecord({
       ...newRecord,
-      [fieldId]: {
+      [field.id]: {
         ...column,
+        options,
         value,
       },
     });
   };
 
-  const value = newRecord[fieldId]!.value;
+  const value = newRecord[field.id]!.value;
 
   switch (field.fieldKind) {
     case "text":
       return <TextInput label={""} value={value} setValue={changeHandler} />;
     case "selectBox":
       return (
-        <Select
-          label={""}
+        <AddCellSelectBoxFactory
           value={value}
-          setValue={changeHandler}
-          data={field.options.selector
-            .split(",")
-            .map((option) => ({ label: option, value: option }))}
+          changeHandler={changeHandler}
+          options={field.options}
         />
       );
     case "multipleText":
       return (
         <MultiTextInput label={""} value={value} setValue={changeHandler} />
       );
+    case "lookup": {
+      return (
+        <AddCellLookupFactory
+          value={value}
+          changeHandler={changeHandler}
+          options={field.options}
+        />
+      );
+    }
   }
 };

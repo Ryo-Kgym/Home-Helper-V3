@@ -38,8 +38,7 @@ export const RecordImportClient = ({
   return (
     <>
       <div className={"space-y-10"}>
-        <Title>
-          <div className={"text-3xl"}>{app.name}</div>
+        <Title title={app.name}>
           <RedirectSettingButton appId={app.id} />
           <RedirectListButton appId={app.id} />
           <RedirectImportButton appId={app.id} />

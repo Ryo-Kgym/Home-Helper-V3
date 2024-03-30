@@ -2,17 +2,17 @@ import type { Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 
 export const CancelButton = ({
-  setRecords,
   setMode,
-  defaultRecords,
+  defaultRecord,
+  setRecord,
 }: {
-  setRecords: (records: Records) => void;
   setMode: (mode: RecordListMode) => void;
-  defaultRecords: Records;
+  defaultRecord: Records[number];
+  setRecord: (record: Records[number]) => void;
 }) => {
   const cancelHandler = () => {
     setMode("show");
-    setRecords(defaultRecords);
+    setRecord(defaultRecord);
   };
 
   return <button onClick={cancelHandler}>キャンセル</button>;

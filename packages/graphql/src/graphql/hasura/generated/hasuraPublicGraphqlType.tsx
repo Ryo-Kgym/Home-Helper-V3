@@ -4602,10 +4602,18 @@ export type GetUserByEmailQuery = {
     name?: string | null;
     affiliation: Array<{
       __typename?: "Affiliation";
+      id: string;
       groupRole: string;
       group: { __typename?: "Group"; id: string; name: string };
     }>;
   }>;
+};
+
+export type FragRecordsFragment = {
+  __typename: "Record";
+  id: string;
+  index: number;
+  columns: any;
 };
 
 export type GetAppQueryVariables = Exact<{
@@ -4631,6 +4639,24 @@ export type GetAppQuery = {
       id: string;
       index: number;
       columns: any;
+    }>;
+  } | null;
+};
+
+export type GetAppFieldListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetAppFieldListQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    id: string;
+    apps: Array<{
+      __typename?: "App";
+      id: string;
+      name: string;
+      fields: Array<{ __typename?: "Field"; id: string; name: string }>;
     }>;
   } | null;
 };
@@ -4698,6 +4724,42 @@ export type GetMaxRecordIndexQuery = {
   };
 };
 
+export type GetRecordsQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetRecordsQuery = {
+  __typename?: "query_root";
+  records: Array<{
+    __typename: "Record";
+    id: string;
+    index: number;
+    columns: any;
+  }>;
+};
+
+export const FragRecordsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragRecords" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Record" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "columns" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FragRecordsFragment, unknown>;
 export const DeleteImportFileHistoryDocument = {
   kind: "Document",
   definitions: [
@@ -5961,6 +6023,7 @@ export const GetUserByEmailDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       {
                         kind: "Field",
                         alias: { kind: "Name", value: "group" },
@@ -6092,14 +6155,121 @@ export const GetAppDocument = {
                     kind: "SelectionSet",
                     selections: [
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragRecords" },
                       },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragRecords" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Record" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "columns" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetAppQuery, GetAppQueryVariables>;
+export const GetAppFieldListDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getAppFieldList" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "group" },
+            name: { kind: "Name", value: "groupByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "groupId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "apps" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "index" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "columns" },
+                        name: { kind: "Name", value: "fields" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "orderBy" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "index" },
+                                  value: { kind: "EnumValue", value: "ASC" },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
                       },
                     ],
                   },
@@ -6111,7 +6281,10 @@ export const GetAppDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<GetAppQuery, GetAppQueryVariables>;
+} as unknown as DocumentNode<
+  GetAppFieldListQuery,
+  GetAppFieldListQueryVariables
+>;
 export const GetApplicationsDocument = {
   kind: "Document",
   definitions: [
@@ -6463,3 +6636,107 @@ export const GetMaxRecordIndexDocument = {
   GetMaxRecordIndexQuery,
   GetMaxRecordIndexQueryVariables
 >;
+export const GetRecordsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getRecords" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "records" },
+            name: { kind: "Name", value: "record" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "index" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "fragRecords" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragRecords" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Record" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "columns" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetRecordsQuery, GetRecordsQueryVariables>;

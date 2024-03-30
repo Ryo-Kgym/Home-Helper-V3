@@ -16,6 +16,7 @@ export const DeleteRecordButton = ({
   setRecords: (records: Records) => void;
   mode: RecordListMode;
   setMode: (mode: RecordListMode) => void;
+  setRecord: (record: Records[number]) => void;
 }) => {
   const [, mut] = useDeleteRecordMutation();
   const setRecordsState = () => {
