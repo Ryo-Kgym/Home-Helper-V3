@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const simpleKindOptionsSchema = z.object({});
 
-const selectBoxOptionsSchema = z.object({
+export const selectBoxOptionsSchema = z.object({
   selector: z
     .object({
       value: z.string().min(1),
@@ -14,7 +14,7 @@ const selectBoxOptionsSchema = z.object({
 
 export type SelectBoxOptions = z.infer<typeof selectBoxOptionsSchema>;
 
-const lookupOptionsSchema = z.object({
+export const lookupOptionsSchema = z.object({
   appId: z.string(),
   selectFieldId: z.string(),
   saveFieldId: z.string(),

@@ -1,26 +1,25 @@
-import type {
-  AppFieldOptions,
-  SelectBoxOptions,
-} from "@feature/app/create/app-field-value";
+import type { AppFieldOptions } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
+import { selectBoxOptionsSchema } from "@feature/app/create/app-field-value";
 import { FieldOptionsSelectBox } from "@feature/app/create/FieldOptionsSelectBox";
 
 export const FieldOptionsInput = ({
   fieldKind,
-  value,
-  setValue,
+  options,
+  setOptions,
 }: {
   fieldKind: FieldKind;
-  value: AppFieldOptions;
-  setValue: (options: AppFieldOptions) => void;
+  options: AppFieldOptions;
+  setOptions: (options: AppFieldOptions) => void;
 }) => {
   switch (fieldKind) {
     case "selectBox": {
+      const parsed = selectBoxOptionsSchema.safeParse(options);
+      if (!parsed.success) {
+        return null;
+      }
       return (
-        <FieldOptionsSelectBox
-          options={value as SelectBoxOptions} // TODO Type cast
-          setOptions={setValue}
-        />
+        <FieldOptionsSelectBox options={parsed.data} setOptions={setOptions} />
       );
     }
     case "lookup": {
