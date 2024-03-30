@@ -25,13 +25,23 @@ export const ModifyAppFieldContainer = ({
 
   const save = useSaveAppFieldValue();
 
+  useEffect(() => {
+    if (currentField.fieldKind !== fieldKind) {
+      setOptions({});
+    }
+  }, [fieldKind]);
+
+  if (currentField.mode === "add") {
+    throw new Error("mode is add");
+  }
+
   const parseResult = modifyAppFieldValueSchema.safeParse({
+    id: currentField.id,
     fieldName,
     fieldKind,
     options,
     mode: "modify",
   });
-
   const saveHandler = () => {
     if (!parseResult.success) {
       return;
@@ -39,12 +49,6 @@ export const ModifyAppFieldContainer = ({
     save(index, parseResult.data);
     setSaved(true);
   };
-
-  useEffect(() => {
-    if (currentField.fieldKind !== fieldKind) {
-      setOptions({});
-    }
-  }, [fieldKind]);
 
   return (
     <AppFieldPresenter
