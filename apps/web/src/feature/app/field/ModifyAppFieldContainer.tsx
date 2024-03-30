@@ -21,7 +21,7 @@ export const ModifyAppFieldContainer = ({
   const [options, setOptions] = useState<AppFieldOptions>(currentField.options);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [saved, setSaved] = useState<boolean>(false);
+  const [saved, setSaved] = useState<boolean>(true);
 
   const save = useSaveAppFieldValue();
 
@@ -29,7 +29,15 @@ export const ModifyAppFieldContainer = ({
     if (currentField.fieldKind !== fieldKind) {
       setOptions({});
     }
-  }, [fieldKind]);
+  }, [currentField.fieldKind, fieldKind]);
+
+  useEffect(() => {
+    setSaved(currentField.fieldName === fieldName);
+  }, [currentField.fieldName, fieldName]);
+
+  useEffect(() => {
+    setSaved(currentField.options === options);
+  }, [currentField.options, options]);
 
   if (currentField.mode === "add") {
     throw new Error("mode is add");
