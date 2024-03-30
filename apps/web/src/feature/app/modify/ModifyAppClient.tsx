@@ -3,13 +3,13 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import {
   useGetAppFieldValue,
   useInitializeAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
+import { AppField } from "@feature/app/field/AppField";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
 export const ModifyAppClient = ({

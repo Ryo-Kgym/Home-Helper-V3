@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { CreateAppButton } from "@feature/app/create/CreateAppButton";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
@@ -11,6 +10,7 @@ import {
   useGetAppFieldValue,
   useResetAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
+import { AppField } from "@feature/app/field/AppField";
 
 export const CreateAppClient = () => {
   const [appName, setAppName] = useState<string>("");
