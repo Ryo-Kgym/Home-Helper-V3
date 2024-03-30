@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Title } from "@components/ui/v4/frame/Title";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
@@ -14,8 +14,12 @@ import { AppFieldInput } from "@feature/app/field/AppFieldInput";
 
 export const CreateAppClient = () => {
   const [appName, setAppName] = useState<string>("");
-  const fields = useGetAppFieldValue();
+  const { fields } = useGetAppFieldValue();
   const reset = useResetAppFieldValue();
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   return (
     <div className={"space-y-10"}>
