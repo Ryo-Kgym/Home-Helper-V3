@@ -19,6 +19,11 @@ export const metadata: Metadata = {
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <html lang={"ja"}>
     <head>
+      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+      />
       <ColorSchemeScript />
     </head>
     <body>

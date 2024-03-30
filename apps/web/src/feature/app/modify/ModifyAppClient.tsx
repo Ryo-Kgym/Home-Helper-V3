@@ -29,6 +29,10 @@ export const ModifyAppClient = ({
     initialize(defaultFields);
   }, [defaultFields]);
 
+  useEffect(() => {
+    console.log("[fields]", fields);
+  }, [fields]);
+
   return (
     <div className={"space-y-10"}>
       <Title title={"アプリ設定"}>

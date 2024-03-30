@@ -6,6 +6,7 @@ import type { FieldKind } from "@oneforall/domain/field/type";
 import { useEffect, useState } from "react";
 import { modifyAppFieldValueSchema } from "@feature/app/create/app-field-value";
 import { useSaveAppFieldValue } from "@feature/app/create/useAppFieldValueState";
+import { isEquals } from "@function/isEquals";
 
 import { AppFieldPresenter } from "./AppFieldPresenter";
 
@@ -36,7 +37,7 @@ export const ModifyAppFieldContainer = ({
   }, [currentField.fieldName, fieldName]);
 
   useEffect(() => {
-    setSaved(currentField.options === options);
+    setSaved(isEquals(currentField.options, options));
   }, [currentField.options, options]);
 
   if (currentField.mode === "add") {
