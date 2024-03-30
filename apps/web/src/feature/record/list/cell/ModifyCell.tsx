@@ -1,5 +1,6 @@
 import type { Field, Records } from "@feature/app/schema";
 import type { RecordColumn } from "@feature/app/schema/record-schema";
+import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/cell-factory-change-handler";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
@@ -73,8 +74,3 @@ export const ModifyCell = ({
     }
   }
 };
-
-export type ModifyCellFactoryChangeHandler = (
-  value: string,
-  options?: { label: string },
-) => void;
