@@ -3,7 +3,6 @@ import type { FieldKind } from "@oneforall/domain/field/type";
 import { useEffect, useState } from "react";
 import { addAppFieldValueSchema } from "@feature/app/create/app-field-value";
 import { useSaveAppFieldValue } from "@feature/app/create/useAppFieldValueState";
-import { fieldKindArray } from "@oneforall/domain/field/type";
 
 import { AppFieldPresenter } from "./AppFieldPresenter";
 
@@ -16,11 +15,6 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
 
   const save = useSaveAppFieldValue();
 
-  const data = Object.values(fieldKindArray).map((f) => ({
-    label: f.description,
-    value: f.fieldKind,
-  }));
-
   const parseResult = addAppFieldValueSchema.safeParse({
     fieldName,
     fieldKind,
@@ -28,26 +22,32 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
     mode: "add",
   });
 
+  const saveHandler = () => {
+    if (!parseResult.success) {
+      return;
+    }
+    save(index, parseResult.data);
+    setSaved(true);
+  };
+
   useEffect(() => {
     setOptions({});
   }, [fieldKind]);
 
   return (
     <AppFieldPresenter
-      index={index}
       saved={saved}
-      setSaved={setSaved}
       fieldKind={fieldKind}
       setFieldKind={setFieldKind}
-      data={data}
       fieldName={fieldName}
       setFieldName={setFieldName}
       options={options}
       setOptions={setOptions}
       isOpen={isOpen}
-      setIsOpen={setIsOpen}
+      settingOpenHandler={() => setIsOpen(true)}
+      settingCloseHandler={() => setIsOpen(false)}
       parseResult={parseResult}
-      save={save}
+      saveHandler={saveHandler}
     />
   );
 };
