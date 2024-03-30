@@ -4,6 +4,11 @@ import { z } from "zod";
 export const recordColumnSchema = z.object({
   fieldKind: fieldKindSchema,
   value: z.string(),
+  options: z
+    .object({
+      label: z.string(),
+    })
+    .optional(),
 });
 
 export type RecordColumn = z.infer<typeof recordColumnSchema>;

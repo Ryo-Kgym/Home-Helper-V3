@@ -30,7 +30,7 @@ export const ShowCell = ({
       );
     }
     case "lookup": {
-      return <ShowCellLookupFactory options={field.options} />;
+      return <ShowCellLookupFactory options={column.options} />;
     }
   }
   return <div>{column.value}</div>;

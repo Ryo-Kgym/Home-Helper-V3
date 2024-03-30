@@ -26,7 +26,7 @@ export const ModifyCell = ({
     return null;
   }
 
-  const changeHandler = (value: string) => {
+  const changeHandler: ModifyCellFactoryChangeHandler = (value, options) => {
     const newRecord = {
       ...record,
       columns: {
@@ -34,6 +34,7 @@ export const ModifyCell = ({
         [field.id]: {
           ...record.columns[field.id]!,
           value,
+          options,
           fieldKind: field.fieldKind,
         },
       },
@@ -72,3 +73,8 @@ export const ModifyCell = ({
     }
   }
 };
+
+export type ModifyCellFactoryChangeHandler = (
+  value: string,
+  options?: { label: string },
+) => void;

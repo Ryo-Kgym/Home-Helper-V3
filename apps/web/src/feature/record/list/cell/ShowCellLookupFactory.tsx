@@ -1,9 +1,9 @@
-import type { FieldOptionsLookup } from "@feature/app/schema";
+import type { RecordColumn } from "@feature/app/schema";
 
 export const ShowCellLookupFactory = ({
   options,
 }: {
-  options: FieldOptionsLookup;
+  options: RecordColumn["options"];
 }) => {
-  return <div>{options.label}</div>;
+  return <div>{options?.label}</div>;
 };
