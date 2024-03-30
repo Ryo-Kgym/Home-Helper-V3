@@ -33,8 +33,8 @@ export const CreateAppClient = () => {
         </div>
       </div>
       <div className={"space-y-2"}>
-        {Object.keys(fields).map((_, index) => (
-          <AppFieldInput key={index} index={index} />
+        {Object.keys(fields).map((index) => (
+          <AppFieldInput key={index} index={parseInt(index)} />
         ))}
       </div>
     </div>

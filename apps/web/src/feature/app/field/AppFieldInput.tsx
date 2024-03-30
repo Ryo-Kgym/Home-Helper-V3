@@ -1,3 +1,5 @@
+import { ModifyAppFieldContainer } from "@feature/app/field/ModifyAppFieldContainer";
+
 import { useGetAppFieldValue } from "../create/useAppFieldValueState";
 import { AddAppFieldContainer } from "./AddAppFieldContainer";
 
@@ -6,8 +8,8 @@ export const AppFieldInput = ({ index }: { index: number }) => {
   const field = getBy(index);
 
   if (!field) {
-    return null;
+    return <AddAppFieldContainer index={index} />;
   }
 
-  return <AddAppFieldContainer index={index} />;
+  return <ModifyAppFieldContainer index={index} />;
 };
