@@ -50,8 +50,12 @@ const useAppFieldValueState = create<State & Actions>()(
 
 export const useInitializeAppFieldValue = () =>
   useAppFieldValueState((store) => store.initialize);
-export const useGetAppFieldValue = () =>
-  useAppFieldValueState((store) => store.appFieldValue);
+export const useGetAppFieldValue = () => {
+  return useAppFieldValueState((store) => ({
+    fields: store.appFieldValue,
+    getBy: (index: number) => store.appFieldValue[index],
+  }));
+};
 export const useSaveAppFieldValue = () =>
   useAppFieldValueState((store) => store.saveAppFieldValue);
 

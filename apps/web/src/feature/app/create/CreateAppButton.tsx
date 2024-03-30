@@ -10,7 +10,7 @@ import { paths } from "@routing/paths";
 export const CreateAppButton = ({ appName }: { appName: string }) => {
   const { push } = useRouter();
   const { createApp } = useCreateApp();
-  const fields = useGetAppFieldValue();
+  const { fields } = useGetAppFieldValue();
 
   const creatable =
     !!appName &&

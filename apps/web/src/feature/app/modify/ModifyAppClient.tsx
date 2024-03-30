@@ -41,8 +41,8 @@ export const ModifyAppClient = ({
         </div>
       </div>
       <div className={"space-y-2"}>
-        {Object.keys(fields).map((_, index) => (
-          <AppField key={index} index={index} />
+        {Object.keys(fields).map((index) => (
+          <AppField key={index} index={parseInt(index)} />
         ))}
       </div>
     </div>
