@@ -1,5 +1,6 @@
 import type { Field, Fields } from "@feature/app/schema";
 import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
+import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/ModifyCell";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { TextInput } from "@components/ui/v4/textInput";
 import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFactory";
@@ -28,11 +29,12 @@ export const AddCell = ({
     return null;
   }
 
-  const changeHandler = (value: string) => {
+  const changeHandler: ModifyCellFactoryChangeHandler = (value, options) => {
     setNewRecord({
       ...newRecord,
       [field.id]: {
         ...column,
+        options,
         value,
       },
     });
