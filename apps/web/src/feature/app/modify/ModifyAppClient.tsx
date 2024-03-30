@@ -3,24 +3,22 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AddAppField } from "@feature/app/create/AddAppField";
+import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
-import { ModifyAppField } from "@feature/app/modify/ModifyAppField";
-import { UpdateAppButton } from "@feature/app/modify/UpdateAppButton";
+import { useGetAppFieldValue } from "@feature/app/create/useAppFieldValueState";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
 export const ModifyAppClient = ({
   appId,
   appName: defaultAppName,
-  fields: defaultFields,
 }: {
   appId: string;
   appName: string;
   fields: AppFieldValue;
 }) => {
   const [appName, setAppName] = useState<string>(defaultAppName);
-  const [value, setValue] = useState<AppFieldValue>(defaultFields);
+  const fields = useGetAppFieldValue();
 
   return (
     <div className={"space-y-10"}>
@@ -30,25 +28,13 @@ export const ModifyAppClient = ({
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
-          <UpdateAppButton appId={appId} appName={appName} fields={value} />
-          <FieldAddButton value={value} setValue={setValue} />
+          <FieldAddButton />
         </div>
       </div>
       <div className={"space-y-2"}>
-        {Object.entries(value).map(([index, field]) => {
-          if (field.mode === "add") {
-            return <AddAppField key={`field-${index}`} />;
-          }
-          return (
-            <ModifyAppField
-              key={`field-${index}`}
-              index={parseInt(index)}
-              value={value}
-              setValue={setValue}
-              defaultField={field}
-            />
-          );
-        })}
+        {Object.keys(fields).map((_, index) => (
+          <AppField key={index} index={index} />
+        ))}
       </div>
     </div>
   );

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AddAppField } from "@feature/app/create/AddAppField";
+import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { CreateAppButton } from "@feature/app/create/CreateAppButton";
+import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import {
-  useAppendAppFieldValue,
   useGetAppFieldValue,
   useResetAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
@@ -15,7 +15,6 @@ import {
 export const CreateAppClient = () => {
   const [appName, setAppName] = useState<string>("");
   const fields = useGetAppFieldValue();
-  const append = useAppendAppFieldValue();
   const reset = useResetAppFieldValue();
 
   return (
@@ -25,13 +24,13 @@ export const CreateAppClient = () => {
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
           <CreateAppButton appName={appName} />
-          <Button label={"フィールド追加"} clickHandler={append} type={"add"} />
+          <FieldAddButton />
           <Button label={"はじめから"} clickHandler={reset} type={"reset"} />
         </div>
       </div>
       <div className={"space-y-2"}>
         {Object.keys(fields).map((_, index) => (
-          <AddAppField key={index} index={index} />
+          <AppField key={index} index={index} />
         ))}
       </div>
     </div>

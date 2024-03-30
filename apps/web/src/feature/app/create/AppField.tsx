@@ -10,7 +10,7 @@ import { FieldOptionsInput } from "@feature/app/create/FieldOptionsInput";
 import { useSaveAppFieldValue } from "@feature/app/create/useAppFieldValueState";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
-export const AddAppField = ({ index }: { index: number }) => {
+export const AppField = ({ index }: { index: number }) => {
   const [fieldName, setFieldName] = useState<string>("");
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
   const [options, setOptions] = useState<AppFieldOptions>({});

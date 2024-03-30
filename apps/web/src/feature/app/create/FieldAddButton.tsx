@@ -1,41 +1,8 @@
-import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import React from "react";
 import { Button } from "@components/ui/v4/button";
+import { useAppendAppFieldValue } from "@feature/app/create/useAppFieldValueState";
 
-export const FieldAddButton = ({
-  value,
-  setValue,
-}: {
-  value: AppFieldValue;
-  setValue: (value: AppFieldValue) => void;
-}) => {
-  const calcNextIndex = () => {
-    if (Object.keys(value).length === 0) return 0;
-    return Math.max(...Object.keys(value).map((v) => parseInt(v) ?? 0)) + 1;
-  };
-
-  const addable = Object.values(value).every((v) => v.fieldName !== "");
-
-  return (
-    <Button
-      label="フィールド追加"
-      clickHandler={() => {
-        if (!addable) return;
-
-        const nextIndex = calcNextIndex();
-
-        setValue({
-          ...value,
-          [nextIndex]: {
-            fieldName: "",
-            fieldKind: "text",
-            options: {},
-            mode: "add",
-          },
-        });
-      }}
-      type={"add"}
-      disabled={!addable}
-    />
-  );
+export const FieldAddButton = () => {
+  const append = useAppendAppFieldValue();
+  return <Button label={"フィールド追加"} clickHandler={append} type={"add"} />;
 };
