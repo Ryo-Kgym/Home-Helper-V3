@@ -10,6 +10,7 @@ import {
   useInitializeAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
 import { AppFieldInput } from "@feature/app/field/AppFieldInput";
+import { UpdateAppButton } from "@feature/app/modify/UpdateAppButton";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
 export const ModifyAppClient = ({
@@ -41,6 +42,7 @@ export const ModifyAppClient = ({
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
+          <UpdateAppButton appId={appId} appName={appName} fields={fields} />
           <FieldAddButton />
         </div>
       </div>

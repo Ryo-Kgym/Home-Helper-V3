@@ -27,8 +27,9 @@ export const UpdateAppButton = ({
 
     try {
       await modifyApp({ appName, fields: newField });
-      notify("アプリを作成しました");
+      notify("アプリを更新しました");
     } catch (e) {
+      notify("アプリの更新に失敗しました");
       console.error(e);
     }
   };
