@@ -16,7 +16,7 @@ export const FieldOptionsSelectBox = ({
   >(options.selector?.map((selector) => selector.label) ?? [""]);
 
   return (
-    <div>
+    <>
       <Button
         label={"追加"}
         clickHandler={() => {
@@ -52,6 +52,6 @@ export const FieldOptionsSelectBox = ({
         }}
         type={"save"}
       />
-    </div>
+    </>
   );
 };
