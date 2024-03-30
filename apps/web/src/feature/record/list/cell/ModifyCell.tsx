@@ -1,4 +1,4 @@
-import type { Field, Fields, Records } from "@feature/app/schema";
+import type { Field, Records } from "@feature/app/schema";
 import type { RecordColumn } from "@feature/app/schema/record-schema";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
@@ -9,16 +9,14 @@ export const ModifyCell = ({
   field,
   record,
   setRecord,
-  fields,
   column = {
-    fieldKind: fields[field.id]?.fieldKind ?? "text",
+    fieldKind: field.fieldKind,
     value: "",
   },
 }: {
   field: Field;
   record: Records[number];
   setRecord: (record: Records[number]) => void;
-  fields: Fields;
   column: RecordColumn | undefined;
 }) => {
   if (field.fieldKind !== column.fieldKind) {
@@ -36,6 +34,7 @@ export const ModifyCell = ({
         [field.id]: {
           ...record.columns[field.id]!,
           value,
+          fieldKind: field.fieldKind,
         },
       },
     };
