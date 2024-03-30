@@ -4,17 +4,31 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Modal } from "@components/ui/v4/modal";
+import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { paths } from "@routing/paths";
 
 import type { AppListType } from "./fetch-app-list";
 
-export const SelectAppClient = ({ appList }: { appList: AppListType[] }) => {
-  const { push } = useRouter();
-
+export const SelectAppClient = ({
+  groupId,
+  appList,
+}: {
+  groupId: string;
+  appList: AppListType[];
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { push } = useRouter();
+  const { group } = useFindUser();
+
+  useEffect(() => {
+    if (!!group.id && group.id !== groupId) {
+      window.location.reload();
+    }
+  }, [group.id, groupId]);
 
   return (
     <>

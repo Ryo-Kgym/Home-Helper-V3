@@ -6,5 +6,5 @@ export const SelectAppServer = async () => {
   const { group } = await findUser();
   const { appList } = await fetchAppList({ groupId: group.id });
 
-  return <SelectAppClient appList={appList} />;
+  return <SelectAppClient groupId={group.id} appList={appList} />;
 };
