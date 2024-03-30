@@ -14,11 +14,8 @@ import { fieldKindArray } from "@oneforall/domain/field/type";
 export const AppFieldPresenter = ({
   saved,
   fieldKind,
-  setFieldKind,
   fieldName,
-  setFieldName,
   options,
-  setOptions,
   isOpen,
   parseResult,
   saveHandler,
@@ -26,12 +23,9 @@ export const AppFieldPresenter = ({
   settingCloseHandler,
 }: {
   saved: boolean;
-  fieldKind: FieldKind;
-  setFieldKind: (value: FieldKind) => void;
-  fieldName: string;
-  setFieldName: (value: string) => void;
-  options: AppFieldOptions;
-  setOptions: (value: AppFieldOptions) => void;
+  fieldKind: ValueState<FieldKind>;
+  fieldName: ValueState;
+  options: ValueState<AppFieldOptions>;
   isOpen: boolean;
   parseResult: SafeParseReturnType<unknown, AppFieldValue[number]>;
   saveHandler: () => void;
@@ -48,14 +42,15 @@ export const AppFieldPresenter = ({
       <div className={"flex flex-1 gap-2"}>
         <Select
           label={"フィールドの選択"}
-          value={fieldKind}
-          setValue={setFieldKind}
+          value={fieldKind.value}
+          setValue={fieldKind.setValue}
+          disabled={fieldKind.disabled}
           data={FIELD_KIND_DATA}
         />
         <TextInput
           label={"フィールド名"}
-          value={fieldName}
-          setValue={setFieldName}
+          value={fieldName.value}
+          setValue={fieldName.setValue}
           required
           placeholder={"フィールド名を入力してください"}
         />
@@ -74,13 +69,19 @@ export const AppFieldPresenter = ({
     </div>
     <Modal isOpen={isOpen} onClose={settingCloseHandler}>
       <FieldOptionsInput
-        fieldKind={fieldKind}
-        options={options}
-        setOptions={setOptions}
+        fieldKind={fieldKind.value}
+        options={options.value}
+        setOptions={options.setValue}
       />
     </Modal>
   </>
 );
+
+type ValueState<T = string> = {
+  value: T;
+  setValue: (value: T) => void;
+  disabled?: boolean;
+};
 
 const FIELD_KIND_DATA = Object.values(fieldKindArray).map((f) => ({
   label: f.description,

@@ -37,12 +37,18 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
   return (
     <AppFieldPresenter
       saved={saved}
-      fieldKind={fieldKind}
-      setFieldKind={setFieldKind}
-      fieldName={fieldName}
-      setFieldName={setFieldName}
-      options={options}
-      setOptions={setOptions}
+      fieldKind={{
+        value: fieldKind,
+        setValue: setFieldKind,
+      }}
+      fieldName={{
+        value: fieldName,
+        setValue: setFieldName,
+      }}
+      options={{
+        value: options,
+        setValue: setOptions,
+      }}
       isOpen={isOpen}
       settingOpenHandler={() => setIsOpen(true)}
       settingCloseHandler={() => setIsOpen(false)}

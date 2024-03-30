@@ -7,9 +7,8 @@ export const AppFieldInput = ({ index }: { index: number }) => {
   const { getBy } = useGetAppFieldValue();
   const field = getBy(index);
 
-  if (!field) {
-    return <AddAppFieldContainer index={index} />;
+  if (field) {
+    return <ModifyAppFieldContainer index={index} currentField={field} />;
   }
-
-  return <ModifyAppFieldContainer index={index} />;
+  return <AddAppFieldContainer index={index} />;
 };
