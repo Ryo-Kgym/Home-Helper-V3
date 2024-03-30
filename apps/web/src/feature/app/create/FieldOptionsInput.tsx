@@ -7,19 +7,19 @@ import { FieldOptionsSelectBox } from "@feature/app/create/FieldOptionsSelectBox
 
 export const FieldOptionsInput = ({
   fieldKind,
-  options,
-  setOptions,
+  value,
+  setValue,
 }: {
   fieldKind: FieldKind;
-  options: AppFieldOptions;
-  setOptions: (options: AppFieldOptions) => void;
+  value: AppFieldOptions;
+  setValue: (options: AppFieldOptions) => void;
 }) => {
   switch (fieldKind) {
     case "selectBox": {
       return (
         <FieldOptionsSelectBox
-          options={options as SelectBoxOptions} // TODO Type cast
-          setOptions={setOptions}
+          options={value as SelectBoxOptions} // TODO Type cast
+          setOptions={setValue}
         />
       );
     }

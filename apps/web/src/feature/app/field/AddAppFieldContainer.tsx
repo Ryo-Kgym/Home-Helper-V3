@@ -49,10 +49,9 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
         value: options,
         setValue: setOptions,
       }}
+      saveDisabled={!parseResult.success}
       isOpen={isOpen}
-      settingOpenHandler={() => setIsOpen(true)}
-      settingCloseHandler={() => setIsOpen(false)}
-      parseResult={parseResult}
+      setIsOpen={setIsOpen}
       saveHandler={saveHandler}
     />
   );

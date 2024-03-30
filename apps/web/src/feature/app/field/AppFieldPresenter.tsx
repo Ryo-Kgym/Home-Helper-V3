@@ -1,9 +1,5 @@
-import type {
-  AppFieldOptions,
-  AppFieldValue,
-} from "@feature/app/create/app-field-value";
+import type { AppFieldOptions } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
-import type { SafeParseReturnType } from "zod";
 import { Button } from "@components/ui/v4/button";
 import { Modal } from "@components/ui/v4/modal";
 import { Select } from "@components/ui/v4/select";
@@ -16,21 +12,19 @@ export const AppFieldPresenter = ({
   fieldKind,
   fieldName,
   options,
+  saveDisabled,
   isOpen,
-  parseResult,
+  setIsOpen,
   saveHandler,
-  settingOpenHandler,
-  settingCloseHandler,
 }: {
   saved: boolean;
   fieldKind: ValueState<FieldKind>;
   fieldName: ValueState;
   options: ValueState<AppFieldOptions>;
+  saveDisabled: boolean;
   isOpen: boolean;
-  parseResult: SafeParseReturnType<unknown, AppFieldValue[number]>;
+  setIsOpen: (isOpen: boolean) => void;
   saveHandler: () => void;
-  settingOpenHandler: () => void;
-  settingCloseHandler: () => void;
 }) => (
   <>
     <div
@@ -42,37 +36,30 @@ export const AppFieldPresenter = ({
       <div className={"flex flex-1 gap-2"}>
         <Select
           label={"フィールドの選択"}
-          value={fieldKind.value}
-          setValue={fieldKind.setValue}
-          disabled={fieldKind.disabled}
+          {...fieldKind}
           data={FIELD_KIND_DATA}
         />
         <TextInput
           label={"フィールド名"}
-          value={fieldName.value}
-          setValue={fieldName.setValue}
+          {...fieldName}
           required
           placeholder={"フィールド名を入力してください"}
         />
         <Button
           label={"設定"}
-          clickHandler={settingOpenHandler}
+          clickHandler={() => setIsOpen(true)}
           type={"display"}
         />
         <Button
           label={"保存"}
           clickHandler={saveHandler}
           type={"save"}
-          disabled={!parseResult.success}
+          disabled={saveDisabled}
         />
       </div>
     </div>
-    <Modal isOpen={isOpen} onClose={settingCloseHandler}>
-      <FieldOptionsInput
-        fieldKind={fieldKind.value}
-        options={options.value}
-        setOptions={options.setValue}
-      />
+    <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <FieldOptionsInput fieldKind={fieldKind.value} {...options} />
     </Modal>
   </>
 );
