@@ -1,5 +1,5 @@
 import { AddAppFieldContainer } from "./AddAppFieldContainer";
 
-export const AppField = ({ index }: { index: number }) => {
+export const AppFieldInput = ({ index }: { index: number }) => {
   return <AddAppFieldContainer index={index} />;
 };

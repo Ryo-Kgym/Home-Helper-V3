@@ -10,7 +10,7 @@ import {
   useGetAppFieldValue,
   useResetAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
-import { AppField } from "@feature/app/field/AppField";
+import { AppFieldInput } from "@feature/app/field/AppFieldInput";
 
 export const CreateAppClient = () => {
   const [appName, setAppName] = useState<string>("");
@@ -30,7 +30,7 @@ export const CreateAppClient = () => {
       </div>
       <div className={"space-y-2"}>
         {Object.keys(fields).map((_, index) => (
-          <AppField key={index} index={index} />
+          <AppFieldInput key={index} index={index} />
         ))}
       </div>
     </div>
