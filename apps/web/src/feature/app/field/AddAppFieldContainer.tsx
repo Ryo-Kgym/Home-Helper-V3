@@ -10,6 +10,7 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
   const [fieldName, setFieldName] = useState<string>("");
   const [fieldKind, setFieldKind] = useState<FieldKind>("text");
   const [options, setOptions] = useState<AppFieldOptions>({});
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [saved, setSaved] = useState<boolean>(false);
 
@@ -36,6 +37,7 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
 
   return (
     <AppFieldPresenter
+      mode={"add"}
       saved={saved}
       fieldKind={{
         value: fieldKind,

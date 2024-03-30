@@ -48,10 +48,12 @@ export const ModifyAppFieldContainer = ({
 
   return (
     <AppFieldPresenter
+      mode={"modify"}
       saved={saved}
       fieldKind={{
         value: fieldKind,
         setValue: setFieldKind,
+        disabled: true,
       }}
       fieldName={{
         value: fieldName,
