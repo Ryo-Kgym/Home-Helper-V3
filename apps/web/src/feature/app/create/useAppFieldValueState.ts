@@ -8,6 +8,7 @@ type State = {
 };
 
 type Actions = {
+  initialize: (appFieldValue: AppFieldValue) => void;
   saveAppFieldValue: (index: number, value: AppFieldValue[number]) => void;
   appendAppFieldValue: () => void;
   resetAppFieldValue: () => void;
@@ -16,6 +17,10 @@ type Actions = {
 const useAppFieldValueState = create<State & Actions>()(
   immer((set) => ({
     appFieldValue: {},
+    initialize: (appFieldValue) =>
+      set((state) => {
+        state.appFieldValue = appFieldValue;
+      }),
     saveAppFieldValue: (index, value) =>
       set((state) => {
         state.appFieldValue = {
@@ -43,6 +48,8 @@ const useAppFieldValueState = create<State & Actions>()(
   })),
 );
 
+export const useInitializeAppFieldValue = () =>
+  useAppFieldValueState((store) => store.initialize);
 export const useGetAppFieldValue = () =>
   useAppFieldValueState((store) => store.appFieldValue);
 export const useSaveAppFieldValue = () =>

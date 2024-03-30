@@ -1,24 +1,33 @@
 "use client";
 
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { AppField } from "@feature/app/create/AppField";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
-import { useGetAppFieldValue } from "@feature/app/create/useAppFieldValueState";
+import {
+  useGetAppFieldValue,
+  useInitializeAppFieldValue,
+} from "@feature/app/create/useAppFieldValueState";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
 export const ModifyAppClient = ({
   appId,
   appName: defaultAppName,
+  fields: defaultFields,
 }: {
   appId: string;
   appName: string;
   fields: AppFieldValue;
 }) => {
   const [appName, setAppName] = useState<string>(defaultAppName);
+  const initialize = useInitializeAppFieldValue();
   const fields = useGetAppFieldValue();
+
+  useEffect(() => {
+    initialize(defaultFields);
+  }, [defaultFields]);
 
   return (
     <div className={"space-y-10"}>
