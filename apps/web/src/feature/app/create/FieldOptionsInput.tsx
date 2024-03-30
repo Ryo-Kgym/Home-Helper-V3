@@ -5,21 +5,21 @@ import { FieldOptionsSelectBox } from "@feature/app/create/FieldOptionsSelectBox
 
 export const FieldOptionsInput = ({
   fieldKind,
-  options,
-  setOptions,
+  value,
+  setValue,
 }: {
   fieldKind: FieldKind;
-  options: AppFieldOptions;
-  setOptions: (options: AppFieldOptions) => void;
+  value: AppFieldOptions;
+  setValue: (options: AppFieldOptions) => void;
 }) => {
   switch (fieldKind) {
     case "selectBox": {
-      const parsed = selectBoxOptionsSchema.safeParse(options);
+      const parsed = selectBoxOptionsSchema.safeParse(value);
       if (!parsed.success) {
         return null;
       }
       return (
-        <FieldOptionsSelectBox options={parsed.data} setOptions={setOptions} />
+        <FieldOptionsSelectBox options={parsed.data} setOptions={setValue} />
       );
     }
     case "lookup": {
