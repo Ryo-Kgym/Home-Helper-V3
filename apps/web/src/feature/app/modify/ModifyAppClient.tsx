@@ -23,7 +23,7 @@ export const ModifyAppClient = ({
 }) => {
   const [appName, setAppName] = useState<string>(defaultAppName);
   const initialize = useInitializeAppFieldValue();
-  const fields = useGetAppFieldValue();
+  const { fields } = useGetAppFieldValue();
 
   useEffect(() => {
     initialize(defaultFields);
