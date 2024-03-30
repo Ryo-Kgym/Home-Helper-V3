@@ -1,11 +1,34 @@
+import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
 import type { FieldOptionsLookup } from "@feature/app/schema";
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
+import { lookupOptionsSchema } from "@feature/app/create/app-field-value";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetAppFieldListQuery } from "@v3/graphql/public";
 
-export const FieldOptionsLookUp = ({
+export const FieldOptionsLookUpFactory = ({
+  value,
+  setValue,
+}: OptionsState) => {
+  const parsed = lookupOptionsSchema.safeParse(value);
+  return (
+    <FieldOptionsLookUp
+      options={
+        parsed.success
+          ? parsed.data
+          : {
+              appId: "",
+              selectFieldId: "",
+              saveFieldId: "",
+            }
+      }
+      setOptions={setValue}
+    />
+  );
+};
+
+const FieldOptionsLookUp = ({
   options,
   setOptions,
 }: {

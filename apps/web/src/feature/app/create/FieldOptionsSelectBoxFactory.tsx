@@ -1,10 +1,31 @@
 import type { SelectBoxOptions } from "@feature/app/create/app-field-value";
+import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { TextInput } from "@components/ui/v4/textInput";
+import { selectBoxOptionsSchema } from "@feature/app/create/app-field-value";
 import { generateId } from "@feature/app/function/generate-id";
 
-export const FieldOptionsSelectBox = ({
+export const FieldOptionsSelectBoxFactory = ({
+  value,
+  setValue,
+}: OptionsState) => {
+  const parsed = selectBoxOptionsSchema.safeParse(value);
+  return (
+    <FieldOptionsSelectBox
+      options={
+        parsed.success
+          ? parsed.data
+          : {
+              selector: [],
+            }
+      }
+      setOptions={setValue}
+    />
+  );
+};
+
+const FieldOptionsSelectBox = ({
   options,
   setOptions,
 }: {

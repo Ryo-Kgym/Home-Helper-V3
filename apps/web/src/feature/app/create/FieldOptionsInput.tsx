@@ -1,62 +1,37 @@
 import type { AppFieldOptions } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
-import type { ComponentProps } from "react";
-import {
-  lookupOptionsSchema,
-  selectBoxOptionsSchema,
-} from "@feature/app/create/app-field-value";
-import { FieldOptionsLookUp } from "@feature/app/create/FieldOptionsLookUp";
-import { FieldOptionsSelectBox } from "@feature/app/create/FieldOptionsSelectBox";
+import type { ComponentProps, ReactNode } from "react";
+import React from "react";
+import { FieldOptionsLookUpFactory } from "@feature/app/create/FieldOptionsLookUpFactory";
+import { FieldOptionsSelectBoxFactory } from "@feature/app/create/FieldOptionsSelectBoxFactory";
 
-export const FieldOptionsInput = (props: {
-  fieldKind: FieldKind;
+export type OptionsState = {
   value: AppFieldOptions;
   setValue: (options: AppFieldOptions) => void;
-}) => (
+};
+
+export const FieldOptionsInput = (
+  props: {
+    fieldKind: FieldKind;
+  } & OptionsState,
+) => (
   <div className={"space-y-5"}>
     <FieldOptionsSWitcher {...props} />
   </div>
 );
 
-const FieldOptionsSWitcher = ({
-  fieldKind,
-  value,
-  setValue,
-}: ComponentProps<typeof FieldOptionsInput>) => {
-  switch (fieldKind) {
-    case "selectBox": {
-      const parsed = selectBoxOptionsSchema.safeParse(value);
-      return (
-        <FieldOptionsSelectBox
-          options={
-            parsed.success
-              ? parsed.data
-              : {
-                  selector: [],
-                }
-          }
-          setOptions={setValue}
-        />
-      );
-    }
-    case "lookup": {
-      const parsed = lookupOptionsSchema.safeParse(value);
-      return (
-        <FieldOptionsLookUp
-          options={
-            parsed.success
-              ? parsed.data
-              : {
-                  appId: "",
-                  selectFieldId: "",
-                  saveFieldId: "",
-                }
-          }
-          setOptions={setValue}
-        />
-      );
-    }
-  }
+const FieldOptionsSWitcher = (
+  props: ComponentProps<typeof FieldOptionsInput>,
+) => {
+  const Factory = factoryMap[props.fieldKind];
+  return <Factory {...props} />;
+};
 
-  return <div>設定なし</div>;
+const NoOptions = () => <div>オプションはありません</div>;
+
+const factoryMap: Record<FieldKind, (props: OptionsState) => ReactNode> = {
+  text: NoOptions,
+  multipleText: NoOptions,
+  selectBox: FieldOptionsSelectBoxFactory,
+  lookup: FieldOptionsLookUpFactory,
 };
