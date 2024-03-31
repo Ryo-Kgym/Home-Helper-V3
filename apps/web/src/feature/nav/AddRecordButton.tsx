@@ -5,11 +5,11 @@ import { useMode } from "@feature/record/list/useModeState";
 export const AddRecordButton = ({
   records,
   setRecords,
-  recordTemplate,
+  columnTemplate,
 }: {
   records: Records;
   setRecords: (records: Records) => void;
-  recordTemplate: Record;
+  columnTemplate: Record;
 }) => {
   const { mode, setMode } = useMode();
 
@@ -26,7 +26,7 @@ export const AddRecordButton = ({
       ...records,
       [newRecordIndex]: {
         recordId: generateId(),
-        columns: recordTemplate,
+        columns: columnTemplate,
         isEditing: true,
       },
     });

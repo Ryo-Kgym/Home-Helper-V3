@@ -11,7 +11,7 @@ export const SaveNewRecordButton = ({
   newRecord,
   setNewRecord,
   setMode,
-  recordTemplate,
+  columnsTemplate,
 }: {
   appId: string;
   records: Records;
@@ -19,7 +19,7 @@ export const SaveNewRecordButton = ({
   newRecord: Record;
   setNewRecord: (newRecord: Record) => void;
   setMode: (mode: RecordListMode) => void;
-  recordTemplate: Record;
+  columnsTemplate: Record;
   setRecord: (record: Records[number]) => void;
 }) => {
   const [, mut] = useInsertRecordMutation();
@@ -56,7 +56,7 @@ export const SaveNewRecordButton = ({
           ),
         },
       });
-      setNewRecord(recordTemplate);
+      setNewRecord(columnsTemplate);
       setMode("show");
       notify("レコードを追加しました");
     } catch (e) {

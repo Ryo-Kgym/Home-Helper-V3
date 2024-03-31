@@ -17,23 +17,27 @@ export type RecordListMode = "add" | "modify" | "show";
 
 export const RecordListClient = ({
   app,
-  recordTemplate,
+  columnsTemplate,
   records: defaultRecords,
   headerItems,
 }: {
   app: App;
-  recordTemplate: Record;
+  columnsTemplate: Record;
   records: Records;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
   const { records, setRecords } = useStateRecords(defaultRecords);
-  const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
+  const [newColumns, setNewColumns] = useState<Record>(columnsTemplate);
 
   const reset = useResetMode();
 
-  useEffect(() => {
-    reset();
-  }, []);
+  useEffect(
+    () => {
+      reset();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   return (
     <div className={"space-y-10"}>
@@ -42,7 +46,7 @@ export const RecordListClient = ({
         <AddRecordButton
           records={records}
           setRecords={setRecords}
-          recordTemplate={recordTemplate}
+          columnTemplate={columnsTemplate}
         />
         <RedirectImportButton appId={app.id} />
       </Title>
@@ -55,15 +59,15 @@ export const RecordListClient = ({
               key={record.recordId}
               record={record}
               recordIndex={parseInt(recordIndex)}
-              newRecord={newRecord}
-              setNewRecord={setNewRecord}
+              newRecord={newColumns}
+              setNewRecord={setNewColumns}
               app={app}
               records={records}
               setRecords={setRecords}
-              recordTemplate={recordTemplate}
+              columnsTemplate={columnsTemplate}
             />
           )}
-        />
+        ></Table.Body>
       </Table>
     </div>
   );
