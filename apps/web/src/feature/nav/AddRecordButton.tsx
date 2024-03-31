@@ -1,4 +1,4 @@
-import type { Record, Records } from "@feature/app/schema/record-schema";
+import type { Columns, Records } from "@feature/app/schema/record-schema";
 import { generateId } from "@feature/app/function/generate-id";
 import { useMode } from "@feature/record/list/useModeState";
 
@@ -9,7 +9,7 @@ export const AddRecordButton = ({
 }: {
   records: Records;
   setRecords: (records: Records) => void;
-  columnTemplate: Record;
+  columnTemplate: Columns;
 }) => {
   const { mode, setMode } = useMode();
 

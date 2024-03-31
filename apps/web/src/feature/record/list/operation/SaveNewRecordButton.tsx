@@ -1,4 +1,4 @@
-import type { Record, Records } from "@feature/app/schema/record-schema";
+import type { Columns, Records } from "@feature/app/schema/record-schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { notify } from "@components/ui/v4/notify/notify";
 import { generateId } from "@feature/app/function/generate-id";
@@ -16,10 +16,10 @@ export const SaveNewRecordButton = ({
   appId: string;
   records: Records;
   setRecords: (records: Records) => void;
-  newRecord: Record;
-  setNewRecord: (newRecord: Record) => void;
+  newRecord: Columns;
+  setNewRecord: (newRecord: Columns) => void;
   setMode: (mode: RecordListMode) => void;
-  columnsTemplate: Record;
+  columnsTemplate: Columns;
   setRecord: (record: Records[number]) => void;
 }) => {
   const [, mut] = useInsertRecordMutation();

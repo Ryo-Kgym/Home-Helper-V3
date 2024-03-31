@@ -1,4 +1,4 @@
-import { recordSchema } from "@feature/app/schema";
+import { columnsSchema } from "@feature/app/schema";
 import { importFileSettingsSchema } from "@feature/app/schema/import-file-settings-schema";
 import { convertToApp } from "@feature/record/list/convert-to-app";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
@@ -31,7 +31,7 @@ export const RecordImportServer = async ({ appId }: { appId: string }) => {
         {
           recordId: r.record.id,
           isEditing: false,
-          columns: recordSchema.parse(r.record.columns),
+          columns: columnsSchema.parse(r.record.columns),
         },
       ]),
     ),

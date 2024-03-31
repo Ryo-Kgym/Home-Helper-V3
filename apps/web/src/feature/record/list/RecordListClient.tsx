@@ -1,7 +1,7 @@
 "use client";
 
 import type { App } from "@feature/app/schema/app-schema";
-import type { Record, Records } from "@feature/app/schema/record-schema";
+import type { Columns, Records } from "@feature/app/schema/record-schema";
 import type { ComponentProps } from "react";
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
@@ -22,12 +22,12 @@ export const RecordListClient = ({
   headerItems,
 }: {
   app: App;
-  columnsTemplate: Record;
+  columnsTemplate: Columns;
   records: Records;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
   const { records, setRecords } = useStateRecords(defaultRecords);
-  const [newColumns, setNewColumns] = useState<Record>(columnsTemplate);
+  const [newColumns, setNewColumns] = useState<Columns>(columnsTemplate);
 
   const reset = useResetMode();
 

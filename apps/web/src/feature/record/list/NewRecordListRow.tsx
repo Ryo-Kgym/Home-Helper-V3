@@ -6,7 +6,7 @@ import { RecordCell } from "@feature/record/list/cell/RecordCell";
 import { RecordRowOperation } from "@feature/record/list/operation/RecordRowOperation";
 import { useStateRecord } from "@feature/record/list/useStateRecord";
 
-export const RecordListRow = ({
+export const NewRecordListRow = ({
   record: defaultRecord,
   recordIndex,
   newRecord,
@@ -14,7 +14,7 @@ export const RecordListRow = ({
   app,
   records,
   setRecords,
-  columnsTemplate,
+  recordTemplate,
 }: {
   record: Records[number];
   recordIndex: number;
@@ -23,7 +23,7 @@ export const RecordListRow = ({
   app: App;
   records: Records;
   setRecords: (records: Records) => void;
-  columnsTemplate: Columns;
+  recordTemplate: Columns;
 }) => {
   const { record, setRecord } = useStateRecord(defaultRecord);
   const [mode, setMode] = useState<RecordListMode>("show");
@@ -54,7 +54,7 @@ export const RecordListRow = ({
           setNewRecord={setNewRecord}
           mode={mode}
           setMode={setMode}
-          columnsTemplate={columnsTemplate}
+          columnsTemplate={recordTemplate}
           appId={app.id}
           recordId={record.recordId}
           setRecord={setRecord}

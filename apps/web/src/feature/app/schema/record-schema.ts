@@ -13,15 +13,15 @@ export const recordColumnSchema = z.object({
 
 export type RecordColumn = z.infer<typeof recordColumnSchema>;
 
-export const recordSchema = z.record(recordColumnSchema); // fieldId
+export const columnsSchema = z.record(recordColumnSchema); // fieldId
 
-export type Record = z.infer<typeof recordSchema>;
+export type Columns = z.infer<typeof columnsSchema>;
 
 export const recordsSchema = z.record(
   z.object({
     recordId: z.string(),
     isEditing: z.boolean().default(false),
-    columns: recordSchema,
+    columns: columnsSchema,
   }),
 ); // record.index
 

@@ -1,6 +1,6 @@
 import type { Records } from "@feature/app/schema/record-schema";
 import type { GetAppQuery } from "@v3/graphql/public";
-import { recordSchema } from "@feature/app/schema";
+import { columnsSchema } from "@feature/app/schema";
 import { recordsSchema } from "@feature/app/schema/record-schema";
 
 export const convertToRecords = (
@@ -11,7 +11,7 @@ export const convertToRecords = (
       r.index,
       {
         recordId: r.id,
-        columns: recordSchema.parse(r.columns),
+        columns: columnsSchema.parse(r.columns),
         isEditing: false,
       },
     ]),
