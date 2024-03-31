@@ -12,11 +12,20 @@ export const RecordListServer = async ({ appId }: { appId: string }) => {
 
   const recordTemplate = makeRecordTemplate(app.fields);
 
+  const headerItems = [
+    { name: "No." },
+    ...Object.values(app.fields).map((field) => ({
+      name: field.fieldName,
+    })),
+    { name: "" },
+  ];
+
   return (
     <RecordListClient
       app={app}
       recordTemplate={recordTemplate}
       records={records}
+      headerItems={headerItems}
     />
   );
 };

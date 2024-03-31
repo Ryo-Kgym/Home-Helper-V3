@@ -2,6 +2,7 @@
 
 import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
+import type { ComponentProps } from "react";
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Table } from "@components/ui/v4/table";
@@ -18,10 +19,12 @@ export const RecordListClient = ({
   app,
   recordTemplate,
   records: defaultRecords,
+  headerItems,
 }: {
   app: App;
   recordTemplate: Record;
   records: Records;
+  headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
   const { records, setRecords } = useStateRecords(defaultRecords);
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
@@ -31,14 +34,6 @@ export const RecordListClient = ({
   useEffect(() => {
     reset();
   }, []);
-
-  const headerItems = [
-    { name: "No." },
-    ...Object.values(app.fields).map((field) => ({
-      name: field.fieldName,
-    })),
-    { name: "" },
-  ];
 
   return (
     <div className={"space-y-10"}>
