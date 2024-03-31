@@ -2,13 +2,14 @@
 
 import type { App } from "@feature/app/schema/app-schema";
 import type { Record, Records } from "@feature/app/schema/record-schema";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Table } from "@components/ui/v4/table";
 import { AddRecordButton } from "@feature/nav/AddRecordButton";
 import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
 import { RecordListRow } from "@feature/record/list/RecordListRow";
+import { useResetMode } from "@feature/record/list/useModeState";
 import { useStateRecords } from "@feature/record/list/useStateRecords";
 
 export type RecordListMode = "add" | "modify" | "show";
@@ -24,7 +25,12 @@ export const RecordListClient = ({
 }) => {
   const { records, setRecords } = useStateRecords(defaultRecords);
   const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
-  const [mode, setMode] = useState<RecordListMode>("show");
+
+  const reset = useResetMode();
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   const headerItems = [
     { name: "No." },
@@ -39,8 +45,6 @@ export const RecordListClient = ({
       <Title title={app.name}>
         <RedirectSettingButton appId={app.id} />
         <AddRecordButton
-          mode={mode}
-          setMode={setMode}
           records={records}
           setRecords={setRecords}
           recordTemplate={recordTemplate}
@@ -61,8 +65,6 @@ export const RecordListClient = ({
               app={app}
               records={records}
               setRecords={setRecords}
-              mode={mode}
-              setMode={setMode}
               recordTemplate={recordTemplate}
             />
           )}

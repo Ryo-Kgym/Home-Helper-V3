@@ -1,20 +1,18 @@
 import type { Record, Records } from "@feature/app/schema/record-schema";
-import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { generateId } from "@feature/app/function/generate-id";
+import { useMode } from "@feature/record/list/useModeState";
 
 export const AddRecordButton = ({
-  mode,
-  setMode,
   records,
   setRecords,
   recordTemplate,
 }: {
-  mode: RecordListMode;
-  setMode: (mode: RecordListMode) => void;
   records: Records;
   setRecords: (records: Records) => void;
   recordTemplate: Record;
 }) => {
+  const { mode, setMode } = useMode();
+
   const addRecordHandler = () => {
     if (mode === "add") return;
 

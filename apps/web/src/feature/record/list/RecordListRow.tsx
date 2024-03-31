@@ -14,7 +14,6 @@ export const RecordListRow = ({
   app,
   records,
   setRecords,
-  mode: defaultMode,
   recordTemplate,
 }: {
   record: Records[number];
@@ -24,12 +23,10 @@ export const RecordListRow = ({
   app: App;
   records: Records;
   setRecords: (records: Records) => void;
-  mode: RecordListMode;
-  setMode: (mode: RecordListMode) => void;
   recordTemplate: Record;
 }) => {
   const { record, setRecord } = useStateRecord(defaultRecord);
-  const [mode, setMode] = useState<RecordListMode>(defaultMode);
+  const [mode, setMode] = useState<RecordListMode>("show");
 
   return (
     <>
