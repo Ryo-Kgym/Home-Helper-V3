@@ -1,32 +1,24 @@
 import type { Columns } from "@feature/app/schema/record-schema";
 import { generateId } from "@feature/app/function/generate-id";
+import { useInitNewRecord } from "@feature/record/list/operation/useNewRecordState";
 import { useMode } from "@feature/record/list/useModeState";
-import { useRecords } from "@feature/record/list/useRecordsState";
 
 export const AddRecordButton = ({
   columnTemplate,
 }: {
   columnTemplate: Columns;
 }) => {
-  const { records, setRecords } = useRecords();
   const { mode, setMode } = useMode();
+  const initialize = useInitNewRecord();
 
   const addRecordHandler = () => {
     if (mode === "add") return;
 
     setMode("add");
-
-    const newRecordIndex =
-      Object.keys(records).length > 0
-        ? Math.max(...Object.keys(records).map((n) => parseInt(n))) + 1
-        : 1;
-    setRecords({
-      ...records,
-      [newRecordIndex]: {
-        recordId: generateId(),
-        columns: columnTemplate,
-        isEditing: true,
-      },
+    initialize({
+      recordId: generateId(),
+      columns: columnTemplate,
+      isEditing: true,
     });
   };
 

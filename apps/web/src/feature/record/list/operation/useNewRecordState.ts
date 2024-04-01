@@ -2,6 +2,21 @@ import type { Record } from "@feature/app/schema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+export const useInitNewRecord = () =>
+  useNewRecordState((state) => (record: Record) => {
+    state.setRecord(record);
+    state.defaultRecord = record;
+  });
+
+export const useNewRecord = () =>
+  useNewRecordState((state) => ({
+    record: state.record,
+    setRecord: state.setRecord,
+  }));
+
+export const useResetNewRecord = () =>
+  useNewRecordState((state) => () => state.setRecord(state.defaultRecord));
+
 type State = {
   record: Record;
   defaultRecord: Record;
@@ -20,7 +35,7 @@ const useNewRecordState = create<State & Actions>()(
     },
     defaultRecord: {
       recordId: "9",
-      isEditing: false,
+      isEditing: true,
       columns: {},
     },
     setRecord: (record: Record) => {
@@ -30,18 +45,3 @@ const useNewRecordState = create<State & Actions>()(
     },
   })),
 );
-
-export const useInitNewRecord = () =>
-  useNewRecordState((state) => (record: Record) => {
-    state.setRecord(record);
-    state.defaultRecord = record;
-  });
-
-export const useNewRecord = () =>
-  useNewRecordState((state) => ({
-    record: state.record,
-    setRecord: state.setRecord,
-  }));
-
-export const useResetNewRecord = () =>
-  useNewRecordState((state) => () => state.setRecord(state.defaultRecord));

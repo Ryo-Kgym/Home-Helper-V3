@@ -13,14 +13,14 @@ export const AddCell = ({
     fieldKind: fields[field.id]?.fieldKind ?? "text",
     value: "",
   },
-  newRecord,
-  setNewRecord,
+  columns,
+  setColumns,
 }: {
   field: Field;
   fields: Fields;
   column: RecordColumn | undefined;
-  newRecord: Columns;
-  setNewRecord: (newRecord: Columns) => void;
+  columns: Columns;
+  setColumns: (columns: Columns) => void;
 }) => {
   if (field.fieldKind !== column.fieldKind) {
     console.error(
@@ -30,8 +30,8 @@ export const AddCell = ({
   }
 
   const changeHandler: ModifyCellFactoryChangeHandler = (value, options) => {
-    setNewRecord({
-      ...newRecord,
+    setColumns({
+      ...columns,
       [field.id]: {
         ...column,
         options,
@@ -40,7 +40,7 @@ export const AddCell = ({
     });
   };
 
-  const value = newRecord[field.id]!.value;
+  const value = columns[field.id]!.value;
 
   switch (field.fieldKind) {
     case "text":

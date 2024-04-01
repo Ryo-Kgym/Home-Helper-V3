@@ -1,28 +1,17 @@
-import type { App, Columns, Record } from "@feature/app/schema";
-import { useState } from "react";
+import type { App } from "@feature/app/schema";
 import { Table } from "@components/ui/v4/table";
 import { AddCell } from "@feature/record/list/cell/AddCell";
 import { AddRecordRowOperation } from "@feature/record/list/operation/AddRecordRowOperation";
+import { useNewRecord } from "@feature/record/list/operation/useNewRecordState";
 
 export const NewRecordListRow = ({
   recordIndex,
-  newRecord,
-  setNewRecord,
   app,
-  columnsTemplate,
 }: {
-  record: Record;
   recordIndex: number;
-  newRecord: Columns;
-  setNewRecord: (record: Columns) => void;
   app: App;
-  columnsTemplate: Columns;
 }) => {
-  const [record] = useState<Record>({
-    recordId: "9",
-    isEditing: false,
-    columns: columnsTemplate,
-  });
+  const { record, setRecord } = useNewRecord();
 
   return (
     <Table.BodyTr>
@@ -32,20 +21,14 @@ export const NewRecordListRow = ({
           <AddCell
             fields={app.fields}
             field={field}
-            newRecord={newRecord}
-            setNewRecord={setNewRecord}
+            columns={record.columns}
+            setColumns={(columns) => setRecord({ ...record, columns })}
             column={record.columns[field.id]}
           />
         </Table.BodyTd>
       ))}
       <Table.BodyTd>
-        <AddRecordRowOperation
-          record={record}
-          newRecord={newRecord}
-          setNewRecord={setNewRecord}
-          columnsTemplate={columnsTemplate}
-          appId={app.id}
-        />
+        <AddRecordRowOperation columns={record.columns} appId={app.id} />
       </Table.BodyTd>
     </Table.BodyTr>
   );

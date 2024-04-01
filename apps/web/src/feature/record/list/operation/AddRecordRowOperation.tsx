@@ -6,11 +6,9 @@ import { AddRecordCancelButton } from "@feature/record/list/operation/AddRecordC
 import { SaveNewRecordButton } from "./SaveNewRecordButton";
 
 export const AddRecordRowOperation = (
-  props: // prettier-ignore
-  { record: Records[number]}
-    & ComponentProps<typeof SaveNewRecordButton>,
+  props: ComponentProps<typeof SaveNewRecordButton>,
 ) => {
-  const ope = getOperationButtonList(props.record.isEditing);
+  const ope = getOperationButtonList();
   return (
     <div className={"flex space-x-3"}>
       {ope.add.map((buttonType, index) => {
@@ -29,23 +27,12 @@ export const AddRecordRowOperation = (
   );
 };
 
-const getOperationButtonList = (
-  isEditing: boolean,
-): {
+const getOperationButtonList = (): {
   [mode in RecordListMode]: ButtonType[];
-} => {
-  if (isEditing) {
-    return {
-      add: ["insert", "cancel"],
-      modify: [],
-      show: [],
-    };
-  }
-  return {
-    add: [],
-    modify: [],
-    show: [],
-  };
-};
+} => ({
+  add: ["insert", "cancel"],
+  modify: [],
+  show: [],
+});
 
 type ButtonType = "insert" | "cancel";

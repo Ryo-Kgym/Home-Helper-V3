@@ -1,23 +1,21 @@
 import type { Columns } from "@feature/app/schema/record-schema";
 import { notify } from "@components/ui/v4/notify/notify";
 import { generateId } from "@feature/app/function/generate-id";
+import { useResetNewRecord } from "@feature/record/list/operation/useNewRecordState";
 import { useResetMode } from "@feature/record/list/useModeState";
 import { useRecords } from "@feature/record/list/useRecordsState";
 import { useInsertRecordMutation } from "@v3/graphql/public";
 
 export const SaveNewRecordButton = ({
   appId,
-  newRecord,
-  setNewRecord,
-  columnsTemplate,
+  columns,
 }: {
   appId: string;
-  newRecord: Columns;
-  setNewRecord: (newRecord: Columns) => void;
-  columnsTemplate: Columns;
+  columns: Columns;
 }) => {
   const { records, setRecords } = useRecords();
   const resetMode = useResetMode();
+  const resetNewRecord = useResetNewRecord();
 
   const [, mut] = useInsertRecordMutation();
 
@@ -33,7 +31,7 @@ export const SaveNewRecordButton = ({
         appId,
         index: newRecordIndex,
         columns: Object.fromEntries(
-          Object.entries(newRecord).map(([fieldId, value]) => [fieldId, value]),
+          Object.entries(columns).map(([fieldId, value]) => [fieldId, value]),
         ),
       });
       if (error) throw error;
@@ -43,7 +41,7 @@ export const SaveNewRecordButton = ({
         [newRecordIndex]: {
           recordId,
           columns: Object.fromEntries(
-            Object.entries(newRecord).map(([fieldId, value]) => [
+            Object.entries(columns).map(([fieldId, value]) => [
               fieldId,
               {
                 ...value,
@@ -53,7 +51,7 @@ export const SaveNewRecordButton = ({
           ),
         },
       });
-      setNewRecord(columnsTemplate);
+      resetNewRecord();
       resetMode();
       notify("レコードを追加しました");
     } catch (e) {
