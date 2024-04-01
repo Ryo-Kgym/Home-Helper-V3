@@ -55,6 +55,7 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       saveHandler={saveHandler}
+      deleteHandler={() => undefined}
     />
   );
 };

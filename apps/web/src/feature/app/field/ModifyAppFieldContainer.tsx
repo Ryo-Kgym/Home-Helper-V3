@@ -80,6 +80,7 @@ export const ModifyAppFieldContainer = ({
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       saveHandler={saveHandler}
+      deleteHandler={() => undefined}
     />
   );
 };
