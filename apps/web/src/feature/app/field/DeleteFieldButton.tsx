@@ -1,12 +1,16 @@
-import { useState } from "react";
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import Reset from "@components/ui/v4/icon/Reset";
 import Trash from "@components/ui/v4/icon/Trash";
 
-export const DeleteFieldButton = ({ onClick }: { onClick: () => void }) => {
-  const [currentMode] = useState<"delete" | "modify">("modify");
-
+export const DeleteFieldButton = ({
+  onClick,
+  mode,
+}: {
+  onClick: () => void;
+  mode: AppFieldValue[number]["mode"];
+}) => {
   const Icon = () => {
-    if (currentMode === "delete") {
+    if (mode === "delete") {
       return <Reset />;
     }
     return <Trash />;

@@ -40,7 +40,7 @@ export const AppFieldPresenter = ({
       className={`flex items-center gap-2 border-2 border-gray-500 ${modeMap[mode].bgColor} p-2`}
     >
       <SavedMark saved={saved} />
-      <DeleteFieldButton onClick={deleteHandler} />
+      <DeleteFieldButton mode={mode} onClick={deleteHandler} />
       <div className={"flex flex-1 gap-2"}>
         <Select
           label={"フィールドの選択"}

@@ -23,6 +23,7 @@ export const ModifyAppFieldContainer = ({
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [saved, setSaved] = useState<boolean>(true);
+  const [mode, setMode] = useState<AppFieldValue[number]["mode"]>("modify");
 
   const save = useSaveAppFieldValue();
 
@@ -59,9 +60,19 @@ export const ModifyAppFieldContainer = ({
     setSaved(true);
   };
 
+  const deleteHandler = () => {
+    const againstMode = mode === "delete" ? "modify" : "delete";
+
+    save(index, {
+      ...currentField,
+      mode: againstMode,
+    });
+    setMode(againstMode);
+  };
+
   return (
     <AppFieldPresenter
-      mode={"modify"}
+      mode={mode}
       saved={saved}
       fieldKind={{
         value: fieldKind,
@@ -80,7 +91,7 @@ export const ModifyAppFieldContainer = ({
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       saveHandler={saveHandler}
-      deleteHandler={() => undefined}
+      deleteHandler={deleteHandler}
     />
   );
 };
