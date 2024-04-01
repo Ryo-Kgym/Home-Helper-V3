@@ -1,20 +1,17 @@
 "use client";
 
+import type { Table } from "@components/ui/v4/table";
 import type { App } from "@feature/app/schema/app-schema";
 import type { Columns, Records } from "@feature/app/schema/record-schema";
 import type { ComponentProps } from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { Table } from "@components/ui/v4/table";
 import { AddRecordButton } from "@feature/nav/AddRecordButton";
 import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
-import { RecordListRow } from "@feature/record/list/RecordListRow";
+import { RecordListTable } from "@feature/record/list/RecordListTable";
 import { useResetMode } from "@feature/record/list/useModeState";
-import {
-  useInitRecords,
-  useRecords,
-} from "@feature/record/list/useRecordsState";
+import { useInitRecords } from "@feature/record/list/useRecordsState";
 
 export type RecordListMode = "add" | "modify" | "show";
 
@@ -29,10 +26,7 @@ export const RecordListClient = ({
   records: Records;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
-  const { records } = useRecords();
   const initialize = useInitRecords();
-  const [newColumns, setNewColumns] = useState<Columns>(columnsTemplate);
-
   const resetMode = useResetMode();
 
   useEffect(
@@ -51,23 +45,11 @@ export const RecordListClient = ({
         <AddRecordButton columnTemplate={columnsTemplate} />
         <RedirectImportButton appId={app.id} />
       </Title>
-      <Table>
-        <Table.Header headerItems={headerItems} />
-        <Table.Body
-          data={Object.entries(records)}
-          renderItem={([recordIndex, record]) => (
-            <RecordListRow
-              key={record.recordId}
-              record={record}
-              recordIndex={parseInt(recordIndex)}
-              newRecord={newColumns}
-              setNewRecord={setNewColumns}
-              app={app}
-              columnsTemplate={columnsTemplate}
-            />
-          )}
-        ></Table.Body>
-      </Table>
+      <RecordListTable
+        app={app}
+        headerItems={headerItems}
+        columnsTemplate={columnsTemplate}
+      />
     </div>
   );
 };
