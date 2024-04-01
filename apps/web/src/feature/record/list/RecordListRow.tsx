@@ -1,4 +1,4 @@
-import type { App, Columns, Records } from "@feature/app/schema";
+import type { App, Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";

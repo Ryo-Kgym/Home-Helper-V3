@@ -17,9 +17,13 @@ export const CreateAppClient = () => {
   const { fields } = useGetAppFieldValue();
   const reset = useResetAppFieldValue();
 
-  useEffect(() => {
-    reset();
-  }, []);
+  useEffect(
+    () => {
+      reset();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   return (
     <div className={"space-y-10"}>

@@ -12,11 +12,15 @@ export const useFindUser = (): User => {
 
   const optUser = getCookieValue("user");
 
-  useEffect(() => {
-    if (optUser) {
-      setUser(optUser as User);
-    }
-  }, []);
+  useEffect(
+    () => {
+      if (optUser) {
+        setUser(optUser as User);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   return user;
 };
