@@ -5,11 +5,8 @@ import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
-import {
-  useGetAppFieldValue,
-  useInitializeAppFieldValue,
-} from "@feature/app/create/useAppFieldValueState";
-import { AppFieldInput } from "@feature/app/field/AppFieldInput";
+import { useInitializeAppFieldValue } from "@feature/app/create/useAppFieldValueState";
+import { FieldInputTable } from "@feature/app/modify/FieldInputTable";
 import { UpdateAppButton } from "@feature/app/modify/UpdateAppButton";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
@@ -24,15 +21,10 @@ export const ModifyAppClient = ({
 }) => {
   const [appName, setAppName] = useState<string>(defaultAppName);
   const initialize = useInitializeAppFieldValue();
-  const { fields } = useGetAppFieldValue();
 
   useEffect(() => {
     initialize(defaultFields);
-  }, [defaultFields]);
-
-  useEffect(() => {
-    console.log("[fields]", fields);
-  }, [fields]);
+  }, [initialize, defaultFields]);
 
   return (
     <div className={"space-y-10"}>
@@ -42,15 +34,11 @@ export const ModifyAppClient = ({
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
-          <UpdateAppButton appId={appId} appName={appName} fields={fields} />
+          <UpdateAppButton appId={appId} appName={appName} />
           <FieldAddButton />
         </div>
       </div>
-      <div className={"space-y-2"}>
-        {Object.keys(fields).map((index) => (
-          <AppFieldInput key={index} index={parseInt(index)} />
-        ))}
-      </div>
+      <FieldInputTable />
     </div>
   );
 };

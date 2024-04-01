@@ -5,13 +5,11 @@ import type { ComponentProps } from "react";
 import { CancelButton } from "./CancelButton";
 import { DeleteRecordButton } from "./DeleteRecordButton";
 import { ModifyRecordButton } from "./ModifyRecordButton";
-import { SaveNewRecordButton } from "./SaveNewRecordButton";
 import { UpdateRecordButton } from "./UpdateRecordButton";
 
 export const RecordRowOperation = (
   props: // prettier-ignore
   { record: Records[number] }
-    & ComponentProps<typeof SaveNewRecordButton>
     & ComponentProps<typeof ModifyRecordButton>
     & ComponentProps<typeof DeleteRecordButton>
     & ComponentProps<typeof CancelButton>,
@@ -21,10 +19,6 @@ export const RecordRowOperation = (
     <div className={"flex space-x-3"}>
       {ope[props.mode].map((buttonType, index) => {
         switch (buttonType) {
-          case "insert":
-            return (
-              <SaveNewRecordButton key={`operation-${index}`} {...props} />
-            );
           case "update":
             return <UpdateRecordButton key={`operation-${index}`} {...props} />;
           case "modify":
@@ -46,7 +40,7 @@ const getOperationButtonList = (
 } => {
   if (isEditing) {
     return {
-      add: ["insert", "delete"],
+      add: [],
       modify: ["update", "cancel"],
       show: [],
     };
@@ -58,4 +52,4 @@ const getOperationButtonList = (
   };
 };
 
-type ButtonType = "insert" | "update" | "modify" | "delete" | "cancel";
+type ButtonType = "update" | "modify" | "delete" | "cancel";

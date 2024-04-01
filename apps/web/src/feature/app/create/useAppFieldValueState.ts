@@ -12,6 +12,7 @@ type Actions = {
   saveAppFieldValue: (index: number, value: AppFieldValue[number]) => void;
   appendAppFieldValue: () => void;
   resetAppFieldValue: () => void;
+  removeAppFieldValue: (index: number) => void;
 };
 
 const useAppFieldValueState = create<State & Actions>()(
@@ -45,6 +46,10 @@ const useAppFieldValueState = create<State & Actions>()(
       set(() => ({
         appFieldValue: {},
       })),
+    removeAppFieldValue: (index) =>
+      set((state) => {
+        delete state.appFieldValue[index];
+      }),
   })),
 );
 
@@ -64,3 +69,6 @@ export const useAppendAppFieldValue = () =>
 
 export const useResetAppFieldValue = () =>
   useAppFieldValueState((store) => store.resetAppFieldValue);
+
+export const useRemoveAppFieldValue = () =>
+  useAppFieldValueState((store) => store.removeAppFieldValue);

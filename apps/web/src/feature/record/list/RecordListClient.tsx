@@ -1,73 +1,51 @@
 "use client";
 
+import type { Table } from "@components/ui/v4/table";
 import type { App } from "@feature/app/schema/app-schema";
-import type { Record, Records } from "@feature/app/schema/record-schema";
-import { useState } from "react";
+import type { Columns, Records } from "@feature/app/schema/record-schema";
+import type { ComponentProps } from "react";
+import { useEffect } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { Table } from "@components/ui/v4/table";
 import { AddRecordButton } from "@feature/nav/AddRecordButton";
 import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
-import { RecordListRow } from "@feature/record/list/RecordListRow";
-import { useStateRecords } from "@feature/record/list/useStateRecords";
+import { RecordListTable } from "@feature/record/list/RecordListTable";
+import { useResetMode } from "@feature/record/list/useModeState";
+import { useInitRecords } from "@feature/record/list/useRecordsState";
 
 export type RecordListMode = "add" | "modify" | "show";
 
 export const RecordListClient = ({
   app,
-  recordTemplate,
+  columnsTemplate,
   records: defaultRecords,
+  headerItems,
 }: {
   app: App;
-  recordTemplate: Record;
+  columnsTemplate: Columns;
   records: Records;
+  headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
-  const { records, setRecords } = useStateRecords(defaultRecords);
-  const [newRecord, setNewRecord] = useState<Record>(recordTemplate);
-  const [mode, setMode] = useState<RecordListMode>("show");
+  const initialize = useInitRecords();
+  const resetMode = useResetMode();
 
-  const headerItems = [
-    { name: "No." },
-    ...Object.values(app.fields).map((field) => ({
-      name: field.fieldName,
-    })),
-    { name: "" },
-  ];
+  useEffect(
+    () => {
+      initialize(defaultRecords);
+      resetMode();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   return (
     <div className={"space-y-10"}>
       <Title title={app.name}>
         <RedirectSettingButton appId={app.id} />
-        <AddRecordButton
-          mode={mode}
-          setMode={setMode}
-          records={records}
-          setRecords={setRecords}
-          recordTemplate={recordTemplate}
-        />
+        <AddRecordButton columnTemplate={columnsTemplate} />
         <RedirectImportButton appId={app.id} />
       </Title>
-      <Table>
-        <Table.Header headerItems={headerItems} />
-        <Table.Body
-          data={Object.entries(records)}
-          renderItem={([recordIndex, record]) => (
-            <RecordListRow
-              key={record.recordId}
-              record={record}
-              recordIndex={parseInt(recordIndex)}
-              newRecord={newRecord}
-              setNewRecord={setNewRecord}
-              app={app}
-              records={records}
-              setRecords={setRecords}
-              mode={mode}
-              setMode={setMode}
-              recordTemplate={recordTemplate}
-            />
-          )}
-        />
-      </Table>
+      <RecordListTable app={app} headerItems={headerItems} />
     </div>
   );
 };

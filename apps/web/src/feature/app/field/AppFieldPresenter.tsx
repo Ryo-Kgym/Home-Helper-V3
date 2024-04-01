@@ -8,6 +8,7 @@ import { Modal } from "@components/ui/v4/modal";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { FieldOptionsInput } from "@feature/app/create/FieldOptionsInput";
+import { DeleteFieldButton } from "@feature/app/field/DeleteFieldButton";
 import { SavedMark } from "@feature/app/field/SavedMark";
 import { fieldKindArray } from "@oneforall/domain/field/type";
 
@@ -21,6 +22,7 @@ export const AppFieldPresenter = ({
   isOpen,
   setIsOpen,
   saveHandler,
+  deleteHandler,
 }: {
   mode: AppFieldValue[number]["mode"];
   saved: boolean;
@@ -31,12 +33,14 @@ export const AppFieldPresenter = ({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   saveHandler: () => void;
+  deleteHandler: () => void;
 }) => (
   <>
     <div
       className={`flex items-center gap-2 border-2 border-gray-500 ${modeMap[mode].bgColor} p-2`}
     >
       <SavedMark saved={saved} />
+      <DeleteFieldButton mode={mode} onClick={deleteHandler} />
       <div className={"flex flex-1 gap-2"}>
         <Select
           label={"フィールドの選択"}

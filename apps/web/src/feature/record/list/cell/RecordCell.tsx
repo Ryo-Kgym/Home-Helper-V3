@@ -1,7 +1,5 @@
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import type { ComponentProps, ReactNode } from "react";
-import React from "react";
-import { AddCell } from "@feature/record/list/cell/AddCell";
 import { ModifyCell } from "@feature/record/list/cell/ModifyCell";
 
 import { ShowCell } from "./ShowCell";
@@ -9,7 +7,6 @@ import { ShowCell } from "./ShowCell";
 export const RecordCell = (
   // prettier-ignore
   props: { mode: RecordListMode }
-    & ComponentProps<typeof AddCell>
     & ComponentProps<typeof ModifyCell>
     & ComponentProps<typeof ShowCell>,
 ) => {
@@ -26,7 +23,7 @@ const getCellComponent = (
 } => {
   if (isEditing) {
     return {
-      add: AddCell,
+      add: ShowCell,
       modify: ModifyCell,
       show: ShowCell,
     };

@@ -8,7 +8,7 @@
     "hasura-public-codegen": "graphql-codegen --config hasura-public-codegen.yml"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.8",
+    "@apollo/client": "^3.9.9",
     "@graphql-codegen/cli": "^3.3.1",
     "@graphql-codegen/client-preset": "3.0.0",
     "@graphql-codegen/introspection": "3.0.0",
@@ -16,9 +16,9 @@
     "@graphql-codegen/typescript-operations": "^3.0.4",
     "@graphql-codegen/typescript-urql": "^3.7.3",
     "@graphql-codegen/typed-document-node": "^5.0.1",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "graphql": "^16.8.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.3",
     "urql": "^3.0.4",
     "uuid": "^9.0.1"
   },
@@ -26,7 +26,7 @@
     "@acme/eslint-config": "workspace:^0.2.0",
     "@acme/prettier-config": "workspace:^0.1.0",
     "@acme/tsconfig": "workspace:^0.1.0",
-    "@types/node": "^20.10.6",
+    "@types/node": "^20.12.2",
     "prettier": "^3.2.5"
   },
   "eslintConfig": {

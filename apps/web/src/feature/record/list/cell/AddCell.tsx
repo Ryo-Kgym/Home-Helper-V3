@@ -1,5 +1,5 @@
 import type { Field, Fields } from "@feature/app/schema";
-import type { Record, RecordColumn } from "@feature/app/schema/record-schema";
+import type { Columns, RecordColumn } from "@feature/app/schema/record-schema";
 import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/cell-factory-change-handler";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { TextInput } from "@components/ui/v4/textInput";
@@ -13,14 +13,14 @@ export const AddCell = ({
     fieldKind: fields[field.id]?.fieldKind ?? "text",
     value: "",
   },
-  newRecord,
-  setNewRecord,
+  columns,
+  setColumns,
 }: {
   field: Field;
   fields: Fields;
   column: RecordColumn | undefined;
-  newRecord: Record;
-  setNewRecord: (newRecord: Record) => void;
+  columns: Columns;
+  setColumns: (columns: Columns) => void;
 }) => {
   if (field.fieldKind !== column.fieldKind) {
     console.error(
@@ -30,8 +30,8 @@ export const AddCell = ({
   }
 
   const changeHandler: ModifyCellFactoryChangeHandler = (value, options) => {
-    setNewRecord({
-      ...newRecord,
+    setColumns({
+      ...columns,
       [field.id]: {
         ...column,
         options,
@@ -40,7 +40,7 @@ export const AddCell = ({
     });
   };
 
-  const value = newRecord[field.id]!.value;
+  const value = column.value;
 
   switch (field.fieldKind) {
     case "text":

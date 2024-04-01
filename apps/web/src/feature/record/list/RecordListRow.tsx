@@ -1,4 +1,4 @@
-import type { App, Record, Records } from "@feature/app/schema";
+import type { App, Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";
@@ -9,27 +9,14 @@ import { useStateRecord } from "@feature/record/list/useStateRecord";
 export const RecordListRow = ({
   record: defaultRecord,
   recordIndex,
-  newRecord,
-  setNewRecord,
   app,
-  records,
-  setRecords,
-  mode: defaultMode,
-  recordTemplate,
 }: {
   record: Records[number];
   recordIndex: number;
-  newRecord: Record;
-  setNewRecord: (record: Record) => void;
   app: App;
-  records: Records;
-  setRecords: (records: Records) => void;
-  mode: RecordListMode;
-  setMode: (mode: RecordListMode) => void;
-  recordTemplate: Record;
 }) => {
   const { record, setRecord } = useStateRecord(defaultRecord);
-  const [mode, setMode] = useState<RecordListMode>(defaultMode);
+  const [mode, setMode] = useState<RecordListMode>("show");
 
   return (
     <>
@@ -38,10 +25,7 @@ export const RecordListRow = ({
         <Table.BodyTd key={field.id}>
           <RecordCell
             record={record}
-            fields={app.fields}
             field={field}
-            newRecord={newRecord}
-            setNewRecord={setNewRecord}
             mode={mode}
             column={record.columns[field.id]}
             setRecord={setRecord}
@@ -51,14 +35,8 @@ export const RecordListRow = ({
       <Table.BodyTd>
         <RecordRowOperation
           record={record}
-          records={records}
-          setRecords={setRecords}
-          newRecord={newRecord}
-          setNewRecord={setNewRecord}
           mode={mode}
           setMode={setMode}
-          recordTemplate={recordTemplate}
-          appId={app.id}
           recordId={record.recordId}
           setRecord={setRecord}
           defaultRecord={defaultRecord}

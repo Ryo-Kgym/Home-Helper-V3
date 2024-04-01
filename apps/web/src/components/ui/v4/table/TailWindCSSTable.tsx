@@ -22,16 +22,17 @@ const Header = ({ headerItems }: { headerItems: { name: string }[] }) => (
 const Body = <T,>({
   data,
   renderItem,
+  children,
 }: {
   data: T[];
   renderItem: (t: T) => ReactNode;
+  children?: ReactNode;
 }) => (
   <tbody>
     {data.map((item, index) => (
-      <tr className={"border border-gray-300"} key={index}>
-        {renderItem(item)}
-      </tr>
+      <Tr key={index}>{renderItem(item)}</Tr>
     ))}
+    {children}
     {data.length === 0 && (
       <tr>
         <td colSpan={100} className={"border border-gray-300 p-2 text-center"}>
@@ -40,6 +41,10 @@ const Body = <T,>({
       </tr>
     )}
   </tbody>
+);
+
+const Tr = ({ children }: { children: ReactNode }) => (
+  <tr className={"border border-gray-300"}>{children}</tr>
 );
 
 const Td = ({
@@ -56,4 +61,5 @@ const Td = ({
 
 TailWindCSSTable.Header = Header;
 TailWindCSSTable.Body = Body;
+TailWindCSSTable.BodyTr = Tr;
 TailWindCSSTable.BodyTd = Td;

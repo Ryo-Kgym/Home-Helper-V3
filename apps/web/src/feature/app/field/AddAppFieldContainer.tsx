@@ -2,7 +2,10 @@ import type { AppFieldOptions } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
 import { useEffect, useState } from "react";
 import { addAppFieldValueSchema } from "@feature/app/create/app-field-value";
-import { useSaveAppFieldValue } from "@feature/app/create/useAppFieldValueState";
+import {
+  useRemoveAppFieldValue,
+  useSaveAppFieldValue,
+} from "@feature/app/create/useAppFieldValueState";
 
 import { AppFieldPresenter } from "./AppFieldPresenter";
 
@@ -15,6 +18,7 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
   const [saved, setSaved] = useState<boolean>(false);
 
   const save = useSaveAppFieldValue();
+  const remove = useRemoveAppFieldValue();
 
   const parseResult = addAppFieldValueSchema.safeParse({
     fieldName,
@@ -34,6 +38,10 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
   useEffect(() => {
     setOptions({});
   }, [fieldKind]);
+
+  const deleteHandler = () => {
+    remove(index);
+  };
 
   return (
     <AppFieldPresenter
@@ -55,6 +63,7 @@ export const AddAppFieldContainer = ({ index }: { index: number }) => {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       saveHandler={saveHandler}
+      deleteHandler={deleteHandler}
     />
   );
 };
