@@ -11,7 +11,10 @@ import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
 import { RecordListRow } from "@feature/record/list/RecordListRow";
 import { useResetMode } from "@feature/record/list/useModeState";
-import { useStateRecords } from "@feature/record/list/useStateRecords";
+import {
+  useInitRecords,
+  useRecords,
+} from "@feature/record/list/useRecordsState";
 
 export type RecordListMode = "add" | "modify" | "show";
 
@@ -26,14 +29,16 @@ export const RecordListClient = ({
   records: Records;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
-  const { records, setRecords } = useStateRecords(defaultRecords);
+  const { records, setRecords } = useRecords();
+  const initialize = useInitRecords();
   const [newColumns, setNewColumns] = useState<Columns>(columnsTemplate);
 
-  const reset = useResetMode();
+  const resetMode = useResetMode();
 
   useEffect(
     () => {
-      reset();
+      initialize(defaultRecords);
+      resetMode();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
