@@ -29,7 +29,7 @@ export const RecordListClient = ({
   records: Records;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
-  const { records, setRecords } = useRecords();
+  const { records } = useRecords();
   const initialize = useInitRecords();
   const [newColumns, setNewColumns] = useState<Columns>(columnsTemplate);
 
@@ -48,11 +48,7 @@ export const RecordListClient = ({
     <div className={"space-y-10"}>
       <Title title={app.name}>
         <RedirectSettingButton appId={app.id} />
-        <AddRecordButton
-          records={records}
-          setRecords={setRecords}
-          columnTemplate={columnsTemplate}
-        />
+        <AddRecordButton columnTemplate={columnsTemplate} />
         <RedirectImportButton appId={app.id} />
       </Title>
       <Table>
