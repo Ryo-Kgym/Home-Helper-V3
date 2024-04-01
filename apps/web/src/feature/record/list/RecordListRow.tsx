@@ -31,10 +31,7 @@ export const RecordListRow = ({
         <Table.BodyTd key={field.id}>
           <RecordCell
             record={record}
-            fields={app.fields}
             field={field}
-            newRecord={newRecord}
-            setNewRecord={setNewRecord}
             mode={mode}
             column={record.columns[field.id]}
             setRecord={setRecord}

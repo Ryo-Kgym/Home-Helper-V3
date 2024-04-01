@@ -2,7 +2,7 @@ import type { App, Columns, Record } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";
-import { RecordCell } from "@feature/record/list/cell/RecordCell";
+import { AddCell } from "@feature/record/list/cell/AddCell";
 import { RecordRowOperation } from "@feature/record/list/operation/RecordRowOperation";
 
 export const NewRecordListRow = ({
@@ -32,15 +32,12 @@ export const NewRecordListRow = ({
       <Table.BodyTd align={"right"}>{recordIndex}</Table.BodyTd>
       {Object.values(app.fields).map((field) => (
         <Table.BodyTd key={field.id}>
-          <RecordCell
-            record={record}
+          <AddCell
             fields={app.fields}
             field={field}
             newRecord={newRecord}
             setNewRecord={setNewRecord}
-            mode={mode}
             column={record.columns[field.id]}
-            setRecord={setRecord}
           />
         </Table.BodyTd>
       ))}
