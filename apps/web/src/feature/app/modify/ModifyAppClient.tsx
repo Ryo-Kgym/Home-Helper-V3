@@ -9,7 +9,7 @@ import {
   useGetAppFieldValue,
   useInitializeAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
-import { AppFieldInput } from "@feature/app/field/AppFieldInput";
+import { FieldInputTable } from "@feature/app/modify/FieldInputTable";
 import { UpdateAppButton } from "@feature/app/modify/UpdateAppButton";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 
@@ -46,11 +46,7 @@ export const ModifyAppClient = ({
           <FieldAddButton />
         </div>
       </div>
-      <div className={"space-y-2"}>
-        {Object.keys(fields).map((index) => (
-          <AppFieldInput key={index} index={parseInt(index)} />
-        ))}
-      </div>
+      <FieldInputTable />
     </div>
   );
 };
