@@ -26,3 +26,4 @@ export const recordsSchema = z.record(
 ); // record.index
 
 export type Records = z.infer<typeof recordsSchema>;
+export type Record = Records[number];

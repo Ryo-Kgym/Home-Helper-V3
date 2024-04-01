@@ -1,10 +1,9 @@
-import type { App, Columns, Records } from "@feature/app/schema";
+import type { App, Columns, Record } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";
 import { RecordCell } from "@feature/record/list/cell/RecordCell";
 import { RecordRowOperation } from "@feature/record/list/operation/RecordRowOperation";
-import { useStateRecord } from "@feature/record/list/useStateRecord";
 
 export const NewRecordListRow = ({
   record: defaultRecord,
@@ -14,14 +13,18 @@ export const NewRecordListRow = ({
   app,
   columnsTemplate,
 }: {
-  record: Records[number];
+  record: Record;
   recordIndex: number;
   newRecord: Columns;
   setNewRecord: (record: Columns) => void;
   app: App;
   columnsTemplate: Columns;
 }) => {
-  const { record, setRecord } = useStateRecord(defaultRecord);
+  const [record, setRecord] = useState<Record>({
+    recordId: "9",
+    isEditing: false,
+    columns: columnsTemplate,
+  });
   const [mode, setMode] = useState<RecordListMode>("show");
 
   return (
