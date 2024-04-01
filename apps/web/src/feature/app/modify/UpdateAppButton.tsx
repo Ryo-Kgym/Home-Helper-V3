@@ -1,6 +1,7 @@
 import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
+import { useInitializeAppFieldValue } from "@feature/app/create/useAppFieldValueState";
 import { useModifyApp } from "@feature/app/modify/useModifyApp";
 
 export const UpdateAppButton = ({
@@ -18,10 +19,12 @@ export const UpdateAppButton = ({
     Object.values(fields).every((field) => field.fieldName);
 
   const { modifyApp } = useModifyApp({ appId });
+  const initialize = useInitializeAppFieldValue();
 
   const clickHandler = async () => {
     try {
       await modifyApp({ appName, fields });
+      initialize(fields);
       notify("アプリを更新しました");
     } catch (e) {
       notify("アプリの更新に失敗しました");
