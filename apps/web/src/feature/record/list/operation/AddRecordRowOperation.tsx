@@ -7,13 +7,13 @@ import { SaveNewRecordButton } from "./SaveNewRecordButton";
 
 export const AddRecordRowOperation = (
   props: // prettier-ignore
-  { record: Records[number], mode: RecordListMode }
+  { record: Records[number]}
     & ComponentProps<typeof SaveNewRecordButton>,
 ) => {
   const ope = getOperationButtonList(props.record.isEditing);
   return (
     <div className={"flex space-x-3"}>
-      {ope[props.mode].map((buttonType, index) => {
+      {ope.add.map((buttonType, index) => {
         switch (buttonType) {
           case "insert":
             return (

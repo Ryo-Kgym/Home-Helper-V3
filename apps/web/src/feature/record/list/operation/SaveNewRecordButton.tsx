@@ -1,7 +1,7 @@
 import type { Columns } from "@feature/app/schema/record-schema";
-import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { notify } from "@components/ui/v4/notify/notify";
 import { generateId } from "@feature/app/function/generate-id";
+import { useResetMode } from "@feature/record/list/useModeState";
 import { useRecords } from "@feature/record/list/useRecordsState";
 import { useInsertRecordMutation } from "@v3/graphql/public";
 
@@ -9,16 +9,15 @@ export const SaveNewRecordButton = ({
   appId,
   newRecord,
   setNewRecord,
-  setMode,
   columnsTemplate,
 }: {
   appId: string;
   newRecord: Columns;
   setNewRecord: (newRecord: Columns) => void;
-  setMode: (mode: RecordListMode) => void;
   columnsTemplate: Columns;
 }) => {
   const { records, setRecords } = useRecords();
+  const resetMode = useResetMode();
 
   const [, mut] = useInsertRecordMutation();
 
@@ -55,7 +54,7 @@ export const SaveNewRecordButton = ({
         },
       });
       setNewRecord(columnsTemplate);
-      setMode("show");
+      resetMode();
       notify("レコードを追加しました");
     } catch (e) {
       console.error(e);

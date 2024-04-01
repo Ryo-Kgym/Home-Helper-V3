@@ -1,5 +1,4 @@
 import type { App, Columns, Record } from "@feature/app/schema";
-import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { useState } from "react";
 import { Table } from "@components/ui/v4/table";
 import { AddCell } from "@feature/record/list/cell/AddCell";
@@ -24,7 +23,6 @@ export const NewRecordListRow = ({
     isEditing: false,
     columns: columnsTemplate,
   });
-  const [mode, setMode] = useState<RecordListMode>("show");
 
   return (
     <Table.BodyTr>
@@ -45,8 +43,6 @@ export const NewRecordListRow = ({
           record={record}
           newRecord={newRecord}
           setNewRecord={setNewRecord}
-          mode={mode}
-          setMode={setMode}
           columnsTemplate={columnsTemplate}
           appId={app.id}
         />
