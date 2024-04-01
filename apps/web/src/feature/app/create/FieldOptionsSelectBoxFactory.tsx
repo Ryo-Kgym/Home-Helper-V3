@@ -32,47 +32,53 @@ const FieldOptionsSelectBox = ({
   options: SelectBoxOptions;
   setOptions: (options: SelectBoxOptions) => void;
 }) => {
-  const [selectorLabels, setSelectorLabels] = useState<
-    SelectBoxOptions["selector"][number]["label"][]
-  >(options.selector?.map((selector) => selector.label) ?? [""]);
+  const [selector, setSelector] = useState<SelectBoxOptions["selector"]>(
+    options.selector ?? [],
+  );
+
+  const addFieldHandler = () => {
+    setSelector((prev) => [...prev, DEFAULT_OPTIONS]);
+  };
+
+  const onChangeHandler = (index: number, label: string) => {
+    setSelector((prev) => {
+      const next = [...prev];
+      next[index] = {
+        value: "", // このタイミングでは、value を生成しない。
+        label,
+      };
+      return next;
+    });
+  };
+
+  const saveHandler = () => {
+    setOptions({
+      selector: selector.map((s, i) => ({
+        value: s.value ? s.value : generateId(i),
+        label: s.label,
+      })),
+    });
+  };
 
   return (
     <>
-      <Button
-        label={"追加"}
-        clickHandler={() => {
-          setSelectorLabels((prev) => [...prev, ""]);
-        }}
-        type={"add"}
-      />
+      <Button label={"追加"} clickHandler={addFieldHandler} type={"add"} />
       <div>
-        {selectorLabels.map((label, i) => (
+        {selector.map(({ label }, index) => (
           <TextInput
-            key={i}
+            key={index}
             label={""}
             value={label}
-            setValue={(value) =>
-              setSelectorLabels((prev) => {
-                const next = [...prev];
-                next[i] = value;
-                return next;
-              })
-            }
+            setValue={(value) => onChangeHandler(index, value)}
           />
         ))}
       </div>
-      <Button
-        label={"保存"}
-        clickHandler={() => {
-          setOptions({
-            selector: selectorLabels.map((label, i) => ({
-              value: generateId(i),
-              label,
-            })),
-          });
-        }}
-        type={"save"}
-      />
+      <Button label={"保存"} clickHandler={saveHandler} type={"save"} />
     </>
   );
+};
+
+const DEFAULT_OPTIONS: SelectBoxOptions["selector"][number] = {
+  value: "",
+  label: "",
 };
