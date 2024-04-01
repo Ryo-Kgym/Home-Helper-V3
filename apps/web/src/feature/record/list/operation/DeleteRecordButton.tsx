@@ -1,23 +1,20 @@
-import type { Records } from "@feature/app/schema/record-schema";
 import { notify } from "@components/ui/v4/notify/notify";
+import { useRecords } from "@feature/record/list/useRecordsState";
+import { useDeleteRecordMutation } from "@v3/graphql/public";
 
 import type { RecordListMode } from "../RecordListClient";
-import { useDeleteRecordMutation } from "../../../../../../../packages/graphql/public";
 
 export const DeleteRecordButton = ({
   recordId,
-  records,
-  setRecords,
   mode,
   setMode,
 }: {
   recordId: string;
-  records: Records;
-  setRecords: (records: Records) => void;
   mode: RecordListMode;
   setMode: (mode: RecordListMode) => void;
-  setRecord: (record: Records[number]) => void;
 }) => {
+  const { records, setRecords } = useRecords();
+
   const [, mut] = useDeleteRecordMutation();
   const setRecordsState = () => {
     const copiedRecords = { ...records };

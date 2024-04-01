@@ -67,8 +67,6 @@ export const RecordListClient = ({
               newRecord={newColumns}
               setNewRecord={setNewColumns}
               app={app}
-              records={records}
-              setRecords={setRecords}
               columnsTemplate={columnsTemplate}
             />
           )}

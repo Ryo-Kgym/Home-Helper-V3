@@ -12,8 +12,6 @@ export const RecordListRow = ({
   newRecord,
   setNewRecord,
   app,
-  records,
-  setRecords,
   columnsTemplate,
 }: {
   record: Records[number];
@@ -21,8 +19,6 @@ export const RecordListRow = ({
   newRecord: Columns;
   setNewRecord: (record: Columns) => void;
   app: App;
-  records: Records;
-  setRecords: (records: Records) => void;
   columnsTemplate: Columns;
 }) => {
   const { record, setRecord } = useStateRecord(defaultRecord);
@@ -48,8 +44,6 @@ export const RecordListRow = ({
       <Table.BodyTd>
         <RecordRowOperation
           record={record}
-          records={records}
-          setRecords={setRecords}
           newRecord={newRecord}
           setNewRecord={setNewRecord}
           mode={mode}
