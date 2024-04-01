@@ -1,27 +1,25 @@
-import type { Columns, Records } from "@feature/app/schema/record-schema";
+import type { Columns } from "@feature/app/schema/record-schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { notify } from "@components/ui/v4/notify/notify";
 import { generateId } from "@feature/app/function/generate-id";
+import { useRecords } from "@feature/record/list/useRecordsState";
 import { useInsertRecordMutation } from "@v3/graphql/public";
 
 export const SaveNewRecordButton = ({
   appId,
-  records,
-  setRecords,
   newRecord,
   setNewRecord,
   setMode,
   columnsTemplate,
 }: {
   appId: string;
-  records: Records;
-  setRecords: (records: Records) => void;
   newRecord: Columns;
   setNewRecord: (newRecord: Columns) => void;
   setMode: (mode: RecordListMode) => void;
   columnsTemplate: Columns;
-  setRecord: (record: Records[number]) => void;
 }) => {
+  const { records, setRecords } = useRecords();
+
   const [, mut] = useInsertRecordMutation();
 
   const saveRecordHandler = async () => {
