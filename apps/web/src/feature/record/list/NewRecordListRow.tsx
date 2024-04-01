@@ -4,8 +4,13 @@ import { AddCell } from "@feature/record/list/cell/AddCell";
 import { AddRecordRowOperation } from "@feature/record/list/operation/AddRecordRowOperation";
 import { useNewRecord } from "@feature/record/list/operation/useNewRecordState";
 
+import { useMode } from "./useModeState";
+
 export const NewRecordListRow = ({ app }: { app: App }) => {
   const { record, setRecord } = useNewRecord();
+  const { mode } = useMode();
+
+  if (mode !== "add") return null;
 
   return (
     <Table.BodyTr>
