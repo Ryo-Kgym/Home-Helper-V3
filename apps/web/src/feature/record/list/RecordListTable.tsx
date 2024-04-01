@@ -1,6 +1,7 @@
 import type { App } from "@feature/app/schema";
 import type { ComponentProps } from "react";
 import { Table } from "@components/ui/v4/table";
+import { NewRecordListRow } from "@feature/record/list/NewRecordListRow";
 import { RecordListRow } from "@feature/record/list/RecordListRow";
 import { useRecords } from "@feature/record/list/useRecordsState";
 
@@ -26,7 +27,9 @@ export const RecordListTable = ({
             app={app}
           />
         )}
-      ></Table.Body>
+      >
+        <NewRecordListRow app={app} />
+      </Table.Body>
     </Table>
   );
 };

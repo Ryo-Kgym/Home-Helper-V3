@@ -1,4 +1,3 @@
-import type { Records } from "@feature/app/schema";
 import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import type { ComponentProps } from "react";
 import { AddRecordCancelButton } from "@feature/record/list/operation/AddRecordCancelButton";

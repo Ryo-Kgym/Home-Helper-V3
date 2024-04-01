@@ -40,7 +40,7 @@ export const AddCell = ({
     });
   };
 
-  const value = columns[field.id]!.value;
+  const value = column.value;
 
   switch (field.fieldKind) {
     case "text":
