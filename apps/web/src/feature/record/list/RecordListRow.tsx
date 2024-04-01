@@ -9,17 +9,11 @@ import { useStateRecord } from "@feature/record/list/useStateRecord";
 export const RecordListRow = ({
   record: defaultRecord,
   recordIndex,
-  newRecord,
-  setNewRecord,
   app,
-  columnsTemplate,
 }: {
   record: Records[number];
   recordIndex: number;
-  newRecord: Columns;
-  setNewRecord: (record: Columns) => void;
   app: App;
-  columnsTemplate: Columns;
 }) => {
   const { record, setRecord } = useStateRecord(defaultRecord);
   const [mode, setMode] = useState<RecordListMode>("show");
@@ -41,12 +35,8 @@ export const RecordListRow = ({
       <Table.BodyTd>
         <RecordRowOperation
           record={record}
-          newRecord={newRecord}
-          setNewRecord={setNewRecord}
           mode={mode}
           setMode={setMode}
-          columnsTemplate={columnsTemplate}
-          appId={app.id}
           recordId={record.recordId}
           setRecord={setRecord}
           defaultRecord={defaultRecord}

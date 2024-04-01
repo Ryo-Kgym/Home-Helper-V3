@@ -45,11 +45,7 @@ export const RecordListClient = ({
         <AddRecordButton columnTemplate={columnsTemplate} />
         <RedirectImportButton appId={app.id} />
       </Title>
-      <RecordListTable
-        app={app}
-        headerItems={headerItems}
-        columnsTemplate={columnsTemplate}
-      />
+      <RecordListTable app={app} headerItems={headerItems} />
     </div>
   );
 };
