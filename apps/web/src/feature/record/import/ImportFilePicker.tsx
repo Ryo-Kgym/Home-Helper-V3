@@ -1,44 +1,36 @@
-import type {
-  Fields,
-  ImportFileHistory,
-  ImportFileSettings,
-  Records,
-} from "@feature/app/schema";
+import type { Fields } from "@feature/app/schema";
+import type { ChangeEvent } from "react";
 import { useRef, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
 import { convertRecords } from "@feature/record/import/convert-records";
 import { loadImportFile } from "@feature/record/import/load-import-file";
 import { selectSingleFile } from "@feature/record/import/select-single-file";
+import { useImportFileHistories } from "@feature/record/import/useImportFileHistoriesState";
+import { useImportFileSettings } from "@feature/record/import/useImportSettingsState";
 import { useInsertImportFileRecords } from "@feature/record/import/useInsertImportFileRecords";
+import { usePreviewRecords } from "@feature/record/import/usePreviewRecordsState";
 
 export const ImportFilePicker = ({
   appId,
   fields,
-  importFileSettings,
-  previewRecords,
-  setPreviewRecords,
-  setHistories,
-  histories,
 }: {
   appId: string;
   fields: Fields;
-  importFileSettings: ImportFileSettings;
-  previewRecords: Records;
-  histories: ImportFileHistory[];
-  setHistories: (histories: ImportFileHistory[]) => void;
-  setPreviewRecords: (records: Records) => void;
 }) => {
   const [fileName, setFileName] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const { importFileSettings } = useImportFileSettings();
+  const { importFileHistories, setImportFileHistories } =
+    useImportFileHistories();
+  const { previewRecords, setPreviewRecords } = usePreviewRecords();
 
   const { insertImportFileRecords } = useInsertImportFileRecords({
     appId,
   });
 
-  const fileChangeHandler = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const fileChangeHandler = async (event: ChangeEvent<HTMLInputElement>) => {
     const { file, isEmpty } = selectSingleFile(event);
     if (isEmpty) return;
 
@@ -65,7 +57,7 @@ export const ImportFilePicker = ({
         fileName,
       );
       notify("取込が完了しました");
-      setHistories([...histories, importFileHistory]);
+      setImportFileHistories([...importFileHistories, importFileHistory]);
       resetClickHandler();
     } catch (e) {
       console.error(e);

@@ -13,6 +13,7 @@ import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
 import { SetImportFileSetting } from "@feature/record/import/SetImportFileSetting";
+import { useImportFileHistories } from "@feature/record/import/useImportFileHistoriesState";
 import { useImportFileSettings } from "@feature/record/import/useImportSettingsState";
 
 import { ImportHistoryList } from "./ImportHistoryList";
@@ -29,15 +30,19 @@ export const RecordImportClient = ({
   importHistories: ImportFileHistory[];
   requiredInitializeSettings: boolean;
 }) => {
-  const [histories, setHistories] = useState<ImportFileHistory[]>(
-    defaultImportHistories,
-  );
   const { setImportFileSettings } = useImportFileSettings();
+  const { setImportFileHistories } = useImportFileHistories();
+
   const [isOpen, setIsOpen] = useState<boolean>(requiredInitializeSettings);
 
-  useEffect(() => {
-    setImportFileSettings(defaultSettings);
-  }, []);
+  useEffect(
+    () => {
+      setImportFileSettings(defaultSettings);
+      setImportFileHistories(defaultImportHistories);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   return (
     <>
@@ -48,12 +53,8 @@ export const RecordImportClient = ({
           <RedirectImportButton appId={app.id} />
           <OpenSettingButton onOpen={() => setIsOpen(true)} />
         </Title>
-        <ImportHistoryList histories={histories} setHistories={setHistories} />
-        <ImportPreview
-          app={app}
-          histories={histories}
-          setHistories={setHistories}
-        />
+        <ImportHistoryList />
+        <ImportPreview app={app} />
       </div>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Modal.Body>
