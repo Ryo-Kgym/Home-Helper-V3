@@ -9,7 +9,11 @@ import { selectSingleFile } from "@feature/record/import/select-single-file";
 import { useImportFileHistories } from "@feature/record/import/useImportFileHistoriesState";
 import { useImportFileSettings } from "@feature/record/import/useImportSettingsState";
 import { useInsertImportFileRecords } from "@feature/record/import/useInsertImportFileRecords";
-import { usePreviewRecords } from "@feature/record/import/usePreviewRecordsState";
+import {
+  usePreviewRecords,
+  useResetPreviewRecords,
+  useSetPreviewRecords,
+} from "@feature/record/import/usePreviewRecordsState";
 
 export const ImportFilePicker = ({
   appId,
@@ -24,7 +28,9 @@ export const ImportFilePicker = ({
   const { importFileSettings } = useImportFileSettings();
   const { importFileHistories, setImportFileHistories } =
     useImportFileHistories();
-  const { previewRecords, setPreviewRecords } = usePreviewRecords();
+  const previewRecords = usePreviewRecords();
+  const setPreviewRecords = useSetPreviewRecords();
+  const resetPreviewRecords = useResetPreviewRecords();
 
   const { insertImportFileRecords } = useInsertImportFileRecords({
     appId,
@@ -66,7 +72,7 @@ export const ImportFilePicker = ({
   };
 
   const resetClickHandler = () => {
-    setPreviewRecords({});
+    resetPreviewRecords();
     setFileName("");
     if (fileInputRef.current) {
       fileInputRef.current.value = "";

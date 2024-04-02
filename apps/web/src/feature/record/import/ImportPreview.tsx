@@ -6,7 +6,7 @@ import { ImportFilePicker } from "@feature/record/import/ImportFilePicker";
 import { usePreviewRecords } from "@feature/record/import/usePreviewRecordsState";
 
 export const ImportPreview = ({ app }: { app: App }) => {
-  const { previewRecords } = usePreviewRecords();
+  const previewRecords = usePreviewRecords();
 
   return (
     <div>

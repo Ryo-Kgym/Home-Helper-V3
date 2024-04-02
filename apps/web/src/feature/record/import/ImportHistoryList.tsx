@@ -2,13 +2,11 @@ import { Button } from "@components/ui/v4/button";
 import { Table } from "@components/ui/v4/table";
 import { DeleteImportFileHistoryButton } from "@feature/record/import/DeleteImportFileHistoryButton";
 import { useImportFileHistories } from "@feature/record/import/useImportFileHistoriesState";
-import { usePreviewRecords } from "@feature/record/import/usePreviewRecordsState";
+import { useSetPreviewRecords } from "@feature/record/import/usePreviewRecordsState";
 
 export const ImportHistoryList = () => {
-  const { importFileHistories, setImportFileHistories } =
-    useImportFileHistories();
-
-  const { setPreviewRecords } = usePreviewRecords();
+  const { importFileHistories } = useImportFileHistories();
+  const setPreviewRecords = useSetPreviewRecords();
 
   const fetchImportFileRecords = async (historyId: string) => {
     const history = importFileHistories.find((h) => h.id === historyId);
@@ -48,11 +46,7 @@ export const ImportHistoryList = () => {
                 />
               </Table.BodyTd>
               <Table.BodyTd align={"center"}>
-                <DeleteImportFileHistoryButton
-                  historyId={history.id}
-                  histories={importFileHistories}
-                  setHistories={setImportFileHistories}
-                />
+                <DeleteImportFileHistoryButton historyId={history.id} />
               </Table.BodyTd>
             </>
           )}
