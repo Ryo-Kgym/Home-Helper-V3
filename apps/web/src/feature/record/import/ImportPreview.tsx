@@ -1,24 +1,22 @@
 "use client";
 
-import type { App, ImportFileHistory, Records } from "@feature/app/schema";
+import type { App, ImportFileHistory } from "@feature/app/schema";
 import { Table } from "@components/ui/v4/table";
 import { ImportFilePicker } from "@feature/record/import/ImportFilePicker";
 import { useImportFileSettings } from "@feature/record/import/useImportSettingsState";
+import { usePreviewRecords } from "@feature/record/import/usePreviewRecordsState";
 
 export const ImportPreview = ({
   app,
-  previewRecords,
   histories,
   setHistories,
-  setPreviewRecords,
 }: {
   app: App;
-  previewRecords: Records;
   histories: ImportFileHistory[];
   setHistories: (histories: ImportFileHistory[]) => void;
-  setPreviewRecords: (records: Records) => void;
 }) => {
   const { importFileSettings } = useImportFileSettings();
+  const { previewRecords, setPreviewRecords } = usePreviewRecords();
 
   return (
     <div>

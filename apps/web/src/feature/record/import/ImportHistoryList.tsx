@@ -2,16 +2,17 @@ import type { ImportFileHistory, Records } from "@feature/app/schema";
 import { Button } from "@components/ui/v4/button";
 import { Table } from "@components/ui/v4/table";
 import { DeleteImportFileHistoryButton } from "@feature/record/import/DeleteImportFileHistoryButton";
+import { usePreviewRecords } from "@feature/record/import/usePreviewRecordsState";
 
 export const ImportHistoryList = ({
   histories,
   setHistories,
-  setPreviewRecords,
 }: {
   histories: ImportFileHistory[];
   setHistories: (histories: ImportFileHistory[]) => void;
-  setPreviewRecords: (records: Records) => void;
 }) => {
+  const { setPreviewRecords } = usePreviewRecords();
+
   const fetchImportFileRecords = async (historyId: string) => {
     const history = histories.find((h) => h.id === historyId);
     if (!history) {

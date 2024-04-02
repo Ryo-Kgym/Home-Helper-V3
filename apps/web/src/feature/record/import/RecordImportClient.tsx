@@ -4,7 +4,6 @@ import type {
   App,
   ImportFileHistory,
   ImportFileSettings,
-  Records,
 } from "@feature/app/schema";
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
@@ -34,7 +33,6 @@ export const RecordImportClient = ({
     defaultImportHistories,
   );
   const { setImportFileSettings } = useImportFileSettings();
-  const [previewRecords, setPreviewRecords] = useState<Records>({});
   const [isOpen, setIsOpen] = useState<boolean>(requiredInitializeSettings);
 
   useEffect(() => {
@@ -50,17 +48,11 @@ export const RecordImportClient = ({
           <RedirectImportButton appId={app.id} />
           <OpenSettingButton onOpen={() => setIsOpen(true)} />
         </Title>
-        <ImportHistoryList
-          histories={histories}
-          setHistories={setHistories}
-          setPreviewRecords={setPreviewRecords}
-        />
+        <ImportHistoryList histories={histories} setHistories={setHistories} />
         <ImportPreview
           app={app}
-          previewRecords={previewRecords}
           histories={histories}
           setHistories={setHistories}
-          setPreviewRecords={setPreviewRecords}
         />
       </div>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
