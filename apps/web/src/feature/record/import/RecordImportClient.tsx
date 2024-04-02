@@ -6,7 +6,7 @@ import type {
   ImportFileSettings,
   Records,
 } from "@feature/app/schema";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
 import { OpenSettingButton } from "@feature/nav/OpenSettingButton";
@@ -14,6 +14,7 @@ import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
 import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
 import { SetImportFileSetting } from "@feature/record/import/SetImportFileSetting";
+import { useImportFileSettings } from "@feature/record/import/useImportSettingsState";
 
 import { ImportHistoryList } from "./ImportHistoryList";
 import { ImportPreview } from "./ImportPreview";
@@ -32,9 +33,14 @@ export const RecordImportClient = ({
   const [histories, setHistories] = useState<ImportFileHistory[]>(
     defaultImportHistories,
   );
-  const [settings, setSettings] = useState<ImportFileSettings>(defaultSettings);
+  const { setImportFileSettings } = useImportFileSettings();
   const [previewRecords, setPreviewRecords] = useState<Records>({});
   const [isOpen, setIsOpen] = useState<boolean>(requiredInitializeSettings);
+
+  useEffect(() => {
+    setImportFileSettings(defaultSettings);
+  }, []);
+
   return (
     <>
       <div className={"space-y-10"}>
@@ -51,7 +57,6 @@ export const RecordImportClient = ({
         />
         <ImportPreview
           app={app}
-          importFileSettings={settings}
           previewRecords={previewRecords}
           histories={histories}
           setHistories={setHistories}
@@ -62,8 +67,6 @@ export const RecordImportClient = ({
         <Modal.Body>
           <SetImportFileSetting
             appId={app.id}
-            importFileSettings={settings}
-            setImportFileSettings={setSettings}
             setAfterHandler={() => setIsOpen(false)}
           />
         </Modal.Body>
