@@ -3,7 +3,9 @@ import { z } from "zod";
 
 export const previewColumnSchema = z.object({
   fieldKind: fieldKindSchema,
+  originalValue: z.string().or(z.undefined()),
   value: z.string(),
+  errorMessage: z.string().or(z.undefined()),
 });
 
 export const previewColumnsSchema = z.record(previewColumnSchema); // fieldId
