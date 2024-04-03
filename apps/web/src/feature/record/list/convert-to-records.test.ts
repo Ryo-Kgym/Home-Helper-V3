@@ -1,4 +1,5 @@
-import type { GetAppQuery } from "../../../../../../packages/graphql/public/type";
+import type { GetAppQuery } from "@v3/graphql/public";
+
 import { convertToRecords } from "./convert-to-records";
 
 describe("convertToRecords", () => {
@@ -8,7 +9,7 @@ describe("convertToRecords", () => {
         __typename: "Record",
         id: "11111",
         index: 1,
-        columns: JSON.stringify({
+        columns: {
           0: {
             fieldId: 0,
             fieldKind: "text",
@@ -21,13 +22,13 @@ describe("convertToRecords", () => {
             value: "Record 2",
             editing: false,
           },
-        }),
+        },
       },
       {
         __typename: "Record",
         id: "22222",
         index: 2,
-        columns: JSON.stringify({
+        columns: {
           0: {
             fieldKind: "text",
             value: "Record 1",
@@ -36,7 +37,7 @@ describe("convertToRecords", () => {
             fieldKind: "text",
             value: "Record 2",
           },
-        }),
+        },
       },
     ];
     const records = convertToRecords(recordData);
