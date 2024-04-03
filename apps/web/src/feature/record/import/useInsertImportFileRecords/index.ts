@@ -1,12 +1,13 @@
 import type { ImportFileHistory } from "@feature/app/schema";
 import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
 import { generateId, generateIds } from "@feature/app/function/generate-id";
-import { convertToRecordObjects } from "@feature/record/import/useInsertImportFileRecords/convert-to-record-objects";
 import {
   useGetMaxRecordIndexQuery,
   useInsertImportFileHistoryMutation,
   useInsertImportFileRecordsMutation,
 } from "@v3/graphql/public";
+
+import { convertToRecordObjects } from "./convert-to-record-objects";
 
 export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   const [, mutHistory] = useInsertImportFileHistoryMutation();
