@@ -1,6 +1,10 @@
-import type { Fields, Records } from "@feature/app/schema";
+import type { Field, Fields } from "@feature/app/schema";
+import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
 
-export const convertRecords = (data: string[][], fields: Fields): Records =>
+export const convertRecords = (
+  data: string[][],
+  fields: Fields,
+): PreviewRecords =>
   Object.fromEntries(
     data.map((row, i) => [
       i.toString(), // dummy
@@ -21,10 +25,52 @@ export const convertRecords = (data: string[][], fields: Fields): Records =>
 
             return [
               targetField?.id,
-              { value, fieldKind: targetField.fieldKind },
+              {
+                fieldKind: targetField.fieldKind,
+                ...convertValue(value, targetField),
+              },
             ];
           }),
         ),
       },
     ]),
   );
+
+const convertValue = (
+  originalValue: string,
+  field: Field,
+): {
+  originalValue: string | undefined;
+  value: string;
+  errorMessage: string | undefined;
+} => {
+  switch (field.fieldKind) {
+    case "text":
+    case "multipleText":
+      return {
+        originalValue: undefined,
+        value: originalValue,
+        errorMessage: undefined,
+      };
+    case "selectBox": {
+      const options = field.options;
+      const foundSelector = options.selector.find(
+        ({ label }) => label === originalValue,
+      );
+
+      const errorMessage = foundSelector ? undefined : "選択肢が見つかりません";
+
+      return {
+        originalValue,
+        value: foundSelector?.value ?? originalValue,
+        errorMessage,
+      };
+    }
+    case "lookup":
+      return {
+        originalValue: undefined,
+        value: originalValue,
+        errorMessage: undefined,
+      };
+  }
+};

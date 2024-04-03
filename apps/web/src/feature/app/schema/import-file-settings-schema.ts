@@ -43,6 +43,17 @@ const splitterSchema = z.enum([",", ";", "\t"]);
 
 export type Splitter = z.infer<typeof splitterSchema>;
 
+export const IMPORT_FILE_SETTINGS_DEFAULT = {
+  encodingTo: "UNICODE",
+  encodingFrom: "UTF8",
+  encodingType: "array",
+  splitSeparator: "\n",
+  headerRows: 0,
+  footerRows: 0,
+  quotation: "",
+  splitter: ",",
+} as const;
+
 export const importFileSettingsSchema = z
   .object({
     encodingTo: encodingSchema,
@@ -54,15 +65,6 @@ export const importFileSettingsSchema = z
     quotation: quotationSchema.default(""),
     splitter: splitterSchema.default(","),
   })
-  .default({
-    encodingTo: "UNICODE",
-    encodingFrom: "UTF8",
-    encodingType: "array",
-    splitSeparator: "\n",
-    headerRows: 0,
-    footerRows: 0,
-    quotation: "",
-    splitter: ",",
-  });
+  .default(IMPORT_FILE_SETTINGS_DEFAULT);
 
 export type ImportFileSettings = z.infer<typeof importFileSettingsSchema>;

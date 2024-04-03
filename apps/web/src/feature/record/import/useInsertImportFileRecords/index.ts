@@ -1,10 +1,13 @@
-import type { ImportFileHistory, Records } from "@feature/app/schema";
-import { generateId } from "@feature/app/function/generate-id";
+import type { ImportFileHistory } from "@feature/app/schema";
+import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
+import { generateId, generateIds } from "@feature/app/function/generate-id";
 import {
   useGetMaxRecordIndexQuery,
   useInsertImportFileHistoryMutation,
   useInsertImportFileRecordsMutation,
 } from "@v3/graphql/public";
+
+import { convertToRecordObjects } from "./convert-to-record-objects";
 
 export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   const [, mutHistory] = useInsertImportFileHistoryMutation();
@@ -14,7 +17,7 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   });
 
   const insertImportFileRecords = async (
-    records: Records,
+    records: PreviewRecords,
     fileName: string,
   ) => {
     const historyId = generateId();
@@ -53,21 +56,22 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
     }
   };
 
-  const insertRecords = async (records: Records, historyId: string) => {
+  const insertRecords = async (
+    previewRecords: PreviewRecords,
+    historyId: string,
+  ) => {
     const currentMaxIndex =
       maxRecordIndexData?.recordAggregate.aggregate?.max?.index ?? 0;
 
-    const recordIds = Object.values(records).map((v, index) =>
-      generateId(index),
-    );
+    const recordIds = generateIds(previewRecords);
 
     const { error: recordsError } = await mutRecords({
-      recordObjects: Object.values(records).map(({ columns }, index) => ({
-        id: recordIds[index],
+      recordObjects: convertToRecordObjects(
         appId,
-        columns,
-        index: currentMaxIndex + index + 1,
-      })),
+        previewRecords,
+        recordIds,
+        currentMaxIndex,
+      ),
       relationObjects: recordIds.map((recordId) => ({
         recordId,
         historyId,
