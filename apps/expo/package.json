@@ -12,7 +12,9 @@
     "ios": "expo run:ios",
     "format": "prettier --check ./src --ignore-path ../../.gitignore",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@expo/metro-config": "^0.10.7",
