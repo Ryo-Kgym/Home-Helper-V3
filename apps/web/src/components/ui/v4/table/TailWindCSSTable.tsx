@@ -50,11 +50,16 @@ const Tr = ({ children }: { children: ReactNode }) => (
 const Td = ({
   children,
   align = "left",
+  bgColor = "bg-inherit",
 }: {
   children: ReactNode;
   align?: "left" | "center" | "right";
+  bgColor?: `bg-${string}`;
 }) => (
-  <td className={"border border-gray-300 p-2"} style={{ textAlign: align }}>
+  <td
+    className={`border border-gray-300 p-2 ${bgColor}`}
+    style={{ textAlign: align }}
+  >
     {children}
   </td>
 );
