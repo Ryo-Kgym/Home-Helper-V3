@@ -17,6 +17,36 @@ env:
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
 
 jobs:
+  web-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Test
+        run: cd apps/web && pnpm jest
+
+  mobile-test:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Test
+        run: cd apps/expo && pnpm jest
+
   lint:
     runs-on: ubuntu-latest
     steps:
