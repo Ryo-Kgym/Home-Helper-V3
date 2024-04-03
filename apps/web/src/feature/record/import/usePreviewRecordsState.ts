@@ -1,4 +1,4 @@
-import type { Records } from "@feature/app/schema";
+import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
@@ -12,11 +12,11 @@ export const useResetPreviewRecords = () =>
   usePreviewRecordsState((store) => store.resetPreviewRecords);
 
 type State = {
-  previewRecords: Records;
+  previewRecords: PreviewRecords;
 };
 
 type Actions = {
-  setPreviewRecords: (records: Records) => void;
+  setPreviewRecords: (records: PreviewRecords) => void;
   resetPreviewRecords: () => void;
 };
 
