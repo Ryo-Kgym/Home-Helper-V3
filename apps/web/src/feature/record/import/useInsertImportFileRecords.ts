@@ -1,5 +1,8 @@
-import type { ImportFileHistory, Records } from "@feature/app/schema";
+import type { ImportFileHistory } from "@feature/app/schema";
+import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
+import type { RecordInsertInput } from "@v3/graphql/public";
 import { generateId } from "@feature/app/function/generate-id";
+import { recordColumnSchema } from "@feature/app/schema";
 import {
   useGetMaxRecordIndexQuery,
   useInsertImportFileHistoryMutation,
@@ -14,7 +17,7 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   });
 
   const insertImportFileRecords = async (
-    records: Records,
+    records: PreviewRecords,
     fileName: string,
   ) => {
     const historyId = generateId();
@@ -53,21 +56,33 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
     }
   };
 
-  const insertRecords = async (records: Records, historyId: string) => {
+  const insertRecords = async (
+    previewRecords: PreviewRecords,
+    historyId: string,
+  ) => {
     const currentMaxIndex =
       maxRecordIndexData?.recordAggregate.aggregate?.max?.index ?? 0;
 
-    const recordIds = Object.values(records).map((v, index) =>
+    const recordIds = Object.values(previewRecords).map((_, index) =>
       generateId(index),
     );
 
+    const recordObjects: RecordInsertInput[] = Object.values(
+      previewRecords,
+    ).map(({ columns }, index) => ({
+      id: recordIds[index],
+      appId,
+      columns: Object.fromEntries(
+        Object.entries(columns).map(([key, column]) => [
+          key,
+          recordColumnSchema.parse(column),
+        ]),
+      ),
+      index: currentMaxIndex + index + 1,
+    }));
+
     const { error: recordsError } = await mutRecords({
-      recordObjects: Object.values(records).map(({ columns }, index) => ({
-        id: recordIds[index],
-        appId,
-        columns,
-        index: currentMaxIndex + index + 1,
-      })),
+      recordObjects,
       relationObjects: recordIds.map((recordId) => ({
         recordId,
         historyId,
