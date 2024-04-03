@@ -1,7 +1,7 @@
 import type { ImportFileHistory } from "@feature/app/schema";
 import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
 import type { RecordInsertInput } from "@v3/graphql/public";
-import { generateId } from "@feature/app/function/generate-id";
+import { generateId, generateIds } from "@feature/app/function/generate-id";
 import { recordColumnSchema } from "@feature/app/schema";
 import {
   useGetMaxRecordIndexQuery,
@@ -63,26 +63,15 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
     const currentMaxIndex =
       maxRecordIndexData?.recordAggregate.aggregate?.max?.index ?? 0;
 
-    const recordIds = Object.values(previewRecords).map((_, index) =>
-      generateId(index),
-    );
-
-    const recordObjects: RecordInsertInput[] = Object.values(
-      previewRecords,
-    ).map(({ columns }, index) => ({
-      id: recordIds[index],
-      appId,
-      columns: Object.fromEntries(
-        Object.entries(columns).map(([key, column]) => [
-          key,
-          recordColumnSchema.parse(column),
-        ]),
-      ),
-      index: currentMaxIndex + index + 1,
-    }));
+    const recordIds = generateIds(previewRecords);
 
     const { error: recordsError } = await mutRecords({
-      recordObjects,
+      recordObjects: convertToRecordObjects(
+        appId,
+        previewRecords,
+        recordIds,
+        currentMaxIndex,
+      ),
       relationObjects: recordIds.map((recordId) => ({
         recordId,
         historyId,
@@ -95,3 +84,21 @@ export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
 
   return { insertImportFileRecords };
 };
+
+const convertToRecordObjects = (
+  appId: string,
+  previewRecords: PreviewRecords,
+  recordIds: string[],
+  currentMaxIndex: number,
+): RecordInsertInput[] =>
+  Object.values(previewRecords).map(({ columns }, index) => ({
+    id: recordIds[index],
+    appId,
+    columns: Object.fromEntries(
+      Object.entries(columns).map(([key, column]) => [
+        key,
+        recordColumnSchema.parse(column),
+      ]),
+    ),
+    index: currentMaxIndex + index + 1,
+  }));
