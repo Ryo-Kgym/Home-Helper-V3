@@ -1,5 +1,3 @@
-import { describe, expect, it } from "@jest/globals";
-
 import { generateMonthOptions, generateYearOptions } from "./args-value-range";
 
 describe("generateYearOptions", () => {

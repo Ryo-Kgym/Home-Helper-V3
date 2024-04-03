@@ -1,4 +1,4 @@
-import type { Fields } from "@feature/app/schema/app-schema";
+import type { Fields } from "@feature/app/schema";
 
 import { makeColumnsTemplate } from "./make-columns-template";
 

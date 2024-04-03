@@ -1,5 +1,5 @@
 import type { Field, Fields } from "@feature/app/schema";
-import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
+import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
 
 export const convertRecords = (
   data: string[][],

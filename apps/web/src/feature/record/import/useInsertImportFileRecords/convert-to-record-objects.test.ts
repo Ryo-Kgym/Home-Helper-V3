@@ -1,5 +1,4 @@
-import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
-import { describe, expect, it } from "@jest/globals";
+import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
 
 import { convertToRecordObjects } from "./convert-to-record-objects";
 

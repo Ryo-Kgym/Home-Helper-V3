@@ -1,4 +1,4 @@
-import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
+import type { PreviewRecords } from "@feature/app/schema";
 import type { RecordInsertInput } from "@v3/graphql/public";
 import { recordColumnSchema } from "@feature/app/schema";
 
