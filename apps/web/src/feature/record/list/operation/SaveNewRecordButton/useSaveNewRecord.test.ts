@@ -5,7 +5,7 @@ import { useSaveNewRecord } from "@feature/record/list/operation/SaveNewRecordBu
 import * as useNewRecordState from "@feature/record/list/operation/useNewRecordState";
 import * as useModeState from "@feature/record/list/useModeState";
 import * as useRecordsState from "@feature/record/list/useRecordsState";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 import * as mut from "@v3/graphql/public";
 
 jest.mock("@v3/graphql/public");
@@ -16,22 +16,67 @@ jest.mock("@feature/record/list/useModeState");
 jest.mock("@feature/record/list/operation/useNewRecordState");
 
 describe("useSaveNewRecord", () => {
-  it("新しいレコードを保存する", async () => {
-    const appId = "123";
-    const columns: Columns = {
-      "1": {
-        fieldKind: "text",
-        value: "testValue",
-      },
-      "2": {
-        fieldKind: "selectBox",
-        value: "testValue",
-        options: { label: "testLabel" },
-      },
-    };
-    const recordId = "12345";
-    const index = 3;
+  const appId = "123";
+  const columns: Columns = {
+    "1": {
+      fieldKind: "text",
+      value: "testValue",
+    },
+    "2": {
+      fieldKind: "selectBox",
+      value: "testValue",
+      options: { label: "testLabel" },
+    },
+  };
+  const recordId = "12345";
+  const index = 3;
 
+  it("新しいレコードを保存する", async () => {
+    const { mutMock, addMock, resetNewRecordMock, resetModeMock } = setupMock();
+    mutMock.mockResolvedValue({ data: { insertRecordOne: null } });
+
+    const { saveNewRecord } = renderHook(() => useSaveNewRecord(appId)).result
+      .current;
+
+    await act(() => saveNewRecord(columns));
+
+    expect(mutMock).toHaveBeenCalledWith({
+      id: recordId,
+      appId,
+      index,
+      columns,
+    });
+    expect(addMock).toHaveBeenCalledWith(index, {
+      recordId,
+      columns,
+      isEditing: false,
+    });
+    expect(resetNewRecordMock).toHaveBeenCalled();
+    expect(resetModeMock).toHaveBeenCalled();
+  });
+
+  it("レコードの保存に失敗した場合、例外を投げる", async () => {
+    const { mutMock, addMock, resetNewRecordMock, resetModeMock } = setupMock();
+    const error = new Error("error");
+    mutMock.mockResolvedValue({ error });
+
+    const { saveNewRecord } = renderHook(() => useSaveNewRecord(appId)).result
+      .current;
+
+    await expect(saveNewRecord(columns)).rejects.toThrow(error);
+
+    expect(mutMock).toHaveBeenCalledWith({
+      id: recordId,
+      appId,
+      index,
+      columns,
+    });
+    expect(addMock).not.toHaveBeenCalled();
+    expect(resetNewRecordMock).not.toHaveBeenCalled();
+    expect(resetModeMock).not.toHaveBeenCalled();
+  });
+
+  const setupMock = () => {
     const mutMock = jest.fn();
     const addMock = jest.fn();
     const resetNewRecordMock = jest.fn();
@@ -61,21 +106,6 @@ describe("useSaveNewRecord", () => {
       mutMock,
     ]);
 
-    const { saveNewRecord } = renderHook(() => useSaveNewRecord(appId)).result
-      .current;
-
-    await act(() => saveNewRecord(columns));
-
-    expect(mutMock).toHaveBeenCalledWith({
-      id: recordId,
-      appId,
-      index,
-      columns,
-    });
-    expect(addMock).toHaveBeenCalledWith(index, {
-      recordId,
-      columns,
-      isEditing: false,
-    });
-  });
+    return { mutMock, addMock, resetNewRecordMock, resetModeMock };
+  };
 });
