@@ -1,6 +1,7 @@
-import type { Columns, Records } from "@feature/app/schema/record-schema";
+import type { Columns } from "@feature/app/schema/record-schema";
 import { notify } from "@components/ui/v4/notify/notify";
 import { generateId } from "@feature/app/function/generate-id";
+import { calcNextIndex } from "@feature/record/list/operation/SaveNewRecordButton/calc-next-index";
 import { useResetNewRecord } from "@feature/record/list/operation/useNewRecordState";
 import { useResetMode } from "@feature/record/list/useModeState";
 import { useAddRecord, useRecords } from "@feature/record/list/useRecordsState";
@@ -50,6 +51,3 @@ export const SaveNewRecordButton = ({
 
   return <button onClick={saveRecordHandler}>追加</button>;
 };
-
-const calcNextIndex = (records: Records) =>
-  (Math.max(...Object.keys(records).map((n) => parseInt(n))) ?? 0) + 1;
