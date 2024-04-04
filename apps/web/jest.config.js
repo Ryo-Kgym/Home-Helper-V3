@@ -4,7 +4,7 @@ module.exports = {
   transform: {
     "node_modules/three/examples/.+.(j|t)sx?$": "ts-jest",
   },
-  testEnvironment: "node", // or jest-environment-jsdom
+  testEnvironment: "jsdom",
   moduleNameMapper: {
     "^@feature/(.+)$": "<rootDir>/src/feature/$1",
     "^@hooks/(.+)$": "<rootDir>/src/hooks/$1",
