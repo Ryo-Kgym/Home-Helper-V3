@@ -34,4 +34,5 @@ const factoryMap: Record<FieldKind, (props: OptionsState) => ReactNode> = {
   multipleText: NoOptions,
   selectBox: FieldOptionsSelectBoxFactory,
   lookup: FieldOptionsLookUpFactory,
+  date: NoOptions,
 };

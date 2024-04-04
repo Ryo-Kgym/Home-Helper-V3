@@ -19,6 +19,9 @@ export type FieldProperties = {
   lookup: {
     name: "Lookup";
   } & BaseProperties;
+  date: {
+    name: "Date";
+  } & BaseProperties;
 };
 
 export type FieldKind = keyof FieldProperties;
@@ -45,5 +48,9 @@ export const fieldKindArray: Record<
   lookup: {
     fieldKind: "lookup",
     description: "既存アプリから参照",
+  },
+  date: {
+    fieldKind: "date",
+    description: "日付",
   },
 };
