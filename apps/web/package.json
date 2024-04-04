@@ -77,7 +77,7 @@
     "@acme/prettier-config": "workspace:^",
     "@acme/tailwind-config": "workspace:^",
     "@acme/tsconfig": "workspace:^",
-    "jest": "^29.6.2",
+    "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.6.2",
     "jest-fetch-mock": "3.0.3",
     "@jest/globals": "^29.7.0",

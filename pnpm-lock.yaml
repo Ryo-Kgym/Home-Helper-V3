@@ -410,7 +410,7 @@ importers:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
       jest:
-        specifier: ^29.6.2
+        specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.2)
       jest-environment-jsdom:
         specifier: ^29.6.2
