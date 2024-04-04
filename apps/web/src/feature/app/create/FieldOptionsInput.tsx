@@ -3,8 +3,8 @@ import type { FieldKind } from "@oneforall/domain/field/type";
 import type { ComponentProps, ReactNode } from "react";
 import React from "react";
 import { FieldOptionsDateInputFactory } from "@feature/app/create/FieldOptionsDateInputFactory";
-import { FieldOptionsLookUpFactory } from "@feature/app/create/FieldOptionsLookUpFactory";
-import { FieldOptionsSelectBoxFactory } from "@feature/app/create/FieldOptionsSelectBoxFactory";
+import { FieldOptionsLookUpInputFactory } from "@feature/app/create/FieldOptionsLookUpInputFactory";
+import { FieldOptionsSelectBoxInputFactory } from "@feature/app/create/FieldOptionsSelectBoxInputFactory";
 
 export type OptionsState = {
   value: AppFieldOptions;
@@ -33,7 +33,7 @@ const NoOptions = () => <div>オプションはありません</div>;
 const factoryMap: Record<FieldKind, (props: OptionsState) => ReactNode> = {
   text: NoOptions,
   multipleText: NoOptions,
-  selectBox: FieldOptionsSelectBoxFactory,
-  lookup: FieldOptionsLookUpFactory,
+  selectBox: FieldOptionsSelectBoxInputFactory,
+  lookup: FieldOptionsLookUpInputFactory,
   date: FieldOptionsDateInputFactory,
 };

@@ -6,13 +6,13 @@ import { TextInput } from "@components/ui/v4/textInput";
 import { selectBoxOptionsSchema } from "@feature/app/create/app-field-value";
 import { generateId } from "@feature/app/function/generate-id";
 
-export const FieldOptionsSelectBoxFactory = ({
+export const FieldOptionsSelectBoxInputFactory = ({
   value,
   setValue,
 }: OptionsState) => {
   const parsed = selectBoxOptionsSchema.safeParse(value);
   return (
-    <FieldOptionsSelectBox
+    <FieldOptionsSelectBoxInput
       options={
         parsed.success
           ? parsed.data
@@ -25,7 +25,7 @@ export const FieldOptionsSelectBoxFactory = ({
   );
 };
 
-const FieldOptionsSelectBox = ({
+const FieldOptionsSelectBoxInput = ({
   options,
   setOptions,
 }: {
