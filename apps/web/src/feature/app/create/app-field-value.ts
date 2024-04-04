@@ -1,3 +1,4 @@
+import { fieldOptionsDateFormatSchema } from "@feature/app/schema";
 import { z } from "zod";
 
 const simpleKindOptionsSchema = z.object({});
@@ -21,6 +22,10 @@ export const lookupOptionsSchema = z.object({
   label: z.string().optional(),
 });
 
+export const dateOptionsSchema = z.object({
+  format: fieldOptionsDateFormatSchema,
+});
+
 const simpleKindSchema = z.object({
   fieldName: z.string().min(1),
   fieldKind: z.enum(["text", "multipleText"]),
@@ -39,10 +44,17 @@ const lookupSchema = z.object({
   options: lookupOptionsSchema,
 });
 
+const dateSchema = z.object({
+  fieldName: z.string().min(1),
+  fieldKind: z.enum(["date"]),
+  options: dateOptionsSchema,
+});
+
 const fieldAttributeSchema = z.union([
   simpleKindSchema,
   selectBoxSchema,
   lookupSchema,
+  dateSchema,
 ]);
 
 export const addAppFieldValueSchema = z

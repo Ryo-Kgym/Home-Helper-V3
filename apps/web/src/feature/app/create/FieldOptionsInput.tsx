@@ -2,6 +2,7 @@ import type { AppFieldOptions } from "@feature/app/create/app-field-value";
 import type { FieldKind } from "@oneforall/domain/field/type";
 import type { ComponentProps, ReactNode } from "react";
 import React from "react";
+import { FieldOptionsDateInputFactory } from "@feature/app/create/FieldOptionsDateInputFactory";
 import { FieldOptionsLookUpFactory } from "@feature/app/create/FieldOptionsLookUpFactory";
 import { FieldOptionsSelectBoxFactory } from "@feature/app/create/FieldOptionsSelectBoxFactory";
 
@@ -34,5 +35,5 @@ const factoryMap: Record<FieldKind, (props: OptionsState) => ReactNode> = {
   multipleText: NoOptions,
   selectBox: FieldOptionsSelectBoxFactory,
   lookup: FieldOptionsLookUpFactory,
-  date: NoOptions,
+  date: FieldOptionsDateInputFactory,
 };
