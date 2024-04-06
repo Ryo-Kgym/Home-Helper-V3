@@ -1,5 +1,6 @@
 import type { Field } from "@feature/app/schema";
-import { convertValueSelectBox } from "@feature/record/import/convert-records/convert-value-selectbox";
+
+import { convertValueSelectBox } from "./convert-value-selectbox";
 
 export const convertValue = (
   originalValue: string,
