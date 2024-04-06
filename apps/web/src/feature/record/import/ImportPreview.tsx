@@ -37,7 +37,8 @@ export const ImportPreview = ({ app }: { app: App }) => {
                   key={k + f}
                   bgColor={column.errorMessage ? "bg-red-200" : "bg-inherit"}
                 >
-                  {(column.originalValue !== column.value
+                  {(column.originalValue &&
+                  column.originalValue !== column.value
                     ? column.originalValue + " -> "
                     : "") + column.value}
                 </Table.BodyTd>

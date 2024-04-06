@@ -3,7 +3,7 @@ import { z } from "zod";
 
 export const previewColumnSchema = z.object({
   fieldKind: fieldKindSchema,
-  originalValue: z.string(),
+  originalValue: z.string().optional(),
   value: z.string().or(z.undefined()),
   errorMessage: z.string().or(z.undefined()),
 });
