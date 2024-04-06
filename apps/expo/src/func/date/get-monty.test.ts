@@ -1,5 +1,3 @@
-import { describe, expect, it } from "@jest/globals";
-
 import { getMonth } from "./get-month";
 
 describe("getMonth", () => {

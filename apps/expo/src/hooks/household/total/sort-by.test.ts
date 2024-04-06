@@ -1,5 +1,3 @@
-import { describe, expect, it } from "@jest/globals";
-
 import { sortBy } from "./sort-by";
 
 describe("sortBy", () => {

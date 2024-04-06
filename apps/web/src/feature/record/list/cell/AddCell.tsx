@@ -1,8 +1,10 @@
 import type { Field, Fields } from "@feature/app/schema";
 import type { Columns, RecordColumn } from "@feature/app/schema/record-schema";
 import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/cell-factory-change-handler";
+import { useEffect } from "react";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { TextInput } from "@components/ui/v4/textInput";
+import { AddCellDateFactory } from "@feature/record/list/cell/AddCellDateFactory";
 import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFactory";
 import { AddCellSelectBoxFactory } from "@feature/record/list/cell/AddCellSelectBoxFactory";
 
@@ -22,6 +24,10 @@ export const AddCell = ({
   columns: Columns;
   setColumns: (columns: Columns) => void;
 }) => {
+  useEffect(() => {
+    console.log("[columns]", columns);
+  }, [columns]);
+
   if (field.fieldKind !== column.fieldKind) {
     console.error(
       `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,
@@ -60,6 +66,15 @@ export const AddCell = ({
     case "lookup": {
       return (
         <AddCellLookupFactory
+          value={value}
+          changeHandler={changeHandler}
+          options={field.options}
+        />
+      );
+    }
+    case "date": {
+      return (
+        <AddCellDateFactory
           value={value}
           changeHandler={changeHandler}
           options={field.options}

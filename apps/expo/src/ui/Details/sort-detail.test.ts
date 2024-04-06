@@ -1,5 +1,3 @@
-import { describe, expect, it } from "@jest/globals";
-
 import type { Detail } from "~/ui";
 import { sortBy } from "./sort-detail";
 

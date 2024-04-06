@@ -1,10 +1,12 @@
 import type { Field, Records } from "@feature/app/schema";
 import type { RecordColumn } from "@feature/app/schema/record-schema";
-import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/cell-factory-change-handler";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
-import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFactory";
+
+import type { ModifyCellFactoryChangeHandler } from "./cell-factory-change-handler";
+import { ModifyCellDateFactory } from "./ModifyCellDateFactory";
+import { ModifyCellLookupFactory } from "./ModifyCellLookupFactory";
 
 export const ModifyCell = ({
   field,
@@ -64,8 +66,16 @@ export const ModifyCell = ({
       );
     case "lookup": {
       return (
-        // Add を同じものを使用する。不都合が発生すれば、別途コンポーネントを作成する
-        <AddCellLookupFactory
+        <ModifyCellLookupFactory
+          value={value}
+          changeHandler={changeHandler}
+          options={field.options}
+        />
+      );
+    }
+    case "date": {
+      return (
+        <ModifyCellDateFactory
           value={value}
           changeHandler={changeHandler}
           options={field.options}

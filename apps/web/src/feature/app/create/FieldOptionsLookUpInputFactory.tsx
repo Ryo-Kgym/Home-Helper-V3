@@ -7,13 +7,13 @@ import { lookupOptionsSchema } from "@feature/app/create/app-field-value";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetAppFieldListQuery } from "@v3/graphql/public";
 
-export const FieldOptionsLookUpFactory = ({
+export const FieldOptionsLookUpInputFactory = ({
   value,
   setValue,
 }: OptionsState) => {
   const parsed = lookupOptionsSchema.safeParse(value);
   return (
-    <FieldOptionsLookUp
+    <FieldOptionsLookUpInput
       options={
         parsed.success
           ? parsed.data
@@ -28,7 +28,7 @@ export const FieldOptionsLookUpFactory = ({
   );
 };
 
-const FieldOptionsLookUp = ({
+const FieldOptionsLookUpInput = ({
   options,
   setOptions,
 }: {

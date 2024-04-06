@@ -1,5 +1,6 @@
 import type { Field } from "@feature/app/schema";
 import type { RecordColumn } from "@feature/app/schema/record-schema";
+import { ShowCellDateFactory } from "@feature/record/list/cell/ShowCellDateFactory";
 import { ShowCellLookupFactory } from "@feature/record/list/cell/ShowCellLookupFactory";
 import { ShowCellSelectBoxFactory } from "@feature/record/list/cell/ShowCellSelectBoxFactory";
 
@@ -31,6 +32,11 @@ export const ShowCell = ({
     }
     case "lookup": {
       return <ShowCellLookupFactory options={column.options} />;
+    }
+    case "date": {
+      return (
+        <ShowCellDateFactory value={column.value} options={field.options} />
+      );
     }
   }
   return <div>{column.value}</div>;

@@ -1,5 +1,3 @@
-import { describe, expect, it } from "@jest/globals";
-
 import * as target from "./generate-id";
 
 jest.spyOn(Date.prototype, "getTime").mockReturnValue(1234567890);

@@ -1,5 +1,3 @@
-import { describe, expect, it } from "@jest/globals";
-
 import { totalCategory } from "./total-category";
 
 describe("totalCategory", () => {

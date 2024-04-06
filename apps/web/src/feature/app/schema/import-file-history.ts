@@ -1,4 +1,4 @@
-import { recordsSchema } from "@feature/app/schema/record-schema";
+import { previewRecordsSchema } from "@feature/app/schema/preview-records-schema";
 import { z } from "zod";
 
 export const importFileHistorySchema = z.object({
@@ -6,7 +6,7 @@ export const importFileHistorySchema = z.object({
   importDate: z.date(),
   fileName: z.string(),
   importCount: z.number(),
-  importFileRecords: recordsSchema,
+  importFileRecords: previewRecordsSchema,
 });
 
 export type ImportFileHistory = z.infer<typeof importFileHistorySchema>;

@@ -1,4 +1,4 @@
-import type { PreviewRecords } from "@feature/record/import/preview-records-schema";
+import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 

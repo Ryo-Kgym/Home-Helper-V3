@@ -4,8 +4,10 @@ module.exports = {
   transform: {
     "node_modules/three/examples/.+.(j|t)sx?$": "ts-jest",
   },
-  testEnvironment: "node", // or jest-environment-jsdom
+  testEnvironment: "jsdom",
   moduleNameMapper: {
-    "@feature/app/schema/*": "<rootDir>/src/feature/app/schema/",
+    "^@feature/(.+)$": "<rootDir>/src/feature/$1",
+    "^@hooks/(.+)$": "<rootDir>/src/hooks/$1",
+    "^@v3/graphql/(.+)$": "<rootDir>/../../packages/graphql/$1",
   },
 };
