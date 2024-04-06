@@ -1,5 +1,6 @@
-import type { Field, Fields } from "@feature/app/schema";
+import type { Fields } from "@feature/app/schema";
 import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
+import { convertValue } from "@feature/record/import/convert-records/convert-value";
 
 export const convertRecords = (
   data: string[][],
@@ -35,42 +36,3 @@ export const convertRecords = (
       },
     ]),
   );
-
-const convertValue = (
-  originalValue: string,
-  field: Field,
-): {
-  originalValue: string | undefined;
-  value: string;
-  errorMessage: string | undefined;
-} => {
-  switch (field.fieldKind) {
-    case "text":
-    case "multipleText":
-      return {
-        originalValue: undefined,
-        value: originalValue,
-        errorMessage: undefined,
-      };
-    case "selectBox": {
-      const options = field.options;
-      const foundSelector = options.selector.find(
-        ({ label }) => label === originalValue,
-      );
-
-      const errorMessage = foundSelector ? undefined : "選択肢が見つかりません";
-
-      return {
-        originalValue,
-        value: foundSelector?.value ?? originalValue,
-        errorMessage,
-      };
-    }
-    case "lookup":
-      return {
-        originalValue: undefined,
-        value: originalValue,
-        errorMessage: undefined,
-      };
-  }
-};
