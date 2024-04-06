@@ -25,8 +25,9 @@ export const fieldOptionsLookupSchema = z.object({
 });
 
 export const fieldOptionsDateFormatSchema = z.enum([
-  "YYYY-MM-DD",
-  "YYYY-MM-DD HH:mm:ss",
+  "YYYY-MM-DD", // YYYY-MM-DD
+  "YYYY-MM-DD HH:mm:ss", // YYYY-MM-DD HH:mm:ss
+  "YYYY_M_D_W__jpchar", // YYYY年M月D日W曜日
 ]);
 
 export type FieldOptionsDateFormat = z.infer<
