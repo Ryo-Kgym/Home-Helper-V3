@@ -1,4 +1,5 @@
 import type { Field } from "@feature/app/schema";
+import { convertValueDate } from "@feature/record/import/convert-records/convert-value-date";
 
 import { convertValueSelectBox } from "./convert-value-selectbox";
 
@@ -6,8 +7,8 @@ export const convertValue = (
   originalValue: string,
   field: Field,
 ): {
-  originalValue: string | undefined;
-  value: string;
+  originalValue: string;
+  value: string | undefined;
   errorMessage: string | undefined;
 } => {
   switch (field.fieldKind) {
@@ -15,7 +16,7 @@ export const convertValue = (
     case "multipleText":
     case "lookup":
       return {
-        originalValue: undefined,
+        originalValue,
         value: originalValue,
         errorMessage: undefined,
       };
@@ -23,11 +24,7 @@ export const convertValue = (
       return convertValueSelectBox(originalValue, field.options);
     }
     case "date": {
-      return {
-        originalValue: undefined,
-        value: originalValue,
-        errorMessage: undefined,
-      };
+      return convertValueDate(originalValue);
     }
   }
 };

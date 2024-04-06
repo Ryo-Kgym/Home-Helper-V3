@@ -4,7 +4,6 @@ export const convertValueDate = (originalValue: string) => {
   );
 
   if (!foundFormat) {
-    console.log("[foundFormat]", "not found");
     return {
       originalValue,
       value: undefined,

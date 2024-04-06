@@ -1,8 +1,10 @@
 import { convertValue } from "@feature/record/import/convert-records/convert-value";
 
+import * as date from "./convert-value-date";
 import * as selectbox from "./convert-value-selectbox";
 
 jest.mock("./convert-value-selectbox");
+jest.mock("./convert-value-date");
 
 describe("convertValue", () => {
   it("textの場合", () => {
@@ -15,7 +17,7 @@ describe("convertValue", () => {
     });
 
     expect(actual).toEqual({
-      originalValue: undefined,
+      originalValue: "original",
       value: "original",
       errorMessage: undefined,
     });
@@ -31,7 +33,7 @@ describe("convertValue", () => {
     });
 
     expect(actual).toEqual({
-      originalValue: undefined,
+      originalValue: "original",
       value: "original",
       errorMessage: undefined,
     });
@@ -51,7 +53,7 @@ describe("convertValue", () => {
     });
 
     expect(actual).toEqual({
-      originalValue: undefined,
+      originalValue: "original",
       value: "original",
       errorMessage: undefined,
     });
@@ -91,6 +93,12 @@ describe("convertValue", () => {
   });
 
   it("dateの場合", () => {
+    jest.spyOn(date, "convertValueDate").mockReturnValue({
+      originalValue: "2024-01-01",
+      value: "2024-01-01T00:00:00,000Z",
+      errorMessage: undefined,
+    });
+
     const actual = convertValue("original", {
       id: "1",
       fieldName: "field",
@@ -102,8 +110,8 @@ describe("convertValue", () => {
     });
 
     expect(actual).toEqual({
-      originalValue: undefined,
-      value: "original",
+      originalValue: "2024-01-01",
+      value: "2024-01-01T00:00:00,000Z",
       errorMessage: undefined,
     });
   });
