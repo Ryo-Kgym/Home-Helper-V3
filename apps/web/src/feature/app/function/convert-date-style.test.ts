@@ -7,6 +7,7 @@ describe("convertDateStyle", () => {
     format                   | locale     | timeZone | expected
     ${"YYYY-MM-DD"}          | ${"ja-JP"} | ${"JST"} | ${"2022/02/03"}
     ${"YYYY-MM-DD HH:mm:ss"} | ${"ja-JP"} | ${"JST"} | ${"2022年2月3日木曜日"}
+    ${"YYYY_M_D_W__jpchar"}  | ${"ja-JP"} | ${"JST"} | ${"2022年2月3日木曜日"}
   `(
     "value=$value, format=$format, locale=$locale, timeZone=$timeZone のとき, $expected を返す",
     ({ format, locale, timeZone, expected }) => {

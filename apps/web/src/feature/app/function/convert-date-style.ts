@@ -21,6 +21,7 @@ const typeMappper: Record<
 > = {
   "YYYY-MM-DD": "short",
   "YYYY-MM-DD HH:mm:ss": "full",
+  YYYY_M_D_W__jpchar: "full",
 };
 
 // console.log(new Intl.DateTimeFormat('ja-JP', { dateStyle: 'full',   timeZone: 'JST' }).format(date));
