@@ -1,8 +1,9 @@
-import { View } from "react-native";
 import { Octicons } from "@expo/vector-icons";
+import { View } from "react-native";
+
+import { DashboardFrame } from "./DashboardFrame";
 
 import { paths } from "~/app/paths";
-import { DashboardFrame } from "./DashboardFrame";
 
 export const SettingBox = () => {
   return (

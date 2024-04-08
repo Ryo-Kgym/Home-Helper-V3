@@ -1,6 +1,7 @@
+import { convertToRecords } from "./convert-to-records";
+
 import type { GetAppQuery } from "@v3/graphql/public";
 
-import { convertToRecords } from "./convert-to-records";
 
 describe("convertToRecords", () => {
   it("converts record data to a record list", () => {

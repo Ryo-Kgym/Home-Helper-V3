@@ -2,11 +2,12 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { DailyDetail } from "@domain/model/household/DailyDetail";
-import { useState } from "react";
 import { CutDetailPresenter } from "@components/organisms/update_detail/cut/CutDetailPresenter";
 import { errorPopup, successPopup } from "@function/successPopup";
 import { useCutDetail } from "@hooks/household/daily_detail/useCutDetail";
+import { useState } from "react";
+
+import type { DailyDetail } from "@domain/model/household/DailyDetail";
 
 export const CutDetailContainer = ({
   initData,

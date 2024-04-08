@@ -2,10 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { useState } from "react";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "@function/successPopup";
 import { useRegisterDailyDetail } from "@hooks/household/daily_detail/useRegisterDailyDetail";
+import { useState } from "react";
 
 import { RegisterDailyDetailPresenter } from "./RegisterDailyDetailPresenter";
 

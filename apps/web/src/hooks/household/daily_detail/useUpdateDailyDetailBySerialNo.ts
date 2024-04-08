@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { IocomeType } from "@domain/model/household/IocomeType";
 import { useUpdateDailyDetailByIdMutation } from "@v3/graphql/household";
+
+import type { IocomeType } from "@domain/model/household/IocomeType";
 
 type useUpdateDailyDetailBySerialNoArgs = {
   id: string;

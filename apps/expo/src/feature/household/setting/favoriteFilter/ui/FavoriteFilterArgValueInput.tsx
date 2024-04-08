@@ -1,5 +1,6 @@
-import type { FavoriteFilterArgKey } from "../favorite-filter-type";
 import { CategoryIdInput, YearInput } from "./_input";
+
+import type { FavoriteFilterArgKey } from "../favorite-filter-type";
 
 export const FavoriteFilterArgValueInput = <O,>({
   argKey,

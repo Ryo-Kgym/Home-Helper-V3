@@ -1,6 +1,7 @@
-import type { ReactNode } from "react";
 import { SelectApp } from "@feature/app/list";
 import { CurrentGroupServer } from "@feature/group/current/CurrentGroupServer";
+
+import type { ReactNode } from "react";
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <div>

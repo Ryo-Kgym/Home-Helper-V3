@@ -1,7 +1,8 @@
-import type { GetDailyDetailByDateGenreIdQuery } from "@v3/graphql/household";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGetDailyDetailByDateGenreIdQuery } from "@v3/graphql/household";
+
+import type { GetDailyDetailByDateGenreIdQuery } from "@v3/graphql/household";
 
 export const useGetDailyDetailByDateGenreId = (
   genreId: string,

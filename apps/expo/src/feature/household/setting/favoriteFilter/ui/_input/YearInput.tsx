@@ -1,4 +1,5 @@
 import type { FavoriteFilterArgValueInputComponent } from "../FavoriteFilterArgValueInput";
+
 import { Picker } from "~/ui/Picker";
 
 export const YearInput: FavoriteFilterArgValueInputComponent = ({

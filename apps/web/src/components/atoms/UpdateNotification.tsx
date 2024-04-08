@@ -3,8 +3,8 @@
  */
 
 import { Group, Button } from "@mantine/core";
-import { IconCheck } from "@tabler/icons";
 import { showNotification, updateNotification } from "@mantine/notifications";
+import { IconCheck } from "@tabler/icons";
 
 type UpdateNotificationProps = {
   label: string;

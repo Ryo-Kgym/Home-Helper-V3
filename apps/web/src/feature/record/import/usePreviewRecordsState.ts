@@ -1,6 +1,7 @@
-import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+
+import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
 
 export const usePreviewRecords = () =>
   usePreviewRecordsState((store) => store.previewRecords);

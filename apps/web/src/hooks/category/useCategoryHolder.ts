@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useRecoilState } from "recoil";
 import { categoryState } from "@recoil/categoryState";
+import { useRecoilState } from "recoil";
 
 export const useCategoryHolder = () => {
   const [category, setCategory] = useRecoilState(categoryState);

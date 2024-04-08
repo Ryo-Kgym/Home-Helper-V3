@@ -2,9 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { MantineMonthPickerProps } from "@components/ui/date";
 import { useDate } from "@hooks/date/useDate";
 import { MonthPickerInput } from "@mantine/dates";
+
+import type { MantineMonthPickerProps } from "@components/ui/date";
 
 export const MantineMonthPicker = ({
   value,

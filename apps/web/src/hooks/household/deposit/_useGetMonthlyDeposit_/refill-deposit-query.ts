@@ -2,9 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { CategoryDetail, Detail } from "./type";
 import type { GetDepositQuery } from "@v3/graphql/household";
 
-import type { CategoryDetail, Detail } from "./type";
 
 /**
  * Returns an array of CategoryDetail objects based on the provided GetDepositQuery data.

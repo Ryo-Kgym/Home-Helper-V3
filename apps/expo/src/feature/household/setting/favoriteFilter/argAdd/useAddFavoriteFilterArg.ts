@@ -1,6 +1,7 @@
 import { useInsertFavoriteFilterArgMutation } from "@v3/graphql/household";
 
 import type { FavoriteFilterArgKey } from "~/feature/household/setting/favoriteFilter/favorite-filter-type";
+
 import { useGenerateId } from "~/hooks/id/useGenerateId";
 
 export const useAddFavoriteFilterArg = () => {

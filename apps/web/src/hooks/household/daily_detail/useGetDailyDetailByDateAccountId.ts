@@ -2,10 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { DailyDetail } from "@domain/model/household/DailyDetail";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGetDailyDetailByDateAccountIdQuery } from "@v3/graphql/household";
+
+import type { DailyDetail } from "@domain/model/household/DailyDetail";
 
 export const useGetDailyDetailByDateAccountId = (
   accountId: string,

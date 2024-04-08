@@ -1,13 +1,16 @@
-import type { ComponentProps } from "react";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
+
+import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
+
+import type { ComponentProps } from "react";
 
 import { AddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/argAdd/AddFavoriteFilterArg";
 import { useDeleteFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/argDelete/useDeleteFavoriteFilterArg";
 import { EditFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/argEdit/EditFavoriteFilterArg";
 import { Modal, RegisterButton } from "~/ui";
-import { useGetFavoriteFilter } from "./useGetFavoriteFilter";
+
 
 export const FavoriteFilterDetail = ({ filterId }: { filterId: string }) => {
   const { getFavoriteFilterArgs } = useGetFavoriteFilter(filterId);

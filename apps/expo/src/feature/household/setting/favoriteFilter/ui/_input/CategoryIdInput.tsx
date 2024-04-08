@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 
 import type { FavoriteFilterArgValueInputComponent } from "../FavoriteFilterArgValueInput";
 import type { IocomeType } from "~/types/iocome-type";
+
 import { EditableCategory, EditableGenre, EditableIocomeType } from "~/ui";
 
 export const CategoryIdInput: FavoriteFilterArgValueInputComponent<{

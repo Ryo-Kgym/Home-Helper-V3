@@ -1,8 +1,9 @@
-import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { View } from "react-native";
+
+import { DashboardFrame } from "./DashboardFrame";
 
 import { paths } from "~/app/paths";
-import { DashboardFrame } from "./DashboardFrame";
 
 export const ReloadBox = () => {
   return (

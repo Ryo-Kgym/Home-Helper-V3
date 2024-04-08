@@ -1,8 +1,9 @@
-import type { AppFieldValue } from "@feature/app/create/app-field-value";
 import { generateId } from "@feature/app/function/generate-id";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
 import { useInsertAppMutation } from "@v3/graphql/public";
+
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 
 export const useCreateApp = () => {
   const { userId } = useUser();

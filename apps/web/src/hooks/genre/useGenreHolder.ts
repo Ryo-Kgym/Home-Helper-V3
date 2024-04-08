@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useRecoilState } from "recoil";
 import { genreState } from "@recoil/genreState";
+import { useRecoilState } from "recoil";
 
 export const useGenreHolder = () => {
   const [genre, setGenre] = useRecoilState(genreState);

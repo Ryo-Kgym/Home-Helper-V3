@@ -2,9 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { Navi } from "@app/_layout/navi";
 import { NavbarSection } from "@app/_layout/NavbarSection";
 import { RegisterDailyButton } from "@components/molecules";
+
+import type { Navi } from "@app/_layout/navi";
 
 export const HouseholdLayout = ({
   children,

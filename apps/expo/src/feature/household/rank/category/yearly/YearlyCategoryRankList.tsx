@@ -1,8 +1,9 @@
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
-import { useRouter } from "expo-router";
 
 import type { IocomeType } from "~/types/iocome-type";
+
 import { paths } from "~/app/paths";
 import { FilterModal } from "~/feature/household/rank/category/yearly/FilterModal";
 import { getYear } from "~/func/date/get-year";

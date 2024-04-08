@@ -1,9 +1,10 @@
 "use client";
 
-import type { App } from "@feature/app/schema";
 import { Table } from "@components/ui/v4/table";
 import { ImportFilePicker } from "@feature/record/import/ImportFilePicker";
 import { usePreviewRecords } from "@feature/record/import/usePreviewRecordsState";
+
+import type { App } from "@feature/app/schema";
 
 export const ImportPreview = ({ app }: { app: App }) => {
   const previewRecords = usePreviewRecords();

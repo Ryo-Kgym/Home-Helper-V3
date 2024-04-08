@@ -1,7 +1,8 @@
-import type { TableProps } from "@components/atoms/Table";
 import { Table } from "@components/atoms/Table";
 import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker";
 import { IocomeTotal } from "@components/molecules/Total";
+
+import type { TableProps } from "@components/atoms/Table";
 
 type CategoryPresenterProps = {
   fromMonth: Date | null;

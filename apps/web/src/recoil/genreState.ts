@@ -1,5 +1,5 @@
-import { atom } from "recoil";
 import { persist } from "@recoil/recoilPersist";
+import { atom } from "recoil";
 
 export const genreState = atom<{ id: string }>({
   key: "genre",

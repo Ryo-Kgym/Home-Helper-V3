@@ -1,7 +1,7 @@
-import type { App, Fields } from "@feature/app/schema/app-schema";
 import { appSchema, fieldsSchema } from "@feature/app/schema";
 
 import type { GetAppQuery } from "../../../../../../packages/graphql/public/type";
+import type { App, Fields } from "@feature/app/schema/app-schema";
 
 export const convertToApp = (data: GetAppQuery): App => {
   const fieldsData = data?.app?.fields.reduce(

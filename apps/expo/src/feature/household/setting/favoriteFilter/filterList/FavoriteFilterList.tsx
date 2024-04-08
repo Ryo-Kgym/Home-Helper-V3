@@ -1,8 +1,9 @@
-import type { ComponentProps } from "react";
+import { useGetFavoriteFiltersQuery } from "@v3/graphql/household";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
-import { useRouter } from "expo-router";
-import { useGetFavoriteFiltersQuery } from "@v3/graphql/household";
+
+import type { ComponentProps } from "react";
 
 import { paths } from "~/app/paths";
 import { EditFavoriteFilter } from "~/feature/household/setting/favoriteFilter/filterEdit/EditFavoriteFilter";

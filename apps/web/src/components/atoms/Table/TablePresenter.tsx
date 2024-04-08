@@ -2,9 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { RefObject } from "react";
 import { ActionIcon, Button, ScrollArea, Table } from "@mantine/core";
 import { IconArrowBarToDown } from "@tabler/icons-react";
+
+import type { RefObject } from "react";
 
 type TablePresenterProps = {
   headerTr: React.ReactNode;

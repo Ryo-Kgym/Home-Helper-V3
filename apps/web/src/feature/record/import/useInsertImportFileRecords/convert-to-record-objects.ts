@@ -1,6 +1,7 @@
+import { recordColumnSchema } from "@feature/app/schema";
+
 import type { PreviewRecords } from "@feature/app/schema";
 import type { RecordInsertInput } from "@v3/graphql/public";
-import { recordColumnSchema } from "@feature/app/schema";
 
 export const convertToRecordObjects = (
   appId: string,

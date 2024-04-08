@@ -1,5 +1,6 @@
-import type { GetFavoriteFilterQuery } from "@v3/graphql/household";
 import { useGetFavoriteFilterQuery } from "@v3/graphql/household";
+
+import type { GetFavoriteFilterQuery } from "@v3/graphql/household";
 
 export const useConvertFavoriteFilter = (filterId: string) => {
   const [{ data }] = useGetFavoriteFilterQuery({

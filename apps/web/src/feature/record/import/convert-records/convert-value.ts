@@ -1,7 +1,8 @@
-import type { Field } from "@feature/app/schema";
 import { convertValueDate } from "@feature/record/import/convert-records/convert-value-date";
 
 import { convertValueSelectBox } from "./convert-value-selectbox";
+
+import type { Field } from "@feature/app/schema";
 
 export const convertValue = (
   originalValue: string,

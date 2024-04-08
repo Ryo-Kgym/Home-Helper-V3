@@ -1,8 +1,10 @@
-import type { RecordListMode } from "@feature/record/list/RecordListClient";
-import type { ComponentProps, ReactNode } from "react";
 import { ModifyCell } from "@feature/record/list/cell/ModifyCell";
 
 import { ShowCell } from "./ShowCell";
+
+import type { RecordListMode } from "@feature/record/list/RecordListClient";
+import type { ComponentProps, ReactNode } from "react";
+
 
 export const RecordCell = (
   // prettier-ignore

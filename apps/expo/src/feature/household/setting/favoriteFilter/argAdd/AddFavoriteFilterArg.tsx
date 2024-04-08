@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
 
+import { FavoriteFilterArgKeyPicker, FavoriteFilterArgValueInput } from "../ui";
+
 import type { FavoriteFilterArgKey } from "../favorite-filter-type";
+
 import { useAddFavoriteFilterArg } from "~/feature/household/setting/favoriteFilter/argAdd/useAddFavoriteFilterArg";
 import { RegisterButton } from "~/ui";
-import { FavoriteFilterArgKeyPicker, FavoriteFilterArgValueInput } from "../ui";
 
 export const AddFavoriteFilterArg = ({ filterId }: { filterId: string }) => {
   const [key, setKey] = useState<FavoriteFilterArgKey>("categoryId");

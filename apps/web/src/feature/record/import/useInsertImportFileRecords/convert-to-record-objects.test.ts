@@ -1,6 +1,7 @@
+import { convertToRecordObjects } from "./convert-to-record-objects";
+
 import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
 
-import { convertToRecordObjects } from "./convert-to-record-objects";
 
 describe("convertToRecordObjects", () => {
   it("should convert to record objects", () => {

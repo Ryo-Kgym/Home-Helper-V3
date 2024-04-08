@@ -1,6 +1,7 @@
+import { TextInput } from "@mantine/core";
+
 import type { InputValidator } from "@components/atoms/Input/InputValidator";
 import type { ChangeEvent } from "react";
-import { TextInput } from "@mantine/core";
 
 type TextInputContainerProps = {
   label: string;

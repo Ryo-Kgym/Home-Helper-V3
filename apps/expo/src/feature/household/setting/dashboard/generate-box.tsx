@@ -1,7 +1,8 @@
+import { featureSetting } from "./feature-setting";
+
 import type { ArgsMapType, SettingProps } from "./type";
 import type { GenreType } from "~/types/genre-type";
 import type { IocomeType } from "~/types/iocome-type";
-import { featureSetting } from "./feature-setting";
 
 export const generateBox = (
   settingPropsList: SettingProps[],

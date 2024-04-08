@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { ImportFileSettings } from "@feature/app/schema";
 import { FileType } from "@provider/file/FileType";
+
+import type { ImportFileSettings } from "@feature/app/schema";
 
 const CsvFileSettingMap = new Map<FileType, ImportFileSettings>([
   [

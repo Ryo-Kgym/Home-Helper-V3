@@ -4,11 +4,11 @@
 
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Modal } from "@components/ui/v4/modal";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { paths } from "@routing/paths";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 import type { AppListType } from "./fetch-app-list";
 

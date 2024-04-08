@@ -1,5 +1,6 @@
-import type { TotalAmountByMonthlyArgs } from "./totalAmountByMonthly";
 import { totalAmountByMonthly } from "./totalAmountByMonthly";
+
+import type { TotalAmountByMonthlyArgs } from "./totalAmountByMonthly";
 
 describe("totalAmountByMonthly", () => {
   test.each([

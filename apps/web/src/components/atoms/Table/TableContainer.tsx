@@ -3,11 +3,12 @@
  */
 "use client";
 
-import type { ColumnProps, TableProps } from "@components/atoms/Table/index";
-import type { MantineSize } from "@mantine/core";
-import { useEffect, useRef, useState } from "react";
 import { TablePresenter } from "@components/atoms/Table/TablePresenter";
 import { Table } from "@mantine/core";
+import { useEffect, useRef, useState } from "react";
+
+import type { ColumnProps, TableProps } from "@components/atoms/Table/index";
+import type { MantineSize } from "@mantine/core";
 
 type Props = {
   header: string[];

@@ -2,11 +2,12 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
 
 import { GenreSelectPresenter } from "./GenreSelectPresenter";
+
+import type { IocomeType } from "@domain/model/household/IocomeType";
 
 type GenreSelectContainerProps = {
   genreId: string | null;

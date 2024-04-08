@@ -1,5 +1,3 @@
-import type { ImportFileHistory } from "@feature/app/schema";
-import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
 import { generateId, generateIds } from "@feature/app/function/generate-id";
 import {
   useGetMaxRecordIndexQuery,
@@ -8,6 +6,9 @@ import {
 } from "@v3/graphql/public";
 
 import { convertToRecordObjects } from "./convert-to-record-objects";
+
+import type { ImportFileHistory } from "@feature/app/schema";
+import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
 
 export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   const [, mutHistory] = useInsertImportFileHistoryMutation();

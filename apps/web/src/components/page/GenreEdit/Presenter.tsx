@@ -2,14 +2,15 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { GenreType } from "@domain/model/household/GenreType";
-import type { IocomeType } from "@domain/model/household/IocomeType";
 import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
 import { GenreTypeSegment } from "@components/molecules/CustomSegment/GenreTypeSegment";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySegment";
 import { GenreNameTextInput } from "@components/molecules/CustomTextInput";
 import { Button } from "@components/ui";
+
+import type { GenreType } from "@domain/model/household/GenreType";
+import type { IocomeType } from "@domain/model/household/IocomeType";
 
 export const Presenter_ = ({
   categories = [],

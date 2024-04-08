@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { generateYearMonthList as testTarget } from "./generate-year-month-list";
 import { describe, it, expect } from "@jest/globals";
+
+import { generateYearMonthList as testTarget } from "./generate-year-month-list";
 
 describe("generateYearMonthList function", () => {
   it("should generate correctly the list of year-months between two dates", () => {

@@ -1,7 +1,8 @@
-import type { Columns } from "@feature/app/schema/record-schema";
 import { notify } from "@components/ui/v4/notify/notify";
 
 import { useSaveNewRecord } from "./useSaveNewRecord";
+
+import type { Columns } from "@feature/app/schema/record-schema";
 
 export const SaveNewRecordButton = ({
   appId,

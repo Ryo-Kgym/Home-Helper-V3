@@ -1,6 +1,3 @@
-import type { Fields } from "@feature/app/schema";
-import type { ChangeEvent } from "react";
-import { useRef, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
 import { convertRecords } from "@feature/record/import/convert-records";
@@ -14,6 +11,10 @@ import {
   useResetPreviewRecords,
   useSetPreviewRecords,
 } from "@feature/record/import/usePreviewRecordsState";
+import { useRef, useState } from "react";
+
+import type { Fields } from "@feature/app/schema";
+import type { ChangeEvent } from "react";
 
 export const ImportFilePicker = ({
   appId,

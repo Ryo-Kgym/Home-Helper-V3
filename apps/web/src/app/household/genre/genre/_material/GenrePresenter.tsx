@@ -2,10 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { TableProps } from "@components/atoms/Table";
 import { Table } from "@components/atoms/Table/index";
 import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker/index";
 import { IocomeTotal } from "@components/molecules/Total/index";
+
+import type { TableProps } from "@components/atoms/Table";
 
 type CategoryPresenterProps = {
   fromMonth: Date | null;

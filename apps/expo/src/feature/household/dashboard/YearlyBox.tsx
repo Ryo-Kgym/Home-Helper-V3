@@ -1,9 +1,10 @@
 import { Text, View } from "react-native";
 
+import { DashboardFrame } from "./DashboardFrame";
+
 import { paths } from "~/app/paths";
 import { getYear } from "~/func/date/get-year";
 import { useCalcTotal } from "~/hooks/household/detail/useCalcTotal";
-import { DashboardFrame } from "./DashboardFrame";
 
 export const YearlyBox = ({ year }: { year: Date }) => {
   const {

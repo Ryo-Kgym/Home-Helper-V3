@@ -1,13 +1,15 @@
 import { useGetDetailsByCategoryQuery } from "@v3/graphql/household";
 
+import { totalCategory } from "./total-category";
+
 import type { WithAmountType } from "./total-category";
 import type { GenreType } from "~/types/genre-type";
 import type { IocomeType } from "~/types/iocome-type";
+
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 import { sortBy } from "~/hooks/household/total/sort-by";
 import { genreTypeArray } from "~/types/genre-type";
 import { iocomeTypeArray } from "~/types/iocome-type";
-import { totalCategory } from "./total-category";
 
 export const useGetCategoryTotal = ({
   fromDate,

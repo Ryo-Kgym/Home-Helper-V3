@@ -1,10 +1,11 @@
-import type { Columns } from "@feature/app/schema";
 import { generateId } from "@feature/app/function/generate-id";
 import { calcNextIndex } from "@feature/record/list/operation/SaveNewRecordButton/calc-next-index";
 import { useResetNewRecord } from "@feature/record/list/operation/useNewRecordState";
 import { useResetMode } from "@feature/record/list/useModeState";
 import { useAddRecord, useRecords } from "@feature/record/list/useRecordsState";
 import { useInsertRecordMutation } from "@v3/graphql/public";
+
+import type { Columns } from "@feature/app/schema";
 
 export const useSaveNewRecord = (appId: string) => {
   const { records } = useRecords();

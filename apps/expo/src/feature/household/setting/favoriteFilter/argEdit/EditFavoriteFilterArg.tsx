@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
 
+import { useEditFavoriteFilterArg } from "./useEditFavoriteFilterArg";
+import { FavoriteFilterArgKeyPicker, FavoriteFilterArgValueInput } from "../ui";
+
 import type { FavoriteFilterArgKey } from "../favorite-filter-type";
 import type { IocomeType } from "~/types/iocome-type";
+
 import { UpdateButton } from "~/ui";
-import { FavoriteFilterArgKeyPicker, FavoriteFilterArgValueInput } from "../ui";
-import { useEditFavoriteFilterArg } from "./useEditFavoriteFilterArg";
 
 export const EditFavoriteFilterArg = ({
   arg,

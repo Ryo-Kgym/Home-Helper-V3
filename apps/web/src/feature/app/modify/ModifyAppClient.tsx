@@ -1,7 +1,5 @@
 "use client";
 
-import type { AppFieldValue } from "@feature/app/create/app-field-value";
-import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
@@ -9,6 +7,9 @@ import { useInitializeAppFieldValue } from "@feature/app/create/useAppFieldValue
 import { FieldInputTable } from "@feature/app/modify/FieldInputTable";
 import { UpdateAppButton } from "@feature/app/modify/UpdateAppButton";
 import { RedirectListButton } from "@feature/nav/RedirectListButton";
+import { useEffect, useState } from "react";
+
+import type { AppFieldValue } from "@feature/app/create/app-field-value";
 
 export const ModifyAppClient = ({
   appId,

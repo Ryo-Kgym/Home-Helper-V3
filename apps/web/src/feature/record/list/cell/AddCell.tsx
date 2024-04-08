@@ -1,12 +1,13 @@
-import type { Field, Fields } from "@feature/app/schema";
-import type { Columns, RecordColumn } from "@feature/app/schema/record-schema";
-import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/cell-factory-change-handler";
-import { useEffect } from "react";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { TextInput } from "@components/ui/v4/textInput";
 import { AddCellDateFactory } from "@feature/record/list/cell/AddCellDateFactory";
 import { AddCellLookupFactory } from "@feature/record/list/cell/AddCellLookupFactory";
 import { AddCellSelectBoxFactory } from "@feature/record/list/cell/AddCellSelectBoxFactory";
+import { useEffect } from "react";
+
+import type { Field, Fields } from "@feature/app/schema";
+import type { Columns, RecordColumn } from "@feature/app/schema/record-schema";
+import type { ModifyCellFactoryChangeHandler } from "@feature/record/list/cell/cell-factory-change-handler";
 
 export const AddCell = ({
   field,

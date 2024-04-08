@@ -1,6 +1,7 @@
+import { makeColumnsTemplate } from "./make-columns-template";
+
 import type { Fields } from "@feature/app/schema";
 
-import { makeColumnsTemplate } from "./make-columns-template";
 
 describe("makeRecordTemplate", () => {
   it("should make a record template", () => {

@@ -1,5 +1,5 @@
-import type { Color } from "../Color/color-type";
 import type { DetailType } from "./detail-type";
+import type { Color } from "../Color/color-type";
 
 export const detailSetting: Record<
   DetailType,

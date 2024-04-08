@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 
 import type { WithAmountType } from "~/hooks/household/total/total-category";
+
 import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
 import { useConvertFavoriteFilter } from "~/hooks/household/favoriteFilter/useConvertFavoriteFilter";

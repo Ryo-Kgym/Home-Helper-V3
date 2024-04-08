@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+
+import { SplitCreditCardDetailPresenter } from "./SplitCreditCardDetailPresenter";
 
 import type { IocomeType } from "~/types/iocome-type";
+
 import { useSplitCreditCardDetail } from "~/feature/household/creditCardDetail/split/useSplitCreditCardDetail";
 import { useGetCreditCardDetailById } from "~/hooks/household/credit_card/useGetCreditCardDetailById";
-import { SplitCreditCardDetailPresenter } from "./SplitCreditCardDetailPresenter";
 
 export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
   const { creditCardDetail, loading } = useGetCreditCardDetailById({ id });

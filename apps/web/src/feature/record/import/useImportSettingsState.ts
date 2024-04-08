@@ -1,7 +1,8 @@
-import type { ImportFileSettings } from "@feature/app/schema";
 import { IMPORT_FILE_SETTINGS_DEFAULT } from "@feature/app/schema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+
+import type { ImportFileSettings } from "@feature/app/schema";
 
 export const useImportFileSettings = () =>
   useImportSettingsState((store) => ({

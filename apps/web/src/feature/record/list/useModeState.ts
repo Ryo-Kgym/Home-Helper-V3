@@ -1,5 +1,6 @@
-import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { create } from "zustand";
+
+import type { RecordListMode } from "@feature/record/list/RecordListClient";
 
 type State = {
   mode: RecordListMode;

@@ -2,10 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { FormatPrice } from "@components/molecules/FormatPrice";
+
 import type { TableProps } from "@components/atoms/Table/";
 import type { IocomeType } from "@domain/model/household/IocomeType";
 import type { GetDailyDetailByDateQuery } from "@v3/graphql/household";
-import { FormatPrice } from "@components/molecules/FormatPrice";
 
 type dailyDetailConverterArgs = {
   data: GetDailyDetailByDateQuery | undefined;

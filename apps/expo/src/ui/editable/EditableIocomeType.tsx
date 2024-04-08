@@ -1,7 +1,9 @@
+import { SegmentedControl } from "../SegmentedControl";
+
 import type { IocomeType } from "~/types/iocome-type";
 import type { EditableProps } from "~/ui/editable/editable-props";
+
 import { getLabel, iocomeTypeArray } from "~/types/iocome-type";
-import { SegmentedControl } from "../SegmentedControl";
 
 export const EditableIocomeType = ({
   value,

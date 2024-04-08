@@ -1,7 +1,8 @@
-import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
 import { createClient, fetchExchange } from "@urql/core";
 import { cacheExchange } from "@urql/exchange-graphcache";
 import { registerUrql } from "@urql/next/rsc";
+
+import type { TypedDocumentNode } from "@graphql-typed-document-node/core";
 
 const makeClient = () => {
   return createClient({

@@ -1,6 +1,7 @@
-import type { ImportFileHistory } from "@feature/app/schema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+
+import type { ImportFileHistory } from "@feature/app/schema";
 
 export const useImportFileHistories = () =>
   useImportFileHistoriesState((state) => ({

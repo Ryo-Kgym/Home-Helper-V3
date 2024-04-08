@@ -1,6 +1,8 @@
-import type { FavoriteFilterArgKey } from "../favorite-filter-type";
-import { Picker } from "~/ui/Picker";
 import { favoriteFilterArgKeyArray } from "../favorite-filter-type";
+
+import type { FavoriteFilterArgKey } from "../favorite-filter-type";
+
+import { Picker } from "~/ui/Picker";
 
 export const FavoriteFilterArgKeyPicker = ({
   value,

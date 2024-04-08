@@ -3,9 +3,10 @@
  */
 "use client";
 
-import type { CheckableSelectProps } from "@components/ui";
-import { useState } from "react";
 import { Checkbox } from "@mantine/core";
+import { useState } from "react";
+
+import type { CheckableSelectProps } from "@components/ui";
 
 export const MantineCheckableSelect = <T extends { id: string }>({
   values,

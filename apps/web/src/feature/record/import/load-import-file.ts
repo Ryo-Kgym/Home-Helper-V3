@@ -1,5 +1,6 @@
-import type { ImportFileSettings } from "@feature/app/schema";
 import { decodeCsv, separateRows } from "@provider/file/loader/csv/loadCsvFile";
+
+import type { ImportFileSettings } from "@feature/app/schema";
 
 export const loadImportFile = async (
   file: File,

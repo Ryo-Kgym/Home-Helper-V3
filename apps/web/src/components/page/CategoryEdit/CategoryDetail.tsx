@@ -3,7 +3,6 @@
  */
 "use client";
 
-import { useEffect, useState } from "react";
 import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySegment";
@@ -16,6 +15,7 @@ import {
   useGetCategoryByIdQuery,
   useUpdateCategoryByIdMutation,
 } from "@v3/graphql/household";
+import { useEffect, useState } from "react";
 
 export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   const [inputCategoryName, setInputCategoryName] = useState<string>("");

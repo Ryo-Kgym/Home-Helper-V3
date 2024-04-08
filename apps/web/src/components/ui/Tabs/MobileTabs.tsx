@@ -4,8 +4,9 @@
 
 "use client";
 
-import type { TabsProps } from "@components/ui";
 import { Tabs } from "@mantine/core";
+
+import type { TabsProps } from "@components/ui";
 
 export const MobileTabs = ({ defaultSelect, tabPropsList }: TabsProps) => (
   <Tabs defaultValue={defaultSelect}>

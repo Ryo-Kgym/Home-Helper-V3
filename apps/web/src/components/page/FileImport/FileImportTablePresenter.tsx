@@ -2,12 +2,13 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { TableProps } from "@components/atoms/Table";
-import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import { Modal } from "@components/atoms/Modal";
 import { Table } from "@components/atoms/Table";
 import { IocomeTotal } from "@components/molecules/Total";
 import { SetProperties } from "@components/page/FileImportSetProperties";
+
+import type { TableProps } from "@components/atoms/Table";
+import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 
 type FileImportTablePresenterProps = {
   tableProps: TableProps[];

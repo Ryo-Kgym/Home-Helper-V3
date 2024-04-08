@@ -1,6 +1,7 @@
 import { FlatList, Pressable, Text, View } from "react-native";
 
 import type { Detail } from "~/ui/Details/detail-type";
+
 import { Amount } from "~/ui/Amount";
 import { getBgColor } from "~/ui/Details/get-bg-color";
 

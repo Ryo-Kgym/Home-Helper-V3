@@ -1,5 +1,6 @@
-import type { Detail } from "~/ui";
 import { sortBy } from "./sort-detail";
+
+import type { Detail } from "~/ui";
 
 describe("sortBy.date.asc", () => {
   it("a.date が undefined の場合、0を返す。", () => {

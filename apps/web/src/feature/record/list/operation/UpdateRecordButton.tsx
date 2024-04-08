@@ -1,7 +1,8 @@
-import type { Records } from "@feature/app/schema";
-import type { RecordListMode } from "@feature/record/list/RecordListClient";
 import { notify } from "@components/ui/v4/notify/notify";
 import { useUpdateRecordMutation } from "@v3/graphql/public";
+
+import type { Records } from "@feature/app/schema";
+import type { RecordListMode } from "@feature/record/list/RecordListClient";
 
 export const UpdateRecordButton = ({
   record,

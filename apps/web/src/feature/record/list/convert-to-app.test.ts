@@ -1,7 +1,8 @@
-import type { App } from "@feature/app/schema";
+import { convertToApp } from "./convert-to-app";
 
 import type { GetAppQuery } from "../../../../../../packages/graphql/public/type";
-import { convertToApp } from "./convert-to-app";
+import type { App } from "@feature/app/schema";
+
 
 describe("convertToApp", () => {
   it("converts a GetAppQuery to an App", async () => {
