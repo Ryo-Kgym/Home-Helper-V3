@@ -33,7 +33,7 @@ export const SelectAppClient = ({
   return (
     <>
       <div>
-        <div className={"grid grid-cols-3"}>
+        <div className={"grid grid-cols-4"}>
           {[
             {
               label: "グループ選択へ",
@@ -43,6 +43,10 @@ export const SelectAppClient = ({
             {
               label: "アプリ新規作成",
               onClick: () => push(paths.app.create),
+            },
+            {
+              label: "ビュー新規作成",
+              onClick: () => push(paths.view.create),
             },
             {
               label: "アプリ一覧",

@@ -5,6 +5,9 @@ export const paths = {
     setting: ({ id }: { id: string }) => `/app/setting/${id}`,
     import: ({ id }: { id: string }) => `/app/import/${id}`,
   },
+  view: {
+    create: "/view/create",
+  },
   group: {
     select: "/group",
   },
