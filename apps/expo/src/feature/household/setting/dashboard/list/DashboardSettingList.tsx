@@ -24,9 +24,13 @@ export const DashboardSettingList = () => {
   const setting = getSettings().find((s) => s.id === settingId);
   const { updateOrder } = useUpdateDashboardSettingOrder();
 
-  useEffect(() => {
-    setData(getSettings());
-  }, [visible, addVisible]);
+  useEffect(
+    () => {
+      setData(getSettings());
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [visible, addVisible],
+  );
 
   const updateOrderHandler = async () => {
     try {

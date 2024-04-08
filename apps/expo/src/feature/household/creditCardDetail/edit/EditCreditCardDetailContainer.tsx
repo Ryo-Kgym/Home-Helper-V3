@@ -49,15 +49,19 @@ export const EditCreditCardDetailContainer = ({ id }: { id: string }) => {
     }
   };
 
-  useEffect(() => {
-    setDate(creditCardDetail.date);
-    setIocomeType(creditCardDetail.genre.iocomeType);
-    setGenreId(creditCardDetail.genre.id);
-    setCategoryId(creditCardDetail.category.id);
-    setAccountId(creditCardDetail.account.id);
-    setAmount(creditCardDetail.amount);
-    setMemo(creditCardDetail.memo);
-  }, [loading]);
+  useEffect(
+    () => {
+      setDate(creditCardDetail.date);
+      setIocomeType(creditCardDetail.genre.iocomeType);
+      setGenreId(creditCardDetail.genre.id);
+      setCategoryId(creditCardDetail.category.id);
+      setAccountId(creditCardDetail.account.id);
+      setAmount(creditCardDetail.amount);
+      setMemo(creditCardDetail.memo);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [loading],
+  );
 
   return (
     <EditCreditCardDetailPresenter
