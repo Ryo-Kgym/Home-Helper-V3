@@ -1,6 +1,6 @@
-import { makeColumnsTemplate } from "@feature/app/schema/make-columns-template";
 import { convertToApp } from "@feature/record/list/convert-to-app";
 import { convertToRecords } from "@feature/record/list/convert-to-records";
+import { makeColumnsTemplate } from "@feature/record/list/make-columns-template";
 import { RecordListClient } from "@feature/record/list/RecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetAppDocument } from "@v3/graphql/public/type";
