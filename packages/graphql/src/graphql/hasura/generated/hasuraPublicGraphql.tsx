@@ -676,6 +676,7 @@ export type GroupBoolExp = {
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryBoolExp>;
+  views?: InputMaybe<ViewBoolExp>;
 };
 
 /** Ordering options when selecting data from "group". */
@@ -697,6 +698,7 @@ export type GroupOrderBy = {
   summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
+  viewsAggregate?: InputMaybe<ViewAggregateOrderBy>;
 };
 
 /** select columns of table "group" */
@@ -4290,6 +4292,7 @@ export type UserBoolExp = {
   email?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
+  views?: InputMaybe<ViewBoolExp>;
 };
 
 /** unique or primary key constraints on table "user" */
@@ -4310,6 +4313,7 @@ export type UserInsertInput = {
   email?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
+  views?: InputMaybe<ViewArrRelInsertInput>;
 };
 
 /** input type for inserting object relation for remote table "user" */
@@ -4336,6 +4340,7 @@ export type UserOrderBy = {
   email?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  viewsAggregate?: InputMaybe<ViewAggregateOrderBy>;
 };
 
 /** select columns of table "user" */
@@ -4371,6 +4376,219 @@ export enum UserUpdateColumn {
   /** placeholder (do not use) */
   Placeholder = "_PLACEHOLDER",
 }
+
+/** order by aggregate values of table "view" */
+export type ViewAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<ViewMaxOrderBy>;
+  min?: InputMaybe<ViewMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "view" */
+export type ViewArrRelInsertInput = {
+  data: Array<ViewInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<ViewOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "view". All fields are combined with a logical 'AND'. */
+export type ViewBoolExp = {
+  _and?: InputMaybe<Array<ViewBoolExp>>;
+  _not?: InputMaybe<ViewBoolExp>;
+  _or?: InputMaybe<Array<ViewBoolExp>>;
+  group?: InputMaybe<GroupBoolExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  user?: InputMaybe<UserBoolExp>;
+};
+
+/** unique or primary key constraints on table "view" */
+export enum ViewConstraint {
+  /** unique or primary key constraint on columns "id" */
+  ViewPkey = "view_pkey",
+}
+
+/** Boolean expression to filter rows from the table "view_field". All fields are combined with a logical 'AND'. */
+export type ViewFieldBoolExp = {
+  _and?: InputMaybe<Array<ViewFieldBoolExp>>;
+  _not?: InputMaybe<ViewFieldBoolExp>;
+  _or?: InputMaybe<Array<ViewFieldBoolExp>>;
+  fieldKind?: InputMaybe<StringComparisonExp>;
+  index?: InputMaybe<IntComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  options?: InputMaybe<JsonComparisonExp>;
+};
+
+/** unique or primary key constraints on table "view_field" */
+export enum ViewFieldConstraint {
+  /** unique or primary key constraint on columns "id" */
+  ViewFieldPkey = "view_field_pkey",
+}
+
+/** input type for incrementing numeric columns in table "view_field" */
+export type ViewFieldIncInput = {
+  index?: InputMaybe<Scalars["Int"]>;
+};
+
+/** input type for inserting data into table "view_field" */
+export type ViewFieldInsertInput = {
+  fieldKind?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  index?: InputMaybe<Scalars["Int"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  options?: InputMaybe<Scalars["json"]>;
+  viewId?: InputMaybe<Scalars["String"]>;
+};
+
+/** on_conflict condition type for table "view_field" */
+export type ViewFieldOnConflict = {
+  constraint: ViewFieldConstraint;
+  updateColumns?: Array<ViewFieldUpdateColumn>;
+  where?: InputMaybe<ViewFieldBoolExp>;
+};
+
+/** Ordering options when selecting data from "view_field". */
+export type ViewFieldOrderBy = {
+  fieldKind?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  options?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "view_field" */
+export enum ViewFieldSelectColumn {
+  /** column name */
+  FieldKind = "fieldKind",
+  /** column name */
+  Index = "index",
+  /** column name */
+  Name = "name",
+  /** column name */
+  Options = "options",
+}
+
+/** input type for updating data in table "view_field" */
+export type ViewFieldSetInput = {
+  index?: InputMaybe<Scalars["Int"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  options?: InputMaybe<Scalars["json"]>;
+};
+
+/** Streaming cursor of the table "view_field" */
+export type ViewFieldStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ViewFieldStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ViewFieldStreamCursorValueInput = {
+  fieldKind?: InputMaybe<Scalars["String"]>;
+  index?: InputMaybe<Scalars["Int"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  options?: InputMaybe<Scalars["json"]>;
+};
+
+/** update columns of table "view_field" */
+export enum ViewFieldUpdateColumn {
+  /** column name */
+  Index = "index",
+  /** column name */
+  Name = "name",
+  /** column name */
+  Options = "options",
+}
+
+export type ViewFieldUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<ViewFieldIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ViewFieldSetInput>;
+  /** filter the rows which have to be updated */
+  where: ViewFieldBoolExp;
+};
+
+/** input type for inserting data into table "view" */
+export type ViewInsertInput = {
+  createUserId?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  user?: InputMaybe<UserObjRelInsertInput>;
+};
+
+/** order by max() on columns of table "view" */
+export type ViewMaxOrderBy = {
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "view" */
+export type ViewMinOrderBy = {
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "view" */
+export type ViewOnConflict = {
+  constraint: ViewConstraint;
+  updateColumns?: Array<ViewUpdateColumn>;
+  where?: InputMaybe<ViewBoolExp>;
+};
+
+/** Ordering options when selecting data from "view". */
+export type ViewOrderBy = {
+  group?: InputMaybe<GroupOrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  user?: InputMaybe<UserOrderBy>;
+};
+
+/** primary key columns input for table: view */
+export type ViewPkColumnsInput = {
+  id: Scalars["String"];
+};
+
+/** select columns of table "view" */
+export enum ViewSelectColumn {
+  /** column name */
+  Id = "id",
+  /** column name */
+  Name = "name",
+}
+
+/** input type for updating data in table "view" */
+export type ViewSetInput = {
+  name?: InputMaybe<Scalars["String"]>;
+};
+
+/** Streaming cursor of the table "view" */
+export type ViewStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ViewStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ViewStreamCursorValueInput = {
+  id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
+};
+
+/** update columns of table "view" */
+export enum ViewUpdateColumn {
+  /** column name */
+  Name = "name",
+}
+
+export type ViewUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ViewSetInput>;
+  /** filter the rows which have to be updated */
+  where: ViewBoolExp;
+};
 
 export type AffiliationAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<AffiliationSelectColumn>>;
@@ -4630,6 +4848,23 @@ export type InsertRecordMutationVariables = Exact<{
 export type InsertRecordMutation = {
   __typename?: "mutation_root";
   insertRecordOne?: { __typename: "Record"; id: string } | null;
+};
+
+export type InsertViewMutationVariables = Exact<{
+  viewId: Scalars["String"];
+  name: Scalars["String"];
+  fields: Array<ViewFieldInsertInput> | ViewFieldInsertInput;
+  createUserId: Scalars["String"];
+  groupId: Scalars["String"];
+}>;
+
+export type InsertViewMutation = {
+  __typename?: "mutation_root";
+  insertViewOne?: { __typename: "View"; id: string } | null;
+  insertViewField?: {
+    __typename: "ViewFieldMutationResponse";
+    affectedRows: number;
+  } | null;
 };
 
 export type UpdateAppMutationVariables = Exact<{
@@ -4992,6 +5227,37 @@ export const InsertRecordDocument = gql`
 export function useInsertRecordMutation() {
   return Urql.useMutation<InsertRecordMutation, InsertRecordMutationVariables>(
     InsertRecordDocument,
+  );
+}
+export const InsertViewDocument = gql`
+  mutation insertView(
+    $viewId: String!
+    $name: String!
+    $fields: [ViewFieldInsertInput!]!
+    $createUserId: String!
+    $groupId: String!
+  ) {
+    insertViewOne(
+      object: {
+        id: $viewId
+        name: $name
+        createUserId: $createUserId
+        groupId: $groupId
+      }
+    ) {
+      __typename
+      id
+    }
+    insertViewField(objects: $fields) {
+      __typename
+      affectedRows
+    }
+  }
+`;
+
+export function useInsertViewMutation() {
+  return Urql.useMutation<InsertViewMutation, InsertViewMutationVariables>(
+    InsertViewDocument,
   );
 }
 export const UpdateAppDocument = gql`
