@@ -5,7 +5,7 @@ import { useResetMode } from "@feature/record/list/useModeState";
 import { useAddRecord, useRecords } from "@feature/record/list/useRecordsState";
 import { useInsertRecordMutation } from "@v3/graphql/public";
 
-import type { Columns } from "@feature/app/schema";
+import type { Columns } from "@oneforall/domain/schema";
 
 export const useSaveNewRecord = (appId: string) => {
   const { records } = useRecords();

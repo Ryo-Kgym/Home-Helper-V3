@@ -1,9 +1,7 @@
 import { ShowCellDateFactory } from "@feature/record/list/cell/ShowCellDateFactory";
 import { ShowCellLookupFactory } from "@feature/record/list/cell/ShowCellLookupFactory";
 import { ShowCellSelectBoxFactory } from "@feature/record/list/cell/ShowCellSelectBoxFactory";
-
-import type { Field } from "@feature/app/schema";
-import type { RecordColumn } from "@feature/app/schema/record-schema";
+import { Field, RecordColumn } from "@oneforall/domain/schema";
 
 export const ShowCell = ({
   field,

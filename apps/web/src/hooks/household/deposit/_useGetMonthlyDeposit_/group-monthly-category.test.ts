@@ -2,11 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { MonthlyCategory } from "@hooks/household/deposit/monthlyDeposit";
+
 import { groupMonthlyCategory as testTarget } from "./group-monthly-category";
-
-import type { CategoryDetail } from "./type";
-import type { MonthlyCategory } from "@hooks/household/deposit/monthlyDeposit";
-
+import { CategoryDetail } from "./type";
 
 test("groupMonthlyCategory function should group category details by month", () => {
   const mockCategoryDetail: CategoryDetail = {

@@ -1,6 +1,6 @@
 import { Select } from "@components/ui/v4/select";
 
-import type { LineBreakCode } from "@feature/app/schema";
+import type { LineBreakCode } from "@oneforall/domain/schema";
 
 export const LineBreakCodeSelect = ({
   value,

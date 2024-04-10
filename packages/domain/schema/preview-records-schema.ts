@@ -1,5 +1,6 @@
-import { fieldKindSchema } from "@feature/app/schema/app-schema";
 import { z } from "zod";
+
+import { fieldKindSchema } from "./app-schema";
 
 export const previewColumnSchema = z.object({
   fieldKind: fieldKindSchema,

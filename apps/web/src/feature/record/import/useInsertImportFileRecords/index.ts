@@ -7,8 +7,10 @@ import {
 
 import { convertToRecordObjects } from "./convert-to-record-objects";
 
-import type { ImportFileHistory } from "@feature/app/schema";
-import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
+import type {
+  ImportFileHistory,
+  PreviewRecords,
+} from "@oneforall/domain/schema";
 
 export const useInsertImportFileRecords = ({ appId }: { appId: string }) => {
   const [, mutHistory] = useInsertImportFileHistoryMutation();

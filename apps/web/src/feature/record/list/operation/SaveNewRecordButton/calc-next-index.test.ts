@@ -1,6 +1,6 @@
 import { calcNextIndex } from "./calc-next-index";
 
-import type { Records } from "@feature/app/schema";
+import type { Records } from "@oneforall/domain/schema";
 
 
 describe("calcNextIndex", () => {

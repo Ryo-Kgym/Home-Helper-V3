@@ -1,6 +1,6 @@
 import { Select } from "@components/ui/v4/select";
 
-import type { Quotation } from "@feature/app/schema";
+import type { Quotation } from "@oneforall/domain/schema";
 
 export const QuotationSelect = ({
   value,

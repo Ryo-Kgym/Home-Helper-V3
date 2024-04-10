@@ -9,16 +9,15 @@ import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
 import { SetImportFileSetting } from "@feature/record/import/SetImportFileSetting";
 import { useImportFileHistories } from "@feature/record/import/useImportFileHistoriesState";
 import { useImportFileSettings } from "@feature/record/import/useImportSettingsState";
+import {
+  App,
+  ImportFileHistory,
+  ImportFileSettings,
+} from "@oneforall/domain/schema";
 import { useEffect, useState } from "react";
 
 import { ImportHistoryList } from "./ImportHistoryList";
 import { ImportPreview } from "./ImportPreview";
-
-import type {
-  App,
-  ImportFileHistory,
-  ImportFileSettings,
-} from "@feature/app/schema";
 
 export const RecordImportClient = ({
   app,

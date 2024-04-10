@@ -4,10 +4,9 @@
 
 "use client";
 
+import { User } from "@domain/model/User";
 import { userState } from "@recoil/userState";
 import { useRecoilState } from "recoil";
-
-import type { User } from "@domain/model/User";
 
 export const useUser = () => {
   const [user, setUser] = useRecoilState(userState);

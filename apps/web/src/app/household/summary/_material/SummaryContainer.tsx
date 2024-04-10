@@ -7,12 +7,11 @@
 import { SummaryCategory } from "@app/household/summary/@summaryCategory/index";
 import { MonthlyCategoryContainer } from "@app/household/summary/_material/MonthlyCategoryContainer";
 import { SummaryPresenter } from "@app/household/summary/_material/SummaryPresenter";
+import { TabProps } from "@components/ui";
 import { createMonthNames } from "@function/date/create-month-names";
 import { useDate } from "@hooks/date/useDate";
 import { useFetchSummaryCategoryAmount } from "@hooks/household/summary_category/useFetchSummaryCategoryAmount";
 import { useState } from "react";
-
-import type { TabProps } from "@components/ui";
 
 export const SummaryContainer = () => {
   const { offsetDate } = useDate();

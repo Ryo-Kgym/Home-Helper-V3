@@ -3,7 +3,7 @@ import { NewRecordListRow } from "@feature/record/list/NewRecordListRow";
 import { RecordListRow } from "@feature/record/list/RecordListRow";
 import { useRecords } from "@feature/record/list/useRecordsState";
 
-import type { App } from "@feature/app/schema";
+import type { App } from "@oneforall/domain/schema";
 import type { ComponentProps } from "react";
 
 export const RecordListTable = ({

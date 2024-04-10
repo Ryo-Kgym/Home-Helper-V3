@@ -1,7 +1,7 @@
 import { DateInput } from "@components/ui/v4/dateInput/DateInput";
+import { FieldOptionsDate } from "@oneforall/domain/schema";
 
 import type { ModifyCellFactoryChangeHandler } from "./cell-factory-change-handler";
-import type { FieldOptionsDate } from "@feature/app/schema";
 
 export const ModifyCellDateFactory = ({
   value,

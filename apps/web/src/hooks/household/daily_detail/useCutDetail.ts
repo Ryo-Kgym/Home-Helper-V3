@@ -2,10 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { DailyDetail } from "@domain/model/household/DailyDetail";
 import { useRegisterDailyDetail } from "@hooks/household/daily_detail/useRegisterDailyDetail";
 import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
-
-import type { DailyDetail } from "@domain/model/household/DailyDetail";
 
 export const useCutDetail = ({
   origin,

@@ -3,9 +3,8 @@
  */
 
 import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker/index";
+import { TabProps } from "@components/ui";
 import { Tab } from "@components/ui/Tabs/index";
-
-import type { TabProps } from "@components/ui";
 
 type SummaryPresenterProps = {
   fromMonth: Date | null;

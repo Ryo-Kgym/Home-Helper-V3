@@ -13,7 +13,7 @@ import {
 } from "@feature/record/import/usePreviewRecordsState";
 import { useRef, useState } from "react";
 
-import type { Fields } from "@feature/app/schema";
+import type { Fields } from "@oneforall/domain/schema";
 import type { ChangeEvent } from "react";
 
 export const ImportFilePicker = ({

@@ -1,7 +1,5 @@
-import { recordColumnSchema } from "@feature/app/schema";
-
-import type { PreviewRecords } from "@feature/app/schema";
-import type { RecordInsertInput } from "@v3/graphql/public";
+import { PreviewRecords, recordColumnSchema } from "@oneforall/domain/schema";
+import { RecordInsertInput } from "@v3/graphql/public";
 
 export const convertToRecordObjects = (
   appId: string,

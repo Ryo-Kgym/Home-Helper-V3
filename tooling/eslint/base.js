@@ -68,6 +68,27 @@ const config = {
         ],
       },
     ],
+    "strict-dependencies/strict-dependencies": [
+      "error",
+      [
+        {
+          module: "src/feature",
+          allowReferenceFrom: ["src/app"],
+          allowSameModule: true,
+        },
+        {
+          module: "src/components/ui",
+          allowReferenceFrom: [
+            "src/feature",
+            "src/components/page",
+            "src/components/molecules",
+            "src/components/organisms",
+            "src/app", // NG
+          ],
+          allowSameModule: true,
+        },
+      ],
+    ],
   },
   ignorePatterns: [
     "**/hasuraGraphql.tsx",
@@ -79,6 +100,7 @@ const config = {
     ".next",
     "dist",
     "pnpm-lock.yaml",
+    "tailwind.config.ts",
   ],
   reportUnusedDisableDirectives: true,
 };

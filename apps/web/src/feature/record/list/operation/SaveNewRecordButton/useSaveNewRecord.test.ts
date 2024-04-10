@@ -4,10 +4,9 @@ import { useSaveNewRecord } from "@feature/record/list/operation/SaveNewRecordBu
 import * as useNewRecordState from "@feature/record/list/operation/useNewRecordState";
 import * as useModeState from "@feature/record/list/useModeState";
 import * as useRecordsState from "@feature/record/list/useRecordsState";
+import { Columns } from "@oneforall/domain/schema";
 import { act, renderHook } from "@testing-library/react";
 import * as mut from "@v3/graphql/public";
-
-import type { Columns } from "@feature/app/schema";
 
 jest.mock("@v3/graphql/public");
 jest.mock("@feature/app/function/generate-id");

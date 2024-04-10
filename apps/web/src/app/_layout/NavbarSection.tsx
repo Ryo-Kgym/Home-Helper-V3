@@ -4,11 +4,10 @@
 
 "use client";
 
+import { Navi } from "@app/_layout/navi";
 import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
-
-import type { Navi } from "@app/_layout/navi";
 
 export const NavbarSection = ({
   header,

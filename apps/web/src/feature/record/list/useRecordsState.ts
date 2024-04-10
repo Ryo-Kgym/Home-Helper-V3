@@ -1,7 +1,6 @@
+import { Record, Records } from "@oneforall/domain/schema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-
-import type { Record, Records } from "@feature/app/schema";
 
 export const useRecords = () =>
   useRecordsState((store) => ({

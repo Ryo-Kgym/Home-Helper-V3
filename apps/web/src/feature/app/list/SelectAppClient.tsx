@@ -10,7 +10,7 @@ import { paths } from "@routing/paths";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-import type { AppListType } from "./fetch-app-list";
+import { AppListType } from "./fetch-app-list";
 
 export const SelectAppClient = ({
   groupId,

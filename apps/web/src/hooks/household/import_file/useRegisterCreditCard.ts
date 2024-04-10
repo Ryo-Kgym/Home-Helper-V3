@@ -2,6 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
+import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
@@ -10,8 +11,6 @@ import {
   useCreateCreditCardDetailMutation,
   useCreateCreditCardSummaryMutation,
 } from "@v3/graphql/household";
-
-import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 
 /**
  * Package Private

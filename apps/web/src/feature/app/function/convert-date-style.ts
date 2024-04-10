@@ -1,4 +1,4 @@
-import type { FieldOptionsDateFormat } from "@feature/app/schema";
+import type { FieldOptionsDateFormat } from "@oneforall/domain/schema";
 
 export const convertDateStyle = (
   value: string,

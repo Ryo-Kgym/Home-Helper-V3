@@ -1,13 +1,11 @@
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
+import { Field, RecordColumn, Records } from "@oneforall/domain/schema";
 
+import { ModifyCellFactoryChangeHandler } from "./cell-factory-change-handler";
 import { ModifyCellDateFactory } from "./ModifyCellDateFactory";
 import { ModifyCellLookupFactory } from "./ModifyCellLookupFactory";
-
-import type { ModifyCellFactoryChangeHandler } from "./cell-factory-change-handler";
-import type { Field, Records } from "@feature/app/schema";
-import type { RecordColumn } from "@feature/app/schema/record-schema";
 
 export const ModifyCell = ({
   field,

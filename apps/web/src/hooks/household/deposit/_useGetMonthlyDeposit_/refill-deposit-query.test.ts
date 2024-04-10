@@ -2,11 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { GetDepositQuery } from "@v3/graphql/household";
+
 import { refillDepositQuery as testTarget } from "./refill-deposit-query";
-
-import type { CategoryDetail } from "./type";
-import type { GetDepositQuery } from "@v3/graphql/household";
-
+import { CategoryDetail } from "./type";
 
 describe("refillDepositQuery function", () => {
   it("should correctly transform the provided GetDepositQuery data to CategoryDetail array", () => {

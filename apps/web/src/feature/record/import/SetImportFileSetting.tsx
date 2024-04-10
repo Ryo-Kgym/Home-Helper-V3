@@ -1,13 +1,13 @@
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
 import { NumberInput } from "@components/ui/v4/textInput";
-import { importFileSettingsSchema } from "@feature/app/schema";
 import { EncodingSelect } from "@feature/record/import/EncodingSelect";
 import { EncodingTypeSelect } from "@feature/record/import/EncodingTypeSelect";
 import { LineBreakCodeSelect } from "@feature/record/import/LineBreakCodeSelect";
 import { QuotationSelect } from "@feature/record/import/QuotationSelect";
 import { SplitterSelect } from "@feature/record/import/SplitterSelect";
 import { useImportFileSettings } from "@feature/record/import/useImportSettingsState";
+import { importFileSettingsSchema } from "@oneforall/domain/schema";
 import { useInsertImportFileSettingMutation } from "@v3/graphql/public";
 
 import type { ReactNode } from "react";

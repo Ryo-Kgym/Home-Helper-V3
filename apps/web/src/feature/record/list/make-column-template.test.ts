@@ -1,7 +1,6 @@
+import { Fields } from "@oneforall/domain/schema";
+
 import { makeColumnsTemplate } from "./make-columns-template";
-
-import type { Fields } from "@feature/app/schema";
-
 
 describe("makeRecordTemplate", () => {
   it("should make a record template", () => {

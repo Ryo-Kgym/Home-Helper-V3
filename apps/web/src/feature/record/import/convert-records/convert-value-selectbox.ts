@@ -1,4 +1,4 @@
-import type { FieldOptionsSelectBox } from "@feature/app/schema";
+import { FieldOptionsSelectBox } from "@oneforall/domain/schema";
 
 export const convertValueSelectBox = (
   originalValue: string,

@@ -2,6 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { DailyTotal } from "@domain/model/household/DailyTotal";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { createDateList } from "@hooks/household/iocome/createDateList";
@@ -9,8 +10,6 @@ import {
   useGetCreditCardSummaryByDateQuery,
   useGetTotalBetweenDateQuery,
 } from "@v3/graphql/household";
-
-import type { DailyTotal } from "@domain/model/household/DailyTotal";
 
 export const useGetTotalForMonth = (date: Date) => {
   const { groupId } = useGroup();

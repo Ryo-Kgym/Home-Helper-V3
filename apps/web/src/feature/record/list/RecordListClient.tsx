@@ -1,18 +1,16 @@
 "use client";
 
 import { Title } from "@components/ui/v4/frame/Title";
+import { Table } from "@components/ui/v4/table";
 import { AddRecordButton } from "@feature/nav/AddRecordButton";
 import { RedirectImportButton } from "@feature/nav/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/nav/RedirectSettingButton";
 import { RecordListTable } from "@feature/record/list/RecordListTable";
 import { useResetMode } from "@feature/record/list/useModeState";
 import { useInitRecords } from "@feature/record/list/useRecordsState";
-import { useEffect } from "react";
-
-import type { Table } from "@components/ui/v4/table";
-import type { App } from "@feature/app/schema/app-schema";
-import type { Columns, Records } from "@feature/app/schema/record-schema";
-import type { ComponentProps } from "react";
+import { App } from "@oneforall/domain/schema/app-schema";
+import { Columns, Records } from "@oneforall/domain/schema/record-schema";
+import { ComponentProps, useEffect } from "react";
 
 export type RecordListMode = "add" | "modify" | "show";
 

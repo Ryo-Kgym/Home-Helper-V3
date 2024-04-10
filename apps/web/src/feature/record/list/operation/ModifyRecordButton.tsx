@@ -1,5 +1,5 @@
-import type { Records } from "@feature/app/schema";
-import type { RecordListMode } from "@feature/record/list/RecordListClient";
+import { RecordListMode } from "@feature/record/list/RecordListClient";
+import { Records } from "@oneforall/domain/schema";
 
 export const ModifyRecordButton = ({
   setMode,

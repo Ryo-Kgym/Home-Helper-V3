@@ -2,10 +2,9 @@ import { Table } from "@components/ui/v4/table";
 import { AddCell } from "@feature/record/list/cell/AddCell";
 import { AddRecordRowOperation } from "@feature/record/list/operation/AddRecordRowOperation";
 import { useNewRecord } from "@feature/record/list/operation/useNewRecordState";
+import { App } from "@oneforall/domain/schema";
 
 import { useMode } from "./useModeState";
-
-import type { App } from "@feature/app/schema";
 
 export const NewRecordListRow = ({ app }: { app: App }) => {
   const { record, setRecord } = useNewRecord();

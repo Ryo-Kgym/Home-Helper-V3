@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { CategoryDetail } from "@hooks/household/deposit/_useGetMonthlyDeposit_/type";
-import type { MonthlyCategory } from "@hooks/household/deposit/monthlyDeposit";
+import { CategoryDetail } from "@hooks/household/deposit/_useGetMonthlyDeposit_/type";
+import { MonthlyCategory } from "@hooks/household/deposit/monthlyDeposit";
 
 /**
  * Calculates the monthly amount for a given category and year-month.

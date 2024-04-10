@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-import type { ImportFileHistory } from "@feature/app/schema";
+import type { ImportFileHistory } from "@oneforall/domain/schema";
 
 export const useImportFileHistories = () =>
   useImportFileHistoriesState((state) => ({

@@ -1,7 +1,6 @@
 import { convertToRecords } from "@feature/record/list/convert-to-records";
+import { FieldOptionsLookup } from "@oneforall/domain/schema";
 import { useGetRecordsQuery } from "@v3/graphql/public";
-
-import type { FieldOptionsLookup } from "@feature/app/schema";
 
 export const useGetLookupOptions = ({
   options: { appId, selectFieldId, saveFieldId },

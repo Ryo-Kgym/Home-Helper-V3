@@ -1,6 +1,5 @@
+import { DetailType } from "./detail-type";
 import { getBgColor } from "./get-bg-color";
-
-import type { DetailType } from "./detail-type";
 
 describe("getBgColor", () => {
   const testData: {

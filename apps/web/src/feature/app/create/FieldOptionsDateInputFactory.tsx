@@ -7,7 +7,7 @@ import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
 import type {
   FieldOptionsDate,
   FieldOptionsDateFormat,
-} from "@feature/app/schema";
+} from "@oneforall/domain/schema";
 
 export const FieldOptionsDateInputFactory = ({
   value,

@@ -1,7 +1,6 @@
+import { PreviewRecords } from "@oneforall/domain/schema";
+
 import { convertToRecordObjects } from "./convert-to-record-objects";
-
-import type { PreviewRecords } from "@feature/app/schema/preview-records-schema";
-
 
 describe("convertToRecordObjects", () => {
   it("should convert to record objects", () => {

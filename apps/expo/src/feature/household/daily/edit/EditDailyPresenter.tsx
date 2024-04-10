@@ -6,8 +6,7 @@ import {
   View,
 } from "react-native";
 
-import type { IocomeType } from "~/types/iocome-type";
-
+import { IocomeType } from "~/types/iocome-type";
 import {
   DeleteButton,
   EditableAccount,

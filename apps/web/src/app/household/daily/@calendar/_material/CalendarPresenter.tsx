@@ -5,8 +5,7 @@
 import { Day } from "@app/household/daily/@calendar/_material/day";
 import { DateSelectButton } from "@components/ui";
 import { MonthPicker } from "@components/ui/date";
-
-import type { DailyTotal } from "@domain/model/household/DailyTotal";
+import { DailyTotal } from "@domain/model/household/DailyTotal";
 
 type CalendarPresenterProps = {
   baseDate: Date | null;

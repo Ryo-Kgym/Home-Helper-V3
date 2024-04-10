@@ -5,6 +5,7 @@
 "use client";
 
 import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
+import { TableProps } from "@components/atoms/Table";
 import { FormatPrice } from "@components/molecules/FormatPrice/index";
 import { DailyTableByGenre } from "@components/organisms/daily_table/genre/index";
 import { IocomeType } from "@domain/model/household/IocomeType";
@@ -13,8 +14,6 @@ import { useGetGenreTotalByMonth } from "@hooks/household/genre/useGetGenreTotal
 import { useState } from "react";
 
 import { GenrePresenter } from "./GenrePresenter";
-
-import type { TableProps } from "@components/atoms/Table";
 
 export const GenreContainer = () => {
   const [fromMonth, setFromMonth] = useState<Date | null>(new Date());

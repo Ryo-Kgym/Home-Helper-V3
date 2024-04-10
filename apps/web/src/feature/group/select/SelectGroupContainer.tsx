@@ -5,13 +5,12 @@
 "use client";
 
 import { LinkList } from "@components/atoms/Card";
+import { Group } from "@domain/model/Group";
+import { User } from "@domain/model/User";
 import { useAuth } from "@hooks/authentication/useAuth";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
 import { saveUser } from "persistence/browser/client";
-
-import type { Group } from "@domain/model/Group";
-import type { User } from "@domain/model/User";
 
 export const SelectGroupContainer = ({
   user,

@@ -2,13 +2,12 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { TransferListItem } from "@components/ui";
 import { useGroup } from "@hooks/group/useGroup";
 import {
   useGetAllCategoryListWithCriteriaQuery,
   useGetSummaryCategoriesQuery,
 } from "@v3/graphql/household";
-
-import type { TransferListItem } from "@components/ui";
 
 export const useGetSummaryCategories = () => {
   const { groupId } = useGroup();

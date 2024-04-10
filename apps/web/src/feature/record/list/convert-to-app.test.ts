@@ -1,8 +1,7 @@
+import { App } from "@oneforall/domain/schema";
+import { GetAppQuery } from "@v3/graphql/public/type";
+
 import { convertToApp } from "./convert-to-app";
-
-import type { GetAppQuery } from "../../../../../../packages/graphql/public/type";
-import type { App } from "@feature/app/schema";
-
 
 describe("convertToApp", () => {
   it("converts a GetAppQuery to an App", async () => {

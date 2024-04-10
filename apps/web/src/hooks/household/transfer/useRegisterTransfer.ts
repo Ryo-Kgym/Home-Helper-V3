@@ -2,6 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { IocomeType } from "@domain/model/household/IocomeType";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
@@ -10,8 +11,6 @@ import {
   useCreateDailyDetailMutation,
   useGetTransferCategoryByQuery,
 } from "@v3/graphql/household";
-
-import type { IocomeType } from "@domain/model/household/IocomeType";
 
 export const useRegisterTransfer = ({
   date,

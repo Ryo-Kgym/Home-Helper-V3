@@ -9,8 +9,7 @@ import "@mantine/dates/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript } from "@mantine/core";
 import { ClientsProviders } from "app/_provider/ClientsProviders";
-
-import type { Metadata } from "next";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "One for All",

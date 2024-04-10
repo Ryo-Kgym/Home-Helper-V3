@@ -6,12 +6,11 @@
 
 import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 import { DailyTableByAccount } from "@components/organisms/daily_table/account";
+import { TableProps } from "@components/ui";
 import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
 import { useState } from "react";
 
 import { AccountPresenter } from "./AccountPresenter";
-
-import type { TableProps } from "@components/ui";
 
 const FIRST_DATE = new Date("2019-01-01");
 
