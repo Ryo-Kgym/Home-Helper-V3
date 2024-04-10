@@ -13,16 +13,17 @@ const config = {
   },
   parser: "@typescript-eslint/parser",
   parserOptions: { project: true },
-  plugins: ["@typescript-eslint", "import", "import-access"],
+  plugins: [
+    "@typescript-eslint",
+    "import",
+    "import-access",
+    "strict-dependencies",
+  ],
   rules: {
     "turbo/no-undeclared-env-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-    ],
-    "@typescript-eslint/consistent-type-imports": [
-      "warn",
-      { prefer: "type-imports", fixStyle: "separate-type-imports" },
     ],
     "@typescript-eslint/no-misused-promises": [
       2,
