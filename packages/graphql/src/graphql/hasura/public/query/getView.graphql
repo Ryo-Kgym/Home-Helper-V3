@@ -1,0 +1,15 @@
+query getView($viewId: String!) {
+  view: viewByPk(id: $viewId) {
+    __typename
+    id
+    name
+    viewFields(orderBy: [{ index: ASC }]) {
+      __typename
+      id
+      name
+      index
+      fieldKind
+      options
+    }
+  }
+}

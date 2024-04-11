@@ -649,6 +649,8 @@ export type GroupBoolExp = {
   dashboardSettings?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
+  favoriteFilters?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
+  favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateBoolExp>;
   genres?: InputMaybe<HouseholdGenreBoolExp>;
   genresAggregate?: InputMaybe<HouseholdGenreAggregateBoolExp>;
   groupApplications?: InputMaybe<GroupApplicationBoolExp>;
@@ -676,6 +678,7 @@ export type GroupOrderBy = {
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   dashboardSettingsAggregate?: InputMaybe<HouseholdDashboardSettingAggregateOrderBy>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
+  favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateOrderBy>;
   genresAggregate?: InputMaybe<HouseholdGenreAggregateOrderBy>;
   groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
   id?: InputMaybe<OrderBy>;
@@ -2553,6 +2556,17 @@ export type HouseholdDepositCategoryStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["String"]>;
 };
 
+export type HouseholdFavoriteFilterAggregateBoolExp = {
+  count?: InputMaybe<HouseholdFavoriteFilterAggregateBoolExpCount>;
+};
+
+/** order by aggregate values of table "household.favorite_filter" */
+export type HouseholdFavoriteFilterAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdFavoriteFilterMaxOrderBy>;
+  min?: InputMaybe<HouseholdFavoriteFilterMinOrderBy>;
+};
+
 export type HouseholdFavoriteFilterArgsAggregateBoolExp = {
   count?: InputMaybe<HouseholdFavoriteFilterArgsAggregateBoolExpCount>;
 };
@@ -2692,6 +2706,20 @@ export type HouseholdFavoriteFilterInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "household.favorite_filter" */
+export type HouseholdFavoriteFilterMaxOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "household.favorite_filter" */
+export type HouseholdFavoriteFilterMinOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
 };
 
 /** input type for inserting object relation for remote table "household.favorite_filter" */
@@ -4322,6 +4350,7 @@ export type ViewBoolExp = {
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
   user?: InputMaybe<UserBoolExp>;
+  viewFields?: InputMaybe<ViewFieldBoolExp>;
 };
 
 /** unique or primary key constraints on table "view" */
@@ -4329,15 +4358,44 @@ export type ViewConstraint =
   /** unique or primary key constraint on columns "id" */
   "view_pkey";
 
+/** order by aggregate values of table "view_field" */
+export type ViewFieldAggregateOrderBy = {
+  avg?: InputMaybe<ViewFieldAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<ViewFieldMaxOrderBy>;
+  min?: InputMaybe<ViewFieldMinOrderBy>;
+  stddev?: InputMaybe<ViewFieldStddevOrderBy>;
+  stddevPop?: InputMaybe<ViewFieldStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<ViewFieldStddevSampOrderBy>;
+  sum?: InputMaybe<ViewFieldSumOrderBy>;
+  varPop?: InputMaybe<ViewFieldVarPopOrderBy>;
+  varSamp?: InputMaybe<ViewFieldVarSampOrderBy>;
+  variance?: InputMaybe<ViewFieldVarianceOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "view_field" */
+export type ViewFieldArrRelInsertInput = {
+  data: Array<ViewFieldInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<ViewFieldOnConflict>;
+};
+
+/** order by avg() on columns of table "view_field" */
+export type ViewFieldAvgOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
 /** Boolean expression to filter rows from the table "view_field". All fields are combined with a logical 'AND'. */
 export type ViewFieldBoolExp = {
   _and?: InputMaybe<Array<ViewFieldBoolExp>>;
   _not?: InputMaybe<ViewFieldBoolExp>;
   _or?: InputMaybe<Array<ViewFieldBoolExp>>;
   fieldKind?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
   index?: InputMaybe<IntComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
   options?: InputMaybe<JsonComparisonExp>;
+  view?: InputMaybe<ViewBoolExp>;
 };
 
 /** unique or primary key constraints on table "view_field" */
@@ -4357,7 +4415,24 @@ export type ViewFieldInsertInput = {
   index?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
   options?: InputMaybe<Scalars["json"]>;
+  view?: InputMaybe<ViewObjRelInsertInput>;
   viewId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "view_field" */
+export type ViewFieldMaxOrderBy = {
+  fieldKind?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "view_field" */
+export type ViewFieldMinOrderBy = {
+  fieldKind?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  index?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
 };
 
 /** on_conflict condition type for table "view_field" */
@@ -4370,15 +4445,24 @@ export type ViewFieldOnConflict = {
 /** Ordering options when selecting data from "view_field". */
 export type ViewFieldOrderBy = {
   fieldKind?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
   index?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
   options?: InputMaybe<OrderBy>;
+  view?: InputMaybe<ViewOrderBy>;
+};
+
+/** primary key columns input for table: view_field */
+export type ViewFieldPkColumnsInput = {
+  id: Scalars["String"];
 };
 
 /** select columns of table "view_field" */
 export type ViewFieldSelectColumn =
   /** column name */
   | "fieldKind"
+  /** column name */
+  | "id"
   /** column name */
   | "index"
   /** column name */
@@ -4393,6 +4477,21 @@ export type ViewFieldSetInput = {
   options?: InputMaybe<Scalars["json"]>;
 };
 
+/** order by stddev() on columns of table "view_field" */
+export type ViewFieldStddevOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "view_field" */
+export type ViewFieldStddevPopOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "view_field" */
+export type ViewFieldStddevSampOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
 /** Streaming cursor of the table "view_field" */
 export type ViewFieldStreamCursorInput = {
   /** Stream column input with initial value */
@@ -4404,9 +4503,15 @@ export type ViewFieldStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type ViewFieldStreamCursorValueInput = {
   fieldKind?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
   index?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
   options?: InputMaybe<Scalars["json"]>;
+};
+
+/** order by sum() on columns of table "view_field" */
+export type ViewFieldSumOrderBy = {
+  index?: InputMaybe<OrderBy>;
 };
 
 /** update columns of table "view_field" */
@@ -4427,6 +4532,21 @@ export type ViewFieldUpdates = {
   where: ViewFieldBoolExp;
 };
 
+/** order by varPop() on columns of table "view_field" */
+export type ViewFieldVarPopOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "view_field" */
+export type ViewFieldVarSampOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "view_field" */
+export type ViewFieldVarianceOrderBy = {
+  index?: InputMaybe<OrderBy>;
+};
+
 /** input type for inserting data into table "view" */
 export type ViewInsertInput = {
   createUserId?: InputMaybe<Scalars["String"]>;
@@ -4434,6 +4554,7 @@ export type ViewInsertInput = {
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
+  viewFields?: InputMaybe<ViewFieldArrRelInsertInput>;
 };
 
 /** order by max() on columns of table "view" */
@@ -4446,6 +4567,13 @@ export type ViewMaxOrderBy = {
 export type ViewMinOrderBy = {
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+};
+
+/** input type for inserting object relation for remote table "view" */
+export type ViewObjRelInsertInput = {
+  data: ViewInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<ViewOnConflict>;
 };
 
 /** on_conflict condition type for table "view" */
@@ -4461,6 +4589,7 @@ export type ViewOrderBy = {
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
   user?: InputMaybe<UserOrderBy>;
+  viewFieldsAggregate?: InputMaybe<ViewFieldAggregateOrderBy>;
 };
 
 /** primary key columns input for table: view */
@@ -4591,6 +4720,13 @@ export type HouseholdDepositCategoryAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  predicate: IntComparisonExp;
+};
+
+export type HouseholdFavoriteFilterAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdFavoriteFilterSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
   predicate: IntComparisonExp;
 };
 
@@ -4965,6 +5101,40 @@ export type GetRecordsQuery = {
     index: number;
     columns: any;
   }>;
+};
+
+export type GetViewQueryVariables = Exact<{
+  viewId: Scalars["String"];
+}>;
+
+export type GetViewQuery = {
+  __typename?: "query_root";
+  view?: {
+    __typename: "View";
+    id: string;
+    name: string;
+    viewFields: Array<{
+      __typename: "ViewField";
+      id: string;
+      name: string;
+      index: number;
+      fieldKind: string;
+      options?: any | null;
+    }>;
+  } | null;
+};
+
+export type GetViewsQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetViewsQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    id: string;
+    views: Array<{ __typename?: "View"; id: string; name: string }>;
+  } | null;
 };
 
 export const FragRecordsFragmentDoc = {
@@ -7137,3 +7307,165 @@ export const GetRecordsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetRecordsQuery, GetRecordsQueryVariables>;
+export const GetViewDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getView" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "viewId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "view" },
+            name: { kind: "Name", value: "viewByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "viewId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "viewFields" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ListValue",
+                        values: [
+                          {
+                            kind: "ObjectValue",
+                            fields: [
+                              {
+                                kind: "ObjectField",
+                                name: { kind: "Name", value: "index" },
+                                value: { kind: "EnumValue", value: "ASC" },
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "index" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "fieldKind" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "options" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetViewQuery, GetViewQueryVariables>;
+export const GetViewsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getViews" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "group" },
+            name: { kind: "Name", value: "groupByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "groupId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "views" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetViewsQuery, GetViewsQueryVariables>;

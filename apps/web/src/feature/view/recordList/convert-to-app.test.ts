@@ -1,7 +1,7 @@
-import { View } from "@oneforall/domain/schema";
+import { View } from "@oneforall/domain/schema/view/view-schema";
 import { GetViewQuery } from "@v3/graphql/public/type";
 
-import { convertToView } from "./convert-to-view";
+import { convertToView } from "./convert-to-app";
 
 describe("convertToView", () => {
   it("converts a GetViewQuery to an View", async () => {
@@ -10,9 +10,9 @@ describe("convertToView", () => {
         __typename: "View",
         id: "1",
         name: "My View",
-        fields: [
+        viewFields: [
           {
-            __typename: "Field",
+            __typename: "ViewField",
             id: "11111",
             index: 1,
             name: "Field 1",
@@ -20,7 +20,7 @@ describe("convertToView", () => {
             options: {},
           },
           {
-            __typename: "Field",
+            __typename: "ViewField",
             id: "22222",
             index: 2,
             name: "Field 2",
@@ -39,7 +39,6 @@ describe("convertToView", () => {
             },
           },
         ],
-        records: [],
       },
     };
 

@@ -7,6 +7,7 @@ export const paths = {
   },
   view: {
     create: "/view/create",
+    show: ({ id }: { id: string }) => `/view/show/${id}`,
   },
   group: {
     select: "/group",

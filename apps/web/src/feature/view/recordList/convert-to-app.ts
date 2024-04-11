@@ -1,5 +1,9 @@
-import { fieldsSchema, viewSchema } from "@oneforall/domain/schema";
-import { Fields, View } from "@oneforall/domain/schema/view-schema";
+import {
+  Fields,
+  fieldsSchema,
+  View,
+  viewSchema,
+} from "@oneforall/domain/schema/view/view-schema";
 import { GetViewQuery } from "@v3/graphql/public/type";
 
 export const convertToView = (data: GetViewQuery): View => {
@@ -7,7 +11,7 @@ export const convertToView = (data: GetViewQuery): View => {
     throw new Error("View data is not found");
   }
 
-  const fieldsData = data.view.fields.reduce(
+  const fieldsData = data.view.viewFields.reduce(
     (acc, f) =>
       ({
         ...acc,
