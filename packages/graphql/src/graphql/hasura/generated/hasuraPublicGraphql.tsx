@@ -170,6 +170,7 @@ export type AppBoolExp = {
   records?: InputMaybe<RecordBoolExp>;
   recordsAggregate?: InputMaybe<RecordAggregateBoolExp>;
   user?: InputMaybe<UserBoolExp>;
+  viewApps?: InputMaybe<ViewAppBoolExp>;
 };
 
 /** unique or primary key constraints on table "app" */
@@ -189,6 +190,7 @@ export type AppInsertInput = {
   name?: InputMaybe<Scalars["String"]>;
   records?: InputMaybe<RecordArrRelInsertInput>;
   user?: InputMaybe<UserObjRelInsertInput>;
+  viewApps?: InputMaybe<ViewAppArrRelInsertInput>;
 };
 
 /** order by max() on columns of table "app" */
@@ -233,6 +235,7 @@ export type AppOrderBy = {
   name?: InputMaybe<OrderBy>;
   recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
   user?: InputMaybe<UserOrderBy>;
+  viewAppsAggregate?: InputMaybe<ViewAppAggregateOrderBy>;
 };
 
 /** primary key columns input for table: app */
@@ -4412,6 +4415,114 @@ export type ViewAggregateOrderBy = {
   min?: InputMaybe<ViewMinOrderBy>;
 };
 
+/** order by aggregate values of table "view_app" */
+export type ViewAppAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<ViewAppMaxOrderBy>;
+  min?: InputMaybe<ViewAppMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "view_app" */
+export type ViewAppArrRelInsertInput = {
+  data: Array<ViewAppInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<ViewAppOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "view_app". All fields are combined with a logical 'AND'. */
+export type ViewAppBoolExp = {
+  _and?: InputMaybe<Array<ViewAppBoolExp>>;
+  _not?: InputMaybe<ViewAppBoolExp>;
+  _or?: InputMaybe<Array<ViewAppBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
+  appId?: InputMaybe<StringComparisonExp>;
+  fields?: InputMaybe<JsonComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  view?: InputMaybe<ViewBoolExp>;
+  viewId?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "view_app" */
+export enum ViewAppConstraint {
+  /** unique or primary key constraint on columns "id" */
+  ViewAppPkey = "view_app_pkey",
+}
+
+/** input type for inserting data into table "view_app" */
+export type ViewAppInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
+  appId?: InputMaybe<Scalars["String"]>;
+  fields?: InputMaybe<Scalars["json"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  view?: InputMaybe<ViewObjRelInsertInput>;
+  viewId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "view_app" */
+export type ViewAppMaxOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  viewId?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "view_app" */
+export type ViewAppMinOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  viewId?: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "view_app" */
+export type ViewAppOnConflict = {
+  constraint: ViewAppConstraint;
+  updateColumns?: Array<ViewAppUpdateColumn>;
+  where?: InputMaybe<ViewAppBoolExp>;
+};
+
+/** Ordering options when selecting data from "view_app". */
+export type ViewAppOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
+  appId?: InputMaybe<OrderBy>;
+  fields?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  view?: InputMaybe<ViewOrderBy>;
+  viewId?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "view_app" */
+export enum ViewAppSelectColumn {
+  /** column name */
+  AppId = "appId",
+  /** column name */
+  Fields = "fields",
+  /** column name */
+  Id = "id",
+  /** column name */
+  ViewId = "viewId",
+}
+
+/** Streaming cursor of the table "view_app" */
+export type ViewAppStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ViewAppStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ViewAppStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  fields?: InputMaybe<Scalars["json"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  viewId?: InputMaybe<Scalars["String"]>;
+};
+
+/** placeholder for update columns of table "view_app" (current role has no relevant permissions) */
+export enum ViewAppUpdateColumn {
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
+}
+
 /** input type for inserting array relation for remote table "view" */
 export type ViewArrRelInsertInput = {
   data: Array<ViewInsertInput>;
@@ -4428,6 +4539,7 @@ export type ViewBoolExp = {
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
   user?: InputMaybe<UserBoolExp>;
+  viewApps?: InputMaybe<ViewAppBoolExp>;
   viewFields?: InputMaybe<ViewFieldBoolExp>;
 };
 
@@ -4636,6 +4748,7 @@ export type ViewInsertInput = {
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
+  viewApps?: InputMaybe<ViewAppArrRelInsertInput>;
   viewFields?: InputMaybe<ViewFieldArrRelInsertInput>;
 };
 
@@ -4671,6 +4784,7 @@ export type ViewOrderBy = {
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
   user?: InputMaybe<UserOrderBy>;
+  viewAppsAggregate?: InputMaybe<ViewAppAggregateOrderBy>;
   viewFieldsAggregate?: InputMaybe<ViewFieldAggregateOrderBy>;
 };
 
@@ -5036,6 +5150,18 @@ export type UpdateRecordMutationVariables = Exact<{
 export type UpdateRecordMutation = {
   __typename?: "mutation_root";
   updateRecordByPk?: { __typename?: "Record"; id: string } | null;
+};
+
+export type UpdateViewMutationVariables = Exact<{
+  viewAppObjects: Array<ViewAppInsertInput> | ViewAppInsertInput;
+}>;
+
+export type UpdateViewMutation = {
+  __typename?: "mutation_root";
+  insertViewApp?: {
+    __typename?: "ViewAppMutationResponse";
+    affectedRows: number;
+  } | null;
 };
 
 export type GetUserByEmailQueryVariables = Exact<{
@@ -5473,6 +5599,22 @@ export const UpdateRecordDocument = gql`
 export function useUpdateRecordMutation() {
   return Urql.useMutation<UpdateRecordMutation, UpdateRecordMutationVariables>(
     UpdateRecordDocument,
+  );
+}
+export const UpdateViewDocument = gql`
+  mutation updateView($viewAppObjects: [ViewAppInsertInput!]!) {
+    insertViewApp(
+      objects: $viewAppObjects
+      onConflict: { constraint: view_app_pkey, updateColumns: [] }
+    ) {
+      affectedRows
+    }
+  }
+`;
+
+export function useUpdateViewMutation() {
+  return Urql.useMutation<UpdateViewMutation, UpdateViewMutationVariables>(
+    UpdateViewDocument,
   );
 }
 export const GetUserByEmailDocument = gql`
