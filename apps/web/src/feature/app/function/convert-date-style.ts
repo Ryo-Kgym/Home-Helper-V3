@@ -6,16 +6,20 @@ export const convertDateStyle = (
   locale?: "ja-JP",
   timeZone?: "JST",
 ) => {
+  if (!value) {
+    return "";
+  }
+
   const date = new Date(value);
 
   return new Intl.DateTimeFormat(locale, {
-    dateStyle: typeMappper[format],
+    dateStyle: typeMapper[format],
     timeZone,
   }).format(date);
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat
-const typeMappper: Record<
+const typeMapper: Record<
   FieldOptionsDateFormat,
   "full" | "long" | "medium" | "short" | undefined
 > = {
