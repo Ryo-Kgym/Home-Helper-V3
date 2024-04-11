@@ -1,5 +1,5 @@
-import { Feather } from "@expo/vector-icons";
 import { Pressable, View } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 export const ButtonFilter = ({
   pressHandler,

@@ -1,5 +1,5 @@
-import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { Stack, Tabs } from "expo-router";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 
 const Layout = () => (
   <>

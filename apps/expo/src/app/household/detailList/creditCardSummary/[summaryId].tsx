@@ -1,5 +1,5 @@
-import { Stack, useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
+import { Stack, useLocalSearchParams } from "expo-router";
 
 import { DetailListByCreditCardSummary } from "~/feature/household/detailList";
 import { useGetCreditCardSummaryById } from "~/hooks/household/credit_card/useGetCreditCardSummaryById";

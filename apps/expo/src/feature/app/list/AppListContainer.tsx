@@ -1,10 +1,9 @@
-import { useGetApplicationsQuery } from "@v3/graphql/public";
 import { Text } from "react-native";
-
-import { AppListPresenter } from "./AppListPresenter";
+import { useGetApplicationsQuery } from "@v3/graphql/public";
 
 import { paths } from "~/app/paths";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { AppListPresenter } from "./AppListPresenter";
 
 export const AppListContainer = () => {
   const { groupId } = useSaveGroupId();

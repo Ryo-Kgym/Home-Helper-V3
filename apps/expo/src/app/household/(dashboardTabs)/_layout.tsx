@@ -1,5 +1,5 @@
-import { AntDesign, Entypo, Octicons } from "@expo/vector-icons";
 import { Stack, Tabs } from "expo-router";
+import { AntDesign, Entypo, Octicons } from "@expo/vector-icons";
 
 const Layout = () => (
   <>

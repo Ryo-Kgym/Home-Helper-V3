@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
 
-import { useEditFavoriteFilter } from "./useEditFavoriteFilter";
-
 import { UpdateButton } from "~/ui";
 import { TextField } from "~/ui/TextField";
+import { useEditFavoriteFilter } from "./useEditFavoriteFilter";
 
 export const EditFavoriteFilter = ({
   filter,

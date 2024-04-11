@@ -1,6 +1,5 @@
-import { View } from "react-native";
-
 import type { ReactNode } from "react";
+import { View } from "react-native";
 
 export const FiledFrame = ({ children }: { children: ReactNode }) => {
   return (

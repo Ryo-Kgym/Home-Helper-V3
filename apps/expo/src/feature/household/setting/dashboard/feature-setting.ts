@@ -1,5 +1,4 @@
 import type { ArgsType, Feature } from "./type";
-
 import { BalanceBox } from "~/feature/household/dashboard/BalanceBox";
 import { CategoryRankingBox } from "~/feature/household/dashboard/CategoryRankingBox";
 import { FavoriteFilterBox } from "~/feature/household/dashboard/FavoriteFilterBox";

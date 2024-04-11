@@ -2,7 +2,6 @@ import { useGetDailyDetailByDateQuery } from "@v3/graphql/household";
 
 import type { Daily } from "~/hooks/household/daily/daily";
 import type { IocomeType } from "~/types/iocome-type";
-
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
 
 export const useGetDailyList = ({

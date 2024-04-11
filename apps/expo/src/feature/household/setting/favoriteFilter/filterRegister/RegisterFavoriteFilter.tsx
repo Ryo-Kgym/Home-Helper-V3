@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
 
-import { useRegisterFavoriteFilter } from "./useRegisterFavoriteFilter";
-
 import { RegisterButton } from "~/ui";
 import { TextField } from "~/ui/TextField";
+import { useRegisterFavoriteFilter } from "./useRegisterFavoriteFilter";
 
 export const RegisterFavoriteFilter = () => {
   const [filterName, setFilterName] = useState<string>("");

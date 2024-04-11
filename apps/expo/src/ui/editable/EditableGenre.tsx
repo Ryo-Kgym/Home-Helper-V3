@@ -1,13 +1,11 @@
-import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
 import { useEffect } from "react";
 import { Text, View } from "react-native";
-
-import { Picker } from "../Picker";
+import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
 
 import type { IocomeType } from "~/types/iocome-type";
 import type { EditableProps } from "~/ui/editable/editable-props";
-
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { Picker } from "../Picker";
 
 export const EditableGenre = ({
   value,

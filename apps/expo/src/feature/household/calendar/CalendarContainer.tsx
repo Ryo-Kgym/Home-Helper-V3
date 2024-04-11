@@ -1,12 +1,11 @@
-import { useRouter } from "expo-router";
 import { View } from "react-native";
-
-import { CalendarPresenter } from "./CalendarPresenter";
-import { generateCalendar } from "./generate-calendar";
+import { useRouter } from "expo-router";
 
 import { paths } from "~/app/paths";
 import { useGetDetails } from "~/hooks/household/detail/useGetDetails";
 import { Details, Total } from "~/ui";
+import { CalendarPresenter } from "./CalendarPresenter";
+import { generateCalendar } from "./generate-calendar";
 
 export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   const { push } = useRouter();

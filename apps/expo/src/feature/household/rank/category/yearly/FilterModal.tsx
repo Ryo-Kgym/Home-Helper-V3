@@ -1,7 +1,6 @@
 import { Text, View } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
-
 import { EditableIocomeType, EditableYear, FilterButton, Modal } from "~/ui";
 
 export const FilterModal = ({

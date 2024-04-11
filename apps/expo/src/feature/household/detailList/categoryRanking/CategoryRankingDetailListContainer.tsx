@@ -1,6 +1,5 @@
-import { useRouter } from "expo-router";
-
 import type { ComponentProps } from "react";
+import { useRouter } from "expo-router";
 
 import { paths } from "~/app/paths";
 import { getMonth } from "~/func/date/get-month";

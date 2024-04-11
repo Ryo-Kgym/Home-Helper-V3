@@ -1,10 +1,9 @@
 import { Text, View } from "react-native";
 
-import { DashboardFrame } from "./DashboardFrame";
-
 import { paths } from "~/app/paths";
 import { getMonth } from "~/func/date/get-month";
 import { useCalcTotal } from "~/hooks/household/detail/useCalcTotal";
+import { DashboardFrame } from "./DashboardFrame";
 
 export const MonthlyBox = ({ month }: { month: Date }) => {
   const { firstDayOfMonth, lastDayOfMonth, month: monthNum } = getMonth(month);

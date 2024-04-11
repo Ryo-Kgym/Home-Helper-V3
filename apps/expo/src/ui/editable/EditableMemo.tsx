@@ -1,7 +1,6 @@
 import { TextInput } from "react-native";
 
 import type { EditableProps } from "~/ui/editable/editable-props";
-
 import { FiledFrame } from "~/ui/FiledFrame";
 
 export const EditableMemo = ({

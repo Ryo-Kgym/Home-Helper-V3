@@ -1,10 +1,9 @@
-import { useGetAccountBalanceListQuery } from "@v3/graphql/household";
 import { Text, View } from "react-native";
-
-import { DashboardFrame } from "./DashboardFrame";
+import { useGetAccountBalanceListQuery } from "@v3/graphql/household";
 
 import { paths } from "~/app/paths";
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { DashboardFrame } from "./DashboardFrame";
 
 export const BalanceBox = () => {
   const today = new Date();

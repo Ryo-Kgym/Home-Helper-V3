@@ -2,7 +2,6 @@ import { Text, View } from "react-native";
 
 import type { GenreType } from "~/types/genre-type";
 import type { IocomeType } from "~/types/iocome-type";
-
 import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";
 import { getMonth } from "~/func/date/get-month";

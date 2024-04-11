@@ -1,5 +1,5 @@
-import { AntDesign } from "@expo/vector-icons";
 import { View } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 import { paths } from "~/app/paths";
 import { DashboardFrame } from "~/feature/household/dashboard/DashboardFrame";

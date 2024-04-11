@@ -1,11 +1,9 @@
-import { useGetValidCategoryByGenreIdQuery } from "@v3/graphql/household";
 import { useEffect } from "react";
-
-import { Picker } from "../Picker";
+import { useGetValidCategoryByGenreIdQuery } from "@v3/graphql/household";
 
 import type { EditableProps } from "~/ui/editable/editable-props";
-
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { Picker } from "../Picker";
 
 export const EditableCategory = ({
   value,

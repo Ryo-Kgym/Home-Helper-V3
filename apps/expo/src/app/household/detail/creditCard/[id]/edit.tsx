@@ -1,5 +1,5 @@
-import { Stack, useGlobalSearchParams } from "expo-router";
 import { View } from "react-native";
+import { Stack, useGlobalSearchParams } from "expo-router";
 
 import { EditCreditCardDetail } from "~/feature/household/creditCardDetail";
 

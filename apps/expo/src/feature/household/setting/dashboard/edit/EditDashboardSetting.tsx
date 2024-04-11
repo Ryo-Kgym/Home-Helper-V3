@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-import { useDeleteDashboardSetting } from "./useDeleteDashboardSetting";
-import { useEditDashboardSetting } from "./useEditDashboardSetting";
+import type { ArgsMapType, Feature } from "../type";
+import { DeleteButton, ResetButton, UpdateButton } from "~/ui";
 import { featureMap } from "../list/feature-map";
 import { ArgsMapTypesPicker, EditableFeature } from "../ui";
-
-import type { ArgsMapType, Feature } from "../type";
-
-import { DeleteButton, ResetButton, UpdateButton } from "~/ui";
+import { useDeleteDashboardSetting } from "./useDeleteDashboardSetting";
+import { useEditDashboardSetting } from "./useEditDashboardSetting";
 
 export const EditDashboardSetting = ({
   setting,

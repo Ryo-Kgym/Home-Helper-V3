@@ -1,19 +1,17 @@
+import type { RenderItemParams } from "react-native-draggable-flatlist";
 import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import DraggableFlatList, {
   ScaleDecorator,
 } from "react-native-draggable-flatlist";
 
-import { useUpdateDashboardSettingOrder } from "./useUpdateDashboardSettingOrder";
+import type { SettingProps } from "../type";
+import { AddButton, Modal, UpdateButton } from "~/ui";
 import { useGetDashboardBoxes } from "../../dashboard/useGetDashboardBoxes";
 import { EditDashboardSetting } from "../edit/EditDashboardSetting";
 import { featureMap } from "../list/feature-map";
 import { RegisterDashboardSetting } from "../register/RegisterDashboardSetting";
-
-import type { SettingProps } from "../type";
-import type { RenderItemParams } from "react-native-draggable-flatlist";
-
-import { AddButton, Modal, UpdateButton } from "~/ui";
+import { useUpdateDashboardSettingOrder } from "./useUpdateDashboardSettingOrder";
 
 export const DashboardSettingList = () => {
   const { getSettings } = useGetDashboardBoxes();

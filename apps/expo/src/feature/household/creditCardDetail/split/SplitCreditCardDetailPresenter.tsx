@@ -7,7 +7,6 @@ import {
 } from "react-native";
 
 import type { IocomeType } from "~/types/iocome-type";
-
 import {
   EditableAmount,
   EditableCategory,

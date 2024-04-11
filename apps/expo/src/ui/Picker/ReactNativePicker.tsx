@@ -1,10 +1,9 @@
-import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
 import { Button, Text } from "react-native";
-
-import { Modal } from "../Modal";
+import { Picker } from "@react-native-picker/picker";
 
 import type { PickerProps } from "./props";
+import { Modal } from "../Modal";
 
 export const ReactNativePicker = <T,>({
   title,

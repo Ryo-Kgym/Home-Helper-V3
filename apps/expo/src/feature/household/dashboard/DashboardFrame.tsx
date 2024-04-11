@@ -1,7 +1,6 @@
-import { Link } from "expo-router";
-import { Pressable, ScrollView, Text, View } from "react-native";
-
 import type { ReactNode } from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
+import { Link } from "expo-router";
 
 export const DashboardFrame = ({
   label,

@@ -1,11 +1,9 @@
-import { useGetValidAccountsQuery } from "@v3/graphql/household";
 import { useEffect } from "react";
-
-import { Picker } from "../Picker";
+import { useGetValidAccountsQuery } from "@v3/graphql/household";
 
 import type { EditableProps } from "~/ui/editable/editable-props";
-
 import { useSaveGroupId } from "~/hooks/group/useSaveGroupId";
+import { Picker } from "../Picker";
 
 export const EditableAccount = ({
   value,

@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
+import type { ArgsMapType, Feature } from "../type";
+import { RegisterButton, ResetButton } from "~/ui";
 import { featureMap } from "../list/feature-map";
 import { ArgsMapTypesPicker, EditableFeature } from "../ui";
-
-import type { ArgsMapType, Feature } from "../type";
-
-import { RegisterButton, ResetButton } from "~/ui";
+import { useRegisterDashboardSetting } from "./useRegisterDashboardSetting";
 
 const defaultArgsMapTypes: ArgsMapType[] = Array(3).fill({});
 

@@ -7,7 +7,6 @@ import type {
   ArgsMapType,
   Feature,
 } from "~/feature/household/setting/dashboard/type";
-
 import { useGenerateId } from "~/hooks/id/useGenerateId";
 
 export const useEditDashboardSetting = () => {
