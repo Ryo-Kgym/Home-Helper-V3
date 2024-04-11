@@ -20,7 +20,7 @@ export const CreateViewButton = ({ viewName }: { viewName: string }) => {
       const { viewId } = await createView({ viewName, fields });
       notify("ビューを作成しました");
 
-      push(paths.app.show({ id: viewId }));
+      push(paths.view.show({ id: viewId }));
     } catch (e) {
       console.error(e);
     }
