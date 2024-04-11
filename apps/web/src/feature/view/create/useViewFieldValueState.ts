@@ -15,9 +15,6 @@ type Actions = {
   removeViewFieldValue: (index: number) => void;
 };
 
-/**
- * @private
- */
 export const useViewFieldValueState = create<State & Actions>()(
   immer((set) => ({
     viewFieldValue: {},
