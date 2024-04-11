@@ -1,7 +1,9 @@
 "use client";
 
 import { ComponentProps, useEffect } from "react";
+import { Title } from "@components/ui/v4/frame/Title";
 import { Table } from "@components/ui/v4/table";
+import { RedirectViewSettingButton } from "@feature/view/nav/RedirectViewSettingButton";
 import { RecordListTable } from "@feature/view/recordList/RecordListTable";
 import { useResetMode } from "@feature/view/recordList/useModeState";
 import { useInitRecords } from "@feature/view/recordList/useRecordsState";
@@ -33,6 +35,9 @@ export const RecordListClient = ({
 
   return (
     <div className={"space-y-10"}>
+      <Title title={view.name}>
+        <RedirectViewSettingButton viewId={view.id} />
+      </Title>
       <RecordListTable view={view} headerItems={headerItems} />
     </div>
   );
