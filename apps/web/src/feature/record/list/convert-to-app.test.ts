@@ -79,4 +79,10 @@ describe("convertToApp", () => {
 
     expect(app).toEqual(expected);
   });
+
+  it("app が取得できなかった場合、エラーを投げる。", async () => {
+    const data: GetAppQuery = {};
+
+    expect(() => convertToApp(data)).toThrowError("App data is not found");
+  });
 });

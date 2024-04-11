@@ -3,7 +3,11 @@ import { App, Fields } from "@oneforall/domain/schema/app-schema";
 import { GetAppQuery } from "@v3/graphql/public/type";
 
 export const convertToApp = (data: GetAppQuery): App => {
-  const fieldsData = data?.app?.fields.reduce(
+  if (!data?.app) {
+    throw new Error("App data is not found");
+  }
+
+  const fieldsData = data.app.fields.reduce(
     (acc, f) =>
       ({
         ...acc,
@@ -21,7 +25,7 @@ export const convertToApp = (data: GetAppQuery): App => {
   const fields = fieldsSchema.parse(fieldsData);
 
   return appSchema.parse({
-    id: data?.app?.id,
+    id: data.app.id,
     name: data?.app?.name ?? "",
     fields,
   });
