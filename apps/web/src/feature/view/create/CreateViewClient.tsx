@@ -4,10 +4,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Title } from "@components/ui/v4/frame/Title";
 import { CreateViewButton } from "@feature/view/create/CreateViewButton";
-import {
-  useGetViewFieldValue,
-  useResetViewFieldValue,
-} from "@feature/view/create/useViewFieldValueState";
+import { useGetViewFieldValue } from "@feature/view/create/useGetViewFieldValue";
+import { useResetViewFieldValue } from "@feature/view/create/useResetViewFieldValue";
 import { ViewFieldAddButton } from "@feature/view/create/ViewFieldAddButton";
 import { ViewNameInput } from "@feature/view/create/ViewNameInput";
 import { ViewFieldInput } from "@feature/view/field/ViewFieldInput";

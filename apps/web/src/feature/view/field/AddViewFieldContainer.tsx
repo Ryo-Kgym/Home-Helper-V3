@@ -1,13 +1,11 @@
-import type { FieldKind } from "@oneforall/domain/field/type";
 import { useEffect, useState } from "react";
-import {
-  useRemoveViewFieldValue,
-  useSaveViewFieldValue,
-} from "@feature/view/create/useViewFieldValueState";
+import { useRemoveViewFieldValue } from "@feature/view/create/useRemoveViewFieldValue";
+import { useSaveViewFieldValue } from "@feature/view/create/useSaveViewFieldValue";
 import {
   addViewFieldValueSchema,
   ViewFieldOptions,
 } from "@feature/view/create/view-field-value";
+import type { FieldKind } from "@oneforall/domain/field/type";
 
 import { ViewFieldPresenter } from "./ViewFieldPresenter";
 

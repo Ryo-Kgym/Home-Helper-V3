@@ -15,7 +15,10 @@ type Actions = {
   removeViewFieldValue: (index: number) => void;
 };
 
-const useViewFieldValueState = create<State & Actions>()(
+/**
+ * @private
+ */
+export const useViewFieldValueState = create<State & Actions>()(
   immer((set) => ({
     viewFieldValue: {},
     initialize: (viewFieldValue) =>
@@ -52,23 +55,3 @@ const useViewFieldValueState = create<State & Actions>()(
       }),
   })),
 );
-
-export const useInitializeViewFieldValue = () =>
-  useViewFieldValueState((store) => store.initialize);
-export const useGetViewFieldValue = () => {
-  return useViewFieldValueState((store) => ({
-    fields: store.viewFieldValue,
-    getBy: (index: number) => store.viewFieldValue[index],
-  }));
-};
-export const useSaveViewFieldValue = () =>
-  useViewFieldValueState((store) => store.saveViewFieldValue);
-
-export const useAppendViewFieldValue = () =>
-  useViewFieldValueState((store) => store.appendViewFieldValue);
-
-export const useResetViewFieldValue = () =>
-  useViewFieldValueState((store) => store.resetViewFieldValue);
-
-export const useRemoveViewFieldValue = () =>
-  useViewFieldValueState((store) => store.removeViewFieldValue);
