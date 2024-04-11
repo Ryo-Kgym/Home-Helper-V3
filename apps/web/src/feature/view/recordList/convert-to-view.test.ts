@@ -1,7 +1,7 @@
 import { View } from "@oneforall/domain/schema/view/view-schema";
 import { GetViewQuery } from "@v3/graphql/public/type";
 
-import { convertToView } from "./convert-to-app";
+import { convertToView } from "./convert-to-view";
 
 describe("convertToView", () => {
   it("converts a GetViewQuery to an View", async () => {

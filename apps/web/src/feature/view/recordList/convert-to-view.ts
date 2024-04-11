@@ -1,7 +1,6 @@
 import {
-  Fields,
-  fieldsSchema,
   View,
+  viewFieldsSchema,
   viewSchema,
 } from "@oneforall/domain/schema/view/view-schema";
 import { GetViewQuery } from "@v3/graphql/public/type";
@@ -11,22 +10,20 @@ export const convertToView = (data: GetViewQuery): View => {
     throw new Error("View data is not found");
   }
 
-  const fieldsData = data.view.viewFields.reduce(
-    (acc, f) =>
-      ({
-        ...acc,
-        [f.id]: {
-          id: f.id,
-          fieldName: f.name,
-          fieldKind: f.fieldKind,
-          fieldIndex: f.index,
-          options: f.options,
-        },
-      }) as Fields,
-    {},
+  const fieldsData = Object.fromEntries(
+    data.view.viewFields.map((f) => [
+      f.id,
+      {
+        id: f.id,
+        fieldName: f.name,
+        fieldKind: f.fieldKind,
+        fieldIndex: f.index,
+        options: f.options,
+      },
+    ]),
   );
 
-  const fields = fieldsSchema.parse(fieldsData);
+  const fields = viewFieldsSchema.parse(fieldsData);
 
   return viewSchema.parse({
     id: data.view.id,

@@ -1,4 +1,4 @@
-import { convertToView } from "@feature/view/recordList/convert-to-app";
+import { convertToView } from "@feature/view/recordList/convert-to-view";
 import { RecordListClient } from "@feature/view/recordList/RecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetViewDocument } from "@v3/graphql/public/type";
