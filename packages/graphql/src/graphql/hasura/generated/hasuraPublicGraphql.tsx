@@ -5231,7 +5231,12 @@ export type GetAppFieldListQuery = {
       __typename?: "App";
       id: string;
       name: string;
-      fields: Array<{ __typename?: "Field"; id: string; name: string }>;
+      fields: Array<{
+        __typename?: "Field";
+        id: string;
+        name: string;
+        fieldKind: string;
+      }>;
     }>;
   } | null;
 };
@@ -5683,6 +5688,7 @@ export const GetAppFieldListDocument = gql`
         fields(orderBy: { index: ASC }) {
           id
           name
+          fieldKind
         }
       }
     }

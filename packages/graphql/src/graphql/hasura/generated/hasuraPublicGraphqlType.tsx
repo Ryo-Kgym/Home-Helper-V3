@@ -5144,7 +5144,12 @@ export type GetAppFieldListQuery = {
       __typename?: "App";
       id: string;
       name: string;
-      fields: Array<{ __typename?: "Field"; id: string; name: string }>;
+      fields: Array<{
+        __typename?: "Field";
+        id: string;
+        name: string;
+        fieldKind: string;
+      }>;
     }>;
   } | null;
 };
@@ -7036,6 +7041,10 @@ export const GetAppFieldListDocument = {
                             {
                               kind: "Field",
                               name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "fieldKind" },
                             },
                           ],
                         },

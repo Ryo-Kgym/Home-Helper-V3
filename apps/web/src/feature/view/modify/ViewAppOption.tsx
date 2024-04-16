@@ -56,7 +56,9 @@ export const ViewAppOption = ({
           {Object.entries(viewFields).map(([viewFieldId, field]) => (
             <Select
               key={viewFieldId}
-              data={fieldListData}
+              data={fieldListData.filter(
+                (f) => f.fieldKind === field.fieldKind,
+              )}
               label={field.fieldName}
               value={appFieldObject[viewFieldId]?.appFieldId ?? ""}
               setValue={(value) => {

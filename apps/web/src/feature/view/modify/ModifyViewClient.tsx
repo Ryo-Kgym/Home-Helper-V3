@@ -7,12 +7,13 @@ import {
   useSetViewApps,
 } from "@feature/view/modify/useZustandViewAppsStore";
 import { ViewAppOption } from "@feature/view/modify/ViewAppOption";
+import { FieldKind } from "@oneforall/domain/field/type";
 import { ViewFields } from "@oneforall/domain/schema/view/view-schema";
 
 export type AppListData = {
   label: string;
   value: string;
-  fields: { label: string; value: string }[];
+  fields: { label: string; value: string; fieldKind: FieldKind }[];
 }[];
 
 export const ModifyViewClient = ({
