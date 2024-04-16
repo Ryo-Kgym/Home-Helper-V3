@@ -14,7 +14,7 @@ export const ViewAppTable = ({
 
   const headerItems = [
     {
-      name: "App ID",
+      name: "アプリ",
     },
     ...Object.values(viewFields).map((field) => ({
       name: field.fieldName,
