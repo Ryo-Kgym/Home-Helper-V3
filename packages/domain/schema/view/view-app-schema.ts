@@ -1,12 +1,12 @@
 import { z } from "zod";
 
-const viewAppIdSchema = z.string();
+const viewFieldIdSchema = z.string();
 
 const viewAppFieldSchema = z.object({
   appFieldId: z.string(),
 });
 
-const viewAppFieldsSchema = z.record(viewAppIdSchema, viewAppFieldSchema);
+const viewAppFieldsSchema = z.record(viewFieldIdSchema, viewAppFieldSchema);
 
 const viewAppsSchema = z.record(
   z.number(),

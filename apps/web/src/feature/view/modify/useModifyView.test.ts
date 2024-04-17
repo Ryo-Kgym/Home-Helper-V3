@@ -26,30 +26,26 @@ describe("useModifyView", () => {
           {
             mode: "add",
             appId: "app1",
-            fields: [
-              {
-                viewFieldId: "field1",
+            viewFields: {
+              field1: {
                 appFieldId: "appField11",
               },
-              {
-                viewFieldId: "field2",
+              field2: {
                 appFieldId: "appField12",
               },
-            ],
+            },
           },
           {
             mode: "modify",
             id: "modify2",
-            fields: [
-              {
-                viewFieldId: "field1",
+            viewFields: {
+              field1: {
                 appFieldId: "appField21",
               },
-              {
-                viewFieldId: "field2",
+              field2: {
                 appFieldId: "appField22",
               },
-            ],
+            },
           },
         ],
       });
@@ -102,7 +98,7 @@ describe("useModifyView", () => {
           {
             mode: "add",
             appId: "app1",
-            fields: [],
+            viewFields: {},
           },
         ],
       }),

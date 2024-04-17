@@ -1,5 +1,5 @@
 import { generateId } from "@feature/app/function/generate-id";
-import { InputViewApp, InputViewAppFields } from "@feature/view/inputViewApp";
+import { InputViewApp } from "@feature/view/inputViewApp";
 import { useUpdateViewMutation } from "@v3/graphql/public";
 
 export const useModifyView = ({ viewId }: { viewId: string }) => {
@@ -12,7 +12,7 @@ export const useModifyView = ({ viewId }: { viewId: string }) => {
           id: generateId(),
           viewId,
           appId: app.appId,
-          fields: convertFields(app.fields),
+          fields: app.viewFields,
         };
       }
 
@@ -20,7 +20,7 @@ export const useModifyView = ({ viewId }: { viewId: string }) => {
         return {
           id: app.id,
           viewId,
-          fields: convertFields(app.fields),
+          fields: app.viewFields,
         };
       }
 
@@ -37,8 +37,3 @@ export const useModifyView = ({ viewId }: { viewId: string }) => {
 
   return { modifyView };
 };
-
-const convertFields = (fields: InputViewAppFields) =>
-  Object.fromEntries(
-    fields.map((f) => [f.viewFieldId, { appFieldId: f.appFieldId }]),
-  );

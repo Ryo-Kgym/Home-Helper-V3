@@ -4,22 +4,25 @@ export type InputViewApp = z.infer<typeof inputViewAppSchema>;
 export type InputViewAppFields = z.infer<typeof inputViewAppFieldsSchema>;
 
 const inputViewAppFieldSchema = z.object({
-  viewFieldId: z.string(),
   appFieldId: z.string(),
 });
 
-const inputViewAppFieldsSchema = inputViewAppFieldSchema.array();
+const viewFieldIdSchema = z.string();
+const inputViewAppFieldsSchema = z.record(
+  viewFieldIdSchema,
+  inputViewAppFieldSchema,
+);
 
 const inputViewAppAddSchema = z.object({
   mode: z.enum(["add"]),
   appId: z.string(),
-  fields: inputViewAppFieldsSchema,
+  viewFields: inputViewAppFieldsSchema,
 });
 
 const inputViewAppModifySchema = z.object({
   mode: z.enum(["modify"]),
   id: z.string(),
-  fields: inputViewAppFieldsSchema,
+  viewFields: inputViewAppFieldsSchema,
 });
 
 const inputViewAppSchema = z.object({
