@@ -29,20 +29,20 @@ export const ViewAppTable = ({
     },
   ];
 
-  const bodyData = Object.entries(viewApps).map(([appId, appFields], index) => [
+  const bodyData = Object.entries(viewApps).map(([index, viewApp]) => [
     {
-      id: index.toString(),
-      name: (index + 1).toString(),
+      id: "viewApp" + index,
+      name: Number(index) + 1,
     },
     {
-      id: appId,
-      name: appListData.find((a) => a.value === appId)?.label ?? "",
+      id: viewApp.appId.concat(index),
+      name: appListData.find((a) => a.value === viewApp.appId)?.label ?? "",
     },
-    ...Object.values(appFields).map((appField) => ({
+    ...Object.values(viewApp.viewFields).map((appField) => ({
       id: appField.appFieldId,
       name:
         appListData
-          .find((a) => a.value === appId)
+          .find((a) => a.value === viewApp.appId)
           ?.fields.find((f) => f.value === appField.appFieldId)?.label ?? "",
     })),
     {

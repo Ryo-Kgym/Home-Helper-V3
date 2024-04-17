@@ -21,7 +21,7 @@ export const ViewAppOption = ({
       }
     >
   >({});
-  const add = useAppendViewApp();
+  const append = useAppendViewApp();
 
   const fieldListData =
     appListData.find((app) => app.value === appId)?.fields ?? [];
@@ -36,8 +36,9 @@ export const ViewAppOption = ({
         <Button
           label={"アプリ追加"}
           clickHandler={() => {
-            add({
-              [appId]: appFieldObject,
+            append({
+              appId,
+              viewFields: appFieldObject,
             });
 
             setAppId("");
