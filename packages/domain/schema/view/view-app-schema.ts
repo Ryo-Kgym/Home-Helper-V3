@@ -6,6 +6,6 @@ const viewAppFieldSchema = z.object({
 
 const viewAppFieldsSchema = z.record(viewAppFieldSchema); // view_field.id
 
-const viewAppsSchema = z.record(viewAppFieldsSchema); // app.id
+const viewAppsSchema = z.record(z.string(), viewAppFieldsSchema); // app.id
 
 export type ViewApps = z.infer<typeof viewAppsSchema>;
