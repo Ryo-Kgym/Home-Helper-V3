@@ -1,13 +1,13 @@
 import { z } from "zod";
 
+export type InputViewApps = z.infer<typeof inputViewAppsSchema>;
 export type InputViewApp = z.infer<typeof inputViewAppSchema>;
-export type InputViewAppFields = z.infer<typeof inputViewAppFieldsSchema>;
 
 const inputViewAppFieldSchema = z.object({
   appFieldId: z.string(),
 });
-
 const viewFieldIdSchema = z.string();
+
 const inputViewAppFieldsSchema = z.record(
   viewFieldIdSchema,
   inputViewAppFieldSchema,
@@ -25,6 +25,12 @@ const inputViewAppModifySchema = z.object({
   viewFields: inputViewAppFieldsSchema,
 });
 
-const inputViewAppSchema = z.object({
-  apps: z.array(z.union([inputViewAppAddSchema, inputViewAppModifySchema])),
-});
+const inputViewAppSchema = z.union([
+  inputViewAppAddSchema,
+  inputViewAppModifySchema,
+]);
+
+const inputViewAppsSchema = z.record(
+  z.number(),
+  z.union([inputViewAppAddSchema, inputViewAppModifySchema]),
+);

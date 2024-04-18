@@ -1,26 +1,28 @@
 import {
-  ViewApp,
-  ViewApps,
-} from "@oneforall/domain/schema/view/view-app-schema";
+  InputViewApp,
+  InputViewApps,
+} from "@feature/view/modify/inputViewApps";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 type State = {
-  viewApps: ViewApps;
+  viewApps: InputViewApps;
 };
 
 type Actions = {
-  setViewApps: (viewApps: ViewApps) => void;
-  appendViewApp: (viewApp: ViewApp) => void;
+  setViewApps: (viewApps: InputViewApps) => void;
+  appendViewApp: (viewApp: InputViewApp) => void;
 };
 
 export const useZustandViewAppsStore = create<State & Actions>()(
-  immer((set, get) => ({
-    viewApps: {},
+  immer((set) => ({
+    viewApps: {
+      apps: {},
+    },
     setViewApps: (viewApps) => set({ viewApps }),
     appendViewApp: (viewApp) => {
-      const index = Object.keys(get).length;
       set((state) => {
+        const index = Object.keys(state.viewApps).length;
         state.viewApps[index] = viewApp;
       });
     },

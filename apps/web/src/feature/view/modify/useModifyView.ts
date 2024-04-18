@@ -1,12 +1,12 @@
 import { generateId } from "@feature/app/function/generate-id";
-import { InputViewApp } from "@feature/view/inputViewApp";
+import { InputViewApps } from "@feature/view/modify/inputViewApps";
 import { useUpdateViewMutation } from "@v3/graphql/public";
 
 export const useModifyView = ({ viewId }: { viewId: string }) => {
   const [, mut] = useUpdateViewMutation();
 
-  const modifyView = async (viewApp: InputViewApp) => {
-    const viewAppObjects = viewApp.apps.map((app) => {
+  const modifyView = async (viewApp: InputViewApps) => {
+    const viewAppObjects = Object.values(viewApp).map((app) => {
       if (app.mode === "add") {
         return {
           id: generateId(),

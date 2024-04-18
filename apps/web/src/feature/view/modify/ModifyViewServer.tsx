@@ -30,6 +30,10 @@ export const ModifyViewServer = async ({ viewId }: { viewId: string }) => {
   const view = convertToView(viewData);
 
   return (
-    <ModifyViewClient appListData={appListData} viewFields={view.fields} />
+    <ModifyViewClient
+      viewId={viewId}
+      appListData={appListData}
+      viewFields={view.fields}
+    />
   );
 };

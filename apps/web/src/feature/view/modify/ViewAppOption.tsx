@@ -37,6 +37,7 @@ export const ViewAppOption = ({
           label={"アプリ追加"}
           clickHandler={() => {
             append({
+              mode: "add",
               appId,
               viewFields: appFieldObject,
             });

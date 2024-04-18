@@ -22,32 +22,30 @@ describe("useModifyView", () => {
 
     await act(async () => {
       await modifyView({
-        apps: [
-          {
-            mode: "add",
-            appId: "app1",
-            viewFields: {
-              field1: {
-                appFieldId: "appField11",
-              },
-              field2: {
-                appFieldId: "appField12",
-              },
+        0: {
+          mode: "add",
+          appId: "app1",
+          viewFields: {
+            field1: {
+              appFieldId: "appField11",
+            },
+            field2: {
+              appFieldId: "appField12",
             },
           },
-          {
-            mode: "modify",
-            id: "modify2",
-            viewFields: {
-              field1: {
-                appFieldId: "appField21",
-              },
-              field2: {
-                appFieldId: "appField22",
-              },
+        },
+        1: {
+          mode: "modify",
+          id: "modify2",
+          viewFields: {
+            field1: {
+              appFieldId: "appField21",
+            },
+            field2: {
+              appFieldId: "appField22",
             },
           },
-        ],
+        },
       });
     });
 
@@ -94,13 +92,11 @@ describe("useModifyView", () => {
 
     void expect(
       modifyView({
-        apps: [
-          {
-            mode: "add",
-            appId: "app1",
-            viewFields: {},
-          },
-        ],
+        0: {
+          mode: "add",
+          appId: "app1",
+          viewFields: {},
+        },
       }),
     ).rejects.toThrow("error message");
   });

@@ -29,27 +29,34 @@ export const ViewAppTable = ({
     },
   ];
 
-  const bodyData = Object.entries(viewApps).map(([index, viewApp]) => [
-    {
-      id: "viewApp" + index,
-      name: Number(index) + 1,
-    },
-    {
-      id: viewApp.appId.concat(index),
-      name: appListData.find((a) => a.value === viewApp.appId)?.label ?? "",
-    },
-    ...Object.values(viewApp.viewFields).map((appField) => ({
-      id: appField.appFieldId,
-      name:
-        appListData
-          .find((a) => a.value === viewApp.appId)
-          ?.fields.find((f) => f.value === appField.appFieldId)?.label ?? "",
-    })),
-    {
-      id: "delete",
-      name: <RemoveViewApp />,
-    },
-  ]);
+  const bodyData = Object.entries(viewApps).map(([index, viewApp]) => {
+    if (viewApp.mode === "add") {
+      return [
+        {
+          id: "viewApp" + index,
+          name: Number(index) + 1,
+        },
+        {
+          id: viewApp.appId.concat(index),
+          name: appListData.find((a) => a.value === viewApp.appId)?.label ?? "",
+        },
+        ...Object.values(viewApp.viewFields).map((appField) => ({
+          id: appField.appFieldId,
+          name:
+            appListData
+              .find((a) => a.value === viewApp.appId)
+              ?.fields.find((f) => f.value === appField.appFieldId)?.label ??
+            "",
+        })),
+        {
+          id: "delete",
+          name: <RemoveViewApp />,
+        },
+      ];
+    }
+
+    return [];
+  });
 
   const renderItem = (columns: { id: string; name: string | ReactNode }[]) =>
     columns.map((col) => <Table.BodyTd key={col.id}>{col.name}</Table.BodyTd>);
