@@ -1,6 +1,6 @@
+import { convertToAppListData } from "@feature/view/modify/function/convertToAppListData";
 import { ModifyViewClient } from "@feature/view/modify/ModifyViewClient";
 import { convertToView } from "@feature/view/recordList/convert-to-view";
-import { fieldKindSchema } from "@oneforall/domain/schema";
 import { findUser } from "@persistence/browser/server/find-user";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import {
@@ -15,16 +15,7 @@ export const ModifyViewServer = async ({ viewId }: { viewId: string }) => {
     groupId: group.id,
   });
 
-  const appListData =
-    data?.group?.apps.map((a) => ({
-      label: a.name,
-      value: a.id,
-      fields: a.fields.map((f) => ({
-        value: f.id,
-        label: f.name,
-        fieldKind: fieldKindSchema.parse(f.fieldKind),
-      })),
-    })) ?? [];
+  const appListData = convertToAppListData(data);
 
   const { data: viewData } = await fetchQuery(GetViewDocument, { viewId });
   const view = convertToView(viewData);
