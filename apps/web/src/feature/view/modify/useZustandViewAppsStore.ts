@@ -12,6 +12,7 @@ type State = {
 type Actions = {
   setViewApps: (viewApps: InputViewApps) => void;
   appendViewApp: (viewApp: InputViewApp) => void;
+  changeToModifyMode: () => void;
 };
 
 export const useZustandViewAppsStore = create<State & Actions>()(
@@ -26,6 +27,13 @@ export const useZustandViewAppsStore = create<State & Actions>()(
         state.viewApps[index] = viewApp;
       });
     },
+    changeToModifyMode: () => {
+      set((state) => {
+        Object.values(state.viewApps).forEach((app) => {
+          app.mode = "modify";
+        });
+      });
+    },
   })),
 );
 
@@ -37,3 +45,6 @@ export const useSetViewApps = () =>
 
 export const useAppendViewApp = () =>
   useZustandViewAppsStore((store) => store.appendViewApp);
+
+export const useChangeToModifyMode = () =>
+  useZustandViewAppsStore((store) => store.changeToModifyMode);
