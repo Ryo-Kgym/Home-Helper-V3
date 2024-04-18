@@ -1,11 +1,12 @@
 import { View } from "@oneforall/domain/schema/view/view-schema";
 import { GetViewQuery } from "@v3/graphql/public/type";
 
-import { convertToView } from "./convert-to-view";
+import { convertToView } from "./convertToView";
 
 describe("convertToView", () => {
-  it("converts a GetViewQuery to an View", async () => {
+  it("データを取得できた場合、期待した型に変換する", async () => {
     const data: GetViewQuery = {
+      // @ts-expect-error @ts-expect-error
       view: {
         __typename: "View",
         id: "1",

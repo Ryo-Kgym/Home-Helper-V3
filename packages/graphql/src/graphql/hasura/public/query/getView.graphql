@@ -11,5 +11,10 @@ query getView($viewId: String!) {
       fieldKind
       options
     }
+    viewApps {
+      id
+      appId
+      fields
+    }
   }
 }

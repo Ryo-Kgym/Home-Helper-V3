@@ -5336,6 +5336,12 @@ export type GetViewQuery = {
       fieldKind: string;
       options?: any | null;
     }>;
+    viewApps: Array<{
+      __typename?: "ViewApp";
+      id: string;
+      appId: string;
+      fields: any;
+    }>;
   } | null;
 };
 
@@ -5821,6 +5827,11 @@ export const GetViewDocument = gql`
         index
         fieldKind
         options
+      }
+      viewApps {
+        id
+        appId
+        fields
       }
     }
   }

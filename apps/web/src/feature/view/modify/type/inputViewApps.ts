@@ -8,7 +8,7 @@ const inputViewAppFieldSchema = z.object({
 });
 const viewFieldIdSchema = z.string();
 
-const inputViewAppFieldsSchema = z.record(
+export const inputViewAppFieldsSchema = z.record(
   viewFieldIdSchema,
   inputViewAppFieldSchema,
 );
@@ -30,7 +30,7 @@ const inputViewAppSchema = z.union([
   inputViewAppModifySchema,
 ]);
 
-const inputViewAppsSchema = z.record(
+export const inputViewAppsSchema = z.record(
   z.number(),
   z.union([inputViewAppAddSchema, inputViewAppModifySchema]),
 );

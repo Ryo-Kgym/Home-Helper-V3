@@ -5249,6 +5249,12 @@ export type GetViewQuery = {
       fieldKind: string;
       options?: any | null;
     }>;
+    viewApps: Array<{
+      __typename?: "ViewApp";
+      id: string;
+      appId: string;
+      fields: any;
+    }>;
   } | null;
 };
 
@@ -7605,6 +7611,21 @@ export const GetViewDocument = {
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "options" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "viewApps" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "appId" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "fields" },
                       },
                     ],
                   },
