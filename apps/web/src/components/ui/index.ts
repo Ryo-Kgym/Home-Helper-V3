@@ -4,7 +4,6 @@
 
 export * from "./Button/index";
 
-export * from "./CheckableSelect";
 export * from "./Modal/BackModal";
 export { FieldFrame } from "@components/ui/FieldFrame/FieldFrame";
 export * from "@components/atoms/Modal";
