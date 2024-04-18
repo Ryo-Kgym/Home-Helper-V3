@@ -3,6 +3,6 @@ export {
   useChangeToModifyModeZustand as useChangeToModifyMode,
   useSetViewAppsZustand as useSetViewApps,
   useGetViewAppsZustand as useGetViewApps,
-} from "./zustand/useZustandViewAppsStore";
+} from "./useZustandViewAppsStore";
 
 export { useModifyView } from "./useModifyView";

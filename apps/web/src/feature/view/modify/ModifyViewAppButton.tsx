@@ -6,6 +6,9 @@ import {
   useModifyView,
 } from "@feature/view/modify/hook";
 
+/**
+ * @package
+ */
 export const ModifyViewAppButton = ({ viewId }: { viewId: string }) => {
   const viewApps = useGetViewApps();
   const changeMode = useChangeToModifyMode();

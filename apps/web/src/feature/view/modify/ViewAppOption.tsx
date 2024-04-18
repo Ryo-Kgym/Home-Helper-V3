@@ -5,6 +5,9 @@ import { useAppendViewApp } from "@feature/view/modify/hook";
 import { AppListData } from "@feature/view/modify/type/appListData";
 import { ViewFields } from "@oneforall/domain/schema/view/view-schema";
 
+/**
+ * @package
+ */
 export const ViewAppOption = ({
   appListData,
   viewFields,

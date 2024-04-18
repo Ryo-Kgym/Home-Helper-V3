@@ -5,6 +5,9 @@ import { RemoveViewApp } from "@feature/view/modify/RemoveViewApp";
 import { AppListData } from "@feature/view/modify/type/appListData";
 import { ViewFields } from "@oneforall/domain/schema/view/view-schema";
 
+/**
+ * @package
+ */
 export const ViewAppTable = ({
   viewFields,
   appListData,

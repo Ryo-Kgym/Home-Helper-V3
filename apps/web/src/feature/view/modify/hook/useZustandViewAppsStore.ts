@@ -7,15 +7,27 @@ import {
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+/**
+ * @package
+ */
 export const useGetViewAppsZustand = () =>
   useZustandViewAppsStore((store) => store.viewApps);
 
+/**
+ * @package
+ */
 export const useSetViewAppsZustand = () =>
   useZustandViewAppsStore((store) => store.setViewAppsAction);
 
+/**
+ * @package
+ */
 export const useAppendViewAppZustand = () =>
   useZustandViewAppsStore((store) => store.appendViewAppAction);
 
+/**
+ * @package
+ */
 export const useChangeToModifyModeZustand = () =>
   useZustandViewAppsStore((store) => store.changeToModifyModeAction);
 
