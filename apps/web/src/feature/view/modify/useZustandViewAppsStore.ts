@@ -1,3 +1,5 @@
+import { appendViewApp } from "@feature/view/modify/function/appendViewApp";
+import { changeToModifyMode } from "@feature/view/modify/function/changeToModifyMode";
 import {
   InputViewApp,
   InputViewApps,
@@ -10,29 +12,20 @@ type State = {
 };
 
 type Actions = {
-  setViewApps: (viewApps: InputViewApps) => void;
-  appendViewApp: (viewApp: InputViewApp) => void;
-  changeToModifyMode: () => void;
+  setViewAppsAction: (viewApps: InputViewApps) => void;
+  appendViewAppAction: (viewApp: InputViewApp) => void;
+  changeToModifyModeAction: () => void;
 };
 
 export const useZustandViewAppsStore = create<State & Actions>()(
   immer((set) => ({
-    viewApps: {
-      apps: {},
+    viewApps: {},
+    setViewAppsAction: (viewApps) => set({ viewApps }),
+    appendViewAppAction: (viewApp) => {
+      set((state) => appendViewApp(state.viewApps, viewApp));
     },
-    setViewApps: (viewApps) => set({ viewApps }),
-    appendViewApp: (viewApp) => {
-      set((state) => {
-        const index = Object.keys(state.viewApps).length;
-        state.viewApps[index] = viewApp;
-      });
-    },
-    changeToModifyMode: () => {
-      set((state) => {
-        Object.values(state.viewApps).forEach((app) => {
-          app.mode = "modify";
-        });
-      });
+    changeToModifyModeAction: () => {
+      set((state) => changeToModifyMode(state.viewApps));
     },
   })),
 );
@@ -41,10 +34,10 @@ export const useGetViewApps = () =>
   useZustandViewAppsStore((store) => store.viewApps);
 
 export const useSetViewApps = () =>
-  useZustandViewAppsStore((store) => store.setViewApps);
+  useZustandViewAppsStore((store) => store.setViewAppsAction);
 
 export const useAppendViewApp = () =>
-  useZustandViewAppsStore((store) => store.appendViewApp);
+  useZustandViewAppsStore((store) => store.appendViewAppAction);
 
 export const useChangeToModifyMode = () =>
-  useZustandViewAppsStore((store) => store.changeToModifyMode);
+  useZustandViewAppsStore((store) => store.changeToModifyModeAction);

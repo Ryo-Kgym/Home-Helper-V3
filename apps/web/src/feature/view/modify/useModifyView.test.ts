@@ -36,7 +36,7 @@ describe("useModifyView", () => {
         },
         1: {
           mode: "modify",
-          id: "modify2",
+          appId: "modify2",
           viewFields: {
             field1: {
               appFieldId: "appField21",

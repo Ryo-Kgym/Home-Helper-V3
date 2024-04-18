@@ -18,7 +18,7 @@ export const useModifyView = ({ viewId }: { viewId: string }) => {
 
       if (app.mode === "modify") {
         return {
-          id: app.id,
+          id: app.appId,
           viewId,
           fields: app.viewFields,
         };
