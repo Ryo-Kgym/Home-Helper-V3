@@ -1,10 +1,10 @@
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
-import { useModifyView } from "@feature/view/modify/useModifyView";
 import {
   useChangeToModifyMode,
   useGetViewApps,
-} from "@feature/view/modify/useZustandViewAppsStore";
+  useModifyView,
+} from "@feature/view/modify/hook";
 
 export const ModifyViewAppButton = ({ viewId }: { viewId: string }) => {
   const viewApps = useGetViewApps();

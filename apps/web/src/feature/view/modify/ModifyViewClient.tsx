@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { AppListData } from "@feature/view/modify/app-list-data";
+import { useSetViewApps } from "@feature/view/modify/hook";
 import { ModifyViewAppButton } from "@feature/view/modify/ModifyViewAppButton";
-import { useSetViewApps } from "@feature/view/modify/useZustandViewAppsStore";
+import { AppListData } from "@feature/view/modify/type/appListData";
 import { ViewAppOption } from "@feature/view/modify/ViewAppOption";
 import { ViewAppTable } from "@feature/view/modify/ViewAppTable";
 import { ViewFields } from "@oneforall/domain/schema/view/view-schema";

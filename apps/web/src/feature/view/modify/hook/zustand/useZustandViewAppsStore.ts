@@ -3,9 +3,21 @@ import { changeToModifyMode } from "@feature/view/modify/function/changeToModify
 import {
   InputViewApp,
   InputViewApps,
-} from "@feature/view/modify/inputViewApps";
+} from "@feature/view/modify/type/inputViewApps";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+
+export const useGetViewAppsZustand = () =>
+  useZustandViewAppsStore((store) => store.viewApps);
+
+export const useSetViewAppsZustand = () =>
+  useZustandViewAppsStore((store) => store.setViewAppsAction);
+
+export const useAppendViewAppZustand = () =>
+  useZustandViewAppsStore((store) => store.appendViewAppAction);
+
+export const useChangeToModifyModeZustand = () =>
+  useZustandViewAppsStore((store) => store.changeToModifyModeAction);
 
 type State = {
   viewApps: InputViewApps;
@@ -17,7 +29,7 @@ type Actions = {
   changeToModifyModeAction: () => void;
 };
 
-export const useZustandViewAppsStore = create<State & Actions>()(
+const useZustandViewAppsStore = create<State & Actions>()(
   immer((set) => ({
     viewApps: {},
     setViewAppsAction: (viewApps) => set({ viewApps }),
@@ -29,15 +41,3 @@ export const useZustandViewAppsStore = create<State & Actions>()(
     },
   })),
 );
-
-export const useGetViewApps = () =>
-  useZustandViewAppsStore((store) => store.viewApps);
-
-export const useSetViewApps = () =>
-  useZustandViewAppsStore((store) => store.setViewAppsAction);
-
-export const useAppendViewApp = () =>
-  useZustandViewAppsStore((store) => store.appendViewAppAction);
-
-export const useChangeToModifyMode = () =>
-  useZustandViewAppsStore((store) => store.changeToModifyModeAction);

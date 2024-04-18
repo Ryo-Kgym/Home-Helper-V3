@@ -1,13 +1,14 @@
-import { useModifyView } from "@feature/view/modify/useModifyView";
+import { useModifyView } from "@feature/view/modify/hook/useModifyView";
 import { renderHook } from "@testing-library/react";
-import * as graphqlMock from "@v3/graphql/public";
 import { act } from "react-dom/test-utils";
+
+import * as graphqlMock from "../../../../../../../packages/graphql/public";
 
 jest.mock("@feature/app/function/generate-id", () => ({
   generateId: jest.fn().mockReturnValue("generated"),
 }));
 
-jest.mock("@v3/graphql/public");
+jest.mock("../../../../../../../packages/graphql/public");
 
 describe("useModifyView", () => {
   it("引数に対して、期待した値が渡されること", async () => {

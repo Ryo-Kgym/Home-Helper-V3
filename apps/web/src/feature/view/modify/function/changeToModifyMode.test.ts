@@ -1,5 +1,5 @@
 import { changeToModifyMode } from "@feature/view/modify/function/changeToModifyMode";
-import { InputViewApps } from "@feature/view/modify/inputViewApps";
+import { InputViewApps } from "@feature/view/modify/type/inputViewApps";
 
 describe("changeToModifyMode", () => {
   it("全てのアプリのモードをmodifyに変更する", () => {

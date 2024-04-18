@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import { Table } from "@components/ui/v4/table";
-import { AppListData } from "@feature/view/modify/app-list-data";
+import { useGetViewApps } from "@feature/view/modify/hook";
 import { RemoveViewApp } from "@feature/view/modify/RemoveViewApp";
-import { useGetViewApps } from "@feature/view/modify/useZustandViewAppsStore";
+import { AppListData } from "@feature/view/modify/type/appListData";
 import { ViewFields } from "@oneforall/domain/schema/view/view-schema";
 
 export const ViewAppTable = ({

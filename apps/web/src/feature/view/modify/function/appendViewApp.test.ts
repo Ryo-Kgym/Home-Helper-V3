@@ -2,7 +2,7 @@ import { appendViewApp } from "@feature/view/modify/function/appendViewApp";
 import {
   InputViewApp,
   InputViewApps,
-} from "@feature/view/modify/inputViewApps";
+} from "@feature/view/modify/type/inputViewApps";
 
 describe("appendViewApp", () => {
   it("追加先が空オブジェクトの場合", () => {
