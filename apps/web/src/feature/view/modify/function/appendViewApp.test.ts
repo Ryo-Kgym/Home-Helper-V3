@@ -34,7 +34,8 @@ describe("appendViewApp", () => {
     const viewApps: InputViewApps = {
       0: {
         mode: "modify",
-        appId: "1",
+        id: "1",
+        appId: "app1",
         viewFields: {
           "1": {
             appFieldId: "1",
@@ -44,7 +45,7 @@ describe("appendViewApp", () => {
     };
     const viewApp: InputViewApp = {
       mode: "add",
-      appId: "2",
+      appId: "app1",
       viewFields: {
         "2": {
           appFieldId: "2",
@@ -55,7 +56,8 @@ describe("appendViewApp", () => {
     expect(viewApps).toEqual<InputViewApps>({
       0: {
         mode: "modify",
-        appId: "1",
+        id: "1",
+        appId: "app1",
         viewFields: {
           "1": {
             appFieldId: "1",
@@ -64,7 +66,7 @@ describe("appendViewApp", () => {
       },
       1: {
         mode: "add",
-        appId: "2",
+        appId: "app1",
         viewFields: {
           "2": {
             appFieldId: "2",

@@ -21,6 +21,7 @@ const inputViewAppAddSchema = z.object({
 
 const inputViewAppModifySchema = z.object({
   mode: z.enum(["modify"]),
+  id: z.string(),
   appId: z.string(),
   viewFields: inputViewAppFieldsSchema,
 });

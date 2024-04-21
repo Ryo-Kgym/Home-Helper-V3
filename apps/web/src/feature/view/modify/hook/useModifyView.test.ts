@@ -8,7 +8,7 @@ jest.mock("@feature/app/function/generate-id", () => ({
   generateId: jest.fn().mockReturnValue("generated"),
 }));
 
-jest.mock("../../../../../../../packages/graphql/public");
+jest.mock("@v3/graphql/public");
 
 describe("useModifyView", () => {
   it("引数に対して、期待した値が渡されること", async () => {
@@ -37,7 +37,8 @@ describe("useModifyView", () => {
         },
         1: {
           mode: "modify",
-          appId: "modify2",
+          id: "modify2",
+          appId: "app2",
           viewFields: {
             field1: {
               appFieldId: "appField21",
@@ -68,6 +69,7 @@ describe("useModifyView", () => {
         {
           id: "modify2",
           viewId: "12345",
+          appId: "app2",
           fields: {
             field1: {
               appFieldId: "appField21",

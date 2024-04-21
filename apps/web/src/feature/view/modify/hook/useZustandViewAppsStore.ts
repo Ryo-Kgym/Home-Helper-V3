@@ -38,7 +38,7 @@ type State = {
 type Actions = {
   setViewAppsAction: (viewApps: InputViewApps) => void;
   appendViewAppAction: (viewApp: InputViewApp) => void;
-  changeToModifyModeAction: () => void;
+  changeToModifyModeAction: (viewAppId: string) => void;
 };
 
 const useZustandViewAppsStore = create<State & Actions>()(
@@ -48,8 +48,8 @@ const useZustandViewAppsStore = create<State & Actions>()(
     appendViewAppAction: (viewApp) => {
       set((state) => appendViewApp(state.viewApps, viewApp));
     },
-    changeToModifyModeAction: () => {
-      set((state) => changeToModifyMode(state.viewApps));
+    changeToModifyModeAction: (viewAppId: string) => {
+      set((state) => changeToModifyMode(state.viewApps, viewAppId));
     },
   })),
 );

@@ -17,8 +17,8 @@ export const ModifyViewAppButton = ({ viewId }: { viewId: string }) => {
 
   const modifyHandler = async () => {
     try {
-      await modifyView(viewApps);
-      changeMode();
+      const { viewAppId } = await modifyView(viewApps);
+      changeMode(viewAppId);
       notify("ビューアプリを更新しました");
     } catch (e) {
       notify("ビューアプリの更新に失敗しました");

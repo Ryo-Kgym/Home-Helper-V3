@@ -10,7 +10,7 @@ describe("convertToInputViewApps", () => {
           {
             __typename: "ViewApp",
             id: "1",
-            appId: "1",
+            appId: "app1",
             fields: {
               "11111": {
                 appFieldId: "aaaaa",
@@ -23,7 +23,7 @@ describe("convertToInputViewApps", () => {
           {
             __typename: "ViewApp",
             id: "2",
-            appId: "2",
+            appId: "app2",
             fields: {
               "11111": {
                 appFieldId: "ccccc",
@@ -42,7 +42,8 @@ describe("convertToInputViewApps", () => {
     expect(result).toEqual({
       0: {
         mode: "modify",
-        appId: "1",
+        id: "1",
+        appId: "app1",
         viewFields: {
           "11111": {
             appFieldId: "aaaaa",
@@ -54,7 +55,8 @@ describe("convertToInputViewApps", () => {
       },
       1: {
         mode: "modify",
-        appId: "2",
+        id: "2",
+        appId: "app2",
         viewFields: {
           "11111": {
             appFieldId: "ccccc",

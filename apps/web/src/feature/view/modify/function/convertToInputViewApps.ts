@@ -10,11 +10,11 @@ export const convertToInputViewApps = (data: GetViewQuery): InputViewApps => {
   }
 
   return Object.fromEntries(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     data.view.viewApps.map((va, index) => [
       index,
       {
         mode: "modify" as const,
+        id: va.id,
         appId: va.appId,
         viewFields: inputViewAppFieldsSchema.parse(va.fields),
       },

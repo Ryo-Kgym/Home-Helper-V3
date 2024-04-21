@@ -6,10 +6,12 @@ export const useModifyView = ({ viewId }: { viewId: string }) => {
   const [, mut] = useUpdateViewMutation();
 
   const modifyView = async (viewApp: InputViewApps) => {
+    const id = generateId();
+
     const viewAppObjects = Object.values(viewApp).map((app) => {
       if (app.mode === "add") {
         return {
-          id: generateId(),
+          id,
           viewId,
           appId: app.appId,
           fields: app.viewFields,
@@ -18,8 +20,9 @@ export const useModifyView = ({ viewId }: { viewId: string }) => {
 
       if (app.mode === "modify") {
         return {
-          id: app.appId,
+          id: app.id,
           viewId,
+          appId: app.appId,
           fields: app.viewFields,
         };
       }
@@ -33,6 +36,8 @@ export const useModifyView = ({ viewId }: { viewId: string }) => {
     if (error) {
       throw new Error(error.message);
     }
+
+    return { viewAppId: id };
   };
 
   return { modifyView };
