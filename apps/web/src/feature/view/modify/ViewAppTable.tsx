@@ -57,7 +57,9 @@ export const ViewAppTable = ({
   });
 
   const renderItem = (columns: { id: string; name: string | ReactNode }[]) =>
-    columns.map((col) => <Table.BodyTd key={col.id}>{col.name}</Table.BodyTd>);
+    columns.map((col, index) => (
+      <Table.BodyTd key={`${col.id + "-" + index}`}>{col.name}</Table.BodyTd>
+    ));
 
   return (
     <Table>
