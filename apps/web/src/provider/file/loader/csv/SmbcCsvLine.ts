@@ -16,10 +16,10 @@ export const parseSmbcCsvLine = (line: string): SmbcCsvLine => {
       return splitLine[1]!;
     },
     price: () => {
-      return Number(splitLine[6]);
+      return Number(splitLine[2]);
     },
     note: () => {
-      return splitLine[5] ?? "";
+      return "";
     },
   };
 };
