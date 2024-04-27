@@ -4,11 +4,11 @@
 
 "use client";
 
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Modal } from "@components/ui/v4/modal";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { paths } from "@routing/paths";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
 
 import { AppListType } from "./fetch-app-list";
 
@@ -61,9 +61,9 @@ export const SelectAppClient = ({
         <Modal.Body>
           <div>アプリ一覧</div>
           <div>
-            {appList.map((props) => (
+            {appList.map((props, index) => (
               <LinkBox
-                key={props.label}
+                key={`${index + "-" + props.label}`}
                 {...props}
                 onClick={() => push(props.href)}
               />
