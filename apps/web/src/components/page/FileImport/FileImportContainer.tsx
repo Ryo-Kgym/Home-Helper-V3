@@ -7,7 +7,7 @@
 import type { TableProps } from "@components/atoms/Table";
 import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import type { FileType } from "@provider/file/FileType";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { FileImportButtonsPresenter } from "@components/page/FileImport/FileImportButtonsPresenter";
 import { FileImportTablePresenter } from "@components/page/FileImport/FileImportTablePresenter";
@@ -16,7 +16,7 @@ import {
   loadUploadFile,
 } from "@components/page/FileImport/loadUploadFile";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { successPopup } from "@function/successPopup";
+import { errorPopup, successPopup } from "@function/successPopup";
 import { useCreateImportFile } from "@hooks/household/import_file/useCreateImportFile";
 
 import { FileImportFieldPresenter } from "./FileImportFieldPresenter";
@@ -44,11 +44,18 @@ export const FileImportContainer = () => {
     null,
   );
 
+  useEffect(() => {
+    console.log("[loadData]: ", loadData);
+  }, [loadData]);
+
   const tableProps: TableProps[] = loadData
     .filter((d, index) => {
       // d.date がDate型でない場合はエラーを出力
       if (Number.isNaN(d.date.getTime())) {
-        console.error("Found invalid date at index", index, ":", d.date);
+        errorPopup(
+          `日付が不正レコードを検知しました。行番号：${index}。コンソールで詳細をみてください。`,
+        );
+        console.error("日付が不正レコードを検知しました。: ", index, ":", d);
         return false;
       }
 
@@ -94,7 +101,6 @@ export const FileImportContainer = () => {
   const clearClickHandler = () => {
     setUploadFile(null);
     setAccountId(null);
-    setWithdrawalDate(null);
     setFileType(null);
     setLoadData([]);
   };
@@ -105,6 +111,7 @@ export const FileImportContainer = () => {
       successPopup(`${loadData.length}件、登録しました`);
       clearClickHandler();
     } catch (e) {
+      errorPopup("登録に失敗しました");
       console.error(e);
     }
   };
