@@ -1,6 +1,7 @@
-import type { FC } from "react";
 import { Icon } from "@components/atoms/Icon";
 import { IconPlayerTrackPrev } from "@tabler/icons";
+
+import type { FC } from "react";
 
 type PrevIconPresenterProps = {
   onClickHandler: () => void;

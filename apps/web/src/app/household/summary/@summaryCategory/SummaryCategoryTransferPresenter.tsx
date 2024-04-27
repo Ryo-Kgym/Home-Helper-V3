@@ -2,8 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { TransferListItem } from "@components/ui";
-import { Button, TransferList } from "@components/ui";
+import { Button, TransferList, TransferListItem } from "@components/ui";
 
 type SalaryTransferPresenterProps = {
   transferData: [TransferListItem[], TransferListItem[]];

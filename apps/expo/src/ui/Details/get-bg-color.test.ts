@@ -1,4 +1,4 @@
-import type { DetailType } from "./detail-type";
+import { DetailType } from "./detail-type";
 import { getBgColor } from "./get-bg-color";
 
 describe("getBgColor", () => {

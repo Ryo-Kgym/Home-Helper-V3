@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
+import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import { useCreateImportHistory } from "@hooks/household/import_file/useCreateImportHistory";
 import { useRegisterCreditCard } from "@hooks/household/import_file/useRegisterCreditCard";
 import { useRegisterDailyDetails } from "@hooks/household/import_file/useRegisterDailyDetails";

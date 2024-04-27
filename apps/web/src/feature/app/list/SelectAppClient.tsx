@@ -10,7 +10,7 @@ import { Modal } from "@components/ui/v4/modal";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { paths } from "@routing/paths";
 
-import type { AppListType } from "./fetch-app-list";
+import { AppListType } from "./fetch-app-list";
 
 export const SelectAppClient = ({
   groupId,
@@ -33,7 +33,7 @@ export const SelectAppClient = ({
   return (
     <>
       <div>
-        <div className={"grid grid-cols-3"}>
+        <div className={"grid grid-cols-4"}>
           {[
             {
               label: "グループ選択へ",
@@ -43,6 +43,10 @@ export const SelectAppClient = ({
             {
               label: "アプリ新規作成",
               onClick: () => push(paths.app.create),
+            },
+            {
+              label: "ビュー新規作成",
+              onClick: () => push(paths.view.create),
             },
             {
               label: "アプリ一覧",
@@ -57,9 +61,9 @@ export const SelectAppClient = ({
         <Modal.Body>
           <div>アプリ一覧</div>
           <div>
-            {appList.map((props) => (
+            {appList.map((props, index) => (
               <LinkBox
-                key={props.label}
+                key={`${index + "-" + props.label}`}
                 {...props}
                 onClick={() => push(props.href)}
               />

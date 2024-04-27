@@ -2,8 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Button } from "components/ui";
 import { Modal } from "@components/atoms/Modal";
+import { Button } from "components/ui";
 
 export const ConfirmPromptPresenter = ({
   title,

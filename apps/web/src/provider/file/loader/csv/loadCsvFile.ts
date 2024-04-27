@@ -2,10 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { FileType } from "@provider/file/FileType";
 import { parseCsv } from "@provider/file/loader/csv/CsvFileParse";
 import { getSetting } from "@provider/file/loader/csv/CsvFileSetting";
 import Encoding from "encoding-japanese";
+
+import type { FileType } from "@provider/file/FileType";
 
 type loadFileArgs = {
   file: File;

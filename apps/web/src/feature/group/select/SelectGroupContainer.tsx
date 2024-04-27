@@ -4,9 +4,9 @@
 
 "use client";
 
-import type { Group } from "@domain/model/Group";
-import type { User } from "@domain/model/User";
 import { LinkList } from "@components/atoms/Card";
+import { Group } from "@domain/model/Group";
+import { User } from "@domain/model/User";
 import { useAuth } from "@hooks/authentication/useAuth";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";

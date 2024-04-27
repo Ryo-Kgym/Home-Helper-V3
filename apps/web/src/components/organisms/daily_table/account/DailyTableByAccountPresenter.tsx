@@ -2,9 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { DailyTable, UpdateDetail } from "@components/organisms";
+
 import type { TableProps } from "@components/ui";
 import type { DailyDetail } from "@domain/model/household/DailyDetail";
-import { DailyTable, UpdateDetail } from "@components/organisms";
 
 export const DailyTableByAccountPresenter = ({
   tableProps,

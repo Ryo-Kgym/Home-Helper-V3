@@ -4,7 +4,7 @@
 
 "use client";
 
-import type { User } from "@domain/model/User";
+import { User } from "@domain/model/User";
 import { userState } from "@recoil/userState";
 import { useRecoilState } from "recoil";
 

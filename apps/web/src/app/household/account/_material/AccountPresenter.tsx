@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { TableProps } from "@components/atoms/Table";
+import { TableProps } from "@components/atoms/Table";
 import { Table } from "@components/atoms/Table/index";
 import { Total } from "@components/molecules/Total/index";
 import { RangeDatePicker } from "@components/ui/date";

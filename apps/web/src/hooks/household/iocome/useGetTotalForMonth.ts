@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { DailyTotal } from "@domain/model/household/DailyTotal";
+import { DailyTotal } from "@domain/model/household/DailyTotal";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { createDateList } from "@hooks/household/iocome/createDateList";

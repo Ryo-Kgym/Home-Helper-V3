@@ -1,13 +1,14 @@
-import type { AppFieldOptions } from "@feature/app/create/app-field-value";
-import type { FieldKind } from "@oneforall/domain/field/type";
-import { useEffect, useState } from "react";
 import { addAppFieldValueSchema } from "@feature/app/create/app-field-value";
 import {
   useRemoveAppFieldValue,
   useSaveAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
+import { useEffect, useState } from "react";
 
 import { AppFieldPresenter } from "./AppFieldPresenter";
+
+import type { AppFieldOptions } from "@feature/app/create/app-field-value";
+import type { FieldKind } from "@oneforall/domain/field/type";
 
 export const AddAppFieldContainer = ({ index }: { index: number }) => {
   const [fieldName, setFieldName] = useState<string>("");

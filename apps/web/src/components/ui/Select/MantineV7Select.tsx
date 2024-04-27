@@ -2,10 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { MantineSize } from "@mantine/core";
 import { Select } from "@mantine/core";
 
 import type { SelectData } from "../Select";
+import type { MantineSize } from "@mantine/core";
 
 type MantineSelectProps = {
   label: string;

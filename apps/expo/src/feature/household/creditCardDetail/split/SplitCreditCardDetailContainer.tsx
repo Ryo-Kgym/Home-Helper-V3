@@ -49,14 +49,18 @@ export const SplitCreditCardDetailContainer = ({ id }: { id: string }) => {
     }
   };
 
-  useEffect(() => {
-    setAmount(creditCardDetail.amount);
+  useEffect(
+    () => {
+      setAmount(creditCardDetail.amount);
 
-    setSplitIocomeType(creditCardDetail.genre.iocomeType);
-    setSplitGenreId(creditCardDetail.genre.id);
-    setSplitCategoryId(creditCardDetail.category.id);
-    setSplitAmount(0);
-  }, [loading]);
+      setSplitIocomeType(creditCardDetail.genre.iocomeType);
+      setSplitGenreId(creditCardDetail.genre.id);
+      setSplitCategoryId(creditCardDetail.category.id);
+      setSplitAmount(0);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [loading],
+  );
 
   return (
     <SplitCreditCardDetailPresenter

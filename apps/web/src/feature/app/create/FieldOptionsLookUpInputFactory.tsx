@@ -1,11 +1,11 @@
-import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
-import type { FieldOptionsLookup } from "@feature/app/schema";
-import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { lookupOptionsSchema } from "@feature/app/create/app-field-value";
+import { OptionsState } from "@feature/app/create/FieldOptionsInput";
+import { FieldOptionsLookup } from "@oneforall/domain/schema";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetAppFieldListQuery } from "@v3/graphql/public";
+import { useState } from "react";
 
 export const FieldOptionsLookUpInputFactory = ({
   value,

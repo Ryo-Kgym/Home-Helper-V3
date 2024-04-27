@@ -4,9 +4,10 @@
 
 import "dayjs/locale/ja";
 
+import { DateInput, DatesProvider } from "@mantine/dates";
+
 import type { MantineSize } from "@mantine/core";
 import type { DateValue } from "@mantine/dates";
-import { DateInput, DatesProvider } from "@mantine/dates";
 
 export const MantineDatePicker = ({
   value,

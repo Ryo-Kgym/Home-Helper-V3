@@ -25,12 +25,12 @@ const Body = <T,>({
   children,
 }: {
   data: T[];
-  renderItem: (t: T) => ReactNode;
+  renderItem: (t: T, index: number) => ReactNode;
   children?: ReactNode;
 }) => (
   <tbody>
     {data.map((item, index) => (
-      <Tr key={index}>{renderItem(item)}</Tr>
+      <Tr key={index}>{renderItem(item, index)}</Tr>
     ))}
     {children}
     {data.length === 0 && (

@@ -2,7 +2,6 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { IocomeType } from "@domain/model/household/IocomeType";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
@@ -11,6 +10,8 @@ import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
 import { Button } from "components/ui";
 import { DatePicker } from "components/ui/date";
+
+import type { IocomeType } from "@domain/model/household/IocomeType";
 
 export const RegisterDailyDetailPresenter = ({
   date,

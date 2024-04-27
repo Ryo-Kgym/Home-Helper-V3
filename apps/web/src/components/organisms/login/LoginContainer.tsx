@@ -4,10 +4,11 @@
 
 "use client";
 
-import { LoginPresenter } from "./LoginPresenter";
+import { useAuth } from "@hooks/authentication/useAuth";
 import { useMessage } from "@hooks/message/useMessage";
 import { useEffect, useState } from "react";
-import { useAuth } from "@hooks/authentication/useAuth";
+
+import { LoginPresenter } from "./LoginPresenter";
 
 export const LoginContainer = () => {
   const [message, setMessage] = useState<string | undefined>(undefined);

@@ -2,9 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { TableProps } from "@components/atoms/Table";
 import { Table } from "@components/atoms/Table";
 import { IocomeTotal } from "@components/molecules/Total";
+
+import type { TableProps } from "@components/atoms/Table";
 
 export const DailyTable = ({
   tablePropsList,

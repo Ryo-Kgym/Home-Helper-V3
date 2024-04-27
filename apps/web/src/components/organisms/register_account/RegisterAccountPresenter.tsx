@@ -2,9 +2,9 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
+import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
 import { AccountNameInput } from "@components/molecules/CustomTextInput/AccountName";
 import { Button } from "components/ui";
-import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
 
 type RegisterAccountPresenterProps = {
   accountName: string;

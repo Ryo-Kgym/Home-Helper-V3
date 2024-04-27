@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { ImportFileSettings } from "@feature/app/schema";
+import { ImportFileSettings } from "@oneforall/domain/schema";
 import { FileType } from "@provider/file/FileType";
 
 const CsvFileSettingMap = new Map<FileType, ImportFileSettings>([

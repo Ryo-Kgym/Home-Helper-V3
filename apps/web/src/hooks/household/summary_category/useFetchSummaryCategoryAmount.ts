@@ -4,12 +4,12 @@
 
 "use client";
 
-import type {
+import { IocomeType } from "@domain/model/household/IocomeType";
+import {
+  totalAmountByMonthly,
   TotalAmountByMonthly,
   TotalAmountByMonthlyArgs,
 } from "@function/monthly/totalAmountByMonthly";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { totalAmountByMonthly } from "@function/monthly/totalAmountByMonthly";
 import { useGroup } from "@hooks/group/useGroup";
 import {
   useGetSummaryCategoryBetweenDateQuery,

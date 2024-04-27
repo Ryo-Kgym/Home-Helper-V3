@@ -2,9 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { useDate } from "@hooks/date/useDate";
 import { selectDateRecoilState } from "@recoil/selectDateRecoilState";
 import { useRecoilState } from "recoil";
-import { useDate } from "@hooks/date/useDate";
 
 export const useDateHolder = () => {
   const [dateState, setDate] = useRecoilState(selectDateRecoilState);

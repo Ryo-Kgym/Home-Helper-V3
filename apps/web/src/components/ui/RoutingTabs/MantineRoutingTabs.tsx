@@ -3,8 +3,8 @@
  */
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Tabs } from "@mantine/core";
+import { useRouter } from "next/navigation";
 
 import type { RoutingTabsProps } from "../RoutingTabs";
 

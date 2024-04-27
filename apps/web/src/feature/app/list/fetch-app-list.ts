@@ -1,7 +1,8 @@
-import type { LinkProps } from "@components/atoms/Card";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { paths } from "@routing/paths";
 import { GetApplicationsDocument } from "@v3/graphql/public/type";
+
+import type { LinkProps } from "@components/atoms/Card";
 
 export const fetchAppList = async ({ groupId }: { groupId: string }) => {
   const { data } = await fetchQuery(GetApplicationsDocument, { groupId });

@@ -2,8 +2,9 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { TableProps } from "@components/atoms/Table";
 import { DailySearchContainer } from "@components/organisms/daily_table/DailySearchContainer";
+
+import type { TableProps } from "@components/atoms/Table";
 
 export const DailyTableByGenrePresenter = ({
   firstDay,

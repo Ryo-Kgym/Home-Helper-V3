@@ -2,8 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { IconPlayerTrackNext } from "@tabler/icons";
 import { Icon } from "@components/atoms/Icon";
+import { IconPlayerTrackNext } from "@tabler/icons";
 
 export const NextIconPresenter = ({
   onClickHandler,

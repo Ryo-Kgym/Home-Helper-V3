@@ -1,5 +1,6 @@
-import type { IocomeType } from "@domain/model/household/IocomeType";
 import { IocomeTypeSegmentPresenter } from "@components/molecules/CustomSegment/IocomeType/IocomeTypeSegmentPresenter";
+
+import type { IocomeType } from "@domain/model/household/IocomeType";
 
 type IocomeTypeSegmentContainerProps = {
   iocomeType: IocomeType;

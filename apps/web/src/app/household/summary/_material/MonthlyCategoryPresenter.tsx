@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { ColumnProps, TableProps } from "@components/atoms/Table";
+import { ColumnProps, TableProps } from "@components/atoms/Table";
 import { Table } from "@components/atoms/Table/index";
 
 export const MonthlyCategoryPresenter = ({

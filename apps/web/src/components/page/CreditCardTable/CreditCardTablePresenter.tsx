@@ -2,8 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { TableProps } from "@components/atoms/Table";
 import { Table } from "@components/atoms/Table";
+
+import type { TableProps } from "@components/atoms/Table";
 
 type CreditCardTablePresenterProps = {
   tableProps: TableProps[];
