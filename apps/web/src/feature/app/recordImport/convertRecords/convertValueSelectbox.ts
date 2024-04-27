@@ -1,6 +1,9 @@
 import { FieldOptionsSelectBox } from "@oneforall/domain/schema";
 
-export const convertValueSelectBox = (
+/**
+ * @package
+ */
+export const convertValueSelectbox = (
   originalValue: string,
   options: FieldOptionsSelectBox,
 ) => {

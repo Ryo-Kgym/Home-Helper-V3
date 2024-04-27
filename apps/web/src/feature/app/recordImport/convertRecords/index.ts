@@ -1,6 +1,6 @@
 import { Fields, PreviewRecords } from "@oneforall/domain/schema";
 
-import { convertValue } from "./convert-value";
+import { convertValue } from "./convertValue";
 
 export const convertRecords = (
   data: string[][],

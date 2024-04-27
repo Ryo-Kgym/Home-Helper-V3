@@ -1,10 +1,10 @@
-import { convertValue } from "@feature/app/recordImport/convert-records/convert-value";
+import { convertValue } from "@feature/app/recordImport/convertRecords/convertValue";
 
-import * as date from "./convert-value-date";
-import * as selectbox from "./convert-value-selectbox";
+import * as date from "./convertValueDate";
+import * as selectbox from "./convertValueSelectbox";
 
-jest.mock("./convert-value-selectbox");
-jest.mock("./convert-value-date");
+jest.mock("./convertValueSelectbox");
+jest.mock("./convertValueDate");
 
 describe("convertValue", () => {
   it("textの場合", () => {
@@ -60,7 +60,7 @@ describe("convertValue", () => {
   });
 
   it("selectBoxの場合", () => {
-    jest.spyOn(selectbox, "convertValueSelectBox").mockReturnValue({
+    jest.spyOn(selectbox, "convertValueSelectbox").mockReturnValue({
       originalValue: "originalValue",
       value: "value",
       errorMessage: undefined,

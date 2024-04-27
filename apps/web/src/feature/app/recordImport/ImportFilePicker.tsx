@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import type { Fields } from "@oneforall/domain/schema";
 import type { ChangeEvent } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
-import { convertRecords } from "@feature/app/recordImport/convert-records";
 import { loadImportFile } from "@feature/app/recordImport/load-import-file";
 import { selectSingleFile } from "@feature/app/recordImport/select-single-file";
 import { useImportFileHistories } from "@feature/app/recordImport/useImportFileHistoriesState";
@@ -13,7 +13,7 @@ import {
   useResetPreviewRecords,
   useSetPreviewRecords,
 } from "@feature/app/recordImport/usePreviewRecordsState";
-import type { Fields } from "@oneforall/domain/schema";
+import { convertRecords } from "feature/app/recordImport/convertRecords";
 
 export const ImportFilePicker = ({
   appId,

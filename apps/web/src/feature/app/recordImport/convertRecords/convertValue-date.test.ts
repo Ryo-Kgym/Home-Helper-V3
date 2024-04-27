@@ -1,4 +1,4 @@
-import { convertValueDate } from "@feature/app/recordImport/convert-records/convert-value-date";
+import { convertValueDate } from "@feature/app/recordImport/convertRecords/convertValueDate";
 
 describe("convertValueDate", () => {
   it.each`

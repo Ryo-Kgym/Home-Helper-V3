@@ -1,8 +1,11 @@
-import { convertValueDate } from "@feature/app/recordImport/convert-records/convert-value-date";
+import { convertValueDate } from "@feature/app/recordImport/convertRecords/convertValueDate";
 import { Field } from "@oneforall/domain/schema";
 
-import { convertValueSelectBox } from "./convert-value-selectbox";
+import { convertValueSelectbox } from "./convertValueSelectbox";
 
+/**
+ * @package
+ */
 export const convertValue = (
   originalValue: string,
   field: Field,
@@ -21,7 +24,7 @@ export const convertValue = (
         errorMessage: undefined,
       };
     case "selectBox": {
-      return convertValueSelectBox(originalValue, field.options);
+      return convertValueSelectbox(originalValue, field.options);
     }
     case "date": {
       return convertValueDate(originalValue);

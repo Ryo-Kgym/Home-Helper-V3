@@ -1,4 +1,4 @@
-import { convertValueSelectBox } from "@feature/app/recordImport/convert-records/convert-value-selectbox";
+import { convertValueSelectbox } from "@feature/app/recordImport/convertRecords/convertValueSelectbox";
 import { FieldOptionsSelectBox } from "@oneforall/domain/schema";
 
 describe("convertValueSelectBox", () => {
@@ -10,7 +10,7 @@ describe("convertValueSelectBox", () => {
   };
 
   it("オプションに想定した値を持っているとき、変換した値を返す。", () => {
-    const result = convertValueSelectBox("label1", options);
+    const result = convertValueSelectbox("label1", options);
     expect(result).toEqual({
       originalValue: "label1",
       value: "value1",
@@ -19,7 +19,7 @@ describe("convertValueSelectBox", () => {
   });
 
   it("オプションに想定した値を持っていないとき、エラーメッセージを返す。", () => {
-    const result = convertValueSelectBox("label3", options);
+    const result = convertValueSelectbox("label3", options);
     expect(result).toEqual({
       originalValue: "label3",
       value: "label3",
