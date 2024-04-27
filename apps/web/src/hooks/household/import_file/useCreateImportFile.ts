@@ -50,6 +50,7 @@ export const useCreateImportFile = ({
       }
     } catch (e) {
       console.error(e);
+      throw e;
     }
   };
 
