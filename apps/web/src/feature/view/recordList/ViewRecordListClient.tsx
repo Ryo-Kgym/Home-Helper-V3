@@ -4,21 +4,21 @@ import { ComponentProps, useEffect } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Table } from "@components/ui/v4/table";
 import { RedirectViewSettingButton } from "@feature/view/nav/RedirectViewSettingButton";
-import { RecordListTable } from "@feature/view/recordList/RecordListTable";
-import { useInitRecords } from "@feature/view/recordList/useRecordsState";
-import { Records } from "@oneforall/domain/schema/record-schema";
+import { useInitViewRecords } from "@feature/view/recordList/useViewRecordsState";
+import { ViewRecordListTable } from "@feature/view/recordList/ViewRecordListTable";
+import { ViewRecords } from "@oneforall/domain/schema/view/view-record-schema";
 import { View } from "@oneforall/domain/schema/view/view-schema";
 
-export const RecordListClient = ({
+export const ViewRecordListClient = ({
   view,
   records: defaultRecords,
   headerItems,
 }: {
   view: View;
-  records: Records;
+  records: ViewRecords;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
-  const initialize = useInitRecords();
+  const initialize = useInitViewRecords();
 
   useEffect(
     () => {
@@ -33,7 +33,7 @@ export const RecordListClient = ({
       <Title title={view.name}>
         <RedirectViewSettingButton viewId={view.id} />
       </Title>
-      <RecordListTable view={view} headerItems={headerItems} />
+      <ViewRecordListTable view={view} headerItems={headerItems} />
     </div>
   );
 };

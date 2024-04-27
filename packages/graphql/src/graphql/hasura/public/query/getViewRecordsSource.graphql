@@ -1,0 +1,19 @@
+query getViewRecordsSource($viewId: String!) {
+  view: viewByPk(id: $viewId) {
+    __typename
+    id
+    viewApps {
+      id
+      appId
+      fields
+      app {
+        name
+        records {
+          id
+          index
+          columns
+        }
+      }
+    }
+  }
+}

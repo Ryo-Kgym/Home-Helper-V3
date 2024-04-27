@@ -1,1 +1,1 @@
-export { RecordListServer as RecordList } from "./RecordListServer";
+export { ViewRecordListServer as RecordList } from "./ViewRecordListServer";

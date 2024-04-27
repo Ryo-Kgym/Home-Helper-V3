@@ -1,7 +1,7 @@
-import { convertToRecords } from "./convert-to-records";
-
 import type { GetAppQuery } from "@v3/graphql/public";
+import { Records } from "@oneforall/domain/schema";
 
+import { convertToRecords } from "./convert-to-records";
 
 describe("convertToRecords", () => {
   it("converts record data to a record list", () => {
@@ -42,7 +42,7 @@ describe("convertToRecords", () => {
       },
     ];
     const records = convertToRecords(recordData);
-    expect(records).toEqual({
+    expect(records).toEqual<Records>({
       "1": {
         recordId: "11111",
         isEditing: false,

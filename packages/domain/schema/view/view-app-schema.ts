@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const viewFieldIdSchema = z.string();
 
-const viewAppFieldSchema = z.object({
+export const viewAppFieldSchema = z.object({
   appFieldId: z.string(),
 });
 

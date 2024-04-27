@@ -5345,6 +5345,34 @@ export type GetViewQuery = {
   } | null;
 };
 
+export type GetViewRecordsSourceQueryVariables = Exact<{
+  viewId: Scalars["String"];
+}>;
+
+export type GetViewRecordsSourceQuery = {
+  __typename?: "query_root";
+  view?: {
+    __typename: "View";
+    id: string;
+    viewApps: Array<{
+      __typename?: "ViewApp";
+      id: string;
+      appId: string;
+      fields: any;
+      app: {
+        __typename?: "App";
+        name: string;
+        records: Array<{
+          __typename?: "Record";
+          id: string;
+          index: number;
+          columns: any;
+        }>;
+      };
+    }>;
+  } | null;
+};
+
 export type GetViewsQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -5844,6 +5872,36 @@ export function useGetViewQuery(
     query: GetViewDocument,
     ...options,
   });
+}
+export const GetViewRecordsSourceDocument = gql`
+  query getViewRecordsSource($viewId: String!) {
+    view: viewByPk(id: $viewId) {
+      __typename
+      id
+      viewApps {
+        id
+        appId
+        fields
+        app {
+          name
+          records {
+            id
+            index
+            columns
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useGetViewRecordsSourceQuery(
+  options: Omit<Urql.UseQueryArgs<GetViewRecordsSourceQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetViewRecordsSourceQuery,
+    GetViewRecordsSourceQueryVariables
+  >({ query: GetViewRecordsSourceDocument, ...options });
 }
 export const GetViewsDocument = gql`
   query getViews($groupId: String!) {

@@ -5258,6 +5258,34 @@ export type GetViewQuery = {
   } | null;
 };
 
+export type GetViewRecordsSourceQueryVariables = Exact<{
+  viewId: Scalars["String"];
+}>;
+
+export type GetViewRecordsSourceQuery = {
+  __typename?: "query_root";
+  view?: {
+    __typename: "View";
+    id: string;
+    viewApps: Array<{
+      __typename?: "ViewApp";
+      id: string;
+      appId: string;
+      fields: any;
+      app: {
+        __typename?: "App";
+        name: string;
+        records: Array<{
+          __typename?: "Record";
+          id: string;
+          index: number;
+          columns: any;
+        }>;
+      };
+    }>;
+  } | null;
+};
+
 export type GetViewsQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -7638,6 +7666,111 @@ export const GetViewDocument = {
     },
   ],
 } as unknown as DocumentNode<GetViewQuery, GetViewQueryVariables>;
+export const GetViewRecordsSourceDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getViewRecordsSource" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "viewId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "view" },
+            name: { kind: "Name", value: "viewByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "viewId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "viewApps" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "appId" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "fields" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "app" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "records" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "id" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "index" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "columns" },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetViewRecordsSourceQuery,
+  GetViewRecordsSourceQueryVariables
+>;
 export const GetViewsDocument = {
   kind: "Document",
   definitions: [
