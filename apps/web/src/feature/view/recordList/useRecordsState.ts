@@ -1,4 +1,4 @@
-import { Record, Records } from "@oneforall/domain/schema";
+import { Records } from "@oneforall/domain/schema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
@@ -10,15 +10,6 @@ export const useRecords = () =>
 
 export const useInitRecords = () =>
   useRecordsState((store) => (records: Records) => store.setRecords(records));
-
-export const useAddRecord = () =>
-  useRecordsState(
-    (store) => (index: number, record: Record) =>
-      store.setRecords({
-        ...store.records,
-        [index]: record,
-      }),
-  );
 
 type State = {
   records: Records;
