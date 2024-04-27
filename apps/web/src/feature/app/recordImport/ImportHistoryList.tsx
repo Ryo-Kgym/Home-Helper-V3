@@ -4,6 +4,9 @@ import { DeleteImportFileHistoryButton } from "@feature/app/recordImport/DeleteI
 import { useImportFileHistories } from "@feature/app/recordImport/useImportFileHistoriesState";
 import { useSetPreviewRecords } from "@feature/app/recordImport/usePreviewRecordsState";
 
+/**
+ * @package
+ */
 export const ImportHistoryList = () => {
   const { importFileHistories } = useImportFileHistories();
   const setPreviewRecords = useSetPreviewRecords();

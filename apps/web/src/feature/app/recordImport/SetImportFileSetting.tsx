@@ -11,6 +11,9 @@ import { useImportFileSettings } from "@feature/app/recordImport/useImportSettin
 import { importFileSettingsSchema } from "@oneforall/domain/schema";
 import { useInsertImportFileSettingMutation } from "@v3/graphql/public";
 
+/**
+ * @package
+ */
 export const SetImportFileSetting = ({
   appId,
   setAfterHandler,

@@ -19,6 +19,9 @@ import {
 import { ImportHistoryList } from "./ImportHistoryList";
 import { ImportPreview } from "./ImportPreview";
 
+/**
+ * @package
+ */
 export const RecordImportClient = ({
   app,
   importFileSettings: defaultSettings,
