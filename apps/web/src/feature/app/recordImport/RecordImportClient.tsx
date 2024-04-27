@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
+import { Tabs } from "@components/ui/v4/tab";
 import { OpenSettingButton } from "@feature/app/nav/OpenSettingButton";
 import { RedirectImportButton } from "@feature/app/nav/RedirectImportButton";
 import { RedirectListButton } from "@feature/app/nav/RedirectListButton";
@@ -61,9 +62,23 @@ export const RecordImportClient = ({
       </div>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Modal.Body>
-          <SetImportFileSetting
-            appId={app.id}
-            setAfterHandler={() => setIsOpen(false)}
+          <Tabs
+            tabs={{
+              import: {
+                label: "取込",
+                Component: (
+                  <SetImportFileSetting
+                    appId={app.id}
+                    setAfterHandler={() => setIsOpen(false)}
+                  />
+                ),
+              },
+              export: {
+                label: "フィールドマッピング",
+                Component: <div>フィールドマッピング</div>,
+              },
+            }}
+            defaultTab={"import"}
           />
         </Modal.Body>
       </Modal>
