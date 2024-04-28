@@ -1,7 +1,7 @@
 import type { GetAppQuery } from "@v3/graphql/public";
 import { Records } from "@oneforall/domain/schema";
 
-import { convertToRecords } from "./convert-to-records";
+import { convertToRecords } from "./convertToRecords";
 
 describe("convertToRecords", () => {
   it("converts record data to a record list", () => {

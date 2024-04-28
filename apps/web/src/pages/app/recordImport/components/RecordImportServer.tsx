@@ -1,4 +1,4 @@
-import { convertToApp } from "@feature/app/recordList/convert-to-app";
+import { convertToApp } from "@feature/app/recordList/convertToApp";
 import { previewColumnsSchema } from "@oneforall/domain/schema";
 import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";

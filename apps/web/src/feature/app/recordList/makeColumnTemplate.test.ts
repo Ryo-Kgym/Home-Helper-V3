@@ -1,6 +1,6 @@
 import { Fields } from "@oneforall/domain/schema";
 
-import { makeColumnsTemplate } from "./make-columns-template";
+import { makeColumnsTemplate } from "./makeColumnsTemplate";
 
 describe("makeRecordTemplate", () => {
   it("should make a record template", () => {
