@@ -5,9 +5,6 @@ import { ImportFilePicker } from "@feature/app/recordImport/ImportFilePicker";
 import { usePreviewRecords } from "@feature/app/recordImport/usePreviewRecordsState";
 import { App } from "@oneforall/domain/schema";
 
-/**
- * @package
- */
 export const ImportPreview = ({ app }: { app: App }) => {
   const previewRecords = usePreviewRecords();
 

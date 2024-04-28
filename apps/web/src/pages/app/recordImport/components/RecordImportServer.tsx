@@ -37,12 +37,25 @@ export const RecordImportServer = async ({ appId }: { appId: string }) => {
     ),
   }));
 
+  const importFileFieldMapping = {
+    fieldMappings: Object.fromEntries(
+      Object.entries(app.fields).map(([fieldId, value]) => [
+        fieldId,
+        {
+          fieldName: value.fieldName,
+          fileIndex: null,
+        },
+      ]),
+    ),
+  };
+
   return (
     <RecordImportClient
       app={app}
       importFileSettings={importFileSettings}
       importHistories={importHistories}
       requiredInitializeSettings={requiredInitializeSettings}
+      importFileFieldMapping={importFileFieldMapping}
     />
   );
 };
