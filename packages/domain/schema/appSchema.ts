@@ -92,7 +92,10 @@ export const fieldSchema = z.union([
 
 export type Field = z.infer<typeof fieldSchema>;
 
-export const fieldsSchema = z.record(fieldSchema); // fieldId
+export const fieldsSchema = z.record(
+  z.string(), // fieldId
+  fieldSchema,
+);
 
 export type Fields = z.infer<typeof fieldsSchema>;
 
