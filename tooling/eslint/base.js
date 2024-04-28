@@ -1,3 +1,16 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require("fs");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
+
+const pagesDirs = fs.readdirSync(
+  path.resolve(__dirname, "../../apps/web/src/pages"),
+);
+
+const featuresDirs = fs.readdirSync(
+  path.resolve(__dirname, "../../apps/web/src/features"),
+);
+
 /** @type {import("eslint").Linter.Config} */
 const config = {
   extends: [
@@ -40,15 +53,31 @@ const config = {
     "strict-dependencies/strict-dependencies": [
       "error",
       [
-        {
-          module: "src/feature",
-          allowReferenceFrom: ["src/app"],
+        ...pagesDirs.map((name) => ({
+          module: `src/pages/${name}`,
+          allowReferenceFrom: [`src/app/**/page.tsx`],
           allowSameModule: true,
-        },
+        })),
+        ...pagesDirs.map((name) => ({
+          module: `src/pages/${name}/**`,
+          allowReferenceFrom: [`src/pages/${name}/**`],
+          allowSameModule: true,
+        })),
+        ...pagesDirs.map((name) => ({
+          module: `src/pages/${name}/server`,
+          allowReferenceFrom: [`src/pages/${name}/components/*Server.tsx`],
+          allowSameModule: true,
+        })),
+        ...featuresDirs.map((name) => ({
+          module: `src/features/${name}`,
+          allowReferenceFrom: [`src/pages/*/components/*Client.tsx`],
+          allowSameModule: true,
+        })),
         {
           module: "src/components/ui",
           allowReferenceFrom: [
             "src/feature",
+            "src/pages/**/components/*",
             "src/components/page",
             "src/components/molecules",
             "src/components/organisms",
