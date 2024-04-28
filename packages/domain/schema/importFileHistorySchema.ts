@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { previewRecordsSchema } from "./preview-records-schema";
+import { previewRecordsSchema } from "./previewRecordsSchema";
 
 const importFileHistorySchema = z.object({
   id: z.string(),

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { fieldKindSchema } from "./app-schema";
+import { fieldKindSchema } from "./appSchema";
 
 export const recordColumnSchema = z.object({
   fieldKind: fieldKindSchema,

@@ -1,7 +1,6 @@
+import type { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-
-import type { PreviewRecords } from "@oneforall/domain/schema/preview-records-schema";
 
 export const usePreviewRecords = () =>
   usePreviewRecordsState((store) => store.previewRecords);

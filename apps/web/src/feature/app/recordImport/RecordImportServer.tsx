@@ -1,6 +1,6 @@
 import { convertToApp } from "@feature/app/recordList/convert-to-app";
 import { previewColumnsSchema } from "@oneforall/domain/schema";
-import { importFileSettingsSchema } from "@oneforall/domain/schema/import-file-settings-schema";
+import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetAppDocument, GetImportFileDocument } from "@v3/graphql/public/type";
 

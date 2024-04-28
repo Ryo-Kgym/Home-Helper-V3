@@ -6,7 +6,7 @@ import {
   fieldOptionsMultipleTextSchema,
   fieldOptionsSchema,
   fieldOptionsSelectBoxSchema,
-} from "../app-schema";
+} from "../appSchema";
 
 export const viewFieldSchema = z.union([
   z.object({

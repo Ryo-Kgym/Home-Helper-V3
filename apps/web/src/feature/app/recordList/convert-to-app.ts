@@ -1,5 +1,5 @@
 import { appSchema, fieldsSchema } from "@oneforall/domain/schema";
-import { App, Fields } from "@oneforall/domain/schema/app-schema";
+import { App, Fields } from "@oneforall/domain/schema/appSchema";
 import { GetAppQuery } from "@v3/graphql/public/type";
 
 export const convertToApp = (data: GetAppQuery): App => {
