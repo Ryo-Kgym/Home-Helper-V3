@@ -6,6 +6,7 @@ module.exports = {
   },
   testEnvironment: "jsdom",
   moduleNameMapper: {
+    "^@pages/(.+)$": "<rootDir>/src/pages/$1",
     "^@feature/(.+)$": "<rootDir>/src/feature/$1",
     "^@hooks/(.+)$": "<rootDir>/src/hooks/$1",
     "^@v3/graphql/(.+)$": "<rootDir>/../../packages/graphql/$1",
