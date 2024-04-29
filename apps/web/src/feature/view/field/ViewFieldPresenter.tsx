@@ -1,7 +1,7 @@
 import type {
   AppFieldOptions,
   AppFieldValue,
-} from "@feature/app/create/app-field-value";
+} from "@feature/app/create/appFieldValue";
 import type { FieldKind } from "@oneforall/domain/field/type";
 import { Button } from "@components/ui/v4/button";
 import { Modal } from "@components/ui/v4/modal";

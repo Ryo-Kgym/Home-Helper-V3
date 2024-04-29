@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AppFieldValue } from "@feature/app/create/app-field-value";
+import { AppFieldValue } from "@feature/app/create/appFieldValue";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import { useInitializeAppFieldValue } from "@feature/app/create/useAppFieldValueState";

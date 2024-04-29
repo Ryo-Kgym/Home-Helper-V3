@@ -1,4 +1,4 @@
-import type { AppFieldValue } from "@feature/app/create/app-field-value";
+import type { AppFieldValue } from "@feature/app/create/appFieldValue";
 import type { FieldUpdates } from "@v3/graphql/public";
 import { generateId } from "@feature/app/function/generateId";
 import { useUpdateAppMutation } from "@v3/graphql/public";

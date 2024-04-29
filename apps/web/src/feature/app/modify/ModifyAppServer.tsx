@@ -1,4 +1,4 @@
-import type { AppFieldValue } from "@feature/app/create/app-field-value";
+import type { AppFieldValue } from "@feature/app/create/appFieldValue";
 import { ModifyAppClient } from "@feature/app/modify/ModifyAppClient";
 import { convertToApp } from "@feature/app/recordList/convertToApp";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";

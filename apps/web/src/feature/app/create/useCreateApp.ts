@@ -1,4 +1,4 @@
-import type { AppFieldValue } from "@feature/app/create/app-field-value";
+import type { AppFieldValue } from "@feature/app/create/appFieldValue";
 import { generateId } from "@feature/app/function/generateId";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";

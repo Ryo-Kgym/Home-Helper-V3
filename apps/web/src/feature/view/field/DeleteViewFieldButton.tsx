@@ -1,6 +1,6 @@
 import Reset from "@components/ui/v4/icon/Reset";
 import Trash from "@components/ui/v4/icon/Trash";
-import { AppFieldValue } from "@feature/app/create/app-field-value";
+import { AppFieldValue } from "@feature/app/create/appFieldValue";
 
 export const DeleteViewFieldButton = ({
   onClick,
