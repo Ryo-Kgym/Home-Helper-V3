@@ -7,7 +7,8 @@ import { AppListData } from "@feature/view/modify/type/appListData";
 import { InputViewApps } from "@feature/view/modify/type/inputViewApps";
 import { ViewAppOption } from "@feature/view/modify/ViewAppOption";
 import { ViewAppTable } from "@feature/view/modify/ViewAppTable";
-import { ViewFields } from "@oneforall/domain/schema/view/view-schema";
+
+import { ViewFields } from "../../../../../../packages/domain/schema/view/viewSchema";
 
 /**
  * @package

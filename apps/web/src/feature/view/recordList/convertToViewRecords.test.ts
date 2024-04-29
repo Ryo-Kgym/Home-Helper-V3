@@ -1,6 +1,7 @@
 import { convertToViewRecords } from "@feature/view/recordList/convertToViewRecords";
-import { ViewRecords } from "@oneforall/domain/schema/view/view-record-schema";
 import { GetViewRecordsSourceQuery } from "@v3/graphql/public/type";
+
+import { ViewRecords } from "../../../../../../packages/domain/schema/view/viewRecordSchema";
 
 describe("convertToViewRecords", () => {
   it("正常に変換できた場合", () => {
