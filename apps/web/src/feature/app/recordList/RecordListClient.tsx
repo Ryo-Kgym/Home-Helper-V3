@@ -9,11 +9,8 @@ import { RedirectSettingButton } from "@feature/app/nav/RedirectSettingButton";
 import { RecordListTable } from "@feature/app/recordList/RecordListTable";
 import { useResetMode } from "@feature/app/recordList/useModeState";
 import { useInitRecords } from "@feature/app/recordList/useRecordsState";
-import { App } from "@oneforall/domain/schema/recordSchema/appSchema";
-import {
-  Columns,
-  Records,
-} from "@oneforall/domain/schema/recordSchema/recordSchema";
+import { App } from "@oneforall/domain/schema/appSchema";
+import { Columns, Records } from "@oneforall/domain/schema/recordSchema";
 
 export type RecordListMode = "add" | "modify" | "show";
 

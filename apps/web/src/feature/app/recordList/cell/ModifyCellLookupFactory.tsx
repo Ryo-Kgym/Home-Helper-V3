@@ -1,5 +1,5 @@
 import type { ModifyCellFactoryChangeHandler } from "@feature/app/recordList/cell/cell-factory-change-handler";
-import type { FieldOptionsLookup } from "@oneforall/domain/schema/recordSchema";
+import type { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { Select } from "@components/ui/v4/select";
 import { useGetLookupOptions } from "@feature/app/recordList/cell/useGetLookupOptions";
 

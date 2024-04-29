@@ -1,4 +1,4 @@
-import type { FieldOptionsDate } from "@oneforall/domain/schema/recordSchema";
+import type { FieldOptionsDate } from "@oneforall/domain/schema/appSchema";
 import { convertDateStyle } from "@feature/app/function/convertDateStyle";
 
 export const ShowCellDateFactory = ({

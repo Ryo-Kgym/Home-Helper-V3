@@ -1,4 +1,4 @@
-import type { App } from "@oneforall/domain/schema/recordSchema";
+import type { App } from "@oneforall/domain/schema/appSchema";
 import type { ComponentProps } from "react";
 import { Table } from "@components/ui/v4/table";
 import { NewRecordListRow } from "@feature/app/recordList/NewRecordListRow";

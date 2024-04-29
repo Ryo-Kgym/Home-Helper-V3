@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-import type { ViewFieldValue } from "./view-field-value";
+import type { ViewFieldValue } from "./viewFieldValue";
 
 type State = {
   viewFieldValue: ViewFieldValue;

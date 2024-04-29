@@ -1,4 +1,4 @@
-import type { FieldOptionsSelectBox } from "@oneforall/domain/schema/recordSchema";
+import type { FieldOptionsSelectBox } from "@oneforall/domain/schema/appSchema";
 import { Select } from "@components/ui/v4/select";
 
 export const AddCellSelectBoxFactory = ({

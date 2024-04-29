@@ -1,5 +1,5 @@
 import { generateId } from "@feature/app/function/generateId";
-import { ViewFieldValue } from "@feature/view/create/view-field-value";
+import { ViewFieldValue } from "@feature/view/create/viewFieldValue";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
 import { useInsertViewMutation } from "@v3/graphql/public";

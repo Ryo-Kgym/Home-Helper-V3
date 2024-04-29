@@ -3,7 +3,7 @@ import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { lookupOptionsSchema } from "@feature/app/create/appFieldValue";
 import { OptionsState } from "@feature/app/create/FieldOptionsInput";
-import { FieldOptionsLookup } from "@oneforall/domain/schema/recordSchema";
+import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetAppFieldListQuery } from "@v3/graphql/public";
 

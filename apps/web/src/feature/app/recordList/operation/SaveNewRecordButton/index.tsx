@@ -1,5 +1,5 @@
 import { notify } from "@components/ui/v4/notify/notify";
-import { Columns } from "@oneforall/domain/schema/recordSchema/recordSchema";
+import { Columns } from "@oneforall/domain/schema/recordSchema";
 
 import { useSaveNewRecord } from "./useSaveNewRecord";
 
