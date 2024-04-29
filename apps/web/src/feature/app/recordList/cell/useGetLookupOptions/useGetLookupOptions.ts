@@ -1,9 +1,10 @@
+import { sortLookupData } from "@feature/app/recordList/cell/useGetLookupOptions/sortLookupData";
 import { convertToRecords } from "@feature/app/recordList/convertToRecords";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { useGetRecordsQuery } from "@v3/graphql/public";
 
 export const useGetLookupOptions = ({
-  options: { appId, selectFieldId, saveFieldId },
+  options: { appId, selectFieldId, saveFieldId, sortFieldId, sortDirection },
 }: {
   options: FieldOptionsLookup;
 }) => {
@@ -11,10 +12,12 @@ export const useGetLookupOptions = ({
 
   const records = convertToRecords(recordsData?.records ?? []);
 
-  const lookupData = Object.values(records).map((r) => ({
-    label: r.columns[selectFieldId]?.value ?? "",
-    value: r.columns[saveFieldId]?.value ?? "",
-  }));
+  const lookupData = Object.values(records)
+    .sort((a, b) => sortLookupData(a, b, sortFieldId, sortDirection))
+    .map((r) => ({
+      label: r.columns[selectFieldId]?.value ?? "",
+      value: r.columns[saveFieldId]?.value ?? "",
+    }));
 
   return {
     lookupData,
