@@ -5,7 +5,7 @@ import { useCreateView } from "./useCreateView";
 
 jest.mock("@v3/graphql/public");
 
-jest.mock("@feature/app/function/generate-id", () => ({
+jest.mock("@feature/app/function/generateId", () => ({
   generateId: jest.fn().mockReturnValue("123"),
 }));
 

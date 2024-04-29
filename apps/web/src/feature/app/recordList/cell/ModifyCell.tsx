@@ -1,7 +1,8 @@
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
-import { Field, RecordColumn, Records } from "@oneforall/domain/schema";
+import { Field } from "@oneforall/domain/schema/appSchema";
+import { RecordColumn, Records } from "@oneforall/domain/schema/recordSchema";
 
 import { ModifyCellFactoryChangeHandler } from "./cell-factory-change-handler";
 import { ModifyCellDateFactory } from "./ModifyCellDateFactory";

@@ -3,7 +3,8 @@ import { Table } from "@components/ui/v4/table";
 import { useGetViewApps } from "@feature/view/modify/hook";
 import { RemoveViewApp } from "@feature/view/modify/RemoveViewApp";
 import { AppListData } from "@feature/view/modify/type/appListData";
-import { ViewFields } from "@oneforall/domain/schema/view/view-schema";
+
+import { ViewFields } from "../../../../../../packages/domain/schema/view/viewSchema";
 
 /**
  * @package

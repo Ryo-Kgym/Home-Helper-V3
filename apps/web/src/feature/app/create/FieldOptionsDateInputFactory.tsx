@@ -1,13 +1,12 @@
-import { Button } from "@components/ui/v4/button";
-import { Select } from "@components/ui/v4/select";
-import { dateOptionsSchema } from "@feature/app/create/app-field-value";
-import { useState } from "react";
-
 import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
 import type {
   FieldOptionsDate,
   FieldOptionsDateFormat,
-} from "@oneforall/domain/schema";
+} from "@oneforall/domain/schema/appSchema";
+import { useState } from "react";
+import { Button } from "@components/ui/v4/button";
+import { Select } from "@components/ui/v4/select";
+import { dateOptionsSchema } from "@feature/app/create/appFieldValue";
 
 export const FieldOptionsDateInputFactory = ({
   value,

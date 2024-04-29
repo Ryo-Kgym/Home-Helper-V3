@@ -1,4 +1,4 @@
-import { RecordColumn } from "@oneforall/domain/schema";
+import { RecordColumn } from "@oneforall/domain/schema/recordSchema";
 
 export const ShowCellLookupFactory = ({
   options,

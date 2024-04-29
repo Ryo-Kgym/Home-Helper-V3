@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import { RecordListMode } from "@feature/app/recordList/RecordListClient";
-import { Records } from "@oneforall/domain/schema";
+import { Records } from "@oneforall/domain/schema/recordSchema";
 
 import { CancelButton } from "./CancelButton";
 import { DeleteRecordButton } from "./DeleteRecordButton";

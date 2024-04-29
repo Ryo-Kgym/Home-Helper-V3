@@ -1,6 +1,6 @@
-import { View } from "@oneforall/domain/schema/view/view-schema";
 import { GetViewQuery } from "@v3/graphql/public/type";
 
+import { View } from "../../../../../../packages/domain/schema/view/viewSchema";
 import { convertToView } from "./convertToView";
 
 describe("convertToView", () => {

@@ -1,4 +1,4 @@
-import { Record, Records } from "@oneforall/domain/schema";
+import { Record, Records } from "@oneforall/domain/schema/recordSchema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 

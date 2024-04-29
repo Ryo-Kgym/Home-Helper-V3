@@ -1,15 +1,15 @@
-import * as generateId from "@feature/app/function/generate-id";
+import * as generateId from "@feature/app/function/generateId";
 import * as calcNextIndex from "@feature/app/recordList/operation/SaveNewRecordButton/calc-next-index";
 import { useSaveNewRecord } from "@feature/app/recordList/operation/SaveNewRecordButton/useSaveNewRecord";
 import * as useNewRecordState from "@feature/app/recordList/operation/useNewRecordState";
 import * as useModeState from "@feature/app/recordList/useModeState";
 import * as useRecordsState from "@feature/app/recordList/useRecordsState";
-import { Columns } from "@oneforall/domain/schema";
+import { Columns } from "@oneforall/domain/schema/recordSchema";
 import { act, renderHook } from "@testing-library/react";
 import * as mut from "@v3/graphql/public";
 
 jest.mock("@v3/graphql/public");
-jest.mock("@feature/app/function/generate-id");
+jest.mock("@feature/app/function/generateId");
 jest.mock(
   "@feature/app/recordList/operation/SaveNewRecordButton/calc-next-index",
 );

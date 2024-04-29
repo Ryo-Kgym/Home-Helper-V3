@@ -1,6 +1,6 @@
-import { notify } from "@components/ui/v4/notify/notify";
 import type { RecordListMode } from "@feature/app/recordList/RecordListClient";
-import type { Records } from "@oneforall/domain/schema";
+import type { Records } from "@oneforall/domain/schema/recordSchema";
+import { notify } from "@components/ui/v4/notify/notify";
 import { useUpdateRecordMutation } from "@v3/graphql/public";
 
 export const UpdateRecordButton = ({

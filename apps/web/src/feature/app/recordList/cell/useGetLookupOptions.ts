@@ -1,5 +1,5 @@
-import { convertToRecords } from "@feature/app/recordList/convert-to-records";
-import { FieldOptionsLookup } from "@oneforall/domain/schema";
+import { convertToRecords } from "@feature/app/recordList/convertToRecords";
+import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { useGetRecordsQuery } from "@v3/graphql/public";
 
 export const useGetLookupOptions = ({

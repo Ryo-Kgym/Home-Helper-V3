@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-import type { AppFieldValue } from "./app-field-value";
+import type { AppFieldValue } from "./appFieldValue";
 
 type State = {
   appFieldValue: AppFieldValue;

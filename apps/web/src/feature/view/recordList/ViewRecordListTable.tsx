@@ -1,7 +1,8 @@
-import type { View } from "@oneforall/domain/schema/view/view-schema";
 import type { ComponentProps } from "react";
 import { Table } from "@components/ui/v4/table";
 import { useViewRecords } from "@feature/view/recordList/useViewRecordsState";
+
+import type { View } from "../../../../../../packages/domain/schema/view/viewSchema";
 
 export const ViewRecordListTable = ({
   headerItems,

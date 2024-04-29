@@ -1,7 +1,6 @@
+import type { Record } from "@oneforall/domain/schema/recordSchema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-
-import type { Record } from "@oneforall/domain/schema";
 
 export const useInitNewRecord = () =>
   useNewRecordState((state) => (record: Record) => {

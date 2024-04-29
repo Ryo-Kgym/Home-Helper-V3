@@ -1,6 +1,5 @@
-import { FieldContainer } from "@components/ui/v4/FieldContainer";
-
 import type { FieldValueProps } from "@components/ui/v4/property";
+import { FieldContainer } from "@components/ui/v4/FieldContainer";
 
 export const NumberInput = ({
   label,
@@ -18,7 +17,14 @@ export const NumberInput = ({
         className={`w-full cursor-pointer p-2 focus:outline-none ${requiredStyle} disabled:cursor-not-allowed disabled:bg-gray-200`}
         type="number"
         value={value}
-        onChange={(e) => setValue(Number(e.target.value))}
+        onChange={(e) => {
+          if (e.target.value === "") {
+            setValue("");
+            return;
+          }
+
+          setValue(Number(e.target.value));
+        }}
         placeholder={placeholder}
         disabled={disabled}
       />

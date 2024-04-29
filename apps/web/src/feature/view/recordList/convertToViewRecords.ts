@@ -1,9 +1,10 @@
-import { viewAppFieldSchema } from "@oneforall/domain/schema/view/view-app-schema";
+import { GetViewRecordsSourceQuery } from "@v3/graphql/public/type";
+
+import { viewAppFieldSchema } from "../../../../../../packages/domain/schema/view/viewAppSchema";
 import {
   viewRecordColumnSchema,
   ViewRecords,
-} from "@oneforall/domain/schema/view/view-record-schema";
-import { GetViewRecordsSourceQuery } from "@v3/graphql/public/type";
+} from "../../../../../../packages/domain/schema/view/viewRecordSchema";
 
 export const convertToViewRecords = (
   recordsSource: GetViewRecordsSourceQuery,

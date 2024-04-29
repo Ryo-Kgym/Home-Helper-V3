@@ -1,4 +1,4 @@
-import type { FieldOptionsSelectBox } from "@oneforall/domain/schema";
+import type { FieldOptionsSelectBox } from "@oneforall/domain/schema/appSchema";
 
 export const ShowCellSelectBoxFactory = ({
   value,

@@ -1,3 +1,16 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require("fs");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
+
+const pagesDirs = fs.readdirSync(
+  path.resolve(__dirname, "../../apps/web/src/pageComponents"),
+);
+
+const featuresDirs = fs.readdirSync(
+  path.resolve(__dirname, "../../apps/web/src/features"),
+);
+
 /** @type {import("eslint").Linter.Config} */
 const config = {
   extends: [
@@ -35,20 +48,39 @@ const config = {
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
     "@typescript-eslint/unbound-method": "off",
     "import-access/jsdoc": ["error"],
     "strict-dependencies/strict-dependencies": [
       "error",
       [
-        {
-          module: "src/feature",
-          allowReferenceFrom: ["src/app"],
+        ...pagesDirs.map((name) => ({
+          module: `src/pageComponents/${name}`,
+          allowReferenceFrom: [`src/app/**/page.tsx`],
           allowSameModule: true,
-        },
+        })),
+        ...pagesDirs.map((name) => ({
+          module: `src/pageComponents/${name}/**`,
+          allowReferenceFrom: [`src/pageComponents/${name}/**`],
+          allowSameModule: true,
+        })),
+        ...pagesDirs.map((name) => ({
+          module: `src/pageComponents/${name}/server`,
+          allowReferenceFrom: [
+            `src/pageComponents/${name}/components/*Server.tsx`,
+          ],
+          allowSameModule: true,
+        })),
+        ...featuresDirs.map((name) => ({
+          module: `src/features/${name}`,
+          allowReferenceFrom: [`src/pageComponents/*/components/*Client.tsx`],
+          allowSameModule: true,
+        })),
         {
           module: "src/components/ui",
           allowReferenceFrom: [
             "src/feature",
+            "src/pageComponents/**/components/*",
             "src/components/page",
             "src/components/molecules",
             "src/components/organisms",

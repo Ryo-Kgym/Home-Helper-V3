@@ -4,7 +4,7 @@ import { act } from "react-dom/test-utils";
 
 import * as graphqlMock from "../../../../../../../packages/graphql/public";
 
-jest.mock("@feature/app/function/generate-id", () => ({
+jest.mock("@feature/app/function/generateId", () => ({
   generateId: jest.fn().mockReturnValue("generated"),
 }));
 
