@@ -1,4 +1,4 @@
-import * as target from "./generate-id";
+import * as target from "./generateId";
 
 jest.spyOn(Date.prototype, "getTime").mockReturnValue(1234567890);
 

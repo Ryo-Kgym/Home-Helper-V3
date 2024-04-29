@@ -1,11 +1,10 @@
+import type { SelectBoxOptions } from "@feature/app/create/app-field-value";
+import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
+import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { TextInput } from "@components/ui/v4/textInput";
 import { selectBoxOptionsSchema } from "@feature/app/create/app-field-value";
-import { generateId } from "@feature/app/function/generate-id";
-import { useState } from "react";
-
-import type { SelectBoxOptions } from "@feature/app/create/app-field-value";
-import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
+import { generateId } from "@feature/app/function/generateId";
 
 export const FieldOptionsSelectBoxInputFactory = ({
   value,

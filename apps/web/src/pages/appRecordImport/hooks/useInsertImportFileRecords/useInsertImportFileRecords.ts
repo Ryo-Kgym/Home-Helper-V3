@@ -1,4 +1,4 @@
-import { generateId, generateIds } from "@feature/app/function/generate-id";
+import { generateId, generateIds } from "@feature/app/function/generateId";
 import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
 import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
 import {

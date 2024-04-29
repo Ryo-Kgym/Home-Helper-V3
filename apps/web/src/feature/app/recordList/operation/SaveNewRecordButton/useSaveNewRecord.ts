@@ -1,4 +1,4 @@
-import { generateId } from "@feature/app/function/generate-id";
+import { generateId } from "@feature/app/function/generateId";
 import { calcNextIndex } from "@feature/app/recordList/operation/SaveNewRecordButton/calc-next-index";
 import { useResetNewRecord } from "@feature/app/recordList/operation/useNewRecordState";
 import { useResetMode } from "@feature/app/recordList/useModeState";

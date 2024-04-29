@@ -1,4 +1,4 @@
-import { generateId } from "@feature/app/function/generate-id";
+import { generateId } from "@feature/app/function/generateId";
 import { ViewFieldValue } from "@feature/view/create/view-field-value";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
