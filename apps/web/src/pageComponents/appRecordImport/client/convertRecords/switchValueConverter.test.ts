@@ -48,6 +48,8 @@ describe("switchValueConverter", () => {
         appId: "1",
         selectFieldId: "2",
         saveFieldId: "3",
+        sortFieldId: "4",
+        sortDirection: "asc",
       },
     });
 
