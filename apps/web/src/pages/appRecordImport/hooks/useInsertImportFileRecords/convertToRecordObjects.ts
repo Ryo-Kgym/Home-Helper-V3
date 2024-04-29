@@ -1,5 +1,5 @@
-import { PreviewRecords } from "@oneforall/domain/schema/recordSchema";
-import { recordColumnSchema } from "@oneforall/domain/schema/recordSchema/recordSchema";
+import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
+import { recordColumnSchema } from "@oneforall/domain/schema/recordSchema";
 import { RecordInsertInput } from "@v3/graphql/public";
 
 /**
