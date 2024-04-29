@@ -13,9 +13,17 @@ describe("convertToPreviewRecordColumns", () => {
     f2: {
       id: "f2",
       fieldName: "フィールド2",
-      fieldKind: "text",
+      fieldKind: "selectBox",
       fieldIndex: 1,
-      options: {},
+      options: {
+        selector: [
+          { value: "value1", label: "label1" },
+          {
+            value: "value2",
+            label: "label2",
+          },
+        ],
+      },
     },
     f3: {
       id: "f3",
@@ -31,37 +39,17 @@ describe("convertToPreviewRecordColumns", () => {
       ["label1", "label2", "label3"],
       testFields,
       {
-        0: {
-          id: "f1",
-          fieldName: "test1",
-          fieldKind: "text",
-          fieldIndex: 0,
-          options: {},
+        f1: {
+          fieldName: "フィールド1",
+          fileColumnIndex: 0,
         },
-        1: {
-          id: "f2",
-          fieldName: "test2",
-          fieldKind: "selectBox",
-          fieldIndex: 1,
-          options: {
-            selector: [
-              {
-                value: "value1",
-                label: "label1",
-              },
-              {
-                value: "value2",
-                label: "label2",
-              },
-            ],
-          },
+        f2: {
+          fieldName: "フィールド2",
+          fileColumnIndex: 1,
         },
-        2: {
-          id: "f3",
-          fieldName: "test3",
-          fieldKind: "text",
-          fieldIndex: 2,
-          options: {},
+        f3: {
+          fieldName: "フィールド3",
+          fileColumnIndex: 2,
         },
       },
     );
@@ -93,19 +81,17 @@ describe("convertToPreviewRecordColumns", () => {
       ["label1", "label2", "label3"],
       testFields,
       {
-        0: {
-          id: "f1",
-          fieldName: "test1",
-          fieldKind: "text",
-          fieldIndex: 0,
-          options: {},
+        f1: {
+          fieldName: "フィールド1",
+          fileColumnIndex: 0,
         },
-        2: {
-          id: "f3",
-          fieldName: "test3",
-          fieldKind: "text",
-          fieldIndex: 2,
-          options: {},
+        f2: {
+          fieldName: "フィールド2",
+          fileColumnIndex: null,
+        },
+        f3: {
+          fieldName: "フィールド3",
+          fileColumnIndex: 2,
         },
       },
     );
@@ -119,7 +105,7 @@ describe("convertToPreviewRecordColumns", () => {
       },
       f2: {
         errorMessage: undefined,
-        fieldKind: "text",
+        fieldKind: "selectBox",
         originalValue: "",
         value: "",
       },
@@ -148,7 +134,7 @@ describe("convertToPreviewRecordColumns", () => {
       },
       f2: {
         errorMessage: undefined,
-        fieldKind: "text",
+        fieldKind: "selectBox",
         originalValue: "",
         value: "",
       },
@@ -159,5 +145,31 @@ describe("convertToPreviewRecordColumns", () => {
         value: "",
       },
     });
+  });
+
+  // 存在しない列番号が指定された場合
+  it("行の列に対応する fieldMapping が存在するが、列番号が存在しない場合", () => {
+    expect(() => {
+      convertToPreviewRecordColumns(
+        ["label1", "label2", "label3"],
+        testFields,
+        {
+          f1: {
+            fieldName: "フィールド1",
+            fileColumnIndex: 0,
+          },
+          f2: {
+            fieldName: "フィールド2",
+            fileColumnIndex: 1,
+          },
+          f3: {
+            fieldName: "フィールド3",
+            fileColumnIndex: 10,
+          },
+        },
+      );
+    }).toThrowError(
+      `取り込んだファイルに存在しない列番号です。フィールド名：フィールド3、誤った列番号：10`,
+    );
   });
 });
