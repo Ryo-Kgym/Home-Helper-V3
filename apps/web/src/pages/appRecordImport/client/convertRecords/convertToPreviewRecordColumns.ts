@@ -1,24 +1,35 @@
-import { Field, Fields, PreviewRecordColumn } from "@oneforall/domain/schema";
+import { Fields, PreviewRecordColumn } from "@oneforall/domain/schema";
 import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
 import { switchValueConverter } from "@pages/appRecordImport/client/convertRecords/switchValueConverter";
 
+/**
+ * @package
+ */
 export const convertToPreviewRecordColumns = (
   row: string[],
   fields: Fields,
   fieldMapping: ImportFileFieldMapping,
-): PreviewRecordColumn => {
-  return Object.fromEntries(
+): PreviewRecordColumn =>
+  Object.fromEntries(
     Object.entries(fields).map(([fieldId, field]) => {
       const fileColumnIndex = fieldMapping[fieldId]?.fileColumnIndex ?? null;
 
       if (fileColumnIndex !== null) {
-        return caseFoundIndex(
-          row,
-          fieldMapping[fieldId]?.fieldName ?? "",
+        const value = row[fileColumnIndex];
+
+        if (!value) {
+          throw new Error(
+            `取り込んだファイルに存在しない列番号です。フィールド名：${fieldMapping[fieldId]?.fieldName}、誤った列番号：${fileColumnIndex}`,
+          );
+        }
+
+        return [
           fieldId,
-          field,
-          fileColumnIndex,
-        );
+          {
+            fieldKind: field.fieldKind,
+            ...switchValueConverter(value, field),
+          },
+        ];
       }
 
       return [
@@ -32,28 +43,3 @@ export const convertToPreviewRecordColumns = (
       ];
     }),
   );
-};
-
-const caseFoundIndex = (
-  row: string[],
-  fieldName: ImportFileFieldMapping[string]["fieldName"],
-  fieldId: string,
-  field: Field,
-  fileColumnIndex: number,
-) => {
-  const value = row[fileColumnIndex];
-
-  if (!value) {
-    throw new Error(
-      `取り込んだファイルに存在しない列番号です。フィールド名：${fieldName}、誤った列番号：${fileColumnIndex}`,
-    );
-  }
-
-  return [
-    fieldId,
-    {
-      fieldKind: field.fieldKind,
-      ...switchValueConverter(value, field),
-    },
-  ];
-};
