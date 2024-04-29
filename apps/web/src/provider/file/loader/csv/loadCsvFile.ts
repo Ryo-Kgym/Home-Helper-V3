@@ -2,11 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import type { FileType } from "@provider/file/FileType";
 import { parseCsv } from "@provider/file/loader/csv/CsvFileParse";
 import { getSetting } from "@provider/file/loader/csv/CsvFileSetting";
 import Encoding from "encoding-japanese";
-
-import type { FileType } from "@provider/file/FileType";
 
 type loadFileArgs = {
   file: File;
@@ -38,10 +37,9 @@ export async function loadCsvFile({ file, fileType }: loadFileArgs) {
     const csv = decodeCsv(readFile, encodingTo, encodingFrom, encodingType);
     const rows = separateRows(csv, splitSeparator, headerRows, footerRows);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return rows.map((line) => {
       if (quotation) line = line.replaceAll(quotation, "");
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
       return parseCsv(line, fileType);
     });
   } catch (e) {
