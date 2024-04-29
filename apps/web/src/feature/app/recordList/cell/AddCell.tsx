@@ -5,7 +5,8 @@ import { AddCellDateFactory } from "@feature/app/recordList/cell/AddCellDateFact
 import { AddCellLookupFactory } from "@feature/app/recordList/cell/AddCellLookupFactory";
 import { AddCellSelectBoxFactory } from "@feature/app/recordList/cell/AddCellSelectBoxFactory";
 import { ModifyCellFactoryChangeHandler } from "@feature/app/recordList/cell/cell-factory-change-handler";
-import { Columns, Field, Fields, RecordColumn } from "@oneforall/domain/schema";
+import { Field, Fields } from "@oneforall/domain/schema/appSchema";
+import { Columns, RecordColumn } from "@oneforall/domain/schema/recordSchema";
 
 export const AddCell = ({
   field,

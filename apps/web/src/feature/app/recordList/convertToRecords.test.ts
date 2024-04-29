@@ -1,5 +1,5 @@
 import type { GetAppQuery } from "@v3/graphql/public";
-import { Records } from "@oneforall/domain/schema";
+import { Records } from "@oneforall/domain/schema/recordSchema";
 
 import { convertToRecords } from "./convertToRecords";
 

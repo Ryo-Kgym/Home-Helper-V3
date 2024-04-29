@@ -1,4 +1,4 @@
-import { ImportFileHistory } from "@oneforall/domain/schema";
+import { ImportFileHistory } from "@oneforall/domain/schema/recordSchema";
 import { convertToImportHistories } from "@pages/appRecordImport/server/convertToImportHistories";
 
 import { GetImportFileQuery } from "../../../../../../packages/graphql/public/type";

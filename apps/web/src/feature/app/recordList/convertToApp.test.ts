@@ -1,4 +1,4 @@
-import { App } from "@oneforall/domain/schema";
+import { App } from "@oneforall/domain/schema/recordSchema";
 import { GetAppQuery } from "@v3/graphql/public/type";
 
 import { convertToApp } from "./convertToApp";

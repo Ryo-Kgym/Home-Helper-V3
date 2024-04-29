@@ -1,4 +1,4 @@
-import { FieldOptionsSelectBox } from "@oneforall/domain/schema";
+import { FieldOptionsSelectBox } from "@oneforall/domain/schema/recordSchema";
 import { convertValueSelectbox } from "@pages/appRecordImport/client/convertRecords/convertValueSelectbox";
 
 describe("convertValueSelectBox", () => {

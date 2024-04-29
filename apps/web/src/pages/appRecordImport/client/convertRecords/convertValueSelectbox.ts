@@ -1,4 +1,4 @@
-import { FieldOptionsSelectBox } from "@oneforall/domain/schema";
+import { FieldOptionsSelectBox } from "@oneforall/domain/schema/recordSchema";
 
 /**
  * @package

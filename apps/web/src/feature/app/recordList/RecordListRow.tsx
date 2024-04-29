@@ -4,7 +4,8 @@ import { RecordCell } from "@feature/app/recordList/cell/RecordCell";
 import { RecordRowOperation } from "@feature/app/recordList/operation/RecordRowOperation";
 import { RecordListMode } from "@feature/app/recordList/RecordListClient";
 import { useStateRecord } from "@feature/app/recordList/useStateRecord";
-import { App, Records } from "@oneforall/domain/schema";
+import { App } from "@oneforall/domain/schema/appSchema";
+import { Records } from "@oneforall/domain/schema/recordSchema";
 
 export const RecordListRow = ({
   record: defaultRecord,

@@ -1,5 +1,5 @@
 import { AppListData } from "@feature/view/modify/type/appListData";
-import { fieldKindSchema } from "@oneforall/domain/schema";
+import { fieldKindSchema } from "@oneforall/domain/schema/appSchema";
 import { GetAppFieldListQuery } from "@v3/graphql/public/type";
 
 export const convertToAppListData = (data: GetAppFieldListQuery): AppListData =>

@@ -1,9 +1,7 @@
 "server-only";
 
-import {
-  ImportFileHistory,
-  previewColumnsSchema,
-} from "@oneforall/domain/schema";
+import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
+import { previewColumnsSchema } from "@oneforall/domain/schema/previewRecordsSchema";
 import { GetImportFileQuery } from "@v3/graphql/public/type";
 
 export const convertToImportHistories = (

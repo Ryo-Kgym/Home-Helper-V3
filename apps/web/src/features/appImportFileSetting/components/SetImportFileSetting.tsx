@@ -8,7 +8,7 @@ import { LineBreakCodeSelect } from "@features/appImportFileSetting/components/L
 import { QuotationSelect } from "@features/appImportFileSetting/components/QuotationSelect";
 import { SplitterSelect } from "@features/appImportFileSetting/components/SplitterSelect";
 import { useImportFileSettings } from "@features/appImportFileSetting/hooks/useImportSettingsState";
-import { importFileSettingsSchema } from "@oneforall/domain/schema";
+import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { useInsertImportFileSettingMutation } from "@v3/graphql/public";
 
 export const SetImportFileSetting = ({

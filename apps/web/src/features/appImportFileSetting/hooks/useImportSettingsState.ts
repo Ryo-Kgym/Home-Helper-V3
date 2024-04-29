@@ -1,8 +1,9 @@
-import { IMPORT_FILE_SETTINGS_DEFAULT } from "@oneforall/domain/schema";
+import {
+  IMPORT_FILE_SETTINGS_DEFAULT,
+  ImportFileSettings,
+} from "@oneforall/domain/schema/importFileSettingsSchema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-
-import type { ImportFileSettings } from "@oneforall/domain/schema";
 
 export const useImportFileSettings = () =>
   useImportSettingsState((store) => ({

@@ -12,11 +12,7 @@ export const recordColumnSchema = z.object({
     .optional(),
 });
 
-export type RecordColumn = z.infer<typeof recordColumnSchema>;
-
 export const columnsSchema = z.record(recordColumnSchema); // fieldId
-
-export type Columns = z.infer<typeof columnsSchema>;
 
 export const recordsSchema = z.record(
   z.string(), // record.index
@@ -27,5 +23,7 @@ export const recordsSchema = z.record(
   }),
 );
 
+export type RecordColumn = z.infer<typeof recordColumnSchema>;
+export type Columns = z.infer<typeof columnsSchema>;
 export type Records = z.infer<typeof recordsSchema>;
 export type Record = Records[number];

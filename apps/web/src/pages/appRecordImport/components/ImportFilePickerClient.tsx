@@ -1,6 +1,5 @@
 "use client";
 
-import type { Fields } from "@oneforall/domain/schema";
 import type { ChangeEvent } from "react";
 import { useRef, useState } from "react";
 import { Button } from "@components/ui/v4/button";
@@ -9,6 +8,7 @@ import { loadImportFile } from "@features/appFileImport/client/loadImportFile";
 import { selectSingleFile } from "@features/appFileImport/client/selectSingleFile";
 import { useImportFileFieldMapping } from "@features/appImportFileFieldMapping/hooks/useImportFileFieldMapping";
 import { useImportFileSettings } from "@features/appImportFileSetting/hooks/useImportSettingsState";
+import { Fields } from "@oneforall/domain/schema/appSchema";
 import { useImportFileHistories } from "@pages/appRecordImport/hooks/useImportFileHistories";
 import { usePreviewRecords } from "@pages/appRecordImport/hooks/usePreviewRecords";
 import { useResetPreviewRecords } from "@pages/appRecordImport/hooks/useResetPreviewRecords";

@@ -1,4 +1,4 @@
-import { Quotation, Splitter } from "@oneforall/domain/schema";
+import { Quotation, Splitter } from "@oneforall/domain/schema/recordSchema";
 
 /**
  * @package

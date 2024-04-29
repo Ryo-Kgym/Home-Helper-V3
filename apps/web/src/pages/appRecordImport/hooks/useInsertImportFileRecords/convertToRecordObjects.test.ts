@@ -1,4 +1,4 @@
-import { PreviewRecords } from "@oneforall/domain/schema";
+import { PreviewRecords } from "@oneforall/domain/schema/recordSchema";
 
 import { convertToRecordObjects } from "./convertToRecordObjects";
 

@@ -1,5 +1,5 @@
-import { Fields } from "@oneforall/domain/schema";
-import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
+import { Fields } from "@oneforall/domain/schema/recordSchema";
+import { ImportFileFieldMapping } from "@oneforall/domain/schema/recordSchema/importFileFieldMappingSchema";
 
 export const convertToImportFileFieldMapping = (
   fields: Fields,

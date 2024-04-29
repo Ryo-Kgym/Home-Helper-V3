@@ -2,7 +2,7 @@ import { Table } from "@components/ui/v4/table";
 import { AddCell } from "@feature/app/recordList/cell/AddCell";
 import { AddRecordRowOperation } from "@feature/app/recordList/operation/AddRecordRowOperation";
 import { useNewRecord } from "@feature/app/recordList/operation/useNewRecordState";
-import { App } from "@oneforall/domain/schema";
+import { App } from "@oneforall/domain/schema/recordSchema";
 
 import { useMode } from "./useModeState";
 

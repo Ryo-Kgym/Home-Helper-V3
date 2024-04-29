@@ -1,4 +1,4 @@
-import type { ImportFileSettings } from "@oneforall/domain/schema";
+import type { ImportFileSettings } from "@oneforall/domain/schema/recordSchema";
 import { readFile } from "@features/appFileImport/client/readFile";
 import { splitRows } from "@features/appFileImport/client/splitRows";
 import { decodeCsv, separateRows } from "@provider/file/loader/csv/loadCsvFile";

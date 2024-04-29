@@ -1,6 +1,5 @@
+import type { EncodingType } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { Select } from "@components/ui/v4/select";
-
-import type { EncodingType } from "@oneforall/domain/schema";
 
 export const EncodingTypeSelect = ({
   value,

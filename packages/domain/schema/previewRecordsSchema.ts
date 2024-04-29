@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { fieldKindSchema } from "./appSchema";
 
-export const previewColumnSchema = z.object({
+const previewColumnSchema = z.object({
   fieldKind: fieldKindSchema,
   originalValue: z.string().optional(),
   value: z.string().or(z.undefined()),

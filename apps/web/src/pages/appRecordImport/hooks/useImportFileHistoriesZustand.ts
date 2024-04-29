@@ -1,4 +1,4 @@
-import type { ImportFileHistory } from "@oneforall/domain/schema";
+import type { ImportFileHistory } from "@oneforall/domain/schema/recordSchema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 

@@ -1,4 +1,4 @@
-import type { FieldOptionsDateFormat } from "@oneforall/domain/schema";
+import type { FieldOptionsDateFormat } from "@oneforall/domain/schema/recordSchema";
 
 export const convertDateStyle = (
   value: string,

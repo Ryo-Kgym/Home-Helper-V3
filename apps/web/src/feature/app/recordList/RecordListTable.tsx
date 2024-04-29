@@ -1,9 +1,9 @@
+import type { App } from "@oneforall/domain/schema/recordSchema";
 import type { ComponentProps } from "react";
 import { Table } from "@components/ui/v4/table";
 import { NewRecordListRow } from "@feature/app/recordList/NewRecordListRow";
 import { RecordListRow } from "@feature/app/recordList/RecordListRow";
 import { useRecords } from "@feature/app/recordList/useRecordsState";
-import type { App } from "@oneforall/domain/schema";
 
 export const RecordListTable = ({
   app,

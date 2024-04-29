@@ -1,14 +1,12 @@
-import type {
-  ImportFileHistory,
-  PreviewRecords,
-} from "@oneforall/domain/schema";
 import { generateId, generateIds } from "@feature/app/function/generate-id";
-
+import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
+import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
 import {
   useGetMaxRecordIndexQuery,
   useInsertImportFileHistoryMutation,
   useInsertImportFileRecordsMutation,
-} from "../../../../../../../packages/graphql/public";
+} from "@v3/graphql/public";
+
 import { convertToRecordObjects } from "./convertToRecordObjects";
 
 // TODO test

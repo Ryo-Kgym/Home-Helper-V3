@@ -1,7 +1,7 @@
 "use client";
 
 import { Table } from "@components/ui/v4/table";
-import { App, PreviewRecords } from "@oneforall/domain/schema";
+import { App, PreviewRecords } from "@oneforall/domain/schema/recordSchema";
 import { ImportFilePickerClient } from "@pages/appRecordImport/components/ImportFilePickerClient";
 
 export const ImportPreview = ({

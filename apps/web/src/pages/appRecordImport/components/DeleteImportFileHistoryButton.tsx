@@ -1,11 +1,10 @@
 import Trash from "@components/ui/v4/icon/Trash";
 import { notify } from "@components/ui/v4/notify/notify";
 import { useImportFileHistories } from "@pages/appRecordImport/hooks/useImportFileHistories";
-
 import {
   useDeleteImportFileHistoryMutation,
   useDeleteRecordMutation,
-} from "../../../../../../packages/graphql/public";
+} from "@v3/graphql/public";
 
 export const DeleteImportFileHistoryButton = ({
   historyId,

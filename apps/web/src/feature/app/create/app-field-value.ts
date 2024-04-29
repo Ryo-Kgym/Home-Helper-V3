@@ -1,4 +1,4 @@
-import { fieldOptionsDateFormatSchema } from "@oneforall/domain/schema";
+import { fieldOptionsDateFormatSchema } from "@oneforall/domain/schema/appSchema";
 import { z } from "zod";
 
 const simpleKindOptionsSchema = z.object({});
