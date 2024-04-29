@@ -1,4 +1,4 @@
-import { Field } from "@oneforall/domain/schema/recordSchema";
+import { Field } from "@oneforall/domain/schema/appSchema";
 import { convertValueDate } from "@pages/appRecordImport/client/convertRecords/convertValueDate";
 
 import { convertValueSelectbox } from "./convertValueSelectbox";

@@ -1,4 +1,4 @@
-import { Fields } from "@oneforall/domain/schema/recordSchema";
+import { Fields } from "@oneforall/domain/schema/appSchema";
 
 import { makeColumnsTemplate } from "./makeColumnsTemplate";
 

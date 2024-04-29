@@ -1,5 +1,6 @@
-import { Fields, PreviewRecords } from "@oneforall/domain/schema/recordSchema";
-import { ImportFileFieldMapping } from "@oneforall/domain/schema/recordSchema/importFileFieldMappingSchema";
+import { Fields } from "@oneforall/domain/schema/appSchema";
+import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
+import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
 import { convertToPreviewRecordColumns } from "@pages/appRecordImport/client/convertRecords/convertToPreviewRecordColumns";
 
 export const convertPreviewRecords = (

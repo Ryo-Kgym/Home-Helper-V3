@@ -1,4 +1,4 @@
-import { PreviewRecords } from "@oneforall/domain/schema/recordSchema";
+import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
 
 import { convertPreviewRecords } from "./convertPreviewRecords";
 import * as switchValueConverterMock from "./switchValueConverter";

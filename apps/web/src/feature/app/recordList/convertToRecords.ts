@@ -1,9 +1,9 @@
-import type { Records } from "@oneforall/domain/schema/recordSchema/recordSchema";
-import type { GetAppQuery } from "@v3/graphql/public";
 import {
   columnsSchema,
+  Records,
   recordsSchema,
-} from "@oneforall/domain/schema/recordSchema/recordSchema";
+} from "@oneforall/domain/schema/recordSchema";
+import { GetAppQuery } from "@v3/graphql/public";
 
 export const convertToRecords = (
   recordData: NonNullable<GetAppQuery["app"]>["records"],
