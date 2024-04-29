@@ -4,7 +4,7 @@ import { useSaveNewRecord } from "@feature/app/recordList/operation/SaveNewRecor
 import * as useNewRecordState from "@feature/app/recordList/operation/useNewRecordState";
 import * as useModeState from "@feature/app/recordList/useModeState";
 import * as useRecordsState from "@feature/app/recordList/useRecordsState";
-import { Columns } from "@oneforall/domain/schema/recordSchema/recordSchema";
+import { Columns } from "@oneforall/domain/schema/recordSchema";
 import { act, renderHook } from "@testing-library/react";
 import * as mut from "@v3/graphql/public";
 

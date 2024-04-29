@@ -2,7 +2,7 @@ import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
 import type {
   FieldOptionsDate,
   FieldOptionsDateFormat,
-} from "@oneforall/domain/schema/recordSchema";
+} from "@oneforall/domain/schema/appSchema";
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";

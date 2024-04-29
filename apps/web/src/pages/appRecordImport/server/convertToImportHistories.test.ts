@@ -1,13 +1,9 @@
-import { ImportFileHistory } from "@oneforall/domain/schema/recordSchema";
+import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
 import { convertToImportHistories } from "@pages/appRecordImport/server/convertToImportHistories";
-
-import { GetImportFileQuery } from "../../../../../../packages/graphql/public/type";
+import { GetImportFileQuery } from "@v3/graphql/public/type";
 
 describe("convertToImportHistories", () => {
   it("converts import file data to import histories", () => {
-    // const mockDate = new Date(1594374371110);
-    // jest.spyOn(global, "Date").mockImplementation(() => mockDate);
-
     const importFileHistories: GetImportFileQuery["importFileHistories"] = [
       {
         __typename: "ImportFileHistory",
