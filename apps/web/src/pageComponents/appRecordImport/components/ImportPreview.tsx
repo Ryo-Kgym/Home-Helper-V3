@@ -3,7 +3,7 @@
 import { Table } from "@components/ui/v4/table";
 import { App } from "@oneforall/domain/schema/appSchema";
 import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
-import { ImportFilePickerClient } from "@pages/appRecordImport/components/ImportFilePickerClient";
+import { ImportFilePickerClient } from "@pageComponents/appRecordImport/components/ImportFilePickerClient";
 
 export const ImportPreview = ({
   app,

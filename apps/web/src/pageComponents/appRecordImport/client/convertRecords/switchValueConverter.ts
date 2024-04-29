@@ -1,5 +1,5 @@
 import { Field } from "@oneforall/domain/schema/appSchema";
-import { convertValueDate } from "@pages/appRecordImport/client/convertRecords/convertValueDate";
+import { convertValueDate } from "@pageComponents/appRecordImport/client/convertRecords/convertValueDate";
 
 import { convertValueSelectbox } from "./convertValueSelectbox";
 

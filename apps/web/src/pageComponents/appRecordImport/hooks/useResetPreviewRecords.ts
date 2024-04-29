@@ -1,4 +1,4 @@
-import { usePreviewRecordsZustand } from "@pages/appRecordImport/hooks/usePreviewRecordsZustand";
+import { usePreviewRecordsZustand } from "./usePreviewRecordsZustand";
 
 export const useResetPreviewRecords = () =>
   usePreviewRecordsZustand((store) => store.resetPreviewRecords);

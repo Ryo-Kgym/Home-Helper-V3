@@ -1,5 +1,5 @@
 import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
-import { convertToImportHistories } from "@pages/appRecordImport/server/convertToImportHistories";
+import { convertToImportHistories } from "@pageComponents/appRecordImport/server/convertToImportHistories";
 import { GetImportFileQuery } from "@v3/graphql/public/type";
 
 describe("convertToImportHistories", () => {

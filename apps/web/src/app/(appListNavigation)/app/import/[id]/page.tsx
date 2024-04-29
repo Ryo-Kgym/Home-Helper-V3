@@ -1,4 +1,4 @@
-import { RecordImport } from "pages/appRecordImport";
+import { RecordImport } from "pageComponents/appRecordImport";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
   <RecordImport appId={id} />

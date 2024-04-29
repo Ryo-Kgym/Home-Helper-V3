@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const pagesDirs = fs.readdirSync(
-  path.resolve(__dirname, "../../apps/web/src/pages"),
+  path.resolve(__dirname, "../../apps/web/src/pageComponents"),
 );
 
 const featuresDirs = fs.readdirSync(
@@ -55,30 +55,32 @@ const config = {
       "error",
       [
         ...pagesDirs.map((name) => ({
-          module: `src/pages/${name}`,
+          module: `src/pageComponents/${name}`,
           allowReferenceFrom: [`src/app/**/page.tsx`],
           allowSameModule: true,
         })),
         ...pagesDirs.map((name) => ({
-          module: `src/pages/${name}/**`,
-          allowReferenceFrom: [`src/pages/${name}/**`],
+          module: `src/pageComponents/${name}/**`,
+          allowReferenceFrom: [`src/pageComponents/${name}/**`],
           allowSameModule: true,
         })),
         ...pagesDirs.map((name) => ({
-          module: `src/pages/${name}/server`,
-          allowReferenceFrom: [`src/pages/${name}/components/*Server.tsx`],
+          module: `src/pageComponents/${name}/server`,
+          allowReferenceFrom: [
+            `src/pageComponents/${name}/components/*Server.tsx`,
+          ],
           allowSameModule: true,
         })),
         ...featuresDirs.map((name) => ({
           module: `src/features/${name}`,
-          allowReferenceFrom: [`src/pages/*/components/*Client.tsx`],
+          allowReferenceFrom: [`src/pageComponents/*/components/*Client.tsx`],
           allowSameModule: true,
         })),
         {
           module: "src/components/ui",
           allowReferenceFrom: [
             "src/feature",
-            "src/pages/**/components/*",
+            "src/pageComponents/**/components/*",
             "src/components/page",
             "src/components/molecules",
             "src/components/organisms",

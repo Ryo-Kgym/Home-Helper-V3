@@ -1,7 +1,7 @@
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
 import { PreviewRecordColumn } from "@oneforall/domain/schema/previewRecordsSchema";
-import { switchValueConverter } from "@pages/appRecordImport/client/convertRecords/switchValueConverter";
+import { switchValueConverter } from "@pageComponents/appRecordImport/client/convertRecords/switchValueConverter";
 
 /**
  * @package

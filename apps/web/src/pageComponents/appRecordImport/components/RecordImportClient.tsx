@@ -16,9 +16,9 @@ import { App } from "@oneforall/domain/schema/appSchema";
 import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
 import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
 import { ImportFileSettings } from "@oneforall/domain/schema/importFileSettingsSchema";
-import { ImportHistoryList } from "@pages/appRecordImport/components/ImportHistoryList";
-import { useImportFileHistories } from "@pages/appRecordImport/hooks/useImportFileHistories";
-import { usePreviewRecords } from "@pages/appRecordImport/hooks/usePreviewRecords";
+import { ImportHistoryList } from "@pageComponents/appRecordImport/components/ImportHistoryList";
+import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
+import { usePreviewRecords } from "@pageComponents/appRecordImport/hooks/usePreviewRecords";
 
 import { ImportPreview } from "./ImportPreview";
 

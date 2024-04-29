@@ -1,8 +1,8 @@
 import { Button } from "@components/ui/v4/button";
 import { Table } from "@components/ui/v4/table";
-import { DeleteImportFileHistoryButton } from "@pages/appRecordImport/components/DeleteImportFileHistoryButton";
-import { useImportFileHistories } from "@pages/appRecordImport/hooks/useImportFileHistories";
-import { useSetPreviewRecords } from "@pages/appRecordImport/hooks/useSetPreviewRecords";
+import { DeleteImportFileHistoryButton } from "@pageComponents/appRecordImport/components/DeleteImportFileHistoryButton";
+import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
+import { useSetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useSetPreviewRecords";
 
 export const ImportHistoryList = () => {
   const { importFileHistories } = useImportFileHistories();

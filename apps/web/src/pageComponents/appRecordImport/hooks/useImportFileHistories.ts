@@ -1,4 +1,4 @@
-import { useImportFileHistoriesZustand } from "@pages/appRecordImport/hooks/useImportFileHistoriesZustand";
+import { useImportFileHistoriesZustand } from "./useImportFileHistoriesZustand";
 
 export const useImportFileHistories = () =>
   useImportFileHistoriesZustand((state) => ({

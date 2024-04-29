@@ -6,7 +6,7 @@ module.exports = {
   },
   testEnvironment: "jsdom",
   moduleNameMapper: {
-    "^@pages/(.+)$": "<rootDir>/src/pages/$1",
+    "^@pageComponents/(.+)$": "<rootDir>/src/pageComponents/$1",
     "^@feature/(.+)$": "<rootDir>/src/feature/$1",
     "^@features/(.+)$": "<rootDir>/src/features/$1",
     "^@hooks/(.+)$": "<rootDir>/src/hooks/$1",

@@ -9,12 +9,12 @@ import { selectSingleFile } from "@features/appFileImport/client/selectSingleFil
 import { useImportFileFieldMapping } from "@features/appImportFileFieldMapping/hooks/useImportFileFieldMapping";
 import { useImportFileSettings } from "@features/appImportFileSetting/hooks/useImportSettingsState";
 import { Fields } from "@oneforall/domain/schema/appSchema";
-import { useImportFileHistories } from "@pages/appRecordImport/hooks/useImportFileHistories";
-import { usePreviewRecords } from "@pages/appRecordImport/hooks/usePreviewRecords";
-import { useResetPreviewRecords } from "@pages/appRecordImport/hooks/useResetPreviewRecords";
-import { useSetPreviewRecords } from "@pages/appRecordImport/hooks/useSetPreviewRecords";
-import { convertPreviewRecords } from "pages/appRecordImport/client/convertRecords";
-import { useInsertImportFileRecords } from "pages/appRecordImport/hooks/useInsertImportFileRecords";
+import { convertPreviewRecords } from "@pageComponents/appRecordImport/client/convertRecords";
+import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
+import { useInsertImportFileRecords } from "@pageComponents/appRecordImport/hooks/useInsertImportFileRecords";
+import { usePreviewRecords } from "@pageComponents/appRecordImport/hooks/usePreviewRecords";
+import { useResetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useResetPreviewRecords";
+import { useSetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useSetPreviewRecords";
 
 export const ImportFilePickerClient = ({
   appId,

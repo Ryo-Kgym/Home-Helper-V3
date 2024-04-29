@@ -1,7 +1,7 @@
 import { convertToApp } from "@feature/app/recordList/convertToApp";
 import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
-import { convertToImportFileFieldMapping } from "@pages/appRecordImport/server/convertToImportFileFieldMapping";
-import { convertToImportHistories } from "@pages/appRecordImport/server/convertToImportHistories";
+import { convertToImportFileFieldMapping } from "@pageComponents/appRecordImport/server/convertToImportFileFieldMapping";
+import { convertToImportHistories } from "@pageComponents/appRecordImport/server/convertToImportHistories";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetAppDocument, GetImportFileDocument } from "@v3/graphql/public/type";
 
