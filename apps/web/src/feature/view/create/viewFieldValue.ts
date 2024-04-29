@@ -1,9 +1,12 @@
-import { fieldOptionsDateFormatSchema } from "@oneforall/domain/schema/appSchema";
+import {
+  fieldOptionsDateFormatSchema,
+  fieldOptionsLookupSchema,
+} from "@oneforall/domain/schema/appSchema";
 import { z } from "zod";
 
 const simpleKindOptionsSchema = z.object({});
 
-export const selectBoxOptionsSchema = z.object({
+const selectBoxOptionsSchema = z.object({
   selector: z
     .object({
       value: z.string().min(1),
@@ -13,16 +16,13 @@ export const selectBoxOptionsSchema = z.object({
     .min(1),
 });
 
-export type SelectBoxOptions = z.infer<typeof selectBoxOptionsSchema>;
+const lookupOptionsSchema = z
+  .object({
+    label: z.string().optional(),
+  })
+  .and(fieldOptionsLookupSchema);
 
-export const lookupOptionsSchema = z.object({
-  appId: z.string(),
-  selectFieldId: z.string(),
-  saveFieldId: z.string(),
-  label: z.string().optional(),
-});
-
-export const dateOptionsSchema = z.object({
+const dateOptionsSchema = z.object({
   format: fieldOptionsDateFormatSchema,
 });
 
@@ -63,14 +63,14 @@ export const addViewFieldValueSchema = z
   })
   .and(fieldAttributeSchema);
 
-export const modifyViewFieldValueSchema = z
+const modifyViewFieldValueSchema = z
   .object({
     mode: z.enum(["modify"]),
     id: z.string(),
   })
   .and(fieldAttributeSchema);
 
-export const deleteViewFieldValueSchema = z
+const deleteViewFieldValueSchema = z
   .object({
     mode: z.enum(["delete"]),
     id: z.string(),

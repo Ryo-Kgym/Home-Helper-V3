@@ -8,6 +8,8 @@ export const fieldKindSchema = z.enum([
   "date",
 ]);
 
+export const sortDirectionSchema = z.enum(["asc", "desc"]);
+
 const fieldOptionsTextSchema = z.object({});
 export const fieldOptionsMultipleTextSchema = z.object({});
 export const fieldOptionsSelectBoxSchema = z.object({
@@ -22,6 +24,8 @@ export const fieldOptionsLookupSchema = z.object({
   appId: z.string(),
   selectFieldId: z.string(),
   saveFieldId: z.string(),
+  sortFieldId: z.string().default(""),
+  sortDirection: sortDirectionSchema.default("asc"),
 });
 
 export const fieldOptionsDateFormatSchema = z.enum([
@@ -29,10 +33,6 @@ export const fieldOptionsDateFormatSchema = z.enum([
   "YYYY-MM-DD HH:mm:ss", // YYYY-MM-DD HH:mm:ss
   "YYYY_M_D_W__jpchar", // YYYY年M月D日W曜日
 ]);
-
-export type FieldOptionsDateFormat = z.infer<
-  typeof fieldOptionsDateFormatSchema
->;
 
 export const fieldOptionsDateSchema = z.object({
   format: fieldOptionsDateFormatSchema,
@@ -45,10 +45,6 @@ export const fieldOptionsSchema = z.union([
   fieldOptionsLookupSchema,
   fieldOptionsDateSchema,
 ]);
-
-export type FieldOptionsSelectBox = z.infer<typeof fieldOptionsSelectBoxSchema>;
-export type FieldOptionsLookup = z.infer<typeof fieldOptionsLookupSchema>;
-export type FieldOptionsDate = z.infer<typeof fieldOptionsDateSchema>;
 
 export const fieldSchema = z.union([
   z.object({
@@ -88,14 +84,10 @@ export const fieldSchema = z.union([
   }),
 ]);
 
-export type Field = z.infer<typeof fieldSchema>;
-
 export const fieldsSchema = z.record(
   z.string(), // fieldId
   fieldSchema,
 );
-
-export type Fields = z.infer<typeof fieldsSchema>;
 
 export const appSchema = z.object({
   id: z.string(),
@@ -104,3 +96,15 @@ export const appSchema = z.object({
 });
 
 export type App = z.infer<typeof appSchema>;
+
+export type Fields = z.infer<typeof fieldsSchema>;
+
+export type Field = z.infer<typeof fieldSchema>;
+export type FieldOptionsSelectBox = z.infer<typeof fieldOptionsSelectBoxSchema>;
+export type FieldOptionsLookup = z.infer<typeof fieldOptionsLookupSchema>;
+export type FieldOptionsDate = z.infer<typeof fieldOptionsDateSchema>;
+export type FieldOptionsDateFormat = z.infer<
+  typeof fieldOptionsDateFormatSchema
+>;
+
+export type SortDirection = z.infer<typeof sortDirectionSchema>;

@@ -3,7 +3,10 @@ import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { lookupOptionsSchema } from "@feature/app/create/appFieldValue";
 import { OptionsState } from "@feature/app/create/FieldOptionsInput";
-import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
+import {
+  FieldOptionsLookup,
+  SortDirection,
+} from "@oneforall/domain/schema/appSchema";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetAppFieldListQuery } from "@v3/graphql/public";
 
@@ -21,6 +24,8 @@ export const FieldOptionsLookUpInputFactory = ({
               appId: "",
               selectFieldId: "",
               saveFieldId: "",
+              sortFieldId: "",
+              sortDirection: "asc",
             }
       }
       setOptions={setValue}
@@ -40,6 +45,8 @@ const FieldOptionsLookUpInput = ({
     options.selectFieldId,
   );
   const [saveFieldId, setSaveFieldId] = useState<string>(options.saveFieldId);
+  const [sortFieldId, setSortFieldId] = useState<string>(options.sortFieldId);
+  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
 
   const { group } = useFindUser();
   const [{ data }] = useGetAppFieldListQuery({
@@ -70,6 +77,8 @@ const FieldOptionsLookUpInput = ({
       appId,
       selectFieldId,
       saveFieldId,
+      sortFieldId,
+      sortDirection: "asc",
     });
   };
 
@@ -93,6 +102,23 @@ const FieldOptionsLookUpInput = ({
         value={saveFieldId}
         setValue={setSaveFieldId}
       />
+      <div className={"flex"}>
+        <Select
+          data={fieldListData}
+          label={"ソート"}
+          value={sortFieldId}
+          setValue={setSortFieldId}
+        />
+        <Select
+          data={[
+            { label: "昇順", value: "asc" },
+            { label: "降順", value: "desc" },
+          ]}
+          label={"昇順・降順"}
+          value={sortDirection}
+          setValue={setSortDirection}
+        />
+      </div>
       <Button
         label={"保存"}
         clickHandler={saveHandler}

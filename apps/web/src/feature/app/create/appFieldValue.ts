@@ -1,4 +1,7 @@
-import { fieldOptionsDateFormatSchema } from "@oneforall/domain/schema/appSchema";
+import {
+  fieldOptionsDateFormatSchema,
+  fieldOptionsLookupSchema,
+} from "@oneforall/domain/schema/appSchema";
 import { z } from "zod";
 
 const simpleKindOptionsSchema = z.object({});
@@ -15,12 +18,11 @@ export const selectBoxOptionsSchema = z.object({
 
 export type SelectBoxOptions = z.infer<typeof selectBoxOptionsSchema>;
 
-export const lookupOptionsSchema = z.object({
-  appId: z.string(),
-  selectFieldId: z.string(),
-  saveFieldId: z.string(),
-  label: z.string().optional(),
-});
+export const lookupOptionsSchema = z
+  .object({
+    label: z.string().optional(),
+  })
+  .and(fieldOptionsLookupSchema);
 
 export const dateOptionsSchema = z.object({
   format: fieldOptionsDateFormatSchema,
