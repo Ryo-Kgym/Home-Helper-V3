@@ -43,6 +43,20 @@ describe("convertRecords", () => {
           },
         },
       },
+      {
+        f1: {
+          fieldName: "フィールド1",
+          fileColumnIndex: 0,
+        },
+        f2: {
+          fieldName: "フィールド2",
+          fileColumnIndex: null,
+        },
+        f3: {
+          fieldName: "フィールド3",
+          fileColumnIndex: 2,
+        },
+      },
     );
 
     expect(actual).toEqual<PreviewRecords>({
@@ -59,8 +73,8 @@ describe("convertRecords", () => {
           f2: {
             errorMessage: undefined,
             fieldKind: "selectBox",
-            originalValue: "カラム12",
-            value: "aaa",
+            originalValue: "",
+            value: "",
           },
           f3: {
             errorMessage: undefined,
@@ -83,8 +97,8 @@ describe("convertRecords", () => {
           f2: {
             errorMessage: undefined,
             fieldKind: "selectBox",
-            originalValue: "カラム22",
-            value: "bbb",
+            originalValue: "",
+            value: "",
           },
           f3: {
             errorMessage: undefined,
@@ -105,10 +119,10 @@ describe("convertRecords", () => {
             value: "カラム31",
           },
           f2: {
-            errorMessage: "選択肢が見つかりません",
+            errorMessage: undefined,
             fieldKind: "selectBox",
-            originalValue: "カラム32",
-            value: "カラム32",
+            originalValue: "",
+            value: "",
           },
           f3: {
             errorMessage: undefined,
@@ -151,6 +165,16 @@ describe("convertRecords", () => {
               { value: "bbb", label: "カラム22" },
             ],
           },
+        },
+      },
+      {
+        f1: {
+          fieldName: "フィールド1",
+          fileColumnIndex: 0,
+        },
+        f2: {
+          fieldName: "フィールド2",
+          fileColumnIndex: 1,
         },
       },
     );
@@ -209,26 +233,5 @@ describe("convertRecords", () => {
     ].forEach((args, index) => {
       expect(switchValueConverterVerify.mock.calls[index]).toEqual(args);
     });
-  });
-
-  // 列番号に一致する field.index が存在しない場合
-  it("列番号に一致する field.index が存在しない場合、エラーが設定されること", () => {
-    expect(() =>
-      convertPreviewRecords(
-        [
-          ["カラム11", "カラム12"],
-          ["カラム21", "カラム22"],
-        ],
-        {
-          f1: {
-            id: "f1",
-            fieldName: "フィールド1",
-            fieldKind: "text",
-            fieldIndex: 0,
-            options: {},
-          },
-        },
-      ),
-    ).toThrowError("Field not found for index 1: カラム12");
   });
 });

@@ -7,6 +7,7 @@ import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
 import { loadImportFile } from "@features/appFileImport/client/loadImportFile";
 import { selectSingleFile } from "@features/appFileImport/client/selectSingleFile";
+import { useImportFileFieldMapping } from "@features/appImportFileFieldMapping/hooks/useImportFileFieldMapping";
 import { useImportFileSettings } from "@features/appImportFileSetting/hooks/useImportSettingsState";
 import { useImportFileHistories } from "@pages/appRecordImport/hooks/useImportFileHistories";
 import { usePreviewRecords } from "@pages/appRecordImport/hooks/usePreviewRecords";
@@ -31,6 +32,7 @@ export const ImportFilePickerClient = ({
   const previewRecords = usePreviewRecords();
   const setPreviewRecords = useSetPreviewRecords();
   const resetPreviewRecords = useResetPreviewRecords();
+  const fieldsMapping = useImportFileFieldMapping();
 
   const { insertImportFileRecords } = useInsertImportFileRecords({
     appId,
@@ -43,7 +45,7 @@ export const ImportFilePickerClient = ({
     const { data } = await loadImportFile(file, importFileSettings);
     console.log("[load import file]", data);
 
-    const records = convertPreviewRecords(data, fields);
+    const records = convertPreviewRecords(data, fields, fieldsMapping);
 
     if (Object.keys(records).length === 0) {
       notify("取込に失敗しました。設定を見直してください。");

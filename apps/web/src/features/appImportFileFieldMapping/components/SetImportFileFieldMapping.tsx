@@ -9,21 +9,24 @@ export const SetImportFileFieldMapping = () => {
 
   return (
     <div>
-      {Object.entries(importFileFieldMapping.fieldMappings).map(
-        ([fieldId, value]) => (
-          <div key={fieldId}>
-            <div>
-              <NumberInput
-                label={value.fieldName}
-                value={value.fileIndex ?? ""}
-                setValue={(value) => {
-                  setFieldIndex(fieldId, Number(value) || null);
-                }}
-              />
-            </div>
+      {Object.entries(importFileFieldMapping).map(([fieldId, value]) => (
+        <div key={fieldId}>
+          <div>
+            <NumberInput
+              label={value.fieldName}
+              value={value.fileColumnIndex ?? ""}
+              setValue={(value) => {
+                if (value === "") {
+                  setFieldIndex(fieldId, null);
+                  return;
+                }
+
+                setFieldIndex(fieldId, value);
+              }}
+            />
           </div>
-        ),
-      )}
+        </div>
+      ))}
     </div>
   );
 };

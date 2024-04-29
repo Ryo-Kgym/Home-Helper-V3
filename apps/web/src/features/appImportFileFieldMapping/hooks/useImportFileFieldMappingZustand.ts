@@ -7,7 +7,7 @@ type State = {
 };
 type Actions = {
   setImportFileFieldMapping: (fieldMapping: ImportFileFieldMapping) => void;
-  setFieldIndex: (fieldId: string, fileIndex: number | null) => void;
+  setFieldIndex: (fieldId: string, fileColumnIndex: number | null) => void;
 };
 
 /**
@@ -20,12 +20,11 @@ export const useImportFileFieldMappingZustand = create<State & Actions>()(
       set((state) => {
         state.importFileFieldMapping = fieldMapping;
       }),
-    setFieldIndex: (fieldId, fileIndex) =>
+    setFieldIndex: (fieldId, fileColumnIndex) =>
       set((state) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        state.importFileFieldMapping.fieldMappings[fieldId].fileIndex =
-          fileIndex;
+        state.importFileFieldMapping[fieldId].fileColumnIndex = fileColumnIndex;
       }),
   })),
 );

@@ -9,7 +9,7 @@ export const convertToImportFileFieldMapping = (
       fieldId,
       {
         fieldName: value.fieldName,
-        fileColumnIndex: null,
+        fileColumnIndex: value.fieldIndex,
       },
     ]),
   );

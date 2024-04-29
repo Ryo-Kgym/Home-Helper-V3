@@ -73,7 +73,11 @@ export const RecordImportClient = ({
         <Modal.Body>
           <Tabs
             tabs={{
-              import: {
+              fieldMapping: {
+                label: "フィールドマッピング",
+                Component: <SetImportFileFieldMapping />,
+              },
+              fileFormat: {
                 label: "取込",
                 Component: (
                   <SetImportFileSetting
@@ -82,12 +86,8 @@ export const RecordImportClient = ({
                   />
                 ),
               },
-              export: {
-                label: "フィールドマッピング",
-                Component: <SetImportFileFieldMapping />,
-              },
             }}
-            defaultTab={"import"}
+            defaultTab={"fieldMapping"}
           />
         </Modal.Body>
       </Modal>

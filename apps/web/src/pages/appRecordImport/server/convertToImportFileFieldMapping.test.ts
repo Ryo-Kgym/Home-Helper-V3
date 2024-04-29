@@ -16,7 +16,7 @@ describe("convertToImportFileFieldMapping", () => {
         id: "22222",
         fieldName: "test2",
         fieldKind: "selectBox",
-        fieldIndex: 1,
+        fieldIndex: 2,
         options: {
           selector: [
             {
@@ -29,8 +29,8 @@ describe("convertToImportFileFieldMapping", () => {
     };
     const actual = convertToImportFileFieldMapping(fields);
     expect(actual).toEqual<ImportFileFieldMapping>({
-      "11111": { fieldName: "test1", fileColumnIndex: null },
-      "22222": { fieldName: "test2", fileColumnIndex: null },
+      "11111": { fieldName: "test1", fileColumnIndex: 0 },
+      "22222": { fieldName: "test2", fileColumnIndex: 2 },
     });
   });
 });
