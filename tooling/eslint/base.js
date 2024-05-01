@@ -51,19 +51,10 @@ const config = {
     "@typescript-eslint/no-unsafe-return": "off",
     "@typescript-eslint/unbound-method": "off",
     "import-access/jsdoc": ["error"],
+    "import/no-relative-parent-imports": "error",
     "strict-dependencies/strict-dependencies": [
       "error",
       [
-        ...pagesDirs.map((name) => ({
-          module: `src/pageComponents/${name}`,
-          allowReferenceFrom: [`src/app/**/page.tsx`],
-          allowSameModule: true,
-        })),
-        ...pagesDirs.map((name) => ({
-          module: `src/pageComponents/${name}/**`,
-          allowReferenceFrom: [`src/pageComponents/${name}/**`],
-          allowSameModule: true,
-        })),
         ...pagesDirs.map((name) => ({
           module: `src/pageComponents/${name}/server`,
           allowReferenceFrom: [
@@ -71,11 +62,52 @@ const config = {
           ],
           allowSameModule: true,
         })),
+        ...pagesDirs.map((name) => ({
+          module: `src/pageComponents/${name}/client`,
+          allowReferenceFrom: [`src/pageComponents/${name}/components/*.tsx`],
+          allowSameModule: true,
+        })),
+        ...pagesDirs.map((name) => ({
+          module: `src/pageComponents/${name}`,
+          allowReferenceFrom: [`src/app/**/**/page.tsx`],
+          allowSameModule: true,
+        })),
+        ...pagesDirs.map((name) => ({
+          module: `src/pageComponents/${name}/components`,
+          allowReferenceFrom: [],
+          allowSameModule: true,
+        })),
         ...featuresDirs.map((name) => ({
-          module: `src/features/${name}`,
+          module: `src/features/${name}/server`,
+          allowReferenceFrom: [
+            `src/pageComponents/*/components/*Server.tsx`,
+            `src/feature`,
+          ],
+          allowSameModule: true,
+        })),
+        ...featuresDirs.map((name) => ({
+          module: `src/features/${name}/client`,
+          allowReferenceFrom: [
+            `src/pageComponents/*/client`,
+            `src/features/${name}/components/*Client.tsx`,
+            `src/pageComponents/*/components/*Client.tsx`,
+          ],
+          allowSameModule: true,
+        })),
+        ...featuresDirs.map((name) => ({
+          module: `src/features/${name}/components`,
           allowReferenceFrom: [`src/pageComponents/*/components/*Client.tsx`],
           allowSameModule: true,
         })),
+        {
+          module: `src/hooks/states`,
+          allowReferenceFrom: [
+            `src/feature`, // TODO 削除
+            `src/features`,
+            `src/pageComponents`,
+          ],
+          allowSameModule: true,
+        },
         {
           module: "src/components/ui",
           allowReferenceFrom: [

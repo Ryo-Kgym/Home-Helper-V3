@@ -1,4 +1,4 @@
-import { RecordList } from "feature/app/recordList";
+import { RecordList } from "pageComponents/appRecordList";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
   <RecordList appId={id} />

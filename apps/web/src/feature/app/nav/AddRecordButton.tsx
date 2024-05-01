@@ -1,15 +1,15 @@
-import type { RecordListMode } from "@feature/app/recordList/RecordListClient";
 import type { Columns } from "@oneforall/domain/schema/recordSchema";
 import { generateId } from "@feature/app/function/generateId";
-import { useInitNewRecord } from "@feature/app/recordList/operation/useNewRecordState";
-import { useMode } from "@feature/app/recordList/useModeState";
+import { RecordListMode } from "@features/appRecordList/types/recordListMode";
+import { useInitNewRecord } from "@hooks/states/app/record/useInitNewRecord";
+import { useRecordListMode } from "@hooks/states/app/recordListMode/useRecordListMode";
 
 export const AddRecordButton = ({
   columnTemplate,
 }: {
   columnTemplate: Columns;
 }) => {
-  const { mode, setMode } = useMode();
+  const { mode, setMode } = useRecordListMode();
   const initialize = useInitNewRecord();
 
   const { disabled, bgColor, cursor } = getStyle(mode);
