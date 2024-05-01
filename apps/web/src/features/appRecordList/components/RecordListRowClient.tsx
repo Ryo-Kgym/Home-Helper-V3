@@ -5,14 +5,14 @@ import { RecordCell } from "@features/appRecordList/components/cell/RecordCell";
 import { RecordRowOperation } from "@features/appRecordList/components/operation/RecordRowOperation";
 import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 import { App } from "@oneforall/domain/schema/appSchema";
-import { Records } from "@oneforall/domain/schema/recordSchema";
+import { Record } from "@oneforall/domain/schema/recordSchema";
 
 export const RecordListRowClient = ({
   record: defaultRecord,
   recordIndex,
   app,
 }: {
-  record: Records[number];
+  record: Record;
   recordIndex: number;
   app: App;
 }) => {

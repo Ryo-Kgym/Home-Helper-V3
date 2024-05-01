@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import "/styles/globals.css";
+import "@styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 
