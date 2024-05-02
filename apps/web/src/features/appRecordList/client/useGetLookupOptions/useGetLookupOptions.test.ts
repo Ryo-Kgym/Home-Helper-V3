@@ -1,4 +1,4 @@
-import { useGetLookupOptions } from "@features/appRecordList/components/cell/useGetLookupOptions/useGetLookupOptions";
+import { useGetLookupOptions } from "@features/appRecordList/client/useGetLookupOptions/useGetLookupOptions";
 import * as convertToRecordsMock from "@features/appRecordList/server/convertToRecords";
 import { renderHook } from "@testing-library/react";
 import * as useGetRecordsQueryMock from "@v3/graphql/public";

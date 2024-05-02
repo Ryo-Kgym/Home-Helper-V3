@@ -1,4 +1,4 @@
-import { sortLookupData } from "@features/appRecordList/components/cell/useGetLookupOptions/sortLookupData";
+import { sortLookupData } from "@features/appRecordList/client/useGetLookupOptions/sortLookupData";
 import { convertToRecords } from "@features/appRecordList/server/convertToRecords";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { useGetRecordsQuery } from "@v3/graphql/public";
