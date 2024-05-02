@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { sortDirectionSchema } from "./sortDirectionSchema";
+
 export const fieldKindSchema = z.enum([
   "text",
   "selectBox",
@@ -7,8 +9,6 @@ export const fieldKindSchema = z.enum([
   "lookup",
   "date",
 ]);
-
-export const sortDirectionSchema = z.enum(["asc", "desc"]);
 
 const fieldOptionsTextSchema = z.object({});
 export const fieldOptionsMultipleTextSchema = z.object({});
@@ -20,12 +20,33 @@ export const fieldOptionsSelectBoxSchema = z.object({
     })
     .array(),
 });
+
+const fieldOptionsLookupFilterSchema = z.union([
+  z.object({
+    filterType: z.enum(["STATIC"]),
+    fieldId: z.string(),
+    value: z.string(),
+  }),
+  z.object({
+    filterType: z.enum(["DYNAMIC"]),
+    appId: z.string(),
+    fieldId: z.string(),
+    value: z.string(),
+  }),
+]);
+
 export const fieldOptionsLookupSchema = z.object({
   appId: z.string(),
   selectFieldId: z.string(),
   saveFieldId: z.string(),
   sortFieldId: z.string().default(""),
   sortDirection: sortDirectionSchema.default("asc"),
+  filters: z
+    .record(
+      z.number(), // index
+      fieldOptionsLookupFilterSchema,
+    )
+    .default({}),
 });
 
 export const fieldOptionsDateFormatSchema = z.enum([
@@ -106,5 +127,3 @@ export type FieldOptionsDate = z.infer<typeof fieldOptionsDateSchema>;
 export type FieldOptionsDateFormat = z.infer<
   typeof fieldOptionsDateFormatSchema
 >;
-
-export type SortDirection = z.infer<typeof sortDirectionSchema>;

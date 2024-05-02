@@ -3,10 +3,8 @@ import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { lookupOptionsSchema } from "@feature/app/create/appFieldValue";
 import { OptionsState } from "@feature/app/create/FieldOptionsInput";
-import {
-  FieldOptionsLookup,
-  SortDirection,
-} from "@oneforall/domain/schema/appSchema";
+import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
+import { SortDirection } from "@oneforall/domain/schema/sortDirectionSchema";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetAppFieldListQuery } from "@v3/graphql/public";
 
@@ -26,6 +24,7 @@ export const FieldOptionsLookUpInputFactory = ({
               saveFieldId: "",
               sortFieldId: "",
               sortDirection: "asc",
+              filters: {},
             }
       }
       setOptions={setValue}
@@ -79,6 +78,7 @@ const FieldOptionsLookUpInput = ({
       saveFieldId,
       sortFieldId,
       sortDirection: "asc",
+      filters: {},
     });
   };
 
