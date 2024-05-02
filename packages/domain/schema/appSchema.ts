@@ -23,13 +23,12 @@ export const fieldOptionsSelectBoxSchema = z.object({
 
 const fieldOptionsLookupFilterSchema = z.union([
   z.object({
-    filterType: z.enum(["STATIC"]),
+    filterType: z.enum(["static"]),
     fieldId: z.string(),
     value: z.string(),
   }),
   z.object({
-    filterType: z.enum(["DYNAMIC"]),
-    appId: z.string(),
+    filterType: z.enum(["dynamic"]),
     fieldId: z.string(),
     value: z.string(),
   }),
@@ -43,7 +42,7 @@ export const fieldOptionsLookupSchema = z.object({
   sortDirection: sortDirectionSchema.default("asc"),
   filters: z
     .record(
-      z.number(), // index
+      z.string(), // index
       fieldOptionsLookupFilterSchema,
     )
     .default({}),

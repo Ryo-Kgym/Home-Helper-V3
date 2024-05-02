@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { lookupOptionsSchema } from "@feature/app/create/appFieldValue";
 import { OptionsState } from "@feature/app/create/FieldOptionsInput";
+import { FilterInputList } from "@feature/app/create/FieldOptionsLookUpInputFactory/FilterInputList";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { SortDirection } from "@oneforall/domain/schema/sortDirectionSchema";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
@@ -46,6 +47,9 @@ const FieldOptionsLookUpInput = ({
   const [saveFieldId, setSaveFieldId] = useState<string>(options.saveFieldId);
   const [sortFieldId, setSortFieldId] = useState<string>(options.sortFieldId);
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
+  const [filters, setFilters] = useState<FieldOptionsLookup["filters"]>(
+    options.filters,
+  );
 
   const { group } = useFindUser();
   const [{ data }] = useGetAppFieldListQuery({
@@ -69,7 +73,8 @@ const FieldOptionsLookUpInput = ({
         value: f.id,
       })) ?? [];
 
-  const buttonDisabled = !appId || !selectFieldId || !saveFieldId;
+  const buttonDisabled =
+    !appId || !selectFieldId || !saveFieldId || !sortFieldId;
 
   const saveHandler = () => {
     setOptions({
@@ -77,10 +82,18 @@ const FieldOptionsLookUpInput = ({
       selectFieldId,
       saveFieldId,
       sortFieldId,
-      sortDirection: "asc",
-      filters: {},
+      sortDirection,
+      filters,
     });
   };
+
+  useEffect(() => {
+    console.log("[filters]", filters);
+  }, [filters]);
+
+  useEffect(() => {
+    console.log("[options]", options);
+  }, [options]);
 
   return (
     <>
@@ -117,6 +130,13 @@ const FieldOptionsLookUpInput = ({
           label={"昇順・降順"}
           value={sortDirection}
           setValue={setSortDirection}
+        />
+      </div>
+      <div>
+        <FilterInputList
+          filters={filters}
+          setFilters={setFilters}
+          fieldListData={fieldListData}
         />
       </div>
       <Button

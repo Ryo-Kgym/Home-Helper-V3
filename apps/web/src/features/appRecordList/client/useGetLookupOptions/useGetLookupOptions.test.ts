@@ -71,6 +71,7 @@ describe("convertToImportHistories", () => {
           saveFieldId: "saveFieldId",
           sortFieldId: "sortFieldId",
           sortDirection: "desc",
+          filters: {},
         },
       }),
     ).result.current;
@@ -144,6 +145,7 @@ describe("convertToImportHistories", () => {
           saveFieldId: "saveFieldId",
           sortFieldId: "sortFieldId",
           sortDirection: "desc",
+          filters: {},
         },
       }),
     ).result.current;
@@ -209,6 +211,7 @@ describe("convertToImportHistories", () => {
           saveFieldId: "dummy",
           sortFieldId: "sortFieldId",
           sortDirection: "desc",
+          filters: {},
         },
       }),
     ).result.current;

@@ -50,6 +50,7 @@ describe("switchValueConverter", () => {
         saveFieldId: "3",
         sortFieldId: "4",
         sortDirection: "asc",
+        filters: {},
       },
     });
 

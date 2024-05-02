@@ -42,6 +42,7 @@ describe("convertRecords", () => {
             saveFieldId: "lookUpSaveFieldId",
             sortFieldId: "lookUpSortFieldId",
             sortDirection: "asc",
+            filters: {},
           },
         },
       },
