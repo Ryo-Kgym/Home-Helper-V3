@@ -29,11 +29,13 @@ describe("filterLookupData", () => {
         filterType: "static",
         fieldId: "f1",
         value: "textValue",
+        complexity: "and",
       },
       1: {
         filterType: "static",
         fieldId: "f2",
         value: "selectBoxValue",
+        complexity: "and",
       },
     });
 
@@ -46,11 +48,13 @@ describe("filterLookupData", () => {
         filterType: "static",
         fieldId: "f1",
         value: "textValue",
+        complexity: "and",
       },
       1: {
         filterType: "static",
         fieldId: "f2",
         value: "otherValue",
+        complexity: "and",
       },
     });
 
@@ -63,11 +67,13 @@ describe("filterLookupData", () => {
         filterType: "static",
         fieldId: "f1",
         value: "otherValue",
+        complexity: "and",
       },
       1: {
         filterType: "static",
         fieldId: "f2",
         value: "selectBoxValue",
+        complexity: "and",
       },
     });
 
@@ -80,11 +86,13 @@ describe("filterLookupData", () => {
         filterType: "static",
         fieldId: "f1",
         value: "otherValue",
+        complexity: "and",
       },
       1: {
         filterType: "static",
         fieldId: "f2",
         value: "otherValue",
+        complexity: "and",
       },
     });
 

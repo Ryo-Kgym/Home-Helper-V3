@@ -38,6 +38,7 @@ export const FilterInputList = ({
                 filterType: "static",
                 fieldId,
                 value,
+                complexity,
               },
             });
             setFieldId("");
@@ -53,7 +54,7 @@ export const FilterInputList = ({
           setFieldId={() => undefined}
           value={f.value}
           setValue={() => undefined}
-          complexity={"and"}
+          complexity={f.complexity}
           setComplexity={() => undefined}
         />
       ))}

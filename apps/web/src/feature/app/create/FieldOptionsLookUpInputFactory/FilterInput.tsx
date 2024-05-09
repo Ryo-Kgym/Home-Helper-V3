@@ -25,20 +25,13 @@ export const FilterInput = ({
   return (
     <div className={"flex items-end"}>
       <Select
-        data={fieldListData}
-        label={"フィールド"}
-        value={fieldId}
-        setValue={setFieldId}
-      />
-      <TextInput label={"値"} value={value} setValue={setValue} />
-      <Select
         data={[
           {
-            label: "and",
+            label: "かつ",
             value: "and",
           },
           {
-            label: "or",
+            label: "または",
             value: "or",
           },
         ]}
@@ -46,6 +39,13 @@ export const FilterInput = ({
         value={complexity}
         setValue={setComplexity}
       />
+      <Select
+        data={fieldListData}
+        label={"フィールド"}
+        value={fieldId}
+        setValue={setFieldId}
+      />
+      <TextInput label={"値"} value={value} setValue={setValue} />
     </div>
   );
 };

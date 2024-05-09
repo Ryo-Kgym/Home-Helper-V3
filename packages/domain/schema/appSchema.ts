@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { filterComplexitySchema } from "./filterComplexitySchema";
 import { sortDirectionSchema } from "./sortDirectionSchema";
 
 export const fieldKindSchema = z.enum([
@@ -26,11 +27,13 @@ const fieldOptionsLookupFilterSchema = z.union([
     filterType: z.enum(["static"]),
     fieldId: z.string(),
     value: z.string(),
+    complexity: filterComplexitySchema,
   }),
   z.object({
     filterType: z.enum(["dynamic"]),
     fieldId: z.string(),
     value: z.string(),
+    complexity: filterComplexitySchema,
   }),
 ]);
 
