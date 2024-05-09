@@ -4,6 +4,7 @@ import { ComponentProps, useEffect } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Table } from "@components/ui/v4/table";
 import { AddRecordButton } from "@feature/app/nav/AddRecordButton";
+import { RedirectChartButton } from "@feature/app/nav/RedirectChartButton";
 import { RedirectImportButton } from "@feature/app/nav/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/app/nav/RedirectSettingButton";
 import { RecordListTable } from "@features/appRecordList/components/RecordListTable";
@@ -41,6 +42,7 @@ export const RecordListClient = ({
         <RedirectSettingButton appId={app.id} />
         <AddRecordButton columnTemplate={columnsTemplate} />
         <RedirectImportButton appId={app.id} />
+        <RedirectChartButton appId={app.id} />
       </Title>
       <RecordListTable app={app} headerItems={headerItems} />
     </div>
