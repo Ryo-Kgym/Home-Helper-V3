@@ -6,8 +6,8 @@ import { OptionsState } from "@feature/app/create/FieldOptionsInput";
 import { FilterInputList } from "@feature/app/create/FieldOptionsLookUpInputFactory/FilterInputList";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { SortDirection } from "@oneforall/domain/schema/sortDirectionSchema";
-import { useFindUser } from "@persistence/browser/client/useFindUser";
-import { useGetAppFieldListQuery } from "@v3/graphql/public";
+
+import { useMakeSelector } from "./useMakeSelector";
 
 export const FieldOptionsLookUpInputFactory = ({
   value,
@@ -46,32 +46,14 @@ const FieldOptionsLookUpInput = ({
   );
   const [saveFieldId, setSaveFieldId] = useState<string>(options.saveFieldId);
   const [sortFieldId, setSortFieldId] = useState<string>(options.sortFieldId);
-  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
+  const [sortDirection, setSortDirection] = useState<SortDirection>(
+    options.sortDirection,
+  );
   const [filters, setFilters] = useState<FieldOptionsLookup["filters"]>(
     options.filters,
   );
 
-  const { group } = useFindUser();
-  const [{ data }] = useGetAppFieldListQuery({
-    variables: {
-      groupId: group.id,
-    },
-    pause: !group.id,
-  });
-
-  const appListData =
-    data?.group?.apps.map((a) => ({
-      label: a.name,
-      value: a.id,
-    })) ?? [];
-
-  const fieldListData =
-    data?.group?.apps
-      .find((a) => a.id === appId)
-      ?.fields.map((f) => ({
-        label: f.name,
-        value: f.id,
-      })) ?? [];
+  const { appListData, fieldListData } = useMakeSelector({ appId });
 
   const buttonDisabled =
     !appId || !selectFieldId || !saveFieldId || !sortFieldId;
