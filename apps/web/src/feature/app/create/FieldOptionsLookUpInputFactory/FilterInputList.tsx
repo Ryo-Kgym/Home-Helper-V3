@@ -2,6 +2,7 @@ import { ComponentProps, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { FilterInput } from "@feature/app/create/FieldOptionsLookUpInputFactory/FilterInput";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
+import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
 
 /**
  * @package
@@ -17,7 +18,7 @@ export const FilterInputList = ({
 }) => {
   const [fieldId, setFieldId] = useState<string>("");
   const [value, setValue] = useState<string>("");
-  const [complexity, setComplexity] = useState<"and" | "or">("and");
+  const [complexity, setComplexity] = useState<FilterComplexity>("and");
 
   const addDisabled = fieldId === "" || value === "";
 
@@ -46,27 +47,40 @@ export const FilterInputList = ({
           }}
         />
       </div>
-      {Object.values(filters).map((f, index) => (
-        <FilterInput
-          key={index}
-          fieldListData={fieldListData}
-          fieldId={f.fieldId}
-          setFieldId={() => undefined}
-          value={f.value}
-          setValue={() => undefined}
-          complexity={f.complexity}
-          setComplexity={() => undefined}
-        />
-      ))}
-      <FilterInput
-        fieldListData={fieldListData}
-        fieldId={fieldId}
-        setFieldId={setFieldId}
-        value={value}
-        setValue={setValue}
-        complexity={complexity}
-        setComplexity={setComplexity}
-      />
+      <div className={"space-y-3"}>
+        {Object.entries(filters).map(([index, f]) => (
+          <div key={index} className={"flex items-center space-x-5"}>
+            <div>{index}</div>
+            <FilterInput
+              fieldListData={fieldListData}
+              fieldId={f.fieldId}
+              setFieldId={() => undefined}
+              value={f.value}
+              setValue={() => undefined}
+              complexity={f.complexity}
+              setComplexity={() => undefined}
+              deletable
+              deleteHandler={() => {
+                const newFilters = { ...filters };
+                delete newFilters[index];
+                setFilters(newFilters);
+              }}
+            />
+          </div>
+        ))}
+        <div className={"flex items-center space-x-5"}>
+          <div>-</div>
+          <FilterInput
+            fieldListData={fieldListData}
+            fieldId={fieldId}
+            setFieldId={setFieldId}
+            value={value}
+            setValue={setValue}
+            complexity={complexity}
+            setComplexity={setComplexity}
+          />
+        </div>
+      </div>
     </div>
   );
 };
