@@ -5097,6 +5097,15 @@ export type GetUserByEmailQuery = {
   }>;
 };
 
+export type FragFieldsFragment = {
+  __typename: "Field";
+  id: string;
+  name: string;
+  index: number;
+  fieldKind: string;
+  options?: any | null;
+};
+
 export type FragRecordsFragment = {
   __typename: "Record";
   id: string;
@@ -5145,10 +5154,12 @@ export type GetAppFieldListQuery = {
       id: string;
       name: string;
       fields: Array<{
-        __typename?: "Field";
+        __typename: "Field";
         id: string;
         name: string;
+        index: number;
         fieldKind: string;
+        options?: any | null;
       }>;
     }>;
   } | null;
@@ -5299,6 +5310,30 @@ export type GetViewsQuery = {
   } | null;
 };
 
+export const FragFieldsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragFields" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Field" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
+          { kind: "Field", name: { kind: "Name", value: "options" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FragFieldsFragment, unknown>;
 export const FragRecordsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -6939,19 +6974,8 @@ export const GetAppDocument = {
                     kind: "SelectionSet",
                     selections: [
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "index" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "fieldKind" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "options" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragFields" },
                       },
                     ],
                   },
@@ -6972,6 +6996,25 @@ export const GetAppDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragFields" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Field" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
+          { kind: "Field", name: { kind: "Name", value: "options" } },
         ],
       },
     },
@@ -7069,16 +7112,8 @@ export const GetAppFieldListDocument = {
                           kind: "SelectionSet",
                           selections: [
                             {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "fieldKind" },
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "fragFields" },
                             },
                           ],
                         },
@@ -7089,6 +7124,25 @@ export const GetAppFieldListDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragFields" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Field" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
+          { kind: "Field", name: { kind: "Name", value: "options" } },
         ],
       },
     },

@@ -4,12 +4,7 @@ query getApp($appId: String!) {
     id
     name
     fields(orderBy: [{ index: ASC }]) {
-      __typename
-      id
-      name
-      index
-      fieldKind
-      options
+      ...fragFields
     }
     records {
       ...fragRecords
