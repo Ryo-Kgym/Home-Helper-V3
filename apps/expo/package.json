@@ -26,8 +26,6 @@
     "dayjs": "^1.11.10",
     "expo": "^51.0.5",
     "expo-constants": "~15.4.6",
-    "expo-dev-client": "~3.3.11",
-    "expo-dev-menu": "^5.0.14",
     "expo-linking": "~6.2.2",
     "expo-router": "3.4.10",
     "expo-status-bar": "~1.11.1",
