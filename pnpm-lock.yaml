@@ -68,6 +68,9 @@ importers:
       expo-dev-client:
         specifier: ~3.3.11
         version: 3.3.11(expo@51.0.5)
+      expo-dev-menu:
+        specifier: ^5.0.14
+        version: 5.0.14(expo@51.0.5)
       expo-linking:
         specifier: ~6.2.2
         version: 6.2.2(expo@51.0.5)
@@ -5951,7 +5954,7 @@ packages:
       js-yaml: 4.1.0
       ora: 4.1.1
       rimraf: 3.0.2
-      semver: 7.6.0
+      semver: 7.6.2
       update-check: 1.5.4
     dev: true
 
@@ -6369,7 +6372,7 @@ packages:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
-      semver: 7.6.0
+      semver: 7.6.2
       ts-api-utils: 1.2.1(typescript@5.4.3)
       typescript: 5.4.3
     transitivePeerDependencies:
@@ -6388,7 +6391,7 @@ packages:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.4.3)
       eslint: 8.57.0
-      semver: 7.6.0
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -7350,7 +7353,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
     dev: true
 
   /busboy@1.6.0:
@@ -9421,6 +9424,14 @@ packages:
       expo: 51.0.5(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
     dev: false
 
+  /expo-dev-menu-interface@1.8.3(expo@51.0.5):
+    resolution: {integrity: sha512-QM0LRozeFT5Ek0N7XpV93M+HMdEKRLEOXn0aW5M3uoUlnqC1+PLtF3HMy3k3hMKTTE/kJ1y1Z7akH07T0lunCQ==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 51.0.5(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
+    dev: false
+
   /expo-dev-menu@4.5.8(expo@51.0.5):
     resolution: {integrity: sha512-GXfI0CmYlqjOqyFjtplXO9PSoJQoy89+50lbUSNZykDsGyvzCPzl4txdQcdHHSglKYr7lWV7aeMVeehuSct60w==}
     peerDependencies:
@@ -9428,6 +9439,16 @@ packages:
     dependencies:
       expo: 51.0.5(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
       expo-dev-menu-interface: 1.7.2(expo@51.0.5)
+      semver: 7.6.2
+    dev: false
+
+  /expo-dev-menu@5.0.14(expo@51.0.5):
+    resolution: {integrity: sha512-zPXBMCyjptn4Aw7D2Z8FEqndED33g1ryChN0nyTA1zHzckDNwnGuLdTWTsNFrqmFqyqjRJgG5xFVJmnsDO8WyQ==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 51.0.5(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
+      expo-dev-menu-interface: 1.8.3(expo@51.0.5)
       semver: 7.6.2
     dev: false
 
@@ -12467,7 +12488,7 @@ packages:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
     dev: true
 
   /make-error@1.3.6:
