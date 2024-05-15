@@ -80,6 +80,9 @@ importers:
       expo-updates:
         specifier: ~0.24.12
         version: 0.24.12(expo@51.0.5)
+      flipper-ui-core:
+        specifier: ^0.0.0
+        version: 0.0.0
       nativewind:
         specifier: ^4.0.36
         version: 4.0.36(@babel/core@7.24.5)(react-native-reanimated@3.6.3)(react-native-safe-area-context@4.8.2)(react-native@0.74.1)(react@18.2.0)(tailwindcss@3.4.3)
@@ -9822,6 +9825,10 @@ packages:
 
   /flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
+
+  /flipper-ui-core@0.0.0:
+    resolution: {integrity: sha512-Ho3cgqedeLIBCxogH/mWg21DiyFepU/hUzj8U4prGTQ169dcgoHJxFD/cLLf7sQUsFhSmk2XB/mIlh+td6YqPA==}
+    dev: false
 
   /flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
