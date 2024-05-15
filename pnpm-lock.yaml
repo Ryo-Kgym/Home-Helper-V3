@@ -75,8 +75,8 @@ importers:
         specifier: ~1.11.1
         version: 1.11.1
       expo-updates:
-        specifier: ~0.24.12
-        version: 0.24.12(expo@51.0.5)
+        specifier: ~0.25.11
+        version: 0.25.11(expo@51.0.5)
       flipper-ui-core:
         specifier: ^0.0.0
         version: 0.0.0
@@ -164,7 +164,7 @@ importers:
         version: 8.57.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0
+        version: 29.7.0(@types/node@20.12.12)
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -459,7 +459,7 @@ importers:
     dependencies:
       '@apollo/client':
         specifier: ^3.9.9
-        version: 3.9.9(graphql@16.8.1)(react@18.3.1)
+        version: 3.9.9(@types/react@18.2.73)(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
       '@graphql-codegen/cli':
         specifier: ^3.3.1
         version: 3.3.1(@babel/core@7.24.5)(@types/node@20.12.2)(graphql@16.8.1)
@@ -492,7 +492,7 @@ importers:
         version: 5.4.3
       urql:
         specifier: ^4.0.0
-        version: 4.0.0(graphql@16.8.1)(react@18.3.1)
+        version: 4.0.0(graphql@16.8.1)(react@18.2.0)
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
@@ -701,44 +701,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       rehackt: 0.0.6(@types/react@18.2.73)(react@18.2.0)
-      response-iterator: 0.2.6
-      symbol-observable: 4.0.0
-      ts-invariant: 0.10.3
-      tslib: 2.6.2
-      zen-observable-ts: 1.2.5
-    transitivePeerDependencies:
-      - '@types/react'
-    dev: false
-
-  /@apollo/client@3.9.9(graphql@16.8.1)(react@18.3.1):
-    resolution: {integrity: sha512-/sMecU/M0WK9knrguts1lSLV8xFKzIgOMVb4mi6MOxgJXjliDB8PvOtmXhTqh2cVMMR4TzXgOnb+af/690zlQw==}
-    peerDependencies:
-      graphql: ^15.0.0 || ^16.0.0
-      graphql-ws: ^5.5.5
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
-    peerDependenciesMeta:
-      graphql-ws:
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      subscriptions-transport-ws:
-        optional: true
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
-      '@wry/caches': 1.0.1
-      '@wry/equality': 0.5.7
-      '@wry/trie': 0.5.0
-      graphql: 16.8.1
-      graphql-tag: 2.12.6(graphql@16.8.1)
-      hoist-non-react-statics: 3.3.2
-      optimism: 0.18.0
-      prop-types: 15.8.1
-      react: 18.3.1
-      rehackt: 0.0.6(react@18.3.1)
       response-iterator: 0.2.6
       symbol-observable: 4.0.0
       ts-invariant: 0.10.3
@@ -2725,30 +2687,6 @@ packages:
       nullthrows: 1.1.1
     dev: false
 
-  /@expo/config-plugins@7.8.4:
-    resolution: {integrity: sha512-hv03HYxb/5kX8Gxv/BTI8TLc9L06WzqAfHRRXdbar4zkLcP2oTzvsLEF4/L/TIpD3rsnYa0KU42d0gWRxzPCJg==}
-    dependencies:
-      '@expo/config-types': 50.0.1
-      '@expo/fingerprint': 0.6.1
-      '@expo/json-file': 8.3.3
-      '@expo/plist': 0.1.3
-      '@expo/sdk-runtime-versions': 1.0.0
-      '@react-native/normalize-color': 2.1.0
-      chalk: 4.1.2
-      debug: 4.3.4
-      find-up: 5.0.0
-      getenv: 1.0.0
-      glob: 7.1.6
-      resolve-from: 5.0.0
-      semver: 7.6.2
-      slash: 3.0.0
-      slugify: 1.6.6
-      xcode: 3.0.1
-      xml2js: 0.6.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@expo/config-plugins@7.9.2:
     resolution: {integrity: sha512-sRU/OAp7kJxrCUiCTUZqvPMKPdiN1oTmNfnbkG4oPdfWQTpid3jyCH7ZxJEN5SI6jrY/ZsK5B/JPgjDUhuWLBQ==}
     dependencies:
@@ -2894,6 +2832,22 @@ packages:
       resolve-from: 5.0.0
     transitivePeerDependencies:
       - supports-color
+
+  /@expo/fingerprint@0.7.1:
+    resolution: {integrity: sha512-lbTwFiIk0lOm9zzPRvnC45GfPqXqPB3w4hDDKVma+8FDAbPCWhNN42ltLhx/ekwcHFQxURmg0fHm59k0Vy+jtw==}
+    hasBin: true
+    dependencies:
+      '@expo/spawn-async': 1.7.2
+      chalk: 4.1.2
+      debug: 4.3.4
+      find-up: 5.0.0
+      minimatch: 3.1.2
+      p-limit: 3.1.0
+      resolve-from: 5.0.0
+      semver: 7.6.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /@expo/image-utils@0.4.2:
     resolution: {integrity: sha512-CxP+1QXgRXsNnmv2FAUA2RWwK6kNBFg4QEmVXn2K9iLoEAI+i+1IQXcUgc+J7nTJl9pO7FIu2gIiEYGYffjLWQ==}
@@ -7982,7 +7936,7 @@ packages:
     resolution: {integrity: sha512-f7xEhX0awl4NOElHulrl4XRfKoNH3rB+qfNSZZyjSZhaAoUk6elvhH+MNxMmlmuUJ2/QNTWPSA7U4mNtIAKljQ==}
     dev: false
 
-  /create-jest@29.7.0:
+  /create-jest@29.7.0(@types/node@20.12.12):
     resolution: {integrity: sha512-Adz2bdH0Vq3F53KEMJOoftQFutWCukm6J24wbPWRO4k1kMY7gS7ds/uoJkNuV8wDCtWWnuwGcJwpWcih+zEW1Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
@@ -7990,7 +7944,7 @@ packages:
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@20.12.11)
+      jest-config: 29.7.0(@types/node@20.12.12)
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -9415,8 +9369,8 @@ packages:
       - supports-color
     dev: false
 
-  /expo-eas-client@0.11.2:
-    resolution: {integrity: sha512-SY7rVFxb4ut/OMTgR7A39Jg+8+hXwQNRpZd+RBpB+B5XV2STj/pWXHnGFhBayEF4umI4SxrOvisY90rlPWVO9Q==}
+  /expo-eas-client@0.12.0:
+    resolution: {integrity: sha512-Jkww9Cwpv0z7DdLYiRX0r4fqBEcI9cKqTn7cHx63S09JaZ2rcwEE4zYHgrXwjahO+tU2VW8zqH+AJl6RhhW4zA==}
     dev: false
 
   /expo-file-system@17.0.1(expo@51.0.5):
@@ -9436,8 +9390,8 @@ packages:
       fontfaceobserver: 2.3.0
     dev: false
 
-  /expo-json-utils@0.12.3:
-    resolution: {integrity: sha512-4pypQdinpNc6XY9wsZk56njvzDh+B/9mISr7FPP3CVk1QGB1nSLh883/BCDSgnsephATZkC5HG+cdE60kCAR6A==}
+  /expo-json-utils@0.13.1:
+    resolution: {integrity: sha512-mlfaSArGVb+oJmUcR22jEONlgPp0wj4iNIHfQ2je9Q8WTOqMc0Ws9tUciz3JdJnhffdHqo/k8fpvf0IRmN5HPA==}
     dev: false
 
   /expo-keep-awake@13.0.1(expo@51.0.5):
@@ -9458,14 +9412,14 @@ packages:
       - supports-color
     dev: false
 
-  /expo-manifests@0.13.2(expo@51.0.5):
-    resolution: {integrity: sha512-l0Sia1WmLULx8V41K8RzGLsFoTe4qqthPRGpHjItsYn8ZB6lRrdTBM9OYp2McIflgqN1HAimUCQMFIwJyH+UmA==}
+  /expo-manifests@0.14.2(expo@51.0.5):
+    resolution: {integrity: sha512-hFrwIGr76/zGVhZ+vcjDZpOePd7uYNB6yCaiJcm7/bcrt2ne7cHyKQ8l+3n26/v1OuXfBfjxNH+PHIpkClszoQ==}
     peerDependencies:
       expo: '*'
     dependencies:
-      '@expo/config': 8.5.6
+      '@expo/config': 9.0.1
       expo: 51.0.5(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
-      expo-json-utils: 0.12.3
+      expo-json-utils: 0.13.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -9548,35 +9502,39 @@ packages:
     resolution: {integrity: sha512-ddQEtCOgYHTLlFUe/yH67dDBIoct5VIULthyT3LRJbEwdpzAgueKsX2FYK02ldh440V87PWKCamh7R9evk1rrg==}
     dev: false
 
-  /expo-structured-headers@3.7.2:
-    resolution: {integrity: sha512-/nGOyeWUXSUy4aIYKJTwQOznRNs0yKqKPAyEE6jtwvOl9qvfDWx9xskNtShioggBhFAssFkV6RBbPn+xZMQtvw==}
+  /expo-structured-headers@3.8.0:
+    resolution: {integrity: sha512-R+gFGn0x5CWl4OVlk2j1bJTJIz4KO8mPoCHpRHmfqMjmrMvrOM0qQSY3V5NHXwp1yT/L2v8aUmFQsBRIdvi1XA==}
     dev: false
 
-  /expo-updates-interface@0.15.3(expo@51.0.5):
-    resolution: {integrity: sha512-uLvsbaCmUsXgJqeen8rYH/jPr874ZUCXEvWpKHxrCv5/XATPlYEaDuecbNSGQ+cu78i6MdtB4BHOwZmoH2d47A==}
+  /expo-updates-interface@0.16.2(expo@51.0.5):
+    resolution: {integrity: sha512-929XBU70q5ELxkKADj1xL0UIm3HvhYhNAOZv5DSk7rrKvLo7QDdPyl+JVnwZm9LrkNbH4wuE2rLoKu1KMgZ+9A==}
     peerDependencies:
       expo: '*'
     dependencies:
       expo: 51.0.5(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
     dev: false
 
-  /expo-updates@0.24.12(expo@51.0.5):
-    resolution: {integrity: sha512-35ZpAMSqHIyVGT5mEptaZJBxytu0mv4PIG28i3BQe+GG4ifQtY94aCOCrUwZe8Myzaf4dNVGEUXWTPo+JPCgcw==}
+  /expo-updates@0.25.11(expo@51.0.5):
+    resolution: {integrity: sha512-ZO+e6bLsEBMz+JdEOlJXGf+3w606si7zKKEEzkwDQWJWP20W0WQAG+MDYgTEgxQboc+jTC+T0MvvOvkVb8cFIQ==}
     hasBin: true
     peerDependencies:
       expo: '*'
     dependencies:
       '@expo/code-signing-certificates': 0.0.5
-      '@expo/config': 8.5.6
-      '@expo/config-plugins': 7.8.4
+      '@expo/config': 9.0.1
+      '@expo/config-plugins': 8.0.4
+      '@expo/fingerprint': 0.7.1
+      '@expo/spawn-async': 1.7.2
       arg: 4.1.0
       chalk: 4.1.2
       expo: 51.0.5(@babel/core@7.24.5)(@babel/preset-env@7.24.5)
-      expo-eas-client: 0.11.2
-      expo-manifests: 0.13.2(expo@51.0.5)
-      expo-structured-headers: 3.7.2
-      expo-updates-interface: 0.15.3(expo@51.0.5)
+      expo-eas-client: 0.12.0
+      expo-manifests: 0.14.2(expo@51.0.5)
+      expo-structured-headers: 3.8.0
+      expo-updates-interface: 0.16.2(expo@51.0.5)
+      fast-glob: 3.3.2
       fbemitter: 3.0.0
+      ignore: 5.3.1
       resolve-from: 5.0.0
     transitivePeerDependencies:
       - encoding
@@ -11266,7 +11224,7 @@ packages:
       - supports-color
     dev: true
 
-  /jest-cli@29.7.0:
+  /jest-cli@29.7.0(@types/node@20.12.12):
     resolution: {integrity: sha512-OVVobw2IubN/GSYsxETi+gOe7Ka59EFMR/twOU3Jb2GnKKeMGJB5SGUUrEz3SFVmJASUdZUzy83sLNNQ2gZslg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     hasBin: true
@@ -11280,10 +11238,10 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0
+      create-jest: 29.7.0(@types/node@20.12.12)
       exit: 0.1.2
       import-local: 3.1.0
-      jest-config: 29.7.0(@types/node@20.12.11)
+      jest-config: 29.7.0(@types/node@20.12.12)
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -11338,6 +11296,46 @@ packages:
       '@jest/test-sequencer': 29.7.0
       '@jest/types': 29.6.3
       '@types/node': 20.12.11
+      babel-jest: 29.7.0(@babel/core@7.24.5)
+      chalk: 4.1.2
+      ci-info: 3.9.0
+      deepmerge: 4.3.1
+      glob: 7.2.3
+      graceful-fs: 4.2.11
+      jest-circus: 29.7.0
+      jest-environment-node: 29.7.0
+      jest-get-type: 29.6.3
+      jest-regex-util: 29.6.3
+      jest-resolve: 29.7.0
+      jest-runner: 29.7.0
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      micromatch: 4.0.5
+      parse-json: 5.2.0
+      pretty-format: 29.7.0
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+    dev: true
+
+  /jest-config@29.7.0(@types/node@20.12.12):
+    resolution: {integrity: sha512-uXbpfeQ7R6TZBqI3/TxCU4q4ttk3u0PJeC+E0zbfSoSjq6bJ7buBPxzQPL0ifrkY4DNu4JUdk0ImlBUYi840eQ==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    peerDependencies:
+      '@types/node': '*'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      '@babel/core': 7.24.5
+      '@jest/test-sequencer': 29.7.0
+      '@jest/types': 29.6.3
+      '@types/node': 20.12.12
       babel-jest: 29.7.0(@babel/core@7.24.5)
       chalk: 4.1.2
       ci-info: 3.9.0
@@ -11710,7 +11708,7 @@ packages:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  /jest@29.7.0:
+  /jest@29.7.0(@types/node@20.12.12):
     resolution: {integrity: sha512-NIy3oAFp9shda19hy4HK0HRTWKtPJmGdnvywu01nOqNC2vZg+Z+fvJDxpMQA88eb2I9EcafcdjYgsDthnYTvGw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     hasBin: true
@@ -11723,7 +11721,7 @@ packages:
       '@jest/core': 29.7.0
       '@jest/types': 29.6.3
       import-local: 3.1.0
-      jest-cli: 29.7.0
+      jest-cli: 29.7.0(@types/node@20.12.12)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -14631,13 +14629,6 @@ packages:
     dependencies:
       loose-envify: 1.4.0
 
-  /react@18.3.1:
-    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-    dev: false
-
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
     dependencies:
@@ -14834,20 +14825,6 @@ packages:
     dependencies:
       '@types/react': 18.2.73
       react: 18.2.0
-    dev: false
-
-  /rehackt@0.0.6(react@18.3.1):
-    resolution: {integrity: sha512-l3WEzkt4ntlEc/IB3/mF6SRgNHA6zfQR7BlGOgBTOmx7IJJXojDASav+NsgXHFjHn+6RmwqsGPFgZpabWpeOdw==}
-    peerDependencies:
-      '@types/react': '*'
-      react: '*'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      react: 18.3.1
     dev: false
 
   /relay-runtime@12.0.0:
@@ -16333,7 +16310,7 @@ packages:
       '@babel/core': 7.24.5
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0
+      jest: 29.7.0(@types/node@20.12.12)
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -16824,18 +16801,6 @@ packages:
     dependencies:
       '@urql/core': 4.3.0(graphql@16.8.1)
       react: 18.2.0
-      wonka: 6.3.4
-    transitivePeerDependencies:
-      - graphql
-    dev: false
-
-  /urql@4.0.0(graphql@16.8.1)(react@18.3.1):
-    resolution: {integrity: sha512-JY+h1rTLThB9lgoasy9TehL/W2yuzhyRazr6TzLB9ST8+Nm9lKKuyuoLvywhSOHdXtz2FJVFFUeJHE3S+ZfaWA==}
-    peerDependencies:
-      react: '>= 16.8.0'
-    dependencies:
-      '@urql/core': 4.3.0(graphql@16.8.1)
-      react: 18.3.1
       wonka: 6.3.4
     transitivePeerDependencies:
       - graphql
