@@ -13,6 +13,8 @@ const data = [
   { name: "Group F", value: 189 },
 ];
 
+const Colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+
 const Page = () => {
   return (
     <div className={"space-y-10"}>
@@ -24,12 +26,15 @@ const Page = () => {
             cx={200}
             cy={200}
             labelLine={false}
-            outerRadius={80}
+            outerRadius={150}
             fill="#8884d8"
             dataKey="value"
           >
             {data.map((entry, index) => (
-              <Cell key={`cell - ${index}`} />
+              <Cell
+                key={`cell - ${index}`}
+                fill={Colors[index % Colors.length]}
+              />
             ))}
           </Pie>
         </PieChart>
