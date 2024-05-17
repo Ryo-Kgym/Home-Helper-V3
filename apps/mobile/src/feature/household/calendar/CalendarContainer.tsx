@@ -12,8 +12,8 @@ export const CalendarContainer = ({ baseDate }: { baseDate: Date }) => {
   const today = new Date();
 
   const calendar = generateCalendar(baseDate);
-  const fromDate = calendar[0]!;
-  const toDate = calendar[calendar.length - 1]!;
+  const fromDate = calendar[0];
+  const toDate = calendar[calendar.length - 1];
 
   const { getDetailsByDate } = useGetDetails({
     fromDate,
