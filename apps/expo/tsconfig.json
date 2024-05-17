@@ -12,7 +12,7 @@
   "include": [
     "src",
     "*.ts",
-    "index.tsx",
+    "src/index.tsx",
     "*.js",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"

@@ -1,6 +1,6 @@
 /** @type {import("@babel/core").ConfigFunction} */
 module.exports = function (api) {
-  api.cache.forever();
+  api.cache(true);
 
   return {
     presets: [
