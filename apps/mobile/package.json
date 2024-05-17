@@ -38,6 +38,9 @@
     "react-native-web": "~0.19.10"
   },
   "devDependencies": {
+    "@acme/eslint-config": "workspace:^",
+    "@acme/prettier-config": "workspace:^",
+    "@acme/tailwind-config": "workspace:^",
     "@babel/core": "^7.20.0",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.2.45",
@@ -47,5 +50,17 @@
     "react-test-renderer": "18.2.0",
     "typescript": "~5.3.3"
   },
-  "private": true
+  "private": true,
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@acme/eslint-config/base",
+      "@acme/eslint-config/react"
+    ],
+    "ignorePatterns": [
+      "expo-plugins/**"
+    ]
+  },
+  "prettier": "@acme/prettier-config"
+
 }
