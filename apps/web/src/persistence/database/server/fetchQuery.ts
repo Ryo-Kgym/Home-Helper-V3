@@ -20,8 +20,6 @@ const makeClient = () => {
   });
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 const { getClient } = registerUrql(makeClient);
 
 type Exact<T extends Record<string, unknown>> = {
