@@ -1,37 +1,26 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { Provider as UrqlProvider } from "urql";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import "react-native-url-polyfill/auto";
+// eslint-disable-next-line import/no-relative-parent-imports
+import "../styles.css";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import { datasource } from "~/config/datasource";
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
-  );
-}
+const Layout = () => (
+  <GestureHandlerRootView style={{ flex: 1 }}>
+    <UrqlProvider value={datasource}>
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#ffa400",
+          },
+        }}
+      />
+      <StatusBar />
+    </UrqlProvider>
+  </GestureHandlerRootView>
+);
+export default Layout;
