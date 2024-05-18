@@ -12,6 +12,8 @@ export const useGetCreditCardSummaryBetweenDate = (
       toDate,
       groupId,
     },
+    pause: false,
+    requestPolicy: "cache-first",
   });
 
   const incomeTotal = 0;

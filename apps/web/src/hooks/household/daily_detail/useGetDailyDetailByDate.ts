@@ -24,6 +24,7 @@ export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
     variables: {
       groupId,
     },
+    requestPolicy: "cache-first",
   });
 
   const incomeTotal = data?.dailies
