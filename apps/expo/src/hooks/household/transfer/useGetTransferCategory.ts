@@ -9,6 +9,7 @@ export const useGetTransferCategory = () => {
     variables: {
       groupId,
     },
+    requestPolicy: "cache-first",
   });
   const { incomeCategory, outcomeCategory } =
     transferCategoryData?.transferCategory ?? {};

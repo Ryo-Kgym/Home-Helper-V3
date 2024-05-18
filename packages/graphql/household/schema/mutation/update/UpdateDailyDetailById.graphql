@@ -20,6 +20,7 @@ mutation UpdateDailyDetailById(
     }
     pkColumns: { id: $id }
   ) {
+    __typename
     id
   }
 }

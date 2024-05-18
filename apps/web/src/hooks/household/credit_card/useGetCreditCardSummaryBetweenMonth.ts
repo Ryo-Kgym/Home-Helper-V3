@@ -1,11 +1,11 @@
-import { useGroup } from "@hooks/group/useGroup";
+import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetCreditCardSummaryByDateQuery } from "@v3/graphql/household";
 
 export const useGetCreditCardSummaryBetweenMonth = (
   fromMonth: Date | null,
   toMonth: Date | null,
 ) => {
-  const { groupId } = useGroup();
+  const { group } = useFindUser();
   const correctedFromMonth = fromMonth ?? new Date();
   const correctedToMonth = toMonth ?? new Date();
 
@@ -20,14 +20,13 @@ export const useGetCreditCardSummaryBetweenMonth = (
     0,
   );
 
-  const [{ data, fetching, error }, refetch] =
-    useGetCreditCardSummaryByDateQuery({
-      variables: {
-        fromDate: firstDay.toISOString(),
-        toDate: lastDay.toISOString(),
-        groupId,
-      },
-    });
+  const [{ data }] = useGetCreditCardSummaryByDateQuery({
+    variables: {
+      fromDate: firstDay.toISOString(),
+      toDate: lastDay.toISOString(),
+      groupId: group.id,
+    },
+  });
 
   const incomeTotal = 0;
   const outcomeTotal =
@@ -38,11 +37,6 @@ export const useGetCreditCardSummaryBetweenMonth = (
 
   return {
     data,
-    fetching,
-    error,
-    refetch: () => {
-      refetch({ requestPolicy: "network-only" });
-    },
     incomeTotal,
     outcomeTotal,
   };

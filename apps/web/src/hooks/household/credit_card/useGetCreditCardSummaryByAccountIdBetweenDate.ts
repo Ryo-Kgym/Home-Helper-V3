@@ -12,6 +12,7 @@ export const useGetCreditCardSummaryByAccountIdBetweenDate = (
         toDate,
         accountId,
       },
+      pause: !accountId || !fromDate || !toDate,
     });
 
   const incomeTotal = 0;

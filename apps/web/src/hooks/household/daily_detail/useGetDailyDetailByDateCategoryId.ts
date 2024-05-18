@@ -16,21 +16,19 @@ export const useGetDailyDetailByDateCategoryId = (
       categoryId,
       groupId,
     },
+    pause: !groupId || !categoryId,
   });
 
-  const incomeTotal = data?.dailyDetailByDateList
+  const incomeTotal = data?.dailies
     ?.filter(
-      (detail) =>
-        (detail.categoryByCategoryId.genreByGenreId
-          .iocomeType as IocomeType) === IocomeType.Income,
+      (detail) => (detail.genre.iocomeType as IocomeType) === IocomeType.Income,
     )
     .reduce((a, b) => a + Number(b.amount), 0);
 
-  const outcomeTotal = data?.dailyDetailByDateList
+  const outcomeTotal = data?.dailies
     ?.filter(
       (detail) =>
-        (detail.categoryByCategoryId.genreByGenreId
-          .iocomeType as IocomeType) === IocomeType.Outcome,
+        (detail.genre.iocomeType as IocomeType) === IocomeType.Outcome,
     )
     .reduce((a, b) => a + Number(b.amount), 0);
 

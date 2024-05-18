@@ -2,14 +2,19 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { FormatPrice } from "@components/molecules/FormatPrice";
-
 import type { TableProps } from "@components/atoms/Table/";
 import type { IocomeType } from "@domain/model/household/IocomeType";
-import type { GetDailyDetailByDateQuery } from "@v3/graphql/household";
+import type {
+  GetDailyByAccountIdQuery,
+  GetDailyDetailByDateCategoryIdQuery,
+} from "@v3/graphql/household";
+import { FormatPrice } from "@components/molecules/FormatPrice";
 
 type dailyDetailConverterArgs = {
-  data: GetDailyDetailByDateQuery | undefined;
+  data:
+    | GetDailyByAccountIdQuery
+    | GetDailyDetailByDateCategoryIdQuery
+    | undefined;
   onClickHandler?: (_: string) => void;
 };
 export const dailyDetailConverter = ({
@@ -17,7 +22,7 @@ export const dailyDetailConverter = ({
   onClickHandler = () => undefined,
 }: dailyDetailConverterArgs): TableProps[] => {
   return (
-    data?.dailyDetailByDateList?.map((dailyDetail) => {
+    data?.dailies?.map((dailyDetail) => {
       return {
         keyPrefix: "dailyDetail",
         columns: [
@@ -26,21 +31,18 @@ export const dailyDetailConverter = ({
             value: (
               <div>
                 <div className={"text-xs text-gray-500"}>
-                  {dailyDetail?.categoryByCategoryId?.genreByGenreId?.genreName}
+                  {dailyDetail?.genre.name}
                 </div>
-                <div>{dailyDetail?.categoryByCategoryId?.categoryName}</div>
+                <div>{dailyDetail?.category?.name}</div>
               </div>
             ),
           },
-          { value: dailyDetail?.accountByAccountId?.accountName },
+          { value: dailyDetail?.account?.name },
           {
             value: (
               <FormatPrice
                 price={dailyDetail?.amount as number}
-                iocomeType={
-                  dailyDetail?.categoryByCategoryId?.genreByGenreId
-                    ?.iocomeType as IocomeType
-                }
+                iocomeType={dailyDetail?.genre.iocomeType as IocomeType}
               />
             ),
             align: "right",
