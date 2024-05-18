@@ -16,6 +16,7 @@ export const useGetDailyDetailByDateCategoryId = (
       categoryId,
       groupId,
     },
+    pause: !groupId || !categoryId,
   });
 
   const incomeTotal = data?.dailies

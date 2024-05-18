@@ -14,8 +14,8 @@ export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
   const { groupId } = useGroup();
   const [{ data, fetching, error }] = useGetDailyDetailByDateQuery({
     variables: {
-      fromDate,
-      toDate,
+      fromDate: fromDate.toISOString().slice(0, 10),
+      toDate: toDate.toISOString().slice(0, 10),
       groupId,
     },
   });

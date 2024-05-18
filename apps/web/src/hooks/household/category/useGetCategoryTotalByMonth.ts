@@ -1,37 +1,31 @@
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { useDate } from "@hooks/date/useDate";
-import { useGroup } from "@hooks/group/useGroup";
+import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetCategoryTotalByMonthQuery } from "@v3/graphql/household";
 
 export const useGetCategoryTotalByMonth = (
   fromMonth: Date | null,
   toMonth: Date | null,
 ) => {
-  const { groupId } = useGroup();
-  const { offsetDate } = useDate();
+  const { group } = useFindUser();
   const correctedFromMonth = fromMonth ?? new Date();
   const correctedToMonth = toMonth ?? new Date();
 
-  const firstDay = offsetDate(
-    new Date(
-      correctedFromMonth.getFullYear(),
-      correctedFromMonth.getMonth(),
-      1,
-    ),
+  const firstDay = new Date(
+    correctedFromMonth.getFullYear(),
+    correctedFromMonth.getMonth(),
+    1,
   );
-  const lastDay = offsetDate(
-    new Date(
-      correctedToMonth.getFullYear(),
-      correctedToMonth.getMonth() + 1,
-      0,
-    ),
+  const lastDay = new Date(
+    correctedToMonth.getFullYear(),
+    correctedToMonth.getMonth() + 1,
+    0,
   );
 
-  const [{ data, fetching, error }] = useGetCategoryTotalByMonthQuery({
+  const [{ data }] = useGetCategoryTotalByMonthQuery({
     variables: {
       fromDate: firstDay.toISOString(),
       toDate: lastDay.toISOString(),
-      groupId,
+      groupId: group.id,
     },
   });
 
@@ -45,8 +39,6 @@ export const useGetCategoryTotalByMonth = (
 
   return {
     data,
-    fetching,
-    error,
     incomeTotal,
     outcomeTotal,
   };

@@ -1,18 +1,18 @@
-import { useGroup } from "@hooks/group/useGroup";
+import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetCreditCardSummaryByDateQuery } from "@v3/graphql/household";
 
 export const useGetCreditCardSummaryBetweenDate = (
   fromDate: Date | null,
   toDate: Date | null,
 ) => {
-  const { groupId } = useGroup();
+  const { group } = useFindUser();
   const [{ data, fetching, error }] = useGetCreditCardSummaryByDateQuery({
     variables: {
-      fromDate,
-      toDate,
-      groupId,
+      fromDate: fromDate ? fromDate.toISOString().slice(0, 10) : null,
+      toDate: toDate ? toDate.toISOString().slice(0, 10) : null,
+      groupId: group.id,
     },
-    pause: false,
+    pause: !fromDate || !toDate,
     requestPolicy: "cache-first",
   });
 

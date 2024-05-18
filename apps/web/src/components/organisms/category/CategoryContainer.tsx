@@ -4,6 +4,8 @@
 
 "use client";
 
+import type { TableProps } from "@components/atoms/Table";
+import { useState } from "react";
 import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { CategoryPresenter } from "@components/organisms/category/CategoryPresenter";
@@ -11,9 +13,6 @@ import { DailyTableByCategory } from "@components/organisms/daily_table/category
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCategoryTotalByMonth";
 import { useGetCreditCardSummaryBetweenMonth } from "@hooks/household/credit_card/useGetCreditCardSummaryBetweenMonth";
-import { useState } from "react";
-
-import type { TableProps } from "@components/atoms/Table";
 
 export const CategoryContainer = () => {
   const [fromMonth, setFromMonth] = useState<Date | null>(new Date());
