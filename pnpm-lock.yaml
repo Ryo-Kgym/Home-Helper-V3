@@ -276,6 +276,9 @@ importers:
       '@urql/exchange-graphcache':
         specifier: ^6.5.1
         version: 6.5.1(graphql@16.8.1)
+      '@urql/exchange-refocus':
+        specifier: ^1.1.0
+        version: 1.1.0(@urql/core@4.3.0)
       '@urql/next':
         specifier: ^1.1.1
         version: 1.1.1(next@14.1.4)(react@18.2.0)(urql@4.0.0)
@@ -6299,6 +6302,15 @@ packages:
       wonka: 6.3.4
     transitivePeerDependencies:
       - graphql
+    dev: false
+
+  /@urql/exchange-refocus@1.1.0(@urql/core@4.3.0):
+    resolution: {integrity: sha512-tMgIqXUGIuNBeEoXDNOZ48Kut2m85etNIorwBG89tQZHDLxJM52N6A0eLm0Mv9BJFb0U94i3drwlD55He+9Uvw==}
+    peerDependencies:
+      '@urql/core': ^5.0.0
+    dependencies:
+      '@urql/core': 4.3.0(graphql@16.8.1)
+      wonka: 6.3.4
     dev: false
 
   /@urql/exchange-retry@0.3.0(graphql@15.8.0):
