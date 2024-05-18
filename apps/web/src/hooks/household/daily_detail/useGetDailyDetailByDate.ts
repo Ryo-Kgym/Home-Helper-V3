@@ -26,46 +26,33 @@ export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
     },
   });
 
-  const incomeTotal = data?.dailyDetailByDateList
-    ?.filter(
-      (c) =>
-        (c.categoryByCategoryId.genreByGenreId.iocomeType as IocomeType) ===
-        IocomeType.Income,
-    )
+  const incomeTotal = data?.dailies
+    ?.filter((c) => (c.genre.iocomeType as IocomeType) === IocomeType.Income)
     .filter(
       (c) =>
-        c.categoryByCategoryId.categoryId !=
-        tcData?.transferCategory?.incomeCategory.categoryId,
+        c.category.id != tcData?.transferCategory?.incomeCategory.categoryId,
     )
     .reduce((a, b) => a + Number(b.amount), 0);
 
-  const outcomeTotal = data?.dailyDetailByDateList
-    ?.filter(
-      (c) =>
-        (c.categoryByCategoryId.genreByGenreId.iocomeType as IocomeType) ===
-        IocomeType.Outcome,
-    )
+  const outcomeTotal = data?.dailies
+    ?.filter((c) => (c.genre.iocomeType as IocomeType) === IocomeType.Outcome)
     .filter(
       (c) =>
-        c.categoryByCategoryId.categoryId !=
-        tcData?.transferCategory?.outcomeCategory.categoryId,
+        c.category.id != tcData?.transferCategory?.outcomeCategory.categoryId,
     )
     .reduce((a, b) => a + Number(b.amount), 0);
 
   const getDetail = (id: string): DailyDetail => {
-    const dailyDetail = data?.dailyDetailByDateList?.find((e) => e.id === id);
+    const dailyDetail = data?.dailies?.find((e) => e.id === id);
 
     return {
       id: dailyDetail?.id ?? null,
       date: new Date(dailyDetail?.date as string),
       amount: Number(dailyDetail?.amount) ?? "",
-      iocomeType:
-        (dailyDetail?.categoryByCategoryId?.genreByGenreId
-          ?.iocomeType as IocomeType) ?? null,
-      genreId:
-        dailyDetail?.categoryByCategoryId?.genreByGenreId?.genreId ?? null,
-      categoryId: dailyDetail?.categoryByCategoryId?.categoryId ?? null,
-      accountId: dailyDetail?.accountByAccountId?.accountId ?? null,
+      iocomeType: (dailyDetail?.genre.iocomeType as IocomeType) ?? null,
+      genreId: dailyDetail?.genre.id ?? null,
+      categoryId: dailyDetail?.category.id ?? null,
+      accountId: dailyDetail?.account.id ?? null,
       memo: dailyDetail?.memo ?? null,
     };
   };

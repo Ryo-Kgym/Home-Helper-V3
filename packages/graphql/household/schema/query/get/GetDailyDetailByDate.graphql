@@ -3,30 +3,9 @@ query GetDailyDetailByDate(
   $toDate: date!
   $groupId: String!
 ) {
-  dailyDetailByDateList: dailyDetailByDate(
+  dailies: dailyDetailByDate(
     args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
   ) {
-    id
-    date
-    amount
-    memo
-    categoryByCategoryId: category {
-      categoryId: id
-      categoryName: name
-      genreByGenreId: genre {
-        genreId: id
-        genreName: name
-        genreType
-        iocomeType
-      }
-    }
-    accountByAccountId: account {
-      accountId: id
-      accountName: name
-    }
-    userByUserId: user {
-      userId: id
-      userName: name
-    }
+    ...fragDailyDetail
   }
 }

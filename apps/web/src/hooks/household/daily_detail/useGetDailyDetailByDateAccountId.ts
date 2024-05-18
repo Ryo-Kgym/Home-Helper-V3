@@ -5,7 +5,7 @@
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
-import { useGetDailyDetailByDateAccountIdQuery } from "@v3/graphql/household";
+import { useGetDailyByAccountIdQuery } from "@v3/graphql/household";
 
 export const useGetDailyDetailByDateAccountId = (
   accountId: string,
@@ -14,45 +14,35 @@ export const useGetDailyDetailByDateAccountId = (
 ) => {
   const { groupId } = useGroup();
 
-  const [{ data, fetching, error }] = useGetDailyDetailByDateAccountIdQuery({
+  const [{ data, fetching, error }] = useGetDailyByAccountIdQuery({
     variables: {
       groupId,
       accountId,
       fromDate,
       toDate,
     },
+    pause: !accountId || !fromDate || !toDate || !groupId,
   });
 
-  const incomeTotal = data?.dailyDetailByDateList
-    ?.filter(
-      (c) =>
-        (c.categoryByCategoryId.genreByGenreId.iocomeType as IocomeType) ===
-        IocomeType.Income,
-    )
+  const incomeTotal = data?.dailies
+    ?.filter((c) => (c.genre.iocomeType as IocomeType) === IocomeType.Income)
     .reduce((a, b) => a + Number(b.amount), 0);
 
-  const outcomeTotal = data?.dailyDetailByDateList
-    ?.filter(
-      (c) =>
-        (c.categoryByCategoryId.genreByGenreId.iocomeType as IocomeType) ===
-        IocomeType.Outcome,
-    )
+  const outcomeTotal = data?.dailies
+    ?.filter((c) => (c.genre.iocomeType as IocomeType) === IocomeType.Outcome)
     .reduce((a, b) => a + Number(b.amount), 0);
 
   const getDetail = (id: string): DailyDetail => {
-    const dailyDetail = data?.dailyDetailByDateList?.find((e) => e.id === id);
+    const dailyDetail = data?.dailies?.find((e) => e.id === id);
 
     return {
       id: dailyDetail?.id ?? null,
       date: new Date(dailyDetail?.date as string),
       amount: Number(dailyDetail?.amount) ?? "",
-      iocomeType:
-        (dailyDetail?.categoryByCategoryId?.genreByGenreId
-          ?.iocomeType as IocomeType) ?? null,
-      genreId:
-        dailyDetail?.categoryByCategoryId?.genreByGenreId?.genreId ?? null,
-      categoryId: dailyDetail?.categoryByCategoryId?.categoryId ?? null,
-      accountId: dailyDetail?.accountByAccountId?.accountId ?? null,
+      iocomeType: (dailyDetail?.genre.iocomeType as IocomeType) ?? null,
+      genreId: dailyDetail?.genre.id ?? null,
+      categoryId: dailyDetail?.category.id ?? null,
+      accountId: dailyDetail?.account.id ?? null,
       memo: dailyDetail?.memo ?? null,
     };
   };
