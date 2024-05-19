@@ -22,20 +22,11 @@ export const fieldOptionsSelectBoxSchema = z.object({
     .array(),
 });
 
-const fieldOptionsLookupFilterSchema = z.union([
-  z.object({
-    filterType: z.enum(["static"]),
-    fieldId: z.string(),
-    value: z.string(),
-    complexity: filterComplexitySchema,
-  }),
-  z.object({
-    filterType: z.enum(["dynamic"]),
-    fieldId: z.string(),
-    value: z.string(),
-    complexity: filterComplexitySchema,
-  }),
-]);
+const fieldOptionsLookupFilterSchema = z.object({
+  fieldId: z.string(),
+  value: z.string(),
+  complexity: filterComplexitySchema,
+});
 
 export const fieldOptionsLookupSchema = z.object({
   appId: z.string(),

@@ -26,13 +26,11 @@ describe("filterLookupData", () => {
   it("フィルターの全てに該当するとき、true を返す", () => {
     const actual = filterLookupData(lookupRecord, {
       0: {
-        filterType: "static",
         fieldId: "f1",
         value: "textValue",
         complexity: "and",
       },
       1: {
-        filterType: "static",
         fieldId: "f2",
         value: "selectBoxValue",
         complexity: "and",
@@ -45,13 +43,11 @@ describe("filterLookupData", () => {
   it("フィルターの1つ目に該当するとき、true を返す", () => {
     const actual = filterLookupData(lookupRecord, {
       0: {
-        filterType: "static",
         fieldId: "f1",
         value: "textValue",
         complexity: "and",
       },
       1: {
-        filterType: "static",
         fieldId: "f2",
         value: "otherValue",
         complexity: "and",
@@ -64,13 +60,11 @@ describe("filterLookupData", () => {
   it("フィルターの2つ目に該当するとき、true を返す", () => {
     const actual = filterLookupData(lookupRecord, {
       0: {
-        filterType: "static",
         fieldId: "f1",
         value: "otherValue",
         complexity: "and",
       },
       1: {
-        filterType: "static",
         fieldId: "f2",
         value: "selectBoxValue",
         complexity: "and",
@@ -83,13 +77,11 @@ describe("filterLookupData", () => {
   it("フィルターに該当するものがないとき、false を返す", () => {
     const actual = filterLookupData(lookupRecord, {
       0: {
-        filterType: "static",
         fieldId: "f1",
         value: "otherValue",
         complexity: "and",
       },
       1: {
-        filterType: "static",
         fieldId: "f2",
         value: "otherValue",
         complexity: "and",

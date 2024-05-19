@@ -11,11 +11,9 @@ export const filterLookupData = (
   if (Object.keys(filters).length === 0) return true;
 
   for (const filter of Object.values(filters)) {
-    if (filter.filterType === "static") {
-      const column = lookupRecord.columns[filter.fieldId];
-      if (column?.value === filter.value) {
-        return true;
-      }
+    const column = lookupRecord.columns[filter.fieldId];
+    if (column?.value === filter.value) {
+      return true;
     }
   }
 
