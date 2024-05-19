@@ -12,7 +12,10 @@ export const recordColumnSchema = z.object({
     .optional(),
 });
 
-export const columnsSchema = z.record(recordColumnSchema); // fieldId
+export const columnsSchema = z.record(
+  z.string(), // fieldId
+  recordColumnSchema,
+);
 
 export const recordsSchema = z.record(
   z.string(), // record.index

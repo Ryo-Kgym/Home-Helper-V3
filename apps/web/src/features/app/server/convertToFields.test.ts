@@ -114,7 +114,6 @@ describe("convertToFields", () => {
           sortDirection: "asc",
           filters: {
             "0": {
-              filterType: "static",
               fieldId: "9",
               value: "value",
               complexity: "and",
@@ -137,7 +136,6 @@ describe("convertToFields", () => {
           sortDirection: "asc",
           filters: {
             "0": {
-              filterType: "static",
               fieldId: "9",
               value: "value",
               complexity: "and",

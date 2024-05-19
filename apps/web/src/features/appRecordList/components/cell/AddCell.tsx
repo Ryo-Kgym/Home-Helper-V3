@@ -69,6 +69,7 @@ export const AddCell = ({
           value={value}
           changeHandler={changeHandler}
           options={field.options}
+          columns={columns}
         />
       );
     }

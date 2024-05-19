@@ -18,75 +18,91 @@ describe("filterLookupData", () => {
   };
 
   it("フィルターが空のとき、true を返す", () => {
-    const actual = filterLookupData(lookupRecord, {});
+    const actual = filterLookupData(lookupRecord, {}, {});
 
     expect(actual).toBeTruthy();
   });
 
   it("フィルターの全てに該当するとき、true を返す", () => {
-    const actual = filterLookupData(lookupRecord, {
-      0: {
-        fieldId: "f1",
-        value: "textValue",
-        complexity: "and",
+    const actual = filterLookupData(
+      lookupRecord,
+      {
+        0: {
+          fieldId: "f1",
+          value: "textValue",
+          complexity: "and",
+        },
+        1: {
+          fieldId: "f2",
+          value: "selectBoxValue",
+          complexity: "and",
+        },
       },
-      1: {
-        fieldId: "f2",
-        value: "selectBoxValue",
-        complexity: "and",
-      },
-    });
+      {},
+    );
 
     expect(actual).toBeTruthy();
   });
 
   it("フィルターの1つ目に該当するとき、true を返す", () => {
-    const actual = filterLookupData(lookupRecord, {
-      0: {
-        fieldId: "f1",
-        value: "textValue",
-        complexity: "and",
+    const actual = filterLookupData(
+      lookupRecord,
+      {
+        0: {
+          fieldId: "f1",
+          value: "textValue",
+          complexity: "and",
+        },
+        1: {
+          fieldId: "f2",
+          value: "otherValue",
+          complexity: "and",
+        },
       },
-      1: {
-        fieldId: "f2",
-        value: "otherValue",
-        complexity: "and",
-      },
-    });
+      {},
+    );
 
     expect(actual).toBeTruthy();
   });
 
   it("フィルターの2つ目に該当するとき、true を返す", () => {
-    const actual = filterLookupData(lookupRecord, {
-      0: {
-        fieldId: "f1",
-        value: "otherValue",
-        complexity: "and",
+    const actual = filterLookupData(
+      lookupRecord,
+      {
+        0: {
+          fieldId: "f1",
+          value: "otherValue",
+          complexity: "and",
+        },
+        1: {
+          fieldId: "f2",
+          value: "selectBoxValue",
+          complexity: "and",
+        },
       },
-      1: {
-        fieldId: "f2",
-        value: "selectBoxValue",
-        complexity: "and",
-      },
-    });
+      {},
+    );
 
     expect(actual).toBeTruthy();
   });
 
   it("フィルターに該当するものがないとき、false を返す", () => {
-    const actual = filterLookupData(lookupRecord, {
-      0: {
-        fieldId: "f1",
-        value: "otherValue",
-        complexity: "and",
+    const actual = filterLookupData(
+      lookupRecord,
+      {
+        0: {
+          fieldId: "f1",
+          value: "otherValue",
+          complexity: "and",
+        },
+        1: {
+          fieldId: "f2",
+          value: "otherValue",
+          complexity: "and",
+        },
       },
-      1: {
-        fieldId: "f2",
-        value: "otherValue",
-        complexity: "and",
-      },
-    });
+      {},
+    );
 
     expect(actual).toBeFalsy();
   });

@@ -73,6 +73,7 @@ describe("convertToImportHistories", () => {
           sortDirection: "desc",
           filters: {},
         },
+        columns: {},
       }),
     ).result.current;
 
@@ -147,6 +148,7 @@ describe("convertToImportHistories", () => {
           sortDirection: "desc",
           filters: {},
         },
+        columns: {},
       }),
     ).result.current;
 
@@ -213,6 +215,7 @@ describe("convertToImportHistories", () => {
           sortDirection: "desc",
           filters: {},
         },
+        columns: {},
       }),
     ).result.current;
 
