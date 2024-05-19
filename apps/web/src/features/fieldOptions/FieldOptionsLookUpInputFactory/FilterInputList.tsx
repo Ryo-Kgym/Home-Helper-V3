@@ -1,6 +1,6 @@
 import { ComponentProps, useState } from "react";
 import { Button } from "@components/ui/v4/button";
-import { FilterInput } from "@feature/app/create/FieldOptionsLookUpInputFactory/FilterInput";
+import { FilterInput } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInput";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
 

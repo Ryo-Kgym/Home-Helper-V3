@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { lookupOptionsSchema } from "@feature/app/create/appFieldValue";
-import { OptionsState } from "@feature/app/create/FieldOptionsInput";
-import { FilterInputList } from "@feature/app/create/FieldOptionsLookUpInputFactory/FilterInputList";
+import { OptionsState } from "@features/fieldOptions/FieldOptionsInput";
+import { FilterInputList } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInputList";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { SortDirection } from "@oneforall/domain/schema/sortDirectionSchema";
 
