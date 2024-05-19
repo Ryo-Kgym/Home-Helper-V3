@@ -28,6 +28,8 @@ export const FilterInput = ({
   deletable?: boolean;
   deleteHandler?: () => void;
 }) => {
+  const disabled = deletable;
+
   return (
     <div className={"flex items-center"}>
       <Select
@@ -44,14 +46,21 @@ export const FilterInput = ({
         label={"かつ / または"}
         value={complexity}
         setValue={setComplexity}
+        disabled={disabled}
       />
       <Select
         data={fieldListData}
         label={"フィールド"}
         value={fieldId}
         setValue={setFieldId}
+        disabled={disabled}
       />
-      <TextInput label={"値"} value={value} setValue={setValue} />
+      <TextInput
+        label={"値"}
+        value={value}
+        setValue={setValue}
+        disabled={disabled}
+      />
       {deletable && (
         <button className={"h-8 w-8 bg-inherit"} onClick={deleteHandler}>
           <Trash />
