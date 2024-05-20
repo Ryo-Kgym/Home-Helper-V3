@@ -4,6 +4,7 @@ export const paths = {
     show: ({ id }: { id: string }) => `/app/show/${id}`,
     setting: ({ id }: { id: string }) => `/app/setting/${id}`,
     import: ({ id }: { id: string }) => `/app/import/${id}`,
+    chart: ({ id }: { id: string }) => `/app/chart/${id}`,
   },
   view: {
     create: "/view/create",
