@@ -3,12 +3,11 @@
  */
 "use client";
 
-import { TablePresenter } from "@components/atoms/Table/TablePresenter";
-import { Table } from "@mantine/core";
-import { useEffect, useRef, useState } from "react";
-
 import type { ColumnProps, TableProps } from "@components/atoms/Table/index";
 import type { MantineSize } from "@mantine/core";
+import { useEffect, useRef, useState } from "react";
+import { TablePresenter } from "@components/atoms/Table/TablePresenter";
+import { Table } from "@mantine/core";
 
 type Props = {
   header: string[];
@@ -83,10 +82,10 @@ export const TableContainer = ({
 
   const viewport = useRef<HTMLDivElement>(null);
 
-  const scrollToBottomHandler = () => {
+  const scrollToBottomHandler = (behavior: ScrollBehavior = "smooth") => {
     viewport?.current?.scrollTo({
       top: viewport.current.scrollHeight,
-      behavior: "smooth",
+      behavior,
     });
   };
 
@@ -100,7 +99,9 @@ export const TableContainer = ({
   };
 
   useEffect(() => {
-    if (defaultBottom) scrollToBottomHandler();
+    if (defaultBottom) {
+      scrollToBottomHandler("instant");
+    }
   }, [defaultBottom, tablePropsList]);
 
   return (

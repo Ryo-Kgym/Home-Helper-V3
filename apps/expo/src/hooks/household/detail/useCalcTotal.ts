@@ -16,6 +16,7 @@ export const useCalcTotal = ({
     variables: {
       groupId,
     },
+    requestPolicy: "cache-first",
   });
 
   const { getDetailsForTerm } = useGetDetails({

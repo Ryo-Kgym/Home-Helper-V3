@@ -39,6 +39,7 @@ export const DetailListByAccountContainer = ({
         fromDate: "2019-01-01",
         toDate: "2099-12-31",
       },
+      pause: !accountId,
     },
   );
 

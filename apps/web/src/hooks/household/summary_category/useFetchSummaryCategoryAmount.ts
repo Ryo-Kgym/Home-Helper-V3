@@ -39,6 +39,7 @@ export const useFetchSummaryCategoryAmount: InterfaceType = ({
     variables: {
       groupId,
     },
+    requestPolicy: "cache-first",
   });
 
   const args: TotalAmountByMonthlyArgs<MonthlyCategoryKey>[] =

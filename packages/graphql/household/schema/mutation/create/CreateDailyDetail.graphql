@@ -10,6 +10,7 @@ mutation CreateDailyDetail(
   $memo: String
   $userId: String!
 ) {
+  __typename
   insertDailyDetail: insertHouseholdDailyDetail(
     objects: {
       id: $id
@@ -24,8 +25,10 @@ mutation CreateDailyDetail(
       groupId: $groupId
     }
   ) {
+    __typename
     returning {
       id
+      __typename
     }
   }
 }

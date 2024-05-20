@@ -22,22 +22,21 @@ export const useGetDailyList = ({
   });
 
   const dailyDetailList: Daily[] =
-    detailData?.dailyDetailByDateList.map((detail) => ({
+    detailData?.dailies.map((detail) => ({
       id: detail.id,
       date: new Date(detail.date ?? 0) ?? new Date(),
       genre: {
-        id: detail.categoryByCategoryId.genreByGenreId.genreId,
-        name: detail.categoryByCategoryId.genreByGenreId.genreName,
-        iocomeType: detail.categoryByCategoryId.genreByGenreId
-          .iocomeType as IocomeType,
+        id: detail.genre.id,
+        name: detail.genre.name,
+        iocomeType: detail.genre.iocomeType as IocomeType,
       },
       category: {
-        id: detail.categoryByCategoryId.categoryId,
-        name: detail.categoryByCategoryId.categoryName,
+        id: detail.category.id,
+        name: detail.category.name,
       },
       account: {
-        id: detail.accountByAccountId.accountId,
-        name: detail.accountByAccountId.accountName,
+        id: detail.account.id,
+        name: detail.account.name,
       },
       amount: detail.amount as number,
       memo: detail.memo ?? null,

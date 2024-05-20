@@ -5,6 +5,7 @@ query getDailyByAccountId(
   $groupId: String!
   $orderBy: OrderBy = ASC
 ) {
+  __typename
   dailies: dailyDetailByDate(
     args: { group_id: $groupId, from_date: $fromDate, to_date: $toDate }
     where: { accountId: { _eq: $accountId } }

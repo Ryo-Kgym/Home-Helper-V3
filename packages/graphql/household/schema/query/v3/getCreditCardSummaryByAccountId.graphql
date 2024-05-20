@@ -13,6 +13,7 @@ query getCreditCardSummaryByAccountId(
     }
     orderBy: { withdrawalDate: ASC }
   ) {
+    __typename
     id
     withdrawalDate
     totalAmount
