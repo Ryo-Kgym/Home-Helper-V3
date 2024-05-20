@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import CreatePieChart from "@app/(appListNavigation)/app/chart/[id]/CreatePieChart";
+import PieChart from "@app/(appListNavigation)/app/chart/[id]/PieChart";
 import { Title } from "@components/ui/v4/frame/Title";
 
 const ShowPieChartClient = ({
@@ -15,7 +15,7 @@ const ShowPieChartClient = ({
     <div className={"space-y-10"}>
       <Title title={"chart作成画面"} />
       <div className={"flex justify-center"}>
-        <CreatePieChart
+        <PieChart
           data={data}
           colors={colors}
           outerRadius={150}

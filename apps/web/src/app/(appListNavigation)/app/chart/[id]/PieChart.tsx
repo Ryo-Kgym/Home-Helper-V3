@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Cell, Pie, PieChart } from "recharts";
+import { Cell, Pie, PieChart as ReChartPieChart } from "recharts";
 
-const CreatePieChart = ({
+const PieChart = ({
   data,
   colors,
   outerRadius,
@@ -17,7 +17,7 @@ const CreatePieChart = ({
   height: number;
 }) => {
   return (
-    <PieChart width={width} height={height}>
+    <ReChartPieChart width={width} height={height}>
       <Pie
         data={data}
         cx={200}
@@ -31,8 +31,8 @@ const CreatePieChart = ({
           <Cell key={`cell - ${index}`} fill={colors[index % colors.length]} />
         ))}
       </Pie>
-    </PieChart>
+    </ReChartPieChart>
   );
 };
 
-export default CreatePieChart;
+export default PieChart;
