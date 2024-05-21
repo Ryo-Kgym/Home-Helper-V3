@@ -1,19 +1,29 @@
 import { filterLookupData } from "@features/appRecordList/client/useGetLookupOptions/filterLookupData";
-import { Record } from "@oneforall/domain/schema/recordSchema";
+import { Columns, Record } from "@oneforall/domain/schema/recordSchema";
 
 describe("filterLookupData", () => {
   const lookupRecord: Record = {
     recordId: "r1",
     isEditing: false,
     columns: {
-      f1: {
+      lc1: {
         fieldKind: "text",
         value: "textValue",
       },
-      f2: {
+      lc2: {
         fieldKind: "selectBox",
         value: "selectBoxValue",
       },
+    },
+  };
+  const thisAppColumns: Columns = {
+    c1: {
+      fieldKind: "text",
+      value: "c1Value",
+    },
+    c2: {
+      fieldKind: "selectBox",
+      value: "selectBoxValue",
     },
   };
 
@@ -28,17 +38,19 @@ describe("filterLookupData", () => {
       lookupRecord,
       {
         0: {
-          fieldId: "f1",
-          value: "textValue",
+          fieldId: "lc1",
           complexity: "and",
+          filterType: "value",
+          value: "textValue",
         },
         1: {
-          fieldId: "f2",
-          value: "selectBoxValue",
+          fieldId: "lc2",
           complexity: "and",
+          filterType: "field",
+          value: "c1",
         },
       },
-      {},
+      thisAppColumns,
     );
 
     expect(actual).toBeTruthy();
@@ -49,17 +61,19 @@ describe("filterLookupData", () => {
       lookupRecord,
       {
         0: {
-          fieldId: "f1",
-          value: "textValue",
+          fieldId: "lc1",
           complexity: "and",
+          filterType: "value",
+          value: "textValue",
         },
         1: {
-          fieldId: "f2",
-          value: "otherValue",
+          fieldId: "lc2",
           complexity: "and",
+          filterType: "field",
+          value: "c1",
         },
       },
-      {},
+      thisAppColumns,
     );
 
     expect(actual).toBeTruthy();
@@ -70,17 +84,19 @@ describe("filterLookupData", () => {
       lookupRecord,
       {
         0: {
-          fieldId: "f1",
-          value: "otherValue",
+          fieldId: "lc1",
           complexity: "and",
+          filterType: "value",
+          value: "notFound",
         },
         1: {
-          fieldId: "f2",
-          value: "selectBoxValue",
+          fieldId: "lc2",
           complexity: "and",
+          filterType: "field",
+          value: "c2",
         },
       },
-      {},
+      thisAppColumns,
     );
 
     expect(actual).toBeTruthy();
@@ -91,17 +107,19 @@ describe("filterLookupData", () => {
       lookupRecord,
       {
         0: {
-          fieldId: "f1",
-          value: "otherValue",
+          fieldId: "lc1",
           complexity: "and",
+          filterType: "value",
+          value: "notFound",
         },
         1: {
-          fieldId: "f2",
-          value: "otherValue",
+          fieldId: "lc2",
           complexity: "and",
+          filterType: "field",
+          value: "c3",
         },
       },
-      {},
+      thisAppColumns,
     );
 
     expect(actual).toBeFalsy();

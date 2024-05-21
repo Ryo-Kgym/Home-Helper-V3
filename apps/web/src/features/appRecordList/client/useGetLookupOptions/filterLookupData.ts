@@ -11,17 +11,19 @@ export const filterLookupData = (
 ): boolean => {
   if (Object.keys(filters).length === 0) return true;
 
+  // TODO complexity には対応しておらず、一律ORで判定している
   for (const filter of Object.values(filters)) {
     const lookupColumn = lookupRecord.columns[filter.fieldId];
-    // フィルターの値が、columns に存在する場合、そのカラムの値を使って、フィルターを行う
-    if (filter.value in columns) {
-      if (columns[filter.value]?.value === lookupColumn?.value) {
+    if (filter.filterType === "value") {
+      if (lookupColumn?.value === filter.value) {
         return true;
       }
     }
-
-    if (lookupColumn?.value === filter.value) {
-      return true;
+    // フィルターの値が、columns に存在する場合、そのカラムの値を使って、フィルターを行う
+    if (filter.filterType === "field") {
+      if (columns[filter.value]?.value === lookupColumn?.value) {
+        return true;
+      }
     }
   }
 

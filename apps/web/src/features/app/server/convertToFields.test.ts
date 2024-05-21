@@ -139,6 +139,7 @@ describe("convertToFields", () => {
               fieldId: "9",
               value: "value",
               complexity: "and",
+              filterType: "value",
             },
           },
         },

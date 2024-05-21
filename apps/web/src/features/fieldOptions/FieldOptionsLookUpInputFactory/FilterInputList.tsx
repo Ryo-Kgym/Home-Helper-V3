@@ -1,7 +1,10 @@
 import { ComponentProps, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { FilterInput } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInput";
-import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
+import {
+  FieldOptionsLookup,
+  FieldOptionsLookupFilter,
+} from "@oneforall/domain/schema/appSchema";
 import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
 
 /**
@@ -17,6 +20,8 @@ export const FilterInputList = ({
   fieldListData: ComponentProps<typeof FilterInput>["fieldListData"];
 }) => {
   const [fieldId, setFieldId] = useState<string>("");
+  const [filterType, setFilterType] =
+    useState<FieldOptionsLookupFilter["filterType"]>("value");
   const [value, setValue] = useState<string>("");
   const [complexity, setComplexity] = useState<FilterComplexity>("and");
 
@@ -36,7 +41,7 @@ export const FilterInputList = ({
             setFilters({
               ...filters,
               [Object.keys(filters).length]: {
-                filterType: "static",
+                filterType,
                 fieldId,
                 value,
                 complexity,
@@ -55,6 +60,8 @@ export const FilterInputList = ({
               fieldListData={fieldListData}
               fieldId={f.fieldId}
               setFieldId={() => undefined}
+              filterType={f.filterType}
+              setFilterType={() => undefined}
               value={f.value}
               setValue={() => undefined}
               complexity={f.complexity}
@@ -74,6 +81,8 @@ export const FilterInputList = ({
             fieldListData={fieldListData}
             fieldId={fieldId}
             setFieldId={setFieldId}
+            filterType={filterType}
+            setFilterType={setFilterType}
             value={value}
             setValue={setValue}
             complexity={complexity}

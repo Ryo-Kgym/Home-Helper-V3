@@ -22,11 +22,27 @@ export const fieldOptionsSelectBoxSchema = z.object({
     .array(),
 });
 
-const fieldOptionsLookupFilterSchema = z.object({
-  fieldId: z.string(),
-  value: z.string(),
-  complexity: filterComplexitySchema,
-});
+const fieldOptionsLookupFilterSchema = z
+  .object({
+    fieldId: z.string(),
+    complexity: filterComplexitySchema,
+  })
+  .and(
+    z.union([
+      z.object({
+        filterType: z.literal("value").default("value"),
+        value: z.string(),
+      }), // FIXME この schema は削除予定
+      z.object({
+        filterType: z.literal("value"),
+        value: z.string().default(""),
+      }),
+      z.object({
+        filterType: z.literal("field"),
+        value: z.string().default(""),
+      }),
+    ]),
+  );
 
 export const fieldOptionsLookupSchema = z.object({
   appId: z.string(),
@@ -116,6 +132,9 @@ export type Fields = z.infer<typeof fieldsSchema>;
 export type Field = z.infer<typeof fieldSchema>;
 export type FieldOptionsSelectBox = z.infer<typeof fieldOptionsSelectBoxSchema>;
 export type FieldOptionsLookup = z.infer<typeof fieldOptionsLookupSchema>;
+export type FieldOptionsLookupFilter = z.infer<
+  typeof fieldOptionsLookupFilterSchema
+>;
 export type FieldOptionsDate = z.infer<typeof fieldOptionsDateSchema>;
 export type FieldOptionsDateFormat = z.infer<
   typeof fieldOptionsDateFormatSchema

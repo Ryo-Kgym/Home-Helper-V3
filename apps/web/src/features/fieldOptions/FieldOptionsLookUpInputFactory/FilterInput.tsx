@@ -1,7 +1,8 @@
 import { ComponentProps } from "react";
 import Trash from "@components/ui/v4/icon/Trash";
 import { Select } from "@components/ui/v4/select";
-import { TextInput } from "@components/ui/v4/textInput";
+import { FilterValueSwitcher } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterValueSwitcher";
+import { FieldOptionsLookupFilter } from "@oneforall/domain/schema/appSchema";
 import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
 
 /**
@@ -11,6 +12,8 @@ export const FilterInput = ({
   fieldListData,
   fieldId,
   setFieldId,
+  filterType,
+  setFilterType,
   value,
   setValue,
   complexity,
@@ -21,6 +24,8 @@ export const FilterInput = ({
   fieldListData: ComponentProps<typeof Select<string>>["data"];
   fieldId: string;
   setFieldId: (fieldId: string) => void;
+  filterType: FieldOptionsLookupFilter["filterType"];
+  setFilterType: (filterType: FieldOptionsLookupFilter["filterType"]) => void;
   value: string;
   setValue: (value: string) => void;
   complexity: FilterComplexity;
@@ -50,13 +55,23 @@ export const FilterInput = ({
       />
       <Select
         data={fieldListData}
-        label={"フィールド"}
+        label={"絞りたいフィールド"}
         value={fieldId}
         setValue={setFieldId}
         disabled={disabled}
       />
-      <TextInput
-        label={"値"}
+      <Select
+        data={Object.entries(filterTypeSelectOption).map(([value, label]) => ({
+          value: value as FieldOptionsLookupFilter["filterType"],
+          label,
+        }))}
+        label={"絞り方"}
+        value={filterType}
+        setValue={setFilterType}
+        disabled={disabled}
+      />
+      <FilterValueSwitcher
+        filterType={filterType}
         value={value}
         setValue={setValue}
         disabled={disabled}
@@ -68,4 +83,12 @@ export const FilterInput = ({
       )}
     </div>
   );
+};
+
+const filterTypeSelectOption: Record<
+  FieldOptionsLookupFilter["filterType"],
+  string
+> = {
+  value: "値",
+  field: "フィールド",
 };
