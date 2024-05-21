@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
+import BarChart from "@app/(appListNavigation)/app/chart/[id]/BarChart";
 import PieChart from "@app/(appListNavigation)/app/chart/[id]/PieChart";
 import { Title } from "@components/ui/v4/frame/Title";
 
-const ShowPieChartClient = ({
+const ShowChartClient = ({
   data,
   colors,
 }: {
@@ -22,9 +23,10 @@ const ShowPieChartClient = ({
           width={400}
           height={400}
         />
+        <BarChart data={data} />
       </div>
     </div>
   );
 };
 
-export default ShowPieChartClient;
+export default ShowChartClient;

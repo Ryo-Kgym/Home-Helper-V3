@@ -1,5 +1,5 @@
-import { ShowPieChartServer } from "@app/(appListNavigation)/app/chart/[id]/ShowPieChartServer";
+import { ShowChartServer } from "@app/(appListNavigation)/app/chart/[id]/ShowChartServer";
 
-const Page = () => <ShowPieChartServer />;
+const Page = () => <ShowChartServer />;
 
 export default Page;

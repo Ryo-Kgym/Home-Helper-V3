@@ -1,6 +1,6 @@
-import ShowPieChartClient from "@app/(appListNavigation)/app/chart/[id]/ShowPieChartClient";
+import ShowChartClient from "@app/(appListNavigation)/app/chart/[id]/ShowChartClient";
 
-export const ShowPieChartServer = async () => {
+export const ShowChartServer = async () => {
   const data = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -12,5 +12,5 @@ export const ShowPieChartServer = async () => {
 
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
-  return <ShowPieChartClient data={data} colors={colors} />;
+  return <ShowChartClient data={data} colors={colors} />;
 };
