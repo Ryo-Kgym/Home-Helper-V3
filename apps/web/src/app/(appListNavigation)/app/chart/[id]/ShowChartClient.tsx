@@ -23,7 +23,7 @@ const ShowChartClient = ({
           width={400}
           height={400}
         />
-        <BarChart data={data} />
+        <BarChart data={data} colors={colors} width={"50%"} height={400} />
       </div>
     </div>
   );
