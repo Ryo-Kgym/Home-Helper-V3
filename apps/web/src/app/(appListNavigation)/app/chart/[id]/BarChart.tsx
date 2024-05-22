@@ -27,7 +27,7 @@ const BarChart = ({
     <ResponsiveContainer width={width} height={height}>
       <ReChartBarChart
         data={data}
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 30, right: 15, left: 15, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="2 2" stroke={colors[0]} />
         <XAxis dataKey="name" />
