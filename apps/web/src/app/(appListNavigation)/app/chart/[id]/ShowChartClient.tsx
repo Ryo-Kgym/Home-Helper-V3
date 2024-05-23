@@ -4,6 +4,7 @@ import React from "react";
 import BarChart from "@app/(appListNavigation)/app/chart/[id]/BarChart";
 import LineChart from "@app/(appListNavigation)/app/chart/[id]/LineChart";
 import PieChart from "@app/(appListNavigation)/app/chart/[id]/PieChart";
+import RadarChart from "@app/(appListNavigation)/app/chart/[id]/RadarChart";
 import { Title } from "@components/ui/v4/frame/Title";
 
 const ShowChartClient = ({
@@ -26,6 +27,9 @@ const ShowChartClient = ({
         />
         <BarChart data={data} colors={colors} width={"30%"} height={400} />
         <LineChart data={data} colors={colors} width={600} height={400} />
+      </div>
+      <div>
+        <RadarChart data={data} />
       </div>
     </div>
   );
