@@ -2,9 +2,9 @@ import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { Field } from "@oneforall/domain/schema/appSchema";
-import { RecordColumn, Records } from "@oneforall/domain/schema/recordSchema";
+import { Record, RecordColumn } from "@oneforall/domain/schema/recordSchema";
 
-import { ModifyCellFactoryChangeHandler } from "./cell-factory-change-handler";
+import { ModifyCellFactoryChangeHandler } from "./cellFactoryChangeHandler";
 import { ModifyCellDateFactory } from "./ModifyCellDateFactory";
 import { ModifyCellLookupFactory } from "./ModifyCellLookupFactory";
 
@@ -18,8 +18,8 @@ export const ModifyCell = ({
   },
 }: {
   field: Field;
-  record: Records[number];
-  setRecord: (record: Records[number]) => void;
+  record: Record;
+  setRecord: (record: Record) => void;
   column: RecordColumn | undefined;
 }) => {
   if (field.fieldKind !== column.fieldKind) {
@@ -70,6 +70,7 @@ export const ModifyCell = ({
           value={value}
           changeHandler={changeHandler}
           options={field.options}
+          columns={record.columns}
         />
       );
     }

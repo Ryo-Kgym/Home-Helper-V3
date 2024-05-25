@@ -1,4 +1,4 @@
-import { sortLookupData } from "@features/appRecordList/components/cell/useGetLookupOptions/sortLookupData";
+import { sortLookupData } from "@features/appRecordList/client/useGetLookupOptions/sortLookupData";
 import { Record } from "@oneforall/domain/schema/recordSchema";
 
 describe("sortLookupData", () => {

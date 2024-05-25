@@ -1,5 +1,5 @@
-import { SortDirection } from "@oneforall/domain/schema/appSchema";
 import { Record } from "@oneforall/domain/schema/recordSchema";
+import { SortDirection } from "@oneforall/domain/schema/sortDirectionSchema";
 
 /**
  * @package

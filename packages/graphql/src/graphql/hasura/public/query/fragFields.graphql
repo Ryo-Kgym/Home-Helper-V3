@@ -1,0 +1,8 @@
+fragment fragFields on Field {
+  __typename
+  id
+  name
+  index
+  fieldKind
+  options
+}

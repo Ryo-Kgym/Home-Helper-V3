@@ -1,3 +1,4 @@
+import { Edit } from "@components/ui/v4/icon/Edit";
 import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 import { Records } from "@oneforall/domain/schema/recordSchema";
 
@@ -18,5 +19,9 @@ export const ModifyRecordButton = ({
     });
   };
 
-  return <button onClick={openModify}>編集</button>;
+  return (
+    <button onClick={openModify}>
+      <Edit />
+    </button>
+  );
 };

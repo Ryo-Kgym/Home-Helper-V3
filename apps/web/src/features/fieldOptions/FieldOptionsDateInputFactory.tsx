@@ -1,4 +1,4 @@
-import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
+import type { OptionsState } from "@features/fieldOptions/FieldOptionsInput";
 import type {
   FieldOptionsDate,
   FieldOptionsDateFormat,

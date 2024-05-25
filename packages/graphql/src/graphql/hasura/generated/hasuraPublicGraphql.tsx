@@ -5184,6 +5184,15 @@ export type GetUserByEmailQuery = {
   }>;
 };
 
+export type FragFieldsFragment = {
+  __typename: "Field";
+  id: string;
+  name: string;
+  index: number;
+  fieldKind: string;
+  options?: any | null;
+};
+
 export type FragRecordsFragment = {
   __typename: "Record";
   id: string;
@@ -5232,10 +5241,12 @@ export type GetAppFieldListQuery = {
       id: string;
       name: string;
       fields: Array<{
-        __typename?: "Field";
+        __typename: "Field";
         id: string;
         name: string;
+        index: number;
         fieldKind: string;
+        options?: any | null;
       }>;
     }>;
   } | null;
@@ -5386,6 +5397,16 @@ export type GetViewsQuery = {
   } | null;
 };
 
+export const FragFieldsFragmentDoc = gql`
+  fragment fragFields on Field {
+    __typename
+    id
+    name
+    index
+    fieldKind
+    options
+  }
+`;
 export const FragRecordsFragmentDoc = gql`
   fragment fragRecords on Record {
     __typename
@@ -5689,18 +5710,14 @@ export const GetAppDocument = gql`
       id
       name
       fields(orderBy: [{ index: ASC }]) {
-        __typename
-        id
-        name
-        index
-        fieldKind
-        options
+        ...fragFields
       }
       records {
         ...fragRecords
       }
     }
   }
+  ${FragFieldsFragmentDoc}
   ${FragRecordsFragmentDoc}
 `;
 
@@ -5720,13 +5737,12 @@ export const GetAppFieldListDocument = gql`
         id
         name
         fields(orderBy: { index: ASC }) {
-          id
-          name
-          fieldKind
+          ...fragFields
         }
       }
     }
   }
+  ${FragFieldsFragmentDoc}
 `;
 
 export function useGetAppFieldListQuery(

@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { lookupOptionsSchema } from "@feature/app/create/appFieldValue";
-import { OptionsState } from "@feature/app/create/FieldOptionsInput";
-import {
-  FieldOptionsLookup,
-  SortDirection,
-} from "@oneforall/domain/schema/appSchema";
-import { useFindUser } from "@persistence/browser/client/useFindUser";
-import { useGetAppFieldListQuery } from "@v3/graphql/public";
+import { OptionsState } from "@features/fieldOptions/FieldOptionsInput";
+import { FilterInputTable } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInputTable";
+import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
+import { SortDirection } from "@oneforall/domain/schema/sortDirectionSchema";
+
+import { useMakeSelector } from "./useMakeSelector";
 
 export const FieldOptionsLookUpInputFactory = ({
   value,
@@ -26,6 +25,7 @@ export const FieldOptionsLookUpInputFactory = ({
               saveFieldId: "",
               sortFieldId: "",
               sortDirection: "asc",
+              filters: {},
             }
       }
       setOptions={setValue}
@@ -46,31 +46,17 @@ const FieldOptionsLookUpInput = ({
   );
   const [saveFieldId, setSaveFieldId] = useState<string>(options.saveFieldId);
   const [sortFieldId, setSortFieldId] = useState<string>(options.sortFieldId);
-  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
+  const [sortDirection, setSortDirection] = useState<SortDirection>(
+    options.sortDirection,
+  );
+  const [filters, setFilters] = useState<FieldOptionsLookup["filters"]>(
+    options.filters,
+  );
 
-  const { group } = useFindUser();
-  const [{ data }] = useGetAppFieldListQuery({
-    variables: {
-      groupId: group.id,
-    },
-    pause: !group.id,
-  });
+  const { appListData, fieldListData, fields } = useMakeSelector({ appId });
 
-  const appListData =
-    data?.group?.apps.map((a) => ({
-      label: a.name,
-      value: a.id,
-    })) ?? [];
-
-  const fieldListData =
-    data?.group?.apps
-      .find((a) => a.id === appId)
-      ?.fields.map((f) => ({
-        label: f.name,
-        value: f.id,
-      })) ?? [];
-
-  const buttonDisabled = !appId || !selectFieldId || !saveFieldId;
+  const buttonDisabled =
+    !appId || !selectFieldId || !saveFieldId || !sortFieldId;
 
   const saveHandler = () => {
     setOptions({
@@ -78,9 +64,18 @@ const FieldOptionsLookUpInput = ({
       selectFieldId,
       saveFieldId,
       sortFieldId,
-      sortDirection: "asc",
+      sortDirection,
+      filters,
     });
   };
+
+  useEffect(() => {
+    console.log("[filters]", filters);
+  }, [filters]);
+
+  useEffect(() => {
+    console.log("[options]", options);
+  }, [options]);
 
   return (
     <>
@@ -117,6 +112,14 @@ const FieldOptionsLookUpInput = ({
           label={"昇順・降順"}
           value={sortDirection}
           setValue={setSortDirection}
+        />
+      </div>
+      <div>
+        <FilterInputTable
+          filters={filters}
+          setFilters={setFilters}
+          fieldListData={fieldListData}
+          fields={fields}
         />
       </div>
       <Button

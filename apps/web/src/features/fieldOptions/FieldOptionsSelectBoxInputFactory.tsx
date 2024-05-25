@@ -1,5 +1,5 @@
 import type { SelectBoxOptions } from "@feature/app/create/appFieldValue";
-import type { OptionsState } from "@feature/app/create/FieldOptionsInput";
+import type { OptionsState } from "@features/fieldOptions/FieldOptionsInput";
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { TextInput } from "@components/ui/v4/textInput";
