@@ -2,7 +2,10 @@ import { ComponentProps } from "react";
 import { Select } from "@components/ui/v4/select";
 import { TextInput } from "@components/ui/v4/textInput";
 import { useGetAppFieldValue } from "@feature/app/create/useAppFieldValueState";
-import { FieldOptionsLookupFilter } from "@oneforall/domain/schema/appSchema";
+import {
+  Field,
+  FieldOptionsLookupFilter,
+} from "@oneforall/domain/schema/appSchema";
 
 /**
  * @package
@@ -25,11 +28,27 @@ const TypeValueInput = ({
   value,
   setValue,
   disabled,
+  field,
 }: {
   value: string;
   setValue: (value: string) => void;
   disabled: boolean | undefined;
+  field: Field | undefined;
 }) => {
+  switch (field?.fieldKind) {
+    case "selectBox": {
+      return (
+        <Select
+          data={field.options.selector}
+          label={""}
+          value={value}
+          setValue={setValue}
+          disabled={disabled}
+        />
+      );
+    }
+  }
+
   return (
     <TextInput
       label={""}

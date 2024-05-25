@@ -1,7 +1,6 @@
 import { convertToFields } from "@features/app/server/convertToFields";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
-
-import { useGetAppFieldListQuery } from "../../../../../../packages/graphql/public";
+import { useGetAppFieldListQuery } from "@v3/graphql/public";
 
 /**
  * @package

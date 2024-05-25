@@ -3,7 +3,10 @@ import Trash from "@components/ui/v4/icon/Trash";
 import { Select } from "@components/ui/v4/select";
 import { Table } from "@components/ui/v4/table";
 import { FilterValueSwitcher } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterValueSwitcher";
-import { FieldOptionsLookupFilter } from "@oneforall/domain/schema/appSchema";
+import {
+  FieldOptionsLookupFilter,
+  Fields,
+} from "@oneforall/domain/schema/appSchema";
 import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
 
 /**
@@ -22,6 +25,7 @@ export const FilterInputRow = ({
   setComplexity,
   deletable,
   deleteHandler,
+  fields,
 }: {
   index: string;
   fieldListData: ComponentProps<typeof Select<string>>["data"];
@@ -35,6 +39,7 @@ export const FilterInputRow = ({
   setComplexity: (complexity: FilterComplexity) => void;
   deletable?: boolean;
   deleteHandler?: () => void;
+  fields: Fields;
 }) => {
   const disabled = deletable;
 
@@ -88,6 +93,7 @@ export const FilterInputRow = ({
           value={value}
           setValue={setValue}
           disabled={disabled}
+          field={fields[fieldId]}
         />
       </Table.BodyTd>
       <Table.BodyTd>

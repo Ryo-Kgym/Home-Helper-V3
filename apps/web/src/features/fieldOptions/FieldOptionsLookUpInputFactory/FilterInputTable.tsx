@@ -5,6 +5,7 @@ import { FilterInputRow } from "@features/fieldOptions/FieldOptionsLookUpInputFa
 import {
   FieldOptionsLookup,
   FieldOptionsLookupFilter,
+  Fields,
 } from "@oneforall/domain/schema/appSchema";
 import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
 
@@ -15,10 +16,12 @@ export const FilterInputTable = ({
   filters,
   setFilters,
   fieldListData,
+  fields,
 }: {
   filters: FieldOptionsLookup["filters"];
   setFilters: (filters: FieldOptionsLookup["filters"]) => void;
   fieldListData: ComponentProps<typeof FilterInputRow>["fieldListData"];
+  fields: Fields;
 }) => {
   const [fieldId, setFieldId] = useState<string>("");
   const [filterType, setFilterType] =
@@ -92,6 +95,7 @@ export const FilterInputTable = ({
                 delete newFilters[index];
                 setFilters(newFilters);
               }}
+              fields={fields}
             />
           )}
         >
@@ -107,6 +111,7 @@ export const FilterInputTable = ({
               setValue={setValue}
               complexity={complexity}
               setComplexity={setComplexity}
+              fields={fields}
             />
           </Table.BodyTr>
         </Table.Body>

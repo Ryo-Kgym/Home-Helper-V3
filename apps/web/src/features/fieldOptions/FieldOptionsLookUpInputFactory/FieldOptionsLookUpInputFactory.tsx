@@ -53,7 +53,7 @@ const FieldOptionsLookUpInput = ({
     options.filters,
   );
 
-  const { appListData, fieldListData } = useMakeSelector({ appId });
+  const { appListData, fieldListData, fields } = useMakeSelector({ appId });
 
   const buttonDisabled =
     !appId || !selectFieldId || !saveFieldId || !sortFieldId;
@@ -119,6 +119,7 @@ const FieldOptionsLookUpInput = ({
           filters={filters}
           setFilters={setFilters}
           fieldListData={fieldListData}
+          fields={fields}
         />
       </div>
       <Button
