@@ -113,10 +113,17 @@ describe("convertToFields", () => {
           sortFieldId: "8",
           sortDirection: "asc",
           filters: {
-            "0": {
+            0: {
               fieldId: "9",
+              filterType: "value",
               value: "value",
               complexity: "and",
+            },
+            1: {
+              fieldId: "10",
+              filterType: "field",
+              value: "11",
+              complexity: "or",
             },
           },
         },
@@ -135,11 +142,17 @@ describe("convertToFields", () => {
           sortFieldId: "8",
           sortDirection: "asc",
           filters: {
-            "0": {
+            0: {
               fieldId: "9",
               value: "value",
               complexity: "and",
               filterType: "value",
+            },
+            1: {
+              fieldId: "10",
+              value: "11",
+              complexity: "or",
+              filterType: "field",
             },
           },
         },

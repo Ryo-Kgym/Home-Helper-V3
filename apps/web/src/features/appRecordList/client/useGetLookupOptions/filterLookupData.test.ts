@@ -1,5 +1,9 @@
-import { filterLookupData } from "@features/appRecordList/client/useGetLookupOptions/filterLookupData";
 import { Columns, Record } from "@oneforall/domain/schema/recordSchema";
+
+import { filterLookupData } from "./filterLookupData";
+import * as judgeComplexity from "./judgeComplexity";
+
+jest.mock("./judgeComplexity");
 
 describe("filterLookupData", () => {
   const lookupRecord: Record = {
@@ -19,7 +23,7 @@ describe("filterLookupData", () => {
   const thisAppColumns: Columns = {
     c1: {
       fieldKind: "text",
-      value: "c1Value",
+      value: "textValue",
     },
     c2: {
       fieldKind: "selectBox",
@@ -33,8 +37,12 @@ describe("filterLookupData", () => {
     expect(actual).toBeTruthy();
   });
 
-  it("フィルターの全てに該当するとき、true を返す", () => {
-    const actual = filterLookupData(
+  it("judgeComplexity に期待する値が渡されること ", () => {
+    const judgeComplexitySpy = jest
+      .spyOn(judgeComplexity, "judgeComplexity")
+      .mockReturnValue(true);
+
+    filterLookupData(
       lookupRecord,
       {
         0: {
@@ -44,77 +52,20 @@ describe("filterLookupData", () => {
           value: "textValue",
         },
         1: {
-          fieldId: "lc2",
-          complexity: "and",
-          filterType: "field",
-          value: "c1",
-        },
-      },
-      thisAppColumns,
-    );
-
-    expect(actual).toBeTruthy();
-  });
-
-  it("フィルターの1つ目に該当するとき、true を返す", () => {
-    const actual = filterLookupData(
-      lookupRecord,
-      {
-        0: {
           fieldId: "lc1",
-          complexity: "and",
+          complexity: "or",
           filterType: "value",
-          value: "textValue",
+          value: "dummy",
         },
-        1: {
-          fieldId: "lc2",
-          complexity: "and",
-          filterType: "field",
-          value: "c1",
-        },
-      },
-      thisAppColumns,
-    );
-
-    expect(actual).toBeTruthy();
-  });
-
-  it("フィルターの2つ目に該当するとき、true を返す", () => {
-    const actual = filterLookupData(
-      lookupRecord,
-      {
-        0: {
-          fieldId: "lc1",
-          complexity: "and",
-          filterType: "value",
-          value: "notFound",
-        },
-        1: {
+        2: {
           fieldId: "lc2",
           complexity: "and",
           filterType: "field",
           value: "c2",
         },
-      },
-      thisAppColumns,
-    );
-
-    expect(actual).toBeTruthy();
-  });
-
-  it("フィルターに該当するものがないとき、false を返す", () => {
-    const actual = filterLookupData(
-      lookupRecord,
-      {
-        0: {
-          fieldId: "lc1",
-          complexity: "and",
-          filterType: "value",
-          value: "notFound",
-        },
-        1: {
+        3: {
           fieldId: "lc2",
-          complexity: "and",
+          complexity: "or",
           filterType: "field",
           value: "c3",
         },
@@ -122,6 +73,23 @@ describe("filterLookupData", () => {
       thisAppColumns,
     );
 
-    expect(actual).toBeFalsy();
+    expect(judgeComplexitySpy).toBeCalledWith([
+      {
+        complexity: "and",
+        result: true,
+      },
+      {
+        complexity: "or",
+        result: false,
+      },
+      {
+        complexity: "and",
+        result: true,
+      },
+      {
+        complexity: "or",
+        result: false,
+      },
+    ]);
   });
 });

@@ -1,6 +1,8 @@
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { Columns, Record } from "@oneforall/domain/schema/recordSchema";
 
+import { judgeComplexity } from "./judgeComplexity";
+
 /**
  * @package
  */
@@ -11,21 +13,22 @@ export const filterLookupData = (
 ): boolean => {
   if (Object.keys(filters).length === 0) return true;
 
-  // TODO complexity には対応しておらず、一律ORで判定している
-  for (const filter of Object.values(filters)) {
+  const source = Object.values(filters).map((filter) => {
     const lookupColumn = lookupRecord.columns[filter.fieldId];
     if (filter.filterType === "value") {
-      if (lookupColumn?.value === filter.value) {
-        return true;
-      }
+      return {
+        complexity: filter.complexity,
+        result: lookupColumn?.value === filter.value,
+      };
     }
-    // フィルターの値が、columns に存在する場合、そのカラムの値を使って、フィルターを行う
-    if (filter.filterType === "field") {
-      if (columns[filter.value]?.value === lookupColumn?.value) {
-        return true;
-      }
+    // filterType === "field"
+    else {
+      return {
+        complexity: filter.complexity,
+        result: columns[filter.value]?.value === lookupColumn?.value,
+      };
     }
-  }
+  });
 
-  return false;
+  return judgeComplexity(source);
 };

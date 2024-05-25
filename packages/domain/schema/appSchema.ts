@@ -30,10 +30,6 @@ const fieldOptionsLookupFilterSchema = z
   .and(
     z.union([
       z.object({
-        filterType: z.literal("value").default("value"),
-        value: z.string(),
-      }), // FIXME この schema は削除予定
-      z.object({
         filterType: z.literal("value"),
         value: z.string().default(""),
       }),
