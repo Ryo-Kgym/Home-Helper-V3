@@ -6,9 +6,8 @@ import { Table } from "@components/ui/v4/table";
 import { RedirectViewSettingButton } from "@feature/view/nav/RedirectViewSettingButton";
 import { useInitViewRecords } from "@feature/view/recordList/useViewRecordsState";
 import { ViewRecordListTable } from "@feature/view/recordList/ViewRecordListTable";
-
-import { ViewRecords } from "../../../../../../packages/domain/schema/view/viewRecordSchema";
-import { View } from "../../../../../../packages/domain/schema/view/viewSchema";
+import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
+import { View } from "@oneforall/domain/schema/view/viewSchema";
 
 export const ViewRecordListClient = ({
   view,

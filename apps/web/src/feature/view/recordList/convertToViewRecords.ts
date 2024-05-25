@@ -1,55 +1,50 @@
-import { GetViewRecordsSourceQuery } from "@v3/graphql/public/type";
-
-import { viewAppFieldSchema } from "../../../../../../packages/domain/schema/view/viewAppSchema";
 import {
   viewRecordColumnSchema,
   ViewRecords,
-} from "../../../../../../packages/domain/schema/view/viewRecordSchema";
+} from "@oneforall/domain/schema/view/viewRecordSchema";
+import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
+import { GetViewRecordsSourceQuery } from "@v3/graphql/public/type";
+
+type ViewAppQuery = NonNullable<
+  NonNullable<GetViewRecordsSourceQuery>["view"]
+>["viewApps"];
 
 export const convertToViewRecords = (
-  recordsSource: GetViewRecordsSourceQuery,
+  viewFields: ViewFields,
+  viewApps: ViewAppQuery,
 ): ViewRecords => {
-  const viewAppsArray =
-    recordsSource.view?.viewApps?.map((va) => {
-      const appId = va.appId;
+  const viewAppsArray = viewApps.map((viewApp) =>
+    Object.fromEntries(
+      viewApp.app.records.map((appRecord) => [
+        viewApp.id + "-" + appRecord.id,
+        {
+          appId: viewApp.appId,
+          appName: viewApp.app.name,
+          recordId: appRecord.id,
+          columns: Object.fromEntries(
+            Object.entries(viewFields).map(([viewFieldId, attribute]) => {
+              const appFieldId = viewApp.fields[viewFieldId].appFieldId;
+              const appRecordColumn = appRecord.columns[appFieldId];
+              const parsed = viewRecordColumnSchema.safeParse(appRecordColumn);
 
-      const invertFiledIdRecord = Object.fromEntries(
-        Object.entries(va.fields).map(([key, value]) => {
-          const parsed = viewAppFieldSchema.safeParse(value);
+              if (!parsed.success) {
+                return [
+                  viewFieldId,
+                  {
+                    fieldKind: attribute.fieldKind,
+                    options: attribute.options,
+                    value: "", // データがない場合は空文字を入れる
+                  },
+                ];
+              }
 
-          if (!parsed.success) {
-            throw new Error("invalid viewAppFieldSchema");
-          }
-
-          return [parsed.data.appFieldId, key];
-        }),
-      );
-
-      return Object.fromEntries(
-        va.app.records.map((r) => [
-          va.id + "-" + r.id,
-          {
-            appId,
-            appName: va.app.name,
-            recordId: r.id,
-            columns: Object.fromEntries(
-              Object.entries(r.columns)
-                .filter(([key]) => invertFiledIdRecord[key])
-                .map(([key, value]) => {
-                  const fieldId = invertFiledIdRecord[key];
-                  const parsed = viewRecordColumnSchema.safeParse(value);
-
-                  if (!parsed.success) {
-                    throw new Error("invalid viewRecordColumnSchema");
-                  }
-
-                  return [fieldId!, parsed.data];
-                }),
-            ),
-          },
-        ]),
-      );
-    }) ?? [];
+              return [viewFieldId, parsed.data];
+            }),
+          ),
+        },
+      ]),
+    ),
+  );
 
   return (
     Object.fromEntries(viewAppsArray.flatMap((va) => Object.entries(va))) ?? {}

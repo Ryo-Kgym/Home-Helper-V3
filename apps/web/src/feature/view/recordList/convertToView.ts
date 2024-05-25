@@ -1,10 +1,9 @@
-import { GetViewQuery } from "@v3/graphql/public/type";
-
 import {
   View,
   viewFieldsSchema,
   viewSchema,
-} from "../../../../../../packages/domain/schema/view/viewSchema";
+} from "@oneforall/domain/schema/view/viewSchema";
+import { GetViewQuery } from "@v3/graphql/public/type";
 
 export const convertToView = (data: GetViewQuery): View => {
   if (!data?.view) {
