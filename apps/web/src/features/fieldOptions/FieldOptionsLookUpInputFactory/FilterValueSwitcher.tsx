@@ -32,7 +32,7 @@ const TypeValueInput = ({
 }) => {
   return (
     <TextInput
-      label={"値"}
+      label={""}
       value={value}
       setValue={setValue}
       disabled={disabled}
@@ -65,7 +65,7 @@ const TypeFieldInput = ({
   return (
     <Select
       data={data}
-      label={"フィールド"}
+      label={""}
       value={value}
       setValue={setValue}
       disabled={disabled}

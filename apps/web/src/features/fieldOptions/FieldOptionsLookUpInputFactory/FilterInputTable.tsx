@@ -1,6 +1,7 @@
 import { ComponentProps, useState } from "react";
 import { Button } from "@components/ui/v4/button";
-import { FilterInput } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInput";
+import { Table } from "@components/ui/v4/table";
+import { FilterInputRow } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInputRow";
 import {
   FieldOptionsLookup,
   FieldOptionsLookupFilter,
@@ -10,14 +11,14 @@ import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchem
 /**
  * @package
  */
-export const FilterInputList = ({
+export const FilterInputTable = ({
   filters,
   setFilters,
   fieldListData,
 }: {
   filters: FieldOptionsLookup["filters"];
   setFilters: (filters: FieldOptionsLookup["filters"]) => void;
-  fieldListData: ComponentProps<typeof FilterInput>["fieldListData"];
+  fieldListData: ComponentProps<typeof FilterInputRow>["fieldListData"];
 }) => {
   const [fieldId, setFieldId] = useState<string>("");
   const [filterType, setFilterType] =
@@ -28,7 +29,7 @@ export const FilterInputList = ({
   const addDisabled = fieldId === "" || value === "";
 
   return (
-    <div>
+    <div className={"space-y-2"}>
       <div className={"space-x-2"}>
         <span>フィルター</span>
         <Button
@@ -52,11 +53,30 @@ export const FilterInputList = ({
           }}
         />
       </div>
-      <div className={"space-y-3"}>
-        {Object.entries(filters).map(([index, f]) => (
-          <div key={index} className={"flex items-center space-x-5"}>
-            <div>{index}</div>
-            <FilterInput
+      <Table>
+        <Table.Header
+          headerItems={[
+            { name: "" },
+            {
+              name: "かつ / または",
+            },
+            {
+              name: "絞りたいフィールド",
+            },
+            {
+              name: "絞り方",
+            },
+            {
+              name: "値 / フィールド",
+            },
+            { name: "" },
+          ]}
+        />
+        <Table.Body
+          data={Object.entries(filters)}
+          renderItem={([index, f]) => (
+            <FilterInputRow
+              index={index}
               fieldListData={fieldListData}
               fieldId={f.fieldId}
               setFieldId={() => undefined}
@@ -73,23 +93,24 @@ export const FilterInputList = ({
                 setFilters(newFilters);
               }}
             />
-          </div>
-        ))}
-        <div className={"flex items-center space-x-5"}>
-          <div>-</div>
-          <FilterInput
-            fieldListData={fieldListData}
-            fieldId={fieldId}
-            setFieldId={setFieldId}
-            filterType={filterType}
-            setFilterType={setFilterType}
-            value={value}
-            setValue={setValue}
-            complexity={complexity}
-            setComplexity={setComplexity}
-          />
-        </div>
-      </div>
+          )}
+        >
+          <Table.BodyTr>
+            <FilterInputRow
+              index={"-"}
+              fieldListData={fieldListData}
+              fieldId={fieldId}
+              setFieldId={setFieldId}
+              filterType={filterType}
+              setFilterType={setFilterType}
+              value={value}
+              setValue={setValue}
+              complexity={complexity}
+              setComplexity={setComplexity}
+            />
+          </Table.BodyTr>
+        </Table.Body>
+      </Table>
     </div>
   );
 };

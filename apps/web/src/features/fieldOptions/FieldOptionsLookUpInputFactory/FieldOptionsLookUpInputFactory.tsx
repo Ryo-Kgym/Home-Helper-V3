@@ -3,7 +3,7 @@ import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { lookupOptionsSchema } from "@feature/app/create/appFieldValue";
 import { OptionsState } from "@features/fieldOptions/FieldOptionsInput";
-import { FilterInputList } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInputList";
+import { FilterInputTable } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInputTable";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { SortDirection } from "@oneforall/domain/schema/sortDirectionSchema";
 
@@ -115,7 +115,7 @@ const FieldOptionsLookUpInput = ({
         />
       </div>
       <div>
-        <FilterInputList
+        <FilterInputTable
           filters={filters}
           setFilters={setFilters}
           fieldListData={fieldListData}
