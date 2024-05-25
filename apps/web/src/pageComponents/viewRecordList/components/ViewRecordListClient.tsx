@@ -4,8 +4,8 @@ import { ComponentProps, useEffect } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Table } from "@components/ui/v4/table";
 import { RedirectViewSettingButton } from "@feature/view/nav/RedirectViewSettingButton";
-import { useInitViewRecords } from "@feature/view/recordList/useViewRecordsState";
-import { ViewRecordListTable } from "@feature/view/recordList/ViewRecordListTable";
+import { useInitViewRecords } from "@features/viewRecordList/client/useViewRecordsState";
+import { ViewRecordListTable } from "@features/viewRecordList/components/ViewRecordListTable";
 import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { View } from "@oneforall/domain/schema/view/viewSchema";
 

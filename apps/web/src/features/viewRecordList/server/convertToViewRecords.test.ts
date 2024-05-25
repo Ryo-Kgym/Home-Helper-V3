@@ -1,4 +1,4 @@
-import { convertToViewRecords } from "@feature/view/recordList/convertToViewRecords";
+import { convertToViewRecords } from "@features/viewRecordList/server/convertToViewRecords";
 import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 

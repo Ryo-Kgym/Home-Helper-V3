@@ -1,6 +1,6 @@
-import { convertToView } from "@feature/view/recordList/convertToView";
-import { convertToViewRecords } from "@feature/view/recordList/convertToViewRecords";
-import { ViewRecordListClient } from "@feature/view/recordList/ViewRecordListClient";
+import { convertToView } from "@features/view/server/convertToView";
+import { convertToViewRecords } from "@features/viewRecordList/server/convertToViewRecords";
+import { ViewRecordListClient } from "@pageComponents/viewRecordList/components/ViewRecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetViewRecordsSourceDocument } from "@v3/graphql/public/type";
 

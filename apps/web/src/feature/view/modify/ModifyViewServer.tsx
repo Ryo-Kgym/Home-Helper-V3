@@ -1,7 +1,7 @@
 import { convertToAppListData } from "@feature/view/modify/function/convertToAppListData";
 import { convertToInputViewApps } from "@feature/view/modify/function/convertToInputViewApps";
 import { ModifyViewClient } from "@feature/view/modify/ModifyViewClient";
-import { convertToView } from "@feature/view/recordList/convertToView";
+import { convertToView } from "@features/view/server/convertToView";
 import { findUser } from "@persistence/browser/server/find-user";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import {
