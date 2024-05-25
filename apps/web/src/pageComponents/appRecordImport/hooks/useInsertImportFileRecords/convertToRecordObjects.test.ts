@@ -17,7 +17,7 @@ describe("convertToRecordObjects", () => {
             errorMessage: "message",
           },
           c2: {
-            fieldKind: "multipleText",
+            fieldKind: "lookup",
             value: "value2",
             originalValue: "value2",
             errorMessage: "message",
@@ -35,7 +35,7 @@ describe("convertToRecordObjects", () => {
             errorMessage: "message",
           },
           c2: {
-            fieldKind: "text",
+            fieldKind: "lookup",
             value: "value2",
             originalValue: "value2",
             errorMessage: "message",
@@ -59,10 +59,14 @@ describe("convertToRecordObjects", () => {
           c1: {
             fieldKind: "text",
             value: "value1",
+            options: undefined,
           },
           c2: {
-            fieldKind: "multipleText",
+            fieldKind: "lookup",
             value: "value2",
+            options: {
+              label: "value2",
+            },
           },
         },
         index: 1,
@@ -74,10 +78,14 @@ describe("convertToRecordObjects", () => {
           c1: {
             fieldKind: "text",
             value: "value1",
+            options: undefined,
           },
           c2: {
-            fieldKind: "text",
+            fieldKind: "lookup",
             value: "value2",
+            options: {
+              label: "value2",
+            },
           },
         },
         index: 2,
