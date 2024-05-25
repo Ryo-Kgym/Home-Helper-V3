@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import Trash from "@components/ui/v4/icon/Trash";
+import { Trash } from "@components/ui/v4/icon/Trash";
 import { Select } from "@components/ui/v4/select";
 import { Table } from "@components/ui/v4/table";
 import { FilterValueSwitcher } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterValueSwitcher";

@@ -1,4 +1,4 @@
-const Trash = () => (
+export const Trash = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-trash"
@@ -19,5 +19,3 @@ const Trash = () => (
     <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
   </svg>
 );
-
-export default Trash;
