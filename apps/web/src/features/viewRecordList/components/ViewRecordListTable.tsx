@@ -1,10 +1,12 @@
 import type { View } from "@oneforall/domain/schema/view/viewSchema";
 import type { ComponentProps } from "react";
 import { Table } from "@components/ui/v4/table";
+import { ViewRecordCell } from "@features/viewRecordList/components/ViewRecordCell";
 
 import { useViewRecords } from "../client/useViewRecordsState";
 
 export const ViewRecordListTable = ({
+  view,
   headerItems,
 }: {
   view: View;
@@ -20,9 +22,16 @@ export const ViewRecordListTable = ({
         renderItem={([, v], index) => (
           <>
             <Table.BodyTd align={"right"}>{index + 1}</Table.BodyTd>
-            {Object.values(v.columns).map((value, index) => (
-              <Table.BodyTd key={index}>{value.value}</Table.BodyTd>
-            ))}
+            {Object.entries(view.fields).map(
+              ([viewFieldId, viewField], index) => (
+                <Table.BodyTd key={index}>
+                  <ViewRecordCell
+                    viewField={viewField}
+                    column={v.columns[viewFieldId]}
+                  />
+                </Table.BodyTd>
+              ),
+            )}
             <Table.BodyTd>{v.appName}</Table.BodyTd>
           </>
         )}

@@ -27,4 +27,5 @@ export const viewRecordsSchema = z.record(
   }),
 );
 
+export type ViewRecordColumn = z.infer<typeof viewRecordColumnSchema>;
 export type ViewRecords = z.infer<typeof viewRecordsSchema>;
