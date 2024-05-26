@@ -1,6 +1,6 @@
 import { filterLookupData } from "@features/appRecordList/client/useGetLookupOptions/filterLookupData";
 import { sortLookupData } from "@features/appRecordList/client/useGetLookupOptions/sortLookupData";
-import { convertToRecords } from "@features/appRecordList/server/convertToRecords";
+import { convertToRecords } from "@oneforall/domain/convert/convertToRecords";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { Columns } from "@oneforall/domain/schema/recordSchema";
 import { useGetRecordsQuery } from "@v3/graphql/public";

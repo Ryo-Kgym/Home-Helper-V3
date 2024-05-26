@@ -50,6 +50,12 @@ describe("convertToRecordObjects", () => {
       previewRecords,
       recordIds,
       currentMaxIndex,
+      {
+        c2: {
+          value1: "label1",
+          value2: "label2",
+        },
+      },
     );
     expect(actual).toStrictEqual([
       {
@@ -65,7 +71,7 @@ describe("convertToRecordObjects", () => {
             fieldKind: "lookup",
             value: "value2",
             options: {
-              label: "value2",
+              label: "label2",
             },
           },
         },
@@ -84,7 +90,7 @@ describe("convertToRecordObjects", () => {
             fieldKind: "lookup",
             value: "value2",
             options: {
-              label: "value2",
+              label: "label2",
             },
           },
         },

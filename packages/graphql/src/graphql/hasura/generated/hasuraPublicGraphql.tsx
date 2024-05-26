@@ -5329,6 +5329,25 @@ export type GetRecordsQuery = {
   }>;
 };
 
+export type GetRecordsInAppIdsQueryVariables = Exact<{
+  appIds: Array<Scalars["String"]> | Scalars["String"];
+}>;
+
+export type GetRecordsInAppIdsQuery = {
+  __typename?: "query_root";
+  apps: Array<{
+    __typename: "App";
+    id: string;
+    records: Array<{
+      __typename: "Record";
+      appId: string;
+      id: string;
+      index: number;
+      columns: any;
+    }>;
+  }>;
+};
+
 export type GetViewQueryVariables = Exact<{
   viewId: Scalars["String"];
 }>;
@@ -5866,6 +5885,28 @@ export function useGetRecordsQuery(
     query: GetRecordsDocument,
     ...options,
   });
+}
+export const GetRecordsInAppIdsDocument = gql`
+  query getRecordsInAppIds($appIds: [String!]!) {
+    apps: app(where: { id: { _in: $appIds } }) {
+      __typename
+      id
+      records {
+        appId
+        ...fragRecords
+      }
+    }
+  }
+  ${FragRecordsFragmentDoc}
+`;
+
+export function useGetRecordsInAppIdsQuery(
+  options: Omit<Urql.UseQueryArgs<GetRecordsInAppIdsQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetRecordsInAppIdsQuery,
+    GetRecordsInAppIdsQueryVariables
+  >({ query: GetRecordsInAppIdsDocument, ...options });
 }
 export const GetViewDocument = gql`
   query getView($viewId: String!) {

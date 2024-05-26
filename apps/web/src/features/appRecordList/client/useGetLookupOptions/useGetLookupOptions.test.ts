@@ -1,7 +1,8 @@
-import { useGetLookupOptions } from "@features/appRecordList/client/useGetLookupOptions/useGetLookupOptions";
-import * as convertToRecordsMock from "@features/appRecordList/server/convertToRecords";
+import * as convertToRecordsMock from "@oneforall/domain/convert/convertToRecords";
 import { renderHook } from "@testing-library/react";
 import * as useGetRecordsQueryMock from "@v3/graphql/public";
+
+import { useGetLookupOptions } from "./useGetLookupOptions";
 
 jest.mock("@v3/graphql/public");
 

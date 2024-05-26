@@ -1,0 +1,10 @@
+query getRecordsInAppIds($appIds: [String!]!) {
+  apps: app(where: { id: { _in: $appIds } }) {
+    __typename
+    id
+    records {
+      appId
+      ...fragRecords
+    }
+  }
+}

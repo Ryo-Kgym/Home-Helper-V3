@@ -15,13 +15,16 @@ import { useInsertImportFileRecords } from "@pageComponents/appRecordImport/hook
 import { usePreviewRecords } from "@pageComponents/appRecordImport/hooks/usePreviewRecords";
 import { useResetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useResetPreviewRecords";
 import { useSetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useSetPreviewRecords";
+import { LookupRecords } from "@server/lookupRecords/type";
 
 export const ImportFilePickerClient = ({
   appId,
   fields,
+  lookupRecords,
 }: {
   appId: string;
   fields: Fields;
+  lookupRecords: LookupRecords;
 }) => {
   const [fileName, setFileName] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -36,6 +39,7 @@ export const ImportFilePickerClient = ({
 
   const { insertImportFileRecords } = useInsertImportFileRecords({
     appId,
+    lookupRecords,
   });
 
   const fileChangeHandler = async (event: ChangeEvent<HTMLInputElement>) => {

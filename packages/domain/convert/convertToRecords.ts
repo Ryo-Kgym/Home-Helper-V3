@@ -1,12 +1,11 @@
-import {
-  columnsSchema,
-  Records,
-  recordsSchema,
-} from "@oneforall/domain/schema/recordSchema";
-import { GetAppQuery } from "@v3/graphql/public/type";
+import { columnsSchema, Records, recordsSchema } from "../schema/recordSchema";
 
 export const convertToRecords = (
-  recordData: NonNullable<GetAppQuery["app"]>["records"],
+  recordData: {
+    id: string;
+    index: number;
+    columns: unknown;
+  }[],
 ): Records => {
   const recordsData = Object.fromEntries(
     recordData.map((r) => [

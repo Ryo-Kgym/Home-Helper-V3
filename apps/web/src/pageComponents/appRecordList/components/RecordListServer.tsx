@@ -1,5 +1,5 @@
 import { convertToApp } from "@features/app/server/convertToApp";
-import { convertToRecords } from "@features/appRecordList/server/convertToRecords";
+import { convertToRecords } from "@oneforall/domain/convert/convertToRecords";
 import { RecordListClient } from "@pageComponents/appRecordList/components/RecordListClient";
 import { makeColumnsTemplate } from "@pageComponents/appRecordList/server/makeColumnsTemplate";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";

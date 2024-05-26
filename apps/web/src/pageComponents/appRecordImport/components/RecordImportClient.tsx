@@ -19,6 +19,7 @@ import { ImportFileSettings } from "@oneforall/domain/schema/importFileSettingsS
 import { ImportHistoryList } from "@pageComponents/appRecordImport/components/ImportHistoryList";
 import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
 import { usePreviewRecords } from "@pageComponents/appRecordImport/hooks/usePreviewRecords";
+import { LookupRecords } from "@server/lookupRecords/type";
 
 import { ImportPreview } from "./ImportPreview";
 
@@ -31,12 +32,14 @@ export const RecordImportClient = ({
   importHistories: defaultImportHistories,
   requiredInitializeSettings,
   importFileFieldMapping: defaultImportFileFieldMapping,
+  lookupRecords,
 }: {
   app: App;
   importFileSettings: ImportFileSettings;
   importHistories: ImportFileHistory[];
   requiredInitializeSettings: boolean;
   importFileFieldMapping: ImportFileFieldMapping;
+  lookupRecords: LookupRecords;
 }) => {
   const { setImportFileSettings } = useImportFileSettings();
   const { setImportFileHistories } = useImportFileHistories();
@@ -65,7 +68,11 @@ export const RecordImportClient = ({
           <OpenSettingButton onOpen={() => setIsOpen(true)} />
         </Title>
         <ImportHistoryList />
-        <ImportPreview app={app} previewRecords={previewRecords} />
+        <ImportPreview
+          app={app}
+          previewRecords={previewRecords}
+          lookupRecords={lookupRecords}
+        />
       </div>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Modal.Body>
