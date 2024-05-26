@@ -20,8 +20,6 @@ const makeClient = () => {
   });
 };
 
-const { getClient } = registerUrql(makeClient);
-
 type Exact<T extends Record<string, unknown>> = {
   [K in keyof T]: T[K];
 };
@@ -35,6 +33,7 @@ export const fetchQuery = async <
   query: TypedDocumentNode<Q, V>,
   variables: V,
 ) => {
+  const { getClient } = registerUrql(makeClient);
   const { data, error } = await getClient().query(query, variables).toPromise();
 
   if (!data) {
