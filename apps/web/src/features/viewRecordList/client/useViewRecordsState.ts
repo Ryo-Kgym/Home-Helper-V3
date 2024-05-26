@@ -1,7 +1,6 @@
+import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-
-import { ViewRecords } from "../../../../../../packages/domain/schema/view/viewRecordSchema";
 
 export const useViewRecords = () =>
   useViewRecordsState((store) => ({

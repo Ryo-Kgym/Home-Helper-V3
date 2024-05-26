@@ -1,4 +1,4 @@
-import Trash from "@components/ui/v4/icon/Trash";
+import { Trash } from "@components/ui/v4/icon/Trash";
 import { notify } from "@components/ui/v4/notify/notify";
 import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
 import {

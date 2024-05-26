@@ -5278,6 +5278,15 @@ export type GetViewRecordsSourceQuery = {
   view?: {
     __typename: "View";
     id: string;
+    name: string;
+    viewFields: Array<{
+      __typename: "ViewField";
+      id: string;
+      name: string;
+      index: number;
+      fieldKind: string;
+      options?: any | null;
+    }>;
     viewApps: Array<{
       __typename?: "ViewApp";
       id: string;
@@ -7765,6 +7774,52 @@ export const GetViewRecordsSourceDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "viewFields" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ListValue",
+                        values: [
+                          {
+                            kind: "ObjectValue",
+                            fields: [
+                              {
+                                kind: "ObjectField",
+                                name: { kind: "Name", value: "index" },
+                                value: { kind: "EnumValue", value: "ASC" },
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "index" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "fieldKind" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "options" },
+                      },
+                    ],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "viewApps" },

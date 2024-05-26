@@ -5365,6 +5365,15 @@ export type GetViewRecordsSourceQuery = {
   view?: {
     __typename: "View";
     id: string;
+    name: string;
+    viewFields: Array<{
+      __typename: "ViewField";
+      id: string;
+      name: string;
+      index: number;
+      fieldKind: string;
+      options?: any | null;
+    }>;
     viewApps: Array<{
       __typename?: "ViewApp";
       id: string;
@@ -5894,6 +5903,15 @@ export const GetViewRecordsSourceDocument = gql`
     view: viewByPk(id: $viewId) {
       __typename
       id
+      name
+      viewFields(orderBy: [{ index: ASC }]) {
+        __typename
+        id
+        name
+        index
+        fieldKind
+        options
+      }
       viewApps {
         id
         appId

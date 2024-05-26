@@ -1,5 +1,5 @@
 import { Fields } from "@oneforall/domain/schema/appSchema";
-import { PreviewRecordColumn } from "@oneforall/domain/schema/previewRecordsSchema";
+import { PreviewRecordColumns } from "@oneforall/domain/schema/previewRecordsSchema";
 import { convertToPreviewRecordColumns } from "@pageComponents/appRecordImport/client/convertRecords/convertToPreviewRecordColumns";
 
 describe("convertToPreviewRecordColumns", () => {
@@ -55,7 +55,7 @@ describe("convertToPreviewRecordColumns", () => {
       },
     );
 
-    expect(actual).toStrictEqual<PreviewRecordColumn>({
+    expect(actual).toStrictEqual<PreviewRecordColumns>({
       f1: {
         errorMessage: undefined,
         fieldKind: "text",
@@ -97,7 +97,7 @@ describe("convertToPreviewRecordColumns", () => {
       },
     );
 
-    expect(actual).toStrictEqual<PreviewRecordColumn>({
+    expect(actual).toStrictEqual<PreviewRecordColumns>({
       f1: {
         errorMessage: undefined,
         fieldKind: "text",
@@ -126,7 +126,7 @@ describe("convertToPreviewRecordColumns", () => {
       {},
     );
 
-    expect(actual).toStrictEqual<PreviewRecordColumn>({
+    expect(actual).toStrictEqual<PreviewRecordColumns>({
       f1: {
         errorMessage: undefined,
         fieldKind: "text",

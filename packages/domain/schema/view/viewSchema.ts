@@ -48,7 +48,10 @@ export const viewFieldSchema = z.union([
 
 export type ViewField = z.infer<typeof viewFieldSchema>;
 
-export const viewFieldsSchema = z.record(viewFieldSchema); // fieldId
+export const viewFieldsSchema = z.record(
+  z.string(), // fieldId
+  viewFieldSchema,
+);
 
 export type ViewFields = z.infer<typeof viewFieldsSchema>;
 

@@ -1,7 +1,7 @@
-import { RecordList } from "feature/view/recordList";
+import { ViewRecordList } from "@pageComponents/viewRecordList";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
-  <RecordList viewId={id} />
+  <ViewRecordList viewId={id} />
 );
 
 export default Page;
