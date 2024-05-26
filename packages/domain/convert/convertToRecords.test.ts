@@ -1,11 +1,9 @@
-import type { GetAppQuery } from "@v3/graphql/public/type";
-import { Records } from "@oneforall/domain/schema/recordSchema";
-
+import { Records } from "../schema/recordSchema";
 import { convertToRecords } from "./convertToRecords";
 
 describe("convertToRecords", () => {
   it("converts record data to a record list", () => {
-    const recordData: NonNullable<GetAppQuery["app"]>["records"] = [
+    const recordData = [
       {
         __typename: "Record",
         id: "11111",
