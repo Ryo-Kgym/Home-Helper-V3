@@ -1,8 +1,13 @@
-import { Fields, fieldsSchema } from "@oneforall/domain/schema/appSchema";
-import { GetAppQuery } from "@v3/graphql/public/type";
+import { Fields, fieldsSchema } from "../schema/appSchema";
 
 export const convertToFields = (
-  data: NonNullable<NonNullable<GetAppQuery>["app"]>["fields"],
+  data: {
+    id: string;
+    name: string;
+    index: number;
+    fieldKind: string;
+    options?: unknown;
+  }[],
 ): Fields => {
   const fieldsData = Object.fromEntries(
     data.map((f) => [

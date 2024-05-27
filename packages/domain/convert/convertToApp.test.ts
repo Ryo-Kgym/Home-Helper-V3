@@ -1,18 +1,14 @@
-import { App } from "@oneforall/domain/schema/appSchema";
-import { GetAppQuery } from "@v3/graphql/public/type";
-
+import { App } from "../schema/appSchema";
 import { convertToApp } from "./convertToApp";
 
 describe("convertToApp", () => {
-  it("converts a GetAppQuery to an App", async () => {
-    const data: GetAppQuery = {
+  it("converts a GetAppQuery to an App", () => {
+    const data = {
       app: {
-        __typename: "App",
         id: "1",
         name: "My App",
         fields: [
           {
-            __typename: "Field",
             id: "11111",
             index: 1,
             name: "Field 1",
@@ -20,7 +16,6 @@ describe("convertToApp", () => {
             options: {},
           },
           {
-            __typename: "Field",
             id: "22222",
             index: 2,
             name: "Field 2",
@@ -80,9 +75,7 @@ describe("convertToApp", () => {
     expect(app).toEqual(expected);
   });
 
-  it("app が取得できなかった場合、エラーを投げる。", async () => {
-    const data: GetAppQuery = {};
-
-    expect(() => convertToApp(data)).toThrowError("App data is not found");
+  it("app が取得できなかった場合、エラーを投げる。", () => {
+    expect(() => convertToApp({})).toThrowError("App data is not found");
   });
 });

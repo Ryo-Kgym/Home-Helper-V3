@@ -4,7 +4,6 @@ describe("convertToFields", () => {
   it("fieldType: text の場合", () => {
     const data: Parameters<typeof convertToFields>[0] = [
       {
-        __typename: "Field",
         id: "1",
         name: "Field 1",
         fieldKind: "text",
@@ -29,7 +28,6 @@ describe("convertToFields", () => {
   it("fieldType: multipleText の場合", () => {
     const data: Parameters<typeof convertToFields>[0] = [
       {
-        __typename: "Field",
         id: "2",
         name: "Field 2",
         fieldKind: "multipleText",
@@ -54,7 +52,6 @@ describe("convertToFields", () => {
   it("fieldType: selectBox の場合", () => {
     const data: Parameters<typeof convertToFields>[0] = [
       {
-        __typename: "Field",
         id: "3",
         name: "Field 3",
         fieldKind: "selectBox",
@@ -101,7 +98,6 @@ describe("convertToFields", () => {
   it("fieldType: lookup の場合", () => {
     const data: Parameters<typeof convertToFields>[0] = [
       {
-        __typename: "Field",
         id: "4",
         name: "Field 4",
         fieldKind: "lookup",
@@ -166,7 +162,6 @@ describe("convertToFields", () => {
   it("fieldType: date の場合", () => {
     const data: Parameters<typeof convertToFields>[0] = [
       {
-        __typename: "Field",
         id: "5",
         name: "Field 5",
         fieldKind: "date",
@@ -195,7 +190,6 @@ describe("convertToFields", () => {
   it("fieldType: numeric の場合", () => {
     const data: Parameters<typeof convertToFields>[0] = [
       {
-        __typename: "Field",
         id: "6",
         name: "Field 6",
         fieldKind: "numeric",

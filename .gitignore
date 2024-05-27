@@ -48,11 +48,6 @@ yarn-error.log*
 
 # turbo
 .turbo
-/packages/graphql/hasura*-codegen.yml
-/packages/graphql/hasura*-graphql.schema.json
-/packages/graphql/src/graphql/hasura/graphql.config.yml
-/packages/graphql/*/schema/graphql.config.yml
-/packages/graphql/*/schema/schema.graphql
-/packages/graphql/*/hasura-graphql.schema.json
-/packages/graphql/*/hasura-codegen.yml
-/packages/graphql/src/graphql/hasura/schema.graphql
+/packages/graphql/**/hasura-*codegen.yml
+/packages/graphql/**/hasura-graphql.schema.json
+/packages/graphql/**/schema.json

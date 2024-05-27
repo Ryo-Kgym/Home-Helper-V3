@@ -1,10 +1,9 @@
 overwrite: true
 schema: "http://localhost:8282/v1/graphql"
-documents: "./src/graphql/hasura/public/**/**.graphql"
+documents: "./public/**/**.graphql"
 generates:
-  ./src/graphql/hasura/generated/hasuraPublicGraphql.tsx:
+  ./public/index.ts:
     config:
-#      enumsAsTypes: true
       onlyOperationTypes: true
       withHooks: true
     plugins:
@@ -14,8 +13,7 @@ generates:
     hooks:
       afterOneFileWrite:
         - prettier --write
-  ./src/graphql/hasura/generated/hasuraPublicGraphqlType.tsx:
-
+  ./public/type.ts:
     config:
       enumsAsTypes: true
       onlyOperationTypes: true

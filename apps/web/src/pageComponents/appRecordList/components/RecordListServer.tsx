@@ -1,4 +1,4 @@
-import { convertToApp } from "@features/app/server/convertToApp";
+import { convertToApp } from "@oneforall/domain/convert/convertToApp";
 import { convertToRecords } from "@oneforall/domain/convert/convertToRecords";
 import { RecordListClient } from "@pageComponents/appRecordList/components/RecordListClient";
 import { makeColumnsTemplate } from "@pageComponents/appRecordList/server/makeColumnsTemplate";

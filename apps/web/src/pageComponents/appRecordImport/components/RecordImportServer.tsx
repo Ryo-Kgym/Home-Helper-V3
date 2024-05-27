@@ -1,4 +1,4 @@
-import { convertToApp } from "@features/app/server/convertToApp";
+import { convertToApp } from "@oneforall/domain/convert/convertToApp";
 import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { convertToImportFileFieldMapping } from "@pageComponents/appRecordImport/server/convertToImportFileFieldMapping";
 import { convertToImportHistories } from "@pageComponents/appRecordImport/server/convertToImportHistories";
