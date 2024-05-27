@@ -191,4 +191,29 @@ describe("convertToFields", () => {
     const actual = convertToFields(data);
     expect(actual).toEqual(expectedFields);
   });
+
+  it("fieldType: numeric の場合", () => {
+    const data: Parameters<typeof convertToFields>[0] = [
+      {
+        __typename: "Field",
+        id: "6",
+        name: "Field 6",
+        fieldKind: "numeric",
+        index: 6,
+        options: {},
+      },
+    ];
+    const expectedFields = {
+      "6": {
+        id: "6",
+        fieldName: "Field 6",
+        fieldKind: "numeric",
+        fieldIndex: 6,
+        options: {},
+      },
+    };
+
+    const actual = convertToFields(data);
+    expect(actual).toEqual(expectedFields);
+  });
 });

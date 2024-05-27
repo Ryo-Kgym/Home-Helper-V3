@@ -9,10 +9,12 @@ export const fieldKindSchema = z.enum([
   "multipleText",
   "lookup",
   "date",
+  "numeric",
 ]);
 
-const fieldOptionsTextSchema = z.object({});
+export const fieldOptionsTextSchema = z.object({});
 export const fieldOptionsMultipleTextSchema = z.object({});
+export const fieldOptionsNumericSchema = z.object({});
 export const fieldOptionsSelectBoxSchema = z.object({
   selector: z
     .object({
@@ -64,47 +66,46 @@ export const fieldOptionsDateSchema = z.object({
   format: fieldOptionsDateFormatSchema,
 });
 
-export const fieldOptionsSchema = z.union([
-  fieldOptionsTextSchema,
-  fieldOptionsMultipleTextSchema,
-  fieldOptionsSelectBoxSchema,
-  fieldOptionsLookupSchema,
-  fieldOptionsDateSchema,
-]);
-
 export const fieldSchema = z.union([
   z.object({
     id: z.string(),
     fieldName: z.string(),
-    fieldKind: z.enum(["text"]),
+    fieldKind: z.literal("text"),
     fieldIndex: z.number(),
-    options: fieldOptionsSchema,
+    options: fieldOptionsTextSchema,
   }),
   z.object({
     id: z.string(),
     fieldName: z.string(),
-    fieldKind: z.enum(["multipleText"]),
+    fieldKind: z.literal("multipleText"),
     fieldIndex: z.number(),
     options: fieldOptionsMultipleTextSchema,
   }),
   z.object({
     id: z.string(),
     fieldName: z.string(),
-    fieldKind: z.enum(["selectBox"]),
+    fieldKind: z.literal("numeric"),
+    fieldIndex: z.number(),
+    options: fieldOptionsNumericSchema,
+  }),
+  z.object({
+    id: z.string(),
+    fieldName: z.string(),
+    fieldKind: z.literal("selectBox"),
     fieldIndex: z.number(),
     options: fieldOptionsSelectBoxSchema,
   }),
   z.object({
     id: z.string(),
     fieldName: z.string(),
-    fieldKind: z.enum(["lookup"]),
+    fieldKind: z.literal("lookup"),
     fieldIndex: z.number(),
     options: fieldOptionsLookupSchema,
   }),
   z.object({
     id: z.string(),
     fieldName: z.string(),
-    fieldKind: z.enum(["date"]),
+    fieldKind: z.literal("date"),
     fieldIndex: z.number(),
     options: fieldOptionsDateSchema,
   }),

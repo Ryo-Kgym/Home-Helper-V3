@@ -32,6 +32,7 @@ const NoOptions = () => <div>オプションはありません</div>;
 const factoryMap: Record<FieldKind, (props: OptionsState) => ReactNode> = {
   text: NoOptions,
   multipleText: NoOptions,
+  numeric: NoOptions,
   selectBox: FieldOptionsSelectBoxInputFactory,
   lookup: FieldOptionsLookUpInputFactory,
   date: FieldOptionsDateInputFactory,

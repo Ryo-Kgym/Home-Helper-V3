@@ -22,6 +22,9 @@ export type FieldProperties = {
   date: {
     name: "Date";
   } & BaseProperties;
+  numeric: {
+    name: "Numeric";
+  } & BaseProperties;
 };
 
 export type FieldKind = keyof FieldProperties;
@@ -43,7 +46,7 @@ export const fieldKindArray: Record<
   },
   multipleText: {
     fieldKind: "multipleText",
-    description: "複数テキスト",
+    description: "複数行テキスト",
   },
   lookup: {
     fieldKind: "lookup",
@@ -52,5 +55,9 @@ export const fieldKindArray: Record<
   date: {
     fieldKind: "date",
     description: "日付",
+  },
+  numeric: {
+    fieldKind: "numeric",
+    description: "数値",
   },
 };
