@@ -7,6 +7,7 @@ import { Record, RecordColumn } from "@oneforall/domain/schema/recordSchema";
 import { ModifyCellFactoryChangeHandler } from "./cellFactoryChangeHandler";
 import { ModifyCellDateFactory } from "./ModifyCellDateFactory";
 import { ModifyCellLookupFactory } from "./ModifyCellLookupFactory";
+import { ModifyCellNumericFactory } from "./ModifyCellNumericFactory";
 
 export const ModifyCell = ({
   field,
@@ -22,13 +23,6 @@ export const ModifyCell = ({
   setRecord: (record: Record) => void;
   column: RecordColumn | undefined;
 }) => {
-  if (field.fieldKind !== column.fieldKind) {
-    console.error(
-      `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,
-    );
-    return null;
-  }
-
   const changeHandler: ModifyCellFactoryChangeHandler = (value, options) => {
     const newRecord = {
       ...record,
@@ -81,6 +75,11 @@ export const ModifyCell = ({
           changeHandler={changeHandler}
           options={field.options}
         />
+      );
+    }
+    case "numeric": {
+      return (
+        <ModifyCellNumericFactory value={value} changeHandler={changeHandler} />
       );
     }
   }

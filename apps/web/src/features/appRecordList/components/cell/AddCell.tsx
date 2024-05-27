@@ -1,12 +1,13 @@
-import { useEffect } from "react";
 import { MultiTextInput } from "@components/ui/v4/multiTextInput";
 import { TextInput } from "@components/ui/v4/textInput";
-import { AddCellDateFactory } from "@features/appRecordList/components/cell/AddCellDateFactory";
-import { AddCellLookupFactory } from "@features/appRecordList/components/cell/AddCellLookupFactory";
-import { AddCellSelectBoxFactory } from "@features/appRecordList/components/cell/AddCellSelectBoxFactory";
-import { ModifyCellFactoryChangeHandler } from "@features/appRecordList/components/cell/cellFactoryChangeHandler";
 import { Field, Fields } from "@oneforall/domain/schema/appSchema";
 import { Columns, RecordColumn } from "@oneforall/domain/schema/recordSchema";
+
+import { AddCellDateFactory } from "./AddCellDateFactory";
+import { AddCellLookupFactory } from "./AddCellLookupFactory";
+import { AddCellNumericFactory } from "./AddCellNumericFactory";
+import { AddCellSelectBoxFactory } from "./AddCellSelectBoxFactory";
+import { ModifyCellFactoryChangeHandler } from "./cellFactoryChangeHandler";
 
 export const AddCell = ({
   field,
@@ -24,17 +25,6 @@ export const AddCell = ({
   columns: Columns;
   setColumns: (columns: Columns) => void;
 }) => {
-  useEffect(() => {
-    console.log("[columns]", columns);
-  }, [columns]);
-
-  if (field.fieldKind !== column.fieldKind) {
-    console.error(
-      `fieldKind mismatch: ${field.fieldKind} !== ${column.fieldKind}`,
-    );
-    return null;
-  }
-
   const changeHandler: ModifyCellFactoryChangeHandler = (value, options) => {
     setColumns({
       ...columns,
@@ -80,6 +70,11 @@ export const AddCell = ({
           changeHandler={changeHandler}
           options={field.options}
         />
+      );
+    }
+    case "numeric": {
+      return (
+        <AddCellNumericFactory value={value} changeHandler={changeHandler} />
       );
     }
   }
