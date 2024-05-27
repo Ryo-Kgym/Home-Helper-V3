@@ -1,12 +1,12 @@
-import type {
-  AppFieldOptions,
-  AppFieldValue,
-} from "@feature/app/create/appFieldValue";
-import type { FieldKind } from "@oneforall/domain/field/type";
 import { useEffect, useState } from "react";
-import { modifyAppFieldValueSchema } from "@feature/app/create/appFieldValue";
 import { useSaveAppFieldValue } from "@feature/app/create/useAppFieldValueState";
 import { isEquals } from "@function/isEquals";
+import { FieldKind } from "@oneforall/domain/field/type";
+import {
+  AppFieldOptions,
+  AppFieldValue,
+  modifyAppFieldValueSchema,
+} from "@oneforall/domain/schema/appFieldValue";
 
 import { ViewFieldPresenter } from "./ViewFieldPresenter";
 

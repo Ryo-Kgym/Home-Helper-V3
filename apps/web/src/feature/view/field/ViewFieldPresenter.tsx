@@ -1,8 +1,3 @@
-import type {
-  AppFieldOptions,
-  AppFieldValue,
-} from "@feature/app/create/appFieldValue";
-import type { FieldKind } from "@oneforall/domain/field/type";
 import { Button } from "@components/ui/v4/button";
 import { Modal } from "@components/ui/v4/modal";
 import { Select } from "@components/ui/v4/select";
@@ -10,7 +5,11 @@ import { TextInput } from "@components/ui/v4/textInput";
 import { DeleteFieldButton } from "@feature/app/field/DeleteFieldButton";
 import { SavedMark } from "@feature/app/field/SavedMark";
 import { FieldOptionsInput } from "@features/fieldOptions/FieldOptionsInput";
-import { fieldKindArray } from "@oneforall/domain/field/type";
+import { FieldKind, fieldKindArray } from "@oneforall/domain/field/type";
+import {
+  AppFieldOptions,
+  AppFieldValue,
+} from "@oneforall/domain/schema/appFieldValue";
 
 export const ViewFieldPresenter = ({
   mode,

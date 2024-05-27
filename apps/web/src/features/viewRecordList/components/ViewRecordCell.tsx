@@ -10,7 +10,6 @@ export const ViewRecordCell = ({
   },
 }: {
   viewField: ViewField;
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   column: ViewRecordColumn | undefined;
 }) => {
   switch (viewField.fieldKind) {

@@ -6,7 +6,7 @@ import type {
 import { useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
-import { dateOptionsSchema } from "@feature/app/create/appFieldValue";
+import { dateOptionsSchema } from "@oneforall/domain/schema/appFieldValue";
 
 export const FieldOptionsDateInputFactory = ({
   value,

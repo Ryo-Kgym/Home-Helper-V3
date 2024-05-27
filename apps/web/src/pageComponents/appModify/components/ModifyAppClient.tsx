@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
-import { AppFieldValue } from "@feature/app/create/appFieldValue";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import { useInitializeAppFieldValue } from "@feature/app/create/useAppFieldValueState";
 import { FieldInputTable } from "@feature/app/modify/FieldInputTable";
 import { UpdateAppButton } from "@feature/app/modify/UpdateAppButton";
 import { RedirectListButton } from "@feature/app/nav/RedirectListButton";
+import { AppFieldValue } from "@oneforall/domain/schema/appFieldValue";
 
 export const ModifyAppClient = ({
   appId,
