@@ -9,7 +9,7 @@ export const ShowCellNumericFactory = ({
   options: FieldOptionsNumeric;
 }) => {
   return (
-    <div>
+    <div className={"text-right"}>
       {formatThousandSeparator(value, options.thousandsSeparatorPosition)}
     </div>
   );

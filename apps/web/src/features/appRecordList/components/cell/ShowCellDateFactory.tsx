@@ -8,5 +8,9 @@ export const ShowCellDateFactory = ({
   value: string;
   options: FieldOptionsDate;
 }) => {
-  return <div>{convertDateStyle(value, options.format)}</div>;
+  return (
+    <div className={"text-center"}>
+      {convertDateStyle(value, options.format)}
+    </div>
+  );
 };
