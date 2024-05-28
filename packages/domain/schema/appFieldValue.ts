@@ -27,6 +27,10 @@ export const dateOptionsSchema = z.object({
   format: fieldOptionsDateFormatSchema,
 });
 
+export const numericOptionsSchema = z.object({
+  thousandsSeparatorPosition: z.number().int().min(0).max(3),
+});
+
 const fieldAttributeSchema = z.union([
   z.object({
     fieldName: z.string().min(1),
@@ -56,7 +60,7 @@ const fieldAttributeSchema = z.union([
   z.object({
     fieldName: z.string().min(1),
     fieldKind: z.literal("numeric"),
-    options: simpleKindOptionsSchema,
+    options: numericOptionsSchema,
   }),
 ]);
 
@@ -89,5 +93,6 @@ const appFieldValueSchema = z.record(
 );
 
 export type SelectBoxOptions = z.infer<typeof selectBoxOptionsSchema>;
+export type NumericOptions = z.infer<typeof numericOptionsSchema>;
 export type AppFieldValue = NonNullable<z.infer<typeof appFieldValueSchema>>;
 export type AppFieldOptions = AppFieldValue[number]["options"];
