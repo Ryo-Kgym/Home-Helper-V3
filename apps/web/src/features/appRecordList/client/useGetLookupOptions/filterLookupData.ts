@@ -1,5 +1,5 @@
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
-import { Columns, Record } from "@oneforall/domain/schema/recordSchema";
+import { Record, RecordColumns } from "@oneforall/domain/schema/recordSchema";
 
 import { judgeComplexity } from "./judgeComplexity";
 
@@ -9,7 +9,7 @@ import { judgeComplexity } from "./judgeComplexity";
 export const filterLookupData = (
   lookupRecord: Record,
   filters: FieldOptionsLookup["filters"],
-  columns: Columns,
+  columns: RecordColumns,
 ): boolean => {
   if (Object.keys(filters).length === 0) return true;
 

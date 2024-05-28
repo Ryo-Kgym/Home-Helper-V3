@@ -2,7 +2,7 @@ import { filterLookupData } from "@features/appRecordList/client/useGetLookupOpt
 import { sortLookupData } from "@features/appRecordList/client/useGetLookupOptions/sortLookupData";
 import { convertToRecords } from "@oneforall/domain/convert/convertToRecords";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
-import { Columns } from "@oneforall/domain/schema/recordSchema";
+import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 import { useGetRecordsQuery } from "@v3/graphql/public";
 
 export const useGetLookupOptions = ({
@@ -17,7 +17,7 @@ export const useGetLookupOptions = ({
   columns,
 }: {
   options: FieldOptionsLookup;
-  columns: Columns;
+  columns: RecordColumns;
 }) => {
   const [{ data: recordsData }] = useGetRecordsQuery({ variables: { appId } });
 

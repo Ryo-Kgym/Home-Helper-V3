@@ -1,4 +1,4 @@
-import { Columns, Record } from "@oneforall/domain/schema/recordSchema";
+import { Record, RecordColumns } from "@oneforall/domain/schema/recordSchema";
 
 import { filterLookupData } from "./filterLookupData";
 import * as judgeComplexity from "./judgeComplexity";
@@ -20,7 +20,7 @@ describe("filterLookupData", () => {
       },
     },
   };
-  const thisAppColumns: Columns = {
+  const thisAppColumns: RecordColumns = {
     c1: {
       fieldKind: "text",
       value: "textValue",

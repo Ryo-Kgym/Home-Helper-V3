@@ -11,7 +11,7 @@ import { RecordListTable } from "@features/appRecordList/components/RecordListTa
 import { useResetMode } from "@hooks/states/app/recordListMode/useModeStateZustand";
 import { useInitRecords } from "@hooks/states/app/records/useInitRecords";
 import { App } from "@oneforall/domain/schema/appSchema";
-import { Columns, Records } from "@oneforall/domain/schema/recordSchema";
+import { RecordColumns, Records } from "@oneforall/domain/schema/recordSchema";
 
 export const RecordListClient = ({
   app,
@@ -20,7 +20,7 @@ export const RecordListClient = ({
   headerItems,
 }: {
   app: App;
-  columnsTemplate: Columns;
+  columnsTemplate: RecordColumns;
   records: Records;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
