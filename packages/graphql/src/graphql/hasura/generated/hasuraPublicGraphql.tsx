@@ -5184,6 +5184,15 @@ export type GetUserByEmailQuery = {
   }>;
 };
 
+export type FragFieldsFragment = {
+  __typename: "Field";
+  id: string;
+  name: string;
+  index: number;
+  fieldKind: string;
+  options?: any | null;
+};
+
 export type FragRecordsFragment = {
   __typename: "Record";
   id: string;
@@ -5232,10 +5241,12 @@ export type GetAppFieldListQuery = {
       id: string;
       name: string;
       fields: Array<{
-        __typename?: "Field";
+        __typename: "Field";
         id: string;
         name: string;
+        index: number;
         fieldKind: string;
+        options?: any | null;
       }>;
     }>;
   } | null;
@@ -5318,6 +5329,25 @@ export type GetRecordsQuery = {
   }>;
 };
 
+export type GetRecordsInAppIdsQueryVariables = Exact<{
+  appIds: Array<Scalars["String"]> | Scalars["String"];
+}>;
+
+export type GetRecordsInAppIdsQuery = {
+  __typename?: "query_root";
+  apps: Array<{
+    __typename: "App";
+    id: string;
+    records: Array<{
+      __typename: "Record";
+      appId: string;
+      id: string;
+      index: number;
+      columns: any;
+    }>;
+  }>;
+};
+
 export type GetViewQueryVariables = Exact<{
   viewId: Scalars["String"];
 }>;
@@ -5354,6 +5384,15 @@ export type GetViewRecordsSourceQuery = {
   view?: {
     __typename: "View";
     id: string;
+    name: string;
+    viewFields: Array<{
+      __typename: "ViewField";
+      id: string;
+      name: string;
+      index: number;
+      fieldKind: string;
+      options?: any | null;
+    }>;
     viewApps: Array<{
       __typename?: "ViewApp";
       id: string;
@@ -5386,6 +5425,16 @@ export type GetViewsQuery = {
   } | null;
 };
 
+export const FragFieldsFragmentDoc = gql`
+  fragment fragFields on Field {
+    __typename
+    id
+    name
+    index
+    fieldKind
+    options
+  }
+`;
 export const FragRecordsFragmentDoc = gql`
   fragment fragRecords on Record {
     __typename
@@ -5689,18 +5738,14 @@ export const GetAppDocument = gql`
       id
       name
       fields(orderBy: [{ index: ASC }]) {
-        __typename
-        id
-        name
-        index
-        fieldKind
-        options
+        ...fragFields
       }
       records {
         ...fragRecords
       }
     }
   }
+  ${FragFieldsFragmentDoc}
   ${FragRecordsFragmentDoc}
 `;
 
@@ -5720,13 +5765,12 @@ export const GetAppFieldListDocument = gql`
         id
         name
         fields(orderBy: { index: ASC }) {
-          id
-          name
-          fieldKind
+          ...fragFields
         }
       }
     }
   }
+  ${FragFieldsFragmentDoc}
 `;
 
 export function useGetAppFieldListQuery(
@@ -5842,6 +5886,28 @@ export function useGetRecordsQuery(
     ...options,
   });
 }
+export const GetRecordsInAppIdsDocument = gql`
+  query getRecordsInAppIds($appIds: [String!]!) {
+    apps: app(where: { id: { _in: $appIds } }) {
+      __typename
+      id
+      records {
+        appId
+        ...fragRecords
+      }
+    }
+  }
+  ${FragRecordsFragmentDoc}
+`;
+
+export function useGetRecordsInAppIdsQuery(
+  options: Omit<Urql.UseQueryArgs<GetRecordsInAppIdsQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetRecordsInAppIdsQuery,
+    GetRecordsInAppIdsQueryVariables
+  >({ query: GetRecordsInAppIdsDocument, ...options });
+}
 export const GetViewDocument = gql`
   query getView($viewId: String!) {
     view: viewByPk(id: $viewId) {
@@ -5878,6 +5944,15 @@ export const GetViewRecordsSourceDocument = gql`
     view: viewByPk(id: $viewId) {
       __typename
       id
+      name
+      viewFields(orderBy: [{ index: ASC }]) {
+        __typename
+        id
+        name
+        index
+        fieldKind
+        options
+      }
       viewApps {
         id
         appId

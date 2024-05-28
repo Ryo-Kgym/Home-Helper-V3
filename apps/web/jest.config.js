@@ -11,6 +11,8 @@ module.exports = {
     "^@features/(.+)$": "<rootDir>/src/features/$1",
     "^@hooks/(.+)$": "<rootDir>/src/hooks/$1",
     "^@provider/(.+)$": "<rootDir>/src/provider/$1",
+    "^@persistence/(.+)$": "<rootDir>/src/persistence/$1",
+    "^@server/(.+)$": "<rootDir>/src/server/$1",
     "^@v3/graphql/(.+)$": "<rootDir>/../../packages/graphql/$1",
   },
 };

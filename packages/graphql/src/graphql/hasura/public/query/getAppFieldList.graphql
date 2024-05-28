@@ -5,9 +5,7 @@ query getAppFieldList($groupId: String!) {
       id
       name
       fields(orderBy: { index: ASC }) {
-        id
-        name
-        fieldKind
+        ...fragFields
       }
     }
   }

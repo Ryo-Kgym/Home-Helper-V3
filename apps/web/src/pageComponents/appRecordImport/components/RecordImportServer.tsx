@@ -3,6 +3,7 @@ import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSet
 import { convertToImportFileFieldMapping } from "@pageComponents/appRecordImport/server/convertToImportFileFieldMapping";
 import { convertToImportHistories } from "@pageComponents/appRecordImport/server/convertToImportHistories";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
+import { getLookupRecords } from "@server/lookupRecords";
 import { GetAppDocument, GetImportFileDocument } from "@v3/graphql/public/type";
 
 import { RecordImportClient } from "./RecordImportClient";
@@ -10,6 +11,8 @@ import { RecordImportClient } from "./RecordImportClient";
 export const RecordImportServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });
   const app = convertToApp(data);
+
+  const lookupRecords = await getLookupRecords(app);
 
   const { data: importFileData } = await fetchQuery(GetImportFileDocument, {
     appId,
@@ -34,6 +37,7 @@ export const RecordImportServer = async ({ appId }: { appId: string }) => {
       importHistories={importHistories}
       requiredInitializeSettings={requiredInitializeSettings}
       importFileFieldMapping={importFileFieldMapping}
+      lookupRecords={lookupRecords}
     />
   );
 };

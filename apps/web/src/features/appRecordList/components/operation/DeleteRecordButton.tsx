@@ -1,3 +1,4 @@
+import { Trash } from "@components/ui/v4/icon/Trash";
 import { notify } from "@components/ui/v4/notify/notify";
 import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 import { useRecords } from "@hooks/states/app/records/useRecords";
@@ -46,5 +47,9 @@ export const DeleteRecordButton = ({
     }
   };
 
-  return <button onClick={() => deleteRecordHandler(recordId)}>削除</button>;
+  return (
+    <button onClick={() => deleteRecordHandler(recordId)}>
+      <Trash />
+    </button>
+  );
 };

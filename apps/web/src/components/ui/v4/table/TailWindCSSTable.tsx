@@ -6,7 +6,7 @@ export const TailWindCSSTable = ({ children }: { children: ReactNode }) => (
 
 const Header = ({ headerItems }: { headerItems: { name: string }[] }) => (
   <thead>
-    <tr>
+    <tr className={"bg-amber-100"}>
       {headerItems.map(({ name }, index) => (
         <th
           key={`th-td-${index}}`}
@@ -44,7 +44,7 @@ const Body = <T,>({
 );
 
 const Tr = ({ children }: { children: ReactNode }) => (
-  <tr className={"border border-gray-300"}>{children}</tr>
+  <tr className={"border border-gray-300 even:bg-amber-50"}>{children}</tr>
 );
 
 const Td = ({

@@ -13,13 +13,18 @@ describe("convertToAppListData", () => {
             name: "アプリ1",
             fields: [
               {
+                __typename: "Field",
                 id: "appField11",
                 name: "フィールド1",
                 fieldKind: "text",
+                index: 0,
+                options: {},
               },
               {
+                __typename: "Field",
                 id: "appField12",
                 name: "フィールド2",
+                index: 1,
                 fieldKind: "multipleText",
               },
             ],
@@ -29,13 +34,17 @@ describe("convertToAppListData", () => {
             name: "アプリ2",
             fields: [
               {
+                __typename: "Field",
                 id: "appField21",
                 name: "フィールド1",
+                index: 0,
                 fieldKind: "date",
               },
               {
+                __typename: "Field",
                 id: "appField22",
                 name: "フィールド2",
+                index: 1,
                 fieldKind: "lookup",
               },
             ],

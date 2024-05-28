@@ -1,6 +1,6 @@
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
-import { PreviewRecordColumn } from "@oneforall/domain/schema/previewRecordsSchema";
+import { PreviewRecordColumns } from "@oneforall/domain/schema/previewRecordsSchema";
 import { switchValueConverter } from "@pageComponents/appRecordImport/client/convertRecords/switchValueConverter";
 
 /**
@@ -10,7 +10,7 @@ export const convertToPreviewRecordColumns = (
   row: string[],
   fields: Fields,
   fieldMapping: ImportFileFieldMapping,
-): PreviewRecordColumn =>
+): PreviewRecordColumns =>
   Object.fromEntries(
     Object.entries(fields).map(([fieldId, field]) => {
       const fileColumnIndex = fieldMapping[fieldId]?.fileColumnIndex ?? null;

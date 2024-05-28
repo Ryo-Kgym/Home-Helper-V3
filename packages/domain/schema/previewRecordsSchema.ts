@@ -11,8 +11,6 @@ const previewColumnSchema = z.object({
 
 export const previewColumnsSchema = z.record(previewColumnSchema); // fieldId
 
-export type PreviewRecordColumn = z.infer<typeof previewColumnsSchema>;
-
 export const previewRecordsSchema = z.record(
   z.object({
     recordId: z.string(),
@@ -21,4 +19,6 @@ export const previewRecordsSchema = z.record(
   }),
 ); // record.index
 
+export type PreviewRecordColumn = z.infer<typeof previewColumnSchema>;
+export type PreviewRecordColumns = z.infer<typeof previewColumnsSchema>;
 export type PreviewRecords = z.infer<typeof previewRecordsSchema>;

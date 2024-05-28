@@ -4,7 +4,7 @@ import { TextInput } from "@components/ui/v4/textInput";
 import { AddCellDateFactory } from "@features/appRecordList/components/cell/AddCellDateFactory";
 import { AddCellLookupFactory } from "@features/appRecordList/components/cell/AddCellLookupFactory";
 import { AddCellSelectBoxFactory } from "@features/appRecordList/components/cell/AddCellSelectBoxFactory";
-import { ModifyCellFactoryChangeHandler } from "@features/appRecordList/components/cell/cell-factory-change-handler";
+import { ModifyCellFactoryChangeHandler } from "@features/appRecordList/components/cell/cellFactoryChangeHandler";
 import { Field, Fields } from "@oneforall/domain/schema/appSchema";
 import { Columns, RecordColumn } from "@oneforall/domain/schema/recordSchema";
 
@@ -69,6 +69,7 @@ export const AddCell = ({
           value={value}
           changeHandler={changeHandler}
           options={field.options}
+          columns={columns}
         />
       );
     }

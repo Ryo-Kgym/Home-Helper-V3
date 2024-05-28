@@ -1,4 +1,4 @@
-const Reset = () => (
+export const Reset = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-arrow-back-up"
@@ -16,5 +16,3 @@ const Reset = () => (
     <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
   </svg>
 );
-
-export default Reset;
