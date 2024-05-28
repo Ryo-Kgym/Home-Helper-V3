@@ -1,9 +1,10 @@
 import React, { ComponentProps, ReactNode } from "react";
-import { AppFieldOptions } from "@feature/app/create/appFieldValue";
 import { FieldOptionsDateInputFactory } from "@features/fieldOptions/FieldOptionsDateInputFactory";
 import { FieldOptionsLookUpInputFactory } from "@features/fieldOptions/FieldOptionsLookUpInputFactory";
+import { FieldOptionsNumericInputFactory } from "@features/fieldOptions/FieldOptionsNumericInputFactory";
 import { FieldOptionsSelectBoxInputFactory } from "@features/fieldOptions/FieldOptionsSelectBoxInputFactory";
 import { FieldKind } from "@oneforall/domain/field/type";
+import { AppFieldOptions } from "@oneforall/domain/schema/appFieldValue";
 
 export type OptionsState = {
   value: AppFieldOptions;
@@ -35,4 +36,5 @@ const factoryMap: Record<FieldKind, (props: OptionsState) => ReactNode> = {
   selectBox: FieldOptionsSelectBoxInputFactory,
   lookup: FieldOptionsLookUpInputFactory,
   date: FieldOptionsDateInputFactory,
+  numeric: FieldOptionsNumericInputFactory,
 };

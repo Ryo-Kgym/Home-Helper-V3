@@ -3,8 +3,7 @@ import { Button } from "@components/ui/v4/button";
 import { Select } from "@components/ui/v4/select";
 import { useAppendViewApp } from "@feature/view/modify/hook";
 import { AppListData } from "@feature/view/modify/type/appListData";
-
-import { ViewFields } from "../../../../../../packages/domain/schema/view/viewSchema";
+import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
 /**
  * @package

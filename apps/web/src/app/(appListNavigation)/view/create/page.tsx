@@ -1,5 +1,5 @@
-import { CreateViewServer } from "@feature/view/create/CreateViewServer";
+import { CreateView } from "@pageComponents/viewCreate";
 
-const Page = () => <CreateViewServer />;
+const Page = () => <CreateView />;
 
 export default Page;

@@ -1,4 +1,8 @@
-import { columnsSchema, Records, recordsSchema } from "../schema/recordSchema";
+import {
+  recordColumnsSchema,
+  Records,
+  recordsSchema,
+} from "../schema/recordSchema";
 
 export const convertToRecords = (
   recordData: {
@@ -12,7 +16,7 @@ export const convertToRecords = (
       r.index,
       {
         recordId: r.id,
-        columns: columnsSchema.parse(r.columns),
+        columns: recordColumnsSchema.parse(r.columns),
         isEditing: false,
       },
     ]),

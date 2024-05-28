@@ -89,7 +89,7 @@ const config = {
           module: `src/features/${name}/client`,
           allowReferenceFrom: [
             `src/pageComponents/*/client`,
-            `src/features/${name}/components/*Client.tsx`,
+            `src/features/${name}/components/*.tsx`,
             `src/pageComponents/*/components/*Client.tsx`,
           ],
           allowSameModule: true,

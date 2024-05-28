@@ -4,7 +4,7 @@ import { useResetNewRecord } from "@hooks/states/app/record/useResetNewRecord";
 import { useResetMode } from "@hooks/states/app/recordListMode/useModeStateZustand";
 import { useAddRecord } from "@hooks/states/app/records/useAddRecord";
 import { useRecords } from "@hooks/states/app/records/useRecords";
-import { Columns } from "@oneforall/domain/schema/recordSchema";
+import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 import { useInsertRecordMutation } from "@v3/graphql/public";
 
 export const useSaveNewRecord = (appId: string) => {
@@ -15,7 +15,7 @@ export const useSaveNewRecord = (appId: string) => {
   const resetNewRecord = useResetNewRecord();
   const resetMode = useResetMode();
 
-  const saveNewRecord = async (columns: Columns) => {
+  const saveNewRecord = async (columns: RecordColumns) => {
     const index = calcNextIndex(records);
     const recordId = generateId();
 

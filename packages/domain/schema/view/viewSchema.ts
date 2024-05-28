@@ -4,8 +4,9 @@ import {
   fieldOptionsDateSchema,
   fieldOptionsLookupSchema,
   fieldOptionsMultipleTextSchema,
-  fieldOptionsSchema,
+  fieldOptionsNumericSchema,
   fieldOptionsSelectBoxSchema,
+  fieldOptionsTextSchema,
 } from "../appSchema";
 
 export const viewFieldSchema = z.union([
@@ -14,7 +15,7 @@ export const viewFieldSchema = z.union([
     fieldName: z.string(),
     fieldKind: z.enum(["text"]),
     fieldIndex: z.number(),
-    options: fieldOptionsSchema,
+    options: fieldOptionsTextSchema,
   }),
   z.object({
     id: z.string(),
@@ -22,6 +23,13 @@ export const viewFieldSchema = z.union([
     fieldKind: z.enum(["multipleText"]),
     fieldIndex: z.number(),
     options: fieldOptionsMultipleTextSchema,
+  }),
+  z.object({
+    id: z.string(),
+    fieldName: z.string(),
+    fieldKind: z.literal("numeric"),
+    fieldIndex: z.number(),
+    options: fieldOptionsNumericSchema,
   }),
   z.object({
     id: z.string(),

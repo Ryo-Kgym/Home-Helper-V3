@@ -1,11 +1,13 @@
-import type { AppFieldOptions } from "@feature/app/create/appFieldValue";
-import type { FieldKind } from "@oneforall/domain/field/type";
 import { useEffect, useState } from "react";
-import { addAppFieldValueSchema } from "@feature/app/create/appFieldValue";
 import {
   useRemoveAppFieldValue,
   useSaveAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
+import { FieldKind } from "@oneforall/domain/field/type";
+import {
+  addAppFieldValueSchema,
+  AppFieldOptions,
+} from "@oneforall/domain/schema/appFieldValue";
 
 import { AppFieldPresenter } from "./AppFieldPresenter";
 

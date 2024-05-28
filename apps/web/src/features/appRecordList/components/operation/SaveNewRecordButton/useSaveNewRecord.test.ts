@@ -5,7 +5,7 @@ import * as useResetNewRecordMock from "@hooks/states/app/record/useResetNewReco
 import * as useModeState from "@hooks/states/app/recordListMode/useModeStateZustand";
 import * as useAddRecordsMock from "@hooks/states/app/records/useAddRecord";
 import * as useRecordsMock from "@hooks/states/app/records/useRecords";
-import { Columns } from "@oneforall/domain/schema/recordSchema";
+import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 import { act, renderHook } from "@testing-library/react";
 import * as mut from "@v3/graphql/public";
 
@@ -20,7 +20,7 @@ jest.mock("@hooks/states/app/record/useNewRecordZustand");
 
 describe("useSaveNewRecord", () => {
   const appId = "123";
-  const columns: Columns = {
+  const columns: RecordColumns = {
     "1": {
       fieldKind: "text",
       value: "testValue",

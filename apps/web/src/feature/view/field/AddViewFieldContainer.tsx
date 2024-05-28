@@ -5,7 +5,7 @@ import { useSaveViewFieldValue } from "@feature/view/create/useSaveViewFieldValu
 import {
   addViewFieldValueSchema,
   ViewFieldOptions,
-} from "@feature/view/create/viewFieldValue";
+} from "@oneforall/domain/schema/view/viewFieldValue";
 
 import { ViewFieldPresenter } from "./ViewFieldPresenter";
 

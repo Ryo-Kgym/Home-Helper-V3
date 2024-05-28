@@ -17,6 +17,7 @@ export const switchValueConverter = (
   switch (field.fieldKind) {
     case "text":
     case "multipleText":
+    case "numeric":
     case "lookup":
       return {
         originalValue,

@@ -1,7 +1,6 @@
+import type { ViewFieldValue } from "@oneforall/domain/schema/view/viewFieldValue";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-
-import type { ViewFieldValue } from "./viewFieldValue";
 
 type State = {
   viewFieldValue: ViewFieldValue;
