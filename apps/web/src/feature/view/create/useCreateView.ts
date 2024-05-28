@@ -1,7 +1,7 @@
 import { generateId } from "@feature/app/function/generateId";
-import { ViewFieldValue } from "@feature/view/create/viewFieldValue";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
+import { ViewFieldValue } from "@oneforall/domain/schema/view/viewFieldValue";
 import { useInsertViewMutation } from "@v3/graphql/public";
 
 export const useCreateView = () => {

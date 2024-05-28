@@ -1,9 +1,10 @@
-import { numericOptionsSchema } from "@oneforall/domain/schema/appFieldValue";
+import { z } from "zod";
+
+import { numericOptionsSchema } from "../appFieldValue";
 import {
   fieldOptionsDateFormatSchema,
   fieldOptionsLookupSchema,
-} from "@oneforall/domain/schema/appSchema";
-import { z } from "zod";
+} from "../appSchema";
 
 const simpleKindOptionsSchema = z.object({});
 
