@@ -1,9 +1,9 @@
 import { act, renderHook } from "@testing-library/react";
-import * as mut from "@v3/graphql/public";
 
+import * as mut from "../../../../../../packages/graphql/public";
 import { useCreateView } from "./useCreateView";
 
-jest.mock("@v3/graphql/public");
+jest.mock("../../../../../../packages/graphql/public");
 
 jest.mock("@feature/app/function/generateId", () => ({
   generateId: jest.fn().mockReturnValue("123"),

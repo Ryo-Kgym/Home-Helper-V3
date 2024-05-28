@@ -1,8 +1,8 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
-import { useCreateView } from "@feature/view/create/useCreateView";
 import { useGetViewFieldValue } from "@feature/view/create/useGetViewFieldValue";
+import { useCreateView } from "@features/viewCreate/client/useCreateView";
 import { paths } from "@routing/paths";
 
 export const CreateViewButton = ({ viewName }: { viewName: string }) => {

@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Title } from "@components/ui/v4/frame/Title";
-import { CreateViewButton } from "@feature/view/create/CreateViewButton";
 import { useGetViewFieldValue } from "@feature/view/create/useGetViewFieldValue";
 import { useResetViewFieldValue } from "@feature/view/create/useResetViewFieldValue";
-import { ViewFieldAddButton } from "@feature/view/create/ViewFieldAddButton";
-import { ViewNameInput } from "@feature/view/create/ViewNameInput";
 import { ViewFieldInput } from "@feature/view/field/ViewFieldInput";
+import { CreateViewButton } from "@features/viewCreate/components/CreateViewButton";
+import { ViewFieldAddButton } from "@pageComponents/viewCreate/components/ViewFieldAddButton";
+import { ViewNameInput } from "@pageComponents/viewCreate/components/ViewNameInput";
 
 export const CreateViewClient = () => {
   const [viewName, setViewName] = useState<string>("");
