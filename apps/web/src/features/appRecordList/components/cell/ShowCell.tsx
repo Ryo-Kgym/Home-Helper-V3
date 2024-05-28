@@ -1,5 +1,6 @@
 import { ShowCellDateFactory } from "@features/appRecordList/components/cell/ShowCellDateFactory";
 import { ShowCellLookupFactory } from "@features/appRecordList/components/cell/ShowCellLookupFactory";
+import { ShowCellNumericFactory } from "@features/appRecordList/components/cell/ShowCellNumericFactory";
 import { ShowCellSelectBoxFactory } from "@features/appRecordList/components/cell/ShowCellSelectBoxFactory";
 import { Field } from "@oneforall/domain/schema/appSchema";
 import { RecordColumn } from "@oneforall/domain/schema/recordSchema";
@@ -36,6 +37,11 @@ export const ShowCell = ({
     case "date": {
       return (
         <ShowCellDateFactory value={column.value} options={field.options} />
+      );
+    }
+    case "numeric": {
+      return (
+        <ShowCellNumericFactory value={column.value} options={field.options} />
       );
     }
   }

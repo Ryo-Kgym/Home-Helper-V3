@@ -14,7 +14,9 @@ export const fieldKindSchema = z.enum([
 
 export const fieldOptionsTextSchema = z.object({});
 export const fieldOptionsMultipleTextSchema = z.object({});
-export const fieldOptionsNumericSchema = z.object({});
+export const fieldOptionsNumericSchema = z.object({
+  thousandsSeparatorPosition: z.number().int().min(0).max(3),
+});
 export const fieldOptionsSelectBoxSchema = z.object({
   selector: z
     .object({
@@ -136,3 +138,4 @@ export type FieldOptionsDate = z.infer<typeof fieldOptionsDateSchema>;
 export type FieldOptionsDateFormat = z.infer<
   typeof fieldOptionsDateFormatSchema
 >;
+export type FieldOptionsNumeric = z.infer<typeof fieldOptionsNumericSchema>;
