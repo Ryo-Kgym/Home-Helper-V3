@@ -1,14 +1,14 @@
-import { convertToApp } from "@oneforall/domain/convert/convertToApp";
-import { convertToRecords } from "@oneforall/domain/convert/convertToRecords";
 import { RecordListClient } from "@pageComponents/appRecordList/components/RecordListClient";
 import { makeColumnsTemplate } from "@pageComponents/appRecordList/server/makeColumnsTemplate";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
+import { parseToApp } from "@v3/graphql/public/convert/parseToApp";
+import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
 import { GetAppDocument } from "@v3/graphql/public/type";
 
 export const RecordListServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });
-  const app = convertToApp(data);
-  const records = convertToRecords(data?.app?.records ?? []);
+  const app = parseToApp(data);
+  const records = parseToRecords(data?.app?.records ?? []);
 
   const columnsTemplate = makeColumnsTemplate(app.fields);
 

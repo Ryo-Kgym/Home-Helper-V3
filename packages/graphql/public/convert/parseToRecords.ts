@@ -2,9 +2,9 @@ import {
   recordColumnsSchema,
   Records,
   recordsSchema,
-} from "../schema/recordSchema";
+} from "@oneforall/domain/schema/recordSchema";
 
-export const convertToRecords = (
+export const parseToRecords = (
   recordData: {
     id: string;
     index: number;

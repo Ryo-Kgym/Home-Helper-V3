@@ -1,7 +1,8 @@
-import { App, appSchema } from "../schema/appSchema";
-import { convertToFields } from "./convertToFields";
+import { App, appSchema } from "@oneforall/domain/schema/appSchema";
 
-export const convertToApp = (data: {
+import { parseToFields } from "./parseToFields";
+
+export const parseToApp = (data: {
   app?: {
     id: string;
     name: string;
@@ -18,7 +19,7 @@ export const convertToApp = (data: {
     throw new Error("App data is not found");
   }
 
-  const fields = convertToFields(data.app.fields);
+  const fields = parseToFields(data.app.fields);
 
   return appSchema.parse({
     id: data.app.id,

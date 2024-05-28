@@ -1,6 +1,6 @@
-import { convertToFields } from "@oneforall/domain/convert/convertToFields";
 import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useGetAppFieldListQuery } from "@v3/graphql/public";
+import { parseToFields } from "@v3/graphql/public/convert/parseToFields";
 
 /**
  * @package
@@ -28,7 +28,7 @@ export const useMakeSelector = ({ appId }: { appId: string }) => {
         value: f.id,
       })) ?? [];
 
-  const fields = convertToFields(
+  const fields = parseToFields(
     data?.group?.apps.find((a) => a.id === appId)?.fields ?? [],
   );
 

@@ -1,6 +1,6 @@
-import { Fields, fieldsSchema } from "../schema/appSchema";
+import { Fields, fieldsSchema } from "@oneforall/domain/schema/appSchema";
 
-export const convertToFields = (
+export const parseToFields = (
   data: {
     id: string;
     name: string;

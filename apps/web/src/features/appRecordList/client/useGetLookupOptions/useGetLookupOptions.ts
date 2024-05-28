@@ -1,9 +1,9 @@
 import { filterLookupData } from "@features/appRecordList/client/useGetLookupOptions/filterLookupData";
 import { sortLookupData } from "@features/appRecordList/client/useGetLookupOptions/sortLookupData";
-import { convertToRecords } from "@oneforall/domain/convert/convertToRecords";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 import { useGetRecordsQuery } from "@v3/graphql/public";
+import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
 
 export const useGetLookupOptions = ({
   options: {
@@ -21,7 +21,7 @@ export const useGetLookupOptions = ({
 }) => {
   const [{ data: recordsData }] = useGetRecordsQuery({ variables: { appId } });
 
-  const records = convertToRecords(recordsData?.records ?? []);
+  const records = parseToRecords(recordsData?.records ?? []);
 
   const lookupData = Object.values(records)
     .filter((r) => filterLookupData(r, filters, columns))

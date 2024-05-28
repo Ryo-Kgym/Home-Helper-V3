@@ -1,7 +1,7 @@
-import { convertToView } from "@features/view/server/convertToView";
 import { convertToViewRecords } from "@features/viewRecordList/server/convertToViewRecords";
 import { ViewRecordListClient } from "@pageComponents/viewRecordList/components/ViewRecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
+import { parseToView } from "@v3/graphql/public/convert/parseToView";
 import { GetViewRecordsSourceDocument } from "@v3/graphql/public/type";
 
 export const ViewRecordListServer = async ({ viewId }: { viewId: string }) => {
@@ -9,7 +9,7 @@ export const ViewRecordListServer = async ({ viewId }: { viewId: string }) => {
     viewId,
   });
 
-  const view = convertToView(data);
+  const view = parseToView(data.view);
 
   const headerItems = [
     { name: "No." },
