@@ -17,12 +17,6 @@ const ShowChartClient = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>("pieChart");
 
-  const handleSelectedChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    setSelectedOption(event.target.value);
-  };
-
   const renderContent = () => {
     switch (selectedOption) {
       case "pieChart":
@@ -51,26 +45,18 @@ const ShowChartClient = ({
   const selectData = [
     { value: "pieChart", label: "PieChart" },
     { value: "barChart", label: "BarChart" },
+    { value: "lineChart", label: "LineChart" },
+    { value: "radarChart", label: "RadarChart" },
   ];
 
   return (
     <div className={"space-y-4"}>
       <Title title={"chart作成画面"} />
-      <select
-        value={selectedOption}
-        onChange={handleSelectedChange}
-        className={"ml-2 mt-2 rounded-xl border px-2 py-2"}
-      >
-        <option value="pieChart">PieChart</option>
-        <option value="barChart">BarChart</option>
-        <option value="lineChart">LineChart</option>
-        <option value="radarChart">RadarChart</option>
-      </select>
       <Select
         data={selectData}
         label={"Select Charts"}
         value={selectedOption}
-        setValue={handleSelectedChange}
+        setValue={setSelectedOption}
       />
       <div>{renderContent()}</div>
     </div>
