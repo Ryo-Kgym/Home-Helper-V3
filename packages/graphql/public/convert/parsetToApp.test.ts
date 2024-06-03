@@ -1,19 +1,15 @@
-import { View } from "@oneforall/domain/schema/view/viewSchema";
-import { GetViewQuery } from "@v3/graphql/public/type";
+import { App } from "@oneforall/domain/schema/appSchema";
 
-import { convertToView } from "./convertToView";
+import { parseToApp } from "./parseToApp";
 
-describe("convertToView", () => {
-  it("データを取得できた場合、期待した型に変換する", async () => {
-    const data: GetViewQuery = {
-      // @ts-expect-error @ts-expect-error
-      view: {
-        __typename: "View",
+describe("convertToApp", () => {
+  it("converts a GetAppQuery to an App", () => {
+    const data = {
+      app: {
         id: "1",
-        name: "My View",
-        viewFields: [
+        name: "My App",
+        fields: [
           {
-            __typename: "ViewField",
             id: "11111",
             index: 1,
             name: "Field 1",
@@ -21,7 +17,6 @@ describe("convertToView", () => {
             options: {},
           },
           {
-            __typename: "ViewField",
             id: "22222",
             index: 2,
             name: "Field 2",
@@ -40,14 +35,15 @@ describe("convertToView", () => {
             },
           },
         ],
+        records: [],
       },
     };
 
-    const view = convertToView(data);
+    const app = parseToApp(data);
 
-    const expected: View = {
+    const expected: App = {
       id: "1",
-      name: "My View",
+      name: "My App",
       fields: {
         "11111": {
           id: "11111",
@@ -77,12 +73,10 @@ describe("convertToView", () => {
       },
     };
 
-    expect(view).toEqual(expected);
+    expect(app).toEqual(expected);
   });
 
-  it("view が取得できなかった場合、エラーを投げる。", async () => {
-    const data: GetViewQuery = {};
-
-    expect(() => convertToView(data)).toThrowError("View data is not found");
+  it("app が取得できなかった場合、エラーを投げる。", () => {
+    expect(() => parseToApp({})).toThrowError("App data is not found");
   });
 });

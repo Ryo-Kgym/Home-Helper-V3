@@ -1,6 +1,6 @@
-import * as convertToRecordsMock from "@oneforall/domain/convert/convertToRecords";
 import { renderHook } from "@testing-library/react";
 import * as useGetRecordsQueryMock from "@v3/graphql/public";
+import * as convertToRecordsMock from "@v3/graphql/public/convert/parseToRecords";
 
 import { useGetLookupOptions } from "./useGetLookupOptions";
 
@@ -62,7 +62,7 @@ describe("convertToImportHistories", () => {
       },
       jest.fn(),
     ]);
-    jest.spyOn(convertToRecordsMock, "convertToRecords");
+    jest.spyOn(convertToRecordsMock, "parseToRecords");
 
     renderHook(() =>
       useGetLookupOptions({
@@ -82,7 +82,7 @@ describe("convertToImportHistories", () => {
       variables: { appId: "appId" },
     });
 
-    expect(convertToRecordsMock.convertToRecords).toHaveBeenCalledWith([
+    expect(convertToRecordsMock.parseToRecords).toHaveBeenCalledWith([
       {
         __typename: "Record",
         id: "r1",
@@ -100,7 +100,7 @@ describe("convertToImportHistories", () => {
 
   it("selectFieldId, saveFieldId が存在する場合", () => {
     jest.spyOn(useGetRecordsQueryMock, "useGetRecordsQuery");
-    jest.spyOn(convertToRecordsMock, "convertToRecords").mockReturnValue({
+    jest.spyOn(convertToRecordsMock, "parseToRecords").mockReturnValue({
       1: {
         recordId: "r1",
         isEditing: false,
@@ -167,7 +167,7 @@ describe("convertToImportHistories", () => {
 
   it("selectFieldId, saveFieldId が存在しない場合", () => {
     jest.spyOn(useGetRecordsQueryMock, "useGetRecordsQuery");
-    jest.spyOn(convertToRecordsMock, "convertToRecords").mockReturnValue({
+    jest.spyOn(convertToRecordsMock, "parseToRecords").mockReturnValue({
       1: {
         recordId: "r1",
         isEditing: false,

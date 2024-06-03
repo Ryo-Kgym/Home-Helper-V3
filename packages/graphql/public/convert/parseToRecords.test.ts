@@ -1,5 +1,6 @@
-import { Records } from "../schema/recordSchema";
-import { convertToRecords } from "./convertToRecords";
+import { Records } from "@oneforall/domain/schema/recordSchema";
+
+import { parseToRecords } from "./parseToRecords";
 
 describe("convertToRecords", () => {
   it("converts record data to a record list", () => {
@@ -39,7 +40,7 @@ describe("convertToRecords", () => {
         },
       },
     ];
-    const records = convertToRecords(recordData);
+    const records = parseToRecords(recordData);
     expect(records).toEqual<Records>({
       "1": {
         recordId: "11111",

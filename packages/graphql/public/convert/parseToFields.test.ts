@@ -1,8 +1,8 @@
-import { convertToFields } from "./convertToFields";
+import { parseToFields } from "./parseToFields";
 
 describe("convertToFields", () => {
   it("fieldType: text の場合", () => {
-    const data: Parameters<typeof convertToFields>[0] = [
+    const data: Parameters<typeof parseToFields>[0] = [
       {
         id: "1",
         name: "Field 1",
@@ -21,12 +21,12 @@ describe("convertToFields", () => {
       },
     };
 
-    const actual = convertToFields(data);
+    const actual = parseToFields(data);
     expect(actual).toEqual(expectedFields);
   });
 
   it("fieldType: multipleText の場合", () => {
-    const data: Parameters<typeof convertToFields>[0] = [
+    const data: Parameters<typeof parseToFields>[0] = [
       {
         id: "2",
         name: "Field 2",
@@ -45,12 +45,12 @@ describe("convertToFields", () => {
       },
     };
 
-    const actual = convertToFields(data);
+    const actual = parseToFields(data);
     expect(actual).toEqual(expectedFields);
   });
 
   it("fieldType: selectBox の場合", () => {
-    const data: Parameters<typeof convertToFields>[0] = [
+    const data: Parameters<typeof parseToFields>[0] = [
       {
         id: "3",
         name: "Field 3",
@@ -91,12 +91,12 @@ describe("convertToFields", () => {
       },
     };
 
-    const actual = convertToFields(data);
+    const actual = parseToFields(data);
     expect(actual).toEqual(expectedFields);
   });
 
   it("fieldType: lookup の場合", () => {
-    const data: Parameters<typeof convertToFields>[0] = [
+    const data: Parameters<typeof parseToFields>[0] = [
       {
         id: "4",
         name: "Field 4",
@@ -155,12 +155,12 @@ describe("convertToFields", () => {
       },
     };
 
-    const actual = convertToFields(data);
+    const actual = parseToFields(data);
     expect(actual).toEqual(expectedFields);
   });
 
   it("fieldType: date の場合", () => {
-    const data: Parameters<typeof convertToFields>[0] = [
+    const data: Parameters<typeof parseToFields>[0] = [
       {
         id: "5",
         name: "Field 5",
@@ -183,12 +183,12 @@ describe("convertToFields", () => {
       },
     };
 
-    const actual = convertToFields(data);
+    const actual = parseToFields(data);
     expect(actual).toEqual(expectedFields);
   });
 
   it("fieldType: numeric の場合", () => {
-    const data: Parameters<typeof convertToFields>[0] = [
+    const data: Parameters<typeof parseToFields>[0] = [
       {
         id: "6",
         name: "Field 6",
@@ -207,7 +207,7 @@ describe("convertToFields", () => {
       },
     };
 
-    const actual = convertToFields(data);
+    const actual = parseToFields(data);
     expect(actual).toEqual(expectedFields);
   });
 });
