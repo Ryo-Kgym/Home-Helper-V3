@@ -96,7 +96,9 @@ const config = {
         })),
         ...featuresDirs.map((name) => ({
           module: `src/features/${name}/components`,
-          allowReferenceFrom: [`src/pageComponents/*/components/*Client.tsx`],
+          allowReferenceFrom: [
+            `src/pageComponents/*/components/**/*Client.tsx`,
+          ],
           allowSameModule: true,
         })),
         {
@@ -112,7 +114,8 @@ const config = {
           module: "src/components/ui",
           allowReferenceFrom: [
             "src/feature",
-            "src/pageComponents/**/components/*",
+            "src/features/**/components/**",
+            "src/pageComponents/**/components/**",
             "src/components/page",
             "src/components/molecules",
             "src/components/organisms",
