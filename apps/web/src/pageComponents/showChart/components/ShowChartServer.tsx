@@ -1,4 +1,4 @@
-import ShowChartClient from "@app/(appListNavigation)/app/chart/[id]/ShowChartClient";
+import ShowChartClient from "@pageComponents/showChart/components/ShowChartClient";
 
 export const ShowChartServer = async () => {
   const data = [

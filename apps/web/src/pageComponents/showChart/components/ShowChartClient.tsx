@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import BarChart from "@app/(appListNavigation)/app/chart/[id]/BarChart";
-import LineChart from "@app/(appListNavigation)/app/chart/[id]/LineChart";
-import PieChart from "@app/(appListNavigation)/app/chart/[id]/PieChart";
-import RadarChart from "@app/(appListNavigation)/app/chart/[id]/RadarChart";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Select } from "@components/ui/v4/select";
+import BarChart from "@features/chart/components/BarChart";
+import LineChart from "@features/chart/components/LineChart";
+import PieChart from "@features/chart/components/PieChart";
+import RadarChart from "@features/chart/components/RadarChart";
 
 const ShowChartClient = ({
   data,
