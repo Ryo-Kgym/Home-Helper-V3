@@ -1,6 +1,7 @@
-import { convertToViewRecords } from "@features/viewRecordList/server/convertToViewRecords";
 import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
+
+import { parseToViewRecords } from "./parseToViewRecords";
 
 const viewFields: ViewFields = {
   vc1: {
@@ -120,46 +121,46 @@ describe("convertToViewRecords", () => {
       },
     ];
 
-    expect(
-      convertToViewRecords(viewFields, viewApps),
-    ).toStrictEqual<ViewRecords>({
-      "va1-a1-r1": {
-        appId: "app1",
-        appName: "appName1",
-        recordId: "a1-r1",
-        columns: {
-          vc1: { fieldKind: "date", value: "2024-04-11T15:00:00.000Z" },
-          vc2: { fieldKind: "text", value: "aaa2" },
+    expect(parseToViewRecords(viewFields, viewApps)).toStrictEqual<ViewRecords>(
+      {
+        "va1-a1-r1": {
+          appId: "app1",
+          appName: "appName1",
+          recordId: "a1-r1",
+          columns: {
+            vc1: { fieldKind: "date", value: "2024-04-11T15:00:00.000Z" },
+            vc2: { fieldKind: "text", value: "aaa2" },
+          },
+        },
+        "va1-a1-r2": {
+          appId: "app1",
+          appName: "appName1",
+          recordId: "a1-r2",
+          columns: {
+            vc1: { fieldKind: "date", value: "2024-04-12T15:00:00.000Z" },
+            vc2: { fieldKind: "text", value: "bbb2" },
+          },
+        },
+        "va2-a2-r1": {
+          appId: "app2",
+          appName: "appName2",
+          recordId: "a2-r1",
+          columns: {
+            vc1: { fieldKind: "date", value: "2024-04-11T15:00:00.000Z" },
+            vc2: { fieldKind: "text", value: "ccc2" },
+          },
+        },
+        "va2-a2-r2": {
+          appId: "app2",
+          appName: "appName2",
+          recordId: "a2-r2",
+          columns: {
+            vc1: { fieldKind: "date", value: "2024-04-12T15:00:00.000Z" },
+            vc2: { fieldKind: "text", value: "ddd2" },
+          },
         },
       },
-      "va1-a1-r2": {
-        appId: "app1",
-        appName: "appName1",
-        recordId: "a1-r2",
-        columns: {
-          vc1: { fieldKind: "date", value: "2024-04-12T15:00:00.000Z" },
-          vc2: { fieldKind: "text", value: "bbb2" },
-        },
-      },
-      "va2-a2-r1": {
-        appId: "app2",
-        appName: "appName2",
-        recordId: "a2-r1",
-        columns: {
-          vc1: { fieldKind: "date", value: "2024-04-11T15:00:00.000Z" },
-          vc2: { fieldKind: "text", value: "ccc2" },
-        },
-      },
-      "va2-a2-r2": {
-        appId: "app2",
-        appName: "appName2",
-        recordId: "a2-r2",
-        columns: {
-          vc1: { fieldKind: "date", value: "2024-04-12T15:00:00.000Z" },
-          vc2: { fieldKind: "text", value: "ddd2" },
-        },
-      },
-    });
+    );
   });
 
   it("アプリレコードに指定するカラムが存在しない場合、空文字を入れる", () => {
@@ -197,7 +198,7 @@ describe("convertToViewRecords", () => {
       },
     ];
 
-    expect(convertToViewRecords(viewFields, viewApps)).toStrictEqual({
+    expect(parseToViewRecords(viewFields, viewApps)).toStrictEqual({
       "va1-a1-r1": {
         appId: "app1",
         appName: "appName1",

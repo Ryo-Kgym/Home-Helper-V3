@@ -3,13 +3,14 @@ import {
   ViewRecords,
 } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
-import { GetViewRecordsSourceQuery } from "@v3/graphql/public/type";
+
+import { GetViewRecordsSourceQuery } from "../type";
 
 type ViewAppQuery = NonNullable<
   NonNullable<GetViewRecordsSourceQuery>["view"]
 >["viewApps"];
 
-export const convertToViewRecords = (
+export const parseToViewRecords = (
   viewFields: ViewFields,
   viewApps: ViewAppQuery,
 ): ViewRecords => {

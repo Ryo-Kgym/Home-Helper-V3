@@ -1,7 +1,7 @@
-import { convertToViewRecords } from "@features/viewRecordList/server/convertToViewRecords";
 import { ViewRecordListClient } from "@pageComponents/viewRecordList/components/ViewRecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToView } from "@v3/graphql/public/convert/parseToView";
+import { parseToViewRecords } from "@v3/graphql/public/convert/parseToViewRecords";
 import { GetViewRecordsSourceDocument } from "@v3/graphql/public/type";
 
 export const ViewRecordListServer = async ({ viewId }: { viewId: string }) => {
@@ -21,7 +21,7 @@ export const ViewRecordListServer = async ({ viewId }: { viewId: string }) => {
     { name: "アプリ名" },
   ];
 
-  const records = convertToViewRecords(view.fields, data.view?.viewApps ?? []);
+  const records = parseToViewRecords(view.fields, data.view?.viewApps ?? []);
 
   return (
     <ViewRecordListClient
