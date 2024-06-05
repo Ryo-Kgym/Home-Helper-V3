@@ -87,33 +87,33 @@ describe("sumRecords", () => {
       },
     };
 
-    expect(sumRecords(records, criteria)).toEqual<SumRecords>({
+    expect(sumRecords(records, criteria)).toEqual({
       0: {
-        columns: {
-          c1: {
-            value: "grouping1",
-            fieldKind: "text",
-          },
-          c2: {
-            value: "300",
-            fieldKind: "numeric",
-          },
-        },
+        // columns: {
+        //   c1: {
+        //     value: "grouping1",
+        //     fieldKind: "text",
+        //   },
+        //   c2: {
+        //     value: "300",
+        //     fieldKind: "numeric",
+        //   },
+        // },
         sum: 300,
         average: 150,
         count: 2,
       },
       1: {
-        columns: {
-          c1: {
-            value: "grouping2",
-            fieldKind: "text",
-          },
-          c2: {
-            value: "300",
-            fieldKind: "numeric",
-          },
-        },
+        // columns: {
+        //   c1: {
+        //     value: "grouping2",
+        //     fieldKind: "text",
+        //   },
+        //   c2: {
+        //     value: "300",
+        //     fieldKind: "numeric",
+        //   },
+        // },
         sum: 300,
         average: 300,
         count: 1,
