@@ -1,9 +1,9 @@
+import * as judgeComplexity from "@oneforall/domain/complexity/judgeComplexity";
 import { Record, RecordColumns } from "@oneforall/domain/schema/recordSchema";
 
 import { filterLookupData } from "./filterLookupData";
-import * as judgeComplexity from "./judgeComplexity";
 
-jest.mock("./judgeComplexity");
+jest.mock("@oneforall/domain/complexity/judgeComplexity");
 
 describe("filterLookupData", () => {
   const lookupRecord: Record = {
