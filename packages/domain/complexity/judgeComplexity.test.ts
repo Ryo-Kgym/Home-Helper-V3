@@ -1,4 +1,4 @@
-import { judgeComplexity } from "@features/appRecordList/client/useGetLookupOptions/judgeComplexity";
+import { judgeComplexity } from "./judgeComplexity";
 
 describe("judgeComplexity", () => {
   describe("要素が0つ", () => {

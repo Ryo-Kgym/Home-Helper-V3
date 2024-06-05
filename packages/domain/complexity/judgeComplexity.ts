@@ -1,4 +1,4 @@
-import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
+import { FilterComplexity } from "../schema/filterComplexitySchema";
 
 export const judgeComplexity = (
   source: { complexity: FilterComplexity; result: boolean }[],
