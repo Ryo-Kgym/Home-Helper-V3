@@ -1,5 +1,5 @@
-import { ModalProps } from "@components/ui/v4/modal/index";
 import { ReactNode } from "react";
+import { ModalProps } from "@components/ui/v4/modal/index";
 
 export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
   if (!isOpen) {
@@ -26,7 +26,7 @@ export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
     >
       <div
         className={
-          "h-2/3 min-h-[200px] w-2/3 max-w-[750px] overflow-y-scroll bg-white p-5 text-left"
+          "h-2/3 min-h-[200px] w-2/3 max-w-[1024px] overflow-y-scroll bg-white p-5 text-left"
         }
         onClick={(event) => {
           event.stopPropagation();
