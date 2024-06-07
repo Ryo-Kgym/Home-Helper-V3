@@ -194,7 +194,9 @@ describe("convertToFields", () => {
         name: "Field 6",
         fieldKind: "numeric",
         index: 6,
-        options: {},
+        options: {
+          thousandsSeparatorPosition: 3,
+        },
       },
     ];
     const expectedFields = {
@@ -203,7 +205,7 @@ describe("convertToFields", () => {
         fieldName: "Field 6",
         fieldKind: "numeric",
         fieldIndex: 6,
-        options: {},
+        options: { thousandsSeparatorPosition: 3 },
       },
     };
 
