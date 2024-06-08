@@ -12,12 +12,16 @@ query getViewRecordsSource($viewId: String!) {
       options
     }
     viewApps {
+      __typename
       id
       appId
       fields
       app {
+        __typename
+        id
         name
         records {
+          __typename
           id
           index
           columns

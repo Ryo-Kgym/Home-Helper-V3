@@ -12,7 +12,7 @@ export const viewRecordColumnSchema = z.object({
     .optional(),
 });
 
-const viewColumnsSchema = z.record(
+const viewRecordColumnsSchema = z.record(
   z.string(), // fieldId
   viewRecordColumnSchema,
 );
@@ -23,9 +23,10 @@ export const viewRecordsSchema = z.record(
     appId: z.string(),
     appName: z.string(),
     recordId: z.string(),
-    columns: viewColumnsSchema,
+    columns: viewRecordColumnsSchema,
   }),
 );
 
 export type ViewRecordColumn = z.infer<typeof viewRecordColumnSchema>;
+export type ViewRecordColumns = z.infer<typeof viewRecordColumnsSchema>;
 export type ViewRecords = z.infer<typeof viewRecordsSchema>;

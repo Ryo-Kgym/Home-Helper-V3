@@ -664,6 +664,7 @@ export type GroupBoolExp = {
   name?: InputMaybe<StringComparisonExp>;
   summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
   summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
+  summaryViews?: InputMaybe<SummaryViewBoolExp>;
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryBoolExp>;
@@ -688,6 +689,7 @@ export type GroupOrderBy = {
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
   summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
+  summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
   viewsAggregate?: InputMaybe<ViewAggregateOrderBy>;
@@ -4206,6 +4208,124 @@ export type StringComparisonExp = {
   _similar?: InputMaybe<Scalars["String"]>;
 };
 
+/** order by aggregate values of table "summary_view" */
+export type SummaryViewAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<SummaryViewMaxOrderBy>;
+  min?: InputMaybe<SummaryViewMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "summary_view" */
+export type SummaryViewArrRelInsertInput = {
+  data: Array<SummaryViewInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<SummaryViewOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "summary_view". All fields are combined with a logical 'AND'. */
+export type SummaryViewBoolExp = {
+  _and?: InputMaybe<Array<SummaryViewBoolExp>>;
+  _not?: InputMaybe<SummaryViewBoolExp>;
+  _or?: InputMaybe<Array<SummaryViewBoolExp>>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  groupingFields?: InputMaybe<JsonComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+  summaryFields?: InputMaybe<JsonComparisonExp>;
+  view?: InputMaybe<ViewBoolExp>;
+  viewId?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "summary_view" */
+export type SummaryViewConstraint =
+  /** unique or primary key constraint on columns "id" */
+  "summary_view_pkey";
+
+/** input type for inserting data into table "summary_view" */
+export type SummaryViewInsertInput = {
+  groupId?: InputMaybe<Scalars["String"]>;
+  groupingFields?: InputMaybe<Scalars["json"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  summaryFields?: InputMaybe<Scalars["json"]>;
+  view?: InputMaybe<ViewObjRelInsertInput>;
+  viewId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "summary_view" */
+export type SummaryViewMaxOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  viewId?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "summary_view" */
+export type SummaryViewMinOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  viewId?: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "summary_view" */
+export type SummaryViewOnConflict = {
+  constraint: SummaryViewConstraint;
+  updateColumns?: Array<SummaryViewUpdateColumn>;
+  where?: InputMaybe<SummaryViewBoolExp>;
+};
+
+/** Ordering options when selecting data from "summary_view". */
+export type SummaryViewOrderBy = {
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  groupingFields?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+  summaryFields?: InputMaybe<OrderBy>;
+  view?: InputMaybe<ViewOrderBy>;
+  viewId?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "summary_view" */
+export type SummaryViewSelectColumn =
+  /** column name */
+  | "groupId"
+  /** column name */
+  | "groupingFields"
+  /** column name */
+  | "id"
+  /** column name */
+  | "name"
+  /** column name */
+  | "summaryFields"
+  /** column name */
+  | "viewId";
+
+/** Streaming cursor of the table "summary_view" */
+export type SummaryViewStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: SummaryViewStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type SummaryViewStreamCursorValueInput = {
+  groupId?: InputMaybe<Scalars["String"]>;
+  groupingFields?: InputMaybe<Scalars["json"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  summaryFields?: InputMaybe<Scalars["json"]>;
+  viewId?: InputMaybe<Scalars["String"]>;
+};
+
+/** placeholder for update columns of table "summary_view" (current role has no relevant permissions) */
+export type SummaryViewUpdateColumn =
+  /** placeholder (do not use) */
+  "_PLACEHOLDER";
+
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
 export type TimestampComparisonExp = {
   _eq?: InputMaybe<Scalars["timestamp"]>;
@@ -4457,6 +4577,7 @@ export type ViewBoolExp = {
   group?: InputMaybe<GroupBoolExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
+  summaryViews?: InputMaybe<SummaryViewBoolExp>;
   user?: InputMaybe<UserBoolExp>;
   viewApps?: InputMaybe<ViewAppBoolExp>;
   viewFields?: InputMaybe<ViewFieldBoolExp>;
@@ -4662,6 +4783,7 @@ export type ViewInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
+  summaryViews?: InputMaybe<SummaryViewArrRelInsertInput>;
   user?: InputMaybe<UserObjRelInsertInput>;
   viewApps?: InputMaybe<ViewAppArrRelInsertInput>;
   viewFields?: InputMaybe<ViewFieldArrRelInsertInput>;
@@ -4698,6 +4820,7 @@ export type ViewOrderBy = {
   group?: InputMaybe<GroupOrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
   user?: InputMaybe<UserOrderBy>;
   viewAppsAggregate?: InputMaybe<ViewAppAggregateOrderBy>;
   viewFieldsAggregate?: InputMaybe<ViewFieldAggregateOrderBy>;
@@ -5280,7 +5403,7 @@ export type GetViewQuery = {
       options?: any | null;
     }>;
     viewApps: Array<{
-      __typename?: "ViewApp";
+      __typename: "ViewApp";
       id: string;
       appId: string;
       fields: any;
@@ -5307,15 +5430,16 @@ export type GetViewRecordsSourceQuery = {
       options?: any | null;
     }>;
     viewApps: Array<{
-      __typename?: "ViewApp";
+      __typename: "ViewApp";
       id: string;
       appId: string;
       fields: any;
       app: {
-        __typename?: "App";
+        __typename: "App";
+        id: string;
         name: string;
         records: Array<{
-          __typename?: "Record";
+          __typename: "Record";
           id: string;
           index: number;
           columns: any;
@@ -7842,6 +7966,10 @@ export const GetViewDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "appId" } },
                       {
@@ -7956,6 +8084,10 @@ export const GetViewRecordsSourceDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "appId" } },
                       {
@@ -7970,6 +8102,14 @@ export const GetViewRecordsSourceDocument = {
                           selections: [
                             {
                               kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
                               name: { kind: "Name", value: "name" },
                             },
                             {
@@ -7978,6 +8118,10 @@ export const GetViewRecordsSourceDocument = {
                               selectionSet: {
                                 kind: "SelectionSet",
                                 selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "__typename" },
+                                  },
                                   {
                                     kind: "Field",
                                     name: { kind: "Name", value: "id" },

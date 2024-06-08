@@ -1,7 +1,6 @@
+import { judgeComplexity } from "@oneforall/domain/complexity/judgeComplexity";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { Record, RecordColumns } from "@oneforall/domain/schema/recordSchema";
-
-import { judgeComplexity } from "./judgeComplexity";
 
 /**
  * @package

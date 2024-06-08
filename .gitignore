@@ -51,3 +51,4 @@ yarn-error.log*
 /packages/graphql/**/hasura-*codegen.yml
 /packages/graphql/**/hasura-graphql.schema.json
 /packages/graphql/**/schema.json
+/packages/graphql/public/schema/graphql.config.yml
