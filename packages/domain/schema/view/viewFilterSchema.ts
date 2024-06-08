@@ -3,8 +3,8 @@ import { z } from "zod";
 import { fieldKindSchema } from "../appSchema";
 import { filterComplexitySchema } from "../filterComplexitySchema";
 
-const viewFiltersSchema = z.record(
-  z.number(), // filterIndex
+export const viewFiltersSchema = z.record(
+  z.string(), // filterIndex
   z.object({
     fieldId: z.string(),
     fieldKind: fieldKindSchema,

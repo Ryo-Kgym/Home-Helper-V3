@@ -1,10 +1,17 @@
+import { viewFiltersSchema } from "@oneforall/domain/schema/view/viewFilterSchema";
 import { ViewRecordListClient } from "@pageComponents/viewRecordList/components/ViewRecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToView } from "@v3/graphql/public/convert/parseToView";
 import { parseToViewRecords } from "@v3/graphql/public/convert/parseToViewRecords";
 import { GetViewRecordsSourceDocument } from "@v3/graphql/public/type";
 
-export const ViewRecordListServer = async ({ viewId }: { viewId: string }) => {
+export const ViewRecordListServer = async ({
+  viewId,
+  filterStr,
+}: {
+  viewId: string;
+  filterStr: string | undefined;
+}) => {
   const { data } = await fetchQuery(GetViewRecordsSourceDocument, {
     viewId,
   });
@@ -21,12 +28,20 @@ export const ViewRecordListServer = async ({ viewId }: { viewId: string }) => {
     { name: "アプリ名" },
   ];
 
-  const records = parseToViewRecords(view.fields, data.view?.viewApps ?? []);
+  const viewFilters = viewFiltersSchema.safeParse(
+    JSON.parse(filterStr ?? "{}"),
+  ).data;
 
+  const records = parseToViewRecords(
+    view.fields,
+    data.view?.viewApps ?? [],
+    viewFilters,
+  );
   return (
     <ViewRecordListClient
       view={view}
       records={records}
+      viewFilters={viewFilters}
       headerItems={headerItems}
     />
   );
