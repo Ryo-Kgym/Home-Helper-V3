@@ -12,6 +12,7 @@ query getView($viewId: String!) {
       options
     }
     viewApps {
+      __typename
       id
       appId
       fields
