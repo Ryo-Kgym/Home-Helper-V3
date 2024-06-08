@@ -1,4 +1,5 @@
 import { judgeComplexity } from "@oneforall/domain/complexity/judgeComplexity";
+import { operate } from "@oneforall/domain/operation/operate";
 import { ViewFilters } from "@oneforall/domain/schema/view/viewFilterSchema";
 import { ViewRecordColumns } from "@oneforall/domain/schema/view/viewRecordSchema";
 
@@ -11,10 +12,9 @@ export const filterViewRecord = (
 ): boolean => {
   if (Object.keys(filters).length === 0) return true;
 
-  // TODO eq test
   const filterResult = Object.values(filters).map((filter) => ({
     complexity: filter.filterComplexity,
-    result: viewRecordColumns[filter.fieldId]?.value === filter.value,
+    result: operate(filter, viewRecordColumns[filter.fieldId]?.value),
   }));
 
   return judgeComplexity(filterResult);

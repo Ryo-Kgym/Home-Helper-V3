@@ -5,6 +5,7 @@ import { Select } from "@components/ui/v4/select";
 import { Table } from "@components/ui/v4/table";
 import { NumberInput, TextInput } from "@components/ui/v4/textInput";
 import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
+import { FilterOperator } from "@oneforall/domain/schema/filterOperatorSchema";
 import { ViewFilters } from "@oneforall/domain/schema/view/viewFilterSchema";
 import {
   ViewField,
@@ -25,7 +26,7 @@ export const InputFieldFilter = ({
   disabled?: boolean;
 }) => {
   const [fieldId, setFieldId] = useState<string>(filter.fieldId);
-  const [operator, setOperator] = useState<string>(filter.operator);
+  const [operator, setOperator] = useState<FilterOperator>(filter.operator);
   const [value, setValue] = useState<string>(filter.value);
   const [filterComplexity, setFilterComplexity] = useState<FilterComplexity>(
     filter.filterComplexity,
@@ -56,9 +57,20 @@ export const InputFieldFilter = ({
         />
       </Table.BodyTd>
       <Table.BodyTd>
-        <Select
+        <Select<FilterOperator>
           label={""}
-          data={[{ label: "等しい", value: "eq" }]}
+          data={[
+            { label: "等しい", value: "eq" },
+            { label: "等しくない", value: "neq" },
+            { label: "より大きい", value: "gt" },
+            { label: "以上", value: "gte" },
+            { label: "より小さい", value: "lt" },
+            { label: "以下", value: "lte" },
+            { label: "含む", value: "in" },
+            { label: "含まない", value: "nin" },
+            { label: "部分一致", value: "like" },
+            { label: "部分不一致", value: "nlike" },
+          ]}
           value={operator}
           setValue={setOperator}
           disabled={disabled}

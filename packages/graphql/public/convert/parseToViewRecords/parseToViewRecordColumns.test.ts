@@ -22,6 +22,7 @@ describe("parseToViewRecordColumns", () => {
         },
       },
       {
+        __typename: "Record",
         id: "r1",
         index: 0,
         columns: {
@@ -56,6 +57,7 @@ describe("parseToViewRecordColumns", () => {
         },
       },
       {
+        __typename: "Record",
         id: "r1",
         index: 0,
         columns: {}, // データがない

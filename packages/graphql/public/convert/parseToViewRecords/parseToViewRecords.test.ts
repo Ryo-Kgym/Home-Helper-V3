@@ -2,6 +2,7 @@ import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
 import { parseToViewRecords } from "./parseToViewRecords";
+import { ViewAppsQuery } from "./type";
 
 const viewFields: ViewFields = {
   vc1: {
@@ -24,14 +25,18 @@ const viewFields: ViewFields = {
 
 describe("convertToViewRecords", () => {
   it("正常に変換できた場合", () => {
-    const viewApps = [
+    const viewApps: ViewAppsQuery = [
       {
+        __typename: "ViewApp",
         id: "va1",
         appId: "app1",
         app: {
+          __typename: "App",
+          id: "app1",
           name: "appName1",
           records: [
             {
+              __typename: "Record",
               id: "a1-r1",
               index: 1,
               columns: {
@@ -47,6 +52,7 @@ describe("convertToViewRecords", () => {
               },
             },
             {
+              __typename: "Record",
               id: "a1-r2",
               index: 2,
               columns: {
@@ -73,12 +79,16 @@ describe("convertToViewRecords", () => {
         },
       },
       {
+        __typename: "ViewApp",
         id: "va2",
         appId: "app2",
         app: {
+          __typename: "App",
+          id: "app2",
           name: "appName2",
           records: [
             {
+              __typename: "Record",
               id: "a2-r1",
               index: 1,
               columns: {
@@ -94,6 +104,7 @@ describe("convertToViewRecords", () => {
               },
             },
             {
+              __typename: "Record",
               id: "a2-r2",
               index: 2,
               columns: {
@@ -164,14 +175,18 @@ describe("convertToViewRecords", () => {
   });
 
   it("アプリレコードに指定するカラムが存在しない場合、空文字を入れる", () => {
-    const viewApps = [
+    const viewApps: ViewAppsQuery = [
       {
+        __typename: "ViewApp",
         id: "va1",
         appId: "app1",
         app: {
+          __typename: "App",
+          id: "app1",
           name: "appName1",
           records: [
             {
+              __typename: "Record",
               id: "a1-r1",
               index: 1,
               columns: {
