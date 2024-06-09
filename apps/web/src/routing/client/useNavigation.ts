@@ -12,7 +12,13 @@ export const useNavigation = () => {
     key: string;
     value: string;
   }) => {
-    return push(`${pathname}?${searchParams.toString()}&${key}=${value}`);
+    const searchParamJoined = Object.entries(
+      Object.fromEntries(searchParams.entries()),
+    )
+      .map(([k, v]) => `${k}=${v}`)
+      .join("&");
+
+    return push(`${pathname}?${searchParamJoined}&${key}=${value}`);
   };
 
   return { prependParamAndPush };
