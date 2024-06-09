@@ -135,6 +135,7 @@ describe("convertToViewRecords", () => {
     expect(parseToViewRecords(viewFields, viewApps)).toStrictEqual<ViewRecords>(
       {
         "va1-a1-r1": {
+          viewAppId: "va1",
           appId: "app1",
           appName: "appName1",
           recordId: "a1-r1",
@@ -144,6 +145,7 @@ describe("convertToViewRecords", () => {
           },
         },
         "va1-a1-r2": {
+          viewAppId: "va1",
           appId: "app1",
           appName: "appName1",
           recordId: "a1-r2",
@@ -153,6 +155,7 @@ describe("convertToViewRecords", () => {
           },
         },
         "va2-a2-r1": {
+          viewAppId: "va2",
           appId: "app2",
           appName: "appName2",
           recordId: "a2-r1",
@@ -162,6 +165,7 @@ describe("convertToViewRecords", () => {
           },
         },
         "va2-a2-r2": {
+          viewAppId: "va2",
           appId: "app2",
           appName: "appName2",
           recordId: "a2-r2",
@@ -215,6 +219,7 @@ describe("convertToViewRecords", () => {
 
     expect(parseToViewRecords(viewFields, viewApps)).toStrictEqual({
       "va1-a1-r1": {
+        viewAppId: "va1",
         appId: "app1",
         appName: "appName1",
         recordId: "a1-r1",

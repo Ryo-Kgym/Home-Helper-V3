@@ -27,6 +27,7 @@ export const parseToViewRecords = (
         .map((appRecord) => [
           viewApp.id + "-" + appRecord.id,
           {
+            viewAppId: viewApp.id,
             appId: viewApp.appId,
             appName: viewApp.app.name,
             recordId: appRecord.id,
