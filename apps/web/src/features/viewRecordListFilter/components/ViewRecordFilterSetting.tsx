@@ -26,20 +26,22 @@ export const ViewRecordFilterSetting = ({
       <div>
         <div>フィルターを入力</div>
         <Table>
-          <Table.BodyTr>
-            <InputFieldFilter
-              index={Object.keys(filters).length}
-              viewFields={view.fields}
-              filter={{
-                fieldId: "",
-                fieldKind: "text",
-                operator: "eq",
-                value: "",
-                filterComplexity: "and",
-              }}
-              setFilters={setFilters}
-            />
-          </Table.BodyTr>
+          <tbody>
+            <Table.BodyTr>
+              <InputFieldFilter
+                index={Object.keys(filters).length}
+                viewFields={view.fields}
+                filter={{
+                  fieldId: "",
+                  fieldKind: "text",
+                  operator: "eq",
+                  value: "",
+                  filterComplexity: "and",
+                }}
+                setFilters={setFilters}
+              />
+            </Table.BodyTr>
+          </tbody>
         </Table>
       </div>
 
