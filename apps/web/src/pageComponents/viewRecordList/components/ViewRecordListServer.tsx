@@ -8,9 +8,11 @@ import { GetViewRecordsSourceDocument } from "@v3/graphql/public/type";
 export const ViewRecordListServer = async ({
   viewId,
   filterStr,
+  recordId,
 }: {
   viewId: string;
   filterStr: string | undefined;
+  recordId: string | undefined;
 }) => {
   const { data } = await fetchQuery(GetViewRecordsSourceDocument, {
     viewId,
@@ -43,6 +45,7 @@ export const ViewRecordListServer = async ({
       records={records}
       viewFilters={viewFilters}
       headerItems={headerItems}
+      existsRecordId={!!recordId}
     />
   );
 };
