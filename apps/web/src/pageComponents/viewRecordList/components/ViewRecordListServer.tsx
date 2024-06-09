@@ -1,18 +1,27 @@
+import { Fields } from "@oneforall/domain/schema/appSchema";
+import { Record } from "@oneforall/domain/schema/recordSchema";
 import { viewFiltersSchema } from "@oneforall/domain/schema/view/viewFilterSchema";
+import { ViewRecord } from "@oneforall/domain/schema/view/viewRecordSchema";
+import { ViewRecordDetailClient } from "@pageComponents/viewRecordList/components/ViewRecordDetailClient";
 import { ViewRecordListClient } from "@pageComponents/viewRecordList/components/ViewRecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
+import { parseToFields } from "@v3/graphql/public/convert/parseToFields";
+import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
 import { parseToView } from "@v3/graphql/public/convert/parseToView";
 import { parseToViewRecords } from "@v3/graphql/public/convert/parseToViewRecords";
-import { GetViewRecordsSourceDocument } from "@v3/graphql/public/type";
+import {
+  GetViewRecordsSourceDocument,
+  GetViewRecordsSourceQuery,
+} from "@v3/graphql/public/type";
 
 export const ViewRecordListServer = async ({
   viewId,
   filterStr,
-  recordId,
+  appId_RecordId,
 }: {
   viewId: string;
   filterStr: string | undefined;
-  recordId: string | undefined;
+  appId_RecordId: string | undefined; // appId-recordId
 }) => {
   const { data } = await fetchQuery(GetViewRecordsSourceDocument, {
     viewId,
@@ -39,13 +48,39 @@ export const ViewRecordListServer = async ({
     data.view?.viewApps ?? [],
     viewFilters,
   );
+
   return (
-    <ViewRecordListClient
-      view={view}
-      records={records}
-      viewFilters={viewFilters}
-      headerItems={headerItems}
-      existsRecordId={!!recordId}
-    />
+    <>
+      <ViewRecordListClient
+        view={view}
+        records={records}
+        viewFilters={viewFilters}
+        headerItems={headerItems}
+      />
+      <ViewRecordDetailClient
+        {...extractApp(records[appId_RecordId ?? ""], data)}
+        existsRecordId={!!appId_RecordId}
+      />
+    </>
   );
+};
+
+const extractApp = (
+  viewRecord: ViewRecord | undefined,
+  data: GetViewRecordsSourceQuery,
+): {
+  fields: Fields;
+  record: Record | undefined;
+} => {
+  if (!viewRecord) return { fields: {}, record: undefined };
+
+  const { viewAppId, recordId } = viewRecord;
+  const app = data.view?.viewApps.find((va) => va.id === viewAppId)?.app;
+
+  return {
+    fields: parseToFields(app?.fields ?? []),
+    record: Object.values(parseToRecords(app?.records ?? [])).find(
+      (r) => r.recordId === recordId,
+    ),
+  };
 };

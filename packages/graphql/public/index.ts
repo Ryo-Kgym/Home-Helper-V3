@@ -5528,6 +5528,14 @@ export type GetViewRecordsSourceQuery = {
         __typename: "App";
         id: string;
         name: string;
+        fields: Array<{
+          __typename: "Field";
+          id: string;
+          name: string;
+          index: number;
+          fieldKind: string;
+          options?: any | null;
+        }>;
         records: Array<{
           __typename: "Record";
           id: string;
@@ -6090,16 +6098,18 @@ export const GetViewRecordsSourceDocument = gql`
           __typename
           id
           name
+          fields {
+            ...fragFields
+          }
           records {
-            __typename
-            id
-            index
-            columns
+            ...fragRecords
           }
         }
       }
     }
   }
+  ${FragFieldsFragmentDoc}
+  ${FragRecordsFragmentDoc}
 `;
 
 export function useGetViewRecordsSourceQuery(

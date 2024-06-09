@@ -20,11 +20,11 @@ query getViewRecordsSource($viewId: String!) {
         __typename
         id
         name
+        fields {
+          ...fragFields
+        }
         records {
-          __typename
-          id
-          index
-          columns
+          ...fragRecords
         }
       }
     }

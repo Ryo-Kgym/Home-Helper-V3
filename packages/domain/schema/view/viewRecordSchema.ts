@@ -17,16 +17,20 @@ const viewRecordColumnsSchema = z.record(
   viewRecordColumnSchema,
 );
 
+const viewRecordSchema = z.object({
+  viewAppId: z.string(),
+  appId: z.string(),
+  appName: z.string(),
+  recordId: z.string(),
+  columns: viewRecordColumnsSchema,
+});
+
 export const viewRecordsSchema = z.record(
   z.string(), // appId + "-" + recordId
-  z.object({
-    appId: z.string(),
-    appName: z.string(),
-    recordId: z.string(),
-    columns: viewRecordColumnsSchema,
-  }),
+  viewRecordSchema,
 );
 
 export type ViewRecordColumn = z.infer<typeof viewRecordColumnSchema>;
 export type ViewRecordColumns = z.infer<typeof viewRecordColumnsSchema>;
+export type ViewRecord = z.infer<typeof viewRecordSchema>;
 export type ViewRecords = z.infer<typeof viewRecordsSchema>;

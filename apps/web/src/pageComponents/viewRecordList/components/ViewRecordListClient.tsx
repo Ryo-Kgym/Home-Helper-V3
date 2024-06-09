@@ -1,8 +1,6 @@
 "use client";
 
 import { ComponentProps, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Drawer } from "@components/ui/v4/drawer";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
 import { Table } from "@components/ui/v4/table";
@@ -19,18 +17,15 @@ export const ViewRecordListClient = ({
   view,
   records: defaultRecords,
   viewFilters: defaultViewFilters,
-  existsRecordId,
   headerItems,
 }: {
   view: View;
   records: ViewRecords;
   viewFilters: ViewFilters | undefined;
-  existsRecordId: boolean;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
   const initialize = useInitViewRecords();
   const [isOpenFilter, setIsOpenFilter] = useState(false);
-  const { back } = useRouter();
 
   useEffect(
     () => {
@@ -53,9 +48,6 @@ export const ViewRecordListClient = ({
           defaultViewFilters={defaultViewFilters}
         />
       </Modal>
-      <Drawer opened={existsRecordId} onClose={back}>
-        <div>詳細</div>
-      </Drawer>
     </div>
   );
 };

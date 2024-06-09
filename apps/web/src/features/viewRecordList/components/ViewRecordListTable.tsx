@@ -22,7 +22,10 @@ export const ViewRecordListTable = ({
       <Table.Body
         data={Object.entries(viewRecords)}
         rowClick={([, v]) => {
-          prependParamAndPush({ key: "recordId", value: v.recordId });
+          prependParamAndPush({
+            key: "recordId",
+            value: `${v.viewAppId}-${v.recordId}`,
+          });
         }}
         renderItem={([, v], index) => (
           <>

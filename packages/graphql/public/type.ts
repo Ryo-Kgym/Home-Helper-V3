@@ -5438,6 +5438,14 @@ export type GetViewRecordsSourceQuery = {
         __typename: "App";
         id: string;
         name: string;
+        fields: Array<{
+          __typename: "Field";
+          id: string;
+          name: string;
+          index: number;
+          fieldKind: string;
+          options?: any | null;
+        }>;
         records: Array<{
           __typename: "Record";
           id: string;
@@ -8114,25 +8122,29 @@ export const GetViewRecordsSourceDocument = {
                             },
                             {
                               kind: "Field",
+                              name: { kind: "Name", value: "fields" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "FragmentSpread",
+                                    name: { kind: "Name", value: "fragFields" },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
                               name: { kind: "Name", value: "records" },
                               selectionSet: {
                                 kind: "SelectionSet",
                                 selections: [
                                   {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "__typename" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "index" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "columns" },
+                                    kind: "FragmentSpread",
+                                    name: {
+                                      kind: "Name",
+                                      value: "fragRecords",
+                                    },
                                   },
                                 ],
                               },
@@ -8146,6 +8158,42 @@ export const GetViewRecordsSourceDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragFields" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Field" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
+          { kind: "Field", name: { kind: "Name", value: "options" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragRecords" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Record" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "columns" } },
         ],
       },
     },

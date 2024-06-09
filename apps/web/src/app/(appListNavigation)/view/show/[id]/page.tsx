@@ -6,6 +6,8 @@ const Page = ({
 }: {
   params: { id: string };
   searchParams: { filter: string | undefined; recordId: string | undefined };
-}) => <ViewRecordList viewId={id} filterStr={filter} recordId={recordId} />;
+}) => (
+  <ViewRecordList viewId={id} filterStr={filter} appId_RecordId={recordId} />
+);
 
 export default Page;
