@@ -23,14 +23,18 @@ const Body = <T,>({
   data,
   renderItem,
   children,
+  rowClick,
 }: {
   data: T[];
   renderItem: (t: T, index: number) => ReactNode;
   children?: ReactNode;
+  rowClick?: (item: T) => void;
 }) => (
   <tbody>
     {data.map((item, index) => (
-      <Tr key={index}>{renderItem(item, index)}</Tr>
+      <Tr key={index} rowClick={rowClick && (() => rowClick(item))}>
+        {renderItem(item, index)}
+      </Tr>
     ))}
     {children}
     {data.length === 0 && (
@@ -43,8 +47,19 @@ const Body = <T,>({
   </tbody>
 );
 
-const Tr = ({ children }: { children: ReactNode }) => (
-  <tr className={"border border-gray-300 even:bg-amber-50"}>{children}</tr>
+const Tr = ({
+  children,
+  rowClick,
+}: {
+  children: ReactNode;
+  rowClick?: () => void;
+}) => (
+  <tr
+    className={`border border-gray-300 even:bg-amber-50 hover:bg-amber-300 ${rowClick ? "cursor-pointer" : ""}`}
+    onClick={rowClick}
+  >
+    {children}
+  </tr>
 );
 
 const Td = ({
