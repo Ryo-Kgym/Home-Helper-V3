@@ -25,7 +25,7 @@ export const ViewRecordListClient = ({
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
   const initialize = useInitViewRecords();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
 
   useEffect(
     () => {
@@ -39,10 +39,10 @@ export const ViewRecordListClient = ({
     <div className={"space-y-10"}>
       <Title title={view.name}>
         <RedirectViewSettingButton viewId={view.id} />
-        <OpenViewFilterButton onClose={() => setIsOpen(!isOpen)} />
+        <OpenViewFilterButton onClose={() => setIsOpenFilter(!isOpenFilter)} />
       </Title>
       <ViewRecordListTable view={view} headerItems={headerItems} />
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal isOpen={isOpenFilter} onClose={() => setIsOpenFilter(false)}>
         <ViewRecordFilterSetting
           view={view}
           defaultViewFilters={defaultViewFilters}

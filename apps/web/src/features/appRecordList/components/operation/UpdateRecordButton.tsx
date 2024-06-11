@@ -1,4 +1,5 @@
 import type { Records } from "@oneforall/domain/schema/recordSchema";
+import { Floppy } from "@components/ui/v4/icon/Floppy";
 import { notify } from "@components/ui/v4/notify/notify";
 import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 import { useUpdateRecordMutation } from "@v3/graphql/public";
@@ -28,9 +29,13 @@ export const UpdateRecordButton = ({
       notify("レコードを更新しました");
     } catch (e) {
       console.error(e);
-      notify("レコード更新に更新しました");
+      notify("レコード更新に失敗しました");
     }
   };
 
-  return <button onClick={updateHandler}>更新</button>;
+  return (
+    <button onClick={updateHandler}>
+      <Floppy />
+    </button>
+  );
 };

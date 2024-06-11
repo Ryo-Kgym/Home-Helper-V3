@@ -12,11 +12,10 @@ import { ViewAppsQuery } from "./type";
 export const parseToViewRecords = (
   viewFields: ViewFields,
   viewApps: ViewAppsQuery,
-  // TODO test
   filters: ViewFilters = {},
 ): ViewRecords => {
-  const viewAppsArray = viewApps.map((viewApp) => {
-    return Object.fromEntries(
+  const viewAppsArray = viewApps.map((viewApp) =>
+    Object.fromEntries(
       viewApp.app.records
         .filter((appRecord) =>
           filterViewRecord(
@@ -27,6 +26,7 @@ export const parseToViewRecords = (
         .map((appRecord) => [
           viewApp.id + "-" + appRecord.id,
           {
+            viewAppId: viewApp.id,
             appId: viewApp.appId,
             appName: viewApp.app.name,
             recordId: appRecord.id,
@@ -37,8 +37,8 @@ export const parseToViewRecords = (
             ),
           },
         ]),
-    );
-  });
+    ),
+  );
 
   return (
     Object.fromEntries(viewAppsArray.flatMap((va) => Object.entries(va))) ?? {}
