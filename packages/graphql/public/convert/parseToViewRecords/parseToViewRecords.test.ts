@@ -34,6 +34,7 @@ describe("convertToViewRecords", () => {
           __typename: "App",
           id: "app1",
           name: "appName1",
+          fields: [],
           records: [
             {
               __typename: "Record",
@@ -86,6 +87,7 @@ describe("convertToViewRecords", () => {
           __typename: "App",
           id: "app2",
           name: "appName2",
+          fields: [],
           records: [
             {
               __typename: "Record",
@@ -188,6 +190,7 @@ describe("convertToViewRecords", () => {
           __typename: "App",
           id: "app1",
           name: "appName1",
+          fields: [],
           records: [
             {
               __typename: "Record",
@@ -240,6 +243,7 @@ describe("convertToViewRecords", () => {
           __typename: "App",
           id: "app2",
           name: "appName2",
+          fields: [],
           records: [
             {
               __typename: "Record",
@@ -320,6 +324,7 @@ describe("convertToViewRecords", () => {
           __typename: "App",
           id: "app1",
           name: "appName1",
+          fields: [],
           records: [
             {
               __typename: "Record",
