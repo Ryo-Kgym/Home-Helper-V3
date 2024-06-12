@@ -1,6 +1,7 @@
 import { generateId } from "@feature/app/function/generateId";
-import { InputViewApps } from "@feature/view/modify/type/inputViewApps";
 import { useUpdateViewMutation } from "@v3/graphql/public";
+
+import { InputViewApps } from "../type/inputViewApps";
 
 export const useModifyView = ({ viewId }: { viewId: string }) => {
   const [, mut] = useUpdateViewMutation();

@@ -1,8 +1,8 @@
-import { useModifyView } from "@feature/view/modify/hook/useModifyView";
 import { renderHook } from "@testing-library/react";
+import * as graphqlMock from "@v3/graphql/public";
 import { act } from "react-dom/test-utils";
 
-import * as graphqlMock from "../../../../../../../packages/graphql/public";
+import { useModifyView } from "../hook/useModifyView";
 
 jest.mock("@feature/app/function/generateId", () => ({
   generateId: jest.fn().mockReturnValue("generated"),

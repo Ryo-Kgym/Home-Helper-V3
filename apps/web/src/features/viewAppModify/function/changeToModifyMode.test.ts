@@ -1,5 +1,5 @@
-import { changeToModifyMode } from "@feature/view/modify/function/changeToModifyMode";
-import { InputViewApps } from "@feature/view/modify/type/inputViewApps";
+import { changeToModifyMode } from "../function/changeToModifyMode";
+import { InputViewApps } from "../type/inputViewApps";
 
 describe("changeToModifyMode", () => {
   it("mode=addのappが一つ存在する場合、当該のappを変更する", () => {

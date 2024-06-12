@@ -1,6 +1,7 @@
-import { convertToAppListData } from "@feature/view/modify/function/convertToAppListData";
-import { AppListData } from "@feature/view/modify/type/appListData";
 import { GetAppFieldListQuery } from "@v3/graphql/public/type";
+
+import { convertToAppListData } from "../function/convertToAppListData";
+import { AppListData } from "../type/appListData";
 
 describe("convertToAppListData", () => {
   it("引数に対して、期待した値が返されること", () => {

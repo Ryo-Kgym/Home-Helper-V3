@@ -1,7 +1,7 @@
-import { ModifyViewServer } from "@feature/view/modify/ModifyViewServer";
+import { ModifyView } from "@features/viewAppModify";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
-  <ModifyViewServer viewId={id} />
+  <ModifyView viewId={id} />
 );
 
 export default Page;

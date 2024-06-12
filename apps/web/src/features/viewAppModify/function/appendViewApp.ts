@@ -1,7 +1,4 @@
-import {
-  InputViewApp,
-  InputViewApps,
-} from "@feature/view/modify/type/inputViewApps";
+import { InputViewApp, InputViewApps } from "../type/inputViewApps";
 
 export const appendViewApp = (
   viewApps: InputViewApps,

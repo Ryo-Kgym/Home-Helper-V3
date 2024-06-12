@@ -1,11 +1,9 @@
-import { appendViewApp } from "@feature/view/modify/function/appendViewApp";
-import { changeToModifyMode } from "@feature/view/modify/function/changeToModifyMode";
-import {
-  InputViewApp,
-  InputViewApps,
-} from "@feature/view/modify/type/inputViewApps";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+
+import { appendViewApp } from "../function/appendViewApp";
+import { changeToModifyMode } from "../function/changeToModifyMode";
+import { InputViewApp, InputViewApps } from "../type/inputViewApps";
 
 /**
  * @package

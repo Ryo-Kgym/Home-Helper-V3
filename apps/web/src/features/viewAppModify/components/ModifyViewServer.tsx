@@ -1,6 +1,3 @@
-import { convertToAppListData } from "@feature/view/modify/function/convertToAppListData";
-import { convertToInputViewApps } from "@feature/view/modify/function/convertToInputViewApps";
-import { ModifyViewClient } from "@feature/view/modify/ModifyViewClient";
 import { findUser } from "@persistence/browser/server/find-user";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToView } from "@v3/graphql/public/convert/parseToView";
@@ -8,6 +5,10 @@ import {
   GetAppFieldListDocument,
   GetViewDocument,
 } from "@v3/graphql/public/type";
+
+import { convertToAppListData } from "../function/convertToAppListData";
+import { convertToInputViewApps } from "../function/convertToInputViewApps";
+import { ModifyViewClient } from "./ModifyViewClient";
 
 export const ModifyViewServer = async ({ viewId }: { viewId: string }) => {
   const { group } = await findUser();

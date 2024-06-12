@@ -1,8 +1,6 @@
-import {
-  inputViewAppFieldsSchema,
-  InputViewApps,
-} from "@feature/view/modify/type/inputViewApps";
 import { GetViewQuery } from "@v3/graphql/public/type";
+
+import { inputViewAppFieldsSchema, InputViewApps } from "../type/inputViewApps";
 
 export const convertToInputViewApps = (data: GetViewQuery): InputViewApps => {
   if (!data.view) {

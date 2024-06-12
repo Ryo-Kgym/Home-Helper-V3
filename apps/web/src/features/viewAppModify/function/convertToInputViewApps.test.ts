@@ -1,5 +1,6 @@
-import { convertToInputViewApps } from "@feature/view/modify/function/convertToInputViewApps";
 import { GetViewQuery } from "@v3/graphql/public/type";
+
+import { convertToInputViewApps } from "../function/convertToInputViewApps";
 
 describe("convertToInputViewApps", () => {
   it("データを取得できた場合、期待した型に変換される", async () => {

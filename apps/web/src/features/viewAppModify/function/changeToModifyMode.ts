@@ -1,4 +1,4 @@
-import { InputViewApps } from "@feature/view/modify/type/inputViewApps";
+import { InputViewApps } from "../type/inputViewApps";
 
 export const changeToModifyMode = (
   viewApps: InputViewApps,
