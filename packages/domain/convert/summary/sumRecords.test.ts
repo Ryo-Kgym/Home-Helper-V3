@@ -87,7 +87,7 @@ describe("sumRecords", () => {
       },
     };
 
-    expect(sumRecords(records, criteria)).toEqual({
+    expect(sumRecords(records, criteria)).toEqual<SumRecords>({
       0: {
         columns: {
           c1: {
