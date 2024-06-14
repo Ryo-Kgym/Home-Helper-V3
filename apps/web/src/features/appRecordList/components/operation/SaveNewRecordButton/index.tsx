@@ -22,5 +22,9 @@ export const SaveNewRecordButton = ({
     }
   };
 
-  return <button onClick={saveRecordHandler}>追加</button>;
+  return (
+    <button onClick={saveRecordHandler} className={"bg-inherit"}>
+      追加
+    </button>
+  );
 };

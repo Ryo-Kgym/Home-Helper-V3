@@ -48,7 +48,10 @@ export const DeleteRecordButton = ({
   };
 
   return (
-    <button onClick={() => deleteRecordHandler(recordId)}>
+    <button
+      onClick={() => deleteRecordHandler(recordId)}
+      className={"bg-inherit"}
+    >
       <Trash />
     </button>
   );

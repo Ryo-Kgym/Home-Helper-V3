@@ -15,5 +15,9 @@ export const CancelButton = ({
     setRecord(defaultRecord);
   };
 
-  return <button onClick={cancelHandler}>キャンセル</button>;
+  return (
+    <button onClick={cancelHandler} className={"bg-inherit"}>
+      キャンセル
+    </button>
+  );
 };

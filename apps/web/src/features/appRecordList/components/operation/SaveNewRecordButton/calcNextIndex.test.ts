@@ -1,6 +1,6 @@
 import type { Records } from "@oneforall/domain/schema/recordSchema";
 
-import { calcNextIndex } from "./calc-next-index";
+import { calcNextIndex } from "./calcNextIndex";
 
 describe("calcNextIndex", () => {
   it("レコードオブジェクトが空の場合、1を返す", () => {
