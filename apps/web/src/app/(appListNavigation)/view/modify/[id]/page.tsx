@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { RoutingTabs } from "@components/ui/v4/routingTab";
 import { ModifyView } from "@features/viewAppModify";
+import { ViewDangerous } from "@pageComponents/viewDangerous";
 
 const Page = ({
   params: { id },
@@ -24,6 +25,10 @@ const Page = ({
       label: "フィールドの変更",
       Component: () => <div>Fieldsの編集</div>,
     },
+    dangerous: {
+      label: "危険エリア",
+      Component: ViewDangerous,
+    },
   };
 
   const { Component } = tabGroup[searchParams.tab ?? "viewApp"] ?? {
@@ -32,7 +37,7 @@ const Page = ({
   };
 
   return (
-    <div>
+    <>
       <RoutingTabs
         tabs={Object.fromEntries(
           Object.entries(tabGroup).map(([k, v]) => [k, { label: v.label }]),
@@ -40,7 +45,7 @@ const Page = ({
         currentTab={searchParams.tab ?? "viewApp"}
       />
       <Component viewId={id} />
-    </div>
+    </>
   );
 };
 

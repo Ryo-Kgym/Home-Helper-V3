@@ -4711,6 +4711,7 @@ export type ViewFieldBoolExp = {
   name?: InputMaybe<StringComparisonExp>;
   options?: InputMaybe<JsonComparisonExp>;
   view?: InputMaybe<ViewBoolExp>;
+  viewId?: InputMaybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "view_field" */
@@ -4741,6 +4742,7 @@ export type ViewFieldMaxOrderBy = {
   id?: InputMaybe<OrderBy>;
   index?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  viewId?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "view_field" */
@@ -4749,6 +4751,7 @@ export type ViewFieldMinOrderBy = {
   id?: InputMaybe<OrderBy>;
   index?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  viewId?: InputMaybe<OrderBy>;
 };
 
 /** on_conflict condition type for table "view_field" */
@@ -4766,6 +4769,7 @@ export type ViewFieldOrderBy = {
   name?: InputMaybe<OrderBy>;
   options?: InputMaybe<OrderBy>;
   view?: InputMaybe<ViewOrderBy>;
+  viewId?: InputMaybe<OrderBy>;
 };
 
 /** primary key columns input for table: view_field */
@@ -4785,6 +4789,8 @@ export enum ViewFieldSelectColumn {
   Name = "name",
   /** column name */
   Options = "options",
+  /** column name */
+  ViewId = "viewId",
 }
 
 /** input type for updating data in table "view_field" */
@@ -4824,6 +4830,7 @@ export type ViewFieldStreamCursorValueInput = {
   index?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
   options?: InputMaybe<Scalars["json"]>;
+  viewId?: InputMaybe<Scalars["String"]>;
 };
 
 /** order by sum() on columns of table "view_field" */
@@ -5141,6 +5148,27 @@ export type DeleteRecordMutationVariables = Exact<{
 export type DeleteRecordMutation = {
   __typename?: "mutation_root";
   deleteRecordByPk?: { __typename: "Record"; id: string } | null;
+};
+
+export type DeleteViewRelationsMutationVariables = Exact<{
+  viewId: Scalars["String"];
+}>;
+
+export type DeleteViewRelationsMutation = {
+  __typename?: "mutation_root";
+  deleteSummaryView?: {
+    __typename: "SummaryViewMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteViewApp?: {
+    __typename: "ViewAppMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteViewField?: {
+    __typename: "ViewFieldMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteViewByPk?: { __typename: "View"; id: string } | null;
 };
 
 export type InsertAppMutationVariables = Exact<{
@@ -5501,6 +5529,30 @@ export type GetViewQuery = {
   } | null;
 };
 
+export type GetViewDangerouseSourceQueryVariables = Exact<{
+  viewId: Scalars["String"];
+}>;
+
+export type GetViewDangerouseSourceQuery = {
+  __typename?: "query_root";
+  view?: {
+    __typename: "View";
+    id: string;
+    name: string;
+    summaryViews: Array<{
+      __typename: "SummaryView";
+      id: string;
+      name: string;
+    }>;
+    viewApps: Array<{
+      __typename: "ViewApp";
+      id: string;
+      app: { __typename: "App"; id: string; name: string };
+    }>;
+    viewFields: Array<{ __typename: "ViewField"; id: string; name: string }>;
+  } | null;
+};
+
 export type GetViewRecordsSourceQueryVariables = Exact<{
   viewId: Scalars["String"];
 }>;
@@ -5554,9 +5606,9 @@ export type GetViewsQueryVariables = Exact<{
 export type GetViewsQuery = {
   __typename?: "query_root";
   group?: {
-    __typename?: "Group";
+    __typename: "Group";
     id: string;
-    views: Array<{ __typename?: "View"; id: string; name: string }>;
+    views: Array<{ __typename: "View"; id: string; name: string }>;
   } | null;
 };
 
@@ -5613,6 +5665,33 @@ export function useDeleteRecordMutation() {
   return Urql.useMutation<DeleteRecordMutation, DeleteRecordMutationVariables>(
     DeleteRecordDocument,
   );
+}
+export const DeleteViewRelationsDocument = gql`
+  mutation deleteViewRelations($viewId: String!) {
+    deleteSummaryView(where: { viewId: { _eq: $viewId } }) {
+      __typename
+      affectedRows
+    }
+    deleteViewApp(where: { viewId: { _eq: $viewId } }) {
+      __typename
+      affectedRows
+    }
+    deleteViewField(where: { viewId: { _eq: $viewId } }) {
+      __typename
+      affectedRows
+    }
+    deleteViewByPk(id: $viewId) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useDeleteViewRelationsMutation() {
+  return Urql.useMutation<
+    DeleteViewRelationsMutation,
+    DeleteViewRelationsMutationVariables
+  >(DeleteViewRelationsDocument);
 }
 export const InsertAppDocument = gql`
   mutation insertApp(
@@ -6075,6 +6154,46 @@ export function useGetViewQuery(
     ...options,
   });
 }
+export const GetViewDangerouseSourceDocument = gql`
+  query getViewDangerouseSource($viewId: String!) {
+    view: viewByPk(id: $viewId) {
+      __typename
+      id
+      name
+      summaryViews {
+        __typename
+        id
+        name
+      }
+      viewApps {
+        __typename
+        id
+        app {
+          __typename
+          id
+          name
+        }
+      }
+      viewFields {
+        __typename
+        id
+        name
+      }
+    }
+  }
+`;
+
+export function useGetViewDangerouseSourceQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetViewDangerouseSourceQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetViewDangerouseSourceQuery,
+    GetViewDangerouseSourceQueryVariables
+  >({ query: GetViewDangerouseSourceDocument, ...options });
+}
 export const GetViewRecordsSourceDocument = gql`
   query getViewRecordsSource($viewId: String!) {
     view: viewByPk(id: $viewId) {
@@ -6123,8 +6242,10 @@ export function useGetViewRecordsSourceQuery(
 export const GetViewsDocument = gql`
   query getViews($groupId: String!) {
     group: groupByPk(id: $groupId) {
+      __typename
       id
       views {
+        __typename
         id
         name
       }

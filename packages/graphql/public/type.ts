@@ -4626,6 +4626,7 @@ export type ViewFieldBoolExp = {
   name?: InputMaybe<StringComparisonExp>;
   options?: InputMaybe<JsonComparisonExp>;
   view?: InputMaybe<ViewBoolExp>;
+  viewId?: InputMaybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "view_field" */
@@ -4655,6 +4656,7 @@ export type ViewFieldMaxOrderBy = {
   id?: InputMaybe<OrderBy>;
   index?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  viewId?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "view_field" */
@@ -4663,6 +4665,7 @@ export type ViewFieldMinOrderBy = {
   id?: InputMaybe<OrderBy>;
   index?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  viewId?: InputMaybe<OrderBy>;
 };
 
 /** on_conflict condition type for table "view_field" */
@@ -4680,6 +4683,7 @@ export type ViewFieldOrderBy = {
   name?: InputMaybe<OrderBy>;
   options?: InputMaybe<OrderBy>;
   view?: InputMaybe<ViewOrderBy>;
+  viewId?: InputMaybe<OrderBy>;
 };
 
 /** primary key columns input for table: view_field */
@@ -4698,7 +4702,9 @@ export type ViewFieldSelectColumn =
   /** column name */
   | "name"
   /** column name */
-  | "options";
+  | "options"
+  /** column name */
+  | "viewId";
 
 /** input type for updating data in table "view_field" */
 export type ViewFieldSetInput = {
@@ -4737,6 +4743,7 @@ export type ViewFieldStreamCursorValueInput = {
   index?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
   options?: InputMaybe<Scalars["json"]>;
+  viewId?: InputMaybe<Scalars["String"]>;
 };
 
 /** order by sum() on columns of table "view_field" */
@@ -5051,6 +5058,27 @@ export type DeleteRecordMutationVariables = Exact<{
 export type DeleteRecordMutation = {
   __typename?: "mutation_root";
   deleteRecordByPk?: { __typename: "Record"; id: string } | null;
+};
+
+export type DeleteViewRelationsMutationVariables = Exact<{
+  viewId: Scalars["String"];
+}>;
+
+export type DeleteViewRelationsMutation = {
+  __typename?: "mutation_root";
+  deleteSummaryView?: {
+    __typename: "SummaryViewMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteViewApp?: {
+    __typename: "ViewAppMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteViewField?: {
+    __typename: "ViewFieldMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteViewByPk?: { __typename: "View"; id: string } | null;
 };
 
 export type InsertAppMutationVariables = Exact<{
@@ -5411,6 +5439,30 @@ export type GetViewQuery = {
   } | null;
 };
 
+export type GetViewDangerouseSourceQueryVariables = Exact<{
+  viewId: Scalars["String"];
+}>;
+
+export type GetViewDangerouseSourceQuery = {
+  __typename?: "query_root";
+  view?: {
+    __typename: "View";
+    id: string;
+    name: string;
+    summaryViews: Array<{
+      __typename: "SummaryView";
+      id: string;
+      name: string;
+    }>;
+    viewApps: Array<{
+      __typename: "ViewApp";
+      id: string;
+      app: { __typename: "App"; id: string; name: string };
+    }>;
+    viewFields: Array<{ __typename: "ViewField"; id: string; name: string }>;
+  } | null;
+};
+
 export type GetViewRecordsSourceQueryVariables = Exact<{
   viewId: Scalars["String"];
 }>;
@@ -5464,9 +5516,9 @@ export type GetViewsQueryVariables = Exact<{
 export type GetViewsQuery = {
   __typename?: "query_root";
   group?: {
-    __typename?: "Group";
+    __typename: "Group";
     id: string;
-    views: Array<{ __typename?: "View"; id: string; name: string }>;
+    views: Array<{ __typename: "View"; id: string; name: string }>;
   } | null;
 };
 
@@ -5680,6 +5732,187 @@ export const DeleteRecordDocument = {
 } as unknown as DocumentNode<
   DeleteRecordMutation,
   DeleteRecordMutationVariables
+>;
+export const DeleteViewRelationsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "deleteViewRelations" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "viewId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteSummaryView" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "viewId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "viewId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteViewApp" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "viewId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "viewId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteViewField" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "viewId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "viewId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteViewByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "viewId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  DeleteViewRelationsMutation,
+  DeleteViewRelationsMutationVariables
 >;
 export const InsertAppDocument = {
   kind: "Document",
@@ -7995,6 +8228,128 @@ export const GetViewDocument = {
     },
   ],
 } as unknown as DocumentNode<GetViewQuery, GetViewQueryVariables>;
+export const GetViewDangerouseSourceDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getViewDangerouseSource" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "viewId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "view" },
+            name: { kind: "Name", value: "viewByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "viewId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "summaryViews" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "viewApps" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "app" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "viewFields" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetViewDangerouseSourceQuery,
+  GetViewDangerouseSourceQueryVariables
+>;
 export const GetViewRecordsSourceDocument = {
   kind: "Document",
   definitions: [
@@ -8245,6 +8600,7 @@ export const GetViewsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -8252,6 +8608,10 @@ export const GetViewsDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
                     ],

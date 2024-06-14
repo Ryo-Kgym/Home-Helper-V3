@@ -7,9 +7,11 @@ import { useUpdateRecordMutation } from "@v3/graphql/public";
 export const UpdateRecordButton = ({
   record,
   setMode,
+  afterHandler = () => undefined,
 }: {
   record: Records[number];
   setMode: (mode: RecordListMode) => void;
+  afterHandler?: () => void;
 }) => {
   const [, mut] = useUpdateRecordMutation();
 
@@ -27,6 +29,7 @@ export const UpdateRecordButton = ({
 
       setMode("show");
       notify("レコードを更新しました");
+      afterHandler();
     } catch (e) {
       console.error(e);
       notify("レコード更新に失敗しました");
@@ -34,7 +37,7 @@ export const UpdateRecordButton = ({
   };
 
   return (
-    <button onClick={updateHandler}>
+    <button onClick={updateHandler} className={"bg-inherit"}>
       <Floppy />
     </button>
   );

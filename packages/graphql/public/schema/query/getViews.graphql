@@ -1,7 +1,9 @@
 query getViews($groupId: String!) {
   group: groupByPk(id: $groupId) {
+    __typename
     id
     views {
+      __typename
       id
       name
     }

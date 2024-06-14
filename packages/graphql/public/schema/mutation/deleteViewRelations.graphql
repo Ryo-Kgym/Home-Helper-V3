@@ -1,0 +1,18 @@
+mutation deleteViewRelations($viewId: String!) {
+  deleteSummaryView(where: { viewId: { _eq: $viewId } }) {
+    __typename
+    affectedRows
+  }
+  deleteViewApp(where: { viewId: { _eq: $viewId } }) {
+    __typename
+    affectedRows
+  }
+  deleteViewField(where: { viewId: { _eq: $viewId } }) {
+    __typename
+    affectedRows
+  }
+  deleteViewByPk(id: $viewId) {
+    __typename
+    id
+  }
+}

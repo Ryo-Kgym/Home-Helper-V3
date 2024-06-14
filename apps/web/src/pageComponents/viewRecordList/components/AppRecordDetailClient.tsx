@@ -6,7 +6,7 @@ import { AppRecordDetail } from "@features/appRecordList/components/AppRecordDet
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { Record } from "@oneforall/domain/schema/recordSchema";
 
-export const ViewRecordDetailClient = ({
+export const AppRecordDetailClient = ({
   existsRecordId,
   fields,
   record,

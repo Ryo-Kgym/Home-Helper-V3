@@ -1,0 +1,26 @@
+query getViewDangerouseSource($viewId: String!) {
+  view: viewByPk(id: $viewId) {
+    __typename
+    id
+    name
+    summaryViews {
+      __typename
+      id
+      name
+    }
+    viewApps {
+      __typename
+      id
+      app {
+        __typename
+        id
+        name
+      }
+    }
+    viewFields {
+      __typename
+      id
+      name
+    }
+  }
+}
