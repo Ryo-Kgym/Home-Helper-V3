@@ -125,6 +125,7 @@ const config = {
         },
       ],
     ],
+    "no-useless-rename": ["error"],
   },
   ignorePatterns: [
     "**/hasuraGraphql.tsx",
