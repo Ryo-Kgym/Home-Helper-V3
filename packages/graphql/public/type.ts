@@ -5439,11 +5439,11 @@ export type GetViewQuery = {
   } | null;
 };
 
-export type GetViewDangerouseSourceQueryVariables = Exact<{
+export type GetViewDangerousSourceQueryVariables = Exact<{
   viewId: Scalars["String"];
 }>;
 
-export type GetViewDangerouseSourceQuery = {
+export type GetViewDangerousSourceQuery = {
   __typename?: "query_root";
   view?: {
     __typename: "View";
@@ -8228,13 +8228,13 @@ export const GetViewDocument = {
     },
   ],
 } as unknown as DocumentNode<GetViewQuery, GetViewQueryVariables>;
-export const GetViewDangerouseSourceDocument = {
+export const GetViewDangerousSourceDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "getViewDangerouseSource" },
+      name: { kind: "Name", value: "getViewDangerousSource" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -8347,8 +8347,8 @@ export const GetViewDangerouseSourceDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  GetViewDangerouseSourceQuery,
-  GetViewDangerouseSourceQueryVariables
+  GetViewDangerousSourceQuery,
+  GetViewDangerousSourceQueryVariables
 >;
 export const GetViewRecordsSourceDocument = {
   kind: "Document",

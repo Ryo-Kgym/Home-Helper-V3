@@ -1,16 +1,17 @@
 import { ViewDeleteRelations } from "@features/viewDelete/types/viewDeleteRelations";
-import { ViewDangerousClient } from "@pageComponents/viewDangerous/components/ViewDangerousClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetViewDangerousSourceDocument } from "@v3/graphql/public/type";
 
-export const ViewDangerousServer = async ({ viewId }: { viewId: string }) => {
+import { AppDangerousClient } from "./AppDangerousClient";
+
+export const AppDangerousServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetViewDangerousSourceDocument, {
-    viewId,
+    viewId: appId,
   });
 
-  const viewDeleteRelations: ViewDeleteRelations = {
+  const appDeleteRelations: ViewDeleteRelations = {
     view: {
-      id: viewId,
+      id: appId,
       name: data?.view?.name ?? "",
     },
     summaries:
@@ -30,5 +31,5 @@ export const ViewDangerousServer = async ({ viewId }: { viewId: string }) => {
       })) ?? [],
   };
 
-  return <ViewDangerousClient viewDeleteRelations={viewDeleteRelations} />;
+  return <AppDangerousClient appDeleteRelations={appDeleteRelations} />;
 };

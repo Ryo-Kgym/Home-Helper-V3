@@ -1,4 +1,4 @@
-query getViewDangerouseSource($viewId: String!) {
+query getViewDangerousSource($viewId: String!) {
   view: viewByPk(id: $viewId) {
     __typename
     id

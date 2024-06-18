@@ -3,6 +3,27 @@ import { RoutingTabs } from "@components/ui/v4/routingTab";
 import { ModifyView } from "@features/viewAppModify";
 import { ViewDangerous } from "@pageComponents/viewDangerous";
 
+const tabGroup: Record<
+  string,
+  {
+    label: string;
+    Component: FC<{ viewId: string }>;
+  }
+> = {
+  viewApp: {
+    label: "構成するアプリの変更",
+    Component: ModifyView,
+  },
+  fields: {
+    label: "フィールドの変更",
+    Component: () => <div>Fieldsの編集</div>,
+  },
+  dangerous: {
+    label: "危険エリア",
+    Component: ViewDangerous,
+  },
+};
+
 const Page = ({
   params: { id },
   searchParams,
@@ -10,27 +31,6 @@ const Page = ({
   params: { id: string };
   searchParams: { tab: string | undefined };
 }) => {
-  const tabGroup: Record<
-    string,
-    {
-      label: string;
-      Component: FC<{ viewId: string }>;
-    }
-  > = {
-    viewApp: {
-      label: "構成するアプリの変更",
-      Component: ModifyView,
-    },
-    fields: {
-      label: "フィールドの変更",
-      Component: () => <div>Fieldsの編集</div>,
-    },
-    dangerous: {
-      label: "危険エリア",
-      Component: ViewDangerous,
-    },
-  };
-
   const { Component } = tabGroup[searchParams.tab ?? "viewApp"] ?? {
     Component: NotFound,
     label: "404",

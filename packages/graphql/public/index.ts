@@ -5529,11 +5529,11 @@ export type GetViewQuery = {
   } | null;
 };
 
-export type GetViewDangerouseSourceQueryVariables = Exact<{
+export type GetViewDangerousSourceQueryVariables = Exact<{
   viewId: Scalars["String"];
 }>;
 
-export type GetViewDangerouseSourceQuery = {
+export type GetViewDangerousSourceQuery = {
   __typename?: "query_root";
   view?: {
     __typename: "View";
@@ -6154,8 +6154,8 @@ export function useGetViewQuery(
     ...options,
   });
 }
-export const GetViewDangerouseSourceDocument = gql`
-  query getViewDangerouseSource($viewId: String!) {
+export const GetViewDangerousSourceDocument = gql`
+  query getViewDangerousSource($viewId: String!) {
     view: viewByPk(id: $viewId) {
       __typename
       id
@@ -6183,16 +6183,16 @@ export const GetViewDangerouseSourceDocument = gql`
   }
 `;
 
-export function useGetViewDangerouseSourceQuery(
+export function useGetViewDangerousSourceQuery(
   options: Omit<
-    Urql.UseQueryArgs<GetViewDangerouseSourceQueryVariables>,
+    Urql.UseQueryArgs<GetViewDangerousSourceQueryVariables>,
     "query"
   >,
 ) {
   return Urql.useQuery<
-    GetViewDangerouseSourceQuery,
-    GetViewDangerouseSourceQueryVariables
-  >({ query: GetViewDangerouseSourceDocument, ...options });
+    GetViewDangerousSourceQuery,
+    GetViewDangerousSourceQueryVariables
+  >({ query: GetViewDangerousSourceDocument, ...options });
 }
 export const GetViewRecordsSourceDocument = gql`
   query getViewRecordsSource($viewId: String!) {
