@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@components/ui/v4/button";
 import { notify } from "@components/ui/v4/notify/notify";
-import { useDeleteViewRelations } from "@features/viewDelete/hooks/useDeleteViewRelations";
+import { useDeleteViewRelations } from "@features/viewDelete/client/useDeleteViewRelations";
 import { ViewDeleteRelations } from "@features/viewDelete/types/viewDeleteRelations";
 import { paths } from "@routing/paths";
 

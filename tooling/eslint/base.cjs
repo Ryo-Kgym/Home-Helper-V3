@@ -101,6 +101,12 @@ const config = {
           ],
           allowSameModule: true,
         })),
+        ...featuresDirs.map((name) => ({
+          module: `src/features/${name}/hooks`,
+          allowReferenceFrom: [],
+          allowSameModule: true,
+          message: "hooks folderの作成は禁止です",
+        })),
         {
           module: `src/hooks/states`,
           allowReferenceFrom: [

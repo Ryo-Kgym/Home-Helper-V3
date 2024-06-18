@@ -1,7 +1,6 @@
 import { NumberInput } from "@components/ui/v4/textInput";
-
-import { useImportFileFieldMapping } from "../hooks/useImportFileFieldMapping";
-import { useSetFieldIndex } from "../hooks/useSetFieldIndex";
+import { useImportFileFieldMapping } from "@features/appImportFileFieldMapping/client/useImportFileFieldMapping";
+import { useSetFieldIndex } from "@features/appImportFileFieldMapping/client/useSetFieldIndex";
 
 export const SetImportFileFieldMapping = () => {
   const importFileFieldMapping = useImportFileFieldMapping();
