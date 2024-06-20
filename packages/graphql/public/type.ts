@@ -160,6 +160,8 @@ export type AppBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   importFileHistories?: InputMaybe<ImportFileHistoryBoolExp>;
+  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
   importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
@@ -180,6 +182,7 @@ export type AppInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   importFileHistories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
+  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
   importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
   name?: InputMaybe<Scalars["String"]>;
   records?: InputMaybe<RecordArrRelInsertInput>;
@@ -225,6 +228,7 @@ export type AppOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
   importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
   name?: InputMaybe<OrderBy>;
   recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
@@ -3615,6 +3619,7 @@ export type ImportFileHistoryBoolExp = {
   id?: InputMaybe<StringComparisonExp>;
   importDatetime?: InputMaybe<TimestamptzComparisonExp>;
   importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
 };
 
 /** unique or primary key constraints on table "import_file_history" */
@@ -3746,6 +3751,10 @@ export type ImportFileHistoryVarianceOrderBy = {
   count?: InputMaybe<OrderBy>;
 };
 
+export type ImportFileRecordAggregateBoolExp = {
+  count?: InputMaybe<ImportFileRecordAggregateBoolExpCount>;
+};
+
 /** order by aggregate values of table "import_file_record" */
 export type ImportFileRecordAggregateOrderBy = {
   count?: InputMaybe<OrderBy>;
@@ -3765,6 +3774,8 @@ export type ImportFileRecordBoolExp = {
   _and?: InputMaybe<Array<ImportFileRecordBoolExp>>;
   _not?: InputMaybe<ImportFileRecordBoolExp>;
   _or?: InputMaybe<Array<ImportFileRecordBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
+  appId?: InputMaybe<StringComparisonExp>;
   historyId?: InputMaybe<StringComparisonExp>;
   importFileHistory?: InputMaybe<ImportFileHistoryBoolExp>;
   record?: InputMaybe<RecordBoolExp>;
@@ -3778,6 +3789,8 @@ export type ImportFileRecordConstraint =
 
 /** input type for inserting data into table "import_file_record" */
 export type ImportFileRecordInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
+  appId?: InputMaybe<Scalars["String"]>;
   historyId?: InputMaybe<Scalars["String"]>;
   importFileHistory?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
   record?: InputMaybe<RecordObjRelInsertInput>;
@@ -3786,12 +3799,14 @@ export type ImportFileRecordInsertInput = {
 
 /** order by max() on columns of table "import_file_record" */
 export type ImportFileRecordMaxOrderBy = {
+  appId?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
   recordId?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "import_file_record" */
 export type ImportFileRecordMinOrderBy = {
+  appId?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
   recordId?: InputMaybe<OrderBy>;
 };
@@ -3812,6 +3827,8 @@ export type ImportFileRecordOnConflict = {
 
 /** Ordering options when selecting data from "import_file_record". */
 export type ImportFileRecordOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
+  appId?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
   importFileHistory?: InputMaybe<ImportFileHistoryOrderBy>;
   record?: InputMaybe<RecordOrderBy>;
@@ -3820,6 +3837,8 @@ export type ImportFileRecordOrderBy = {
 
 /** select columns of table "import_file_record" */
 export type ImportFileRecordSelectColumn =
+  /** column name */
+  | "appId"
   /** column name */
   | "historyId"
   /** column name */
@@ -3835,6 +3854,7 @@ export type ImportFileRecordStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ImportFileRecordStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
   historyId?: InputMaybe<Scalars["String"]>;
   recordId?: InputMaybe<Scalars["String"]>;
 };
@@ -5027,11 +5047,47 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type ImportFileRecordAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<ImportFileRecordSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<ImportFileRecordBoolExp>;
+  predicate: IntComparisonExp;
+};
+
 export type RecordAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<RecordSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<RecordBoolExp>;
   predicate: IntComparisonExp;
+};
+
+export type DeleteAppRelationsMutationVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type DeleteAppRelationsMutation = {
+  __typename?: "mutation_root";
+  deleteImportFileSettingByPk?: {
+    __typename: "ImportFileSetting";
+    appId: string;
+  } | null;
+  deleteImportFileRecord?: {
+    __typename: "ImportFileRecordMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteImportFileHistory?: {
+    __typename: "ImportFileHistoryMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteRecord?: {
+    __typename: "RecordMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteAppByPk?: { __typename: "App"; id: string } | null;
 };
 
 export type DeleteImportFileHistoryMutationVariables = Exact<{
@@ -5287,6 +5343,45 @@ export type GetAppQuery = {
       id: string;
       index: number;
       columns: any;
+    }>;
+  } | null;
+};
+
+export type GetAppDangerousSourceQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetAppDangerousSourceQuery = {
+  __typename?: "query_root";
+  app?: {
+    __typename: "App";
+    id: string;
+    name: string;
+    fields: Array<{ __typename: "Field"; id: string; name: string }>;
+    importFileHistories: Array<{
+      __typename: "ImportFileHistory";
+      id: string;
+      fileName: string;
+    }>;
+    importFileRecordsAggregate: {
+      __typename: "ImportFileRecordAggregate";
+      aggregate?: {
+        __typename: "ImportFileRecordAggregateFields";
+        count: number;
+      } | null;
+    };
+    importFileSetting?: {
+      __typename: "ImportFileSetting";
+      appId: string;
+    } | null;
+    recordsAggregate: {
+      __typename: "RecordAggregate";
+      aggregate?: { __typename: "RecordAggregateFields"; count: number } | null;
+    };
+    viewApps: Array<{
+      __typename: "ViewApp";
+      id: string;
+      view: { __typename: "View"; id: string; name: string };
     }>;
   } | null;
 };
@@ -5568,6 +5663,250 @@ export const FragRecordsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<FragRecordsFragment, unknown>;
+export const DeleteAppRelationsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "deleteAppRelations" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteImportFileSettingByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "appId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "appId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "appId" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteImportFileRecord" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteImportFileHistory" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteRecord" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteField" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteAppByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "appId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  DeleteAppRelationsMutation,
+  DeleteAppRelationsMutationVariables
+>;
 export const DeleteImportFileHistoryDocument = {
   kind: "Document",
   definitions: [
@@ -7430,6 +7769,205 @@ export const GetAppDocument = {
     },
   ],
 } as unknown as DocumentNode<GetAppQuery, GetAppQueryVariables>;
+export const GetAppDangerousSourceDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getAppDangerousSource" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "app" },
+            name: { kind: "Name", value: "appByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "appId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fields" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importFileHistories" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "fileName" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importFileRecordsAggregate" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "aggregate" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "count" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "importFileSetting" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "appId" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "recordsAggregate" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "aggregate" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "count" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "viewApps" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "view" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetAppDangerousSourceQuery,
+  GetAppDangerousSourceQueryVariables
+>;
 export const GetAppFieldListDocument = {
   kind: "Document",
   definitions: [

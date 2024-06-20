@@ -165,6 +165,8 @@ export type AppBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   importFileHistories?: InputMaybe<ImportFileHistoryBoolExp>;
+  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
   importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
@@ -186,6 +188,7 @@ export type AppInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   importFileHistories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
+  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
   importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
   name?: InputMaybe<Scalars["String"]>;
   records?: InputMaybe<RecordArrRelInsertInput>;
@@ -231,6 +234,7 @@ export type AppOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
   importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
   name?: InputMaybe<OrderBy>;
   recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
@@ -3677,6 +3681,7 @@ export type ImportFileHistoryBoolExp = {
   id?: InputMaybe<StringComparisonExp>;
   importDatetime?: InputMaybe<TimestamptzComparisonExp>;
   importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
+  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
 };
 
 /** unique or primary key constraints on table "import_file_history" */
@@ -3811,6 +3816,10 @@ export type ImportFileHistoryVarianceOrderBy = {
   count?: InputMaybe<OrderBy>;
 };
 
+export type ImportFileRecordAggregateBoolExp = {
+  count?: InputMaybe<ImportFileRecordAggregateBoolExpCount>;
+};
+
 /** order by aggregate values of table "import_file_record" */
 export type ImportFileRecordAggregateOrderBy = {
   count?: InputMaybe<OrderBy>;
@@ -3830,6 +3839,8 @@ export type ImportFileRecordBoolExp = {
   _and?: InputMaybe<Array<ImportFileRecordBoolExp>>;
   _not?: InputMaybe<ImportFileRecordBoolExp>;
   _or?: InputMaybe<Array<ImportFileRecordBoolExp>>;
+  app?: InputMaybe<AppBoolExp>;
+  appId?: InputMaybe<StringComparisonExp>;
   historyId?: InputMaybe<StringComparisonExp>;
   importFileHistory?: InputMaybe<ImportFileHistoryBoolExp>;
   record?: InputMaybe<RecordBoolExp>;
@@ -3844,6 +3855,8 @@ export enum ImportFileRecordConstraint {
 
 /** input type for inserting data into table "import_file_record" */
 export type ImportFileRecordInsertInput = {
+  app?: InputMaybe<AppObjRelInsertInput>;
+  appId?: InputMaybe<Scalars["String"]>;
   historyId?: InputMaybe<Scalars["String"]>;
   importFileHistory?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
   record?: InputMaybe<RecordObjRelInsertInput>;
@@ -3852,12 +3865,14 @@ export type ImportFileRecordInsertInput = {
 
 /** order by max() on columns of table "import_file_record" */
 export type ImportFileRecordMaxOrderBy = {
+  appId?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
   recordId?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "import_file_record" */
 export type ImportFileRecordMinOrderBy = {
+  appId?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
   recordId?: InputMaybe<OrderBy>;
 };
@@ -3878,6 +3893,8 @@ export type ImportFileRecordOnConflict = {
 
 /** Ordering options when selecting data from "import_file_record". */
 export type ImportFileRecordOrderBy = {
+  app?: InputMaybe<AppOrderBy>;
+  appId?: InputMaybe<OrderBy>;
   historyId?: InputMaybe<OrderBy>;
   importFileHistory?: InputMaybe<ImportFileHistoryOrderBy>;
   record?: InputMaybe<RecordOrderBy>;
@@ -3886,6 +3903,8 @@ export type ImportFileRecordOrderBy = {
 
 /** select columns of table "import_file_record" */
 export enum ImportFileRecordSelectColumn {
+  /** column name */
+  AppId = "appId",
   /** column name */
   HistoryId = "historyId",
   /** column name */
@@ -3902,6 +3921,7 @@ export type ImportFileRecordStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ImportFileRecordStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
   historyId?: InputMaybe<Scalars["String"]>;
   recordId?: InputMaybe<Scalars["String"]>;
 };
@@ -5117,11 +5137,47 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type ImportFileRecordAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<ImportFileRecordSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<ImportFileRecordBoolExp>;
+  predicate: IntComparisonExp;
+};
+
 export type RecordAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<RecordSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<RecordBoolExp>;
   predicate: IntComparisonExp;
+};
+
+export type DeleteAppRelationsMutationVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type DeleteAppRelationsMutation = {
+  __typename?: "mutation_root";
+  deleteImportFileSettingByPk?: {
+    __typename: "ImportFileSetting";
+    appId: string;
+  } | null;
+  deleteImportFileRecord?: {
+    __typename: "ImportFileRecordMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteImportFileHistory?: {
+    __typename: "ImportFileHistoryMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteRecord?: {
+    __typename: "RecordMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteField?: {
+    __typename: "FieldMutationResponse";
+    affectedRows: number;
+  } | null;
+  deleteAppByPk?: { __typename: "App"; id: string } | null;
 };
 
 export type DeleteImportFileHistoryMutationVariables = Exact<{
@@ -5381,6 +5437,45 @@ export type GetAppQuery = {
   } | null;
 };
 
+export type GetAppDangerousSourceQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetAppDangerousSourceQuery = {
+  __typename?: "query_root";
+  app?: {
+    __typename: "App";
+    id: string;
+    name: string;
+    fields: Array<{ __typename: "Field"; id: string; name: string }>;
+    importFileHistories: Array<{
+      __typename: "ImportFileHistory";
+      id: string;
+      fileName: string;
+    }>;
+    importFileRecordsAggregate: {
+      __typename: "ImportFileRecordAggregate";
+      aggregate?: {
+        __typename: "ImportFileRecordAggregateFields";
+        count: number;
+      } | null;
+    };
+    importFileSetting?: {
+      __typename: "ImportFileSetting";
+      appId: string;
+    } | null;
+    recordsAggregate: {
+      __typename: "RecordAggregate";
+      aggregate?: { __typename: "RecordAggregateFields"; count: number } | null;
+    };
+    viewApps: Array<{
+      __typename: "ViewApp";
+      id: string;
+      view: { __typename: "View"; id: string; name: string };
+    }>;
+  } | null;
+};
+
 export type GetAppFieldListQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -5630,6 +5725,41 @@ export const FragRecordsFragmentDoc = gql`
     columns
   }
 `;
+export const DeleteAppRelationsDocument = gql`
+  mutation deleteAppRelations($appId: String!) {
+    deleteImportFileSettingByPk(appId: $appId) {
+      __typename
+      appId
+    }
+    deleteImportFileRecord(where: { appId: { _eq: $appId } }) {
+      __typename
+      affectedRows
+    }
+    deleteImportFileHistory(where: { appId: { _eq: $appId } }) {
+      __typename
+      affectedRows
+    }
+    deleteRecord(where: { appId: { _eq: $appId } }) {
+      __typename
+      affectedRows
+    }
+    deleteField(where: { appId: { _eq: $appId } }) {
+      __typename
+      affectedRows
+    }
+    deleteAppByPk(id: $appId) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useDeleteAppRelationsMutation() {
+  return Urql.useMutation<
+    DeleteAppRelationsMutation,
+    DeleteAppRelationsMutationVariables
+  >(DeleteAppRelationsDocument);
+}
 export const DeleteImportFileHistoryDocument = gql`
   mutation deleteImportFileHistory($historyId: String!) {
     deleteImportFileRecord(where: { historyId: { _eq: $historyId } }) {
@@ -5970,6 +6100,64 @@ export function useGetAppQuery(
     query: GetAppDocument,
     ...options,
   });
+}
+export const GetAppDangerousSourceDocument = gql`
+  query getAppDangerousSource($appId: String!) {
+    app: appByPk(id: $appId) {
+      __typename
+      id
+      name
+      fields {
+        __typename
+        id
+        name
+      }
+      importFileHistories {
+        __typename
+        id
+        fileName
+      }
+      importFileRecordsAggregate {
+        __typename
+        aggregate {
+          __typename
+          count
+        }
+      }
+      importFileSetting {
+        __typename
+        appId
+      }
+      recordsAggregate {
+        __typename
+        aggregate {
+          __typename
+          count
+        }
+      }
+      viewApps {
+        __typename
+        id
+        view {
+          __typename
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
+export function useGetAppDangerousSourceQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetAppDangerousSourceQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetAppDangerousSourceQuery,
+    GetAppDangerousSourceQueryVariables
+  >({ query: GetAppDangerousSourceDocument, ...options });
 }
 export const GetAppFieldListDocument = gql`
   query getAppFieldList($groupId: String!) {

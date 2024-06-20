@@ -1,0 +1,26 @@
+mutation deleteAppRelations($appId: String!) {
+  deleteImportFileSettingByPk(appId: $appId) {
+    __typename
+    appId
+  }
+  deleteImportFileRecord(where: { appId: { _eq: $appId } }) {
+    __typename
+    affectedRows
+  }
+  deleteImportFileHistory(where: { appId: { _eq: $appId } }) {
+    __typename
+    affectedRows
+  }
+  deleteRecord(where: { appId: { _eq: $appId } }) {
+    __typename
+    affectedRows
+  }
+  deleteField(where: { appId: { _eq: $appId } }) {
+    __typename
+    affectedRows
+  }
+  deleteAppByPk(id: $appId) {
+    __typename
+    id
+  }
+}

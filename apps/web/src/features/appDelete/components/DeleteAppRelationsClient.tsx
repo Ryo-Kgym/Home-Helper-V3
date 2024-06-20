@@ -6,14 +6,18 @@ import { AppDeleteRelations } from "@features/appDelete/types/appDeleteRelations
 import { paths } from "@routing/paths";
 
 export const DeleteAppRelationsClient = ({
-  appDeleteRelations,
+  appDeleteRelations: { app, viewApps, ...other },
 }: {
   appDeleteRelations: AppDeleteRelations;
 }) => {
   const { deleteAppRelations } = useDeleteAppRelations({
-    appId: appDeleteRelations.view.id,
+    appId: app.id,
   });
   const { push, refresh } = useRouter();
+  const existViewApps = viewApps.nodes.length > 0;
+  const existViewAppsMessage = existViewApps
+    ? "関連するビューが存在するので、削除できません。ビューを削除してから再度操作してください。"
+    : "";
 
   const deleteHandler = async () => {
     try {
@@ -27,52 +31,64 @@ export const DeleteAppRelationsClient = ({
     }
   };
 
+  if (existViewApps) {
+    return <div>{existViewAppsMessage}</div>;
+  }
+
   return (
     <div className={"px-10"}>
       <div className={"space-y-10"}>
         <div>以下のデータを削除します</div>
         <div className={"space-y-5 px-10"}>
           <div>
-            <div className={"text-xl"}>{appDeleteRelations.view.name}</div>
+            <div className={"text-xl"}>{app.name}</div>
           </div>
-          <div>
-            <div className={"text-xl"}>アプリ</div>
-            <ul className={"space-y-2"}>
-              {appDeleteRelations.apps.map((app) => (
-                <li key={app.id} className={"ml-5 list-disc"}>
-                  {app.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div className={"text-xl"}>フィールド</div>
-            <ul className={"space-y-2"}>
-              {appDeleteRelations.fields.map((field) => (
-                <li key={field.id} className={"ml-5 list-disc"}>
-                  {field.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div className={"text-xl"}>サマリ</div>
-            <ul className={"space-y-2"}>
-              {appDeleteRelations.summaries.map((summary) => (
-                <li key={summary.id} className={"ml-5 list-disc"}>
-                  {summary.name}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {Object.entries(other).map(([table, attr]) => (
+            <List key={table} title={table} data={attr} />
+          ))}
         </div>
         <Button
           label={"アプリを削除する"}
           clickHandler={deleteHandler}
           type={"dangerous"}
-          disabled
+          disabled={existViewApps}
         />
       </div>
     </div>
   );
 };
+
+const List = <
+  T extends
+    | {
+        nodes: {
+          id: string;
+          name: string;
+        }[];
+        count?: undefined;
+      }
+    | {
+        nodes?: undefined;
+        count: number;
+      },
+>({
+  title,
+  data,
+}: {
+  title: string;
+  data: T;
+}) => (
+  <div>
+    <div className={"flex items-center space-x-10"}>
+      <div className={"text-xl"}>テーブル名：{title}</div>
+      <div>合計：{data.nodes?.length ?? data.count} 件</div>
+    </div>
+    <ul className={"space-y-2"}>
+      {data.nodes?.map((field) => (
+        <li key={field.id} className={"ml-5 list-disc"}>
+          {field.name}
+        </li>
+      ))}
+    </ul>
+  </div>
+);

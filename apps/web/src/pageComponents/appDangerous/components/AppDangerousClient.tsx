@@ -22,7 +22,7 @@ export const AppDangerousClient = ({
         <Title title={"危険エリア"} />
         <div className={"space-y-10 px-10"}>
           <Section
-            title={"ビューを削除します"}
+            title={"アプリを削除します"}
             description={
               "アプリとのリレーション設定、フィールドの設定、サマリの設定　が削除されます"
             }
