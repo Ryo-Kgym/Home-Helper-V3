@@ -78,6 +78,7 @@ export const useInsertImportFileRecords = ({
       relationObjects: recordIds.map((recordId) => ({
         recordId,
         historyId,
+        appId,
       })),
     });
     if (recordsError) {

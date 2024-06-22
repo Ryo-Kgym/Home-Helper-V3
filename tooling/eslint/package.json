@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "files": [
-    "./base.js",
+    "./base.cjs",
     "./nextjs.js",
     "./react.js"
   ],
@@ -37,7 +37,7 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "./base.js"
+      "./base.cjs"
     ]
   },
   "prettier": "@acme/prettier-config"

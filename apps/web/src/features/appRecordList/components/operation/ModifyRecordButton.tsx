@@ -20,7 +20,7 @@ export const ModifyRecordButton = ({
   };
 
   return (
-    <button onClick={openModify}>
+    <button onClick={openModify} className={"bg-inherit"}>
       <Edit />
     </button>
   );

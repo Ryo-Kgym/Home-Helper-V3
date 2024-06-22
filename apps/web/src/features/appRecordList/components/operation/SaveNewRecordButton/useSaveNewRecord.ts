@@ -1,5 +1,5 @@
 import { generateId } from "@feature/app/function/generateId";
-import { calcNextIndex } from "@features/appRecordList/components/operation/SaveNewRecordButton/calc-next-index";
+import { calcNextIndex } from "@features/appRecordList/components/operation/SaveNewRecordButton/calcNextIndex";
 import { useResetNewRecord } from "@hooks/states/app/record/useResetNewRecord";
 import { useResetMode } from "@hooks/states/app/recordListMode/useModeStateZustand";
 import { useAddRecord } from "@hooks/states/app/records/useAddRecord";

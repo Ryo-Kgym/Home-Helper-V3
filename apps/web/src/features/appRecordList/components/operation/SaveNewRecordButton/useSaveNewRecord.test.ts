@@ -1,5 +1,5 @@
 import * as generateId from "@feature/app/function/generateId";
-import * as calcNextIndex from "@features/appRecordList/components/operation/SaveNewRecordButton/calc-next-index";
+import * as calcNextIndex from "@features/appRecordList/components/operation/SaveNewRecordButton/calcNextIndex";
 import { useSaveNewRecord } from "@features/appRecordList/components/operation/SaveNewRecordButton/useSaveNewRecord";
 import * as useResetNewRecordMock from "@hooks/states/app/record/useResetNewRecord";
 import * as useModeState from "@hooks/states/app/recordListMode/useModeStateZustand";
@@ -12,7 +12,7 @@ import * as mut from "@v3/graphql/public";
 jest.mock("@v3/graphql/public");
 jest.mock("@feature/app/function/generateId");
 jest.mock(
-  "@features/appRecordList/components/operation/SaveNewRecordButton/calc-next-index",
+  "@features/appRecordList/components/operation/SaveNewRecordButton/calcNextIndex",
 );
 jest.mock("@hooks/states/app/records/useRecordsZustand");
 jest.mock("@hooks/states/app/recordListMode/useModeStateZustand");

@@ -1,1 +1,1 @@
-export { HouseholdDashboard as HouseholdDashboard } from "./HouseholdDashboard";
+export { HouseholdDashboard } from "./HouseholdDashboard";

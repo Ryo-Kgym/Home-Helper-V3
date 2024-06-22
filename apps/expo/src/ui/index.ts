@@ -8,7 +8,7 @@ export { ButtonFilter as FilterButton } from "~/ui/Button/ButtonFilter";
 export { ButtonRegister as RegisterButton } from "~/ui/Button/ButtonRegister";
 export { ButtonReset as ResetButton } from "~/ui/Button/ButtonReset";
 export { ButtonUpdate as UpdateButton } from "~/ui/Button/ButtonUpdate";
-export { Details as Details } from "~/ui/Details/Details";
+export { Details } from "~/ui/Details/Details";
 export { EditableAccount } from "~/ui/editable/EditableAccount";
 export { EditableAmount } from "~/ui/editable/EditableAmount";
 export { EditableCategory } from "~/ui/editable/EditableCategory";

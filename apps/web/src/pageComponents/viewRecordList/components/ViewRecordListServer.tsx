@@ -2,7 +2,7 @@ import { Fields } from "@oneforall/domain/schema/appSchema";
 import { Record } from "@oneforall/domain/schema/recordSchema";
 import { viewFiltersSchema } from "@oneforall/domain/schema/view/viewFilterSchema";
 import { ViewRecord } from "@oneforall/domain/schema/view/viewRecordSchema";
-import { ViewRecordDetailClient } from "@pageComponents/viewRecordList/components/ViewRecordDetailClient";
+import { AppRecordDetailClient } from "@pageComponents/viewRecordList/components/AppRecordDetailClient";
 import { ViewRecordListClient } from "@pageComponents/viewRecordList/components/ViewRecordListClient";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToFields } from "@v3/graphql/public/convert/parseToFields";
@@ -57,7 +57,7 @@ export const ViewRecordListServer = async ({
         viewFilters={viewFilters}
         headerItems={headerItems}
       />
-      <ViewRecordDetailClient
+      <AppRecordDetailClient
         {...extractApp(records[appId_RecordId ?? ""], data)}
         existsRecordId={!!appId_RecordId}
       />

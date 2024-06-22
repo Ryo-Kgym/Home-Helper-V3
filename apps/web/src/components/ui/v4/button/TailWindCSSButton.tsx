@@ -63,4 +63,9 @@ const typeAttribute: Record<
     hoverBgColor: "hover:bg-gray-100",
     activeBgColor: "active:bg-gray-200",
   },
+  dangerous: {
+    enableBgColor: "bg-red-200",
+    hoverBgColor: "hover:bg-red-300",
+    activeBgColor: "active:bg-red-500",
+  },
 };

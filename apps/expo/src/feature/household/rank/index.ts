@@ -1,1 +1,1 @@
-export { YearlyCategoryRankList as YearlyCategoryRankList } from "./category/yearly/YearlyCategoryRankList";
+export { YearlyCategoryRankList } from "./category/yearly/YearlyCategoryRankList";

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ModifyCell } from "@features/appRecordList/components/cell/ModifyCell";
 import { UpdateRecordButton } from "@features/appRecordList/components/operation/UpdateRecordButton";
 import { Fields } from "@oneforall/domain/schema/appSchema";
@@ -12,6 +13,7 @@ export const AppRecordDetail = ({
   record: Record;
 }) => {
   const [record, setRecord] = useState(defaultRecord);
+  const { refresh } = useRouter();
 
   return (
     <div className={"space-y-10"}>
@@ -29,7 +31,11 @@ export const AppRecordDetail = ({
         ))}
       </div>
       <div className={"flex justify-end"}>
-        <UpdateRecordButton record={record} setMode={() => undefined} />
+        <UpdateRecordButton
+          record={record}
+          setMode={() => undefined}
+          afterHandler={refresh}
+        />
       </div>
     </div>
   );
