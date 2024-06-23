@@ -9,11 +9,14 @@ import { UpdateRecordButton } from "./UpdateRecordButton";
 
 export const RecordRowOperation = (
   props: // prettier-ignore
-  { record: Records[number] }
+  { record: Records[number],
+    uneditable?: boolean }
     & ComponentProps<typeof ModifyRecordButton>
     & ComponentProps<typeof DeleteRecordButton>
     & ComponentProps<typeof CancelButton>,
 ) => {
+  if (props.uneditable) return null;
+
   const ope = getOperationButtonList(props.record.isEditing);
   return (
     <div className={"flex space-x-3"}>

@@ -9,13 +9,13 @@ import { selectSingleFile } from "@features/appFileImport/client/selectSingleFil
 import { useImportFileFieldMapping } from "@features/appImportFileFieldMapping/client/useImportFileFieldMapping";
 import { useImportFileSettings } from "@features/appImportFileSetting/client/useImportSettingsState";
 import { Fields } from "@oneforall/domain/schema/appSchema";
+import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
 import { convertPreviewRecords } from "@pageComponents/appRecordImport/client/convertRecords";
 import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
 import { useInsertImportFileRecords } from "@pageComponents/appRecordImport/hooks/useInsertImportFileRecords";
 import { usePreviewRecords } from "@pageComponents/appRecordImport/hooks/usePreviewRecords";
 import { useResetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useResetPreviewRecords";
 import { useSetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useSetPreviewRecords";
-import { LookupRecords } from "@server/lookupRecords/type";
 
 export const ImportFilePickerClient = ({
   appId,

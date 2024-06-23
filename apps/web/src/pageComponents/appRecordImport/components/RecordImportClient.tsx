@@ -16,10 +16,10 @@ import { App } from "@oneforall/domain/schema/appSchema";
 import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
 import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
 import { ImportFileSettings } from "@oneforall/domain/schema/importFileSettingsSchema";
+import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
 import { ImportHistoryList } from "@pageComponents/appRecordImport/components/ImportHistoryList";
 import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
 import { usePreviewRecords } from "@pageComponents/appRecordImport/hooks/usePreviewRecords";
-import { LookupRecords } from "@server/lookupRecords/type";
 
 import { ImportPreview } from "./ImportPreview";
 

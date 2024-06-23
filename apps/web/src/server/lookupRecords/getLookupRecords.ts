@@ -1,5 +1,5 @@
 import { App } from "@oneforall/domain/schema/appSchema";
-import { LookupRecords } from "@server/lookupRecords/type";
+import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
 
 import { convertToLookupOptions } from "./convertToLookupOptions";
 import { fetchLookupAppRecords } from "./fetchLookupAppRecords";

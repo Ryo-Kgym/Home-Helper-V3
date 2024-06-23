@@ -163,6 +163,7 @@ export type AppBoolExp = {
   importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
   importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
   importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
+  linkDatabase?: InputMaybe<LinkDatabaseBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   records?: InputMaybe<RecordBoolExp>;
   recordsAggregate?: InputMaybe<RecordAggregateBoolExp>;
@@ -184,6 +185,7 @@ export type AppInsertInput = {
   importFileHistories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
   importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
   importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
+  linkDatabase?: InputMaybe<LinkDatabaseObjRelInsertInput>;
   name?: InputMaybe<Scalars["String"]>;
   records?: InputMaybe<RecordArrRelInsertInput>;
   user?: InputMaybe<UserObjRelInsertInput>;
@@ -230,6 +232,7 @@ export type AppOrderBy = {
   importFileHistoriesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
   importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
   importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
+  linkDatabase?: InputMaybe<LinkDatabaseOrderBy>;
   name?: InputMaybe<OrderBy>;
   recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
   user?: InputMaybe<UserOrderBy>;
@@ -3976,6 +3979,128 @@ export type JsonComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["json"]>>;
 };
 
+/** Boolean expression to filter rows from the table "link_database". All fields are combined with a logical 'AND'. */
+export type LinkDatabaseBoolExp = {
+  _and?: InputMaybe<Array<LinkDatabaseBoolExp>>;
+  _not?: InputMaybe<LinkDatabaseBoolExp>;
+  _or?: InputMaybe<Array<LinkDatabaseBoolExp>>;
+  appId?: InputMaybe<StringComparisonExp>;
+  connection?: InputMaybe<JsonComparisonExp>;
+  database?: InputMaybe<StringComparisonExp>;
+  fieldColumnMaps?: InputMaybe<JsonComparisonExp>;
+  parameters?: InputMaybe<JsonComparisonExp>;
+  sql?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "link_database" */
+export type LinkDatabaseConstraint =
+  /** unique or primary key constraint on columns "app_id" */
+  "link_database_pkey";
+
+/** input type for inserting data into table "link_database" */
+export type LinkDatabaseInsertInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  connection?: InputMaybe<Scalars["json"]>;
+  database?: InputMaybe<Scalars["String"]>;
+  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
+  parameters?: InputMaybe<Scalars["json"]>;
+  sql?: InputMaybe<Scalars["String"]>;
+};
+
+/** input type for inserting object relation for remote table "link_database" */
+export type LinkDatabaseObjRelInsertInput = {
+  data: LinkDatabaseInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<LinkDatabaseOnConflict>;
+};
+
+/** on_conflict condition type for table "link_database" */
+export type LinkDatabaseOnConflict = {
+  constraint: LinkDatabaseConstraint;
+  updateColumns?: Array<LinkDatabaseUpdateColumn>;
+  where?: InputMaybe<LinkDatabaseBoolExp>;
+};
+
+/** Ordering options when selecting data from "link_database". */
+export type LinkDatabaseOrderBy = {
+  appId?: InputMaybe<OrderBy>;
+  connection?: InputMaybe<OrderBy>;
+  database?: InputMaybe<OrderBy>;
+  fieldColumnMaps?: InputMaybe<OrderBy>;
+  parameters?: InputMaybe<OrderBy>;
+  sql?: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: link_database */
+export type LinkDatabasePkColumnsInput = {
+  appId: Scalars["String"];
+};
+
+/** select columns of table "link_database" */
+export type LinkDatabaseSelectColumn =
+  /** column name */
+  | "appId"
+  /** column name */
+  | "connection"
+  /** column name */
+  | "database"
+  /** column name */
+  | "fieldColumnMaps"
+  /** column name */
+  | "parameters"
+  /** column name */
+  | "sql";
+
+/** input type for updating data in table "link_database" */
+export type LinkDatabaseSetInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  connection?: InputMaybe<Scalars["json"]>;
+  database?: InputMaybe<Scalars["String"]>;
+  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
+  parameters?: InputMaybe<Scalars["json"]>;
+  sql?: InputMaybe<Scalars["String"]>;
+};
+
+/** Streaming cursor of the table "link_database" */
+export type LinkDatabaseStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: LinkDatabaseStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type LinkDatabaseStreamCursorValueInput = {
+  appId?: InputMaybe<Scalars["String"]>;
+  connection?: InputMaybe<Scalars["json"]>;
+  database?: InputMaybe<Scalars["String"]>;
+  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
+  parameters?: InputMaybe<Scalars["json"]>;
+  sql?: InputMaybe<Scalars["String"]>;
+};
+
+/** update columns of table "link_database" */
+export type LinkDatabaseUpdateColumn =
+  /** column name */
+  | "appId"
+  /** column name */
+  | "connection"
+  /** column name */
+  | "database"
+  /** column name */
+  | "fieldColumnMaps"
+  /** column name */
+  | "parameters"
+  /** column name */
+  | "sql";
+
+export type LinkDatabaseUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<LinkDatabaseSetInput>;
+  /** filter the rows which have to be updated */
+  where: LinkDatabaseBoolExp;
+};
+
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
 export type NumericComparisonExp = {
   _eq?: InputMaybe<Scalars["numeric"]>;
@@ -5313,6 +5438,16 @@ export type FragFieldsFragment = {
   options?: any | null;
 };
 
+export type FragLinkDatabaseFragment = {
+  __typename: "LinkDatabase";
+  appId: string;
+  database: string;
+  connection: any;
+  sql: string;
+  parameters: any;
+  fieldColumnMaps: any;
+};
+
 export type FragRecordsFragment = {
   __typename: "Record";
   id: string;
@@ -5344,6 +5479,15 @@ export type GetAppQuery = {
       index: number;
       columns: any;
     }>;
+    linkDatabase?: {
+      __typename: "LinkDatabase";
+      appId: string;
+      database: string;
+      connection: any;
+      sql: string;
+      parameters: any;
+      fieldColumnMaps: any;
+    } | null;
   } | null;
 };
 
@@ -5641,6 +5785,31 @@ export const FragFieldsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<FragFieldsFragment, unknown>;
+export const FragLinkDatabaseFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragLinkDatabase" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LinkDatabase" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "appId" } },
+          { kind: "Field", name: { kind: "Name", value: "database" } },
+          { kind: "Field", name: { kind: "Name", value: "connection" } },
+          { kind: "Field", name: { kind: "Name", value: "sql" } },
+          { kind: "Field", name: { kind: "Name", value: "parameters" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldColumnMaps" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FragLinkDatabaseFragment, unknown>;
 export const FragRecordsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -7725,6 +7894,19 @@ export const GetAppDocument = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linkDatabase" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragLinkDatabase" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -7764,6 +7946,26 @@ export const GetAppDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "index" } },
           { kind: "Field", name: { kind: "Name", value: "columns" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragLinkDatabase" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LinkDatabase" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "appId" } },
+          { kind: "Field", name: { kind: "Name", value: "database" } },
+          { kind: "Field", name: { kind: "Name", value: "connection" } },
+          { kind: "Field", name: { kind: "Name", value: "sql" } },
+          { kind: "Field", name: { kind: "Name", value: "parameters" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldColumnMaps" } },
         ],
       },
     },

@@ -3,7 +3,7 @@ import {
   PreviewRecords,
 } from "@oneforall/domain/schema/previewRecordsSchema";
 import { recordColumnSchema } from "@oneforall/domain/schema/recordSchema";
-import { LookupRecords } from "@server/lookupRecords/type";
+import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
 import { RecordInsertInput } from "@v3/graphql/public";
 
 /**

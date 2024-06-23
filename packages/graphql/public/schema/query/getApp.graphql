@@ -9,5 +9,8 @@ query getApp($appId: String!) {
     records {
       ...fragRecords
     }
+    linkDatabase {
+      ...fragLinkDatabase
+    }
   }
 }
