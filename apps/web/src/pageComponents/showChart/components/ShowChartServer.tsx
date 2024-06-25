@@ -6,11 +6,9 @@ import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
 import { GetAppDocument } from "@v3/graphql/public/type";
 
 export const ShowChartServer = async ({ appId }: { appId: string }) => {
-  // レコードデータの呼び出しは RecordListServer を参照
   const { data } = await fetchQuery(GetAppDocument, { appId });
   const records = parseToRecords(data?.app?.records ?? []);
 
-  // 条件はこれを使用する
   const criteria: SummaryCriteria = {
     groupingFields: {
       "1718289203212": {
@@ -35,7 +33,6 @@ export const ShowChartServer = async ({ appId }: { appId: string }) => {
   };
   criteria;
 
-  // 上記を組み合わせて、data を生成する
   const dataArray = createDataArray({ records, criteria });
 
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
