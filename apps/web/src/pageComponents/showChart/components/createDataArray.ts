@@ -10,7 +10,7 @@ export const createDataArray = ({
   criteria: SummaryCriteria;
 }) => {
   return Object.values(sumRecords(records, criteria)).map((record) => {
-    const name: string = record.columns[0]?.value;
+    const name: string | undefined = Object.values(record.columns)[0]?.value;
     const value: number = record.sum;
 
     return { name, value };
