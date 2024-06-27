@@ -1,7 +1,13 @@
 import { Records } from "../../schema/recordSchema";
-import { SummaryCriteria } from "../../schema/summary/sumRecordsSchema";
+import {
+  SummaryCriteria,
+  SumRecords,
+} from "../../schema/summary/sumRecordsSchema";
 
-export const sumRecords = (records: Records, criteria: SummaryCriteria) => {
+export const sumRecords = (
+  records: Records,
+  criteria: SummaryCriteria,
+): SumRecords => {
   if (
     Object.keys(criteria.groupingFields).length < 1 ||
     Object.keys(criteria.summaryFields).length < 1
@@ -39,13 +45,16 @@ export const sumRecords = (records: Records, criteria: SummaryCriteria) => {
         {
           columns: {
             [field.groupingFieldId]: {
-              value: field.groupingValue,
+              value: field.groupingValue ?? "",
               fieldKind:
-                criteria.groupingFields[field.groupingFieldId]?.fieldKind,
+                criteria.groupingFields[field.groupingFieldId]?.fieldKind ??
+                "text",
             },
             [field.sumFieldId]: {
               value: sum.toString(),
-              fieldKind: criteria.summaryFields[field.sumFieldId]?.fieldKind,
+              fieldKind:
+                criteria.summaryFields[field.sumFieldId]?.fieldKind ??
+                "numeric",
             },
           },
           sum,
