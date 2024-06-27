@@ -5387,6 +5387,19 @@ export type UpdateAppMutation = {
   } | null;
 };
 
+export type UpdateLinkDatabaseMutationVariables = Exact<{
+  appId: Scalars["String"];
+  input: LinkDatabaseInsertInput;
+}>;
+
+export type UpdateLinkDatabaseMutation = {
+  __typename?: "mutation_root";
+  insertLinkDatabase?: {
+    __typename?: "LinkDatabaseMutationResponse";
+    returning: Array<{ __typename: "LinkDatabase"; appId: string }>;
+  } | null;
+};
+
 export type UpdateRecordMutationVariables = Exact<{
   id: Scalars["String"];
   columns: Scalars["json"];
@@ -5553,6 +5566,31 @@ export type GetAppFieldListQuery = {
       }>;
     }>;
   } | null;
+};
+
+export type GetAppLinkDatabaseQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetAppLinkDatabaseQuery = {
+  __typename?: "query_root";
+  linkDatabase?: {
+    __typename: "LinkDatabase";
+    appId: string;
+    database: string;
+    connection: any;
+    sql: string;
+    parameters: any;
+    fieldColumnMaps: any;
+  } | null;
+  fields: Array<{
+    __typename: "Field";
+    id: string;
+    name: string;
+    index: number;
+    fieldKind: string;
+    options?: any | null;
+  }>;
 };
 
 export type GetApplicationsQueryVariables = Exact<{
@@ -7529,6 +7567,146 @@ export const UpdateAppDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateAppMutation, UpdateAppMutationVariables>;
+export const UpdateLinkDatabaseDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "updateLinkDatabase" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "LinkDatabaseInsertInput" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertLinkDatabase" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "objects" },
+                value: {
+                  kind: "ListValue",
+                  values: [
+                    {
+                      kind: "Variable",
+                      name: { kind: "Name", value: "input" },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "onConflict" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "constraint" },
+                      value: { kind: "EnumValue", value: "link_database_pkey" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "updateColumns" },
+                      value: {
+                        kind: "ListValue",
+                        values: [
+                          { kind: "EnumValue", value: "connection" },
+                          { kind: "EnumValue", value: "database" },
+                          { kind: "EnumValue", value: "fieldColumnMaps" },
+                          { kind: "EnumValue", value: "parameters" },
+                          { kind: "EnumValue", value: "sql" },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "appId" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "appId" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "returning" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "appId" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateLinkDatabaseMutation,
+  UpdateLinkDatabaseMutationVariables
+>;
 export const UpdateRecordDocument = {
   kind: "Document",
   definitions: [
@@ -8283,6 +8461,145 @@ export const GetAppFieldListDocument = {
 } as unknown as DocumentNode<
   GetAppFieldListQuery,
   GetAppFieldListQueryVariables
+>;
+export const GetAppLinkDatabaseDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getAppLinkDatabase" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "appId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "linkDatabase" },
+            name: { kind: "Name", value: "linkDatabaseByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "appId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "appId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "fragLinkDatabase" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "fields" },
+            name: { kind: "Name", value: "field" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "appId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "appId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "fragFields" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragLinkDatabase" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LinkDatabase" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "appId" } },
+          { kind: "Field", name: { kind: "Name", value: "database" } },
+          { kind: "Field", name: { kind: "Name", value: "connection" } },
+          { kind: "Field", name: { kind: "Name", value: "sql" } },
+          { kind: "Field", name: { kind: "Name", value: "parameters" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldColumnMaps" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragFields" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Field" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
+          { kind: "Field", name: { kind: "Name", value: "options" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetAppLinkDatabaseQuery,
+  GetAppLinkDatabaseQueryVariables
 >;
 export const GetApplicationsDocument = {
   kind: "Document",

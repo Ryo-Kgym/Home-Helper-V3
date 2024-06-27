@@ -5480,6 +5480,19 @@ export type UpdateAppMutation = {
   } | null;
 };
 
+export type UpdateLinkDatabaseMutationVariables = Exact<{
+  appId: Scalars["String"];
+  input: LinkDatabaseInsertInput;
+}>;
+
+export type UpdateLinkDatabaseMutation = {
+  __typename?: "mutation_root";
+  insertLinkDatabase?: {
+    __typename?: "LinkDatabaseMutationResponse";
+    returning: Array<{ __typename: "LinkDatabase"; appId: string }>;
+  } | null;
+};
+
 export type UpdateRecordMutationVariables = Exact<{
   id: Scalars["String"];
   columns: Scalars["json"];
@@ -5646,6 +5659,31 @@ export type GetAppFieldListQuery = {
       }>;
     }>;
   } | null;
+};
+
+export type GetAppLinkDatabaseQueryVariables = Exact<{
+  appId: Scalars["String"];
+}>;
+
+export type GetAppLinkDatabaseQuery = {
+  __typename?: "query_root";
+  linkDatabase?: {
+    __typename: "LinkDatabase";
+    appId: string;
+    database: string;
+    connection: any;
+    sql: string;
+    parameters: any;
+    fieldColumnMaps: any;
+  } | null;
+  fields: Array<{
+    __typename: "Field";
+    id: string;
+    name: string;
+    index: number;
+    fieldKind: string;
+    options?: any | null;
+  }>;
 };
 
 export type GetApplicationsQueryVariables = Exact<{
@@ -6178,6 +6216,33 @@ export function useUpdateAppMutation() {
     UpdateAppDocument,
   );
 }
+export const UpdateLinkDatabaseDocument = gql`
+  mutation updateLinkDatabase(
+    $appId: String!
+    $input: LinkDatabaseInsertInput!
+  ) {
+    insertLinkDatabase(
+      objects: [$input]
+      onConflict: {
+        constraint: link_database_pkey
+        updateColumns: [connection, database, fieldColumnMaps, parameters, sql]
+        where: { appId: { _eq: $appId } }
+      }
+    ) {
+      returning {
+        __typename
+        appId
+      }
+    }
+  }
+`;
+
+export function useUpdateLinkDatabaseMutation() {
+  return Urql.useMutation<
+    UpdateLinkDatabaseMutation,
+    UpdateLinkDatabaseMutationVariables
+  >(UpdateLinkDatabaseDocument);
+}
 export const UpdateRecordDocument = gql`
   mutation updateRecord($id: String!, $columns: json!) {
     updateRecordByPk(_set: { columns: $columns }, pkColumns: { id: $id }) {
@@ -6344,6 +6409,27 @@ export function useGetAppFieldListQuery(
     query: GetAppFieldListDocument,
     ...options,
   });
+}
+export const GetAppLinkDatabaseDocument = gql`
+  query getAppLinkDatabase($appId: String!) {
+    linkDatabase: linkDatabaseByPk(appId: $appId) {
+      ...fragLinkDatabase
+    }
+    fields: field(where: { appId: { _eq: $appId } }) {
+      ...fragFields
+    }
+  }
+  ${FragLinkDatabaseFragmentDoc}
+  ${FragFieldsFragmentDoc}
+`;
+
+export function useGetAppLinkDatabaseQuery(
+  options: Omit<Urql.UseQueryArgs<GetAppLinkDatabaseQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetAppLinkDatabaseQuery,
+    GetAppLinkDatabaseQueryVariables
+  >({ query: GetAppLinkDatabaseDocument, ...options });
 }
 export const GetApplicationsDocument = gql`
   query getApplications($groupId: String!) {
