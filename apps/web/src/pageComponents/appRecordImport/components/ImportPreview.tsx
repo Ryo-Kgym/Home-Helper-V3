@@ -3,8 +3,8 @@
 import { Table } from "@components/ui/v4/table";
 import { App } from "@oneforall/domain/schema/appSchema";
 import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
+import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
 import { ImportFilePickerClient } from "@pageComponents/appRecordImport/components/ImportFilePickerClient";
-import { LookupRecords } from "@server/lookupRecords/type";
 
 export const ImportPreview = ({
   app,

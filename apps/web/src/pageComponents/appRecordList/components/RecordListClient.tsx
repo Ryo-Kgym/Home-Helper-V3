@@ -18,11 +18,13 @@ export const RecordListClient = ({
   columnsTemplate,
   records: defaultRecords,
   headerItems,
+  uneditable,
 }: {
   app: App;
   columnsTemplate: RecordColumns;
   records: Records;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
+  uneditable?: boolean;
 }) => {
   const initialize = useInitRecords();
   const resetMode = useResetMode();
@@ -44,7 +46,11 @@ export const RecordListClient = ({
         <RedirectImportButton appId={app.id} />
         <RedirectChartButton appId={app.id} />
       </Title>
-      <RecordListTable app={app} headerItems={headerItems} />
+      <RecordListTable
+        app={app}
+        headerItems={headerItems}
+        uneditable={uneditable}
+      />
     </div>
   );
 };

@@ -8,9 +8,11 @@ import { useRecords } from "@hooks/states/app/records/useRecords";
 export const RecordListTable = ({
   app,
   headerItems,
+  uneditable,
 }: {
   app: App;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
+  uneditable?: boolean;
 }) => {
   const { records } = useRecords();
 
@@ -25,6 +27,7 @@ export const RecordListTable = ({
             record={record}
             recordIndex={parseInt(recordIndex)}
             app={app}
+            uneditable={uneditable}
           />
         )}
       >

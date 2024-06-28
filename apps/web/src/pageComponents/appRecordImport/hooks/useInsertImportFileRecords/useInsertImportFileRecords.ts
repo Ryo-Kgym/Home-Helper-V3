@@ -1,7 +1,7 @@
 import { generateId, generateIds } from "@feature/app/function/generateId";
 import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
 import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
-import { LookupRecords } from "@server/lookupRecords/type";
+import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
 import {
   useGetMaxRecordIndexQuery,
   useInsertImportFileHistoryMutation,

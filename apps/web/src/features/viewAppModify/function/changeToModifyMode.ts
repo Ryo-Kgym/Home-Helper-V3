@@ -6,6 +6,8 @@ export const changeToModifyMode = (
 ) => {
   const a = Object.values(viewApps).find((app) => app.mode === "add");
   if (a) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     a.mode = "modify";
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error

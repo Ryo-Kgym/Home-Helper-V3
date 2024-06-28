@@ -2,6 +2,7 @@ import { FC } from "react";
 import { RoutingTabs } from "@components/ui/v4/routingTab";
 import { AppDangerous } from "@pageComponents/appDangerous";
 import { ModifyApp } from "@pageComponents/appModify";
+import { LinkDatabase } from "pageComponents/appLinkDatabase";
 
 const tabGroup: Record<
   string,
@@ -17,6 +18,10 @@ const tabGroup: Record<
   dangerous: {
     label: "危険エリア",
     Component: AppDangerous,
+  },
+  linkDatabase: {
+    label: "外部DB連携",
+    Component: LinkDatabase,
   },
 };
 

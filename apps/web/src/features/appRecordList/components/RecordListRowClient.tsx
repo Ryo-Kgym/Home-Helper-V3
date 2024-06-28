@@ -11,10 +11,12 @@ export const RecordListRowClient = ({
   record: defaultRecord,
   recordIndex,
   app,
+  uneditable,
 }: {
   record: Record;
   recordIndex: number;
   app: App;
+  uneditable?: boolean;
 }) => {
   const { record, setRecord } = useStateRecord(defaultRecord);
   const [mode, setMode] = useState<RecordListMode>("show");
@@ -41,6 +43,7 @@ export const RecordListRowClient = ({
           recordId={record.recordId}
           setRecord={setRecord}
           defaultRecord={defaultRecord}
+          uneditable={uneditable}
         />
       </Table.BodyTd>
     </>
