@@ -1,11 +1,11 @@
 import * as judgeComplexity from "@oneforall/domain/complexity/judgeComplexity";
-import { ViewRecordColumns } from "@oneforall/domain/schema/view/viewRecordSchema";
+import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 
-import { filterViewRecord } from "./filterViewRecord";
+import { filterAppRecords } from "./filterAppRecords";
 
 jest.mock("@oneforall/domain/complexity/judgeComplexity");
 
-const viewRecordColumns: ViewRecordColumns = {
+const recordColumns: RecordColumns = {
   vc1: {
     fieldKind: "date",
     options: {
@@ -22,7 +22,7 @@ const viewRecordColumns: ViewRecordColumns = {
   },
 };
 
-describe("filterViewRecord", () => {
+describe("filterAppRecords", () => {
   const judgeComplexityMock = jest.spyOn(judgeComplexity, "judgeComplexity");
   jest.spyOn(judgeComplexity, "judgeComplexity");
 
@@ -31,7 +31,7 @@ describe("filterViewRecord", () => {
   });
 
   it("フィルターを評価して、計算関数に期待する引数を渡す", () => {
-    filterViewRecord(viewRecordColumns, {
+    filterAppRecords(recordColumns, {
       0: {
         fieldId: "vc2",
         fieldKind: "text",
@@ -71,7 +71,7 @@ describe("filterViewRecord", () => {
     ]);
   });
   it("フィルターが存在しない場合、trueを返す", () => {
-    const actual = filterViewRecord(viewRecordColumns, {});
+    const actual = filterAppRecords(recordColumns, {});
 
     expect(actual).toBe(true);
   });

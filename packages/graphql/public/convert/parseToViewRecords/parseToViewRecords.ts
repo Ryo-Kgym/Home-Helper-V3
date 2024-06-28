@@ -1,4 +1,4 @@
-import { ViewFilters } from "@oneforall/domain/schema/view/viewFilterSchema";
+import { RecordFilters } from "@oneforall/domain/schema/filter/recordFiltersSchema";
 import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
@@ -12,7 +12,7 @@ import { ViewAppsQuery } from "./type";
 export const parseToViewRecords = (
   viewFields: ViewFields,
   viewApps: ViewAppsQuery,
-  filters: ViewFilters = {},
+  filters: RecordFilters = {},
 ): ViewRecords => {
   const viewAppsArray = viewApps.map((viewApp) =>
     Object.fromEntries(

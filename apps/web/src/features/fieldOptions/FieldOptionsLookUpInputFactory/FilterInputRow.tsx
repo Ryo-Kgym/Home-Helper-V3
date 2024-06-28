@@ -7,7 +7,7 @@ import {
   FieldOptionsLookupFilter,
   Fields,
 } from "@oneforall/domain/schema/appSchema";
-import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
+import { FilterComplexity } from "@oneforall/domain/schema/filter/filterComplexitySchema";
 
 /**
  * @package

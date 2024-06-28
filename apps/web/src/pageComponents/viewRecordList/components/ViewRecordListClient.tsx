@@ -10,7 +10,7 @@ import { RedirectViewSettingButton } from "@features/viewNav/RedirectViewSetting
 import { useInitViewRecords } from "@features/viewRecordList/client/useViewRecordsState";
 import { ViewRecordListTable } from "@features/viewRecordList/components/ViewRecordListTable";
 import { ViewRecordFilterSetting } from "@features/viewRecordListFilter/components/ViewRecordFilterSetting";
-import { ViewFilters } from "@oneforall/domain/schema/view/viewFilterSchema";
+import { RecordFilters } from "@oneforall/domain/schema/filter/recordFiltersSchema";
 import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { View } from "@oneforall/domain/schema/view/viewSchema";
 
@@ -22,7 +22,7 @@ export const ViewRecordListClient = ({
 }: {
   view: View;
   records: ViewRecords;
-  viewFilters: ViewFilters | undefined;
+  viewFilters: RecordFilters | undefined;
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
   const initialize = useInitViewRecords();

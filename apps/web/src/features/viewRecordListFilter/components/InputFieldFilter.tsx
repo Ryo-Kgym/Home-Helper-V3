@@ -4,9 +4,9 @@ import { DateInput } from "@components/ui/v4/dateInput/DateInput";
 import { Select } from "@components/ui/v4/select";
 import { Table } from "@components/ui/v4/table";
 import { NumberInput, TextInput } from "@components/ui/v4/textInput";
-import { FilterComplexity } from "@oneforall/domain/schema/filterComplexitySchema";
-import { FilterOperator } from "@oneforall/domain/schema/filterOperatorSchema";
-import { ViewFilters } from "@oneforall/domain/schema/view/viewFilterSchema";
+import { FilterComplexity } from "@oneforall/domain/schema/filter/filterComplexitySchema";
+import { FilterOperator } from "@oneforall/domain/schema/filter/filterOperatorSchema";
+import { RecordFilters } from "@oneforall/domain/schema/filter/recordFiltersSchema";
 import {
   ViewField,
   ViewFields,
@@ -21,8 +21,8 @@ export const InputFieldFilter = ({
 }: {
   index: number;
   viewFields: ViewFields;
-  filter: ViewFilters[number];
-  setFilters: Dispatch<SetStateAction<ViewFilters>>;
+  filter: RecordFilters[number];
+  setFilters: Dispatch<SetStateAction<RecordFilters>>;
   disabled?: boolean;
 }) => {
   const [fieldId, setFieldId] = useState<string>(filter.fieldId);
@@ -111,7 +111,7 @@ export const InputFieldFilter = ({
                     value,
                     filterComplexity,
                   },
-                }) as ViewFilters,
+                }) as RecordFilters,
             );
           }}
           type={"add"}

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { filterComplexitySchema } from "./filterComplexitySchema";
+import { filterComplexitySchema } from "./filter/filterComplexitySchema";
 import { sortDirectionSchema } from "./sortDirectionSchema";
 
 export const fieldKindSchema = z.enum([
