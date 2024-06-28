@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { DeleteViewRelationsClient } from "@features/viewDelete/components/DeleteViewRelationsClient";
 import { ViewDeleteRelations } from "@features/viewDelete/types/viewDeleteRelations";
 import { Section } from "@pageComponents/viewDangerous/components/Section";
@@ -17,8 +18,7 @@ export const ViewDangerousClient = ({
 
   return (
     <>
-      <div className={"space-y-10"}>
-        <Title title={"危険エリア"} />
+      <PageClientFrame title={<Title title={"危険エリア"} />}>
         <div className={"space-y-10 px-10"}>
           <Section
             title={"ビューを削除します"}
@@ -42,7 +42,7 @@ export const ViewDangerousClient = ({
             onClick={() => undefined}
           />
         </div>
-      </div>
+      </PageClientFrame>
       <Modal
         isOpen={isOpen}
         onClose={() => {

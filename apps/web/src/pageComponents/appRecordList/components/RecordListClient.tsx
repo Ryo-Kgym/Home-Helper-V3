@@ -2,6 +2,7 @@
 
 import { ComponentProps, useEffect } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { Table } from "@components/ui/v4/table";
 import { AddRecordButton } from "@feature/app/nav/AddRecordButton";
 import { RedirectChartButton } from "@feature/app/nav/RedirectChartButton";
@@ -39,18 +40,21 @@ export const RecordListClient = ({
   );
 
   return (
-    <div className={"space-y-10"}>
-      <Title title={app.name}>
-        <RedirectSettingButton appId={app.id} />
-        <AddRecordButton columnTemplate={columnsTemplate} />
-        <RedirectImportButton appId={app.id} />
-        <RedirectChartButton appId={app.id} />
-      </Title>
+    <PageClientFrame
+      title={
+        <Title title={app.name}>
+          <RedirectSettingButton appId={app.id} />
+          <AddRecordButton columnTemplate={columnsTemplate} />
+          <RedirectImportButton appId={app.id} />
+          <RedirectChartButton appId={app.id} />
+        </Title>
+      }
+    >
       <RecordListTable
         app={app}
         headerItems={headerItems}
         uneditable={uneditable}
       />
-    </div>
+    </PageClientFrame>
   );
 };

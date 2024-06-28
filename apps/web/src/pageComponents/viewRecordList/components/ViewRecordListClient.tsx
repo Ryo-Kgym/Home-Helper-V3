@@ -3,6 +3,7 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { Table } from "@components/ui/v4/table";
 import { OpenViewFilterButton } from "@features/viewNav/OpenViewFilterButton";
 import { RedirectViewSettingButton } from "@features/viewNav/RedirectViewSettingButton";
@@ -36,11 +37,16 @@ export const ViewRecordListClient = ({
   );
 
   return (
-    <div className={"space-y-10"}>
-      <Title title={view.name}>
-        <RedirectViewSettingButton viewId={view.id} />
-        <OpenViewFilterButton onClose={() => setIsOpenFilter(!isOpenFilter)} />
-      </Title>
+    <PageClientFrame
+      title={
+        <Title title={view.name}>
+          <RedirectViewSettingButton viewId={view.id} />
+          <OpenViewFilterButton
+            onClose={() => setIsOpenFilter(!isOpenFilter)}
+          />
+        </Title>
+      }
+    >
       <ViewRecordListTable view={view} headerItems={headerItems} />
       <Modal isOpen={isOpenFilter} onClose={() => setIsOpenFilter(false)}>
         <ViewRecordFilterSetting
@@ -48,6 +54,6 @@ export const ViewRecordListClient = ({
           defaultViewFilters={defaultViewFilters}
         />
       </Modal>
-    </div>
+    </PageClientFrame>
   );
 };

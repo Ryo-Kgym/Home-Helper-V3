@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { RedirectViewRecordListButton } from "@feature/app/nav/RedirectViewRecordListButton";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
@@ -37,13 +38,16 @@ export const ModifyViewClient = ({
   );
 
   return (
-    <div className={"space-y-5"}>
-      <Title title={"ビューを構成するアプリの設定"}>
-        <RedirectViewRecordListButton viewId={viewId} />
-      </Title>
+    <PageClientFrame
+      title={
+        <Title title={"ビューを構成するアプリの設定"}>
+          <RedirectViewRecordListButton viewId={viewId} />
+        </Title>
+      }
+    >
       <ViewAppOption appListData={appListData} viewFields={viewFields} />
       <ViewAppTable appListData={appListData} viewFields={viewFields} />
       <ModifyViewAppButton viewId={viewId} />
-    </div>
+    </PageClientFrame>
   );
 };

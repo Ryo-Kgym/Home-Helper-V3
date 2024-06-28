@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Title } from "@components/ui/v4/frame/Title";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { useGetViewFieldValue } from "@feature/view/create/useGetViewFieldValue";
 import { useResetViewFieldValue } from "@feature/view/create/useResetViewFieldValue";
 import { ViewFieldInput } from "@feature/view/field/ViewFieldInput";
@@ -24,8 +25,7 @@ export const CreateViewClient = () => {
   );
 
   return (
-    <div className={"space-y-10"}>
-      <Title title={"ビュー作成"} />
+    <PageClientFrame title={<Title title={"ビュー作成"} />}>
       <div className={"grid grid-cols-2 gap-2"}>
         <ViewNameInput viewName={viewName} setViewName={setViewName} />
         <div className={"grid grid-cols-3 gap-2"}>
@@ -39,6 +39,6 @@ export const CreateViewClient = () => {
           <ViewFieldInput key={index} index={parseInt(index)} />
         ))}
       </div>
-    </div>
+    </PageClientFrame>
   );
 };
