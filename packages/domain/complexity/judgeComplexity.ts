@@ -1,4 +1,4 @@
-import { FilterComplexity } from "../schema/filterComplexitySchema";
+import { FilterComplexity } from "../schema/filter/filterComplexitySchema";
 
 export const judgeComplexity = (
   source: { complexity: FilterComplexity; result: boolean }[],

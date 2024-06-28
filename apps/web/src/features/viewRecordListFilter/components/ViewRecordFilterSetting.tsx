@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@components/ui/v4/button";
 import { Table } from "@components/ui/v4/table";
 import { InputFieldFilter } from "@features/viewRecordListFilter/components/InputFieldFilter";
-import { ViewFilters } from "@oneforall/domain/schema/view/viewFilterSchema";
+import { RecordFilters } from "@oneforall/domain/schema/filter/recordFiltersSchema";
 import { View } from "@oneforall/domain/schema/view/viewSchema";
 import { paths } from "@routing/paths";
 
@@ -12,9 +12,9 @@ export const ViewRecordFilterSetting = ({
   defaultViewFilters = {},
 }: {
   view: View;
-  defaultViewFilters: ViewFilters | undefined;
+  defaultViewFilters: RecordFilters | undefined;
 }) => {
-  const [filters, setFilters] = useState<ViewFilters>(defaultViewFilters);
+  const [filters, setFilters] = useState<RecordFilters>(defaultViewFilters);
   const { push } = useRouter();
 
   useEffect(() => {

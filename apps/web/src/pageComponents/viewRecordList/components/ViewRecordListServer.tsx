@@ -1,6 +1,6 @@
 import { Fields } from "@oneforall/domain/schema/appSchema";
+import { recordFiltersSchema } from "@oneforall/domain/schema/filter/recordFiltersSchema";
 import { Record } from "@oneforall/domain/schema/recordSchema";
-import { viewFiltersSchema } from "@oneforall/domain/schema/view/viewFilterSchema";
 import { ViewRecord } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { AppRecordDetailClient } from "@pageComponents/viewRecordList/components/AppRecordDetailClient";
 import { ViewRecordListClient } from "@pageComponents/viewRecordList/components/ViewRecordListClient";
@@ -39,7 +39,7 @@ export const ViewRecordListServer = async ({
     { name: "アプリ名" },
   ];
 
-  const viewFilters = viewFiltersSchema.safeParse(
+  const viewFilters = recordFiltersSchema.safeParse(
     JSON.parse(filterStr ?? "{}"),
   ).data;
 

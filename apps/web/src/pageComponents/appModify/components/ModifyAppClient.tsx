@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
 import { useInitializeAppFieldValue } from "@feature/app/create/useAppFieldValueState";
@@ -27,10 +28,13 @@ export const ModifyAppClient = ({
   }, [initialize, defaultFields]);
 
   return (
-    <div className={"space-y-10"}>
-      <Title title={"アプリ設定"}>
-        <RedirectListButton appId={appId} />
-      </Title>
+    <PageClientFrame
+      title={
+        <Title title={"アプリ設定"}>
+          <RedirectListButton appId={appId} />
+        </Title>
+      }
+    >
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
@@ -39,6 +43,6 @@ export const ModifyAppClient = ({
         </div>
       </div>
       <FieldInputTable />
-    </div>
+    </PageClientFrame>
   );
 };

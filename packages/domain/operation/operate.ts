@@ -1,6 +1,9 @@
-import { ViewFilter } from "../schema/view/viewFilterSchema";
+import { RecordFilter } from "../schema/filter/recordFiltersSchema";
 
-export const operate = (filter: ViewFilter, value: string | undefined = "") => {
+export const operate = (
+  filter: RecordFilter,
+  value: string | undefined = "",
+) => {
   switch (filter.operator) {
     case "eq": {
       return value === filter.value;

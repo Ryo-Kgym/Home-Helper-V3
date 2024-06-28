@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Button } from "@components/ui/v4/button";
 import { Title } from "@components/ui/v4/frame/Title";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { AppNameInput } from "@feature/app/create/AppNameInput";
 import { CreateAppButton } from "@feature/app/create/CreateAppButton";
 import { FieldAddButton } from "@feature/app/create/FieldAddButton";
@@ -10,7 +12,6 @@ import {
   useResetAppFieldValue,
 } from "@feature/app/create/useAppFieldValueState";
 import { AppFieldInput } from "@feature/app/field/AppFieldInput";
-import { useEffect, useState } from "react";
 
 export const CreateAppClient = () => {
   const [appName, setAppName] = useState<string>("");
@@ -26,8 +27,7 @@ export const CreateAppClient = () => {
   );
 
   return (
-    <div className={"space-y-10"}>
-      <Title title={"アプリ作成"} />
+    <PageClientFrame title={<Title title={"アプリ作成"} />}>
       <div className={"grid grid-cols-2 gap-2"}>
         <AppNameInput appName={appName} setAppName={setAppName} />
         <div className={"grid grid-cols-3 gap-2"}>
@@ -41,6 +41,6 @@ export const CreateAppClient = () => {
           <AppFieldInput key={index} index={parseInt(index)} />
         ))}
       </div>
-    </div>
+    </PageClientFrame>
   );
 };

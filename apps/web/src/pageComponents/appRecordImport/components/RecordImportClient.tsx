@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { Tabs } from "@components/ui/v4/tab";
 import { OpenSettingButton } from "@feature/app/nav/OpenSettingButton";
 import { RedirectImportButton } from "@feature/app/nav/RedirectImportButton";
@@ -60,20 +61,23 @@ export const RecordImportClient = ({
 
   return (
     <>
-      <div className={"space-y-10"}>
-        <Title title={app.name}>
-          <RedirectSettingButton appId={app.id} />
-          <RedirectListButton appId={app.id} />
-          <RedirectImportButton appId={app.id} />
-          <OpenSettingButton onOpen={() => setIsOpen(true)} />
-        </Title>
+      <PageClientFrame
+        title={
+          <Title title={app.name}>
+            <RedirectSettingButton appId={app.id} />
+            <RedirectListButton appId={app.id} />
+            <RedirectImportButton appId={app.id} />
+            <OpenSettingButton onOpen={() => setIsOpen(true)} />
+          </Title>
+        }
+      >
         <ImportHistoryList />
         <ImportPreview
           app={app}
           previewRecords={previewRecords}
           lookupRecords={lookupRecords}
         />
-      </div>
+      </PageClientFrame>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Modal.Body>
           <Tabs

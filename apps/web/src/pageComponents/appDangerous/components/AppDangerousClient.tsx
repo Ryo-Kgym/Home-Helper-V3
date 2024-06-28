@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
 import { Modal } from "@components/ui/v4/modal";
+import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { DeleteAppRelationsClient } from "@features/appDelete/components/DeleteAppRelationsClient";
 import { AppDeleteRelations } from "@features/appDelete/types/appDeleteRelations";
 
@@ -18,8 +19,7 @@ export const AppDangerousClient = ({
 
   return (
     <>
-      <div className={"space-y-10"}>
-        <Title title={"危険エリア"} />
+      <PageClientFrame title={<Title title={"危険エリア"} />}>
         <div className={"space-y-10 px-10"}>
           <Section
             title={"アプリを削除します"}
@@ -43,7 +43,7 @@ export const AppDangerousClient = ({
             onClick={() => undefined}
           />
         </div>
-      </div>
+      </PageClientFrame>
       <Modal
         isOpen={isOpen}
         onClose={() => {
