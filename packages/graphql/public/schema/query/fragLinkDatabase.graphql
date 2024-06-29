@@ -1,6 +1,6 @@
 fragment fragLinkDatabase on LinkDatabase {
   __typename
-  appId
+  id: appId
   database
   connection
   sql

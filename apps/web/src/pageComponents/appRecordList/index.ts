@@ -1,1 +1,1 @@
-export { RecordListServer as RecordList } from "./components/RecordListServer";
+export { RecordListPage as RecordList } from "./components/RecordListPage";

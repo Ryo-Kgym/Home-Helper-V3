@@ -80,7 +80,8 @@ const config = {
         ...featuresDirs.map((name) => ({
           module: `src/features/${name}/server`,
           allowReferenceFrom: [
-            `src/pageComponents/*/components/*Server.tsx`,
+            `src/pageComponents/*/components/*Server.tsx`, // 廃止予定
+            `src/pageComponents/*/components/*Page.tsx`,
             `src/feature`,
           ],
           allowSameModule: true,
@@ -89,15 +90,17 @@ const config = {
           module: `src/features/${name}/client`,
           allowReferenceFrom: [
             `src/pageComponents/*/client`,
-            `src/features/${name}/components/*.tsx`,
-            `src/pageComponents/*/components/*Client.tsx`,
+            `src/features/${name}/components/**/*.tsx`,
+            `src/pageComponents/*/components/**/*Client.tsx`, // 廃止予定
+            `src/pageComponents/*/components/**/*Page.tsx`,
           ],
           allowSameModule: true,
         })),
         ...featuresDirs.map((name) => ({
           module: `src/features/${name}/components`,
           allowReferenceFrom: [
-            `src/pageComponents/*/components/**/*Client.tsx`,
+            `src/pageComponents/*/components/**/*Client.tsx`, // 廃止予定
+            `src/pageComponents/*/components/**/*Page.tsx`,
           ],
           allowSameModule: true,
         })),

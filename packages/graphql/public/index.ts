@@ -5546,12 +5546,12 @@ export type FragFieldsFragment = {
 
 export type FragLinkDatabaseFragment = {
   __typename: "LinkDatabase";
-  appId: string;
   database: string;
   connection: any;
   sql: string;
   parameters: any;
   fieldColumnMaps: any;
+  id: string;
 };
 
 export type FragRecordsFragment = {
@@ -5587,12 +5587,12 @@ export type GetAppQuery = {
     }>;
     linkDatabase?: {
       __typename: "LinkDatabase";
-      appId: string;
       database: string;
       connection: any;
       sql: string;
       parameters: any;
       fieldColumnMaps: any;
+      id: string;
     } | null;
   } | null;
 };
@@ -5669,12 +5669,12 @@ export type GetAppLinkDatabaseQuery = {
   __typename?: "query_root";
   linkDatabase?: {
     __typename: "LinkDatabase";
-    appId: string;
     database: string;
     connection: any;
     sql: string;
     parameters: any;
     fieldColumnMaps: any;
+    id: string;
   } | null;
   fields: Array<{
     __typename: "Field";
@@ -5905,7 +5905,7 @@ export const FragFieldsFragmentDoc = gql`
 export const FragLinkDatabaseFragmentDoc = gql`
   fragment fragLinkDatabase on LinkDatabase {
     __typename
-    appId
+    id: appId
     database
     connection
     sql

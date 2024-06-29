@@ -1,3 +1,5 @@
+"use client";
+
 import type { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 import { generateId } from "@feature/app/function/generateId";
 import { RecordListMode } from "@features/appRecordList/types/recordListMode";
