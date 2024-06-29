@@ -5453,12 +5453,12 @@ export type FragFieldsFragment = {
 
 export type FragLinkDatabaseFragment = {
   __typename: "LinkDatabase";
-  appId: string;
   database: string;
   connection: any;
   sql: string;
   parameters: any;
   fieldColumnMaps: any;
+  id: string;
 };
 
 export type FragRecordsFragment = {
@@ -5494,12 +5494,12 @@ export type GetAppQuery = {
     }>;
     linkDatabase?: {
       __typename: "LinkDatabase";
-      appId: string;
       database: string;
       connection: any;
       sql: string;
       parameters: any;
       fieldColumnMaps: any;
+      id: string;
     } | null;
   } | null;
 };
@@ -5576,12 +5576,12 @@ export type GetAppLinkDatabaseQuery = {
   __typename?: "query_root";
   linkDatabase?: {
     __typename: "LinkDatabase";
-    appId: string;
     database: string;
     connection: any;
     sql: string;
     parameters: any;
     fieldColumnMaps: any;
+    id: string;
   } | null;
   fields: Array<{
     __typename: "Field";
@@ -5837,7 +5837,11 @@ export const FragLinkDatabaseFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "appId" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "id" },
+            name: { kind: "Name", value: "appId" },
+          },
           { kind: "Field", name: { kind: "Name", value: "database" } },
           { kind: "Field", name: { kind: "Name", value: "connection" } },
           { kind: "Field", name: { kind: "Name", value: "sql" } },
@@ -8138,7 +8142,11 @@ export const GetAppDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "appId" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "id" },
+            name: { kind: "Name", value: "appId" },
+          },
           { kind: "Field", name: { kind: "Name", value: "database" } },
           { kind: "Field", name: { kind: "Name", value: "connection" } },
           { kind: "Field", name: { kind: "Name", value: "sql" } },
@@ -8568,7 +8576,11 @@ export const GetAppLinkDatabaseDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "appId" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "id" },
+            name: { kind: "Name", value: "appId" },
+          },
           { kind: "Field", name: { kind: "Name", value: "database" } },
           { kind: "Field", name: { kind: "Name", value: "connection" } },
           { kind: "Field", name: { kind: "Name", value: "sql" } },
