@@ -5900,6 +5900,15 @@ export type GetViewRecordsSourceQuery = {
           index: number;
           columns: any;
         }>;
+        linkDatabase?: {
+          __typename: "LinkDatabase";
+          database: string;
+          connection: any;
+          sql: string;
+          parameters: any;
+          fieldColumnMaps: any;
+          id: string;
+        } | null;
       };
     }>;
   } | null;
@@ -6709,12 +6718,16 @@ export const GetViewRecordsSourceDocument = gql`
           records {
             ...fragRecords
           }
+          linkDatabase {
+            ...fragLinkDatabase
+          }
         }
       }
     }
   }
   ${FragFieldsFragmentDoc}
   ${FragRecordsFragmentDoc}
+  ${FragLinkDatabaseFragmentDoc}
 `;
 
 export function useGetViewRecordsSourceQuery(

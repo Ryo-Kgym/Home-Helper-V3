@@ -6,11 +6,10 @@ import { AddRecordButton } from "@feature/app/nav/AddRecordButton";
 import { RedirectChartButton } from "@feature/app/nav/RedirectChartButton";
 import { RedirectImportButton } from "@feature/app/nav/RedirectImportButton";
 import { RedirectSettingButton } from "@feature/app/nav/RedirectSettingButton";
-import { RecordListTableByLinkDatabaseServer } from "@features/appRecordList/components/table/RecordListTableByLinkDatabaseServer";
-import { RecordListTableByRecordsServer } from "@features/appRecordList/components/table/RecordListTableByRecordsServer";
+import { RecordListTableServer } from "@features/appRecordList/components/table/RecordListTableServer";
 import { makeColumnsTemplate } from "@features/appRecordList/server/makeColumnsTemplate";
 import { makeHeaderItems } from "@features/appRecordList/server/makeHeaderItems";
-import { linkDatabaseSchema } from "@oneforall/domain/schema/linkDatabase/linkDatabaseSchema";
+import { switchRecords } from "@features/appRecordList/server/switchRecords";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToApp } from "@v3/graphql/public/convert/parseToApp";
 import { GetAppDocument } from "@v3/graphql/public/type";
@@ -21,9 +20,10 @@ export const RecordListPage = async ({ appId }: { appId: string }) => {
   const columnsTemplate = makeColumnsTemplate(app.fields);
   const headerItems = makeHeaderItems(app.fields);
 
-  const linkDataBaseResult = linkDatabaseSchema.safeParse(
-    data?.app?.linkDatabase,
-  );
+  const switchedRecords = await switchRecords(app, {
+    linkDatabase: data?.app?.linkDatabase,
+    records: data?.app?.records ?? [],
+  });
 
   return (
     <PageClientFrame
@@ -37,19 +37,11 @@ export const RecordListPage = async ({ appId }: { appId: string }) => {
       }
     >
       <Suspense fallback={<TableLoading />}>
-        {linkDataBaseResult.success ? (
-          <RecordListTableByLinkDatabaseServer
-            app={app}
-            headerItems={headerItems}
-            linkDatabase={linkDataBaseResult.data}
-          />
-        ) : (
-          <RecordListTableByRecordsServer
-            app={app}
-            headerItems={headerItems}
-            recordsData={data?.app?.records}
-          />
-        )}
+        <RecordListTableServer
+          app={app}
+          headerItems={headerItems}
+          switchedRecords={switchedRecords}
+        />
       </Suspense>
     </PageClientFrame>
   );

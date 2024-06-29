@@ -5807,6 +5807,15 @@ export type GetViewRecordsSourceQuery = {
           index: number;
           columns: any;
         }>;
+        linkDatabase?: {
+          __typename: "LinkDatabase";
+          database: string;
+          connection: any;
+          sql: string;
+          parameters: any;
+          fieldColumnMaps: any;
+          id: string;
+        } | null;
       };
     }>;
   } | null;
@@ -9713,6 +9722,22 @@ export const GetViewRecordsSourceDocument = {
                                 ],
                               },
                             },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "linkDatabase" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "FragmentSpread",
+                                    name: {
+                                      kind: "Name",
+                                      value: "fragLinkDatabase",
+                                    },
+                                  },
+                                ],
+                              },
+                            },
                           ],
                         },
                       },
@@ -9758,6 +9783,30 @@ export const GetViewRecordsSourceDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "index" } },
           { kind: "Field", name: { kind: "Name", value: "columns" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragLinkDatabase" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LinkDatabase" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "id" },
+            name: { kind: "Name", value: "appId" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "database" } },
+          { kind: "Field", name: { kind: "Name", value: "connection" } },
+          { kind: "Field", name: { kind: "Name", value: "sql" } },
+          { kind: "Field", name: { kind: "Name", value: "parameters" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldColumnMaps" } },
         ],
       },
     },

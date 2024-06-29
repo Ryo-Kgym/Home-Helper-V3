@@ -19,7 +19,7 @@ export const CreateSummaryViewServer = async ({
 
   const records: ViewRecords = parseToViewRecords(
     view.fields,
-    data.view?.viewApps ?? [],
+    [], // TODO
   );
   records;
 
