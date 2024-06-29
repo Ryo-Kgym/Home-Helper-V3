@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { Title } from "@components/ui/v4/frame/Title";
+import { TableLoading } from "@components/ui/v4/loading/TableLoading";
 import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 import { AddRecordButton } from "@feature/app/nav/AddRecordButton";
 import { RedirectChartButton } from "@feature/app/nav/RedirectChartButton";
@@ -35,7 +36,7 @@ export const RecordListPage = async ({ appId }: { appId: string }) => {
         </Title>
       }
     >
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<TableLoading />}>
         {linkDataBaseResult.success ? (
           <RecordListTableByLinkDatabaseServer
             app={app}

@@ -5656,6 +5656,32 @@ export type GetMaxRecordIndexQuery = {
   };
 };
 
+export type GetRecordQueryVariables = Exact<{
+  recordId: Scalars["String"];
+}>;
+
+export type GetRecordQuery = {
+  __typename?: "query_root";
+  record?: {
+    __typename: "Record";
+    id: string;
+    index: number;
+    columns: any;
+    app: {
+      __typename?: "App";
+      id: string;
+      fields: Array<{
+        __typename: "Field";
+        id: string;
+        name: string;
+        index: number;
+        fieldKind: string;
+        options?: any | null;
+      }>;
+    };
+  } | null;
+};
+
 export type GetRecordsQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -8964,6 +8990,120 @@ export const GetMaxRecordIndexDocument = {
   GetMaxRecordIndexQuery,
   GetMaxRecordIndexQueryVariables
 >;
+export const GetRecordDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getRecord" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "recordId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "record" },
+            name: { kind: "Name", value: "recordByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "recordId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "fragRecords" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "app" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "fields" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "fragFields" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragRecords" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Record" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "columns" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragFields" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Field" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "index" } },
+          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
+          { kind: "Field", name: { kind: "Name", value: "options" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetRecordQuery, GetRecordQueryVariables>;
 export const GetRecordsDocument = {
   kind: "Document",
   definitions: [

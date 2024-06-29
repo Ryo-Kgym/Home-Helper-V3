@@ -11,6 +11,9 @@ export const paths = {
     show: ({ id }: { id: string }) => `/view/show/${id}`,
     modify: ({ id }: { id: string }) => `/view/modify/${id}`,
   },
+  record: {
+    show: ({ id }: { id: string }) => `/record/show/${id}`,
+  },
   group: {
     select: "/group",
   },

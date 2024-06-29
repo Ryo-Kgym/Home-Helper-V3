@@ -1,8 +1,9 @@
 import type { View } from "@oneforall/domain/schema/view/viewSchema";
 import type { ComponentProps } from "react";
+import { useRouter } from "next/navigation";
 import { Table } from "@components/ui/v4/table";
 import { ViewRecordCell } from "@features/viewRecordList/components/ViewRecordCell";
-import { useNavigation } from "@routing/client/useNavigation";
+import { paths } from "@routing/paths";
 
 import { useViewRecords } from "../client/useViewRecordsState";
 
@@ -14,19 +15,14 @@ export const ViewRecordListTable = ({
   headerItems: ComponentProps<typeof Table.Header>["headerItems"];
 }) => {
   const { viewRecords } = useViewRecords();
-  const { prependParamAndPush } = useNavigation();
+  const { push } = useRouter();
 
   return (
     <Table>
       <Table.Header headerItems={headerItems} />
       <Table.Body
         data={Object.entries(viewRecords)}
-        rowClick={([, v]) => {
-          prependParamAndPush({
-            key: "recordId",
-            value: `${v.viewAppId}-${v.recordId}`,
-          });
-        }}
+        rowClick={([, v]) => push(paths.record.show({ id: v.recordId }))}
         renderItem={([, v], index) => (
           <>
             <Table.BodyTd align={"right"}>{index + 1}</Table.BodyTd>

@@ -1,0 +1,11 @@
+query getRecord($recordId: String!) {
+  record: recordByPk(id: $recordId) {
+    ...fragRecords
+    app {
+      id
+      fields {
+        ...fragFields
+      }
+    }
+  }
+}
