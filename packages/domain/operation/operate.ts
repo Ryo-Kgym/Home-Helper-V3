@@ -1,9 +1,15 @@
 import { RecordFilter } from "../schema/filter/recordFiltersSchema";
+import { operateForNumeric } from "./operateForNumeric";
 
+// TODO filedKindごとに計算する
 export const operate = (
   filter: RecordFilter,
   value: string | undefined = "",
 ) => {
+  if (filter.fieldKind === "numeric") {
+    return operateForNumeric(filter, Number(value));
+  }
+
   switch (filter.operator) {
     case "eq": {
       return value === filter.value;
