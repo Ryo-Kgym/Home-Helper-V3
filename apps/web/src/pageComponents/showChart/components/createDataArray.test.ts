@@ -6,8 +6,8 @@ describe("createDataArray", () => {
   it("", () => {
     const criteria: SummaryCriteria = {
       groupingFields: {
-        "1718289203212": {
-          id: "1718289203212",
+        f1: {
+          id: "f1",
           fieldName: "値",
           fieldKind: "text",
           fieldIndex: 1,
@@ -15,8 +15,8 @@ describe("createDataArray", () => {
         },
       },
       summaryFields: {
-        "1718289203213": {
-          id: "1718289203213",
+        f2: {
+          id: "f2",
           fieldName: "数値",
           fieldKind: "numeric",
           fieldIndex: 2,
@@ -28,57 +28,57 @@ describe("createDataArray", () => {
     };
 
     const records: Records = {
-      1: {
+      r1: {
         recordId: "1718289218434",
         isEditing: false,
         columns: {
-          1718289203212: {
+          f1: {
             fieldKind: "text",
             value: "あああ",
           },
-          1718289203213: {
+          f2: {
             fieldKind: "numeric",
             value: "100",
           },
         },
       },
-      2: {
+      r2: {
         recordId: "1718289227545",
         isEditing: false,
         columns: {
-          1718289203212: {
+          f1: {
             fieldKind: "text",
             value: "あああ",
           },
-          1718289203213: {
+          f2: {
             fieldKind: "numeric",
             value: "200",
           },
         },
       },
-      3: {
+      r3: {
         recordId: "1718289236639",
         isEditing: false,
         columns: {
-          1718289203212: {
+          f1: {
             fieldKind: "text",
             value: "いいい",
           },
-          1718289203213: {
+          f2: {
             fieldKind: "numeric",
             value: "200",
           },
         },
       },
-      4: {
+      r4: {
         recordId: "1718895572486",
         isEditing: false,
         columns: {
-          1718289203212: {
+          f1: {
             fieldKind: "text",
             value: "ううう",
           },
-          1718289203213: {
+          f2: {
             fieldKind: "numeric",
             value: "500",
           },
