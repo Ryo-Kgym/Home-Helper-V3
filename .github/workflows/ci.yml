@@ -22,8 +22,6 @@ jobs:
     env:
       TZ: Asia/Tokyo
     steps:
-      - uses: actions/checkout@v4
-
       - name: Setup
         uses: ./tooling/github/setup
 
@@ -45,8 +43,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - name: Setup
         uses: ./tooling/github/setup
 
@@ -60,8 +56,6 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - name: Setup
         uses: ./tooling/github/setup
 
@@ -71,8 +65,6 @@ jobs:
   typecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - name: Setup
         uses: ./tooling/github/setup
 
