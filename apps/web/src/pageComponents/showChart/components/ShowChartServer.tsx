@@ -1,16 +1,41 @@
+import { SummaryCriteria } from "@oneforall/domain/schema/summary/sumRecordsSchema";
+import { createDataArray } from "@pageComponents/showChart/components/createDataArray";
 import ShowChartClient from "@pageComponents/showChart/components/ShowChartClient";
+import { fetchQuery } from "@persistence/database/server/fetchQuery";
+import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
+import { GetAppDocument } from "@v3/graphql/public/type";
 
-export const ShowChartServer = async () => {
-  const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-    { name: "Group E", value: 278 },
-    { name: "Group F", value: 189 },
-  ];
+export const ShowChartServer = async ({ appId }: { appId: string }) => {
+  const { data } = await fetchQuery(GetAppDocument, { appId });
+  const records = parseToRecords(data?.app?.records ?? []);
+
+  const criteria: SummaryCriteria = {
+    groupingFields: {
+      "1718289203212": {
+        id: "1718289203212",
+        fieldName: "値",
+        fieldKind: "text",
+        fieldIndex: 1,
+        options: {},
+      },
+    },
+    summaryFields: {
+      "1718289203213": {
+        id: "1718289203213",
+        fieldName: "数値",
+        fieldKind: "numeric",
+        fieldIndex: 2,
+        options: {
+          thousandsSeparatorPosition: 3,
+        },
+      },
+    },
+  };
+  criteria;
+
+  const dataArray = createDataArray({ records, criteria });
 
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
-  return <ShowChartClient data={data} colors={colors} />;
+  return <ShowChartClient data={dataArray} colors={colors} />;
 };
