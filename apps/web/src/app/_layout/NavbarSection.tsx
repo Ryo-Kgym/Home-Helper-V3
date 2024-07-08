@@ -1,13 +1,9 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 "use client";
 
+import Link from "next/link";
 import { Navi } from "@app/_layout/navi";
 import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import Link from "next/link";
 
 export const NavbarSection = ({
   header,
@@ -29,14 +25,14 @@ export const NavbarSection = ({
         collapsed: { desktop: !opened, mobile: !opened },
       }}
     >
-      <AppShell.Header className={"bg-blue-500"}>
+      <AppShell.Header bg={"blue"}>
         <Group h="100%" px="md">
           <div className={"text-2xl font-bold text-white"}>{header}</div>
           <Burger opened={opened} onClick={toggle} size="sm" />
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar className={"bg-yellow-300"}>
+      <AppShell.Navbar bg={"yellow"}>
         <AppShell.Section component={ScrollArea}>
           {naviArray
             .filter(({ visible = true }) => visible)
