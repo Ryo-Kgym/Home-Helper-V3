@@ -2,10 +2,9 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ActionIcon, Button, ScrollArea, Table } from "@mantine/core";
-import { IconArrowBarToDown } from "@tabler/icons-react";
-
 import type { RefObject } from "react";
+import { ActionIcon, ScrollArea, Table } from "@mantine/core";
+import { IconArrowBarToDown } from "@tabler/icons-react";
 
 type TablePresenterProps = {
   headerTr: React.ReactNode;
@@ -69,19 +68,15 @@ const JumpToBottom = ({
   scrollToBottom,
 }: {
   scrollToBottom: (() => void) | undefined;
-}) =>
-  scrollToBottom ? (
-    <Button
-      className={
-        "max-sm:button-1 absolute bottom-10 right-10 z-10 border-0 max-sm:right-3"
-      }
-      onClick={scrollToBottom}
-      unstyled={true}
-    >
-      <ActionIcon variant="default" size={"3em"}>
-        <IconArrowBarToDown size="3em" className={"text-slate-400"} />
-      </ActionIcon>
-    </Button>
-  ) : (
-    <></>
-  );
+}) => (
+  <button
+    className={
+      "max-sm:button-1 absolute bottom-10 right-10 z-10 border-0 max-sm:right-3"
+    }
+    onClick={scrollToBottom}
+  >
+    <ActionIcon variant="default" size={"3em"}>
+      <IconArrowBarToDown size="3em" className={"text-slate-400"} />
+    </ActionIcon>
+  </button>
+);
