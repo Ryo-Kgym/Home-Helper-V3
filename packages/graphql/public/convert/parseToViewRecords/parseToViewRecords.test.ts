@@ -1,8 +1,8 @@
+import { ViewAppRaw } from "@oneforall/domain/schema/view/viewAppSchema";
 import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
 import { parseToViewRecords } from "./parseToViewRecords";
-import { ViewAppsQuery } from "./type";
 
 const viewFields: ViewFields = {
   vc1: {
@@ -23,23 +23,18 @@ const viewFields: ViewFields = {
   },
 };
 
-describe("convertToViewRecords", () => {
+describe("parseToViewRecords", () => {
   it("正常に変換できた場合", () => {
-    const viewApps: ViewAppsQuery = [
+    const viewApps: ViewAppRaw[] = [
       {
-        __typename: "ViewApp",
         id: "va1",
-        appId: "app1",
         app: {
-          __typename: "App",
           id: "app1",
           name: "appName1",
-          fields: [],
           records: [
             {
-              __typename: "Record",
-              id: "a1-r1",
-              index: 1,
+              recordId: "a1-r1",
+              isEditing: false,
               columns: {
                 c11: {
                   fieldKind: "date",
@@ -53,9 +48,8 @@ describe("convertToViewRecords", () => {
               },
             },
             {
-              __typename: "Record",
-              id: "a1-r2",
-              index: 2,
+              recordId: "a1-r2",
+              isEditing: false,
               columns: {
                 c11: {
                   fieldKind: "date",
@@ -70,7 +64,7 @@ describe("convertToViewRecords", () => {
             },
           ],
         },
-        fields: {
+        viewAppFields: {
           vc1: {
             appFieldId: "c11",
           },
@@ -80,19 +74,14 @@ describe("convertToViewRecords", () => {
         },
       },
       {
-        __typename: "ViewApp",
         id: "va2",
-        appId: "app2",
         app: {
-          __typename: "App",
           id: "app2",
           name: "appName2",
-          fields: [],
           records: [
             {
-              __typename: "Record",
-              id: "a2-r1",
-              index: 1,
+              recordId: "a2-r1",
+              isEditing: false,
               columns: {
                 c21: {
                   fieldKind: "date",
@@ -106,9 +95,8 @@ describe("convertToViewRecords", () => {
               },
             },
             {
-              __typename: "Record",
-              id: "a2-r2",
-              index: 2,
+              recordId: "a2-r2",
+              isEditing: false,
               columns: {
                 c21: {
                   fieldKind: "date",
@@ -123,7 +111,7 @@ describe("convertToViewRecords", () => {
             },
           ],
         },
-        fields: {
+        viewAppFields: {
           vc1: {
             appFieldId: "c21",
           },
@@ -181,21 +169,16 @@ describe("convertToViewRecords", () => {
   });
 
   it("filterの指定がある場合", () => {
-    const viewApps: ViewAppsQuery = [
+    const viewApps: ViewAppRaw[] = [
       {
-        __typename: "ViewApp",
         id: "va1",
-        appId: "app1",
         app: {
-          __typename: "App",
           id: "app1",
           name: "appName1",
-          fields: [],
           records: [
             {
-              __typename: "Record",
-              id: "a1-r1",
-              index: 1,
+              recordId: "a1-r1",
+              isEditing: false,
               columns: {
                 c11: {
                   fieldKind: "date",
@@ -209,9 +192,8 @@ describe("convertToViewRecords", () => {
               },
             },
             {
-              __typename: "Record",
-              id: "a1-r2",
-              index: 2,
+              recordId: "a1-r2",
+              isEditing: false,
               columns: {
                 c11: {
                   fieldKind: "date",
@@ -226,7 +208,7 @@ describe("convertToViewRecords", () => {
             },
           ],
         },
-        fields: {
+        viewAppFields: {
           vc1: {
             appFieldId: "c11",
           },
@@ -236,19 +218,14 @@ describe("convertToViewRecords", () => {
         },
       },
       {
-        __typename: "ViewApp",
         id: "va2",
-        appId: "app2",
         app: {
-          __typename: "App",
           id: "app2",
           name: "appName2",
-          fields: [],
           records: [
             {
-              __typename: "Record",
-              id: "a2-r1",
-              index: 1,
+              recordId: "a2-r1",
+              isEditing: false,
               columns: {
                 c21: {
                   fieldKind: "date",
@@ -262,9 +239,8 @@ describe("convertToViewRecords", () => {
               },
             },
             {
-              __typename: "Record",
-              id: "a2-r2",
-              index: 2,
+              recordId: "a2-r2",
+              isEditing: false,
               columns: {
                 c21: {
                   fieldKind: "date",
@@ -279,7 +255,7 @@ describe("convertToViewRecords", () => {
             },
           ],
         },
-        fields: {
+        viewAppFields: {
           vc1: {
             appFieldId: "c21",
           },
@@ -315,21 +291,16 @@ describe("convertToViewRecords", () => {
   });
 
   it("アプリレコードに指定するカラムが存在しない場合、空文字を入れる", () => {
-    const viewApps: ViewAppsQuery = [
+    const viewApps: ViewAppRaw[] = [
       {
-        __typename: "ViewApp",
         id: "va1",
-        appId: "app1",
         app: {
-          __typename: "App",
           id: "app1",
           name: "appName1",
-          fields: [],
           records: [
             {
-              __typename: "Record",
-              id: "a1-r1",
-              index: 1,
+              recordId: "a1-r1",
+              isEditing: false,
               columns: {
                 c11: {
                   fieldKind: "date",
@@ -343,7 +314,7 @@ describe("convertToViewRecords", () => {
             },
           ],
         },
-        fields: {
+        viewAppFields: {
           vc1: {
             appFieldId: "c11",
           },

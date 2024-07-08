@@ -22,9 +22,8 @@ describe("parseToViewRecordColumns", () => {
         },
       },
       {
-        __typename: "Record",
-        id: "r1",
-        index: 0,
+        recordId: "r1",
+        isEditing: false,
         columns: {
           af1: {
             fieldKind: "text",
@@ -57,9 +56,8 @@ describe("parseToViewRecordColumns", () => {
         },
       },
       {
-        __typename: "Record",
-        id: "r1",
-        index: 0,
+        recordId: "r1",
+        isEditing: false,
         columns: {}, // データがない
       },
     );

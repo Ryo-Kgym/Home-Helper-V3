@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ModifyCell } from "@features/appRecordList/components/cell/ModifyCell";
@@ -5,7 +7,7 @@ import { UpdateRecordButton } from "@features/appRecordList/components/operation
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { Record } from "@oneforall/domain/schema/recordSchema";
 
-export const AppRecordDetail = ({
+export const AppRecordDetailClient = ({
   fields,
   record: defaultRecord,
 }: {

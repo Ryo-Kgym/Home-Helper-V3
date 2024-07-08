@@ -5749,6 +5749,32 @@ export type GetMaxRecordIndexQuery = {
   };
 };
 
+export type GetRecordQueryVariables = Exact<{
+  recordId: Scalars["String"];
+}>;
+
+export type GetRecordQuery = {
+  __typename?: "query_root";
+  record?: {
+    __typename: "Record";
+    id: string;
+    index: number;
+    columns: any;
+    app: {
+      __typename?: "App";
+      id: string;
+      fields: Array<{
+        __typename: "Field";
+        id: string;
+        name: string;
+        index: number;
+        fieldKind: string;
+        options?: any | null;
+      }>;
+    };
+  } | null;
+};
+
 export type GetRecordsQueryVariables = Exact<{
   appId: Scalars["String"];
 }>;
@@ -5874,6 +5900,15 @@ export type GetViewRecordsSourceQuery = {
           index: number;
           columns: any;
         }>;
+        linkDatabase?: {
+          __typename: "LinkDatabase";
+          database: string;
+          connection: any;
+          sql: string;
+          parameters: any;
+          fieldColumnMaps: any;
+          id: string;
+        } | null;
       };
     }>;
   } | null;
@@ -6516,6 +6551,30 @@ export function useGetMaxRecordIndexQuery(
     { query: GetMaxRecordIndexDocument, ...options },
   );
 }
+export const GetRecordDocument = gql`
+  query getRecord($recordId: String!) {
+    record: recordByPk(id: $recordId) {
+      ...fragRecords
+      app {
+        id
+        fields {
+          ...fragFields
+        }
+      }
+    }
+  }
+  ${FragRecordsFragmentDoc}
+  ${FragFieldsFragmentDoc}
+`;
+
+export function useGetRecordQuery(
+  options: Omit<Urql.UseQueryArgs<GetRecordQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetRecordQuery, GetRecordQueryVariables>({
+    query: GetRecordDocument,
+    ...options,
+  });
+}
 export const GetRecordsDocument = gql`
   query getRecords($appId: String!) {
     records: record(
@@ -6659,12 +6718,16 @@ export const GetViewRecordsSourceDocument = gql`
           records {
             ...fragRecords
           }
+          linkDatabase {
+            ...fragLinkDatabase
+          }
         }
       }
     }
   }
   ${FragFieldsFragmentDoc}
   ${FragRecordsFragmentDoc}
+  ${FragLinkDatabaseFragmentDoc}
 `;
 
 export function useGetViewRecordsSourceQuery(

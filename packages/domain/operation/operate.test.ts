@@ -1,6 +1,26 @@
 import { operate } from "./operate";
+import * as operateForNumeric from "./operateForNumeric";
 
 describe("operate", () => {
+  it("filedKind が numeric の場合は operateForNumeric を呼び出す", () => {
+    const filter = {
+      fieldId: "id",
+      fieldKind: "numeric",
+      operator: "eq",
+      value: "1",
+      filterComplexity: "and",
+    } as const;
+    const value = "1";
+    const operateForNumericSpy = jest.spyOn(
+      operateForNumeric,
+      "operateForNumeric",
+    );
+
+    operate(filter, value);
+
+    expect(operateForNumericSpy).toHaveBeenCalledWith(filter, Number(value));
+  });
+
   describe("value が undefined でない場合", () => {
     it.each`
       value    | operator   | filterValue | expected
@@ -39,7 +59,7 @@ describe("operate", () => {
       ${"abc"} | ${"nlike"} | ${"bc"}     | ${false}
       ${"abc"} | ${"nlike"} | ${"cd"}     | ${true}
     `(
-      "$value と $filterValue を $operator で演算した結果が $expected であること",
+      "$value $operator $filterValue = $expected",
       ({ value, operator, filterValue, expected }) => {
         const actual = operate(
           // @ts-expect-error テスト用に ViewFilter を直接生成

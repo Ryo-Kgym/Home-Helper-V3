@@ -1,22 +1,22 @@
+import { Record } from "@oneforall/domain/schema/recordSchema";
+import { ViewApp } from "@oneforall/domain/schema/view/viewAppSchema";
 import {
   ViewRecordColumns,
   viewRecordColumnSchema,
 } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
-import { AppRecordQuery, ViewAppFieldsQuery } from "./type";
-
 /**
  * @package
  */
 export const parseToViewRecordColumns = (
   viewFields: ViewFields,
-  viewAppFields: ViewAppFieldsQuery,
-  appRecord: AppRecordQuery,
+  viewAppFields: ViewApp["viewFields"],
+  appRecord: Record,
 ): ViewRecordColumns =>
   Object.fromEntries(
     Object.values(viewFields).map((viewField) => {
-      const appFieldId = viewAppFields[viewField.id].appFieldId;
+      const appFieldId = viewAppFields[viewField.id]?.appFieldId ?? "";
       const appRecordColumn = appRecord.columns[appFieldId];
       const parsed = viewRecordColumnSchema.safeParse(appRecordColumn);
 

@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { Record } from "../recordSchema";
+
 const viewFieldIdSchema = z.string();
 
 export const viewAppFieldSchema = z.object({
@@ -18,3 +20,13 @@ const viewAppsSchema = z.record(
 
 export type ViewApps = z.infer<typeof viewAppsSchema>;
 export type ViewApp = ViewApps[keyof ViewApps];
+
+export type ViewAppRaw = {
+  id: string;
+  app: {
+    id: string;
+    name: string;
+    records: Record[];
+  };
+  viewAppFields: z.infer<typeof viewAppFieldsSchema>;
+};

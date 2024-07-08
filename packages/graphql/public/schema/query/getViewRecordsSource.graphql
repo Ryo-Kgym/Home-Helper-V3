@@ -26,6 +26,9 @@ query getViewRecordsSource($viewId: String!) {
         records {
           ...fragRecords
         }
+        linkDatabase {
+          ...fragLinkDatabase
+        }
       }
     }
   }

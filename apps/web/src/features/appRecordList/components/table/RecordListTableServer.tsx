@@ -1,26 +1,22 @@
 import type { App } from "@oneforall/domain/schema/appSchema";
 import { RecordListTableClient } from "@features/appRecordList/components/table/RecordListTableClient";
-import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
-import { GetAppQuery } from "@v3/graphql/public/type";
+import { SwitchedRecords } from "@features/appRecordList/server/switchRecords";
 
-export const RecordListTableByRecordsServer = async ({
+export const RecordListTableServer = async ({
   app,
   headerItems,
-  recordsData,
+  switchedRecords: { type, records },
 }: {
   app: App;
   headerItems: { name: string }[];
-  recordsData:
-    | NonNullable<NonNullable<GetAppQuery>["app"]>["records"]
-    | undefined;
+  switchedRecords: SwitchedRecords;
 }) => {
-  const records = parseToRecords(recordsData ?? []);
-
   return (
     <RecordListTableClient
       app={app}
       headerItems={headerItems}
       records={records}
+      uneditable={type === "linkDatabase"}
     />
   );
 };

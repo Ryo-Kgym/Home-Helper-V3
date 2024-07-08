@@ -1,4 +1,5 @@
 export { MantineDrawer as Drawer } from "./MantineDrawer";
+export { OpenedDrawer } from "./OpenedDrawer";
 
 /**
  * @package
