@@ -285,6 +285,9 @@ importers:
       '@v3/graphql':
         specifier: workspace:^
         version: link:../../packages/graphql
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       dayjs:
         specifier: ^1.11.10
         version: 1.11.11
@@ -309,6 +312,9 @@ importers:
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
+      mantine-datatable:
+        specifier: ^7.11.1
+        version: 7.11.1(@mantine/core@7.10.2)(@mantine/hooks@7.10.2)(clsx@2.1.1)(react@18.2.0)
       next:
         specifier: ^14.1.4
         version: 14.2.4(@babel/core@7.24.7)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.6)
@@ -11972,6 +11978,20 @@ packages:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
+
+  /mantine-datatable@7.11.1(@mantine/core@7.10.2)(@mantine/hooks@7.10.2)(clsx@2.1.1)(react@18.2.0):
+    resolution: {integrity: sha512-YpTdmk1rRHengIyqjS2QI2GOIVtVUvBRdLClGJPnT1Sallunhx7aCFJWsvm3FQJO6yriz+/DexgQaOt8hZ6GNQ==}
+    peerDependencies:
+      '@mantine/core': '>=7.8'
+      '@mantine/hooks': '>=7.8'
+      clsx: '>=2'
+      react: '>=18.2'
+    dependencies:
+      '@mantine/core': 7.10.2(@mantine/hooks@7.10.2)(@types/react@18.3.3)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.10.2(react@18.2.0)
+      clsx: 2.1.1
+      react: 18.2.0
+    dev: false
 
   /map-cache@0.2.2:
     resolution: {integrity: sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg==}
