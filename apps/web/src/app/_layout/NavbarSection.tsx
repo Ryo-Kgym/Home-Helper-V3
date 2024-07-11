@@ -14,13 +14,13 @@ export const NavbarSection = ({
   naviArray: Navi[];
   children: React.ReactNode;
 }) => {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, { toggle }] = useDisclosure(true);
 
   return (
     <AppShell
       header={{ height: 60 }}
       navbar={{
-        width: 150,
+        width: 200,
         breakpoint: "sm",
         collapsed: { desktop: !opened, mobile: !opened },
       }}
@@ -32,7 +32,7 @@ export const NavbarSection = ({
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar bg={"yellow"}>
+      <AppShell.Navbar bg={"rgba(255,173,27,0.5)"}>
         <AppShell.Section component={ScrollArea}>
           {naviArray
             .filter(({ visible = true }) => visible)
