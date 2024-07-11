@@ -4,11 +4,11 @@
 
 "use client";
 
+import { useState } from "react";
 import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 import { DailyTableByAccount } from "@components/organisms/daily_table/account";
-import { TableProps } from "@components/ui";
+import { AccountTableRow } from "@features/household/accountList/components/type";
 import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
-import { useState } from "react";
 
 import { AccountPresenter } from "./AccountPresenter";
 
@@ -21,24 +21,12 @@ export const AccountContainer = () => {
 
   const { data, total } = useGetAccountBalanceList(fromDate, toDate!);
 
-  const tableProps: TableProps[] =
-    data?.account?.map((account) => {
-      return {
-        keyPrefix: "account",
-        columns: [
-          { value: account?.accountName, align: "left" },
-          {
-            value: Number(
-              account?.allDetailViewsAggregate.aggregate?.sum?.signedAmount,
-            ).toLocaleString(),
-            align: "right",
-          },
-        ],
-        onClick: () => {
-          setSelectedAccountId(account?.id);
-        },
-      };
-    }) ?? [];
+  const records: AccountTableRow[] =
+    data?.account.map((a) => ({
+      id: a.id,
+      accountName: a.accountName,
+      balance: a.allDetailViewsAggregate.aggregate?.sum?.signedAmount,
+    })) ?? [];
 
   return (
     <ResponsiveSwitcher
@@ -48,8 +36,9 @@ export const AccountContainer = () => {
           changeFromDate={setFromDate}
           toDate={toDate}
           changeToDate={setToDate}
-          tableProps={tableProps}
           total={total}
+          records={records}
+          onRowClick={(record) => setSelectedAccountId(record.id.toString())}
         />
       }
       second={
