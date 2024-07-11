@@ -5696,47 +5696,6 @@ export type UpdateFavoriteFilterArgMutation = {
   insertArg?: { __typename: "HouseholdFavoriteFilterArgs"; id: string } | null;
 };
 
-export type GetAccountBalanceListQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type GetAccountBalanceListQuery = {
-  __typename?: "query_root";
-  account: Array<{
-    __typename: "HouseholdAccount";
-    id: string;
-    accountName: string;
-    dailyDetails: Array<{
-      __typename: "HouseholdDailyDetail";
-      id: string;
-      date: any;
-      amount: any;
-      memo?: string | null;
-      genre: {
-        __typename?: "HouseholdGenre";
-        id: string;
-        name: string;
-        genreType: string;
-        iocomeType: string;
-      };
-      category: { __typename?: "HouseholdCategory"; id: string; name: string };
-      account: { __typename?: "HouseholdAccount"; id: string; name: string };
-    }>;
-    allDetailViewsAggregate: {
-      __typename?: "HouseholdAllDetailViewAggregate";
-      aggregate?: {
-        __typename?: "HouseholdAllDetailViewAggregateFields";
-        sum?: {
-          __typename: "HouseholdAllDetailViewSumFields";
-          signedAmount?: any | null;
-        } | null;
-      } | null;
-    };
-  }>;
-};
-
 export type GetAllCategoriesQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -6234,6 +6193,31 @@ export type FragDailyDetailFragment = {
   };
   category: { __typename?: "HouseholdCategory"; id: string; name: string };
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
+};
+
+export type GetAccountBalanceListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type GetAccountBalanceListQuery = {
+  __typename?: "query_root";
+  account: Array<{
+    __typename: "HouseholdAccount";
+    id: string;
+    accountName: string;
+    allDetailViewsAggregate: {
+      __typename?: "HouseholdAllDetailViewAggregate";
+      aggregate?: {
+        __typename?: "HouseholdAllDetailViewAggregateFields";
+        sum?: {
+          __typename?: "HouseholdAllDetailViewSumFields";
+          signedAmount?: any | null;
+        } | null;
+      } | null;
+    };
+  }>;
 };
 
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
@@ -7421,50 +7405,6 @@ export function useUpdateFavoriteFilterArgMutation() {
     UpdateFavoriteFilterArgMutationVariables
   >(UpdateFavoriteFilterArgDocument);
 }
-export const GetAccountBalanceListDocument = gql`
-  query GetAccountBalanceList(
-    $groupId: String!
-    $fromDate: date!
-    $toDate: date!
-  ) {
-    account: householdAccount(
-      where: { _and: { groupId: { _eq: $groupId } } }
-      orderBy: { displayOrder: ASC }
-    ) {
-      __typename
-      id
-      accountName: name
-      dailyDetails(
-        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-      ) {
-        ...fragDailyDetail
-      }
-      allDetailViewsAggregate(
-        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-      ) {
-        aggregate {
-          sum {
-            __typename
-            signedAmount
-          }
-        }
-      }
-    }
-  }
-  ${FragDailyDetailFragmentDoc}
-`;
-
-export function useGetAccountBalanceListQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetAccountBalanceListQuery,
-    GetAccountBalanceListQueryVariables
-  >({ query: GetAccountBalanceListDocument, ...options });
-}
 export const GetAllCategoriesDocument = gql`
   query GetAllCategories($groupId: String!) {
     categories: householdCategory(
@@ -8132,6 +8072,43 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQuery,
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
+}
+export const GetAccountBalanceListDocument = gql`
+  query getAccountBalanceList(
+    $groupId: String!
+    $fromDate: date!
+    $toDate: date!
+  ) {
+    account: householdAccount(
+      where: { _and: { groupId: { _eq: $groupId } } }
+      orderBy: { displayOrder: ASC }
+    ) {
+      __typename
+      id
+      accountName: name
+      allDetailViewsAggregate(
+        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+      ) {
+        aggregate {
+          sum {
+            signedAmount
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useGetAccountBalanceListQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetAccountBalanceListQuery,
+    GetAccountBalanceListQueryVariables
+  >({ query: GetAccountBalanceListDocument, ...options });
 }
 export const GetCreditCardSummaryByDateDocument = gql`
   query getCreditCardSummaryByDate(

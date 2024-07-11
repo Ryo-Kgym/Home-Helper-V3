@@ -1,9 +1,21 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
+import { AccountListServer } from "@pageComponents/household/account/components/AccountListServer";
 
-import { AccountContainer } from "@features/household/accountList/components/AccountContainer";
-
-const Page = () => <AccountContainer />;
+const Page = ({
+  searchParams,
+}: {
+  searchParams: {
+    fromDate: string | undefined;
+    toDate: string | undefined;
+    accountId: string | undefined;
+  };
+}) => (
+  <AccountListServer
+    fromDate={
+      searchParams.fromDate ? new Date(searchParams.fromDate) : undefined
+    }
+    toDate={searchParams.toDate ? new Date(searchParams.toDate) : undefined}
+    accountId={searchParams.accountId}
+  />
+);
 
 export default Page;
