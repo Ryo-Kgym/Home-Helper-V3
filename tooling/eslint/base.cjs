@@ -137,8 +137,6 @@ const config = {
     "no-useless-rename": ["error"],
   },
   ignorePatterns: [
-    "**/hasuraGraphql.tsx",
-    "**/hasuraHelperKidsGraphql.tsx",
     "**/*.config.js",
     "**/*.config.cjs",
     "**/.eslintrc.cjs",
