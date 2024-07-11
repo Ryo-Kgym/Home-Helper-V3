@@ -1,7 +1,7 @@
 "use client";
 
 import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
-import { DailyTableByAccount } from "@components/organisms/daily_table/account";
+import { AccountDailyTable } from "@features/household/accountList/components/AccountDailyTable";
 import { BalanceListTable } from "@features/household/accountList/components/BalanceListTable";
 import { AccountBalance } from "@oneforall/domain/household/accountBalance";
 
@@ -29,7 +29,7 @@ export const AccountListClient = ({
         />
       }
       second={
-        <DailyTableByAccount
+        <AccountDailyTable
           fromDate={fromDate}
           toDate={toDate}
           accountId={accountId ?? ""}

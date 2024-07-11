@@ -40,8 +40,10 @@ export const MantineDataTable = <H extends string>({
 
   return (
     <DataTable
-      height={"70%"}
+      height={"85vh"}
       withTableBorder
+      withColumnBorders
+      striped
       records={records}
       columns={columns}
       totalRecords={defaultRecords.length}

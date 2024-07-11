@@ -39,7 +39,7 @@ export const BalanceListTable = ({
             title: "残高",
             width: "50%",
             textAlign: "right",
-            render: ({ balance }) => balance.toLocaleString(),
+            render: ({ balance }) => balance?.toLocaleString() ?? 0,
           },
         ]}
         records={balanceRecords}
