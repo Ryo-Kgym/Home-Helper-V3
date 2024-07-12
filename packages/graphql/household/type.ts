@@ -937,6 +937,7 @@ export type HouseholdAllDetailViewBoolExp = {
   _and?: InputMaybe<HouseholdAllDetailViewBoolExp[]>;
   _not?: InputMaybe<HouseholdAllDetailViewBoolExp>;
   _or?: InputMaybe<HouseholdAllDetailViewBoolExp[]>;
+  account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
@@ -946,8 +947,10 @@ export type HouseholdAllDetailViewBoolExp = {
   iocomeType?: InputMaybe<StringComparisonExp>;
   memo?: InputMaybe<StringComparisonExp>;
   originalAmount?: InputMaybe<NumericComparisonExp>;
+  settlementDate?: InputMaybe<DateComparisonExp>;
   signedAmount?: InputMaybe<NumericComparisonExp>;
   type?: InputMaybe<StringComparisonExp>;
+  withdrawalDate?: InputMaybe<DateComparisonExp>;
 };
 
 /** order by max() on columns of table "household.all_detail_view" */
@@ -961,8 +964,10 @@ export type HouseholdAllDetailViewMaxOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "household.all_detail_view" */
@@ -976,12 +981,15 @@ export type HouseholdAllDetailViewMinOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** Ordering options when selecting data from "household.all_detail_view". */
 export type HouseholdAllDetailViewOrderBy = {
+  account?: InputMaybe<HouseholdAccountOrderBy>;
   accountId?: InputMaybe<OrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
@@ -991,8 +999,10 @@ export type HouseholdAllDetailViewOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** select columns of table "household.all_detail_view" */
@@ -1016,9 +1026,13 @@ export type HouseholdAllDetailViewSelectColumn =
   /** column name */
   | "originalAmount"
   /** column name */
+  | "settlementDate"
+  /** column name */
   | "signedAmount"
   /** column name */
-  | "type";
+  | "type"
+  /** column name */
+  | "withdrawalDate";
 
 /** order by stddev() on columns of table "household.all_detail_view" */
 export type HouseholdAllDetailViewStddevOrderBy = {
@@ -1057,8 +1071,10 @@ export type HouseholdAllDetailViewStreamCursorValueInput = {
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
   originalAmount?: InputMaybe<Scalars["numeric"]>;
+  settlementDate?: InputMaybe<Scalars["date"]>;
   signedAmount?: InputMaybe<Scalars["numeric"]>;
   type?: InputMaybe<Scalars["String"]>;
+  withdrawalDate?: InputMaybe<Scalars["date"]>;
 };
 
 /** order by sum() on columns of table "household.all_detail_view" */
@@ -6544,6 +6560,24 @@ export type GetFavoriteFiltersQuery = {
         };
       } | null;
     }[];
+  }[];
+};
+
+export type PageSourceBalanceChartQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type PageSourceBalanceChartQuery = {
+  __typename?: "query_root";
+  detailView: {
+    __typename: "HouseholdAllDetailView";
+    id?: string | null;
+    settlementDate?: any | null;
+    withdrawalDate?: any | null;
+    iocomeType?: string | null;
+    amount?: any | null;
   }[];
 };
 
@@ -16606,4 +16640,157 @@ export const GetFavoriteFiltersDocument = {
 } as unknown as DocumentNode<
   GetFavoriteFiltersQuery,
   GetFavoriteFiltersQueryVariables
+>;
+export const PageSourceBalanceChartDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "pageSourceBalanceChart" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "fromDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "toDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "detailView" },
+            name: { kind: "Name", value: "householdAllDetailView" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "groupId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "groupId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "date" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_gte" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "fromDate" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "_and" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "date" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_lte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "toDate" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "settlementDate" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "withdrawalDate" },
+                },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "amount" },
+                  name: { kind: "Name", value: "originalAmount" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  PageSourceBalanceChartQuery,
+  PageSourceBalanceChartQueryVariables
 >;

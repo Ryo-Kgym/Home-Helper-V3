@@ -957,6 +957,7 @@ export type HouseholdAllDetailViewBoolExp = {
   _and?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
   _not?: InputMaybe<HouseholdAllDetailViewBoolExp>;
   _or?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
+  account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
@@ -966,8 +967,10 @@ export type HouseholdAllDetailViewBoolExp = {
   iocomeType?: InputMaybe<StringComparisonExp>;
   memo?: InputMaybe<StringComparisonExp>;
   originalAmount?: InputMaybe<NumericComparisonExp>;
+  settlementDate?: InputMaybe<DateComparisonExp>;
   signedAmount?: InputMaybe<NumericComparisonExp>;
   type?: InputMaybe<StringComparisonExp>;
+  withdrawalDate?: InputMaybe<DateComparisonExp>;
 };
 
 /** order by max() on columns of table "household.all_detail_view" */
@@ -981,8 +984,10 @@ export type HouseholdAllDetailViewMaxOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "household.all_detail_view" */
@@ -996,12 +1001,15 @@ export type HouseholdAllDetailViewMinOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** Ordering options when selecting data from "household.all_detail_view". */
 export type HouseholdAllDetailViewOrderBy = {
+  account?: InputMaybe<HouseholdAccountOrderBy>;
   accountId?: InputMaybe<OrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
@@ -1011,8 +1019,10 @@ export type HouseholdAllDetailViewOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** select columns of table "household.all_detail_view" */
@@ -1036,9 +1046,13 @@ export enum HouseholdAllDetailViewSelectColumn {
   /** column name */
   OriginalAmount = "originalAmount",
   /** column name */
+  SettlementDate = "settlementDate",
+  /** column name */
   SignedAmount = "signedAmount",
   /** column name */
   Type = "type",
+  /** column name */
+  WithdrawalDate = "withdrawalDate",
 }
 
 /** order by stddev() on columns of table "household.all_detail_view" */
@@ -1078,8 +1092,10 @@ export type HouseholdAllDetailViewStreamCursorValueInput = {
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
   originalAmount?: InputMaybe<Scalars["numeric"]>;
+  settlementDate?: InputMaybe<Scalars["date"]>;
   signedAmount?: InputMaybe<Scalars["numeric"]>;
   type?: InputMaybe<Scalars["String"]>;
+  withdrawalDate?: InputMaybe<Scalars["date"]>;
 };
 
 /** order by sum() on columns of table "household.all_detail_view" */
@@ -6640,6 +6656,24 @@ export type GetFavoriteFiltersQuery = {
   }>;
 };
 
+export type PageSourceBalanceChartQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type PageSourceBalanceChartQuery = {
+  __typename?: "query_root";
+  detailView: Array<{
+    __typename: "HouseholdAllDetailView";
+    id?: string | null;
+    settlementDate?: any | null;
+    withdrawalDate?: any | null;
+    iocomeType?: string | null;
+    amount?: any | null;
+  }>;
+};
+
 export const FragDailyDetailFragmentDoc = gql`
   fragment fragDailyDetail on HouseholdDailyDetail {
     __typename
@@ -8508,4 +8542,38 @@ export function useGetFavoriteFiltersQuery(
     GetFavoriteFiltersQuery,
     GetFavoriteFiltersQueryVariables
   >({ query: GetFavoriteFiltersDocument, ...options });
+}
+export const PageSourceBalanceChartDocument = gql`
+  query pageSourceBalanceChart(
+    $groupId: String!
+    $fromDate: date!
+    $toDate: date!
+  ) {
+    detailView: householdAllDetailView(
+      where: {
+        groupId: { _eq: $groupId }
+        date: { _gte: $fromDate }
+        _and: { date: { _lte: $toDate } }
+      }
+    ) {
+      __typename
+      id
+      settlementDate
+      withdrawalDate
+      amount: originalAmount
+      iocomeType
+    }
+  }
+`;
+
+export function usePageSourceBalanceChartQuery(
+  options: Omit<
+    Urql.UseQueryArgs<PageSourceBalanceChartQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    PageSourceBalanceChartQuery,
+    PageSourceBalanceChartQueryVariables
+  >({ query: PageSourceBalanceChartDocument, ...options });
 }

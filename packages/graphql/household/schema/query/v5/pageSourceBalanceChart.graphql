@@ -1,0 +1,20 @@
+query pageSourceBalanceChart(
+  $groupId: String!
+  $fromDate: date!
+  $toDate: date!
+) {
+  detailView: householdAllDetailView(
+    where: {
+      groupId: { _eq: $groupId }
+      date: { _gte: $fromDate }
+      _and: { date: { _lte: $toDate } }
+    }
+  ) {
+    __typename
+    id
+    settlementDate
+    withdrawalDate
+    amount: originalAmount
+    iocomeType
+  }
+}
