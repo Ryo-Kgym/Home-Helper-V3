@@ -9,7 +9,7 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "hasura-public-codegen": "graphql-codegen --config public/hasura-codegen.cjs",
-    "hasura-household-codegen": "graphql-codegen --config household/hasura-codegen.yml"
+    "hasura-household-codegen": "graphql-codegen --config household/hasura-codegen.cjs"
   },
   "dependencies": {
     "@oneforall/domain": "workspace:^"

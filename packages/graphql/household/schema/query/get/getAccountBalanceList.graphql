@@ -1,4 +1,4 @@
-query GetAccountBalanceList(
+query getAccountBalanceList(
   $groupId: String!
   $fromDate: date!
   $toDate: date!
@@ -10,17 +10,11 @@ query GetAccountBalanceList(
     __typename
     id
     accountName: name
-    dailyDetails(
-      where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-    ) {
-      ...fragDailyDetail
-    }
     allDetailViewsAggregate(
       where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
     ) {
       aggregate {
         sum {
-          __typename
           signedAmount
         }
       }

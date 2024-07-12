@@ -8,9 +8,9 @@ echo ONEFORALL_GRAPHQL_ENDPOINT=https://hoge >> ../.env
 module.exports = {
   overwrite: true,
   schema: process.env.ONEFORALL_GRAPHQL_ENDPOINT,
-  documents: "./public/**/**.graphql",
+  documents: "./household/**/**.graphql",
   generates: {
-    "./public/index.ts": {
+    "./household/index.ts": {
       config: {
         onlyOperationTypes: true,
         withHooks: true,
@@ -20,7 +20,7 @@ module.exports = {
         afterOneFileWrite: ["prettier --write"],
       },
     },
-    "./public/type.ts": {
+    "./household/type.ts": {
       config: {
         enumsAsTypes: true,
         onlyOperationTypes: true,
@@ -30,7 +30,7 @@ module.exports = {
         afterOneFileWrite: ["prettier --write"],
       },
     },
-    "./public/schema.json": {
+    "./household/schema.json": {
       plugins: ["introspection"],
     },
   },

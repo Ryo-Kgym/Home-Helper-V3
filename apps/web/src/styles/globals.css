@@ -1,3 +1,5 @@
+@layer mantine, mantine-datatable;
+
 /* @tailwind base; */
 /* Mantineと競合してしまうため直書きに変更(下記URLが@tailwind base;の直書きとのこと)
   https://unpkg.com/tailwindcss@3.0.23/src/css/preflight.css

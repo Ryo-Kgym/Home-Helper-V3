@@ -1,6 +1,4 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
+"use client";
 
 import { NavbarSection } from "@app/_layout/NavbarSection";
 import { Navi } from "@app/_layout/navi";
