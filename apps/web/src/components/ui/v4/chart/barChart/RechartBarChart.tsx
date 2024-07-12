@@ -9,10 +9,12 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { CategoricalChartState } from "recharts/types/chart/types";
 
 export const RechartBarChart = <T extends string>({
   settings,
   data,
+  onClick,
 }: {
   settings: Record<
     T,
@@ -21,6 +23,7 @@ export const RechartBarChart = <T extends string>({
     }
   >;
   data: Record<string, Record<T, number>>;
+  onClick?: (event: CategoricalChartState) => void;
 }) => {
   return (
     <ResponsiveContainer>
@@ -35,6 +38,7 @@ export const RechartBarChart = <T extends string>({
           left: 20,
           bottom: 5,
         }}
+        onClick={onClick}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
