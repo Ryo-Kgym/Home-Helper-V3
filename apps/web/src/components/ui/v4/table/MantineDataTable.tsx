@@ -3,8 +3,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { DataTable } from "mantine-datatable";
 
-const PAGE_SIZE = 30;
-
 type DataTableRowType<H extends string> = { id: string } & Record<
   H,
   string | number
@@ -16,38 +14,45 @@ type ColumnProps<H extends string> = {
   width?: number | string;
   textAlign?: "left" | "center" | "right";
   render?: (record: Record<H, string | number>) => ReactNode;
+  hidden?: boolean;
 };
 
 type DataTableProps<H extends string> = {
   columns: ColumnProps<H>[];
   records: DataTableRowType<H>[];
   onRowClick?: (record: DataTableRowType<H>) => void;
+  height?: string;
+  recordsPerPage?: number;
 };
 
 export const MantineDataTable = <H extends string>({
   columns,
   records: defaultRecords,
   onRowClick,
+  height = "85vh",
+  recordsPerPage = 30,
 }: DataTableProps<H>) => {
   const [page, setPage] = useState(1);
-  const [records, setRecords] = useState(defaultRecords.slice(0, PAGE_SIZE));
+  const [records, setRecords] = useState(
+    defaultRecords.slice(0, recordsPerPage),
+  );
 
   useEffect(() => {
-    const from = (page - 1) * PAGE_SIZE;
-    const to = from + PAGE_SIZE;
+    const from = (page - 1) * recordsPerPage;
+    const to = from + recordsPerPage;
     setRecords(defaultRecords.slice(from, to));
   }, [defaultRecords, page]);
 
   return (
     <DataTable
-      height={"85vh"}
+      height={height}
       withTableBorder
       withColumnBorders
       striped
       records={records}
       columns={columns}
       totalRecords={defaultRecords.length}
-      recordsPerPage={PAGE_SIZE}
+      recordsPerPage={recordsPerPage}
       page={page}
       onPageChange={(p) => setPage(p)}
       paginationSize="md"
