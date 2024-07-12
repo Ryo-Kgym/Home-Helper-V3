@@ -1,7 +1,19 @@
-import { Past12MonthsTablePage } from "@pageComponents/householdPast12MonthsTable";
+import { ChartDetailPage } from "pageComponents/householdChartDetailTable";
 
-const Page = () => {
-  return <Past12MonthsTablePage />;
+const Page = ({
+  searchParams,
+}: {
+  searchParams: {
+    watch: string; // yyyy-mm
+  };
+}) => {
+  return (
+    <ChartDetailPage
+      watchFirstDate={
+        searchParams.watch ? new Date(`${searchParams.watch}-01`) : undefined
+      }
+    />
+  );
 };
 
 export default Page;

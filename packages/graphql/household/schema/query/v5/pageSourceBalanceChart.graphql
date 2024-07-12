@@ -16,5 +16,15 @@ query pageSourceBalanceChart(
     withdrawalDate
     amount: originalAmount
     iocomeType
+    account {
+      name
+    }
+    genre {
+      name
+    }
+    category {
+      name
+    }
+    memo
   }
 }

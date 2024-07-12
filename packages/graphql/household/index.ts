@@ -959,8 +959,10 @@ export type HouseholdAllDetailViewBoolExp = {
   _or?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
   account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
+  category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
+  genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
@@ -1011,8 +1013,10 @@ export type HouseholdAllDetailViewMinOrderBy = {
 export type HouseholdAllDetailViewOrderBy = {
   account?: InputMaybe<HouseholdAccountOrderBy>;
   accountId?: InputMaybe<OrderBy>;
+  category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
@@ -6670,7 +6674,11 @@ export type PageSourceBalanceChartQuery = {
     settlementDate?: any | null;
     withdrawalDate?: any | null;
     iocomeType?: string | null;
+    memo?: string | null;
     amount?: any | null;
+    account?: { __typename?: "HouseholdAccount"; name: string } | null;
+    genre?: { __typename?: "HouseholdGenre"; name: string } | null;
+    category?: { __typename?: "HouseholdCategory"; name: string } | null;
   }>;
 };
 
@@ -8562,6 +8570,16 @@ export const PageSourceBalanceChartDocument = gql`
       withdrawalDate
       amount: originalAmount
       iocomeType
+      account {
+        name
+      }
+      genre {
+        name
+      }
+      category {
+        name
+      }
+      memo
     }
   }
 `;
