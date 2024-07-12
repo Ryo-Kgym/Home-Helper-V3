@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   Bar,
   BarChart,
@@ -6,10 +7,15 @@ import {
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,
+  TooltipProps,
   XAxis,
   YAxis,
 } from "recharts";
 import { CategoricalChartState } from "recharts/types/chart/types";
+import {
+  NameType,
+  ValueType,
+} from "recharts/types/component/DefaultTooltipContent";
 
 export const RechartBarChart = <T extends string>({
   settings,
@@ -24,6 +30,7 @@ export const RechartBarChart = <T extends string>({
   >;
   data: Record<string, Record<T, number>>;
   onClick?: (event: CategoricalChartState) => void;
+  tooltip?: ReactNode;
 }) => {
   return (
     <ResponsiveContainer>
@@ -43,7 +50,7 @@ export const RechartBarChart = <T extends string>({
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
-        <Tooltip />
+        <Tooltip content={getTooltipContent} />
         <Legend />
         <ReferenceLine y={0} stroke="#000" />
         {Object.entries<{
@@ -55,3 +62,23 @@ export const RechartBarChart = <T extends string>({
     </ResponsiveContainer>
   );
 };
+
+const getTooltipContent = ({ payload }: TooltipProps<ValueType, NameType>) => (
+  <div className={"space-y-3 bg-white p-3"}>
+    {payload?.map((p) => (
+      <span
+        key={p.name}
+        className={`flex items-center justify-between space-x-5`}
+      >
+        <span>{p.name}</span>
+        <span
+          style={{
+            color: p.color,
+          }}
+        >
+          {p.value?.toLocaleString()}
+        </span>
+      </span>
+    ))}
+  </div>
+);
