@@ -1,6 +1,6 @@
+import { fetchBalanceChartData } from "@features/householdBalanceChart/server/fetchBalanceChartData";
 import { colors } from "@styles/colors";
 
-import { fetchBalanceChartData } from "../server/fetchBalanceChartData";
 import { BalanceChartPageClient } from "./BalanceChartPageClient";
 
 export const BalanceChartPageServer = async ({
@@ -18,12 +18,7 @@ export const BalanceChartPageServer = async ({
   return (
     <BalanceChartPageClient
       chartParams={{
-        settings: Object.fromEntries(
-          Object.entries(colors.balance).map(([key, value]) => [
-            key,
-            { color: value },
-          ]),
-        ),
+        settings: barchartSetting,
         data,
       }}
     />
@@ -34,4 +29,23 @@ const getPast12MonthDate = () => {
   const date = new Date();
   date.setMonth(date.getMonth() - 12);
   return date;
+};
+
+const barchartSetting = {
+  income: {
+    color: colors.balance.income,
+    group: "income",
+  },
+  outcome: {
+    color: colors.balance.outcome,
+    group: "outcome",
+  },
+  diff: {
+    color: colors.balance.diff,
+    group: "diff",
+  },
+  deposit: {
+    color: colors.balance.deposit,
+    group: "outcome",
+  },
 };

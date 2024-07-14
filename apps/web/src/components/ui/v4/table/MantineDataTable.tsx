@@ -34,13 +34,13 @@ export const MantineDataTable = <H extends string>({
 }: DataTableProps<H>) => {
   const [page, setPage] = useState(1);
   const [records, setRecords] = useState(
-    defaultRecords.slice(0, recordsPerPage),
+    defaultRecords?.slice(0, recordsPerPage),
   );
 
   useEffect(() => {
     const from = (page - 1) * recordsPerPage;
     const to = from + recordsPerPage;
-    setRecords(defaultRecords.slice(from, to));
+    setRecords(defaultRecords?.slice(from, to));
   }, [defaultRecords, page]);
 
   return (
@@ -51,7 +51,7 @@ export const MantineDataTable = <H extends string>({
       striped
       records={records}
       columns={columns}
-      totalRecords={defaultRecords.length}
+      totalRecords={defaultRecords?.length ?? 0}
       recordsPerPage={recordsPerPage}
       page={page}
       onPageChange={(p) => setPage(p)}

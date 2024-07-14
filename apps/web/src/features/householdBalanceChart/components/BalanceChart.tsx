@@ -1,23 +1,21 @@
 import { ReactNode } from "react";
 import {
+  Area,
   Bar,
-  BarChart,
   CartesianGrid,
+  ComposedChart,
   Legend,
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,
-  TooltipProps,
   XAxis,
   YAxis,
 } from "recharts";
 import { CategoricalChartState } from "recharts/types/chart/types";
-import {
-  NameType,
-  ValueType,
-} from "recharts/types/component/DefaultTooltipContent";
 
-export const RechartBarChart = <T extends string>({
+import { TooltipContent } from "./TooltipContent";
+
+export const BalanceChart = <T extends string>({
   settings,
   data,
   onClick,
@@ -26,6 +24,7 @@ export const RechartBarChart = <T extends string>({
     T,
     {
       color: string;
+      group: string;
     }
   >;
   data: Record<string, Record<T, number>>;
@@ -34,7 +33,7 @@ export const RechartBarChart = <T extends string>({
 }) => {
   return (
     <ResponsiveContainer>
-      <BarChart
+      <ComposedChart
         data={Object.entries(data).map(([key, value]) => ({
           name: key,
           ...value,
@@ -50,35 +49,22 @@ export const RechartBarChart = <T extends string>({
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
-        <Tooltip content={getTooltipContent} />
+        <Tooltip content={TooltipContent} />
         <Legend />
-        <ReferenceLine y={0} stroke="#000" />
+        <ReferenceLine stroke="#000" />
+        <Area
+          type="monotone"
+          dataKey="cumulative"
+          fill="#8884d8"
+          stroke="#8884d8"
+        />
         {Object.entries<{
           color: string;
-        }>(settings).map(([key, { color }]) => (
-          <Bar key={key} dataKey={key} fill={color} />
+          group: string;
+        }>(settings).map(([key, { color, group }]) => (
+          <Bar key={key} dataKey={key} fill={color} stackId={group} />
         ))}
-      </BarChart>
+      </ComposedChart>
     </ResponsiveContainer>
   );
 };
-
-const getTooltipContent = ({ payload }: TooltipProps<ValueType, NameType>) => (
-  <div className={"space-y-3 bg-white p-3"}>
-    {payload?.map((p) => (
-      <span
-        key={p.name}
-        className={`flex items-center justify-between space-x-5`}
-      >
-        <span>{p.name}</span>
-        <span
-          style={{
-            color: p.color,
-          }}
-        >
-          {p.value?.toLocaleString()}
-        </span>
-      </span>
-    ))}
-  </div>
-);

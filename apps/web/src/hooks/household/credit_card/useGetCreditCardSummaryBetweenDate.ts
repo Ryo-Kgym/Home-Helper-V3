@@ -8,8 +8,8 @@ export const useGetCreditCardSummaryBetweenDate = (
   const { group } = useFindUser();
   const [{ data, fetching, error }] = useGetCreditCardSummaryByDateQuery({
     variables: {
-      fromDate: fromDate ? fromDate.toISOString().slice(0, 10) : null,
-      toDate: toDate ? toDate.toISOString().slice(0, 10) : null,
+      fromDate: fromDate ? new Date(fromDate).toISOString().slice(0, 10) : null,
+      toDate: toDate ? new Date(toDate).toISOString().slice(0, 10) : null,
       groupId: group.id,
     },
     pause: !fromDate || !toDate,

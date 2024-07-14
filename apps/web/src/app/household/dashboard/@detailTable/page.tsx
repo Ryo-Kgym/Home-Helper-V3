@@ -10,7 +10,7 @@ const Page = ({
   return (
     <ChartDetailPage
       watchFirstDate={
-        searchParams.watch ? new Date(`${searchParams.watch}-01`) : undefined
+        searchParams.watch ? new Date(`${searchParams.watch}-01`) : null
       }
     />
   );

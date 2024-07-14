@@ -3,5 +3,6 @@ export const colors = {
     income: "#4caf50",
     outcome: "#f44336",
     diff: "#2196f3",
+    deposit: "#ff9800",
   },
 };

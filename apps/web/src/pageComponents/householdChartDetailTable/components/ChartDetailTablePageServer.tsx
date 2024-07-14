@@ -4,7 +4,7 @@ import { ChartDetailTablePageClient } from "./ChartDetailTablePageClient";
 export const ChartDetailTablePageServer = async ({
   watchFirstDate,
 }: {
-  watchFirstDate: Date | undefined;
+  watchFirstDate: Date | null;
 }) => {
   if (!watchFirstDate) {
     return <div>年月を選択してください</div>;

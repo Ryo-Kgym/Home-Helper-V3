@@ -1,6 +1,7 @@
+import { cumulateSumBalance } from "@features/householdBalanceChart/server/cumulateSumBalance";
+import { sumBalanceData } from "@features/householdBalanceChart/server/sumBalanceData";
 import { findUser } from "@persistence/browser/server/find-user";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
-import { sumBalanceData } from "@v3/graphql/household/convert/sumBalanceData";
 import { PageSourceBalanceChartDocument } from "@v3/graphql/household/type";
 
 export const fetchBalanceChartData = async ({
@@ -18,7 +19,11 @@ export const fetchBalanceChartData = async ({
     toDate,
   });
 
+  const data = sumBalanceData(source?.data);
+
+  const cumulative = cumulateSumBalance(data);
+
   return {
-    data: sumBalanceData(source.data),
+    data: cumulative,
   };
 };
