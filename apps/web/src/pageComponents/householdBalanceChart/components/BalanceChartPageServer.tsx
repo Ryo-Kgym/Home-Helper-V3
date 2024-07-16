@@ -40,12 +40,12 @@ const barchartSetting = {
     color: colors.balance.outcome,
     group: "outcome",
   },
-  diff: {
-    color: colors.balance.diff,
-    group: "diff",
-  },
   deposit: {
     color: colors.balance.deposit,
     group: "outcome",
+  },
+  diff: {
+    color: colors.balance.diff,
+    group: "diff",
   },
 };

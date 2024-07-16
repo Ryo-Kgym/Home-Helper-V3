@@ -6,19 +6,19 @@ describe("cumulateSumBalance", () => {
       "2021-01": {
         income: 100,
         outcome: 0,
-        deposit: 0,
+        deposit: 20,
         diff: 100,
       },
       "2021-02": {
         income: 0,
         outcome: 50,
-        deposit: 0,
+        deposit: 30,
         diff: -50,
       },
       "2021-03": {
         income: 0,
         outcome: 200,
-        deposit: 0,
+        deposit: 30,
         diff: -200,
       },
     });
@@ -27,23 +27,26 @@ describe("cumulateSumBalance", () => {
       "2021-01": {
         income: 100,
         outcome: 0,
-        deposit: 0,
+        deposit: 20,
         diff: 100,
         cumulative: 100,
+        assets: 20,
       },
       "2021-02": {
         income: 0,
         outcome: 50,
-        deposit: 0,
+        deposit: 30,
         diff: -50,
         cumulative: 50,
+        assets: 50,
       },
       "2021-03": {
         income: 0,
         outcome: 200,
-        deposit: 0,
+        deposit: 30,
         diff: -200,
         cumulative: -150,
+        assets: 80,
       },
     });
   });

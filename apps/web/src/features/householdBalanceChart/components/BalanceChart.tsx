@@ -54,9 +54,17 @@ export const BalanceChart = <T extends string>({
         <ReferenceLine stroke="#000" />
         <Area
           type="monotone"
+          dataKey="assets"
+          fill="green"
+          stroke="#8884d8"
+          stackId={1}
+        />
+        <Area
+          type="monotone"
           dataKey="cumulative"
           fill="#8884d8"
           stroke="#8884d8"
+          stackId={1}
         />
         {Object.entries<{
           color: string;
