@@ -1,16 +1,22 @@
-import { SumBalance } from "@features/householdBalanceChart/server/types";
+import {
+  SumBalance,
+  SumBalanceAttributes,
+} from "@features/householdBalanceChart/server/types";
 
 export const cumulateSumBalance = (data: SumBalance) => {
   return Object.entries(data).reduce<
-    Record<string, { cumulative: number; assets: number }>
-  >((acc, [key, value]) => {
-    const prev = acc[Object.keys(acc).pop() ?? ""]?.cumulative ?? 0;
+    Record<
+      string,
+      SumBalanceAttributes & { cumulative: number; assets: number }
+    >
+  >((acc, [yearMonth, value]) => {
+    const prevCumulative = acc[Object.keys(acc).pop() ?? ""]?.cumulative ?? 0;
     const prevAssets = acc[Object.keys(acc).pop() ?? ""]?.assets ?? 0;
     return {
       ...acc,
-      [key]: {
+      [yearMonth]: {
         ...value,
-        cumulative: prev + value.diff,
+        cumulative: prevCumulative + value.diff,
         assets: prevAssets + value.deposit,
       },
     };
