@@ -30,6 +30,7 @@ export const fetchWatchTableData = async ({
       genreName: rec.genre?.name ?? "",
       categoryName: rec.category?.name ?? "",
       memo: rec.memo ?? "",
+      isDeposit: !!rec.category?.depositCategory,
     })),
   };
 };

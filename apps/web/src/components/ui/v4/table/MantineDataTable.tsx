@@ -5,7 +5,7 @@ import { DataTable } from "mantine-datatable";
 
 type DataTableRowType<H extends string> = { id: string } & Record<
   H,
-  string | number
+  string | number | boolean
 >;
 
 type ColumnProps<H extends string> = {
@@ -13,7 +13,7 @@ type ColumnProps<H extends string> = {
   title?: string;
   width?: number | string;
   textAlign?: "left" | "center" | "right";
-  render?: (record: Record<H, string | number>) => ReactNode;
+  render?: (record: Record<H, string | number | boolean>) => ReactNode;
   hidden?: boolean;
 };
 

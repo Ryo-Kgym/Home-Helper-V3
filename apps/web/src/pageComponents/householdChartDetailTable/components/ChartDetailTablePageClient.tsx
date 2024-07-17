@@ -17,6 +17,7 @@ export const ChartDetailTablePageClient = ({
     genreName: string;
     categoryName: string;
     memo: string;
+    isDeposit: boolean;
   }[];
 }) => {
   return (
@@ -31,30 +32,32 @@ export const ChartDetailTablePageClient = ({
             title: "金額",
             textAlign: "right",
             width: "100",
-            render: ({ iocomeType, amount }) => {
-              return iocomeType === IocomeType.Income ? (
-                <div
-                  style={{
-                    color: colors.balance.income,
-                  }}
-                >
-                  {amount.toLocaleString()}
-                </div>
-              ) : (
-                <div
-                  style={{
-                    color: colors.balance.outcome,
-                  }}
-                >
-                  {amount.toLocaleString()}
-                </div>
-              );
+            render: ({ iocomeType, amount, isDeposit }) => {
+              const style = (() => {
+                if (isDeposit)
+                  return {
+                    backgroundColor: colors.balance.deposit,
+                  };
+                switch (iocomeType) {
+                  case IocomeType.Income:
+                    return {
+                      color: colors.balance.income,
+                    };
+                  case IocomeType.Outcome:
+                    return {
+                      color: colors.balance.outcome,
+                    };
+                }
+              })();
+
+              return <div style={style}>{amount.toLocaleString()}</div>;
             },
           },
           { accessor: "accountName", title: "アカウント" },
           { accessor: "genreName", title: "ジャンル" },
           { accessor: "categoryName", title: "カテゴリ" },
           { accessor: "memo", title: "メモ" },
+          { accessor: "isDeposit", hidden: true },
         ]}
         records={records}
         height="45vh"
