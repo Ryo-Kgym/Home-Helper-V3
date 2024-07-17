@@ -1,4 +1,4 @@
-import { AccountListServer } from "@pageComponents/household/account/components/AccountListServer";
+import { AccountListPage } from "@pageComponents/householdAccount";
 
 const Page = ({
   searchParams,
@@ -9,7 +9,7 @@ const Page = ({
     accountId: string | undefined;
   };
 }) => (
-  <AccountListServer
+  <AccountListPage
     fromDate={
       searchParams.fromDate ? new Date(searchParams.fromDate) : undefined
     }

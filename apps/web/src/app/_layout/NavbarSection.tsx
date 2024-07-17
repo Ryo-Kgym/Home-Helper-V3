@@ -20,7 +20,7 @@ export const NavbarSection = ({
     <AppShell
       header={{ height: 60 }}
       navbar={{
-        width: 200,
+        width: 150,
         breakpoint: "sm",
         collapsed: { desktop: !opened, mobile: !opened },
       }}
@@ -32,7 +32,7 @@ export const NavbarSection = ({
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar bg={"rgba(255,173,27,0.5)"}>
+      <AppShell.Navbar bg={"blue"}>
         <AppShell.Section component={ScrollArea}>
           {naviArray
             .filter(({ visible = true }) => visible)
@@ -40,7 +40,7 @@ export const NavbarSection = ({
               <Link key={`menu-${index}`} href={navi.url}>
                 <button
                   className={
-                    "my-1 w-full bg-inherit p-3 hover:font-bold max-sm:text-center"
+                    "my-1 w-full bg-inherit p-3 text-left font-bold text-white hover:bg-blue-700 hover:font-bold hover:text-white"
                   }
                   onClick={() => {
                     // widthがsm以下の場合は、メニューを閉じる

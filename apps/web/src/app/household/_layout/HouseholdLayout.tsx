@@ -25,6 +25,10 @@ const householdNavis: Navi[] = [
     url: "/top",
   },
   {
+    label: "ダッシュボード",
+    url: "/household/dashboard",
+  },
+  {
     label: "アカウント",
     url: "/household/account",
   },

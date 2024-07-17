@@ -1,0 +1,40 @@
+query pageSourceBalanceChart(
+  $groupId: String!
+  $fromDate: date!
+  $toDate: date!
+  $transferCategoryIds: [String!] = []
+) {
+  detailView: householdAllDetailView(
+    where: {
+      groupId: { _eq: $groupId }
+      date: { _gte: $fromDate }
+      _and: {
+        date: { _lte: $toDate }
+        _and: { categoryId: { _nin: $transferCategoryIds } }
+      }
+    }
+  ) {
+    __typename
+    id
+    settlementDate
+    withdrawalDate
+    amount: originalAmount
+    iocomeType
+    account {
+      id
+      name
+    }
+    genre {
+      id
+      name
+    }
+    category {
+      id
+      name
+      depositCategory {
+        id: categoryId
+      }
+    }
+    memo
+  }
+}
