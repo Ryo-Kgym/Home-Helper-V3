@@ -15,18 +15,32 @@ import { CategoricalChartState } from "recharts/types/chart/types";
 
 import { TooltipContent } from "./TooltipContent";
 
+type BarChartSetting = Record<
+  string,
+  {
+    color: string;
+    group: string;
+    label: string;
+  }
+>;
+
+type AreaChartSetting = Record<
+  string,
+  {
+    color: string;
+    group: string;
+    label: string;
+  }
+>;
+
 export const BalanceChart = <T extends string>({
-  settings,
+  barchartSetting,
+  areaChartSetting,
   data,
   onClick,
 }: {
-  settings: Record<
-    T,
-    {
-      color: string;
-      group: string;
-    }
-  >;
+  barchartSetting: BarChartSetting;
+  areaChartSetting: AreaChartSetting;
   data: Record<string, Record<T, number>>;
   onClick?: (event: CategoricalChartState) => void;
   tooltip?: ReactNode;
@@ -52,24 +66,22 @@ export const BalanceChart = <T extends string>({
         <Tooltip content={TooltipContent} />
         <Legend />
         <ReferenceLine stroke="#000" />
-        <Area
-          type="monotone"
-          dataKey="assets"
-          fill="green"
-          stroke="#8884d8"
-          stackId={1}
-        />
-        <Area
-          type="monotone"
-          dataKey="cumulative"
-          fill="#8884d8"
-          stroke="#8884d8"
-          stackId={1}
-        />
+
+        {Object.entries(areaChartSetting).map(([key, { color, group }]) => (
+          <Area
+            key={key}
+            type="monotone"
+            dataKey={key}
+            fill={color}
+            stroke={color}
+            stackId={group}
+          />
+        ))}
+
         {Object.entries<{
           color: string;
           group: string;
-        }>(settings).map(([key, { color, group }]) => (
+        }>(barchartSetting).map(([key, { color, group }]) => (
           <Bar key={key} dataKey={key} fill={color} stackId={group} />
         ))}
       </ComposedChart>
