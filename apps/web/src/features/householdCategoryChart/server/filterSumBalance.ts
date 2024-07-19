@@ -1,4 +1,4 @@
-import { SumBalanceAttributes } from "@features/householdBalanceChart/server/types";
+import { SumBalanceAttributes } from "./types";
 
 export const filterSumBalance = <T extends SumBalanceAttributes>(
   data: Record<string, T>,

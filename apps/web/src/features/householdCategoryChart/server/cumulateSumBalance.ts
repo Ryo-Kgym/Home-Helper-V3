@@ -1,7 +1,4 @@
-import {
-  SumBalance,
-  SumBalanceAttributes,
-} from "@features/householdBalanceChart/server/types";
+import { SumBalance, SumBalanceAttributes } from "./types";
 
 export const cumulateSumBalance = (data: SumBalance) => {
   return Object.entries(data).reduce<
