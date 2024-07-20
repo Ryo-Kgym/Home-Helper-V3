@@ -1,90 +1,122 @@
-import { ReactNode } from "react";
+import React from "react";
 import {
-  Area,
-  Bar,
   CartesianGrid,
-  ComposedChart,
   Legend,
-  ReferenceLine,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import { CategoricalChartState } from "recharts/types/chart/types";
 
-import { CategoryChartTooltipContent } from "./CategoryChartTooltipContent";
-
-type BarChartSetting = Record<
-  string,
+const data = [
   {
-    color: string;
-    group: string;
-    label: string;
-  }
->;
-
-type AreaChartSetting = Record<
-  string,
+    name: "Page A",
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
   {
-    color: string;
-    group: string;
-    label: string;
-  }
->;
+    name: "Page B",
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: "Page C",
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: "Page D",
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: "Page E",
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    name: "Page F",
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
+  },
+  {
+    name: "Page G",
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+];
 
-export const CategoryChart = <T extends string>({
-  barchartSetting,
-  areaChartSetting,
-  data,
-  onClick,
-}: {
-  barchartSetting: BarChartSetting;
-  areaChartSetting: AreaChartSetting;
-  data: Record<string, Record<T, number>>;
-  onClick?: (event: CategoricalChartState) => void;
-  tooltip?: ReactNode;
-}) => {
+export const CategoryChart = () => {
+  // const demoUrl =
+  //   "https://codesandbox.io/p/sandbox/line-chart-with-customized-label-d6rytv";
+
   return (
-    <ResponsiveContainer>
-      <ComposedChart
-        data={Object.entries(data).map(([key, value]) => ({
-          name: key,
-          ...value,
-        }))}
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart
+        width={500}
+        height={300}
+        data={data}
         margin={{
-          top: 5,
+          top: 20,
           right: 30,
           left: 20,
-          bottom: 5,
+          bottom: 10,
         }}
-        onClick={onClick}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis
+          dataKey="name"
+          height={60}
+          tick={({ x, y, payload }) => {
+            return (
+              <g transform={`translate(${x},${y})`}>
+                <text
+                  x={0}
+                  y={0}
+                  dy={16}
+                  textAnchor="end"
+                  fill="#666"
+                  transform="rotate(-35)"
+                >
+                  {payload.value}
+                </text>
+              </g>
+            );
+          }}
+        />
         <YAxis />
-        <Tooltip content={CategoryChartTooltipContent} />
+        <Tooltip />
         <Legend />
-        <ReferenceLine stroke="#000" />
-
-        {Object.entries(areaChartSetting).map(([key, { color, group }]) => (
-          <Area
-            key={key}
-            type="monotone"
-            dataKey={key}
-            fill={color}
-            stroke={color}
-            stackId={group}
-          />
-        ))}
-
-        {Object.entries<{
-          color: string;
-          group: string;
-        }>(barchartSetting).map(([key, { color, group }]) => (
-          <Bar key={key} dataKey={key} fill={color} stackId={group} />
-        ))}
-      </ComposedChart>
+        <Line
+          type="monotone"
+          dataKey="pv"
+          stroke="#8884d8"
+          label={({ x, y, stroke, value }) => {
+            return (
+              <text
+                x={x}
+                y={y}
+                dy={-4}
+                fill={stroke}
+                fontSize={10}
+                textAnchor="middle"
+              >
+                {value}
+              </text>
+            );
+          }}
+        />
+        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+      </LineChart>
     </ResponsiveContainer>
   );
 };
