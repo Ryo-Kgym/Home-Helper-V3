@@ -2,8 +2,14 @@
 
 import { FC } from "react";
 
+import { CategoryChartData } from "../types";
 import { CategoryChart } from "./CategoryChart";
 
-export const CategoryChartClient: FC = () => {
+type Props = {
+  categoryChartData: CategoryChartData;
+};
+
+export const CategoryChartClient: FC<Props> = ({ categoryChartData }) => {
+  console.log(categoryChartData);
   return <CategoryChart />;
 };

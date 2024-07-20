@@ -2,9 +2,7 @@ import { findUser } from "@persistence/browser/server/find-user";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { PageSourceBalanceChartDocument } from "@v3/graphql/household/type";
 
-import { cumulateSumBalance } from "./cumulateSumBalance";
-import { filterSumBalance } from "./filterSumBalance";
-import { sumBalanceData } from "./sumBalanceData";
+import { convertToCategoryChartData } from "./convertToCategoryChartData";
 
 export const fetchCategoryChartData = async ({
   fromDate,
@@ -17,15 +15,13 @@ export const fetchCategoryChartData = async ({
 
   const source = await fetchQuery(PageSourceBalanceChartDocument, {
     groupId: group.id,
-    fromDate: new Date("2019-01-01"),
+    fromDate,
     toDate,
   });
 
-  const sumBalance = sumBalanceData(source?.data);
-  const cumulative = cumulateSumBalance(sumBalance);
-  const filteredCumulative = filterSumBalance(cumulative, fromDate);
+  const categoryChartData = convertToCategoryChartData(source?.data);
 
   return {
-    data: filteredCumulative,
+    data: categoryChartData,
   };
 };

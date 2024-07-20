@@ -13,14 +13,7 @@ export const CategoryChartServer = async ({
     toDate: toDate ?? new Date(),
   });
 
-  return (
-    <CategoryChartClient
-    // chartParams={{
-    //   barchartSetting: barchartSetting,
-    //   data,
-    // }}
-    />
-  );
+  return <CategoryChartClient categoryChartData={data} />;
 };
 
 const getPast12MonthDate = () => {
