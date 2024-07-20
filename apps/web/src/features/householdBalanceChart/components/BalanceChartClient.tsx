@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import { BalanceChart } from "@features/householdBalanceChart/components/BalanceChart";
 import { useNavigation } from "@routing/client/useNavigation";
