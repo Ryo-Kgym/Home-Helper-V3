@@ -1,17 +1,15 @@
 import { ReactNode } from "react";
 
 const Layout = ({
-  balanceChart,
+  chart,
   detailTable,
 }: {
-  balanceChart: ReactNode;
+  chart: ReactNode;
   detailTable: ReactNode;
 }) => {
   return (
     <div className="space-y-10">
-      <div className="h-[40vh] rounded-lg bg-white p-4 shadow-md">
-        {balanceChart}
-      </div>
+      <div className="h-[40vh] rounded-lg bg-white p-4 shadow-md">{chart}</div>
       <div className="h-[40vh] rounded-lg bg-white p-4 shadow-md">
         {detailTable}
       </div>

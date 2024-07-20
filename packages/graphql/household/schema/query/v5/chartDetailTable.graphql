@@ -1,0 +1,66 @@
+query chartDetailTableFilterWithdrawalDate(
+  $groupId: String!
+  $fromDate: date!
+  $toDate: date!
+) {
+  detailView: householdAllDetailView(
+    where: {
+      groupId: { _eq: $groupId }
+      withdrawalDate: { _gte: $fromDate }
+      _and: { withdrawalDate: { _lte: $toDate } }
+    }
+    orderBy: [
+      { withdrawalDate: ASC }
+      { settlementDate: ASC }
+      { category: { displayOrder: ASC } }
+    ]
+  ) {
+    ...fragChartDetailTable
+  }
+}
+
+query chartDetailTableFilterSettlementDate(
+  $groupId: String!
+  $fromDate: date!
+  $toDate: date!
+) {
+  detailView: householdAllDetailView(
+    where: {
+      groupId: { _eq: $groupId }
+      settlementDate: { _gte: $fromDate }
+      _and: { settlementDate: { _lte: $toDate } }
+    }
+    orderBy: [
+      { settlementDate: ASC }
+      { withdrawalDate: ASC }
+      { category: { displayOrder: ASC } }
+    ]
+  ) {
+    ...fragChartDetailTable
+  }
+}
+
+fragment fragChartDetailTable on HouseholdAllDetailView {
+  __typename
+  id
+  settlementDate
+  withdrawalDate
+  amount: originalAmount
+  iocomeType
+  account {
+    id
+    name
+  }
+  genre {
+    id
+    name
+  }
+  category {
+    id
+    name
+    depositCategory {
+      id: categoryId
+    }
+  }
+  memo
+}

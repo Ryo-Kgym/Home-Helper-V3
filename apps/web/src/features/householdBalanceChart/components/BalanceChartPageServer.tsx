@@ -1,7 +1,6 @@
+import { BalanceChartClient } from "@features/householdBalanceChart/components/BalanceChartClient";
 import { fetchBalanceChartData } from "@features/householdBalanceChart/server/fetchBalanceChartData";
 import { colors } from "@styles/colors";
-
-import { BalanceChartPageClient } from "./BalanceChartPageClient";
 
 export const BalanceChartPageServer = async ({
   fromDate,
@@ -16,12 +15,10 @@ export const BalanceChartPageServer = async ({
   });
 
   return (
-    <BalanceChartPageClient
-      chartParams={{
-        barchartSetting: barchartSetting,
-        areaChartSetting: areaChartSetting,
-        data,
-      }}
+    <BalanceChartClient
+      barchartSetting={barchartSetting}
+      areaChartSetting={areaChartSetting}
+      data={data}
     />
   );
 };

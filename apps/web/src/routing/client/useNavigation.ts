@@ -5,21 +5,21 @@ export const useNavigation = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const prependParamAndPush = ({
-    key,
-    value,
-  }: {
-    key: string;
-    value: string;
-  }) => {
+  const prependParamAndPush = (args: Record<string, string>) => {
+    const params = Object.entries(args).map(([key, value]) => ({ key, value }));
+
     const searchParamJoined = Object.entries(
       Object.fromEntries(searchParams.entries()),
     )
-      .filter(([k]) => k !== key)
+      .filter(([k]) => !params.map((p) => p.key).includes(k))
       .map(([k, v]) => `${k}=${v}`)
       .join("&");
 
-    return push(`${pathname}?${searchParamJoined}&${key}=${value}`);
+    const newParams = params
+      .map(({ key, value }) => `${key}=${value}`)
+      .join("&");
+
+    return push(`${pathname}?${searchParamJoined}&${newParams}`);
   };
 
   return { prependParamAndPush };

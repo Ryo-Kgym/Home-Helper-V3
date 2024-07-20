@@ -44,7 +44,7 @@ export const BalanceListTable = ({
         ]}
         records={balanceRecords}
         onRowClick={(record) => {
-          prependParamAndPush({ key: "accountId", value: record.id });
+          prependParamAndPush({ accountId: record.id });
         }}
       />
       <Total total={total} />
