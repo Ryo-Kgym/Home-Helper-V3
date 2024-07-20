@@ -1,3 +1,5 @@
+import { extractComboBoxData } from "@features/householdCategoryChart/server/extractComboBoxData";
+
 import { fetchCategoryChartData } from "../server/fetchCategoryChartData";
 import { CategoryChartClient } from "./CategoryChartClient";
 
@@ -19,11 +21,14 @@ export const CategoryChartServer = async ({
     toDate,
   });
 
+  const comboBoxData = extractComboBoxData(data);
+
   return (
     <CategoryChartClient
       fromDate={fromDate}
       toDate={toDate}
       categoryChartData={data}
+      comboBoxData={comboBoxData}
     />
   );
 };

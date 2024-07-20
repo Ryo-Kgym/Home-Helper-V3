@@ -16,6 +16,10 @@ describe("convertToCategoryChartData", () => {
             id: "c1",
             name: "カテゴリ1",
           },
+          genre: {
+            id: "g1",
+            name: "ジャンル1",
+          },
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -24,6 +28,10 @@ describe("convertToCategoryChartData", () => {
           category: {
             id: "c1",
             name: "カテゴリ1",
+          },
+          genre: {
+            id: "g1",
+            name: "ジャンル1",
           },
         },
         {
@@ -34,6 +42,10 @@ describe("convertToCategoryChartData", () => {
             id: "c2",
             name: "カテゴリ2",
           },
+          genre: {
+            id: "g2",
+            name: "ジャンル2",
+          },
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -43,6 +55,10 @@ describe("convertToCategoryChartData", () => {
             id: "c1",
             name: "カテゴリ1",
           },
+          genre: {
+            id: "g1",
+            name: "ジャンル1",
+          },
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -51,6 +67,10 @@ describe("convertToCategoryChartData", () => {
           category: {
             id: "c1",
             name: "カテゴリ1",
+          },
+          genre: {
+            id: "g1",
+            name: "ジャンル1",
           },
         },
       ],
@@ -63,18 +83,21 @@ describe("convertToCategoryChartData", () => {
       "c1__2023-08": {
         categoryId: "c1",
         categoryName: "カテゴリ1",
+        genreName: "ジャンル1",
         yearMonth: "2023-08",
         total: 150,
       },
       "c2__2023-08": {
         categoryId: "c2",
         categoryName: "カテゴリ2",
+        genreName: "ジャンル2",
         yearMonth: "2023-08",
         total: 50,
       },
       "c1__2023-09": {
         categoryId: "c1",
         categoryName: "カテゴリ1",
+        genreName: "ジャンル1",
         yearMonth: "2023-09",
         total: 400,
       },
@@ -83,6 +106,7 @@ describe("convertToCategoryChartData", () => {
     expect(actual2).toEqual({
       c1: {
         categoryName: "カテゴリ1",
+        genreName: "ジャンル1",
         monthlyTotal: {
           "2023-08": 150,
           "2023-09": 400,
@@ -90,6 +114,7 @@ describe("convertToCategoryChartData", () => {
       },
       c2: {
         categoryName: "カテゴリ2",
+        genreName: "ジャンル2",
         monthlyTotal: {
           "2023-08": 50,
         },

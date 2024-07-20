@@ -13,6 +13,7 @@ export const convertToCategoryChartData = (
         ...acc,
         [cur.categoryId]: {
           categoryName: cur.categoryName,
+          genreName: cur.genreName,
           monthlyTotal: {
             [cur.yearMonth]: cur.total,
           },
@@ -26,6 +27,7 @@ export const convertToCategoryChartData = (
         [cur.categoryId]: {
           ...acc[cur.categoryId],
           categoryName: cur.categoryName,
+          genreName: cur.genreName,
           monthlyTotal: {
             ...acc[cur.categoryId]?.monthlyTotal,
             [cur.yearMonth]: cur.total,
@@ -39,6 +41,7 @@ export const convertToCategoryChartData = (
       [cur.categoryId]: {
         ...acc[cur.categoryId],
         categoryName: cur.categoryName,
+        genreName: cur.genreName,
         monthlyTotal: {
           ...acc[cur.categoryId]?.monthlyTotal,
           [cur.yearMonth]:
@@ -65,6 +68,7 @@ export const aggregateCategoryData = (
         [key]: {
           categoryId: cur.category?.id ?? "",
           categoryName: cur.category?.name ?? "",
+          genreName: cur.genre?.name ?? "",
           yearMonth,
           total: cur.amount,
         },
@@ -76,6 +80,7 @@ export const aggregateCategoryData = (
       [key]: {
         categoryId: cur.category?.id ?? "",
         categoryName: cur.category?.name ?? "",
+        genreName: cur.genre?.name ?? "",
         yearMonth,
         total: acc[key].total + cur.amount,
       },
@@ -87,6 +92,7 @@ type AggregateCategoryDataType = Record<
   {
     categoryId: string;
     categoryName: string;
+    genreName: string;
     yearMonth: string;
     total: number;
   }

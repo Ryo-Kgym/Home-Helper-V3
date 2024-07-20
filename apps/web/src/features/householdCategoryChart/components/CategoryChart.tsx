@@ -10,13 +10,15 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { CategoricalChartState } from "recharts/types/chart/types";
 
 type Props = {
   categories: { categoryId: string; categoryName: string; color: string }[];
   data: Record<YearMonth, Record<string, number>>;
+  onClick?: (event: CategoricalChartState) => void;
 };
 
-export const CategoryChart: FC<Props> = ({ categories, data }) => {
+export const CategoryChart: FC<Props> = ({ categories, data, onClick }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
@@ -32,8 +34,9 @@ export const CategoryChart: FC<Props> = ({ categories, data }) => {
           left: 20,
           bottom: 10,
         }}
+        onClick={onClick}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="10 10" />
         <XAxis
           dataKey="name"
           height={60}
@@ -51,6 +54,7 @@ export const CategoryChart: FC<Props> = ({ categories, data }) => {
               </text>
             </g>
           )}
+          padding={{ left: 30, right: 30 }}
         />
         <YAxis />
         <Tooltip />
