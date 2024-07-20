@@ -26,7 +26,15 @@ const householdNavis: Navi[] = [
   },
   {
     label: "ダッシュボード",
+    url: "#",
+  },
+  {
+    label: "> 残高",
     url: "/household/dashboard",
+  },
+  {
+    label: "> カテゴリ",
+    url: "/household/dashboard?type=category",
   },
   {
     label: "アカウント",

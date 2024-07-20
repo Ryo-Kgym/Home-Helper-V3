@@ -58,7 +58,10 @@ export const CategoryChartClient: FC<Props> = ({
           if (!event.activeLabel) {
             return;
           }
-          prependParamAndPush({ key: "watch", value: event.activeLabel });
+          prependParamAndPush({
+            watch: event.activeLabel,
+            dateType: "settlementDate",
+          });
         }}
       />
       <ComboBox

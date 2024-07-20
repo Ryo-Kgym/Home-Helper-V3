@@ -37,11 +37,15 @@ export const MantineDataTable = <H extends string>({
     defaultRecords?.slice(0, recordsPerPage),
   );
 
-  useEffect(() => {
-    const from = (page - 1) * recordsPerPage;
-    const to = from + recordsPerPage;
-    setRecords(defaultRecords?.slice(from, to));
-  }, [defaultRecords, page]);
+  useEffect(
+    () => {
+      const from = (page - 1) * recordsPerPage;
+      const to = from + recordsPerPage;
+      setRecords(defaultRecords?.slice(from, to));
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [defaultRecords, page],
+  );
 
   return (
     <DataTable

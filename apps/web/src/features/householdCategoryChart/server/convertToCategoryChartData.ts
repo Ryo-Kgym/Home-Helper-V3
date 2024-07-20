@@ -59,7 +59,7 @@ export const aggregateCategoryData = (
   data: PageSourceBalanceChartQuery,
 ): AggregateCategoryDataType =>
   data?.detailView.reduce<AggregateCategoryDataType>((acc, cur) => {
-    const yearMonth = cur.withdrawalDate.slice(0, 7);
+    const yearMonth = cur.settlementDate.slice(0, 7);
     const key = cur.category?.id + "__" + yearMonth;
 
     if (!acc[key]) {

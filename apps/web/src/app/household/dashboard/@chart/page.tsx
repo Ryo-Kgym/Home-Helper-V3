@@ -1,5 +1,5 @@
-import { CategoryChartServer } from "@features/householdCategoryChart/components/CategoryChartServer";
-import { BalanceChartPage } from "pageComponents/householdBalanceChart";
+import { BalanceChartPageServer } from "features/householdBalanceChart/components/BalanceChartPageServer";
+import { CategoryChartServer } from "features/householdCategoryChart/components/CategoryChartServer";
 
 const Page = ({
   searchParams,
@@ -25,7 +25,7 @@ const Page = ({
     }
     default: {
       return (
-        <BalanceChartPage
+        <BalanceChartPageServer
           fromDate={
             searchParams.fromDate ? new Date(searchParams.fromDate) : undefined
           }

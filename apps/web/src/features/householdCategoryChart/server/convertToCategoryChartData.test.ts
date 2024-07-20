@@ -10,7 +10,7 @@ describe("convertToCategoryChartData", () => {
       detailView: [
         {
           __typename: "HouseholdAllDetailView",
-          withdrawalDate: "2023-08-01",
+          settlementDate: "2023-08-01",
           amount: 100,
           category: {
             id: "c1",
@@ -23,7 +23,7 @@ describe("convertToCategoryChartData", () => {
         },
         {
           __typename: "HouseholdAllDetailView",
-          withdrawalDate: "2023-08-02",
+          settlementDate: "2023-08-02",
           amount: 50,
           category: {
             id: "c1",
@@ -36,7 +36,7 @@ describe("convertToCategoryChartData", () => {
         },
         {
           __typename: "HouseholdAllDetailView",
-          withdrawalDate: "2023-08-03",
+          settlementDate: "2023-08-03",
           amount: 50,
           category: {
             id: "c2",
@@ -49,7 +49,7 @@ describe("convertToCategoryChartData", () => {
         },
         {
           __typename: "HouseholdAllDetailView",
-          withdrawalDate: "2023-09-01",
+          settlementDate: "2023-09-01",
           amount: 100,
           category: {
             id: "c1",
@@ -62,7 +62,7 @@ describe("convertToCategoryChartData", () => {
         },
         {
           __typename: "HouseholdAllDetailView",
-          withdrawalDate: "2023-09-02",
+          settlementDate: "2023-09-02",
           amount: 300,
           category: {
             id: "c1",

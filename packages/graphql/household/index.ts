@@ -3,7 +3,7 @@ import * as Urql from "urql";
 
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends Record<string, unknown>> = {
+export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
@@ -40,16 +40,16 @@ export type AffiliationAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "affiliation" */
 export type AffiliationArrRelInsertInput = {
-  data: AffiliationInsertInput[];
+  data: Array<AffiliationInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<AffiliationOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "affiliation". All fields are combined with a logical 'AND'. */
 export type AffiliationBoolExp = {
-  _and?: InputMaybe<AffiliationBoolExp[]>;
+  _and?: InputMaybe<Array<AffiliationBoolExp>>;
   _not?: InputMaybe<AffiliationBoolExp>;
-  _or?: InputMaybe<AffiliationBoolExp[]>;
+  _or?: InputMaybe<Array<AffiliationBoolExp>>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   groupRole?: InputMaybe<StringComparisonExp>;
@@ -92,7 +92,7 @@ export type AffiliationMinOrderBy = {
 /** on_conflict condition type for table "affiliation" */
 export type AffiliationOnConflict = {
   constraint: AffiliationConstraint;
-  updateColumns?: AffiliationUpdateColumn[];
+  updateColumns?: Array<AffiliationUpdateColumn>;
   where?: InputMaybe<AffiliationBoolExp>;
 };
 
@@ -149,16 +149,16 @@ export type AppAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "app" */
 export type AppArrRelInsertInput = {
-  data: AppInsertInput[];
+  data: Array<AppInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<AppOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "app". All fields are combined with a logical 'AND'. */
 export type AppBoolExp = {
-  _and?: InputMaybe<AppBoolExp[]>;
+  _and?: InputMaybe<Array<AppBoolExp>>;
   _not?: InputMaybe<AppBoolExp>;
-  _or?: InputMaybe<AppBoolExp[]>;
+  _or?: InputMaybe<Array<AppBoolExp>>;
   createUserId?: InputMaybe<StringComparisonExp>;
   fields?: InputMaybe<FieldBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -224,7 +224,7 @@ export type AppObjRelInsertInput = {
 /** on_conflict condition type for table "app" */
 export type AppOnConflict = {
   constraint: AppConstraint;
-  updateColumns?: AppUpdateColumn[];
+  updateColumns?: Array<AppUpdateColumn>;
   where?: InputMaybe<AppBoolExp>;
 };
 
@@ -298,9 +298,9 @@ export type AppUpdates = {
 
 /** Boolean expression to filter rows from the table "application". All fields are combined with a logical 'AND'. */
 export type ApplicationBoolExp = {
-  _and?: InputMaybe<ApplicationBoolExp[]>;
+  _and?: InputMaybe<Array<ApplicationBoolExp>>;
   _not?: InputMaybe<ApplicationBoolExp>;
-  _or?: InputMaybe<ApplicationBoolExp[]>;
+  _or?: InputMaybe<Array<ApplicationBoolExp>>;
   groupApplications?: InputMaybe<GroupApplicationBoolExp>;
   groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateBoolExp>;
   id?: InputMaybe<StringComparisonExp>;
@@ -351,12 +351,12 @@ export type BooleanComparisonExp = {
   _eq?: InputMaybe<Scalars["Boolean"]>;
   _gt?: InputMaybe<Scalars["Boolean"]>;
   _gte?: InputMaybe<Scalars["Boolean"]>;
-  _in?: InputMaybe<Scalars["Boolean"][]>;
+  _in?: InputMaybe<Array<Scalars["Boolean"]>>;
   _isNull?: InputMaybe<Scalars["Boolean"]>;
   _lt?: InputMaybe<Scalars["Boolean"]>;
   _lte?: InputMaybe<Scalars["Boolean"]>;
   _neq?: InputMaybe<Scalars["Boolean"]>;
-  _nin?: InputMaybe<Scalars["Boolean"][]>;
+  _nin?: InputMaybe<Array<Scalars["Boolean"]>>;
 };
 
 /** ordering argument of a cursor */
@@ -372,12 +372,12 @@ export type DateComparisonExp = {
   _eq?: InputMaybe<Scalars["date"]>;
   _gt?: InputMaybe<Scalars["date"]>;
   _gte?: InputMaybe<Scalars["date"]>;
-  _in?: InputMaybe<Scalars["date"][]>;
+  _in?: InputMaybe<Array<Scalars["date"]>>;
   _isNull?: InputMaybe<Scalars["Boolean"]>;
   _lt?: InputMaybe<Scalars["date"]>;
   _lte?: InputMaybe<Scalars["date"]>;
   _neq?: InputMaybe<Scalars["date"]>;
-  _nin?: InputMaybe<Scalars["date"][]>;
+  _nin?: InputMaybe<Array<Scalars["date"]>>;
 };
 
 /** order by aggregate values of table "field" */
@@ -397,7 +397,7 @@ export type FieldAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "field" */
 export type FieldArrRelInsertInput = {
-  data: FieldInsertInput[];
+  data: Array<FieldInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<FieldOnConflict>;
 };
@@ -409,9 +409,9 @@ export type FieldAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "field". All fields are combined with a logical 'AND'. */
 export type FieldBoolExp = {
-  _and?: InputMaybe<FieldBoolExp[]>;
+  _and?: InputMaybe<Array<FieldBoolExp>>;
   _not?: InputMaybe<FieldBoolExp>;
-  _or?: InputMaybe<FieldBoolExp[]>;
+  _or?: InputMaybe<Array<FieldBoolExp>>;
   app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
   fieldKind?: InputMaybe<StringComparisonExp>;
@@ -464,7 +464,7 @@ export type FieldMinOrderBy = {
 /** on_conflict condition type for table "field" */
 export type FieldOnConflict = {
   constraint: FieldConstraint;
-  updateColumns?: FieldUpdateColumn[];
+  updateColumns?: Array<FieldUpdateColumn>;
   where?: InputMaybe<FieldBoolExp>;
 };
 
@@ -595,9 +595,9 @@ export type GroupApplicationAggregateOrderBy = {
 
 /** Boolean expression to filter rows from the table "group_application". All fields are combined with a logical 'AND'. */
 export type GroupApplicationBoolExp = {
-  _and?: InputMaybe<GroupApplicationBoolExp[]>;
+  _and?: InputMaybe<Array<GroupApplicationBoolExp>>;
   _not?: InputMaybe<GroupApplicationBoolExp>;
-  _or?: InputMaybe<GroupApplicationBoolExp[]>;
+  _or?: InputMaybe<Array<GroupApplicationBoolExp>>;
   application?: InputMaybe<ApplicationBoolExp>;
   applicationId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -655,9 +655,9 @@ export type GroupApplicationStreamCursorValueInput = {
 
 /** Boolean expression to filter rows from the table "group". All fields are combined with a logical 'AND'. */
 export type GroupBoolExp = {
-  _and?: InputMaybe<GroupBoolExp[]>;
+  _and?: InputMaybe<Array<GroupBoolExp>>;
   _not?: InputMaybe<GroupBoolExp>;
-  _or?: InputMaybe<GroupBoolExp[]>;
+  _or?: InputMaybe<Array<GroupBoolExp>>;
   accounts?: InputMaybe<HouseholdAccountBoolExp>;
   accountsAggregate?: InputMaybe<HouseholdAccountAggregateBoolExp>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
@@ -766,9 +766,9 @@ export type HouseholdAccountAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.account". All fields are combined with a logical 'AND'. */
 export type HouseholdAccountBoolExp = {
-  _and?: InputMaybe<HouseholdAccountBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdAccountBoolExp>>;
   _not?: InputMaybe<HouseholdAccountBoolExp>;
-  _or?: InputMaybe<HouseholdAccountBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdAccountBoolExp>>;
   allDetailViews?: InputMaybe<HouseholdAllDetailViewBoolExp>;
   allDetailViewsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
   creditCardSummaries?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
@@ -826,7 +826,7 @@ export type HouseholdAccountObjRelInsertInput = {
 /** on_conflict condition type for table "household.account" */
 export type HouseholdAccountOnConflict = {
   constraint: HouseholdAccountConstraint;
-  updateColumns?: HouseholdAccountUpdateColumn[];
+  updateColumns?: Array<HouseholdAccountUpdateColumn>;
   where?: InputMaybe<HouseholdAccountBoolExp>;
 };
 
@@ -954,9 +954,9 @@ export type HouseholdAllDetailViewAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.all_detail_view". All fields are combined with a logical 'AND'. */
 export type HouseholdAllDetailViewBoolExp = {
-  _and?: InputMaybe<HouseholdAllDetailViewBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
   _not?: InputMaybe<HouseholdAllDetailViewBoolExp>;
-  _or?: InputMaybe<HouseholdAllDetailViewBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
   account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
   category?: InputMaybe<HouseholdCategoryBoolExp>;
@@ -1143,7 +1143,7 @@ export type HouseholdCategoryAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "household.category" */
 export type HouseholdCategoryArrRelInsertInput = {
-  data: HouseholdCategoryInsertInput[];
+  data: Array<HouseholdCategoryInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<HouseholdCategoryOnConflict>;
 };
@@ -1155,9 +1155,9 @@ export type HouseholdCategoryAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.category". All fields are combined with a logical 'AND'. */
 export type HouseholdCategoryBoolExp = {
-  _and?: InputMaybe<HouseholdCategoryBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdCategoryBoolExp>>;
   _not?: InputMaybe<HouseholdCategoryBoolExp>;
-  _or?: InputMaybe<HouseholdCategoryBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdCategoryBoolExp>>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
@@ -1230,7 +1230,7 @@ export type HouseholdCategoryObjRelInsertInput = {
 /** on_conflict condition type for table "household.category" */
 export type HouseholdCategoryOnConflict = {
   constraint: HouseholdCategoryConstraint;
-  updateColumns?: HouseholdCategoryUpdateColumn[];
+  updateColumns?: Array<HouseholdCategoryUpdateColumn>;
   where?: InputMaybe<HouseholdCategoryBoolExp>;
 };
 
@@ -1381,7 +1381,7 @@ export type HouseholdCreditCardDetailAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailArrRelInsertInput = {
-  data: HouseholdCreditCardDetailInsertInput[];
+  data: Array<HouseholdCreditCardDetailInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<HouseholdCreditCardDetailOnConflict>;
 };
@@ -1393,9 +1393,9 @@ export type HouseholdCreditCardDetailAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.credit_card_detail". All fields are combined with a logical 'AND'. */
 export type HouseholdCreditCardDetailBoolExp = {
-  _and?: InputMaybe<HouseholdCreditCardDetailBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdCreditCardDetailBoolExp>>;
   _not?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  _or?: InputMaybe<HouseholdCreditCardDetailBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdCreditCardDetailBoolExp>>;
   amount?: InputMaybe<NumericComparisonExp>;
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
@@ -1473,7 +1473,7 @@ export type HouseholdCreditCardDetailMinOrderBy = {
 /** on_conflict condition type for table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailOnConflict = {
   constraint: HouseholdCreditCardDetailConstraint;
-  updateColumns?: HouseholdCreditCardDetailUpdateColumn[];
+  updateColumns?: Array<HouseholdCreditCardDetailUpdateColumn>;
   where?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
 };
 
@@ -1650,7 +1650,7 @@ export type HouseholdCreditCardSummaryAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "household.credit_card_summary" */
 export type HouseholdCreditCardSummaryArrRelInsertInput = {
-  data: HouseholdCreditCardSummaryInsertInput[];
+  data: Array<HouseholdCreditCardSummaryInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<HouseholdCreditCardSummaryOnConflict>;
 };
@@ -1663,9 +1663,9 @@ export type HouseholdCreditCardSummaryAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.credit_card_summary". All fields are combined with a logical 'AND'. */
 export type HouseholdCreditCardSummaryBoolExp = {
-  _and?: InputMaybe<HouseholdCreditCardSummaryBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdCreditCardSummaryBoolExp>>;
   _not?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
-  _or?: InputMaybe<HouseholdCreditCardSummaryBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdCreditCardSummaryBoolExp>>;
   account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
   count?: InputMaybe<IntComparisonExp>;
@@ -1736,7 +1736,7 @@ export type HouseholdCreditCardSummaryObjRelInsertInput = {
 /** on_conflict condition type for table "household.credit_card_summary" */
 export type HouseholdCreditCardSummaryOnConflict = {
   constraint: HouseholdCreditCardSummaryConstraint;
-  updateColumns?: HouseholdCreditCardSummaryUpdateColumn[];
+  updateColumns?: Array<HouseholdCreditCardSummaryUpdateColumn>;
   where?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
 };
 
@@ -1833,9 +1833,9 @@ export type HouseholdCreditCardSummarySumOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.credit_card_summary_total_by_account_view". All fields are combined with a logical 'AND'. */
 export type HouseholdCreditCardSummaryTotalByAccountViewBoolExp = {
-  _and?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>>;
   _not?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>;
-  _or?: InputMaybe<HouseholdCreditCardSummaryTotalByAccountViewBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdCreditCardSummaryTotalByAccountViewBoolExp>>;
   accountId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
@@ -1960,7 +1960,7 @@ export type HouseholdDailyDetailAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "household.daily_detail" */
 export type HouseholdDailyDetailArrRelInsertInput = {
-  data: HouseholdDailyDetailInsertInput[];
+  data: Array<HouseholdDailyDetailInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<HouseholdDailyDetailOnConflict>;
 };
@@ -1972,9 +1972,9 @@ export type HouseholdDailyDetailAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.daily_detail". All fields are combined with a logical 'AND'. */
 export type HouseholdDailyDetailBoolExp = {
-  _and?: InputMaybe<HouseholdDailyDetailBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdDailyDetailBoolExp>>;
   _not?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  _or?: InputMaybe<HouseholdDailyDetailBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdDailyDetailBoolExp>>;
   account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
   amount?: InputMaybe<NumericComparisonExp>;
@@ -2052,7 +2052,7 @@ export type HouseholdDailyDetailMinOrderBy = {
 /** on_conflict condition type for table "household.daily_detail" */
 export type HouseholdDailyDetailOnConflict = {
   constraint: HouseholdDailyDetailConstraint;
-  updateColumns?: HouseholdDailyDetailUpdateColumn[];
+  updateColumns?: Array<HouseholdDailyDetailUpdateColumn>;
   where?: InputMaybe<HouseholdDailyDetailBoolExp>;
 };
 
@@ -2210,9 +2210,9 @@ export type HouseholdDailyDetailVarianceOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.daily_total_view". All fields are combined with a logical 'AND'. */
 export type HouseholdDailyTotalViewBoolExp = {
-  _and?: InputMaybe<HouseholdDailyTotalViewBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdDailyTotalViewBoolExp>>;
   _not?: InputMaybe<HouseholdDailyTotalViewBoolExp>;
-  _or?: InputMaybe<HouseholdDailyTotalViewBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdDailyTotalViewBoolExp>>;
   date?: InputMaybe<DateComparisonExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   iocomeType?: InputMaybe<StringComparisonExp>;
@@ -2279,16 +2279,16 @@ export type HouseholdDashboardSettingArgsAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "household.dashboard_setting_args" */
 export type HouseholdDashboardSettingArgsArrRelInsertInput = {
-  data: HouseholdDashboardSettingArgsInsertInput[];
+  data: Array<HouseholdDashboardSettingArgsInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<HouseholdDashboardSettingArgsOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "household.dashboard_setting_args". All fields are combined with a logical 'AND'. */
 export type HouseholdDashboardSettingArgsBoolExp = {
-  _and?: InputMaybe<HouseholdDashboardSettingArgsBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdDashboardSettingArgsBoolExp>>;
   _not?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
-  _or?: InputMaybe<HouseholdDashboardSettingArgsBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdDashboardSettingArgsBoolExp>>;
   dashboardSetting?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   id?: InputMaybe<StringComparisonExp>;
   settingId?: InputMaybe<StringComparisonExp>;
@@ -2330,7 +2330,7 @@ export type HouseholdDashboardSettingArgsMinOrderBy = {
 /** on_conflict condition type for table "household.dashboard_setting_args" */
 export type HouseholdDashboardSettingArgsOnConflict = {
   constraint: HouseholdDashboardSettingArgsConstraint;
-  updateColumns?: HouseholdDashboardSettingArgsUpdateColumn[];
+  updateColumns?: Array<HouseholdDashboardSettingArgsUpdateColumn>;
   where?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
 };
 
@@ -2384,9 +2384,9 @@ export type HouseholdDashboardSettingAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.dashboard_setting". All fields are combined with a logical 'AND'. */
 export type HouseholdDashboardSettingBoolExp = {
-  _and?: InputMaybe<HouseholdDashboardSettingBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdDashboardSettingBoolExp>>;
   _not?: InputMaybe<HouseholdDashboardSettingBoolExp>;
-  _or?: InputMaybe<HouseholdDashboardSettingBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdDashboardSettingBoolExp>>;
   dashboardSettingArgs?: InputMaybe<HouseholdDashboardSettingArgsBoolExp>;
   feature?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -2447,7 +2447,7 @@ export type HouseholdDashboardSettingObjRelInsertInput = {
 /** on_conflict condition type for table "household.dashboard_setting" */
 export type HouseholdDashboardSettingOnConflict = {
   constraint: HouseholdDashboardSettingConstraint;
-  updateColumns?: HouseholdDashboardSettingUpdateColumn[];
+  updateColumns?: Array<HouseholdDashboardSettingUpdateColumn>;
   where?: InputMaybe<HouseholdDashboardSettingBoolExp>;
 };
 
@@ -2579,9 +2579,9 @@ export type HouseholdDepositCategoryAggregateOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.deposit_category". All fields are combined with a logical 'AND'. */
 export type HouseholdDepositCategoryBoolExp = {
-  _and?: InputMaybe<HouseholdDepositCategoryBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdDepositCategoryBoolExp>>;
   _not?: InputMaybe<HouseholdDepositCategoryBoolExp>;
-  _or?: InputMaybe<HouseholdDepositCategoryBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdDepositCategoryBoolExp>>;
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -2654,16 +2654,16 @@ export type HouseholdFavoriteFilterArgsAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "household.favorite_filter_args" */
 export type HouseholdFavoriteFilterArgsArrRelInsertInput = {
-  data: HouseholdFavoriteFilterArgsInsertInput[];
+  data: Array<HouseholdFavoriteFilterArgsInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<HouseholdFavoriteFilterArgsOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "household.favorite_filter_args". All fields are combined with a logical 'AND'. */
 export type HouseholdFavoriteFilterArgsBoolExp = {
-  _and?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdFavoriteFilterArgsBoolExp>>;
   _not?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
-  _or?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdFavoriteFilterArgsBoolExp>>;
   favoriteFilter?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
   favoriteFilterArgCategoryId?: InputMaybe<HouseholdCategoryBoolExp>;
   filterId?: InputMaybe<StringComparisonExp>;
@@ -2707,7 +2707,7 @@ export type HouseholdFavoriteFilterArgsMinOrderBy = {
 /** on_conflict condition type for table "household.favorite_filter_args" */
 export type HouseholdFavoriteFilterArgsOnConflict = {
   constraint: HouseholdFavoriteFilterArgsConstraint;
-  updateColumns?: HouseholdFavoriteFilterArgsUpdateColumn[];
+  updateColumns?: Array<HouseholdFavoriteFilterArgsUpdateColumn>;
   where?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
 };
 
@@ -2761,9 +2761,9 @@ export type HouseholdFavoriteFilterArgsUpdates = {
 
 /** Boolean expression to filter rows from the table "household.favorite_filter". All fields are combined with a logical 'AND'. */
 export type HouseholdFavoriteFilterBoolExp = {
-  _and?: InputMaybe<HouseholdFavoriteFilterBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdFavoriteFilterBoolExp>>;
   _not?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
-  _or?: InputMaybe<HouseholdFavoriteFilterBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdFavoriteFilterBoolExp>>;
   favoriteFilterArgs?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
   favoriteFilterArgsAggregate?: InputMaybe<HouseholdFavoriteFilterArgsAggregateBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -2810,7 +2810,7 @@ export type HouseholdFavoriteFilterObjRelInsertInput = {
 /** on_conflict condition type for table "household.favorite_filter" */
 export type HouseholdFavoriteFilterOnConflict = {
   constraint: HouseholdFavoriteFilterConstraint;
-  updateColumns?: HouseholdFavoriteFilterUpdateColumn[];
+  updateColumns?: Array<HouseholdFavoriteFilterUpdateColumn>;
   where?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
 };
 
@@ -2884,9 +2884,9 @@ export type HouseholdGenreAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.genre". All fields are combined with a logical 'AND'. */
 export type HouseholdGenreBoolExp = {
-  _and?: InputMaybe<HouseholdGenreBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdGenreBoolExp>>;
   _not?: InputMaybe<HouseholdGenreBoolExp>;
-  _or?: InputMaybe<HouseholdGenreBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdGenreBoolExp>>;
   categories?: InputMaybe<HouseholdCategoryBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
@@ -2957,7 +2957,7 @@ export type HouseholdGenreObjRelInsertInput = {
 /** on_conflict condition type for table "household.genre" */
 export type HouseholdGenreOnConflict = {
   constraint: HouseholdGenreConstraint;
-  updateColumns?: HouseholdGenreUpdateColumn[];
+  updateColumns?: Array<HouseholdGenreUpdateColumn>;
   where?: InputMaybe<HouseholdGenreBoolExp>;
 };
 
@@ -3116,9 +3116,9 @@ export type HouseholdImportFileHistoryAggregateOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.import_file_history". All fields are combined with a logical 'AND'. */
 export type HouseholdImportFileHistoryBoolExp = {
-  _and?: InputMaybe<HouseholdImportFileHistoryBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdImportFileHistoryBoolExp>>;
   _not?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
-  _or?: InputMaybe<HouseholdImportFileHistoryBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdImportFileHistoryBoolExp>>;
   fileName?: InputMaybe<StringComparisonExp>;
   fileType?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -3167,7 +3167,7 @@ export type HouseholdImportFileHistoryMinOrderBy = {
 /** on_conflict condition type for table "household.import_file_history" */
 export type HouseholdImportFileHistoryOnConflict = {
   constraint: HouseholdImportFileHistoryConstraint;
-  updateColumns?: HouseholdImportFileHistoryUpdateColumn[];
+  updateColumns?: Array<HouseholdImportFileHistoryUpdateColumn>;
   where?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
 };
 
@@ -3243,7 +3243,7 @@ export type HouseholdSummaryCategoryAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "household.summary_category" */
 export type HouseholdSummaryCategoryArrRelInsertInput = {
-  data: HouseholdSummaryCategoryInsertInput[];
+  data: Array<HouseholdSummaryCategoryInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
 };
@@ -3255,9 +3255,9 @@ export type HouseholdSummaryCategoryAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.summary_category". All fields are combined with a logical 'AND'. */
 export type HouseholdSummaryCategoryBoolExp = {
-  _and?: InputMaybe<HouseholdSummaryCategoryBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
   _not?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  _or?: InputMaybe<HouseholdSummaryCategoryBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
@@ -3300,7 +3300,7 @@ export type HouseholdSummaryCategoryMinOrderBy = {
 /** on_conflict condition type for table "household.summary_category" */
 export type HouseholdSummaryCategoryOnConflict = {
   constraint: HouseholdSummaryCategoryConstraint;
-  updateColumns?: HouseholdSummaryCategoryUpdateColumn[];
+  updateColumns?: Array<HouseholdSummaryCategoryUpdateColumn>;
   where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
 };
 
@@ -3409,9 +3409,9 @@ export type HouseholdTotalByCategoryViewAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.total_by_category_view". All fields are combined with a logical 'AND'. */
 export type HouseholdTotalByCategoryViewBoolExp = {
-  _and?: InputMaybe<HouseholdTotalByCategoryViewBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdTotalByCategoryViewBoolExp>>;
   _not?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
-  _or?: InputMaybe<HouseholdTotalByCategoryViewBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdTotalByCategoryViewBoolExp>>;
   categoryId?: InputMaybe<StringComparisonExp>;
   categoryName?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
@@ -3537,9 +3537,9 @@ export type HouseholdTotalByCategoryViewVarianceOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.total_by_genre_view". All fields are combined with a logical 'AND'. */
 export type HouseholdTotalByGenreViewBoolExp = {
-  _and?: InputMaybe<HouseholdTotalByGenreViewBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdTotalByGenreViewBoolExp>>;
   _not?: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
-  _or?: InputMaybe<HouseholdTotalByGenreViewBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdTotalByGenreViewBoolExp>>;
   date?: InputMaybe<DateComparisonExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   genreName?: InputMaybe<StringComparisonExp>;
@@ -3605,9 +3605,9 @@ export type HouseholdTransferCategoryAggregateOrderBy = {
 
 /** Boolean expression to filter rows from the table "household.transfer_category". All fields are combined with a logical 'AND'. */
 export type HouseholdTransferCategoryBoolExp = {
-  _and?: InputMaybe<HouseholdTransferCategoryBoolExp[]>;
+  _and?: InputMaybe<Array<HouseholdTransferCategoryBoolExp>>;
   _not?: InputMaybe<HouseholdTransferCategoryBoolExp>;
-  _or?: InputMaybe<HouseholdTransferCategoryBoolExp[]>;
+  _or?: InputMaybe<Array<HouseholdTransferCategoryBoolExp>>;
   categoryByIncomeCategoryId?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryByOutcomeCategoryId?: InputMaybe<HouseholdCategoryBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -3682,7 +3682,7 @@ export type ImportFileHistoryAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "import_file_history" */
 export type ImportFileHistoryArrRelInsertInput = {
-  data: ImportFileHistoryInsertInput[];
+  data: Array<ImportFileHistoryInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
 };
@@ -3694,9 +3694,9 @@ export type ImportFileHistoryAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "import_file_history". All fields are combined with a logical 'AND'. */
 export type ImportFileHistoryBoolExp = {
-  _and?: InputMaybe<ImportFileHistoryBoolExp[]>;
+  _and?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
   _not?: InputMaybe<ImportFileHistoryBoolExp>;
-  _or?: InputMaybe<ImportFileHistoryBoolExp[]>;
+  _or?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
   app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
   count?: InputMaybe<IntComparisonExp>;
@@ -3752,7 +3752,7 @@ export type ImportFileHistoryObjRelInsertInput = {
 /** on_conflict condition type for table "import_file_history" */
 export type ImportFileHistoryOnConflict = {
   constraint: ImportFileHistoryConstraint;
-  updateColumns?: ImportFileHistoryUpdateColumn[];
+  updateColumns?: Array<ImportFileHistoryUpdateColumn>;
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
 
@@ -3852,16 +3852,16 @@ export type ImportFileRecordAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "import_file_record" */
 export type ImportFileRecordArrRelInsertInput = {
-  data: ImportFileRecordInsertInput[];
+  data: Array<ImportFileRecordInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<ImportFileRecordOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "import_file_record". All fields are combined with a logical 'AND'. */
 export type ImportFileRecordBoolExp = {
-  _and?: InputMaybe<ImportFileRecordBoolExp[]>;
+  _and?: InputMaybe<Array<ImportFileRecordBoolExp>>;
   _not?: InputMaybe<ImportFileRecordBoolExp>;
-  _or?: InputMaybe<ImportFileRecordBoolExp[]>;
+  _or?: InputMaybe<Array<ImportFileRecordBoolExp>>;
   app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
   historyId?: InputMaybe<StringComparisonExp>;
@@ -3910,7 +3910,7 @@ export type ImportFileRecordObjRelInsertInput = {
 /** on_conflict condition type for table "import_file_record" */
 export type ImportFileRecordOnConflict = {
   constraint: ImportFileRecordConstraint;
-  updateColumns?: ImportFileRecordUpdateColumn[];
+  updateColumns?: Array<ImportFileRecordUpdateColumn>;
   where?: InputMaybe<ImportFileRecordBoolExp>;
 };
 
@@ -3957,9 +3957,9 @@ export enum ImportFileRecordUpdateColumn {
 
 /** Boolean expression to filter rows from the table "import_file_setting". All fields are combined with a logical 'AND'. */
 export type ImportFileSettingBoolExp = {
-  _and?: InputMaybe<ImportFileSettingBoolExp[]>;
+  _and?: InputMaybe<Array<ImportFileSettingBoolExp>>;
   _not?: InputMaybe<ImportFileSettingBoolExp>;
-  _or?: InputMaybe<ImportFileSettingBoolExp[]>;
+  _or?: InputMaybe<Array<ImportFileSettingBoolExp>>;
   app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
   settings?: InputMaybe<JsonComparisonExp>;
@@ -3988,7 +3988,7 @@ export type ImportFileSettingObjRelInsertInput = {
 /** on_conflict condition type for table "import_file_setting" */
 export type ImportFileSettingOnConflict = {
   constraint: ImportFileSettingConstraint;
-  updateColumns?: ImportFileSettingUpdateColumn[];
+  updateColumns?: Array<ImportFileSettingUpdateColumn>;
   where?: InputMaybe<ImportFileSettingBoolExp>;
 };
 
@@ -4049,12 +4049,12 @@ export type IntComparisonExp = {
   _eq?: InputMaybe<Scalars["Int"]>;
   _gt?: InputMaybe<Scalars["Int"]>;
   _gte?: InputMaybe<Scalars["Int"]>;
-  _in?: InputMaybe<Scalars["Int"][]>;
+  _in?: InputMaybe<Array<Scalars["Int"]>>;
   _isNull?: InputMaybe<Scalars["Boolean"]>;
   _lt?: InputMaybe<Scalars["Int"]>;
   _lte?: InputMaybe<Scalars["Int"]>;
   _neq?: InputMaybe<Scalars["Int"]>;
-  _nin?: InputMaybe<Scalars["Int"][]>;
+  _nin?: InputMaybe<Array<Scalars["Int"]>>;
 };
 
 /** Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'. */
@@ -4062,19 +4062,19 @@ export type JsonComparisonExp = {
   _eq?: InputMaybe<Scalars["json"]>;
   _gt?: InputMaybe<Scalars["json"]>;
   _gte?: InputMaybe<Scalars["json"]>;
-  _in?: InputMaybe<Scalars["json"][]>;
+  _in?: InputMaybe<Array<Scalars["json"]>>;
   _isNull?: InputMaybe<Scalars["Boolean"]>;
   _lt?: InputMaybe<Scalars["json"]>;
   _lte?: InputMaybe<Scalars["json"]>;
   _neq?: InputMaybe<Scalars["json"]>;
-  _nin?: InputMaybe<Scalars["json"][]>;
+  _nin?: InputMaybe<Array<Scalars["json"]>>;
 };
 
 /** Boolean expression to filter rows from the table "link_database". All fields are combined with a logical 'AND'. */
 export type LinkDatabaseBoolExp = {
-  _and?: InputMaybe<LinkDatabaseBoolExp[]>;
+  _and?: InputMaybe<Array<LinkDatabaseBoolExp>>;
   _not?: InputMaybe<LinkDatabaseBoolExp>;
-  _or?: InputMaybe<LinkDatabaseBoolExp[]>;
+  _or?: InputMaybe<Array<LinkDatabaseBoolExp>>;
   appId?: InputMaybe<StringComparisonExp>;
   connection?: InputMaybe<JsonComparisonExp>;
   database?: InputMaybe<StringComparisonExp>;
@@ -4109,7 +4109,7 @@ export type LinkDatabaseObjRelInsertInput = {
 /** on_conflict condition type for table "link_database" */
 export type LinkDatabaseOnConflict = {
   constraint: LinkDatabaseConstraint;
-  updateColumns?: LinkDatabaseUpdateColumn[];
+  updateColumns?: Array<LinkDatabaseUpdateColumn>;
   where?: InputMaybe<LinkDatabaseBoolExp>;
 };
 
@@ -4200,12 +4200,12 @@ export type NumericComparisonExp = {
   _eq?: InputMaybe<Scalars["numeric"]>;
   _gt?: InputMaybe<Scalars["numeric"]>;
   _gte?: InputMaybe<Scalars["numeric"]>;
-  _in?: InputMaybe<Scalars["numeric"][]>;
+  _in?: InputMaybe<Array<Scalars["numeric"]>>;
   _isNull?: InputMaybe<Scalars["Boolean"]>;
   _lt?: InputMaybe<Scalars["numeric"]>;
   _lte?: InputMaybe<Scalars["numeric"]>;
   _neq?: InputMaybe<Scalars["numeric"]>;
-  _nin?: InputMaybe<Scalars["numeric"][]>;
+  _nin?: InputMaybe<Array<Scalars["numeric"]>>;
 };
 
 /** column ordering options */
@@ -4245,7 +4245,7 @@ export type RecordAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "record" */
 export type RecordArrRelInsertInput = {
-  data: RecordInsertInput[];
+  data: Array<RecordInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<RecordOnConflict>;
 };
@@ -4257,9 +4257,9 @@ export type RecordAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "record". All fields are combined with a logical 'AND'. */
 export type RecordBoolExp = {
-  _and?: InputMaybe<RecordBoolExp[]>;
+  _and?: InputMaybe<Array<RecordBoolExp>>;
   _not?: InputMaybe<RecordBoolExp>;
-  _or?: InputMaybe<RecordBoolExp[]>;
+  _or?: InputMaybe<Array<RecordBoolExp>>;
   app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
   columns?: InputMaybe<JsonComparisonExp>;
@@ -4313,7 +4313,7 @@ export type RecordObjRelInsertInput = {
 /** on_conflict condition type for table "record" */
 export type RecordOnConflict = {
   constraint: RecordConstraint;
-  updateColumns?: RecordUpdateColumn[];
+  updateColumns?: Array<RecordUpdateColumn>;
   where?: InputMaybe<RecordBoolExp>;
 };
 
@@ -4425,7 +4425,7 @@ export type StringComparisonExp = {
   _gte?: InputMaybe<Scalars["String"]>;
   /** does the column match the given case-insensitive pattern */
   _ilike?: InputMaybe<Scalars["String"]>;
-  _in?: InputMaybe<Scalars["String"][]>;
+  _in?: InputMaybe<Array<Scalars["String"]>>;
   /** does the column match the given POSIX regular expression, case insensitive */
   _iregex?: InputMaybe<Scalars["String"]>;
   _isNull?: InputMaybe<Scalars["Boolean"]>;
@@ -4436,7 +4436,7 @@ export type StringComparisonExp = {
   _neq?: InputMaybe<Scalars["String"]>;
   /** does the column NOT match the given case-insensitive pattern */
   _nilike?: InputMaybe<Scalars["String"]>;
-  _nin?: InputMaybe<Scalars["String"][]>;
+  _nin?: InputMaybe<Array<Scalars["String"]>>;
   /** does the column NOT match the given POSIX regular expression, case insensitive */
   _niregex?: InputMaybe<Scalars["String"]>;
   /** does the column NOT match the given pattern */
@@ -4460,16 +4460,16 @@ export type SummaryViewAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "summary_view" */
 export type SummaryViewArrRelInsertInput = {
-  data: SummaryViewInsertInput[];
+  data: Array<SummaryViewInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<SummaryViewOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "summary_view". All fields are combined with a logical 'AND'. */
 export type SummaryViewBoolExp = {
-  _and?: InputMaybe<SummaryViewBoolExp[]>;
+  _and?: InputMaybe<Array<SummaryViewBoolExp>>;
   _not?: InputMaybe<SummaryViewBoolExp>;
-  _or?: InputMaybe<SummaryViewBoolExp[]>;
+  _or?: InputMaybe<Array<SummaryViewBoolExp>>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   groupingFields?: InputMaybe<JsonComparisonExp>;
@@ -4516,7 +4516,7 @@ export type SummaryViewMinOrderBy = {
 /** on_conflict condition type for table "summary_view" */
 export type SummaryViewOnConflict = {
   constraint: SummaryViewConstraint;
-  updateColumns?: SummaryViewUpdateColumn[];
+  updateColumns?: Array<SummaryViewUpdateColumn>;
   where?: InputMaybe<SummaryViewBoolExp>;
 };
 
@@ -4577,12 +4577,12 @@ export type TimestampComparisonExp = {
   _eq?: InputMaybe<Scalars["timestamp"]>;
   _gt?: InputMaybe<Scalars["timestamp"]>;
   _gte?: InputMaybe<Scalars["timestamp"]>;
-  _in?: InputMaybe<Scalars["timestamp"][]>;
+  _in?: InputMaybe<Array<Scalars["timestamp"]>>;
   _isNull?: InputMaybe<Scalars["Boolean"]>;
   _lt?: InputMaybe<Scalars["timestamp"]>;
   _lte?: InputMaybe<Scalars["timestamp"]>;
   _neq?: InputMaybe<Scalars["timestamp"]>;
-  _nin?: InputMaybe<Scalars["timestamp"][]>;
+  _nin?: InputMaybe<Array<Scalars["timestamp"]>>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -4590,19 +4590,19 @@ export type TimestamptzComparisonExp = {
   _eq?: InputMaybe<Scalars["timestamptz"]>;
   _gt?: InputMaybe<Scalars["timestamptz"]>;
   _gte?: InputMaybe<Scalars["timestamptz"]>;
-  _in?: InputMaybe<Scalars["timestamptz"][]>;
+  _in?: InputMaybe<Array<Scalars["timestamptz"]>>;
   _isNull?: InputMaybe<Scalars["Boolean"]>;
   _lt?: InputMaybe<Scalars["timestamptz"]>;
   _lte?: InputMaybe<Scalars["timestamptz"]>;
   _neq?: InputMaybe<Scalars["timestamptz"]>;
-  _nin?: InputMaybe<Scalars["timestamptz"][]>;
+  _nin?: InputMaybe<Array<Scalars["timestamptz"]>>;
 };
 
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
 export type UserBoolExp = {
-  _and?: InputMaybe<UserBoolExp[]>;
+  _and?: InputMaybe<Array<UserBoolExp>>;
   _not?: InputMaybe<UserBoolExp>;
-  _or?: InputMaybe<UserBoolExp[]>;
+  _or?: InputMaybe<Array<UserBoolExp>>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
   affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
   apps?: InputMaybe<AppBoolExp>;
@@ -4648,7 +4648,7 @@ export type UserObjRelInsertInput = {
 /** on_conflict condition type for table "user" */
 export type UserOnConflict = {
   constraint: UserConstraint;
-  updateColumns?: UserUpdateColumn[];
+  updateColumns?: Array<UserUpdateColumn>;
   where?: InputMaybe<UserBoolExp>;
 };
 
@@ -4715,16 +4715,16 @@ export type ViewAppAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "view_app" */
 export type ViewAppArrRelInsertInput = {
-  data: ViewAppInsertInput[];
+  data: Array<ViewAppInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<ViewAppOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "view_app". All fields are combined with a logical 'AND'. */
 export type ViewAppBoolExp = {
-  _and?: InputMaybe<ViewAppBoolExp[]>;
+  _and?: InputMaybe<Array<ViewAppBoolExp>>;
   _not?: InputMaybe<ViewAppBoolExp>;
-  _or?: InputMaybe<ViewAppBoolExp[]>;
+  _or?: InputMaybe<Array<ViewAppBoolExp>>;
   app?: InputMaybe<AppBoolExp>;
   appId?: InputMaybe<StringComparisonExp>;
   fields?: InputMaybe<JsonComparisonExp>;
@@ -4766,7 +4766,7 @@ export type ViewAppMinOrderBy = {
 /** on_conflict condition type for table "view_app" */
 export type ViewAppOnConflict = {
   constraint: ViewAppConstraint;
-  updateColumns?: ViewAppUpdateColumn[];
+  updateColumns?: Array<ViewAppUpdateColumn>;
   where?: InputMaybe<ViewAppBoolExp>;
 };
 
@@ -4816,16 +4816,16 @@ export enum ViewAppUpdateColumn {
 
 /** input type for inserting array relation for remote table "view" */
 export type ViewArrRelInsertInput = {
-  data: ViewInsertInput[];
+  data: Array<ViewInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<ViewOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "view". All fields are combined with a logical 'AND'. */
 export type ViewBoolExp = {
-  _and?: InputMaybe<ViewBoolExp[]>;
+  _and?: InputMaybe<Array<ViewBoolExp>>;
   _not?: InputMaybe<ViewBoolExp>;
-  _or?: InputMaybe<ViewBoolExp[]>;
+  _or?: InputMaybe<Array<ViewBoolExp>>;
   group?: InputMaybe<GroupBoolExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
@@ -4858,7 +4858,7 @@ export type ViewFieldAggregateOrderBy = {
 
 /** input type for inserting array relation for remote table "view_field" */
 export type ViewFieldArrRelInsertInput = {
-  data: ViewFieldInsertInput[];
+  data: Array<ViewFieldInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<ViewFieldOnConflict>;
 };
@@ -4870,9 +4870,9 @@ export type ViewFieldAvgOrderBy = {
 
 /** Boolean expression to filter rows from the table "view_field". All fields are combined with a logical 'AND'. */
 export type ViewFieldBoolExp = {
-  _and?: InputMaybe<ViewFieldBoolExp[]>;
+  _and?: InputMaybe<Array<ViewFieldBoolExp>>;
   _not?: InputMaybe<ViewFieldBoolExp>;
-  _or?: InputMaybe<ViewFieldBoolExp[]>;
+  _or?: InputMaybe<Array<ViewFieldBoolExp>>;
   fieldKind?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   index?: InputMaybe<IntComparisonExp>;
@@ -4925,7 +4925,7 @@ export type ViewFieldMinOrderBy = {
 /** on_conflict condition type for table "view_field" */
 export type ViewFieldOnConflict = {
   constraint: ViewFieldConstraint;
-  updateColumns?: ViewFieldUpdateColumn[];
+  updateColumns?: Array<ViewFieldUpdateColumn>;
   where?: InputMaybe<ViewFieldBoolExp>;
 };
 
@@ -5074,7 +5074,7 @@ export type ViewObjRelInsertInput = {
 /** on_conflict condition type for table "view" */
 export type ViewOnConflict = {
   constraint: ViewConstraint;
-  updateColumns?: ViewUpdateColumn[];
+  updateColumns?: Array<ViewUpdateColumn>;
   where?: InputMaybe<ViewBoolExp>;
 };
 
@@ -5135,7 +5135,7 @@ export type ViewUpdates = {
 };
 
 export type AffiliationAggregateBoolExpCount = {
-  arguments?: InputMaybe<AffiliationSelectColumn[]>;
+  arguments?: InputMaybe<Array<AffiliationSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<AffiliationBoolExp>;
   predicate: IntComparisonExp;
@@ -5160,7 +5160,7 @@ export type GenreTotalByMonthArgs = {
 };
 
 export type GroupApplicationAggregateBoolExpCount = {
-  arguments?: InputMaybe<GroupApplicationSelectColumn[]>;
+  arguments?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<GroupApplicationBoolExp>;
   predicate: IntComparisonExp;
@@ -5181,56 +5181,56 @@ export type HouseholdAccountAggregateBoolExpBool_Or = {
 };
 
 export type HouseholdAccountAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdAccountSelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdAccountSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdAccountBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdAllDetailViewAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdAllDetailViewSelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdAllDetailViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdAllDetailViewBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdCreditCardDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdCreditCardDetailSelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdCreditCardSummaryAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdCreditCardSummarySelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdDailyDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdDailyDetailSelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdDailyDetailBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdDepositCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdDepositCategorySelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdFavoriteFilterAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdFavoriteFilterSelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdFavoriteFilterSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdFavoriteFilterArgsAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdFavoriteFilterArgsSelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdFavoriteFilterArgsSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdFavoriteFilterArgsBoolExp>;
   predicate: IntComparisonExp;
@@ -5251,49 +5251,49 @@ export type HouseholdGenreAggregateBoolExpBool_Or = {
 };
 
 export type HouseholdGenreAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdGenreSelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdGenreSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdGenreBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdImportFileHistoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdImportFileHistorySelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdSummaryCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdSummaryCategorySelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdTotalByCategoryViewAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdTotalByCategoryViewSelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HouseholdTransferCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<HouseholdTransferCategorySelectColumn[]>;
+  arguments?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdTransferCategoryBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type ImportFileRecordAggregateBoolExpCount = {
-  arguments?: InputMaybe<ImportFileRecordSelectColumn[]>;
+  arguments?: InputMaybe<Array<ImportFileRecordSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<ImportFileRecordBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type RecordAggregateBoolExpCount = {
-  arguments?: InputMaybe<RecordSelectColumn[]>;
+  arguments?: InputMaybe<Array<RecordSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<RecordBoolExp>;
   predicate: IntComparisonExp;
@@ -5310,7 +5310,7 @@ export type CreateAccountMutation = {
   __typename?: "mutation_root";
   insertAccount?: {
     __typename?: "HouseholdAccountMutationResponse";
-    returning: { __typename?: "HouseholdAccount"; accountId: string }[];
+    returning: Array<{ __typename?: "HouseholdAccount"; accountId: string }>;
   } | null;
 };
 
@@ -5327,7 +5327,7 @@ export type CreateCategoryMutation = {
   __typename?: "mutation_root";
   insertCategory?: {
     __typename?: "HouseholdCategoryMutationResponse";
-    returning: { __typename?: "HouseholdCategory"; id: string }[];
+    returning: Array<{ __typename?: "HouseholdCategory"; id: string }>;
   } | null;
 };
 
@@ -5348,7 +5348,7 @@ export type CreateCreditCardDetailMutation = {
   __typename?: "mutation_root";
   insertCreditCardDetail?: {
     __typename?: "HouseholdCreditCardDetailMutationResponse";
-    returning: { __typename?: "HouseholdCreditCardDetail"; id: string }[];
+    returning: Array<{ __typename?: "HouseholdCreditCardDetail"; id: string }>;
   } | null;
 };
 
@@ -5366,7 +5366,7 @@ export type CreateCreditCardSummaryMutation = {
   __typename?: "mutation_root";
   insertCreditCardSummary?: {
     __typename?: "HouseholdCreditCardSummaryMutationResponse";
-    returning: { __typename?: "HouseholdCreditCardSummary"; id: string }[];
+    returning: Array<{ __typename?: "HouseholdCreditCardSummary"; id: string }>;
   } | null;
 };
 
@@ -5387,7 +5387,7 @@ export type CreateDailyDetailMutation = {
   __typename: "mutation_root";
   insertDailyDetail?: {
     __typename: "HouseholdDailyDetailMutationResponse";
-    returning: { __typename: "HouseholdDailyDetail"; id: string }[];
+    returning: Array<{ __typename: "HouseholdDailyDetail"; id: string }>;
   } | null;
 };
 
@@ -5404,7 +5404,7 @@ export type CreateImportFileHistoryMutation = {
   __typename?: "mutation_root";
   insertImportFileHistory?: {
     __typename?: "HouseholdImportFileHistoryMutationResponse";
-    returning: { __typename?: "HouseholdImportFileHistory"; id: string }[];
+    returning: Array<{ __typename?: "HouseholdImportFileHistory"; id: string }>;
   } | null;
 };
 
@@ -5419,7 +5419,7 @@ export type CreateSummaryCategoryMutation = {
   __typename?: "mutation_root";
   insertSummaryCategoryByGroup?: {
     __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: { __typename?: "HouseholdSummaryCategory"; id: string }[];
+    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
   } | null;
 };
 
@@ -5434,7 +5434,7 @@ export type CreateUserMutation = {
   __typename?: "mutation_root";
   insertUser?: {
     __typename?: "UserMutationResponse";
-    returning: { __typename?: "User"; email: string; userId: string }[];
+    returning: Array<{ __typename?: "User"; email: string; userId: string }>;
   } | null;
 };
 
@@ -5458,7 +5458,7 @@ export type DeleteSummaryCategoryMutation = {
   __typename?: "mutation_root";
   deleteSummaryCategoryByGroup?: {
     __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: { __typename?: "HouseholdSummaryCategory"; id: string }[];
+    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
   } | null;
 };
 
@@ -5530,10 +5530,10 @@ export type DeleteDashboardSettingMutation = {
   __typename?: "mutation_root";
   deleteHouseholdDashboardSettingArgs?: {
     __typename?: "HouseholdDashboardSettingArgsMutationResponse";
-    returning: {
+    returning: Array<{
       __typename: "HouseholdDashboardSettingArgs";
       id: string;
-    }[];
+    }>;
   } | null;
   deleteHouseholdDashboardSettingByPk?: {
     __typename: "HouseholdDashboardSetting";
@@ -5556,7 +5556,7 @@ export type DeleteFavoriteFilterArgMutation = {
 export type DeleteInsertDashboardSettingArgsMutationVariables = Exact<{
   settingId: Scalars["String"];
   objects:
-    | HouseholdDashboardSettingArgsInsertInput[]
+    | Array<HouseholdDashboardSettingArgsInsertInput>
     | HouseholdDashboardSettingArgsInsertInput;
 }>;
 
@@ -5564,17 +5564,17 @@ export type DeleteInsertDashboardSettingArgsMutation = {
   __typename?: "mutation_root";
   deleteDashboardSettingArgs?: {
     __typename?: "HouseholdDashboardSettingArgsMutationResponse";
-    returning: {
+    returning: Array<{
       __typename: "HouseholdDashboardSettingArgs";
       id: string;
-    }[];
+    }>;
   } | null;
   insertDashboardSettingArgs?: {
     __typename?: "HouseholdDashboardSettingArgsMutationResponse";
-    returning: {
+    returning: Array<{
       __typename: "HouseholdDashboardSettingArgs";
       id: string;
-    }[];
+    }>;
   } | null;
 };
 
@@ -5590,7 +5590,7 @@ export type InsertDashboardSettingMutation = {
   __typename?: "mutation_root";
   insertSetting?: {
     __typename?: "HouseholdDashboardSettingMutationResponse";
-    returning: { __typename: "HouseholdDashboardSetting"; id: string }[];
+    returning: Array<{ __typename: "HouseholdDashboardSetting"; id: string }>;
   } | null;
 };
 
@@ -5605,10 +5605,10 @@ export type InsertDashboardSettingArgsMutation = {
   __typename?: "mutation_root";
   insertSettingArgs?: {
     __typename?: "HouseholdDashboardSettingArgsMutationResponse";
-    returning: {
+    returning: Array<{
       __typename: "HouseholdDashboardSettingArgs";
       id: string;
-    }[];
+    }>;
   } | null;
 };
 
@@ -5722,7 +5722,7 @@ export type GetAllCategoriesQueryVariables = Exact<{
 
 export type GetAllCategoriesQuery = {
   __typename?: "query_root";
-  categories: {
+  categories: Array<{
     __typename?: "HouseholdCategory";
     id: string;
     displayOrder: number;
@@ -5733,19 +5733,19 @@ export type GetAllCategoriesQuery = {
       genreId: string;
       genreName: string;
     };
-  }[];
+  }>;
 };
 
 export type GetAllCategoryListWithCriteriaQueryVariables = Exact<{
-  validCategoryIn?: InputMaybe<Scalars["Boolean"][] | Scalars["Boolean"]>;
-  validGenreIn?: InputMaybe<Scalars["Boolean"][] | Scalars["Boolean"]>;
-  iocomeTypeIn?: InputMaybe<Scalars["String"][] | Scalars["String"]>;
-  categoryNotIn?: InputMaybe<Scalars["String"][] | Scalars["String"]>;
+  validCategoryIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
+  validGenreIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
+  iocomeTypeIn?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
+  categoryNotIn?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
 }>;
 
 export type GetAllCategoryListWithCriteriaQuery = {
   __typename?: "query_root";
-  genres: {
+  genres: Array<{
     __typename?: "HouseholdGenre";
     id: string;
     name: string;
@@ -5753,14 +5753,14 @@ export type GetAllCategoryListWithCriteriaQuery = {
     validFlag?: boolean | null;
     displayOrder: number;
     type: string;
-    categories: {
+    categories: Array<{
       __typename?: "HouseholdCategory";
       id: string;
       name: string;
       validFlag?: boolean | null;
       displayOrder: number;
-    }[];
-  }[];
+    }>;
+  }>;
 };
 
 export type GetAllGenreQueryVariables = Exact<{
@@ -5769,7 +5769,7 @@ export type GetAllGenreQueryVariables = Exact<{
 
 export type GetAllGenreQuery = {
   __typename?: "query_root";
-  genre: {
+  genre: Array<{
     __typename?: "HouseholdGenre";
     id: string;
     genreType: string;
@@ -5777,23 +5777,23 @@ export type GetAllGenreQuery = {
     validFlag?: boolean | null;
     displayOrder: number;
     genreName: string;
-  }[];
+  }>;
 };
 
-export type GetAllUsersQueryVariables = Exact<Record<string, never>>;
+export type GetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetAllUsersQuery = {
   __typename?: "query_root";
-  users: {
+  users: Array<{
     __typename?: "User";
     id: string;
     name?: string | null;
     email: string;
-    affiliation: {
+    affiliation: Array<{
       __typename?: "Affiliation";
       group: { __typename?: "Group"; id: string; name: string };
-    }[];
-  }[];
+    }>;
+  }>;
 };
 
 export type GetCategoryByIdQueryVariables = Exact<{
@@ -5823,7 +5823,7 @@ export type GetCategoryTotalByMonthQueryVariables = Exact<{
 
 export type GetCategoryTotalByMonthQuery = {
   __typename?: "query_root";
-  categoryTotalByMonth: {
+  categoryTotalByMonth: Array<{
     __typename?: "HouseholdTotalByCategoryView";
     date?: any | null;
     iocomeType?: string | null;
@@ -5832,7 +5832,7 @@ export type GetCategoryTotalByMonthQuery = {
     categoryId?: string | null;
     categoryName?: string | null;
     total?: any | null;
-  }[];
+  }>;
 };
 
 export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
@@ -5849,7 +5849,7 @@ export type GetCreditCardDetailBySummaryIdQuery = {
     count: number;
     totalAmount: any;
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
-    creditCardDetails: {
+    creditCardDetails: Array<{
       __typename?: "HouseholdCreditCardDetail";
       id: string;
       date: any;
@@ -5867,7 +5867,7 @@ export type GetCreditCardDetailBySummaryIdQuery = {
           iocomeType: string;
         };
       };
-    }[];
+    }>;
   } | null;
 };
 
@@ -5877,7 +5877,7 @@ export type GetCreditCardListQueryVariables = Exact<{
 
 export type GetCreditCardListQuery = {
   __typename?: "query_root";
-  allCreditCardSummariesList: {
+  allCreditCardSummariesList: Array<{
     __typename?: "HouseholdCreditCardSummary";
     id: string;
     creditCard: string;
@@ -5885,7 +5885,7 @@ export type GetCreditCardListQuery = {
     withdrawalDate: any;
     totalAmount: any;
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }[];
+  }>;
 };
 
 export type GetDailyDetailByDateQueryVariables = Exact<{
@@ -5896,7 +5896,7 @@ export type GetDailyDetailByDateQueryVariables = Exact<{
 
 export type GetDailyDetailByDateQuery = {
   __typename?: "query_root";
-  dailies: {
+  dailies: Array<{
     __typename: "HouseholdDailyDetail";
     id: string;
     date: any;
@@ -5911,7 +5911,7 @@ export type GetDailyDetailByDateQuery = {
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }[];
+  }>;
 };
 
 export type GetDailyDetailByDateCategoryIdQueryVariables = Exact<{
@@ -5923,7 +5923,7 @@ export type GetDailyDetailByDateCategoryIdQueryVariables = Exact<{
 
 export type GetDailyDetailByDateCategoryIdQuery = {
   __typename?: "query_root";
-  dailies: {
+  dailies: Array<{
     __typename: "HouseholdDailyDetail";
     id: string;
     date: any;
@@ -5938,7 +5938,7 @@ export type GetDailyDetailByDateCategoryIdQuery = {
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }[];
+  }>;
 };
 
 export type GetDailyDetailByDateGenreIdQueryVariables = Exact<{
@@ -5950,9 +5950,9 @@ export type GetDailyDetailByDateGenreIdQueryVariables = Exact<{
 
 export type GetDailyDetailByDateGenreIdQuery = {
   __typename?: "query_root";
-  allCategoriesList: {
+  allCategoriesList: Array<{
     __typename?: "HouseholdCategory";
-    dailyDetailsByCategoryIdList: {
+    dailyDetailsByCategoryIdList: Array<{
       __typename?: "HouseholdDailyDetail";
       id: string;
       date: any;
@@ -5980,8 +5980,8 @@ export type GetDailyDetailByDateGenreIdQuery = {
         userId: string;
         userName?: string | null;
       };
-    }[];
-  }[];
+    }>;
+  }>;
 };
 
 export type GetGenreByIdQueryVariables = Exact<{
@@ -5998,11 +5998,11 @@ export type GetGenreByIdQuery = {
     validFlag?: boolean | null;
     displayOrder: number;
     genreName: string;
-    categories: {
+    categories: Array<{
       __typename?: "HouseholdCategory";
       categoryId: string;
       categoryName: string;
-    }[];
+    }>;
   } | null;
 };
 
@@ -6014,14 +6014,14 @@ export type GetGenreTotalByMonthQueryVariables = Exact<{
 
 export type GetGenreTotalByMonthQuery = {
   __typename?: "query_root";
-  genreTotalByMonthList: {
+  genreTotalByMonthList: Array<{
     __typename?: "HouseholdTotalByGenreView";
     date?: any | null;
     iocomeType?: string | null;
     genreId?: string | null;
     genreName?: string | null;
     total?: any | null;
-  }[];
+  }>;
 };
 
 export type GetSummaryCategoriesQueryVariables = Exact<{
@@ -6030,7 +6030,7 @@ export type GetSummaryCategoriesQueryVariables = Exact<{
 
 export type GetSummaryCategoriesQuery = {
   __typename?: "query_root";
-  categories: {
+  categories: Array<{
     __typename?: "HouseholdSummaryCategory";
     id: string;
     groupId: string;
@@ -6047,7 +6047,7 @@ export type GetSummaryCategoriesQuery = {
         type: string;
       };
     };
-  }[];
+  }>;
 };
 
 export type GetSummaryCategoryBetweenDateQueryVariables = Exact<{
@@ -6058,25 +6058,25 @@ export type GetSummaryCategoryBetweenDateQueryVariables = Exact<{
 
 export type GetSummaryCategoryBetweenDateQuery = {
   __typename?: "query_root";
-  summaryCategoryList: {
+  summaryCategoryList: Array<{
     __typename?: "HouseholdSummaryCategory";
     category: {
       __typename?: "HouseholdCategory";
       name: string;
       id: string;
       genre: { __typename?: "HouseholdGenre"; iocomeType: string };
-      daily: {
+      daily: Array<{
         __typename?: "HouseholdDailyDetail";
         date: any;
         amount: any;
-      }[];
-      creditCard: {
+      }>;
+      creditCard: Array<{
         __typename?: "HouseholdCreditCardDetail";
         date: any;
         amount: any;
-      }[];
+      }>;
     };
-  }[];
+  }>;
 };
 
 export type GetTotalBetweenDateQueryVariables = Exact<{
@@ -6087,18 +6087,18 @@ export type GetTotalBetweenDateQueryVariables = Exact<{
 
 export type GetTotalBetweenDateQuery = {
   __typename?: "query_root";
-  incomeTotalByDate: {
+  incomeTotalByDate: Array<{
     __typename?: "HouseholdDailyTotalView";
     date?: any | null;
     iocomeType?: string | null;
     total?: any | null;
-  }[];
-  outcomeTotalByDate: {
+  }>;
+  outcomeTotalByDate: Array<{
     __typename?: "HouseholdDailyTotalView";
     date?: any | null;
     iocomeType?: string | null;
     total?: any | null;
-  }[];
+  }>;
 };
 
 export type GetValidAccountsQueryVariables = Exact<{
@@ -6107,11 +6107,11 @@ export type GetValidAccountsQueryVariables = Exact<{
 
 export type GetValidAccountsQuery = {
   __typename?: "query_root";
-  allAccountsList: {
+  allAccountsList: Array<{
     __typename?: "HouseholdAccount";
     accountId: string;
     accountName: string;
-  }[];
+  }>;
 };
 
 export type GetValidCategoryByGenreIdQueryVariables = Exact<{
@@ -6121,27 +6121,27 @@ export type GetValidCategoryByGenreIdQueryVariables = Exact<{
 
 export type GetValidCategoryByGenreIdQuery = {
   __typename?: "query_root";
-  genreById: {
+  genreById: Array<{
     __typename?: "HouseholdGenre";
     id: string;
     name: string;
-    categories: {
+    categories: Array<{
       __typename?: "HouseholdCategory";
       id: string;
       name: string;
       displayOrder: number;
-    }[];
-  }[];
+    }>;
+  }>;
   genre?: {
     __typename?: "HouseholdGenre";
     id: string;
     name: string;
-    categories: {
+    categories: Array<{
       __typename?: "HouseholdCategory";
       id: string;
       name: string;
       displayOrder: number;
-    }[];
+    }>;
   } | null;
 };
 
@@ -6152,20 +6152,20 @@ export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
 
 export type GetValidGenreListByIocomeTypeQuery = {
   __typename?: "query_root";
-  allGenresList: {
+  allGenresList: Array<{
     __typename?: "HouseholdGenre";
     genreType: string;
     iocomeType: string;
     displayOrder: number;
     genreId: string;
     genreName: string;
-    categoriesByGenreIdList: {
+    categoriesByGenreIdList: Array<{
       __typename?: "HouseholdCategory";
       displayOrder: number;
       categoryId: string;
       categoryName: string;
-    }[];
-  }[];
+    }>;
+  }>;
 };
 
 export type FragDailyDetailFragment = {
@@ -6193,7 +6193,7 @@ export type GetAccountBalanceListQueryVariables = Exact<{
 
 export type GetAccountBalanceListQuery = {
   __typename?: "query_root";
-  account: {
+  account: Array<{
     __typename: "HouseholdAccount";
     id: string;
     accountName: string;
@@ -6207,7 +6207,7 @@ export type GetAccountBalanceListQuery = {
         } | null;
       } | null;
     };
-  }[];
+  }>;
 };
 
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
@@ -6218,14 +6218,14 @@ export type GetCreditCardSummaryByDateQueryVariables = Exact<{
 
 export type GetCreditCardSummaryByDateQuery = {
   __typename?: "query_root";
-  creditCardSummaries: {
+  creditCardSummaries: Array<{
     __typename?: "HouseholdCreditCardSummary";
     id: string;
     withdrawalDate: any;
     totalAmount: any;
     creditCard: string;
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }[];
+  }>;
 };
 
 export type GetDailyDetailByIdQueryVariables = Exact<{
@@ -6260,7 +6260,7 @@ export type GetDepositQueryVariables = Exact<{
 
 export type GetDepositQuery = {
   __typename?: "query_root";
-  depositCategory: {
+  depositCategory: Array<{
     __typename?: "HouseholdDepositCategory";
     category: {
       __typename?: "HouseholdCategory";
@@ -6280,13 +6280,13 @@ export type GetDepositQuery = {
             amount?: number | null;
           } | null;
         } | null;
-        nodes: {
+        nodes: Array<{
           __typename?: "HouseholdDailyDetail";
           id: string;
           date: any;
           amount: any;
           memo?: string | null;
-        }[];
+        }>;
       };
       credit: {
         __typename?: "HouseholdCreditCardDetailAggregate";
@@ -6302,16 +6302,16 @@ export type GetDepositQuery = {
             amount?: number | null;
           } | null;
         } | null;
-        nodes: {
+        nodes: Array<{
           __typename?: "HouseholdCreditCardDetail";
           id: string;
           date: any;
           amount: any;
           memo?: string | null;
-        }[];
+        }>;
       };
     };
-  }[];
+  }>;
 };
 
 export type FragCreditCardDetailFragment = {
@@ -6339,7 +6339,7 @@ export type FragFavoriteFilterFragment = {
   __typename: "HouseholdFavoriteFilter";
   id: string;
   name: string;
-  args: {
+  args: Array<{
     __typename: "HouseholdFavoriteFilterArgs";
     id: string;
     key: string;
@@ -6356,7 +6356,7 @@ export type FragFavoriteFilterFragment = {
         genreType: string;
       };
     } | null;
-  }[];
+  }>;
 };
 
 export type GetAccountByIdQueryVariables = Exact<{
@@ -6408,7 +6408,7 @@ export type GetCreditCardDetailListQueryVariables = Exact<{
 
 export type GetCreditCardDetailListQuery = {
   __typename?: "query_root";
-  creditCardDetails: {
+  creditCardDetails: Array<{
     __typename?: "HouseholdCreditCardDetail";
     id: string;
     date: any;
@@ -6427,7 +6427,7 @@ export type GetCreditCardDetailListQuery = {
       id: string;
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
-  }[];
+  }>;
 };
 
 export type GetCreditCardSummaryByAccountIdQueryVariables = Exact<{
@@ -6438,14 +6438,14 @@ export type GetCreditCardSummaryByAccountIdQueryVariables = Exact<{
 
 export type GetCreditCardSummaryByAccountIdQuery = {
   __typename?: "query_root";
-  creditCardSummaries: {
+  creditCardSummaries: Array<{
     __typename: "HouseholdCreditCardSummary";
     id: string;
     withdrawalDate: any;
     totalAmount: any;
     creditCard: string;
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }[];
+  }>;
 };
 
 export type GetCreditCardSummaryByIdQueryVariables = Exact<{
@@ -6475,7 +6475,7 @@ export type GetDailyByAccountIdQueryVariables = Exact<{
 
 export type GetDailyByAccountIdQuery = {
   __typename: "query_root";
-  dailies: {
+  dailies: Array<{
     __typename: "HouseholdDailyDetail";
     id: string;
     date: any;
@@ -6490,7 +6490,7 @@ export type GetDailyByAccountIdQuery = {
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }[];
+  }>;
 };
 
 export type GetDashboardSettingQueryVariables = Exact<{
@@ -6500,25 +6500,25 @@ export type GetDashboardSettingQueryVariables = Exact<{
 
 export type GetDashboardSettingQuery = {
   __typename?: "query_root";
-  setting: {
+  setting: Array<{
     __typename: "HouseholdDashboardSetting";
     id: string;
     feature: string;
     order: number;
-    args: {
+    args: Array<{
       __typename: "HouseholdDashboardSettingArgs";
       id: string;
       type: string;
       value: string;
-    }[];
-  }[];
+    }>;
+  }>;
 };
 
 export type GetDetailsByCategoryQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
   groupId: Scalars["String"];
-  iocomeType?: InputMaybe<Scalars["String"][] | Scalars["String"]>;
+  iocomeType?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
 }>;
 
 export type GetDetailsByCategoryQuery = {
@@ -6530,7 +6530,7 @@ export type GetDetailsByCategoryQuery = {
       outcomeCategoryId: string;
       incomeCategoryId: string;
     } | null;
-    dailyDetails: {
+    dailyDetails: Array<{
       __typename?: "HouseholdDailyDetail";
       id: string;
       date: any;
@@ -6544,8 +6544,8 @@ export type GetDetailsByCategoryQuery = {
         genreType: string;
       };
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    }[];
-    creditCardDetails: {
+    }>;
+    creditCardDetails: Array<{
       __typename?: "HouseholdCreditCardDetail";
       id: string;
       date: any;
@@ -6564,7 +6564,7 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
-    }[];
+    }>;
   } | null;
 };
 
@@ -6578,7 +6578,7 @@ export type GetFavoriteFilterQuery = {
     __typename: "HouseholdFavoriteFilter";
     id: string;
     name: string;
-    args: {
+    args: Array<{
       __typename: "HouseholdFavoriteFilterArgs";
       id: string;
       key: string;
@@ -6595,7 +6595,7 @@ export type GetFavoriteFilterQuery = {
           genreType: string;
         };
       } | null;
-    }[];
+    }>;
   } | null;
 };
 
@@ -6605,11 +6605,11 @@ export type GetFavoriteFiltersQueryVariables = Exact<{
 
 export type GetFavoriteFiltersQuery = {
   __typename?: "query_root";
-  filters: {
+  filters: Array<{
     __typename: "HouseholdFavoriteFilter";
     id: string;
     name: string;
-    args: {
+    args: Array<{
       __typename: "HouseholdFavoriteFilterArgs";
       id: string;
       key: string;
@@ -6626,8 +6626,101 @@ export type GetFavoriteFiltersQuery = {
           genreType: string;
         };
       } | null;
-    }[];
-  }[];
+    }>;
+  }>;
+};
+
+export type ChartDetailTableFilterWithdrawalDateQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type ChartDetailTableFilterWithdrawalDateQuery = {
+  __typename?: "query_root";
+  detailView: Array<{
+    __typename: "HouseholdAllDetailView";
+    id?: string | null;
+    settlementDate?: any | null;
+    withdrawalDate?: any | null;
+    iocomeType?: string | null;
+    memo?: string | null;
+    amount?: any | null;
+    account?: {
+      __typename?: "HouseholdAccount";
+      id: string;
+      name: string;
+    } | null;
+    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+    category?: {
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      depositCategory?: {
+        __typename?: "HouseholdDepositCategory";
+        id: string;
+      } | null;
+    } | null;
+  }>;
+};
+
+export type ChartDetailTableFilterSettlementDateQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type ChartDetailTableFilterSettlementDateQuery = {
+  __typename?: "query_root";
+  detailView: Array<{
+    __typename: "HouseholdAllDetailView";
+    id?: string | null;
+    settlementDate?: any | null;
+    withdrawalDate?: any | null;
+    iocomeType?: string | null;
+    memo?: string | null;
+    amount?: any | null;
+    account?: {
+      __typename?: "HouseholdAccount";
+      id: string;
+      name: string;
+    } | null;
+    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+    category?: {
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      depositCategory?: {
+        __typename?: "HouseholdDepositCategory";
+        id: string;
+      } | null;
+    } | null;
+  }>;
+};
+
+export type FragChartDetailTableFragment = {
+  __typename: "HouseholdAllDetailView";
+  id?: string | null;
+  settlementDate?: any | null;
+  withdrawalDate?: any | null;
+  iocomeType?: string | null;
+  memo?: string | null;
+  amount?: any | null;
+  account?: {
+    __typename?: "HouseholdAccount";
+    id: string;
+    name: string;
+  } | null;
+  genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+  category?: {
+    __typename?: "HouseholdCategory";
+    id: string;
+    name: string;
+    depositCategory?: {
+      __typename?: "HouseholdDepositCategory";
+      id: string;
+    } | null;
+  } | null;
 };
 
 export type GetTransferCategoryByQueryVariables = Exact<{
@@ -6668,12 +6761,11 @@ export type PageSourceBalanceChartQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
-  transferCategoryIds?: InputMaybe<Scalars["String"][] | Scalars["String"]>;
 }>;
 
 export type PageSourceBalanceChartQuery = {
   __typename?: "query_root";
-  detailView: {
+  detailView: Array<{
     __typename: "HouseholdAllDetailView";
     id?: string | null;
     settlementDate?: any | null;
@@ -6696,7 +6788,7 @@ export type PageSourceBalanceChartQuery = {
         id: string;
       } | null;
     } | null;
-  }[];
+  }>;
 };
 
 export const FragDailyDetailFragmentDoc = gql`
@@ -6770,6 +6862,32 @@ export const FragFavoriteFilterFragmentDoc = gql`
         }
       }
     }
+  }
+`;
+export const FragChartDetailTableFragmentDoc = gql`
+  fragment fragChartDetailTable on HouseholdAllDetailView {
+    __typename
+    id
+    settlementDate
+    withdrawalDate
+    amount: originalAmount
+    iocomeType
+    account {
+      id
+      name
+    }
+    genre {
+      id
+      name
+    }
+    category {
+      id
+      name
+      depositCategory {
+        id: categoryId
+      }
+    }
+    memo
   }
 `;
 export const CreateAccountDocument = gql`
@@ -8535,6 +8653,76 @@ export function useGetFavoriteFiltersQuery(
     GetFavoriteFiltersQueryVariables
   >({ query: GetFavoriteFiltersDocument, ...options });
 }
+export const ChartDetailTableFilterWithdrawalDateDocument = gql`
+  query chartDetailTableFilterWithdrawalDate(
+    $groupId: String!
+    $fromDate: date!
+    $toDate: date!
+  ) {
+    detailView: householdAllDetailView(
+      where: {
+        groupId: { _eq: $groupId }
+        withdrawalDate: { _gte: $fromDate }
+        _and: { withdrawalDate: { _lte: $toDate } }
+      }
+      orderBy: [
+        { withdrawalDate: ASC }
+        { settlementDate: ASC }
+        { category: { displayOrder: ASC } }
+      ]
+    ) {
+      ...fragChartDetailTable
+    }
+  }
+  ${FragChartDetailTableFragmentDoc}
+`;
+
+export function useChartDetailTableFilterWithdrawalDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<ChartDetailTableFilterWithdrawalDateQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    ChartDetailTableFilterWithdrawalDateQuery,
+    ChartDetailTableFilterWithdrawalDateQueryVariables
+  >({ query: ChartDetailTableFilterWithdrawalDateDocument, ...options });
+}
+export const ChartDetailTableFilterSettlementDateDocument = gql`
+  query chartDetailTableFilterSettlementDate(
+    $groupId: String!
+    $fromDate: date!
+    $toDate: date!
+  ) {
+    detailView: householdAllDetailView(
+      where: {
+        groupId: { _eq: $groupId }
+        settlementDate: { _gte: $fromDate }
+        _and: { settlementDate: { _lte: $toDate } }
+      }
+      orderBy: [
+        { settlementDate: ASC }
+        { withdrawalDate: ASC }
+        { category: { displayOrder: ASC } }
+      ]
+    ) {
+      ...fragChartDetailTable
+    }
+  }
+  ${FragChartDetailTableFragmentDoc}
+`;
+
+export function useChartDetailTableFilterSettlementDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<ChartDetailTableFilterSettlementDateQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    ChartDetailTableFilterSettlementDateQuery,
+    ChartDetailTableFilterSettlementDateQueryVariables
+  >({ query: ChartDetailTableFilterSettlementDateDocument, ...options });
+}
 export const GetTransferCategoryByDocument = gql`
   query GetTransferCategoryBy($groupId: String!) {
     transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
@@ -8577,16 +8765,12 @@ export const PageSourceBalanceChartDocument = gql`
     $groupId: String!
     $fromDate: date!
     $toDate: date!
-    $transferCategoryIds: [String!] = []
   ) {
     detailView: householdAllDetailView(
       where: {
         groupId: { _eq: $groupId }
         date: { _gte: $fromDate }
-        _and: {
-          date: { _lte: $toDate }
-          _and: { categoryId: { _nin: $transferCategoryIds } }
-        }
+        _and: { date: { _lte: $toDate } }
       }
     ) {
       __typename

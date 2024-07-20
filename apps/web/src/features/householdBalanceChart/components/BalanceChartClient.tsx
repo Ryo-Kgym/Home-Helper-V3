@@ -7,7 +7,7 @@ type Props = Pick<
   "data" | "barchartSetting" | "areaChartSetting"
 >;
 
-export const BalanceChartContainer: FC<Props> = ({
+export const BalanceChartClient: FC<Props> = ({
   data,
   barchartSetting,
   areaChartSetting,
@@ -23,7 +23,10 @@ export const BalanceChartContainer: FC<Props> = ({
         if (!event.activeLabel) {
           return;
         }
-        prependParamAndPush({ key: "watch", value: event.activeLabel });
+        prependParamAndPush({
+          watch: event.activeLabel,
+          dateType: "withdrawalDate",
+        });
       }}
     />
   );

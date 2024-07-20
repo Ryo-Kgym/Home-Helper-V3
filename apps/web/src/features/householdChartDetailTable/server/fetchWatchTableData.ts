@@ -1,19 +1,29 @@
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { findUser } from "@persistence/browser/server/find-user";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
-import { PageSourceBalanceChartDocument } from "@v3/graphql/household/type";
+import {
+  ChartDetailTableFilterSettlementDateDocument,
+  ChartDetailTableFilterWithdrawalDateDocument,
+} from "@v3/graphql/household/type";
 
 export const fetchWatchTableData = async ({
   watchFirstDate,
+  dateType,
 }: {
   watchFirstDate: Date;
+  dateType: "withdrawalDate" | "settlementDate";
 }) => {
   // watchFirstDate から月末日を生成する
   const watchLastDate = getLastDateOfMonth(watchFirstDate);
 
   const { group } = await findUser();
 
-  const { data } = await fetchQuery(PageSourceBalanceChartDocument, {
+  const query =
+    dateType === "withdrawalDate"
+      ? ChartDetailTableFilterWithdrawalDateDocument
+      : ChartDetailTableFilterSettlementDateDocument;
+
+  const { data } = await fetchQuery(query, {
     groupId: group.id,
     fromDate: watchFirstDate,
     toDate: watchLastDate,
