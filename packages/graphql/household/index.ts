@@ -5867,33 +5867,6 @@ export type GetDailyDetailByDateQuery = {
   }>;
 };
 
-export type GetDailyDetailByDateCategoryIdQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-  categoryId: Scalars["String"];
-}>;
-
-export type GetDailyDetailByDateCategoryIdQuery = {
-  __typename?: "query_root";
-  dailies: Array<{
-    __typename: "HouseholdDailyDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    genre: {
-      __typename?: "HouseholdGenre";
-      id: string;
-      name: string;
-      genreType: string;
-      iocomeType: string;
-    };
-    category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }>;
-};
-
 export type GetGenreByIdQueryVariables = Exact<{
   genreId: Scalars["String"];
 }>;
@@ -5968,28 +5941,6 @@ export type GetSummaryCategoryBetweenDateQuery = {
         amount: any;
       }>;
     };
-  }>;
-};
-
-export type GetTotalBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetTotalBetweenDateQuery = {
-  __typename?: "query_root";
-  incomeTotalByDate: Array<{
-    __typename?: "HouseholdDailyTotalView";
-    date?: any | null;
-    iocomeType?: string | null;
-    total?: any | null;
-  }>;
-  outcomeTotalByDate: Array<{
-    __typename?: "HouseholdDailyTotalView";
-    date?: any | null;
-    iocomeType?: string | null;
-    total?: any | null;
   }>;
 };
 
@@ -7601,34 +7552,6 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
 }
-export const GetDailyDetailByDateCategoryIdDocument = gql`
-  query GetDailyDetailByDateCategoryId(
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-    $categoryId: String!
-  ) {
-    dailies: dailyDetailByDate(
-      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
-      where: { categoryId: { _eq: $categoryId } }
-    ) {
-      ...fragDailyDetail
-    }
-  }
-  ${FragDailyDetailFragmentDoc}
-`;
-
-export function useGetDailyDetailByDateCategoryIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetDailyDetailByDateCategoryIdQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetDailyDetailByDateCategoryIdQuery,
-    GetDailyDetailByDateCategoryIdQueryVariables
-  >({ query: GetDailyDetailByDateCategoryIdDocument, ...options });
-}
 export const GetGenreByIdDocument = gql`
   query GetGenreById($genreId: String!) {
     genreById: householdGenreByPk(id: $genreId) {
@@ -7742,49 +7665,6 @@ export function useGetSummaryCategoryBetweenDateQuery(
     GetSummaryCategoryBetweenDateQuery,
     GetSummaryCategoryBetweenDateQueryVariables
   >({ query: GetSummaryCategoryBetweenDateDocument, ...options });
-}
-export const GetTotalBetweenDateDocument = gql`
-  query GetTotalBetweenDate(
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-  ) {
-    incomeTotalByDate: householdDailyTotalView(
-      where: {
-        iocomeType: { _eq: "INCOME" }
-        _and: {
-          groupId: { _eq: $groupId }
-          _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-        }
-      }
-    ) {
-      date
-      iocomeType
-      total
-    }
-    outcomeTotalByDate: householdDailyTotalView(
-      where: {
-        iocomeType: { _eq: "OUTCOME" }
-        _and: {
-          groupId: { _eq: $groupId }
-          _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-        }
-      }
-    ) {
-      date
-      iocomeType
-      total
-    }
-  }
-`;
-
-export function useGetTotalBetweenDateQuery(
-  options: Omit<Urql.UseQueryArgs<GetTotalBetweenDateQueryVariables>, "query">,
-) {
-  return Urql.useQuery<
-    GetTotalBetweenDateQuery,
-    GetTotalBetweenDateQueryVariables
-  >({ query: GetTotalBetweenDateDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts($groupId: String!) {

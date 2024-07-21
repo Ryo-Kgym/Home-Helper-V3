@@ -41,10 +41,6 @@ const householdNavis: Navi[] = [
     url: "/household/account",
   },
   {
-    label: "カレンダー",
-    url: "/household/daily",
-  },
-  {
     label: "クレカ履歴",
     url: "/household/creditCard",
   },
