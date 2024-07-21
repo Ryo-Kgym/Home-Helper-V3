@@ -5315,21 +5315,6 @@ export type CreateImportFileHistoryMutation = {
   } | null;
 };
 
-export type CreateSummaryCategoryMutationVariables = Exact<{
-  id: Scalars["String"];
-  displayOrder: Scalars["Int"];
-  categoryId: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type CreateSummaryCategoryMutation = {
-  __typename?: "mutation_root";
-  insertSummaryCategoryByGroup?: {
-    __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
-  } | null;
-};
-
 export type CreateUserMutationVariables = Exact<{
   userId: Scalars["String"];
   userName: Scalars["String"];
@@ -5354,18 +5339,6 @@ export type DeleteDailyDetailBySerialNoMutation = {
   deleteDailyDetailByPk?: {
     __typename: "HouseholdDailyDetail";
     id: string;
-  } | null;
-};
-
-export type DeleteSummaryCategoryMutationVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type DeleteSummaryCategoryMutation = {
-  __typename?: "mutation_root";
-  deleteSummaryCategoryByGroup?: {
-    __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
   } | null;
 };
 
@@ -8056,139 +8029,6 @@ export const CreateImportFileHistoryDocument = {
   CreateImportFileHistoryMutation,
   CreateImportFileHistoryMutationVariables
 >;
-export const CreateSummaryCategoryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CreateSummaryCategory" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "displayOrder" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "categoryId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "insertSummaryCategoryByGroup" },
-            name: { kind: "Name", value: "insertHouseholdSummaryCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "id" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "categoryId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "categoryId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "displayOrder" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CreateSummaryCategoryMutation,
-  CreateSummaryCategoryMutationVariables
->;
 export const CreateUserDocument = {
   kind: "Document",
   definitions: [
@@ -8379,88 +8219,6 @@ export const DeleteDailyDetailBySerialNoDocument = {
 } as unknown as DocumentNode<
   DeleteDailyDetailBySerialNoMutation,
   DeleteDailyDetailBySerialNoMutationVariables
->;
-export const DeleteSummaryCategoryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "DeleteSummaryCategory" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "deleteSummaryCategoryByGroup" },
-            name: { kind: "Name", value: "deleteHouseholdSummaryCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "groupId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  DeleteSummaryCategoryMutation,
-  DeleteSummaryCategoryMutationVariables
 >;
 export const UpdateCategoryByIdDocument = {
   kind: "Document",

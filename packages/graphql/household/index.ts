@@ -5408,21 +5408,6 @@ export type CreateImportFileHistoryMutation = {
   } | null;
 };
 
-export type CreateSummaryCategoryMutationVariables = Exact<{
-  id: Scalars["String"];
-  displayOrder: Scalars["Int"];
-  categoryId: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type CreateSummaryCategoryMutation = {
-  __typename?: "mutation_root";
-  insertSummaryCategoryByGroup?: {
-    __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
-  } | null;
-};
-
 export type CreateUserMutationVariables = Exact<{
   userId: Scalars["String"];
   userName: Scalars["String"];
@@ -5447,18 +5432,6 @@ export type DeleteDailyDetailBySerialNoMutation = {
   deleteDailyDetailByPk?: {
     __typename: "HouseholdDailyDetail";
     id: string;
-  } | null;
-};
-
-export type DeleteSummaryCategoryMutationVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type DeleteSummaryCategoryMutation = {
-  __typename?: "mutation_root";
-  deleteSummaryCategoryByGroup?: {
-    __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
   } | null;
 };
 
@@ -6957,34 +6930,6 @@ export function useCreateImportFileHistoryMutation() {
     CreateImportFileHistoryMutationVariables
   >(CreateImportFileHistoryDocument);
 }
-export const CreateSummaryCategoryDocument = gql`
-  mutation CreateSummaryCategory(
-    $id: String!
-    $displayOrder: Int!
-    $categoryId: String!
-    $groupId: String!
-  ) {
-    insertSummaryCategoryByGroup: insertHouseholdSummaryCategory(
-      objects: {
-        id: $id
-        categoryId: $categoryId
-        groupId: $groupId
-        displayOrder: $displayOrder
-      }
-    ) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-export function useCreateSummaryCategoryMutation() {
-  return Urql.useMutation<
-    CreateSummaryCategoryMutation,
-    CreateSummaryCategoryMutationVariables
-  >(CreateSummaryCategoryDocument);
-}
 export const CreateUserDocument = gql`
   mutation CreateUser(
     $userId: String!
@@ -7027,24 +6972,6 @@ export function useDeleteDailyDetailBySerialNoMutation() {
     DeleteDailyDetailBySerialNoMutation,
     DeleteDailyDetailBySerialNoMutationVariables
   >(DeleteDailyDetailBySerialNoDocument);
-}
-export const DeleteSummaryCategoryDocument = gql`
-  mutation DeleteSummaryCategory($groupId: String!) {
-    deleteSummaryCategoryByGroup: deleteHouseholdSummaryCategory(
-      where: { groupId: { _eq: $groupId } }
-    ) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-export function useDeleteSummaryCategoryMutation() {
-  return Urql.useMutation<
-    DeleteSummaryCategoryMutation,
-    DeleteSummaryCategoryMutationVariables
-  >(DeleteSummaryCategoryDocument);
 }
 export const UpdateCategoryByIdDocument = gql`
   mutation UpdateCategoryById(
