@@ -11,6 +11,7 @@ describe("convertToCategoryChartData", () => {
         {
           __typename: "HouseholdAllDetailView",
           settlementDate: "2023-08-01",
+          iocomeType: "OUTCOME",
           amount: 100,
           category: {
             id: "c1",
@@ -19,11 +20,13 @@ describe("convertToCategoryChartData", () => {
           genre: {
             id: "g1",
             name: "ジャンル1",
+            genreType: "FIXED",
           },
         },
         {
           __typename: "HouseholdAllDetailView",
           settlementDate: "2023-08-02",
+          iocomeType: "OUTCOME",
           amount: 50,
           category: {
             id: "c1",
@@ -32,11 +35,13 @@ describe("convertToCategoryChartData", () => {
           genre: {
             id: "g1",
             name: "ジャンル1",
+            genreType: "FIXED",
           },
         },
         {
           __typename: "HouseholdAllDetailView",
           settlementDate: "2023-08-03",
+          iocomeType: "INCOME",
           amount: 50,
           category: {
             id: "c2",
@@ -45,11 +50,13 @@ describe("convertToCategoryChartData", () => {
           genre: {
             id: "g2",
             name: "ジャンル2",
+            genreType: "FLUCTUATION",
           },
         },
         {
           __typename: "HouseholdAllDetailView",
           settlementDate: "2023-09-01",
+          iocomeType: "OUTCOME",
           amount: 100,
           category: {
             id: "c1",
@@ -58,11 +65,13 @@ describe("convertToCategoryChartData", () => {
           genre: {
             id: "g1",
             name: "ジャンル1",
+            genreType: "FIXED",
           },
         },
         {
           __typename: "HouseholdAllDetailView",
           settlementDate: "2023-09-02",
+          iocomeType: "OUTCOME",
           amount: 300,
           category: {
             id: "c1",
@@ -71,9 +80,15 @@ describe("convertToCategoryChartData", () => {
           genre: {
             id: "g1",
             name: "ジャンル1",
+            genreType: "FIXED",
           },
         },
       ],
+      transferCategory: {
+        __typename: "HouseholdTransferCategory",
+        incomeCategoryId: "c2",
+        outcomeCategoryId: "c3",
+      },
     };
 
     const actual = aggregateCategoryData(params);
@@ -84,6 +99,9 @@ describe("convertToCategoryChartData", () => {
         categoryId: "c1",
         categoryName: "カテゴリ1",
         genreName: "ジャンル1",
+        iocomeType: "OUTCOME",
+        genreType: "FIXED",
+        isTransfer: false,
         yearMonth: "2023-08",
         total: 150,
       },
@@ -91,6 +109,9 @@ describe("convertToCategoryChartData", () => {
         categoryId: "c2",
         categoryName: "カテゴリ2",
         genreName: "ジャンル2",
+        iocomeType: "INCOME",
+        genreType: "FLUCTUATION",
+        isTransfer: true,
         yearMonth: "2023-08",
         total: 50,
       },
@@ -98,6 +119,9 @@ describe("convertToCategoryChartData", () => {
         categoryId: "c1",
         categoryName: "カテゴリ1",
         genreName: "ジャンル1",
+        iocomeType: "OUTCOME",
+        genreType: "FIXED",
+        isTransfer: false,
         yearMonth: "2023-09",
         total: 400,
       },
@@ -107,6 +131,9 @@ describe("convertToCategoryChartData", () => {
       c1: {
         categoryName: "カテゴリ1",
         genreName: "ジャンル1",
+        iocomeType: "OUTCOME",
+        genreType: "FIXED",
+        isTransfer: false,
         monthlyTotal: {
           "2023-08": 150,
           "2023-09": 400,
@@ -115,6 +142,9 @@ describe("convertToCategoryChartData", () => {
       c2: {
         categoryName: "カテゴリ2",
         genreName: "ジャンル2",
+        iocomeType: "INCOME",
+        genreType: "FLUCTUATION",
+        isTransfer: true,
         monthlyTotal: {
           "2023-08": 50,
         },

@@ -683,8 +683,6 @@ export type GroupBoolExp = {
   importFileHistories?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   summaryViews?: InputMaybe<SummaryViewBoolExp>;
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
@@ -709,7 +707,6 @@ export type GroupOrderBy = {
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
@@ -1170,8 +1167,6 @@ export type HouseholdCategoryBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   transferCategories?: InputMaybe<HouseholdTransferCategoryBoolExp>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateBoolExp>;
   validFlag?: InputMaybe<BooleanComparisonExp>;
@@ -1198,7 +1193,6 @@ export type HouseholdCategoryInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryArrRelInsertInput>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
@@ -1246,7 +1240,6 @@ export type HouseholdCategoryOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateOrderBy>;
   validFlag?: InputMaybe<OrderBy>;
 };
@@ -3222,167 +3215,6 @@ export enum HouseholdImportFileHistoryUpdateColumn {
   Placeholder = "_PLACEHOLDER",
 }
 
-export type HouseholdSummaryCategoryAggregateBoolExp = {
-  count?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "household.summary_category" */
-export type HouseholdSummaryCategoryAggregateOrderBy = {
-  avg?: InputMaybe<HouseholdSummaryCategoryAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<HouseholdSummaryCategoryMaxOrderBy>;
-  min?: InputMaybe<HouseholdSummaryCategoryMinOrderBy>;
-  stddev?: InputMaybe<HouseholdSummaryCategoryStddevOrderBy>;
-  stddevPop?: InputMaybe<HouseholdSummaryCategoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<HouseholdSummaryCategoryStddevSampOrderBy>;
-  sum?: InputMaybe<HouseholdSummaryCategorySumOrderBy>;
-  varPop?: InputMaybe<HouseholdSummaryCategoryVarPopOrderBy>;
-  varSamp?: InputMaybe<HouseholdSummaryCategoryVarSampOrderBy>;
-  variance?: InputMaybe<HouseholdSummaryCategoryVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "household.summary_category" */
-export type HouseholdSummaryCategoryArrRelInsertInput = {
-  data: Array<HouseholdSummaryCategoryInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
-};
-
-/** order by avg() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryAvgOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "household.summary_category". All fields are combined with a logical 'AND'. */
-export type HouseholdSummaryCategoryBoolExp = {
-  _and?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  _not?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  _or?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  category?: InputMaybe<HouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<StringComparisonExp>;
-  displayOrder?: InputMaybe<IntComparisonExp>;
-  group?: InputMaybe<GroupBoolExp>;
-  groupId?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "household.summary_category" */
-export enum HouseholdSummaryCategoryConstraint {
-  /** unique or primary key constraint on columns "id" */
-  SummaryCategoryByGroupPkey = "summary_category_by_group_pkey",
-}
-
-/** input type for inserting data into table "household.summary_category" */
-export type HouseholdSummaryCategoryInsertInput = {
-  category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMaxOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMinOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "household.summary_category" */
-export type HouseholdSummaryCategoryOnConflict = {
-  constraint: HouseholdSummaryCategoryConstraint;
-  updateColumns?: Array<HouseholdSummaryCategoryUpdateColumn>;
-  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-};
-
-/** Ordering options when selecting data from "household.summary_category". */
-export type HouseholdSummaryCategoryOrderBy = {
-  category?: InputMaybe<HouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  group?: InputMaybe<GroupOrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "household.summary_category" */
-export enum HouseholdSummaryCategorySelectColumn {
-  /** column name */
-  CategoryId = "categoryId",
-  /** column name */
-  DisplayOrder = "displayOrder",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Id = "id",
-}
-
-/** order by stddev() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "household_summary_category" */
-export type HouseholdSummaryCategoryStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: HouseholdSummaryCategoryStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type HouseholdSummaryCategoryStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by sum() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategorySumOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** placeholder for update columns of table "household.summary_category" (current role has no relevant permissions) */
-export enum HouseholdSummaryCategoryUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
-
-/** order by varPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarianceOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExp = {
   count?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExpCount>;
 };
@@ -5264,13 +5096,6 @@ export type HouseholdImportFileHistoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HouseholdSummaryCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
@@ -5973,31 +5798,6 @@ export type FragDailyDetailFragment = {
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
 };
 
-export type GetAccountBalanceListQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type GetAccountBalanceListQuery = {
-  __typename?: "query_root";
-  account: Array<{
-    __typename: "HouseholdAccount";
-    id: string;
-    accountName: string;
-    allDetailViewsAggregate: {
-      __typename?: "HouseholdAllDetailViewAggregate";
-      aggregate?: {
-        __typename?: "HouseholdAllDetailViewAggregateFields";
-        sum?: {
-          __typename?: "HouseholdAllDetailViewSumFields";
-          signedAmount?: any | null;
-        } | null;
-      } | null;
-    };
-  }>;
-};
-
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -6449,6 +6249,31 @@ export type FragChartDetailTableFragment = {
   } | null;
 };
 
+export type GetAccountBalanceListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type GetAccountBalanceListQuery = {
+  __typename?: "query_root";
+  account: Array<{
+    __typename: "HouseholdAccount";
+    id: string;
+    accountName: string;
+    allDetailViewsAggregate: {
+      __typename?: "HouseholdAllDetailViewAggregate";
+      aggregate?: {
+        __typename?: "HouseholdAllDetailViewAggregateFields";
+        sum?: {
+          __typename?: "HouseholdAllDetailViewSumFields";
+          signedAmount?: any | null;
+        } | null;
+      } | null;
+    };
+  }>;
+};
+
 export type GetTransferCategoryByQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -6504,7 +6329,12 @@ export type PageSourceBalanceChartQuery = {
       id: string;
       name: string;
     } | null;
-    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
     category?: {
       __typename?: "HouseholdCategory";
       id: string;
@@ -6515,6 +6345,11 @@ export type PageSourceBalanceChartQuery = {
       } | null;
     } | null;
   }>;
+  transferCategory?: {
+    __typename: "HouseholdTransferCategory";
+    incomeCategoryId: string;
+    outcomeCategoryId: string;
+  } | null;
 };
 
 export const FragDailyDetailFragmentDoc = gql`
@@ -7623,43 +7458,6 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
 }
-export const GetAccountBalanceListDocument = gql`
-  query getAccountBalanceList(
-    $groupId: String!
-    $fromDate: date!
-    $toDate: date!
-  ) {
-    account: householdAccount(
-      where: { _and: { groupId: { _eq: $groupId } } }
-      orderBy: { displayOrder: ASC }
-    ) {
-      __typename
-      id
-      accountName: name
-      allDetailViewsAggregate(
-        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-      ) {
-        aggregate {
-          sum {
-            signedAmount
-          }
-        }
-      }
-    }
-  }
-`;
-
-export function useGetAccountBalanceListQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetAccountBalanceListQuery,
-    GetAccountBalanceListQueryVariables
-  >({ query: GetAccountBalanceListDocument, ...options });
-}
 export const GetCreditCardSummaryByDateDocument = gql`
   query getCreditCardSummaryByDate(
     $fromDate: date!
@@ -8062,6 +7860,43 @@ export function useChartDetailTableFilterSettlementDateQuery(
     ChartDetailTableFilterSettlementDateQueryVariables
   >({ query: ChartDetailTableFilterSettlementDateDocument, ...options });
 }
+export const GetAccountBalanceListDocument = gql`
+  query getAccountBalanceList(
+    $groupId: String!
+    $fromDate: date!
+    $toDate: date!
+  ) {
+    account: householdAccount(
+      where: { _and: { groupId: { _eq: $groupId } } }
+      orderBy: { displayOrder: ASC }
+    ) {
+      __typename
+      id
+      accountName: name
+      allDetailViewsAggregate(
+        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+      ) {
+        aggregate {
+          sum {
+            signedAmount
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useGetAccountBalanceListQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetAccountBalanceListQuery,
+    GetAccountBalanceListQueryVariables
+  >({ query: GetAccountBalanceListDocument, ...options });
+}
 export const GetTransferCategoryByDocument = gql`
   query GetTransferCategoryBy($groupId: String!) {
     transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
@@ -8125,6 +7960,7 @@ export const PageSourceBalanceChartDocument = gql`
       genre {
         id
         name
+        genreType
       }
       category {
         id
@@ -8134,6 +7970,11 @@ export const PageSourceBalanceChartDocument = gql`
         }
       }
       memo
+    }
+    transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
+      __typename
+      incomeCategoryId
+      outcomeCategoryId
     }
   }
 `;

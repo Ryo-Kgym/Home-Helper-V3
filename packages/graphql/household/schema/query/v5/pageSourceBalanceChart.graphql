@@ -23,6 +23,7 @@ query pageSourceBalanceChart(
     genre {
       id
       name
+      genreType
     }
     category {
       id
@@ -32,5 +33,10 @@ query pageSourceBalanceChart(
       }
     }
     memo
+  }
+  transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
+    __typename
+    incomeCategoryId
+    outcomeCategoryId
   }
 }

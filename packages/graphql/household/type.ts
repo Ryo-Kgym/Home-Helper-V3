@@ -669,8 +669,6 @@ export type GroupBoolExp = {
   importFileHistories?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   summaryViews?: InputMaybe<SummaryViewBoolExp>;
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
@@ -695,7 +693,6 @@ export type GroupOrderBy = {
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
@@ -1149,8 +1146,6 @@ export type HouseholdCategoryBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   transferCategories?: InputMaybe<HouseholdTransferCategoryBoolExp>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateBoolExp>;
   validFlag?: InputMaybe<BooleanComparisonExp>;
@@ -1176,7 +1171,6 @@ export type HouseholdCategoryInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryArrRelInsertInput>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
@@ -1224,7 +1218,6 @@ export type HouseholdCategoryOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateOrderBy>;
   validFlag?: InputMaybe<OrderBy>;
 };
@@ -3166,164 +3159,6 @@ export type HouseholdImportFileHistoryUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
 
-export type HouseholdSummaryCategoryAggregateBoolExp = {
-  count?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "household.summary_category" */
-export type HouseholdSummaryCategoryAggregateOrderBy = {
-  avg?: InputMaybe<HouseholdSummaryCategoryAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<HouseholdSummaryCategoryMaxOrderBy>;
-  min?: InputMaybe<HouseholdSummaryCategoryMinOrderBy>;
-  stddev?: InputMaybe<HouseholdSummaryCategoryStddevOrderBy>;
-  stddevPop?: InputMaybe<HouseholdSummaryCategoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<HouseholdSummaryCategoryStddevSampOrderBy>;
-  sum?: InputMaybe<HouseholdSummaryCategorySumOrderBy>;
-  varPop?: InputMaybe<HouseholdSummaryCategoryVarPopOrderBy>;
-  varSamp?: InputMaybe<HouseholdSummaryCategoryVarSampOrderBy>;
-  variance?: InputMaybe<HouseholdSummaryCategoryVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "household.summary_category" */
-export type HouseholdSummaryCategoryArrRelInsertInput = {
-  data: Array<HouseholdSummaryCategoryInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
-};
-
-/** order by avg() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryAvgOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "household.summary_category". All fields are combined with a logical 'AND'. */
-export type HouseholdSummaryCategoryBoolExp = {
-  _and?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  _not?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  _or?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  category?: InputMaybe<HouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<StringComparisonExp>;
-  displayOrder?: InputMaybe<IntComparisonExp>;
-  group?: InputMaybe<GroupBoolExp>;
-  groupId?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "household.summary_category" */
-export type HouseholdSummaryCategoryConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "summary_category_by_group_pkey";
-
-/** input type for inserting data into table "household.summary_category" */
-export type HouseholdSummaryCategoryInsertInput = {
-  category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMaxOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMinOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "household.summary_category" */
-export type HouseholdSummaryCategoryOnConflict = {
-  constraint: HouseholdSummaryCategoryConstraint;
-  updateColumns?: Array<HouseholdSummaryCategoryUpdateColumn>;
-  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-};
-
-/** Ordering options when selecting data from "household.summary_category". */
-export type HouseholdSummaryCategoryOrderBy = {
-  category?: InputMaybe<HouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  group?: InputMaybe<GroupOrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "household.summary_category" */
-export type HouseholdSummaryCategorySelectColumn =
-  /** column name */
-  | "categoryId"
-  /** column name */
-  | "displayOrder"
-  /** column name */
-  | "groupId"
-  /** column name */
-  | "id";
-
-/** order by stddev() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "household_summary_category" */
-export type HouseholdSummaryCategoryStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: HouseholdSummaryCategoryStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type HouseholdSummaryCategoryStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by sum() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategorySumOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** placeholder for update columns of table "household.summary_category" (current role has no relevant permissions) */
-export type HouseholdSummaryCategoryUpdateColumn =
-  /** placeholder (do not use) */
-  "_PLACEHOLDER";
-
-/** order by varPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarianceOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExp = {
   count?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExpCount>;
 };
@@ -5171,13 +5006,6 @@ export type HouseholdImportFileHistoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HouseholdSummaryCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
@@ -5880,31 +5708,6 @@ export type FragDailyDetailFragment = {
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
 };
 
-export type GetAccountBalanceListQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type GetAccountBalanceListQuery = {
-  __typename?: "query_root";
-  account: Array<{
-    __typename: "HouseholdAccount";
-    id: string;
-    accountName: string;
-    allDetailViewsAggregate: {
-      __typename?: "HouseholdAllDetailViewAggregate";
-      aggregate?: {
-        __typename?: "HouseholdAllDetailViewAggregateFields";
-        sum?: {
-          __typename?: "HouseholdAllDetailViewSumFields";
-          signedAmount?: any | null;
-        } | null;
-      } | null;
-    };
-  }>;
-};
-
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -6356,6 +6159,31 @@ export type FragChartDetailTableFragment = {
   } | null;
 };
 
+export type GetAccountBalanceListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type GetAccountBalanceListQuery = {
+  __typename?: "query_root";
+  account: Array<{
+    __typename: "HouseholdAccount";
+    id: string;
+    accountName: string;
+    allDetailViewsAggregate: {
+      __typename?: "HouseholdAllDetailViewAggregate";
+      aggregate?: {
+        __typename?: "HouseholdAllDetailViewAggregateFields";
+        sum?: {
+          __typename?: "HouseholdAllDetailViewSumFields";
+          signedAmount?: any | null;
+        } | null;
+      } | null;
+    };
+  }>;
+};
+
 export type GetTransferCategoryByQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -6411,7 +6239,12 @@ export type PageSourceBalanceChartQuery = {
       id: string;
       name: string;
     } | null;
-    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
     category?: {
       __typename?: "HouseholdCategory";
       id: string;
@@ -6422,6 +6255,11 @@ export type PageSourceBalanceChartQuery = {
       } | null;
     } | null;
   }>;
+  transferCategory?: {
+    __typename: "HouseholdTransferCategory";
+    incomeCategoryId: string;
+    outcomeCategoryId: string;
+  } | null;
 };
 
 export const FragDailyDetailFragmentDoc = {
@@ -12060,221 +11898,6 @@ export const GetValidGenreListByIocomeTypeDocument = {
   GetValidGenreListByIocomeTypeQuery,
   GetValidGenreListByIocomeTypeQueryVariables
 >;
-export const GetAccountBalanceListDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getAccountBalanceList" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "account" },
-            name: { kind: "Name", value: "householdAccount" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "_and" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "groupId" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "groupId" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "accountName" },
-                  name: { kind: "Name", value: "name" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "allDetailViewsAggregate" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "date" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_gte" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "fromDate" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_and" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_lte" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "toDate",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "aggregate" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "sum" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "signedAmount",
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetAccountBalanceListQuery,
-  GetAccountBalanceListQueryVariables
->;
 export const GetCreditCardSummaryByDateDocument = {
   kind: "Document",
   definitions: [
@@ -14764,6 +14387,221 @@ export const ChartDetailTableFilterSettlementDateDocument = {
   ChartDetailTableFilterSettlementDateQuery,
   ChartDetailTableFilterSettlementDateQueryVariables
 >;
+export const GetAccountBalanceListDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getAccountBalanceList" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "fromDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "toDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "account" },
+            name: { kind: "Name", value: "householdAccount" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "_and" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "groupId" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "groupId" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "displayOrder" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "accountName" },
+                  name: { kind: "Name", value: "name" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "allDetailViewsAggregate" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "date" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_gte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "fromDate" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_and" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "date" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_lte" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "toDate",
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "aggregate" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "sum" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "signedAmount",
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetAccountBalanceListQuery,
+  GetAccountBalanceListQueryVariables
+>;
 export const GetTransferCategoryByDocument = {
   kind: "Document",
   definitions: [
@@ -15060,6 +14898,10 @@ export const PageSourceBalanceChartDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "genreType" },
+                      },
                     ],
                   },
                 },
@@ -15089,6 +14931,35 @@ export const PageSourceBalanceChartDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "memo" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "transferCategory" },
+            name: { kind: "Name", value: "householdTransferCategoryByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "groupId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "groupId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "incomeCategoryId" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "outcomeCategoryId" },
+                },
               ],
             },
           },

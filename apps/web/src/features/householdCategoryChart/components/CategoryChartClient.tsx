@@ -14,6 +14,7 @@ type Props = {
   toDate: Date;
   categoryChartData: CategoryChartData;
   comboBoxData: Parameters<typeof ComboBox>[0]["data"];
+  defaultCategoryIds: string[];
 };
 
 export const CategoryChartClient: FC<Props> = ({
@@ -21,10 +22,11 @@ export const CategoryChartClient: FC<Props> = ({
   toDate,
   categoryChartData,
   comboBoxData,
+  defaultCategoryIds,
 }) => {
   const { prependParamAndPush } = useNavigation();
 
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>(defaultCategoryIds);
 
   const makeEmptyData = (): Record<YearMonth, Record<string, number>> => {
     const data: Record<YearMonth, Record<string, number>> = {};
