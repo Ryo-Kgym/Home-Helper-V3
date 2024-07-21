@@ -49,10 +49,6 @@ const householdNavis: Navi[] = [
     url: "/household/genre",
   },
   {
-    label: "カテゴリ",
-    url: "/household/category",
-  },
-  {
     label: "サマリ",
     url: "/household/summary",
   },
