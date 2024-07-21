@@ -24,11 +24,11 @@ export const BalanceListTable = ({
       <RangeDatePicker
         fromDate={fromDate}
         changeFromDate={(d) => {
-          prependParamAndPush({ key: "fromDate", value: d.toISOString() });
+          prependParamAndPush({ fromDate: d.toISOString().slice(0, 10) });
         }}
         toDate={toDate}
         changeToDate={(d) => {
-          prependParamAndPush({ key: "toDate", value: d.toISOString() });
+          prependParamAndPush({ toDate: d.toISOString().slice(0, 10) });
         }}
       />
       <DataTable
