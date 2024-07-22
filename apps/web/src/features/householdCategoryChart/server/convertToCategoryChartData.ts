@@ -1,11 +1,11 @@
 import { GenreType } from "@domain/model/household/GenreType";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { PageSourceBalanceChartQuery } from "@v3/graphql/household/type";
+import { ChartDataQuery } from "@v3/graphql/household/type";
 
 import { CategoryChartData } from "../types";
 
 export const convertToCategoryChartData = (
-  data: PageSourceBalanceChartQuery,
+  data: ChartDataQuery,
 ): CategoryChartData => {
   const params = aggregateCategoryData(data);
 
@@ -67,7 +67,7 @@ export const convertToCategoryChartData = (
  * @private
  */
 export const aggregateCategoryData = (
-  data: PageSourceBalanceChartQuery,
+  data: ChartDataQuery,
 ): AggregateCategoryDataType =>
   data?.detailView.reduce<AggregateCategoryDataType>((acc, cur) => {
     const yearMonth = cur.settlementDate.slice(0, 7);

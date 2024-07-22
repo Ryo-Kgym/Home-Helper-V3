@@ -6156,6 +6156,50 @@ export type GetFavoriteFiltersQuery = {
   }>;
 };
 
+export type ChartDataQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type ChartDataQuery = {
+  __typename?: "query_root";
+  detailView: Array<{
+    __typename: "HouseholdAllDetailView";
+    id?: string | null;
+    settlementDate?: any | null;
+    withdrawalDate?: any | null;
+    iocomeType?: string | null;
+    memo?: string | null;
+    amount?: any | null;
+    account?: {
+      __typename?: "HouseholdAccount";
+      id: string;
+      name: string;
+    } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
+    category?: {
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      depositCategory?: {
+        __typename?: "HouseholdDepositCategory";
+        id: string;
+      } | null;
+    } | null;
+  }>;
+  transferCategory?: {
+    __typename: "HouseholdTransferCategory";
+    incomeCategoryId: string;
+    outcomeCategoryId: string;
+  } | null;
+};
+
 export type ChartDetailTableFilterWithdrawalDateQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
@@ -6305,50 +6349,6 @@ export type GetTransferCategoryByQuery = {
         genreId: string;
       };
     };
-  } | null;
-};
-
-export type PageSourceBalanceChartQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type PageSourceBalanceChartQuery = {
-  __typename?: "query_root";
-  detailView: Array<{
-    __typename: "HouseholdAllDetailView";
-    id?: string | null;
-    settlementDate?: any | null;
-    withdrawalDate?: any | null;
-    iocomeType?: string | null;
-    memo?: string | null;
-    amount?: any | null;
-    account?: {
-      __typename?: "HouseholdAccount";
-      id: string;
-      name: string;
-    } | null;
-    genre?: {
-      __typename?: "HouseholdGenre";
-      id: string;
-      name: string;
-      genreType: string;
-    } | null;
-    category?: {
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      depositCategory?: {
-        __typename?: "HouseholdDepositCategory";
-        id: string;
-      } | null;
-    } | null;
-  }>;
-  transferCategory?: {
-    __typename: "HouseholdTransferCategory";
-    incomeCategoryId: string;
-    outcomeCategoryId: string;
   } | null;
 };
 
@@ -7790,6 +7790,55 @@ export function useGetFavoriteFiltersQuery(
     GetFavoriteFiltersQueryVariables
   >({ query: GetFavoriteFiltersDocument, ...options });
 }
+export const ChartDataDocument = gql`
+  query chartData($groupId: String!, $fromDate: date!, $toDate: date!) {
+    detailView: householdAllDetailView(
+      where: {
+        groupId: { _eq: $groupId }
+        date: { _gte: $fromDate }
+        _and: { date: { _lte: $toDate } }
+      }
+    ) {
+      __typename
+      id
+      settlementDate
+      withdrawalDate
+      amount: originalAmount
+      iocomeType
+      account {
+        id
+        name
+      }
+      genre {
+        id
+        name
+        genreType
+      }
+      category {
+        id
+        name
+        depositCategory {
+          id: categoryId
+        }
+      }
+      memo
+    }
+    transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
+      __typename
+      incomeCategoryId
+      outcomeCategoryId
+    }
+  }
+`;
+
+export function useChartDataQuery(
+  options: Omit<Urql.UseQueryArgs<ChartDataQueryVariables>, "query">,
+) {
+  return Urql.useQuery<ChartDataQuery, ChartDataQueryVariables>({
+    query: ChartDataDocument,
+    ...options,
+  });
+}
 export const ChartDetailTableFilterWithdrawalDateDocument = gql`
   query chartDetailTableFilterWithdrawalDate(
     $groupId: String!
@@ -7933,60 +7982,4 @@ export function useGetTransferCategoryByQuery(
     GetTransferCategoryByQuery,
     GetTransferCategoryByQueryVariables
   >({ query: GetTransferCategoryByDocument, ...options });
-}
-export const PageSourceBalanceChartDocument = gql`
-  query pageSourceBalanceChart(
-    $groupId: String!
-    $fromDate: date!
-    $toDate: date!
-  ) {
-    detailView: householdAllDetailView(
-      where: {
-        groupId: { _eq: $groupId }
-        date: { _gte: $fromDate }
-        _and: { date: { _lte: $toDate } }
-      }
-    ) {
-      __typename
-      id
-      settlementDate
-      withdrawalDate
-      amount: originalAmount
-      iocomeType
-      account {
-        id
-        name
-      }
-      genre {
-        id
-        name
-        genreType
-      }
-      category {
-        id
-        name
-        depositCategory {
-          id: categoryId
-        }
-      }
-      memo
-    }
-    transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
-      __typename
-      incomeCategoryId
-      outcomeCategoryId
-    }
-  }
-`;
-
-export function usePageSourceBalanceChartQuery(
-  options: Omit<
-    Urql.UseQueryArgs<PageSourceBalanceChartQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    PageSourceBalanceChartQuery,
-    PageSourceBalanceChartQueryVariables
-  >({ query: PageSourceBalanceChartDocument, ...options });
 }

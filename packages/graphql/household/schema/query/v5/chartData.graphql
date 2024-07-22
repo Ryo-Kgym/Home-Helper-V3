@@ -1,8 +1,4 @@
-query pageSourceBalanceChart(
-  $groupId: String!
-  $fromDate: date!
-  $toDate: date!
-) {
+query chartData($groupId: String!, $fromDate: date!, $toDate: date!) {
   detailView: householdAllDetailView(
     where: {
       groupId: { _eq: $groupId }

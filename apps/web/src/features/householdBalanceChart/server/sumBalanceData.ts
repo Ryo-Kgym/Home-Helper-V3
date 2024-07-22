@@ -1,9 +1,7 @@
 import { SumBalance } from "@features/householdBalanceChart/server/types";
-import { PageSourceBalanceChartQuery } from "@v3/graphql/household/type";
+import { ChartDataQuery } from "@v3/graphql/household/type";
 
-export const sumBalanceData = (
-  data: PageSourceBalanceChartQuery,
-): SumBalance => {
+export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
   return data.detailView?.reduce<SumBalance>((sum, cur) => {
     const yearMonth = cur.withdrawalDate.slice(0, 7); // yyyy-mm
     if (!(yearMonth in sum)) {
@@ -32,20 +30,14 @@ export const sumBalanceData = (
   }, {});
 };
 
-const isIncome = (
-  cur: NonNullable<PageSourceBalanceChartQuery>["detailView"][number],
-) => {
+const isIncome = (cur: NonNullable<ChartDataQuery>["detailView"][number]) => {
   return cur.iocomeType === "INCOME";
 };
 
-const isOutcome = (
-  cur: NonNullable<PageSourceBalanceChartQuery>["detailView"][number],
-) => {
+const isOutcome = (cur: NonNullable<ChartDataQuery>["detailView"][number]) => {
   return cur.iocomeType === "OUTCOME" && !cur.category?.depositCategory;
 };
 
-const isDeposit = (
-  cur: NonNullable<PageSourceBalanceChartQuery>["detailView"][number],
-) => {
+const isDeposit = (cur: NonNullable<ChartDataQuery>["detailView"][number]) => {
   return cur.category?.depositCategory;
 };
