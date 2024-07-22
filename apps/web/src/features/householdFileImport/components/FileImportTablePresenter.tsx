@@ -2,13 +2,13 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
+import type { TableProps } from "@components/atoms/Table";
 import { Modal } from "@components/atoms/Modal";
 import { Table } from "@components/atoms/Table";
 import { IocomeTotal } from "@components/molecules/Total";
-import { SetProperties } from "@components/page/FileImportSetProperties";
+import { LoadFileProps } from "@features/householdFileImport/types";
 
-import type { TableProps } from "@components/atoms/Table";
-import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
+import { SetPropertiesContainer } from "./SetPropertiesContainer";
 
 type FileImportTablePresenterProps = {
   tableProps: TableProps[];
@@ -44,7 +44,7 @@ export const FileImportTablePresenter = ({
       <IocomeTotal income={income} outcome={outcome} />
     </div>
     <Modal opened={opened} onClose={onClose}>
-      <SetProperties
+      <SetPropertiesContainer
         initialValues={initialValues}
         initLoadData={loadData}
         setLoadData={setLoadData}

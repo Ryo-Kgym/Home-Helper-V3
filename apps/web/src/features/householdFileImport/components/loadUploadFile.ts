@@ -2,14 +2,14 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { FileType } from "@provider/file/FileType";
-import { loadCsvFile } from "@provider/file/loader/csv/loadCsvFile";
-
 import type { AuPayCsvLine } from "@provider/file/loader/csv/AuPayCsvLine";
 import type { OitaBankCsvLine } from "@provider/file/loader/csv/OitaBankCsvLine";
 import type { RakutenCardCsvLine } from "@provider/file/loader/csv/RakutenCardCsvLine";
 import type { SmbcCsvLine } from "@provider/file/loader/csv/SmbcCsvLine";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { LoadFileProps } from "@features/householdFileImport/types";
+import { FileType } from "@provider/file/FileType";
+import { loadCsvFile } from "@provider/file/loader/csv/loadCsvFile";
 
 type loadUploadFileArgs = {
   uploadFile: File;
@@ -42,17 +42,6 @@ export const loadUploadFile = async ({
     console.error(e);
     return [] as LoadFileProps[];
   }
-};
-
-export type LoadFileProps = {
-  date: Date;
-  note: string;
-  price: number;
-  iocomeType: IocomeType;
-  genreId: string | null;
-  genreName: string | null;
-  categoryId: string | null;
-  categoryName: string | null;
 };
 
 export const calcTotalPrice = (

@@ -2,10 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
-import { useCreateImportHistory } from "@hooks/household/import_file/useCreateImportHistory";
-import { useRegisterCreditCard } from "@hooks/household/import_file/useRegisterCreditCard";
-import { useRegisterDailyDetails } from "@hooks/household/import_file/useRegisterDailyDetails";
+import { useCreateImportHistory } from "@features/householdFileImport/client/useCreateImportHistory";
+import { useRegisterCreditCard } from "@features/householdFileImport/client/useRegisterCreditCard";
+import { useRegisterDailyDetails } from "@features/householdFileImport/client/useRegisterDailyDetails";
+import { LoadFileProps } from "@features/householdFileImport/types";
 import { FileType } from "@provider/file/FileType";
 
 export const useCreateImportFile = ({

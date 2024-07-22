@@ -1,25 +1,18 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 "use client";
 
 import type { TableProps } from "@components/atoms/Table";
-import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import type { FileType } from "@provider/file/FileType";
 import { useEffect, useState } from "react";
 import { FormatPrice } from "@components/molecules/FormatPrice";
-import { FileImportButtonsPresenter } from "@components/page/FileImport/FileImportButtonsPresenter";
-import { FileImportTablePresenter } from "@components/page/FileImport/FileImportTablePresenter";
-import {
-  calcTotalPrice,
-  loadUploadFile,
-} from "@components/page/FileImport/loadUploadFile";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { useCreateImportFile } from "@features/householdFileImport/client/useCreateImportFile";
+import { LoadFileProps } from "@features/householdFileImport/types";
 import { errorPopup, successPopup } from "@function/successPopup";
-import { useCreateImportFile } from "@hooks/household/import_file/useCreateImportFile";
 
+import { FileImportButtonsPresenter } from "./FileImportButtonsPresenter";
 import { FileImportFieldPresenter } from "./FileImportFieldPresenter";
+import { FileImportTablePresenter } from "./FileImportTablePresenter";
+import { calcTotalPrice, loadUploadFile } from "./loadUploadFile";
 
 export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);

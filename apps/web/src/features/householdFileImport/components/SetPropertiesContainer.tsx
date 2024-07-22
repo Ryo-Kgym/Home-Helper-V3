@@ -2,11 +2,11 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { SetPropertiesPresenter } from "@components/page/FileImportSetProperties/SetPropertiesPresenter";
-import { IocomeType } from "@domain/model/household/IocomeType";
 import { useState } from "react";
+import { IocomeType } from "@domain/model/household/IocomeType";
+import { LoadFileProps } from "@features/householdFileImport/types";
 
-import type { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
+import { SetPropertiesPresenter } from "./SetPropertiesPresenter";
 
 type SetPropertiesContainerProps = {
   initialValues: LoadFileProps;
