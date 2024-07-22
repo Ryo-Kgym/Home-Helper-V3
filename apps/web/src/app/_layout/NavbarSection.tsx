@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Navi } from "@app/_layout/navi";
-import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
+import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
 export const NavbarSection = ({
@@ -33,7 +33,7 @@ export const NavbarSection = ({
       </AppShell.Header>
 
       <AppShell.Navbar bg={"blue"}>
-        <AppShell.Section component={ScrollArea}>
+        <AppShell.Section>
           {naviArray
             .filter(({ visible = true }) => visible)
             .map((navi, index) => (

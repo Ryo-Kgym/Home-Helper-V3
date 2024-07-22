@@ -12,7 +12,7 @@ export const HouseholdLayout = ({
   <div className={"bg-white text-black"}>
     <NavbarSection header={"家計簿アプリ"} naviArray={householdNavis}>
       {children}
-      <div className={"z-100 absolute bottom-16 right-5"}>
+      <div className={"absolute bottom-16 left-12 z-[110]"}>
         <RegisterDailyButton />
       </div>
     </NavbarSection>

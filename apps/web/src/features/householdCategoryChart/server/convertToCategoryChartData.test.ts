@@ -86,6 +86,7 @@ describe("convertToCategoryChartData", () => {
       ],
       transferCategory: {
         __typename: "HouseholdTransferCategory",
+        id: "g1",
         incomeCategoryId: "c2",
         outcomeCategoryId: "c3",
       },
