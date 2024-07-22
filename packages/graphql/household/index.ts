@@ -5124,21 +5124,6 @@ export type RecordAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type CreateAccountMutationVariables = Exact<{
-  accountId: Scalars["String"];
-  accountName: Scalars["String"];
-  displayOrder: Scalars["Int"];
-  groupId: Scalars["String"];
-}>;
-
-export type CreateAccountMutation = {
-  __typename?: "mutation_root";
-  insertAccount?: {
-    __typename?: "HouseholdAccountMutationResponse";
-    returning: Array<{ __typename?: "HouseholdAccount"; accountId: string }>;
-  } | null;
-};
-
 export type CreateCategoryMutationVariables = Exact<{
   categoryId: Scalars["String"];
   categoryName: Scalars["String"];
@@ -6197,6 +6182,7 @@ export type ChartDataQuery = {
     __typename: "HouseholdTransferCategory";
     incomeCategoryId: string;
     outcomeCategoryId: string;
+    id: string;
   } | null;
 };
 
@@ -6451,35 +6437,6 @@ export const FragChartDetailTableFragmentDoc = gql`
     memo
   }
 `;
-export const CreateAccountDocument = gql`
-  mutation CreateAccount(
-    $accountId: String!
-    $accountName: String!
-    $displayOrder: Int!
-    $groupId: String!
-  ) {
-    insertAccount: insertHouseholdAccount(
-      objects: {
-        id: $accountId
-        name: $accountName
-        displayOrder: $displayOrder
-        groupId: $groupId
-        validFlag: true
-      }
-    ) {
-      returning {
-        accountId: id
-      }
-    }
-  }
-`;
-
-export function useCreateAccountMutation() {
-  return Urql.useMutation<
-    CreateAccountMutation,
-    CreateAccountMutationVariables
-  >(CreateAccountDocument);
-}
 export const CreateCategoryDocument = gql`
   mutation CreateCategory(
     $categoryId: String!
@@ -7825,6 +7782,7 @@ export const ChartDataDocument = gql`
     }
     transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
       __typename
+      id: groupId
       incomeCategoryId
       outcomeCategoryId
     }

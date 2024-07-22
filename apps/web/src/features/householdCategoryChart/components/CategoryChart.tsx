@@ -20,7 +20,7 @@ type Props = {
 
 export const CategoryChart: FC<Props> = ({ categories, data, onClick }) => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer>
       <LineChart
         width={500}
         height={300}
@@ -37,25 +37,7 @@ export const CategoryChart: FC<Props> = ({ categories, data, onClick }) => {
         onClick={onClick}
       >
         <CartesianGrid strokeDasharray="10 10" />
-        <XAxis
-          dataKey="name"
-          height={60}
-          tick={({ x, y, payload }) => (
-            <g transform={`translate(${x},${y})`}>
-              <text
-                x={0}
-                y={0}
-                dy={16}
-                textAnchor="end"
-                fill="#666"
-                transform="rotate(-35)"
-              >
-                {payload.value}
-              </text>
-            </g>
-          )}
-          padding={{ left: 30, right: 30 }}
-        />
+        <XAxis dataKey="name" height={60} padding={{ left: 30, right: 30 }} />
         <YAxis />
         <Tooltip />
         <Legend />

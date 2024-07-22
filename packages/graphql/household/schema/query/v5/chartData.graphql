@@ -32,6 +32,7 @@ query chartData($groupId: String!, $fromDate: date!, $toDate: date!) {
   }
   transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
     __typename
+    id: groupId
     incomeCategoryId
     outcomeCategoryId
   }

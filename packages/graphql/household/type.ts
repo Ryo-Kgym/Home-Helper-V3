@@ -5034,21 +5034,6 @@ export type RecordAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type CreateAccountMutationVariables = Exact<{
-  accountId: Scalars["String"];
-  accountName: Scalars["String"];
-  displayOrder: Scalars["Int"];
-  groupId: Scalars["String"];
-}>;
-
-export type CreateAccountMutation = {
-  __typename?: "mutation_root";
-  insertAccount?: {
-    __typename?: "HouseholdAccountMutationResponse";
-    returning: Array<{ __typename?: "HouseholdAccount"; accountId: string }>;
-  } | null;
-};
-
 export type CreateCategoryMutationVariables = Exact<{
   categoryId: Scalars["String"];
   categoryName: Scalars["String"];
@@ -6107,6 +6092,7 @@ export type ChartDataQuery = {
     __typename: "HouseholdTransferCategory";
     incomeCategoryId: string;
     outcomeCategoryId: string;
+    id: string;
   } | null;
 };
 
@@ -6544,151 +6530,6 @@ export const FragChartDetailTableFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<FragChartDetailTableFragment, unknown>;
-export const CreateAccountDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CreateAccount" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "accountId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "accountName" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "displayOrder" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "insertAccount" },
-            name: { kind: "Name", value: "insertHouseholdAccount" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "accountId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "name" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "accountName" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "displayOrder" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "validFlag" },
-                      value: { kind: "BooleanValue", value: true },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "accountId" },
-                        name: { kind: "Name", value: "id" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CreateAccountMutation,
-  CreateAccountMutationVariables
->;
 export const CreateCategoryDocument = {
   kind: "Document",
   definitions: [
@@ -14082,6 +13923,11 @@ export const ChartDataDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "id" },
+                  name: { kind: "Name", value: "groupId" },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "incomeCategoryId" },

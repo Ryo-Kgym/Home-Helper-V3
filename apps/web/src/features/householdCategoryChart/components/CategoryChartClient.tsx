@@ -2,6 +2,7 @@
 
 import { FC, useState } from "react";
 import { ComboBox } from "@components/ui/v4/comboBox";
+import { RangeMonthPicker } from "@components/ui/v5/date/RangeMonthPicker";
 import { useNavigation } from "@routing/client/useNavigation";
 import { colors } from "@styles/colors";
 
@@ -18,8 +19,8 @@ type Props = {
 };
 
 export const CategoryChartClient: FC<Props> = ({
-  fromDate,
-  toDate,
+  fromDate: defaultFromDate,
+  toDate: defaultToDate,
   categoryChartData,
   comboBoxData,
   defaultCategoryIds,
@@ -28,11 +29,11 @@ export const CategoryChartClient: FC<Props> = ({
 
   const [categories, setCategories] = useState<string[]>(defaultCategoryIds);
 
-  const makeEmptyData = (): Record<YearMonth, Record<string, number>> => {
+  const makeChartData = (): Record<YearMonth, Record<string, number>> => {
     const data: Record<YearMonth, Record<string, number>> = {};
 
-    const date = new Date(fromDate);
-    while (date <= toDate) {
+    const date = new Date(defaultFromDate);
+    while (date <= defaultToDate) {
       const key = date.toISOString().slice(0, 7) as YearMonth;
       data[key] = Object.fromEntries(
         categories.map((category) => [
@@ -47,7 +48,33 @@ export const CategoryChartClient: FC<Props> = ({
   };
 
   return (
-    <>
+    <div
+      style={{
+        height: "100%",
+      }}
+      className="flex flex-row"
+    >
+      <div className={"w-96"}>
+        <RangeMonthPicker
+          onChange={async ([fromDate, toDate]) => {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            prependParamAndPush({
+              fromDate: (fromDate ?? defaultFromDate).toLocaleDateString(
+                "sv-SE",
+              ),
+              toDate: (toDate ?? defaultToDate).toLocaleDateString("sv-SE"),
+            });
+          }}
+          label={"期間"}
+          defaultValue={[defaultFromDate, defaultToDate]}
+        />
+        <ComboBox
+          value={categories}
+          setValue={setCategories}
+          data={comboBoxData}
+          label={"カテゴリ"}
+        />
+      </div>
       <CategoryChart
         categories={categories.map((categoryId, index) => ({
           categoryId,
@@ -55,7 +82,7 @@ export const CategoryChartClient: FC<Props> = ({
             categoryChartData[categoryId]?.categoryName ?? "unknown",
           color: colors.random(index),
         }))}
-        data={makeEmptyData()}
+        data={makeChartData()}
         onClick={(event) => {
           if (!event.activeLabel) {
             return;
@@ -66,12 +93,6 @@ export const CategoryChartClient: FC<Props> = ({
           });
         }}
       />
-      <ComboBox
-        value={categories}
-        setValue={setCategories}
-        data={comboBoxData}
-        label={"カテゴリ"}
-      />
-    </>
+    </div>
   );
 };
