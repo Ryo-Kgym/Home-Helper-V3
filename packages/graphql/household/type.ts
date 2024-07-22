@@ -669,8 +669,6 @@ export type GroupBoolExp = {
   importFileHistories?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   summaryViews?: InputMaybe<SummaryViewBoolExp>;
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
@@ -695,7 +693,6 @@ export type GroupOrderBy = {
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
@@ -1149,8 +1146,6 @@ export type HouseholdCategoryBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   transferCategories?: InputMaybe<HouseholdTransferCategoryBoolExp>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateBoolExp>;
   validFlag?: InputMaybe<BooleanComparisonExp>;
@@ -1176,7 +1171,6 @@ export type HouseholdCategoryInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryArrRelInsertInput>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
@@ -1224,7 +1218,6 @@ export type HouseholdCategoryOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateOrderBy>;
   validFlag?: InputMaybe<OrderBy>;
 };
@@ -3166,164 +3159,6 @@ export type HouseholdImportFileHistoryUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
 
-export type HouseholdSummaryCategoryAggregateBoolExp = {
-  count?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "household.summary_category" */
-export type HouseholdSummaryCategoryAggregateOrderBy = {
-  avg?: InputMaybe<HouseholdSummaryCategoryAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<HouseholdSummaryCategoryMaxOrderBy>;
-  min?: InputMaybe<HouseholdSummaryCategoryMinOrderBy>;
-  stddev?: InputMaybe<HouseholdSummaryCategoryStddevOrderBy>;
-  stddevPop?: InputMaybe<HouseholdSummaryCategoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<HouseholdSummaryCategoryStddevSampOrderBy>;
-  sum?: InputMaybe<HouseholdSummaryCategorySumOrderBy>;
-  varPop?: InputMaybe<HouseholdSummaryCategoryVarPopOrderBy>;
-  varSamp?: InputMaybe<HouseholdSummaryCategoryVarSampOrderBy>;
-  variance?: InputMaybe<HouseholdSummaryCategoryVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "household.summary_category" */
-export type HouseholdSummaryCategoryArrRelInsertInput = {
-  data: Array<HouseholdSummaryCategoryInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
-};
-
-/** order by avg() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryAvgOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "household.summary_category". All fields are combined with a logical 'AND'. */
-export type HouseholdSummaryCategoryBoolExp = {
-  _and?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  _not?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  _or?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  category?: InputMaybe<HouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<StringComparisonExp>;
-  displayOrder?: InputMaybe<IntComparisonExp>;
-  group?: InputMaybe<GroupBoolExp>;
-  groupId?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "household.summary_category" */
-export type HouseholdSummaryCategoryConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "summary_category_by_group_pkey";
-
-/** input type for inserting data into table "household.summary_category" */
-export type HouseholdSummaryCategoryInsertInput = {
-  category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMaxOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMinOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "household.summary_category" */
-export type HouseholdSummaryCategoryOnConflict = {
-  constraint: HouseholdSummaryCategoryConstraint;
-  updateColumns?: Array<HouseholdSummaryCategoryUpdateColumn>;
-  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-};
-
-/** Ordering options when selecting data from "household.summary_category". */
-export type HouseholdSummaryCategoryOrderBy = {
-  category?: InputMaybe<HouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  group?: InputMaybe<GroupOrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "household.summary_category" */
-export type HouseholdSummaryCategorySelectColumn =
-  /** column name */
-  | "categoryId"
-  /** column name */
-  | "displayOrder"
-  /** column name */
-  | "groupId"
-  /** column name */
-  | "id";
-
-/** order by stddev() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "household_summary_category" */
-export type HouseholdSummaryCategoryStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: HouseholdSummaryCategoryStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type HouseholdSummaryCategoryStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by sum() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategorySumOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** placeholder for update columns of table "household.summary_category" (current role has no relevant permissions) */
-export type HouseholdSummaryCategoryUpdateColumn =
-  /** placeholder (do not use) */
-  "_PLACEHOLDER";
-
-/** order by varPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarianceOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExp = {
   count?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExpCount>;
 };
@@ -5171,13 +5006,6 @@ export type HouseholdImportFileHistoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HouseholdSummaryCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
@@ -5204,21 +5032,6 @@ export type RecordAggregateBoolExpCount = {
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<RecordBoolExp>;
   predicate: IntComparisonExp;
-};
-
-export type CreateAccountMutationVariables = Exact<{
-  accountId: Scalars["String"];
-  accountName: Scalars["String"];
-  displayOrder: Scalars["Int"];
-  groupId: Scalars["String"];
-}>;
-
-export type CreateAccountMutation = {
-  __typename?: "mutation_root";
-  insertAccount?: {
-    __typename?: "HouseholdAccountMutationResponse";
-    returning: Array<{ __typename?: "HouseholdAccount"; accountId: string }>;
-  } | null;
 };
 
 export type CreateCategoryMutationVariables = Exact<{
@@ -5315,21 +5128,6 @@ export type CreateImportFileHistoryMutation = {
   } | null;
 };
 
-export type CreateSummaryCategoryMutationVariables = Exact<{
-  id: Scalars["String"];
-  displayOrder: Scalars["Int"];
-  categoryId: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type CreateSummaryCategoryMutation = {
-  __typename?: "mutation_root";
-  insertSummaryCategoryByGroup?: {
-    __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
-  } | null;
-};
-
 export type CreateUserMutationVariables = Exact<{
   userId: Scalars["String"];
   userName: Scalars["String"];
@@ -5354,18 +5152,6 @@ export type DeleteDailyDetailBySerialNoMutation = {
   deleteDailyDetailByPk?: {
     __typename: "HouseholdDailyDetail";
     id: string;
-  } | null;
-};
-
-export type DeleteSummaryCategoryMutationVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type DeleteSummaryCategoryMutation = {
-  __typename?: "mutation_root";
-  deleteSummaryCategoryByGroup?: {
-    __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
   } | null;
 };
 
@@ -5722,26 +5508,6 @@ export type GetCategoryByIdQuery = {
   } | null;
 };
 
-export type GetCategoryTotalByMonthQueryVariables = Exact<{
-  fromDate?: InputMaybe<Scalars["date"]>;
-  toDate?: InputMaybe<Scalars["date"]>;
-  groupId: Scalars["String"];
-}>;
-
-export type GetCategoryTotalByMonthQuery = {
-  __typename?: "query_root";
-  categoryTotalByMonth: Array<{
-    __typename?: "HouseholdTotalByCategoryView";
-    date?: any | null;
-    iocomeType?: string | null;
-    genreId?: string | null;
-    genreName?: string | null;
-    categoryId?: string | null;
-    categoryName?: string | null;
-    total?: any | null;
-  }>;
-};
-
 export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
@@ -5821,76 +5587,6 @@ export type GetDailyDetailByDateQuery = {
   }>;
 };
 
-export type GetDailyDetailByDateCategoryIdQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-  categoryId: Scalars["String"];
-}>;
-
-export type GetDailyDetailByDateCategoryIdQuery = {
-  __typename?: "query_root";
-  dailies: Array<{
-    __typename: "HouseholdDailyDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    genre: {
-      __typename?: "HouseholdGenre";
-      id: string;
-      name: string;
-      genreType: string;
-      iocomeType: string;
-    };
-    category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }>;
-};
-
-export type GetDailyDetailByDateGenreIdQueryVariables = Exact<{
-  genreId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetDailyDetailByDateGenreIdQuery = {
-  __typename?: "query_root";
-  allCategoriesList: Array<{
-    __typename?: "HouseholdCategory";
-    dailyDetailsByCategoryIdList: Array<{
-      __typename?: "HouseholdDailyDetail";
-      id: string;
-      date: any;
-      amount: any;
-      memo?: string | null;
-      categoryByCategoryId: {
-        __typename?: "HouseholdCategory";
-        categoryId: string;
-        categoryName: string;
-        genreByGenreId: {
-          __typename?: "HouseholdGenre";
-          genreType: string;
-          iocomeType: string;
-          genreId: string;
-          genreName: string;
-        };
-      };
-      accountByAccountId: {
-        __typename?: "HouseholdAccount";
-        accountId: string;
-        accountName: string;
-      };
-      userByUserId: {
-        __typename?: "User";
-        userId: string;
-        userName?: string | null;
-      };
-    }>;
-  }>;
-};
-
 export type GetGenreByIdQueryVariables = Exact<{
   genreId: Scalars["String"];
 }>;
@@ -5911,101 +5607,6 @@ export type GetGenreByIdQuery = {
       categoryName: string;
     }>;
   } | null;
-};
-
-export type GetGenreTotalByMonthQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetGenreTotalByMonthQuery = {
-  __typename?: "query_root";
-  genreTotalByMonthList: Array<{
-    __typename?: "HouseholdTotalByGenreView";
-    date?: any | null;
-    iocomeType?: string | null;
-    genreId?: string | null;
-    genreName?: string | null;
-    total?: any | null;
-  }>;
-};
-
-export type GetSummaryCategoriesQueryVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type GetSummaryCategoriesQuery = {
-  __typename?: "query_root";
-  categories: Array<{
-    __typename?: "HouseholdSummaryCategory";
-    id: string;
-    groupId: string;
-    displayOrder: number;
-    category: {
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      genre: {
-        __typename?: "HouseholdGenre";
-        id: string;
-        name: string;
-        iocomeType: string;
-        type: string;
-      };
-    };
-  }>;
-};
-
-export type GetSummaryCategoryBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetSummaryCategoryBetweenDateQuery = {
-  __typename?: "query_root";
-  summaryCategoryList: Array<{
-    __typename?: "HouseholdSummaryCategory";
-    category: {
-      __typename?: "HouseholdCategory";
-      name: string;
-      id: string;
-      genre: { __typename?: "HouseholdGenre"; iocomeType: string };
-      daily: Array<{
-        __typename?: "HouseholdDailyDetail";
-        date: any;
-        amount: any;
-      }>;
-      creditCard: Array<{
-        __typename?: "HouseholdCreditCardDetail";
-        date: any;
-        amount: any;
-      }>;
-    };
-  }>;
-};
-
-export type GetTotalBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetTotalBetweenDateQuery = {
-  __typename?: "query_root";
-  incomeTotalByDate: Array<{
-    __typename?: "HouseholdDailyTotalView";
-    date?: any | null;
-    iocomeType?: string | null;
-    total?: any | null;
-  }>;
-  outcomeTotalByDate: Array<{
-    __typename?: "HouseholdDailyTotalView";
-    date?: any | null;
-    iocomeType?: string | null;
-    total?: any | null;
-  }>;
 };
 
 export type GetValidAccountsQueryVariables = Exact<{
@@ -6092,31 +5693,6 @@ export type FragDailyDetailFragment = {
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
 };
 
-export type GetAccountBalanceListQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type GetAccountBalanceListQuery = {
-  __typename?: "query_root";
-  account: Array<{
-    __typename: "HouseholdAccount";
-    id: string;
-    accountName: string;
-    allDetailViewsAggregate: {
-      __typename?: "HouseholdAllDetailViewAggregate";
-      aggregate?: {
-        __typename?: "HouseholdAllDetailViewAggregateFields";
-        sum?: {
-          __typename?: "HouseholdAllDetailViewSumFields";
-          signedAmount?: any | null;
-        } | null;
-      } | null;
-    };
-  }>;
-};
-
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -6157,68 +5733,6 @@ export type GetDailyDetailByIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   } | null;
-};
-
-export type GetDepositQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type GetDepositQuery = {
-  __typename?: "query_root";
-  depositCategory: Array<{
-    __typename?: "HouseholdDepositCategory";
-    category: {
-      __typename?: "HouseholdCategory";
-      id: string;
-      categoryName: string;
-      daily: {
-        __typename?: "HouseholdDailyDetailAggregate";
-        aggregate?: {
-          __typename?: "HouseholdDailyDetailAggregateFields";
-          count: number;
-          sum?: {
-            __typename?: "HouseholdDailyDetailSumFields";
-            amount?: any | null;
-          } | null;
-          avg?: {
-            __typename?: "HouseholdDailyDetailAvgFields";
-            amount?: number | null;
-          } | null;
-        } | null;
-        nodes: Array<{
-          __typename?: "HouseholdDailyDetail";
-          id: string;
-          date: any;
-          amount: any;
-          memo?: string | null;
-        }>;
-      };
-      credit: {
-        __typename?: "HouseholdCreditCardDetailAggregate";
-        aggregate?: {
-          __typename?: "HouseholdCreditCardDetailAggregateFields";
-          count: number;
-          sum?: {
-            __typename?: "HouseholdCreditCardDetailSumFields";
-            amount?: any | null;
-          } | null;
-          avg?: {
-            __typename?: "HouseholdCreditCardDetailAvgFields";
-            amount?: number | null;
-          } | null;
-        } | null;
-        nodes: Array<{
-          __typename?: "HouseholdCreditCardDetail";
-          id: string;
-          date: any;
-          amount: any;
-          memo?: string | null;
-        }>;
-      };
-    };
-  }>;
 };
 
 export type FragCreditCardDetailFragment = {
@@ -6537,6 +6051,51 @@ export type GetFavoriteFiltersQuery = {
   }>;
 };
 
+export type ChartDataQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type ChartDataQuery = {
+  __typename?: "query_root";
+  detailView: Array<{
+    __typename: "HouseholdAllDetailView";
+    id?: string | null;
+    settlementDate?: any | null;
+    withdrawalDate?: any | null;
+    iocomeType?: string | null;
+    memo?: string | null;
+    amount?: any | null;
+    account?: {
+      __typename?: "HouseholdAccount";
+      id: string;
+      name: string;
+    } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
+    category?: {
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      depositCategory?: {
+        __typename?: "HouseholdDepositCategory";
+        id: string;
+      } | null;
+    } | null;
+  }>;
+  transferCategory?: {
+    __typename: "HouseholdTransferCategory";
+    incomeCategoryId: string;
+    outcomeCategoryId: string;
+    id: string;
+  } | null;
+};
+
 export type ChartDetailTableFilterWithdrawalDateQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
@@ -6630,6 +6189,31 @@ export type FragChartDetailTableFragment = {
   } | null;
 };
 
+export type GetAccountBalanceListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type GetAccountBalanceListQuery = {
+  __typename?: "query_root";
+  account: Array<{
+    __typename: "HouseholdAccount";
+    id: string;
+    accountName: string;
+    allDetailViewsAggregate: {
+      __typename?: "HouseholdAllDetailViewAggregate";
+      aggregate?: {
+        __typename?: "HouseholdAllDetailViewAggregateFields";
+        sum?: {
+          __typename?: "HouseholdAllDetailViewSumFields";
+          signedAmount?: any | null;
+        } | null;
+      } | null;
+    };
+  }>;
+};
+
 export type GetTransferCategoryByQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -6662,40 +6246,6 @@ export type GetTransferCategoryByQuery = {
       };
     };
   } | null;
-};
-
-export type PageSourceBalanceChartQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type PageSourceBalanceChartQuery = {
-  __typename?: "query_root";
-  detailView: Array<{
-    __typename: "HouseholdAllDetailView";
-    id?: string | null;
-    settlementDate?: any | null;
-    withdrawalDate?: any | null;
-    iocomeType?: string | null;
-    memo?: string | null;
-    amount?: any | null;
-    account?: {
-      __typename?: "HouseholdAccount";
-      id: string;
-      name: string;
-    } | null;
-    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
-    category?: {
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      depositCategory?: {
-        __typename?: "HouseholdDepositCategory";
-        id: string;
-      } | null;
-    } | null;
-  }>;
 };
 
 export const FragDailyDetailFragmentDoc = {
@@ -6980,151 +6530,6 @@ export const FragChartDetailTableFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<FragChartDetailTableFragment, unknown>;
-export const CreateAccountDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CreateAccount" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "accountId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "accountName" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "displayOrder" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "insertAccount" },
-            name: { kind: "Name", value: "insertHouseholdAccount" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "accountId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "name" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "accountName" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "displayOrder" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "validFlag" },
-                      value: { kind: "BooleanValue", value: true },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "accountId" },
-                        name: { kind: "Name", value: "id" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CreateAccountMutation,
-  CreateAccountMutationVariables
->;
 export const CreateCategoryDocument = {
   kind: "Document",
   definitions: [
@@ -8199,139 +7604,6 @@ export const CreateImportFileHistoryDocument = {
   CreateImportFileHistoryMutation,
   CreateImportFileHistoryMutationVariables
 >;
-export const CreateSummaryCategoryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CreateSummaryCategory" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "displayOrder" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "categoryId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "insertSummaryCategoryByGroup" },
-            name: { kind: "Name", value: "insertHouseholdSummaryCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "id" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "categoryId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "categoryId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "displayOrder" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CreateSummaryCategoryMutation,
-  CreateSummaryCategoryMutationVariables
->;
 export const CreateUserDocument = {
   kind: "Document",
   definitions: [
@@ -8522,88 +7794,6 @@ export const DeleteDailyDetailBySerialNoDocument = {
 } as unknown as DocumentNode<
   DeleteDailyDetailBySerialNoMutation,
   DeleteDailyDetailBySerialNoMutationVariables
->;
-export const DeleteSummaryCategoryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "DeleteSummaryCategory" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "deleteSummaryCategoryByGroup" },
-            name: { kind: "Name", value: "deleteHouseholdSummaryCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "groupId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  DeleteSummaryCategoryMutation,
-  DeleteSummaryCategoryMutationVariables
 >;
 export const UpdateCategoryByIdDocument = {
   kind: "Document",
@@ -11435,110 +10625,6 @@ export const GetCategoryByIdDocument = {
   GetCategoryByIdQuery,
   GetCategoryByIdQueryVariables
 >;
-export const GetCategoryTotalByMonthDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetCategoryTotalByMonth" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "categoryTotalByMonth" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "args" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "from_date" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "fromDate" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "to_date" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "toDate" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "group_id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "date" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                { kind: "Field", name: { kind: "Name", value: "genreId" } },
-                { kind: "Field", name: { kind: "Name", value: "genreName" } },
-                { kind: "Field", name: { kind: "Name", value: "categoryId" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "categoryName" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "total" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetCategoryTotalByMonthQuery,
-  GetCategoryTotalByMonthQueryVariables
->;
 export const GetCreditCardDetailBySummaryIdDocument = {
   kind: "Document",
   definitions: [
@@ -11946,512 +11032,6 @@ export const GetDailyDetailByDateDocument = {
   GetDailyDetailByDateQuery,
   GetDailyDetailByDateQueryVariables
 >;
-export const GetDailyDetailByDateCategoryIdDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetDailyDetailByDateCategoryId" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "categoryId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "dailies" },
-            name: { kind: "Name", value: "dailyDetailByDate" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "args" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "from_date" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "fromDate" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "to_date" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "toDate" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "group_id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "categoryId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "categoryId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "fragDailyDetail" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragDailyDetail" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "HouseholdDailyDetail" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "genre" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "genreType" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "category" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "account" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "amount" } },
-          { kind: "Field", name: { kind: "Name", value: "memo" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetDailyDetailByDateCategoryIdQuery,
-  GetDailyDetailByDateCategoryIdQueryVariables
->;
-export const GetDailyDetailByDateGenreIdDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetDailyDetailByDateGenreId" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "genreId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "allCategoriesList" },
-            name: { kind: "Name", value: "householdCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "genreId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "genreId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  alias: {
-                    kind: "Name",
-                    value: "dailyDetailsByCategoryIdList",
-                  },
-                  name: { kind: "Name", value: "dailyDetails" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "date" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_gte" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "fromDate" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_and" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_lte" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "toDate",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_and" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: {
-                                          kind: "Name",
-                                          value: "groupId",
-                                        },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "_eq",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "groupId",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "date" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "amount" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "memo" } },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "categoryByCategoryId" },
-                        name: { kind: "Name", value: "category" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "categoryId" },
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "categoryName" },
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "genreByGenreId" },
-                              name: { kind: "Name", value: "genre" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    alias: { kind: "Name", value: "genreId" },
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    alias: { kind: "Name", value: "genreName" },
-                                    name: { kind: "Name", value: "name" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "genreType" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "iocomeType" },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "accountByAccountId" },
-                        name: { kind: "Name", value: "account" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "accountId" },
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "accountName" },
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "userByUserId" },
-                        name: { kind: "Name", value: "user" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "userId" },
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "userName" },
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetDailyDetailByDateGenreIdQuery,
-  GetDailyDetailByDateGenreIdQueryVariables
->;
 export const GetGenreByIdDocument = {
   kind: "Document",
   definitions: [
@@ -12560,949 +11140,6 @@ export const GetGenreByIdDocument = {
     },
   ],
 } as unknown as DocumentNode<GetGenreByIdQuery, GetGenreByIdQueryVariables>;
-export const GetGenreTotalByMonthDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetGenreTotalByMonth" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "genreTotalByMonthList" },
-            name: { kind: "Name", value: "genreTotalByMonth" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "args" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "from_date" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "fromDate" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "to_date" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "toDate" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "group_id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "date" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                { kind: "Field", name: { kind: "Name", value: "genreId" } },
-                { kind: "Field", name: { kind: "Name", value: "genreName" } },
-                { kind: "Field", name: { kind: "Name", value: "total" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetGenreTotalByMonthQuery,
-  GetGenreTotalByMonthQueryVariables
->;
-export const GetSummaryCategoriesDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetSummaryCategories" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "categories" },
-            name: { kind: "Name", value: "householdSummaryCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "groupId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "groupId" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "displayOrder" },
-                },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "category" },
-                  name: { kind: "Name", value: "category" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "genre" },
-                        name: { kind: "Name", value: "genre" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "type" },
-                              name: { kind: "Name", value: "genreType" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "iocomeType" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetSummaryCategoriesQuery,
-  GetSummaryCategoriesQueryVariables
->;
-export const GetSummaryCategoryBetweenDateDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetSummaryCategoryBetweenDate" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "summaryCategoryList" },
-            name: { kind: "Name", value: "householdSummaryCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "groupId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "category" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "genre" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "iocomeType" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "daily" },
-                        name: { kind: "Name", value: "dailyDetails" },
-                        arguments: [
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "where" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "groupId" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_eq" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "groupId",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_and" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "date" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "_gte",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "fromDate",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_and" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "date",
-                                              },
-                                              value: {
-                                                kind: "ObjectValue",
-                                                fields: [
-                                                  {
-                                                    kind: "ObjectField",
-                                                    name: {
-                                                      kind: "Name",
-                                                      value: "_lte",
-                                                    },
-                                                    value: {
-                                                      kind: "Variable",
-                                                      name: {
-                                                        kind: "Name",
-                                                        value: "toDate",
-                                                      },
-                                                    },
-                                                  },
-                                                ],
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "orderBy" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: { kind: "EnumValue", value: "ASC" },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "date" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "amount" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "creditCard" },
-                        name: { kind: "Name", value: "creditCardDetails" },
-                        arguments: [
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "where" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "groupId" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_eq" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "groupId",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_and" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "date" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "_gte",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "fromDate",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_and" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "date",
-                                              },
-                                              value: {
-                                                kind: "ObjectValue",
-                                                fields: [
-                                                  {
-                                                    kind: "ObjectField",
-                                                    name: {
-                                                      kind: "Name",
-                                                      value: "_lte",
-                                                    },
-                                                    value: {
-                                                      kind: "Variable",
-                                                      name: {
-                                                        kind: "Name",
-                                                        value: "toDate",
-                                                      },
-                                                    },
-                                                  },
-                                                ],
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "orderBy" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: { kind: "EnumValue", value: "ASC" },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "date" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "amount" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetSummaryCategoryBetweenDateQuery,
-  GetSummaryCategoryBetweenDateQueryVariables
->;
-export const GetTotalBetweenDateDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetTotalBetweenDate" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "incomeTotalByDate" },
-            name: { kind: "Name", value: "householdDailyTotalView" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "iocomeType" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "StringValue",
-                              value: "INCOME",
-                              block: false,
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "_and" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "groupId" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "groupId" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_and" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_gte" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "fromDate",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_and" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "date" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "_lte",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "toDate",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "date" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                { kind: "Field", name: { kind: "Name", value: "total" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "outcomeTotalByDate" },
-            name: { kind: "Name", value: "householdDailyTotalView" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "iocomeType" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "StringValue",
-                              value: "OUTCOME",
-                              block: false,
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "_and" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "groupId" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "groupId" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_and" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_gte" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "fromDate",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_and" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "date" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "_lte",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "toDate",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "date" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                { kind: "Field", name: { kind: "Name", value: "total" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetTotalBetweenDateQuery,
-  GetTotalBetweenDateQueryVariables
->;
 export const GetValidAccountsDocument = {
   kind: "Document",
   definitions: [
@@ -14102,221 +11739,6 @@ export const GetValidGenreListByIocomeTypeDocument = {
   GetValidGenreListByIocomeTypeQuery,
   GetValidGenreListByIocomeTypeQueryVariables
 >;
-export const GetAccountBalanceListDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getAccountBalanceList" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "account" },
-            name: { kind: "Name", value: "householdAccount" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "_and" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "groupId" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "groupId" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "accountName" },
-                  name: { kind: "Name", value: "name" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "allDetailViewsAggregate" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "date" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_gte" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "fromDate" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_and" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_lte" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "toDate",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "aggregate" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "sum" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "signedAmount",
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetAccountBalanceListQuery,
-  GetAccountBalanceListQueryVariables
->;
 export const GetCreditCardSummaryByDateDocument = {
   kind: "Document",
   definitions: [
@@ -14606,429 +12028,6 @@ export const GetDailyDetailByIdDocument = {
   GetDailyDetailByIdQuery,
   GetDailyDetailByIdQueryVariables
 >;
-export const GetDepositDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getDeposit" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "depositCategory" },
-            name: { kind: "Name", value: "householdDepositCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "groupId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "category" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "categoryName" },
-                        name: { kind: "Name", value: "name" },
-                      },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "daily" },
-                        name: { kind: "Name", value: "dailyDetailsAggregate" },
-                        arguments: [
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "orderBy" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: { kind: "EnumValue", value: "ASC" },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "where" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_gte" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "fromDate",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_and" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "date" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "_lte",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "toDate",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "aggregate" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "count" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "sum" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "amount",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "avg" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "amount",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "nodes" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "date" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "amount" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "memo" },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "credit" },
-                        name: {
-                          kind: "Name",
-                          value: "creditCardDetailsAggregate",
-                        },
-                        arguments: [
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "orderBy" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: { kind: "EnumValue", value: "ASC" },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "where" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "date" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_gte" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "fromDate",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_and" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "date" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: {
-                                                kind: "Name",
-                                                value: "_lte",
-                                              },
-                                              value: {
-                                                kind: "Variable",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "toDate",
-                                                },
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "aggregate" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "count" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "sum" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "amount",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "avg" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "amount",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "nodes" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "id" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "date" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "amount" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "memo" },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetDepositQuery, GetDepositQueryVariables>;
 export const GetAccountByIdDocument = {
   kind: "Document",
   definitions: [
@@ -16709,6 +13708,242 @@ export const GetFavoriteFiltersDocument = {
   GetFavoriteFiltersQuery,
   GetFavoriteFiltersQueryVariables
 >;
+export const ChartDataDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "chartData" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "fromDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "toDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "detailView" },
+            name: { kind: "Name", value: "householdAllDetailView" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "groupId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "groupId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "date" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_gte" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "fromDate" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "_and" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "date" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_lte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "toDate" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "settlementDate" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "withdrawalDate" },
+                },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "amount" },
+                  name: { kind: "Name", value: "originalAmount" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "account" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "genre" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "genreType" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "category" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "depositCategory" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              alias: { kind: "Name", value: "id" },
+                              name: { kind: "Name", value: "categoryId" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "memo" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "transferCategory" },
+            name: { kind: "Name", value: "householdTransferCategoryByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "groupId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "groupId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "id" },
+                  name: { kind: "Name", value: "groupId" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "incomeCategoryId" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "outcomeCategoryId" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ChartDataQuery, ChartDataQueryVariables>;
 export const ChartDetailTableFilterWithdrawalDateDocument = {
   kind: "Document",
   definitions: [
@@ -17229,6 +14464,221 @@ export const ChartDetailTableFilterSettlementDateDocument = {
   ChartDetailTableFilterSettlementDateQuery,
   ChartDetailTableFilterSettlementDateQueryVariables
 >;
+export const GetAccountBalanceListDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getAccountBalanceList" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "fromDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "toDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "account" },
+            name: { kind: "Name", value: "householdAccount" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "_and" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "groupId" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "groupId" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "displayOrder" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "accountName" },
+                  name: { kind: "Name", value: "name" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "allDetailViewsAggregate" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "date" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_gte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "fromDate" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_and" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "date" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_lte" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "toDate",
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "aggregate" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "sum" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "signedAmount",
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetAccountBalanceListQuery,
+  GetAccountBalanceListQueryVariables
+>;
 export const GetTransferCategoryByDocument = {
   kind: "Document",
   definitions: [
@@ -17363,205 +14813,4 @@ export const GetTransferCategoryByDocument = {
 } as unknown as DocumentNode<
   GetTransferCategoryByQuery,
   GetTransferCategoryByQueryVariables
->;
-export const PageSourceBalanceChartDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "pageSourceBalanceChart" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "detailView" },
-            name: { kind: "Name", value: "householdAllDetailView" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "groupId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "date" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_gte" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "fromDate" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "_and" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "date" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_lte" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "toDate" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "settlementDate" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "withdrawalDate" },
-                },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "amount" },
-                  name: { kind: "Name", value: "originalAmount" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "account" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "genre" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "category" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "depositCategory" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "id" },
-                              name: { kind: "Name", value: "categoryId" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "memo" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  PageSourceBalanceChartQuery,
-  PageSourceBalanceChartQueryVariables
 >;

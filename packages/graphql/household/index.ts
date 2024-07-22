@@ -683,8 +683,6 @@ export type GroupBoolExp = {
   importFileHistories?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   summaryViews?: InputMaybe<SummaryViewBoolExp>;
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
@@ -709,7 +707,6 @@ export type GroupOrderBy = {
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
@@ -1170,8 +1167,6 @@ export type HouseholdCategoryBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   transferCategories?: InputMaybe<HouseholdTransferCategoryBoolExp>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateBoolExp>;
   validFlag?: InputMaybe<BooleanComparisonExp>;
@@ -1198,7 +1193,6 @@ export type HouseholdCategoryInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryArrRelInsertInput>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
@@ -1246,7 +1240,6 @@ export type HouseholdCategoryOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateOrderBy>;
   validFlag?: InputMaybe<OrderBy>;
 };
@@ -3222,167 +3215,6 @@ export enum HouseholdImportFileHistoryUpdateColumn {
   Placeholder = "_PLACEHOLDER",
 }
 
-export type HouseholdSummaryCategoryAggregateBoolExp = {
-  count?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "household.summary_category" */
-export type HouseholdSummaryCategoryAggregateOrderBy = {
-  avg?: InputMaybe<HouseholdSummaryCategoryAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<HouseholdSummaryCategoryMaxOrderBy>;
-  min?: InputMaybe<HouseholdSummaryCategoryMinOrderBy>;
-  stddev?: InputMaybe<HouseholdSummaryCategoryStddevOrderBy>;
-  stddevPop?: InputMaybe<HouseholdSummaryCategoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<HouseholdSummaryCategoryStddevSampOrderBy>;
-  sum?: InputMaybe<HouseholdSummaryCategorySumOrderBy>;
-  varPop?: InputMaybe<HouseholdSummaryCategoryVarPopOrderBy>;
-  varSamp?: InputMaybe<HouseholdSummaryCategoryVarSampOrderBy>;
-  variance?: InputMaybe<HouseholdSummaryCategoryVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "household.summary_category" */
-export type HouseholdSummaryCategoryArrRelInsertInput = {
-  data: Array<HouseholdSummaryCategoryInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
-};
-
-/** order by avg() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryAvgOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "household.summary_category". All fields are combined with a logical 'AND'. */
-export type HouseholdSummaryCategoryBoolExp = {
-  _and?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  _not?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  _or?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  category?: InputMaybe<HouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<StringComparisonExp>;
-  displayOrder?: InputMaybe<IntComparisonExp>;
-  group?: InputMaybe<GroupBoolExp>;
-  groupId?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "household.summary_category" */
-export enum HouseholdSummaryCategoryConstraint {
-  /** unique or primary key constraint on columns "id" */
-  SummaryCategoryByGroupPkey = "summary_category_by_group_pkey",
-}
-
-/** input type for inserting data into table "household.summary_category" */
-export type HouseholdSummaryCategoryInsertInput = {
-  category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMaxOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMinOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "household.summary_category" */
-export type HouseholdSummaryCategoryOnConflict = {
-  constraint: HouseholdSummaryCategoryConstraint;
-  updateColumns?: Array<HouseholdSummaryCategoryUpdateColumn>;
-  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-};
-
-/** Ordering options when selecting data from "household.summary_category". */
-export type HouseholdSummaryCategoryOrderBy = {
-  category?: InputMaybe<HouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  group?: InputMaybe<GroupOrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "household.summary_category" */
-export enum HouseholdSummaryCategorySelectColumn {
-  /** column name */
-  CategoryId = "categoryId",
-  /** column name */
-  DisplayOrder = "displayOrder",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Id = "id",
-}
-
-/** order by stddev() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "household_summary_category" */
-export type HouseholdSummaryCategoryStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: HouseholdSummaryCategoryStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type HouseholdSummaryCategoryStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by sum() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategorySumOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** placeholder for update columns of table "household.summary_category" (current role has no relevant permissions) */
-export enum HouseholdSummaryCategoryUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
-
-/** order by varPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarianceOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExp = {
   count?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExpCount>;
 };
@@ -5264,13 +5096,6 @@ export type HouseholdImportFileHistoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HouseholdSummaryCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
@@ -5297,21 +5122,6 @@ export type RecordAggregateBoolExpCount = {
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<RecordBoolExp>;
   predicate: IntComparisonExp;
-};
-
-export type CreateAccountMutationVariables = Exact<{
-  accountId: Scalars["String"];
-  accountName: Scalars["String"];
-  displayOrder: Scalars["Int"];
-  groupId: Scalars["String"];
-}>;
-
-export type CreateAccountMutation = {
-  __typename?: "mutation_root";
-  insertAccount?: {
-    __typename?: "HouseholdAccountMutationResponse";
-    returning: Array<{ __typename?: "HouseholdAccount"; accountId: string }>;
-  } | null;
 };
 
 export type CreateCategoryMutationVariables = Exact<{
@@ -5408,21 +5218,6 @@ export type CreateImportFileHistoryMutation = {
   } | null;
 };
 
-export type CreateSummaryCategoryMutationVariables = Exact<{
-  id: Scalars["String"];
-  displayOrder: Scalars["Int"];
-  categoryId: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type CreateSummaryCategoryMutation = {
-  __typename?: "mutation_root";
-  insertSummaryCategoryByGroup?: {
-    __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
-  } | null;
-};
-
 export type CreateUserMutationVariables = Exact<{
   userId: Scalars["String"];
   userName: Scalars["String"];
@@ -5447,18 +5242,6 @@ export type DeleteDailyDetailBySerialNoMutation = {
   deleteDailyDetailByPk?: {
     __typename: "HouseholdDailyDetail";
     id: string;
-  } | null;
-};
-
-export type DeleteSummaryCategoryMutationVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type DeleteSummaryCategoryMutation = {
-  __typename?: "mutation_root";
-  deleteSummaryCategoryByGroup?: {
-    __typename?: "HouseholdSummaryCategoryMutationResponse";
-    returning: Array<{ __typename?: "HouseholdSummaryCategory"; id: string }>;
   } | null;
 };
 
@@ -5815,26 +5598,6 @@ export type GetCategoryByIdQuery = {
   } | null;
 };
 
-export type GetCategoryTotalByMonthQueryVariables = Exact<{
-  fromDate?: InputMaybe<Scalars["date"]>;
-  toDate?: InputMaybe<Scalars["date"]>;
-  groupId: Scalars["String"];
-}>;
-
-export type GetCategoryTotalByMonthQuery = {
-  __typename?: "query_root";
-  categoryTotalByMonth: Array<{
-    __typename?: "HouseholdTotalByCategoryView";
-    date?: any | null;
-    iocomeType?: string | null;
-    genreId?: string | null;
-    genreName?: string | null;
-    categoryId?: string | null;
-    categoryName?: string | null;
-    total?: any | null;
-  }>;
-};
-
 export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
@@ -5914,76 +5677,6 @@ export type GetDailyDetailByDateQuery = {
   }>;
 };
 
-export type GetDailyDetailByDateCategoryIdQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-  categoryId: Scalars["String"];
-}>;
-
-export type GetDailyDetailByDateCategoryIdQuery = {
-  __typename?: "query_root";
-  dailies: Array<{
-    __typename: "HouseholdDailyDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    genre: {
-      __typename?: "HouseholdGenre";
-      id: string;
-      name: string;
-      genreType: string;
-      iocomeType: string;
-    };
-    category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  }>;
-};
-
-export type GetDailyDetailByDateGenreIdQueryVariables = Exact<{
-  genreId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetDailyDetailByDateGenreIdQuery = {
-  __typename?: "query_root";
-  allCategoriesList: Array<{
-    __typename?: "HouseholdCategory";
-    dailyDetailsByCategoryIdList: Array<{
-      __typename?: "HouseholdDailyDetail";
-      id: string;
-      date: any;
-      amount: any;
-      memo?: string | null;
-      categoryByCategoryId: {
-        __typename?: "HouseholdCategory";
-        categoryId: string;
-        categoryName: string;
-        genreByGenreId: {
-          __typename?: "HouseholdGenre";
-          genreType: string;
-          iocomeType: string;
-          genreId: string;
-          genreName: string;
-        };
-      };
-      accountByAccountId: {
-        __typename?: "HouseholdAccount";
-        accountId: string;
-        accountName: string;
-      };
-      userByUserId: {
-        __typename?: "User";
-        userId: string;
-        userName?: string | null;
-      };
-    }>;
-  }>;
-};
-
 export type GetGenreByIdQueryVariables = Exact<{
   genreId: Scalars["String"];
 }>;
@@ -6004,101 +5697,6 @@ export type GetGenreByIdQuery = {
       categoryName: string;
     }>;
   } | null;
-};
-
-export type GetGenreTotalByMonthQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetGenreTotalByMonthQuery = {
-  __typename?: "query_root";
-  genreTotalByMonthList: Array<{
-    __typename?: "HouseholdTotalByGenreView";
-    date?: any | null;
-    iocomeType?: string | null;
-    genreId?: string | null;
-    genreName?: string | null;
-    total?: any | null;
-  }>;
-};
-
-export type GetSummaryCategoriesQueryVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type GetSummaryCategoriesQuery = {
-  __typename?: "query_root";
-  categories: Array<{
-    __typename?: "HouseholdSummaryCategory";
-    id: string;
-    groupId: string;
-    displayOrder: number;
-    category: {
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      genre: {
-        __typename?: "HouseholdGenre";
-        id: string;
-        name: string;
-        iocomeType: string;
-        type: string;
-      };
-    };
-  }>;
-};
-
-export type GetSummaryCategoryBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetSummaryCategoryBetweenDateQuery = {
-  __typename?: "query_root";
-  summaryCategoryList: Array<{
-    __typename?: "HouseholdSummaryCategory";
-    category: {
-      __typename?: "HouseholdCategory";
-      name: string;
-      id: string;
-      genre: { __typename?: "HouseholdGenre"; iocomeType: string };
-      daily: Array<{
-        __typename?: "HouseholdDailyDetail";
-        date: any;
-        amount: any;
-      }>;
-      creditCard: Array<{
-        __typename?: "HouseholdCreditCardDetail";
-        date: any;
-        amount: any;
-      }>;
-    };
-  }>;
-};
-
-export type GetTotalBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetTotalBetweenDateQuery = {
-  __typename?: "query_root";
-  incomeTotalByDate: Array<{
-    __typename?: "HouseholdDailyTotalView";
-    date?: any | null;
-    iocomeType?: string | null;
-    total?: any | null;
-  }>;
-  outcomeTotalByDate: Array<{
-    __typename?: "HouseholdDailyTotalView";
-    date?: any | null;
-    iocomeType?: string | null;
-    total?: any | null;
-  }>;
 };
 
 export type GetValidAccountsQueryVariables = Exact<{
@@ -6185,31 +5783,6 @@ export type FragDailyDetailFragment = {
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
 };
 
-export type GetAccountBalanceListQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type GetAccountBalanceListQuery = {
-  __typename?: "query_root";
-  account: Array<{
-    __typename: "HouseholdAccount";
-    id: string;
-    accountName: string;
-    allDetailViewsAggregate: {
-      __typename?: "HouseholdAllDetailViewAggregate";
-      aggregate?: {
-        __typename?: "HouseholdAllDetailViewAggregateFields";
-        sum?: {
-          __typename?: "HouseholdAllDetailViewSumFields";
-          signedAmount?: any | null;
-        } | null;
-      } | null;
-    };
-  }>;
-};
-
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -6250,68 +5823,6 @@ export type GetDailyDetailByIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   } | null;
-};
-
-export type GetDepositQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type GetDepositQuery = {
-  __typename?: "query_root";
-  depositCategory: Array<{
-    __typename?: "HouseholdDepositCategory";
-    category: {
-      __typename?: "HouseholdCategory";
-      id: string;
-      categoryName: string;
-      daily: {
-        __typename?: "HouseholdDailyDetailAggregate";
-        aggregate?: {
-          __typename?: "HouseholdDailyDetailAggregateFields";
-          count: number;
-          sum?: {
-            __typename?: "HouseholdDailyDetailSumFields";
-            amount?: any | null;
-          } | null;
-          avg?: {
-            __typename?: "HouseholdDailyDetailAvgFields";
-            amount?: number | null;
-          } | null;
-        } | null;
-        nodes: Array<{
-          __typename?: "HouseholdDailyDetail";
-          id: string;
-          date: any;
-          amount: any;
-          memo?: string | null;
-        }>;
-      };
-      credit: {
-        __typename?: "HouseholdCreditCardDetailAggregate";
-        aggregate?: {
-          __typename?: "HouseholdCreditCardDetailAggregateFields";
-          count: number;
-          sum?: {
-            __typename?: "HouseholdCreditCardDetailSumFields";
-            amount?: any | null;
-          } | null;
-          avg?: {
-            __typename?: "HouseholdCreditCardDetailAvgFields";
-            amount?: number | null;
-          } | null;
-        } | null;
-        nodes: Array<{
-          __typename?: "HouseholdCreditCardDetail";
-          id: string;
-          date: any;
-          amount: any;
-          memo?: string | null;
-        }>;
-      };
-    };
-  }>;
 };
 
 export type FragCreditCardDetailFragment = {
@@ -6630,6 +6141,51 @@ export type GetFavoriteFiltersQuery = {
   }>;
 };
 
+export type ChartDataQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type ChartDataQuery = {
+  __typename?: "query_root";
+  detailView: Array<{
+    __typename: "HouseholdAllDetailView";
+    id?: string | null;
+    settlementDate?: any | null;
+    withdrawalDate?: any | null;
+    iocomeType?: string | null;
+    memo?: string | null;
+    amount?: any | null;
+    account?: {
+      __typename?: "HouseholdAccount";
+      id: string;
+      name: string;
+    } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
+    category?: {
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      depositCategory?: {
+        __typename?: "HouseholdDepositCategory";
+        id: string;
+      } | null;
+    } | null;
+  }>;
+  transferCategory?: {
+    __typename: "HouseholdTransferCategory";
+    incomeCategoryId: string;
+    outcomeCategoryId: string;
+    id: string;
+  } | null;
+};
+
 export type ChartDetailTableFilterWithdrawalDateQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
@@ -6723,6 +6279,31 @@ export type FragChartDetailTableFragment = {
   } | null;
 };
 
+export type GetAccountBalanceListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
+
+export type GetAccountBalanceListQuery = {
+  __typename?: "query_root";
+  account: Array<{
+    __typename: "HouseholdAccount";
+    id: string;
+    accountName: string;
+    allDetailViewsAggregate: {
+      __typename?: "HouseholdAllDetailViewAggregate";
+      aggregate?: {
+        __typename?: "HouseholdAllDetailViewAggregateFields";
+        sum?: {
+          __typename?: "HouseholdAllDetailViewSumFields";
+          signedAmount?: any | null;
+        } | null;
+      } | null;
+    };
+  }>;
+};
+
 export type GetTransferCategoryByQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -6755,40 +6336,6 @@ export type GetTransferCategoryByQuery = {
       };
     };
   } | null;
-};
-
-export type PageSourceBalanceChartQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-}>;
-
-export type PageSourceBalanceChartQuery = {
-  __typename?: "query_root";
-  detailView: Array<{
-    __typename: "HouseholdAllDetailView";
-    id?: string | null;
-    settlementDate?: any | null;
-    withdrawalDate?: any | null;
-    iocomeType?: string | null;
-    memo?: string | null;
-    amount?: any | null;
-    account?: {
-      __typename?: "HouseholdAccount";
-      id: string;
-      name: string;
-    } | null;
-    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
-    category?: {
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      depositCategory?: {
-        __typename?: "HouseholdDepositCategory";
-        id: string;
-      } | null;
-    } | null;
-  }>;
 };
 
 export const FragDailyDetailFragmentDoc = gql`
@@ -6890,35 +6437,6 @@ export const FragChartDetailTableFragmentDoc = gql`
     memo
   }
 `;
-export const CreateAccountDocument = gql`
-  mutation CreateAccount(
-    $accountId: String!
-    $accountName: String!
-    $displayOrder: Int!
-    $groupId: String!
-  ) {
-    insertAccount: insertHouseholdAccount(
-      objects: {
-        id: $accountId
-        name: $accountName
-        displayOrder: $displayOrder
-        groupId: $groupId
-        validFlag: true
-      }
-    ) {
-      returning {
-        accountId: id
-      }
-    }
-  }
-`;
-
-export function useCreateAccountMutation() {
-  return Urql.useMutation<
-    CreateAccountMutation,
-    CreateAccountMutationVariables
-  >(CreateAccountDocument);
-}
 export const CreateCategoryDocument = gql`
   mutation CreateCategory(
     $categoryId: String!
@@ -7100,34 +6618,6 @@ export function useCreateImportFileHistoryMutation() {
     CreateImportFileHistoryMutationVariables
   >(CreateImportFileHistoryDocument);
 }
-export const CreateSummaryCategoryDocument = gql`
-  mutation CreateSummaryCategory(
-    $id: String!
-    $displayOrder: Int!
-    $categoryId: String!
-    $groupId: String!
-  ) {
-    insertSummaryCategoryByGroup: insertHouseholdSummaryCategory(
-      objects: {
-        id: $id
-        categoryId: $categoryId
-        groupId: $groupId
-        displayOrder: $displayOrder
-      }
-    ) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-export function useCreateSummaryCategoryMutation() {
-  return Urql.useMutation<
-    CreateSummaryCategoryMutation,
-    CreateSummaryCategoryMutationVariables
-  >(CreateSummaryCategoryDocument);
-}
 export const CreateUserDocument = gql`
   mutation CreateUser(
     $userId: String!
@@ -7170,24 +6660,6 @@ export function useDeleteDailyDetailBySerialNoMutation() {
     DeleteDailyDetailBySerialNoMutation,
     DeleteDailyDetailBySerialNoMutationVariables
   >(DeleteDailyDetailBySerialNoDocument);
-}
-export const DeleteSummaryCategoryDocument = gql`
-  mutation DeleteSummaryCategory($groupId: String!) {
-    deleteSummaryCategoryByGroup: deleteHouseholdSummaryCategory(
-      where: { groupId: { _eq: $groupId } }
-    ) {
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-export function useDeleteSummaryCategoryMutation() {
-  return Urql.useMutation<
-    DeleteSummaryCategoryMutation,
-    DeleteSummaryCategoryMutationVariables
-  >(DeleteSummaryCategoryDocument);
 }
 export const UpdateCategoryByIdDocument = gql`
   mutation UpdateCategoryById(
@@ -7725,37 +7197,6 @@ export function useGetCategoryByIdQuery(
     ...options,
   });
 }
-export const GetCategoryTotalByMonthDocument = gql`
-  query GetCategoryTotalByMonth(
-    $fromDate: date
-    $toDate: date
-    $groupId: String!
-  ) {
-    categoryTotalByMonth(
-      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
-    ) {
-      date
-      iocomeType
-      genreId
-      genreName
-      categoryId
-      categoryName
-      total
-    }
-  }
-`;
-
-export function useGetCategoryTotalByMonthQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCategoryTotalByMonthQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCategoryTotalByMonthQuery,
-    GetCategoryTotalByMonthQueryVariables
-  >({ query: GetCategoryTotalByMonthDocument, ...options });
-}
 export const GetCreditCardDetailBySummaryIdDocument = gql`
   query GetCreditCardDetailBySummaryId($id: String!) {
     creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
@@ -7848,91 +7289,6 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
 }
-export const GetDailyDetailByDateCategoryIdDocument = gql`
-  query GetDailyDetailByDateCategoryId(
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-    $categoryId: String!
-  ) {
-    dailies: dailyDetailByDate(
-      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
-      where: { categoryId: { _eq: $categoryId } }
-    ) {
-      ...fragDailyDetail
-    }
-  }
-  ${FragDailyDetailFragmentDoc}
-`;
-
-export function useGetDailyDetailByDateCategoryIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetDailyDetailByDateCategoryIdQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetDailyDetailByDateCategoryIdQuery,
-    GetDailyDetailByDateCategoryIdQueryVariables
-  >({ query: GetDailyDetailByDateCategoryIdDocument, ...options });
-}
-export const GetDailyDetailByDateGenreIdDocument = gql`
-  query GetDailyDetailByDateGenreId(
-    $genreId: String!
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-  ) {
-    allCategoriesList: householdCategory(
-      where: { genreId: { _eq: $genreId } }
-    ) {
-      dailyDetailsByCategoryIdList: dailyDetails(
-        where: {
-          date: { _gte: $fromDate }
-          _and: {
-            date: { _lte: $toDate }
-            _and: { groupId: { _eq: $groupId } }
-          }
-        }
-      ) {
-        id
-        date
-        amount
-        memo
-        categoryByCategoryId: category {
-          categoryId: id
-          categoryName: name
-          genreByGenreId: genre {
-            genreId: id
-            genreName: name
-            genreType
-            iocomeType
-          }
-        }
-        accountByAccountId: account {
-          accountId: id
-          accountName: name
-        }
-        userByUserId: user {
-          userId: id
-          userName: name
-        }
-      }
-    }
-  }
-`;
-
-export function useGetDailyDetailByDateGenreIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetDailyDetailByDateGenreIdQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetDailyDetailByDateGenreIdQuery,
-    GetDailyDetailByDateGenreIdQueryVariables
-  >({ query: GetDailyDetailByDateGenreIdDocument, ...options });
-}
 export const GetGenreByIdDocument = gql`
   query GetGenreById($genreId: String!) {
     genreById: householdGenreByPk(id: $genreId) {
@@ -7957,164 +7313,6 @@ export function useGetGenreByIdQuery(
     query: GetGenreByIdDocument,
     ...options,
   });
-}
-export const GetGenreTotalByMonthDocument = gql`
-  query GetGenreTotalByMonth(
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-  ) {
-    genreTotalByMonthList: genreTotalByMonth(
-      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
-    ) {
-      date
-      iocomeType
-      genreId
-      genreName
-      total
-    }
-  }
-`;
-
-export function useGetGenreTotalByMonthQuery(
-  options: Omit<Urql.UseQueryArgs<GetGenreTotalByMonthQueryVariables>, "query">,
-) {
-  return Urql.useQuery<
-    GetGenreTotalByMonthQuery,
-    GetGenreTotalByMonthQueryVariables
-  >({ query: GetGenreTotalByMonthDocument, ...options });
-}
-export const GetSummaryCategoriesDocument = gql`
-  query GetSummaryCategories($groupId: String!) {
-    categories: householdSummaryCategory(
-      where: { groupId: { _eq: $groupId } }
-      orderBy: { displayOrder: ASC }
-    ) {
-      id
-      groupId
-      displayOrder
-      category: category {
-        id
-        name
-        genre: genre {
-          id
-          name
-          type: genreType
-          iocomeType
-        }
-      }
-    }
-  }
-`;
-
-export function useGetSummaryCategoriesQuery(
-  options: Omit<Urql.UseQueryArgs<GetSummaryCategoriesQueryVariables>, "query">,
-) {
-  return Urql.useQuery<
-    GetSummaryCategoriesQuery,
-    GetSummaryCategoriesQueryVariables
-  >({ query: GetSummaryCategoriesDocument, ...options });
-}
-export const GetSummaryCategoryBetweenDateDocument = gql`
-  query GetSummaryCategoryBetweenDate(
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-  ) {
-    summaryCategoryList: householdSummaryCategory(
-      orderBy: { displayOrder: ASC }
-      where: { groupId: { _eq: $groupId } }
-    ) {
-      category {
-        name
-        id
-        genre {
-          iocomeType
-        }
-        daily: dailyDetails(
-          where: {
-            groupId: { _eq: $groupId }
-            _and: {
-              date: { _gte: $fromDate }
-              _and: { date: { _lte: $toDate } }
-            }
-          }
-          orderBy: { date: ASC }
-        ) {
-          date
-          amount
-        }
-        creditCard: creditCardDetails(
-          where: {
-            groupId: { _eq: $groupId }
-            _and: {
-              date: { _gte: $fromDate }
-              _and: { date: { _lte: $toDate } }
-            }
-          }
-          orderBy: { date: ASC }
-        ) {
-          date
-          amount
-        }
-      }
-    }
-  }
-`;
-
-export function useGetSummaryCategoryBetweenDateQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetSummaryCategoryBetweenDateQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetSummaryCategoryBetweenDateQuery,
-    GetSummaryCategoryBetweenDateQueryVariables
-  >({ query: GetSummaryCategoryBetweenDateDocument, ...options });
-}
-export const GetTotalBetweenDateDocument = gql`
-  query GetTotalBetweenDate(
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-  ) {
-    incomeTotalByDate: householdDailyTotalView(
-      where: {
-        iocomeType: { _eq: "INCOME" }
-        _and: {
-          groupId: { _eq: $groupId }
-          _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-        }
-      }
-    ) {
-      date
-      iocomeType
-      total
-    }
-    outcomeTotalByDate: householdDailyTotalView(
-      where: {
-        iocomeType: { _eq: "OUTCOME" }
-        _and: {
-          groupId: { _eq: $groupId }
-          _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-        }
-      }
-    ) {
-      date
-      iocomeType
-      total
-    }
-  }
-`;
-
-export function useGetTotalBetweenDateQuery(
-  options: Omit<Urql.UseQueryArgs<GetTotalBetweenDateQueryVariables>, "query">,
-) {
-  return Urql.useQuery<
-    GetTotalBetweenDateQuery,
-    GetTotalBetweenDateQueryVariables
-  >({ query: GetTotalBetweenDateDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts($groupId: String!) {
@@ -8217,43 +7415,6 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
 }
-export const GetAccountBalanceListDocument = gql`
-  query getAccountBalanceList(
-    $groupId: String!
-    $fromDate: date!
-    $toDate: date!
-  ) {
-    account: householdAccount(
-      where: { _and: { groupId: { _eq: $groupId } } }
-      orderBy: { displayOrder: ASC }
-    ) {
-      __typename
-      id
-      accountName: name
-      allDetailViewsAggregate(
-        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
-      ) {
-        aggregate {
-          sum {
-            signedAmount
-          }
-        }
-      }
-    }
-  }
-`;
-
-export function useGetAccountBalanceListQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetAccountBalanceListQuery,
-    GetAccountBalanceListQueryVariables
-  >({ query: GetAccountBalanceListDocument, ...options });
-}
 export const GetCreditCardSummaryByDateDocument = gql`
   query getCreditCardSummaryByDate(
     $fromDate: date!
@@ -8309,73 +7470,6 @@ export function useGetDailyDetailByIdQuery(
     GetDailyDetailByIdQuery,
     GetDailyDetailByIdQueryVariables
   >({ query: GetDailyDetailByIdDocument, ...options });
-}
-export const GetDepositDocument = gql`
-  query getDeposit($groupId: String!, $fromDate: date!, $toDate: date!) {
-    depositCategory: householdDepositCategory(
-      where: { groupId: { _eq: $groupId } }
-    ) {
-      category {
-        id
-        categoryName: name
-        daily: dailyDetailsAggregate(
-          orderBy: { date: ASC }
-          where: {
-            date: { _gte: $fromDate }
-            _and: { date: { _lte: $toDate } }
-          }
-        ) {
-          aggregate {
-            count
-            sum {
-              amount
-            }
-            avg {
-              amount
-            }
-          }
-          nodes {
-            id
-            date
-            amount
-            memo
-          }
-        }
-        credit: creditCardDetailsAggregate(
-          orderBy: { date: ASC }
-          where: {
-            date: { _gte: $fromDate }
-            _and: { date: { _lte: $toDate } }
-          }
-        ) {
-          aggregate {
-            count
-            sum {
-              amount
-            }
-            avg {
-              amount
-            }
-          }
-          nodes {
-            id
-            date
-            amount
-            memo
-          }
-        }
-      }
-    }
-  }
-`;
-
-export function useGetDepositQuery(
-  options: Omit<Urql.UseQueryArgs<GetDepositQueryVariables>, "query">,
-) {
-  return Urql.useQuery<GetDepositQuery, GetDepositQueryVariables>({
-    query: GetDepositDocument,
-    ...options,
-  });
 }
 export const GetAccountByIdDocument = gql`
   query getAccountById($accountId: String!) {
@@ -8653,6 +7747,56 @@ export function useGetFavoriteFiltersQuery(
     GetFavoriteFiltersQueryVariables
   >({ query: GetFavoriteFiltersDocument, ...options });
 }
+export const ChartDataDocument = gql`
+  query chartData($groupId: String!, $fromDate: date!, $toDate: date!) {
+    detailView: householdAllDetailView(
+      where: {
+        groupId: { _eq: $groupId }
+        date: { _gte: $fromDate }
+        _and: { date: { _lte: $toDate } }
+      }
+    ) {
+      __typename
+      id
+      settlementDate
+      withdrawalDate
+      amount: originalAmount
+      iocomeType
+      account {
+        id
+        name
+      }
+      genre {
+        id
+        name
+        genreType
+      }
+      category {
+        id
+        name
+        depositCategory {
+          id: categoryId
+        }
+      }
+      memo
+    }
+    transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
+      __typename
+      id: groupId
+      incomeCategoryId
+      outcomeCategoryId
+    }
+  }
+`;
+
+export function useChartDataQuery(
+  options: Omit<Urql.UseQueryArgs<ChartDataQueryVariables>, "query">,
+) {
+  return Urql.useQuery<ChartDataQuery, ChartDataQueryVariables>({
+    query: ChartDataDocument,
+    ...options,
+  });
+}
 export const ChartDetailTableFilterWithdrawalDateDocument = gql`
   query chartDetailTableFilterWithdrawalDate(
     $groupId: String!
@@ -8723,6 +7867,43 @@ export function useChartDetailTableFilterSettlementDateQuery(
     ChartDetailTableFilterSettlementDateQueryVariables
   >({ query: ChartDetailTableFilterSettlementDateDocument, ...options });
 }
+export const GetAccountBalanceListDocument = gql`
+  query getAccountBalanceList(
+    $groupId: String!
+    $fromDate: date!
+    $toDate: date!
+  ) {
+    account: householdAccount(
+      where: { _and: { groupId: { _eq: $groupId } } }
+      orderBy: { displayOrder: ASC }
+    ) {
+      __typename
+      id
+      accountName: name
+      allDetailViewsAggregate(
+        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+      ) {
+        aggregate {
+          sum {
+            signedAmount
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useGetAccountBalanceListQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetAccountBalanceListQuery,
+    GetAccountBalanceListQueryVariables
+  >({ query: GetAccountBalanceListDocument, ...options });
+}
 export const GetTransferCategoryByDocument = gql`
   query GetTransferCategoryBy($groupId: String!) {
     transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
@@ -8759,54 +7940,4 @@ export function useGetTransferCategoryByQuery(
     GetTransferCategoryByQuery,
     GetTransferCategoryByQueryVariables
   >({ query: GetTransferCategoryByDocument, ...options });
-}
-export const PageSourceBalanceChartDocument = gql`
-  query pageSourceBalanceChart(
-    $groupId: String!
-    $fromDate: date!
-    $toDate: date!
-  ) {
-    detailView: householdAllDetailView(
-      where: {
-        groupId: { _eq: $groupId }
-        date: { _gte: $fromDate }
-        _and: { date: { _lte: $toDate } }
-      }
-    ) {
-      __typename
-      id
-      settlementDate
-      withdrawalDate
-      amount: originalAmount
-      iocomeType
-      account {
-        id
-        name
-      }
-      genre {
-        id
-        name
-      }
-      category {
-        id
-        name
-        depositCategory {
-          id: categoryId
-        }
-      }
-      memo
-    }
-  }
-`;
-
-export function usePageSourceBalanceChartQuery(
-  options: Omit<
-    Urql.UseQueryArgs<PageSourceBalanceChartQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    PageSourceBalanceChartQuery,
-    PageSourceBalanceChartQueryVariables
-  >({ query: PageSourceBalanceChartDocument, ...options });
 }

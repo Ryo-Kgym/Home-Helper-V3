@@ -12,7 +12,7 @@ export const HouseholdLayout = ({
   <div className={"bg-white text-black"}>
     <NavbarSection header={"家計簿アプリ"} naviArray={householdNavis}>
       {children}
-      <div className={"z-100 absolute bottom-16 right-5"}>
+      <div className={"absolute bottom-16 left-12 z-[110]"}>
         <RegisterDailyButton />
       </div>
     </NavbarSection>
@@ -39,26 +39,6 @@ const householdNavis: Navi[] = [
   {
     label: "アカウント",
     url: "/household/account",
-  },
-  {
-    label: "カレンダー",
-    url: "/household/daily",
-  },
-  {
-    label: "ジャンル",
-    url: "/household/genre",
-  },
-  {
-    label: "カテゴリ",
-    url: "/household/category",
-  },
-  {
-    label: "サマリ",
-    url: "/household/summary",
-  },
-  {
-    label: "預金",
-    url: "/household/deposit",
   },
   {
     label: "クレカ履歴",

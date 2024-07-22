@@ -1,7 +1,8 @@
-import { fetchBalanceList } from "../server/fetchBalanceList";
+import { fetchBalanceList } from "@features/householdAccountList/server/fetchBalanceList";
+
 import { AccountListClient } from "./AccountListClient";
 
-export const AccountListPageServer = async ({
+export const AccountListServer = async ({
   fromDate = new Date("2019-01-01"),
   toDate = new Date(),
   accountId,

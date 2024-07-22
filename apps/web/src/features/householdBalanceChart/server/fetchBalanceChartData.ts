@@ -3,7 +3,7 @@ import { filterSumBalance } from "@features/householdBalanceChart/server/filterS
 import { sumBalanceData } from "@features/householdBalanceChart/server/sumBalanceData";
 import { findUser } from "@persistence/browser/server/find-user";
 import { fetchQuery } from "@persistence/database/server/fetchQuery";
-import { PageSourceBalanceChartDocument } from "@v3/graphql/household/type";
+import { ChartDataDocument } from "@v3/graphql/household/type";
 
 export const fetchBalanceChartData = async ({
   fromDate,
@@ -14,7 +14,7 @@ export const fetchBalanceChartData = async ({
 }) => {
   const { group } = await findUser();
 
-  const source = await fetchQuery(PageSourceBalanceChartDocument, {
+  const source = await fetchQuery(ChartDataDocument, {
     groupId: group.id,
     fromDate: new Date("2019-01-01"),
     toDate,

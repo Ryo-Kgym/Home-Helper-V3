@@ -10,28 +10,29 @@ const Page = ({
     type: string | undefined;
   };
 }) => {
+  const convertToDate = (date: string | undefined) => {
+    const d = date ? new Date(date) : undefined;
+
+    if (isNaN(d?.getTime() ?? 0)) {
+      return undefined;
+    }
+    return d;
+  };
+
   switch (searchParams.type) {
     case "category": {
       return (
         <CategoryChartServer
-          fromDate={
-            searchParams.fromDate ? new Date(searchParams.fromDate) : undefined
-          }
-          toDate={
-            searchParams.toDate ? new Date(searchParams.toDate) : undefined
-          }
+          fromDate={convertToDate(searchParams.fromDate)}
+          toDate={convertToDate(searchParams.toDate)}
         />
       );
     }
     default: {
       return (
         <BalanceChartPageServer
-          fromDate={
-            searchParams.fromDate ? new Date(searchParams.fromDate) : undefined
-          }
-          toDate={
-            searchParams.toDate ? new Date(searchParams.toDate) : undefined
-          }
+          fromDate={convertToDate(searchParams.fromDate)}
+          toDate={convertToDate(searchParams.toDate)}
         />
       );
     }

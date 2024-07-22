@@ -1,4 +1,5 @@
 import { extractComboBoxData } from "@features/householdCategoryChart/server/extractComboBoxData";
+import { sortByTotal } from "@features/householdCategoryChart/server/sortByTotal";
 
 import { fetchCategoryChartData } from "../server/fetchCategoryChartData";
 import { CategoryChartClient } from "./CategoryChartClient";
@@ -22,6 +23,14 @@ export const CategoryChartServer = async ({
   });
 
   const comboBoxData = extractComboBoxData(data);
+  const defaultCategoryIds = sortByTotal(
+    data,
+    (() => {
+      const date = new Date(toDate);
+      date.setMonth(date.getMonth() - 1);
+      return date;
+    })(),
+  );
 
   return (
     <CategoryChartClient
@@ -29,6 +38,7 @@ export const CategoryChartServer = async ({
       toDate={toDate}
       categoryChartData={data}
       comboBoxData={comboBoxData}
+      defaultCategoryIds={defaultCategoryIds}
     />
   );
 };

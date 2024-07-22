@@ -2,16 +2,22 @@ import { BalanceChartClient } from "@features/householdBalanceChart/components/B
 import { fetchBalanceChartData } from "@features/householdBalanceChart/server/fetchBalanceChartData";
 import { colors } from "@styles/colors";
 
+const getPast12MonthDate = () => {
+  const date = new Date();
+  date.setMonth(date.getMonth() - 12);
+  return date;
+};
+
 export const BalanceChartPageServer = async ({
-  fromDate,
-  toDate,
+  fromDate = getPast12MonthDate(),
+  toDate = new Date(),
 }: {
   fromDate: Date | undefined;
   toDate: Date | undefined;
 }) => {
   const { data } = await fetchBalanceChartData({
-    fromDate: fromDate ?? getPast12MonthDate(),
-    toDate: toDate ?? new Date(),
+    fromDate,
+    toDate,
   });
 
   return (
@@ -19,14 +25,10 @@ export const BalanceChartPageServer = async ({
       barchartSetting={barchartSetting}
       areaChartSetting={areaChartSetting}
       data={data}
+      fromDate={fromDate}
+      toDate={toDate}
     />
   );
-};
-
-const getPast12MonthDate = () => {
-  const date = new Date();
-  date.setMonth(date.getMonth() - 12);
-  return date;
 };
 
 const barchartSetting = {

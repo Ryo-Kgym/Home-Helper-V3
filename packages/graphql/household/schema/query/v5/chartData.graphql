@@ -1,8 +1,4 @@
-query pageSourceBalanceChart(
-  $groupId: String!
-  $fromDate: date!
-  $toDate: date!
-) {
+query chartData($groupId: String!, $fromDate: date!, $toDate: date!) {
   detailView: householdAllDetailView(
     where: {
       groupId: { _eq: $groupId }
@@ -23,6 +19,7 @@ query pageSourceBalanceChart(
     genre {
       id
       name
+      genreType
     }
     category {
       id
@@ -32,5 +29,11 @@ query pageSourceBalanceChart(
       }
     }
     memo
+  }
+  transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
+    __typename
+    id: groupId
+    incomeCategoryId
+    outcomeCategoryId
   }
 }
