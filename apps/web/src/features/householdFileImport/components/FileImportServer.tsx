@@ -1,5 +1,9 @@
-import { FileImportContainer } from "./FileImportContainer";
+import { FileImportClient } from "./FileImportClient";
 
 export const FileImportServer = () => {
-  return <FileImportContainer />;
+  return (
+    <>
+      <FileImportClient />
+    </>
+  );
 };
