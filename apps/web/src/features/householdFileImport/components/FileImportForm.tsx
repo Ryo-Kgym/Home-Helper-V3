@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import { FileInput } from "@components/ui/v5/file/FileInput";
+import { useFileImportColumnMapping } from "@features/householdFileImport/client/useFileImportColumnMapping";
 
 import { useBuildTable } from "../client/useBuildTable";
 import { useLoadFile } from "../client/useLoadFile";
@@ -12,9 +13,21 @@ export const FileImportForm: FC = () => {
   const { onChange, loadFile, setLoadFile } = useLoadFile();
   const { buildable, header, body } = useBuildTable(loadFile);
   const { message } = useMessage(loadFile);
+  const { mapping } = useFileImportColumnMapping();
+
+  const amountIndex = mapping.amount;
+  const total =
+    body.reduce((acc, cur) => {
+      if (amountIndex === null) return acc;
+
+      const amount = Number(cur[amountIndex - 1]);
+      // if (isNaN(amount)) return acc;
+
+      return acc + amount;
+    }, 0) ?? 0;
 
   return (
-    <div>
+    <div className={"space-y-5"}>
       <FileInput onChange={onChange} />
       <textarea
         className={"h-96 w-full border-2 border-solid p-2"}
@@ -33,6 +46,10 @@ export const FileImportForm: FC = () => {
         header={header}
         body={body}
       />
+      <div className={"space-x-5 text-lg"}>
+        <span>合計</span>
+        <span>{total.toLocaleString()}</span>
+      </div>
     </div>
   );
 };
