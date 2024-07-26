@@ -24,6 +24,7 @@ export const useLoadFile = () => {
   }, [uploadFile]);
 
   return {
+    uploadFile,
     onChange: setUploadFile,
     loadFile,
     setLoadFile,

@@ -4,7 +4,6 @@
 
 import { useCreateImportHistory } from "@features/householdFileImport/client/useCreateImportHistory";
 import { useRegisterCreditCard } from "@features/householdFileImport/client/useRegisterCreditCard";
-import { useRegisterDailyDetails } from "@features/householdFileImport/client/useRegisterDailyDetails";
 import { LoadFileProps } from "@features/householdFileImport/types";
 import { FileType } from "@provider/file/FileType";
 
@@ -34,20 +33,10 @@ export const useCreateImportFile = ({
     loadData,
   });
 
-  const { registerDailyDetails } = useRegisterDailyDetails({
-    accountId,
-    loadData,
-  });
-
   const registerImported = async () => {
     try {
       await registerImportHistory();
-
-      if (isCreditCard(fileType)) {
-        await registerCreditCard();
-      } else {
-        await registerDailyDetails();
-      }
+      await registerCreditCard();
     } catch (e) {
       console.error(e);
       throw e;
@@ -58,7 +47,3 @@ export const useCreateImportFile = ({
     registerImported,
   };
 };
-const isCreditCard = (fileType: FileType) =>
-  fileType === FileType.AU_PAY_CSV ||
-  fileType === FileType.SMBC_CSV ||
-  fileType === FileType.RAKUTEN_CARD_CSV;

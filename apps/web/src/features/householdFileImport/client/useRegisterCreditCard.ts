@@ -40,7 +40,7 @@ export const useRegisterCreditCard = ({
 
   const summaryVariableList = {
     id: summaryId,
-    creditCard: CreditCardMap.get(fileType) ?? "other",
+    creditCard: fileType,
     accountId: accountId,
     totalAmount: loadData.reduce((acc, cur) => acc + cur.price, 0),
     count: loadData.length,
@@ -77,9 +77,3 @@ export const useRegisterCreditCard = ({
 
   return { registerCreditCard };
 };
-
-const CreditCardMap = new Map<FileType, string>([
-  [FileType.AU_PAY_CSV, "AU_PAY_CARD"],
-  [FileType.SMBC_CSV, "AMAZON_CARD"],
-  [FileType.RAKUTEN_CARD_CSV, "RAKUTEN_CARD"],
-]);

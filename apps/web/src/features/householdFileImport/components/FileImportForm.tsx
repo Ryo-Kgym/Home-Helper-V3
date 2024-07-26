@@ -9,7 +9,6 @@ import { IocomeType } from "@domain/model/household/IocomeType";
 import { useCreateImportFile } from "@features/householdFileImport/client/useCreateImportFile";
 import { useFileImportColumnMapping } from "@features/householdFileImport/client/useFileImportColumnMapping";
 import { useImportFileRowAware } from "@features/householdFileImport/client/useImportFileRowAware";
-import { FileType } from "@provider/file/FileType";
 
 import { useBuildTable } from "../client/useBuildTable";
 import { useLoadFile } from "../client/useLoadFile";
@@ -20,14 +19,14 @@ export const FileImportForm: FC = () => {
   const [withdrawalDate, setWithdrawalDate] = useState<Date>(new Date());
   const [accountId, setAccountId] = useState<string | null>(null);
 
-  const { onChange, loadFile, setLoadFile } = useLoadFile();
+  const { uploadFile, onChange, loadFile, setLoadFile } = useLoadFile();
   const { buildable, header, body } = useBuildTable(loadFile);
   const { message } = useMessage(loadFile);
   const { mapping } = useFileImportColumnMapping();
   const { importFileRowAware } = useImportFileRowAware();
   const { registerImported } = useCreateImportFile({
-    fileType: FileType.AU_PAY_CSV,
-    fileName: "test",
+    fileType: "creditCard",
+    fileName: uploadFile?.name ?? "",
     accountId: accountId ?? "",
     withdrawalDate: new Date(),
     loadData: Object.values(importFileRowAware).map((v) => ({
