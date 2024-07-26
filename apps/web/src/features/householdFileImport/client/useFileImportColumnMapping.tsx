@@ -12,7 +12,7 @@ export const useFileImportColumnMapping = () =>
     },
   }));
 
-export type ColumnName = "settlementDate" | "accountId" | "amount" | "memo";
+export type ColumnName = "settlementDate" | "amount" | "memo";
 
 type State = {
   fileImportColumnMapping: Record<ColumnName, number | null>;
@@ -28,9 +28,8 @@ const useFileImportColumnMappingState = create<State & Actions>()(
   immer((set) => ({
     fileImportColumnMapping: {
       settlementDate: 1,
-      accountId: 2,
-      amount: 3,
-      memo: 4,
+      amount: 2,
+      memo: 3,
     },
     setFileImportColumnMapping: (mapping) =>
       set((state) => {
