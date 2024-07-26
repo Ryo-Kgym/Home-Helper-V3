@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { FileType } from "@provider/file/FileType";
-import { getSetting } from "@provider/file/loader/csv/CsvFileSetting";
+// eslint-disable-next-line strict-dependencies/strict-dependencies
+import { useImportFileSettings } from "@features/appImportFileSetting/client/useImportSettingsState";
 import { decodeCsv } from "@provider/file/loader/csv/loadCsvFile";
 
 export const useLoadFile = () => {
+  const { importFileSettings } = useImportFileSettings();
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [loadFile, setLoadFile] = useState<string>("");
-  const fileType = FileType.AU_PAY_CSV;
-  const { encodingTo, encodingFrom, encodingType } = getSetting(fileType);
+  const { encodingTo, encodingFrom, encodingType } = importFileSettings;
 
   useEffect(() => {
     const fn = async () => {

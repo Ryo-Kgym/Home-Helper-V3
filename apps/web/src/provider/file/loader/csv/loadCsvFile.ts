@@ -31,8 +31,6 @@ export async function loadCsvFile({ file, fileType }: loadFileArgs) {
 
   try {
     const readFile = await file.stream().getReader().read();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
 
     const csv = decodeCsv(readFile, encodingTo, encodingFrom, encodingType);
     const rows = separateRows(csv, splitSeparator, headerRows, footerRows);
@@ -59,15 +57,13 @@ export const decodeCsv = (
   readFile: ReadableStreamReadResult<Uint8Array>,
   to: Encoding.Encoding,
   from: Encoding.Encoding,
-  type: never,
+  type: "array",
 ) => {
   const decoded = Encoding.convert(new Uint8Array(readFile.value!), {
     to: to,
     from: from,
     type: type,
   });
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   return Encoding.codeToString(decoded);
 };
 
