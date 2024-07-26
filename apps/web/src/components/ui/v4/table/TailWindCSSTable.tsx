@@ -6,7 +6,7 @@ export const TailWindCSSTable = ({ children }: { children: ReactNode }) => (
 
 const Header = ({ headerItems }: { headerItems: { name: string }[] }) => (
   <thead>
-    <tr className={"bg-amber-100"}>
+    <tr className={"bg-gray-100"}>
       {headerItems.map(({ name }, index) => (
         <th
           key={`th-td-${index}}`}
@@ -55,7 +55,7 @@ const Tr = ({
   rowClick?: () => void;
 }) => (
   <tr
-    className={`border border-gray-300 even:bg-amber-50 hover:bg-amber-300 ${rowClick ? "cursor-pointer" : ""}`}
+    className={`border border-gray-300 even:bg-gray-50 hover:bg-gray-100 ${rowClick ? "cursor-pointer" : ""}`}
     onClick={rowClick}
   >
     {children}

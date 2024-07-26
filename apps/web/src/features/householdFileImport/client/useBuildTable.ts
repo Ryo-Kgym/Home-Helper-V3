@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export const useBuildTable = (loadFile: string) => {
   const [buildableState, setBuildableState] = useState<boolean>(false);
-  const [headerState, setHeaderState] = useState<{ name: string }[]>([]);
+  const [headerState, setHeaderState] = useState<string[]>([]);
   const [bodyState, setBodyState] = useState<string[][]>([]);
 
   useEffect(() => {
@@ -15,9 +15,7 @@ export const useBuildTable = (loadFile: string) => {
     }
 
     setBuildableState(true);
-    setHeaderState(
-      optionalHeader.map((h) => ({ name: h.replaceAll('"', "") })),
-    );
+    setHeaderState(optionalHeader.map((h) => h.replaceAll('"', "")));
     setBodyState(
       rows.slice(1).map((r) => {
         return r.split(",").map((c) => c.replaceAll('"', ""));
