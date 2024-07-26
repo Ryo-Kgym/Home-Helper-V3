@@ -1,8 +1,10 @@
 "use client";
 
 import { FC } from "react";
+import { Button } from "@components/ui/v4/button";
 import { FileInput } from "@components/ui/v5/file/FileInput";
 import { useFileImportColumnMapping } from "@features/householdFileImport/client/useFileImportColumnMapping";
+import { useImportFileRowAware } from "@features/householdFileImport/client/useImportFileRowAware";
 
 import { useBuildTable } from "../client/useBuildTable";
 import { useLoadFile } from "../client/useLoadFile";
@@ -14,6 +16,7 @@ export const FileImportForm: FC = () => {
   const { buildable, header, body } = useBuildTable(loadFile);
   const { message } = useMessage(loadFile);
   const { mapping } = useFileImportColumnMapping();
+  const { importFileRowAware } = useImportFileRowAware();
 
   const amountIndex = mapping.amount;
   const total =
@@ -25,6 +28,10 @@ export const FileImportForm: FC = () => {
 
       return acc + amount;
     }, 0) ?? 0;
+
+  const registerHandler = () => {
+    console.log(importFileRowAware);
+  };
 
   return (
     <div className={"space-y-5"}>
@@ -50,6 +57,7 @@ export const FileImportForm: FC = () => {
         <span>合計</span>
         <span>{total.toLocaleString()}</span>
       </div>
+      <Button label={"登録"} clickHandler={registerHandler} type={"create"} />
     </div>
   );
 };

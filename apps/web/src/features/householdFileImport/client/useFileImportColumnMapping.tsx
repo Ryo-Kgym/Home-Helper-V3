@@ -27,9 +27,9 @@ type Actions = {
 const useFileImportColumnMappingState = create<State & Actions>()(
   immer((set) => ({
     fileImportColumnMapping: {
-      settlementDate: 1,
-      amount: 2,
-      memo: 3,
+      settlementDate: null,
+      amount: null,
+      memo: null,
     },
     setFileImportColumnMapping: (mapping) =>
       set((state) => {
