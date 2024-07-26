@@ -12,15 +12,6 @@ export const useFileImportColumnMapping = () =>
     },
   }));
 
-const columns: Record<
-  ColumnName,
-  { name: string; columnIndex: number | null }
-> = {
-  settlementDate: { name: "決済日", columnIndex: 1 },
-  accountId: { name: "アカウントID", columnIndex: 2 },
-  amount: { name: "金額", columnIndex: 3 },
-  memo: { name: "メモ", columnIndex: 4 },
-};
 export type ColumnName = "settlementDate" | "accountId" | "amount" | "memo";
 
 type State = {
