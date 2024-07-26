@@ -8,13 +8,15 @@ export const MemoTextAreaPresenter = ({
   memo,
   setMemo,
   disabled = false,
+  noLabel = false,
 }: {
   memo: string;
   setMemo: (_: string) => void;
   disabled?: boolean;
+  noLabel?: boolean;
 }) => (
   <TextArea
-    label={"Memo"}
+    label={noLabel ? "" : "Memo"}
     value={memo}
     setValue={setMemo}
     disabled={disabled}

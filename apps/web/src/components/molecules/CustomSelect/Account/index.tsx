@@ -10,11 +10,13 @@ type AccountSelectProps = {
   accountId: string | null;
   setAccountId: (_: string | null) => void;
   disabled?: boolean;
+  noLabel?: boolean;
 };
 export const AccountSelect = ({
   accountId,
   setAccountId,
   disabled = false,
+  noLabel = false,
 }: AccountSelectProps) => {
   const { groupId } = useGroup();
   const [{ data }] = useGetValidAccountsQuery({
@@ -31,7 +33,7 @@ export const AccountSelect = ({
 
   return (
     <Select
-      label={"ACCOUNT"}
+      label={noLabel ? "" : "ACCOUNT"}
       value={accountId}
       onChange={setAccountId}
       data={accounts}

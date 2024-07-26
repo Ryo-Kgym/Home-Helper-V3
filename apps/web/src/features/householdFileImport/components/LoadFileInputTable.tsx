@@ -26,7 +26,8 @@ export const LoadFileInputTable: FC<Props> = ({ visible, header, body }) => {
             return { name: columnName ? `[${columnName}]` : name };
           })
           .concat({ name: "ジャンル" })
-          .concat({ name: "カテゴリ" })}
+          .concat({ name: "カテゴリ" })
+          .concat({ name: "メモ" })}
       />
       <Table.Body
         data={visible ? body : []}
