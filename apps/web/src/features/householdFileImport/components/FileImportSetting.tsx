@@ -15,7 +15,7 @@ export const FileImportSetting: FC = () => {
 
   return (
     <div className={"space-y-5"}>
-      <div>ファイル取込設定</div>
+      <span className={"font-bold"}>ファイル取込設定</span>
       <Section title={"変換前エンコード"}>
         <EncodingSelect
           value={importFileSettings.encodingFrom}
