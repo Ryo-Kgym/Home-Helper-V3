@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
 import { DatePicker } from "@components/ui/date";
 import { Button } from "@components/ui/v4/button";
+import { notify } from "@components/ui/v4/notify/notify";
 import { FileInput } from "@components/ui/v5/file/FileInput";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useCreateImportFile } from "@features/householdFileImport/client/useCreateImportFile";
@@ -27,12 +28,6 @@ export const FileImportForm: FC = () => {
   const { registerImported } = useCreateImportFile({
     fileType: "creditCard",
     fileName: uploadFile?.name ?? "",
-    accountId: accountId ?? "",
-    withdrawalDate: new Date(),
-    loadData: Object.values(importFileRowAware).map((v) => ({
-      ...v,
-      iocomeType: IocomeType.Outcome,
-    })),
   });
 
   const total =
@@ -47,11 +42,18 @@ export const FileImportForm: FC = () => {
   const registerHandler = async () => {
     try {
       console.log(importFileRowAware);
-      await registerImported();
-      alert("登録しました");
+      await registerImported({
+        withdrawalDate,
+        accountId: accountId ?? "",
+        loadData: Object.values(importFileRowAware).map((v) => ({
+          ...v,
+          iocomeType: IocomeType.Outcome,
+        })),
+      });
+      notify("登録しました");
     } catch (e) {
       console.error(e);
-      alert("登録に失敗しました");
+      notify("登録に失敗しました");
     }
   };
 

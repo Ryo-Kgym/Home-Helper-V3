@@ -11,19 +11,7 @@ import {
 /**
  * @package
  */
-export const useRegisterCreditCard = ({
-  summaryId,
-  fileType,
-  accountId,
-  withdrawalDate,
-  loadData,
-}: {
-  summaryId: string;
-  fileType: FileType;
-  accountId: string;
-  withdrawalDate: Date;
-  loadData: LoadFileProps[];
-}) => {
+export const useRegisterCreditCard = ({ fileType }: { fileType: FileType }) => {
   const { generate } = useGenerateId();
   const { userId } = useUser();
   const { groupId } = useGroup();
@@ -34,36 +22,40 @@ export const useRegisterCreditCard = ({
   const [, createCreditCardDetailMutation] =
     useCreateCreditCardDetailMutation();
 
-  const summaryVariableList = {
-    id: summaryId,
-    creditCard: fileType, // FIX_VALUE
-    accountId: accountId,
-    totalAmount: loadData.reduce((acc, cur) => acc + cur.amount, 0),
-    count: loadData.length,
-    withdrawalDate: withdrawalDate,
-    groupId,
-  };
-
-  const detailVariableList = loadData.map((data) => ({
-    id: generate(),
-    ...data,
+  const registerCreditCard = async ({
     summaryId,
-    userId,
-    groupId,
-  }));
+    withdrawalDate,
+    accountId,
+    loadData,
+  }: {
+    summaryId: string;
+    withdrawalDate: Date;
+    accountId: string;
+    loadData: LoadFileProps[];
+  }) => {
+    await createCreditCardSummaryMutation({
+      id: summaryId,
+      creditCard: fileType, // FIX_VALUE
+      accountId: accountId,
+      totalAmount: loadData.reduce((acc, cur) => acc + cur.amount, 0),
+      count: loadData.length,
+      withdrawalDate: withdrawalDate,
+      groupId,
+    });
 
-  const registerCreditCard = async () => {
-    try {
-      await createCreditCardSummaryMutation(summaryVariableList);
+    const detailVariableList = loadData.map((data) => ({
+      id: generate(),
+      ...data,
+      summaryId,
+      userId,
+      groupId,
+    }));
 
-      await Promise.all(
-        detailVariableList.map(async (detail) => {
-          await createCreditCardDetailMutation(detail);
-        }),
-      );
-    } catch (e) {
-      console.error(e);
-    }
+    await Promise.all(
+      detailVariableList.map(async (detail) => {
+        await createCreditCardDetailMutation(detail);
+      }),
+    );
   };
 
   return { registerCreditCard };
