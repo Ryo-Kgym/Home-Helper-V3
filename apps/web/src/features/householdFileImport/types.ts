@@ -2,11 +2,9 @@ import { IocomeType } from "@domain/model/household/IocomeType";
 
 export type LoadFileProps = {
   date: Date;
-  note: string;
-  price: number;
+  memo: string;
+  amount: number;
   iocomeType: IocomeType;
-  genreId: string | null;
-  genreName: string | null;
-  categoryId: string | null;
-  categoryName: string | null;
+  genreId: string;
+  categoryId: string;
 };

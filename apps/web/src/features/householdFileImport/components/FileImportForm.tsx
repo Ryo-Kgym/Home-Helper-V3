@@ -30,23 +30,16 @@ export const FileImportForm: FC = () => {
     accountId: accountId ?? "",
     withdrawalDate: new Date(),
     loadData: Object.values(importFileRowAware).map((v) => ({
-      date: v.date,
-      price: v.amount,
-      genreId: v.genreId,
-      categoryId: v.categoryId,
-      note: v.memo,
+      ...v,
       iocomeType: IocomeType.Outcome,
-      genreName: "",
-      categoryName: "",
     })),
   });
 
-  const amountIndex = mapping.amount;
   const total =
     body.reduce((acc, cur) => {
-      if (amountIndex === null) return acc;
+      if (mapping.amount === null) return acc;
 
-      const amount = Number(cur[amountIndex - 1]);
+      const amount = Number(cur[mapping.amount - 1]);
 
       return acc + amount;
     }, 0) ?? 0;

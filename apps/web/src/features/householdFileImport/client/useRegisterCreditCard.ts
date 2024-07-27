@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 import { LoadFileProps } from "@features/householdFileImport/types";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
@@ -13,7 +9,7 @@ import {
 } from "@v3/graphql/household";
 
 /**
- * Package Private
+ * @package
  */
 export const useRegisterCreditCard = ({
   summaryId,
@@ -40,9 +36,9 @@ export const useRegisterCreditCard = ({
 
   const summaryVariableList = {
     id: summaryId,
-    creditCard: fileType,
+    creditCard: fileType, // FIX_VALUE
     accountId: accountId,
-    totalAmount: loadData.reduce((acc, cur) => acc + cur.price, 0),
+    totalAmount: loadData.reduce((acc, cur) => acc + cur.amount, 0),
     count: loadData.length,
     withdrawalDate: withdrawalDate,
     groupId,
@@ -50,12 +46,7 @@ export const useRegisterCreditCard = ({
 
   const detailVariableList = loadData.map((data) => ({
     id: generate(),
-    date: data.date,
-    genreId: data.genreId!,
-    iocomeType: data.iocomeType,
-    categoryId: data.categoryId!,
-    amount: data.price,
-    memo: data.note,
+    ...data,
     summaryId,
     userId,
     groupId,
