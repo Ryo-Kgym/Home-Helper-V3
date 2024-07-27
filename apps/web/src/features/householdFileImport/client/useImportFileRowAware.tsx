@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 export const useImportFileRowAware = () =>
-  useImportFileRowAwareState((store) => ({
+  useImportFileRowAwareZustandState((store) => ({
     importFileRowAware: store.importFileRowAware,
     setImportFileRowAware: (row: number, attributes: Attributes) => {
       store.setImportFileRowAware({
@@ -11,8 +11,6 @@ export const useImportFileRowAware = () =>
       });
     },
   }));
-
-export type ColumnName = "settlementDate" | "amount" | "memo";
 
 type Attributes = {
   date: Date;
@@ -30,7 +28,7 @@ type Actions = {
   setImportFileRowAware: (value: Record<number, Attributes>) => void;
 };
 
-const useImportFileRowAwareState = create<State & Actions>()(
+const useImportFileRowAwareZustandState = create<State & Actions>()(
   immer((set) => ({
     importFileRowAware: {},
     setImportFileRowAware: (mapping) =>

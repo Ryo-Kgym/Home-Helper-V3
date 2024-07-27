@@ -5,8 +5,8 @@ import { CategorySelect } from "@components/ui/v5/select/CategorySelect";
 import { GenreSelect } from "@components/ui/v5/select/GenreSelect";
 import { IocomeType } from "@domain/model/household/IocomeType";
 
-import { useFileImportColumnMapping } from "../client/useFileImportColumnMapping";
-import { useImportFileRowAware } from "../client/useImportFileRowAware";
+import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
+import { useImportFileRowAware } from "../../client/useImportFileRowAware";
 
 type Props = {
   item: string[];

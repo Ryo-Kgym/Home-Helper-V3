@@ -11,9 +11,9 @@ import { useCreateImportFile } from "@features/householdFileImport/client/useCre
 import { useFileImportColumnMapping } from "@features/householdFileImport/client/useFileImportColumnMapping";
 import { useImportFileRowAware } from "@features/householdFileImport/client/useImportFileRowAware";
 
-import { useBuildTable } from "../client/useBuildTable";
-import { useLoadFile } from "../client/useLoadFile";
-import { useMessage } from "../client/useMessage";
+import { useBuildTable } from "../../client/useBuildTable";
+import { useLoadFile } from "../../client/useLoadFile";
+import { useMessage } from "../../client/useMessage";
 import { LoadFileInputTable } from "./LoadFileInputTable";
 
 export const FileImportForm: FC = () => {
