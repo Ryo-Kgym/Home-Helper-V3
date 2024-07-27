@@ -19,8 +19,7 @@ export const loadImportFile = async (
   } = importFileSettings;
 
   const readResult = await readFile(file);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
+
   const csv = decodeCsv(readResult, encodingTo, encodingFrom, encodingType);
   const rows = separateRows(csv, splitSeparator, headerRows, footerRows);
   const data = splitRows(rows, splitter, quotation);

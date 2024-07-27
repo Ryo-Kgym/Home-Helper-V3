@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
@@ -18,30 +13,25 @@ export const useCreateImportHistory = ({
 }) => {
   const { generate } = useGenerateId();
   const fileImportId = generate();
-  const { userId } = useUser();
+  const { userId: importUserId } = useUser();
   const { groupId } = useGroup();
-  const { getNow } = useDate();
 
   const [, createImportFileMutation] = useCreateImportFileHistoryMutation();
-  const createImportFileVariables = {
-    id: fileImportId,
-    fileType: fileType,
-    fileName: fileName,
-    importUserId: userId,
-    importDatetime: getNow(),
-    groupId,
-  };
 
   const registerImportHistory = async () => {
-    try {
-      await createImportFileMutation(createImportFileVariables);
-    } catch (e) {
-      console.error(e);
-    }
+    await createImportFileMutation({
+      id: fileImportId,
+      fileType,
+      fileName: fileName,
+      importUserId,
+      importDatetime: new Date(),
+      groupId,
+    });
+
+    return { fileImportId };
   };
 
   return {
-    fileImportId,
     registerImportHistory,
   };
 };

@@ -2,8 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FileImportContainer } from "@components/page/FileImport/FileImportContainer";
+import { FileImportServer } from "features/householdFileImport/components/FileImportServer";
 
-const Page = () => <FileImportContainer />;
+const Page = () => <FileImportServer />;
 
 export default Page;
