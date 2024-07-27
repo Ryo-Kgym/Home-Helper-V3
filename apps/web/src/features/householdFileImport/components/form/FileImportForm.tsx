@@ -39,6 +39,11 @@ export const FileImportForm: FC = () => {
       return acc + amount;
     }, 0) ?? 0;
 
+  const registerButtonDisabled =
+    !accountId ||
+    Object.keys(importFileRowAware).length === 0 ||
+    Object.keys(importFileRowAware).length !== body.length;
+
   const registerHandler = async () => {
     try {
       console.log(importFileRowAware);
@@ -51,6 +56,8 @@ export const FileImportForm: FC = () => {
         })),
       });
       notify("登録しました");
+      onChange(null);
+      setLoadFile("");
     } catch (e) {
       console.error(e);
       notify("登録に失敗しました");
@@ -89,7 +96,12 @@ export const FileImportForm: FC = () => {
         <span>合計</span>
         <span>{total.toLocaleString()}</span>
       </div>
-      <Button label={"登録"} clickHandler={registerHandler} type={"create"} />
+      <Button
+        label={"登録"}
+        clickHandler={registerHandler}
+        type={"create"}
+        disabled={registerButtonDisabled}
+      />
     </div>
   );
 };

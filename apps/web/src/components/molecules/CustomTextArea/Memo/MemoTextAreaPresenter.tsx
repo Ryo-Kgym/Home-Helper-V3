@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import { TextArea } from "@components/ui";
 
 export const MemoTextAreaPresenter = ({
@@ -20,5 +16,6 @@ export const MemoTextAreaPresenter = ({
     value={memo}
     setValue={setMemo}
     disabled={disabled}
+    size={"xs"}
   />
 );

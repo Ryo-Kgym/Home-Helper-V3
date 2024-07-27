@@ -38,8 +38,10 @@ export const LoadFileInputRow: FC<Props> = ({ item, rowNumber }) => {
       });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [categoryId],
+    [categoryId, memo],
   );
+
+  const hasNull = Object.values(mapping).some((v) => v === null);
 
   return (
     <>
@@ -51,6 +53,7 @@ export const LoadFileInputRow: FC<Props> = ({ item, rowNumber }) => {
               genreId={genreId}
               setGenreId={setGenreId}
               iocomeType={IocomeType.Outcome}
+              disabled={hasNull}
             />
           </Table.BodyTd>,
         )
@@ -60,12 +63,18 @@ export const LoadFileInputRow: FC<Props> = ({ item, rowNumber }) => {
               categoryId={categoryId}
               setCategoryId={setCategoryId}
               genreId={genreId}
+              disabled={hasNull}
             />
           </Table.BodyTd>,
         )
         .concat(
           <Table.BodyTd key={`memo-${rowNumber}`}>
-            <MemoTextArea memo={memo} setMemo={setMemo} noLabel />
+            <MemoTextArea
+              memo={memo}
+              setMemo={setMemo}
+              noLabel
+              disabled={hasNull}
+            />
           </Table.BodyTd>,
         )}
     </>

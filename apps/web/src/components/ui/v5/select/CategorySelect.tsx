@@ -9,10 +9,12 @@ export const CategorySelect = ({
   categoryId,
   setCategoryId,
   genreId,
+  disabled,
 }: {
   categoryId: string | null;
   setCategoryId: (_: string | null) => void;
   genreId: string | null;
+  disabled?: boolean;
 }) => {
   const { groupId } = useGroup();
 
@@ -41,6 +43,7 @@ export const CategorySelect = ({
       data={categories}
       placeholder={"カテゴリを選択してください"}
       size={"xs"}
+      disabled={disabled}
     />
   );
 };

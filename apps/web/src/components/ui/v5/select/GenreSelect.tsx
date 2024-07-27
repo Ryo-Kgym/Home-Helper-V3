@@ -9,10 +9,12 @@ export const GenreSelect = ({
   genreId,
   setGenreId,
   iocomeType,
+  disabled,
 }: {
   genreId: string | null;
   setGenreId: (_: string | null) => void;
   iocomeType: IocomeType;
+  disabled?: boolean;
 }) => {
   const { groupId } = useGroup();
   const [{ data }] = useGetValidGenreListByIocomeTypeQuery({
@@ -36,6 +38,7 @@ export const GenreSelect = ({
       data={genres}
       placeholder={"ジャンルを選択してください"}
       size={"xs"}
+      disabled={disabled}
     />
   );
 };

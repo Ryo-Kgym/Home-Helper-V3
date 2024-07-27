@@ -10,11 +10,13 @@ export const useMessage = (loadFile: string) => {
 
     setMessage(
       rows
-        .filter((r) => r.split(",").length !== headerColumns)
-        .map(
-          (r, i) =>
-            `行${i + 1}の列数が不正です。${r.split(",").length} !== ${headerColumns}\r`,
-        ),
+        .map((r, i) => {
+          if (r.split(",").length !== headerColumns) {
+            return `行${i + 1}の列数が不正です。${r.split(",").length} !== ${headerColumns}\r`;
+          }
+          return undefined;
+        })
+        .filter((m) => !!m) as string[],
     );
   }, [loadFile]);
 
