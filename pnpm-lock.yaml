@@ -36,8 +36,8 @@ importers:
         specifier: 8.2.0
         version: 8.2.0(expo@52.0.11)(react-native@0.76.3)(react@18.3.1)
       '@react-native-picker/picker':
-        specifier: ^2.9.0
-        version: 2.9.0(react-native@0.76.3)(react@18.3.1)
+        specifier: ^2.10.1
+        version: 2.10.1(react-native@0.76.3)(react@18.3.1)
       '@react-native-segmented-control/segmented-control':
         specifier: 2.5.4
         version: 2.5.4(react-native@0.76.3)(react@18.3.1)
@@ -4852,8 +4852,8 @@ packages:
       react-native: 0.76.3(@babel/core@7.26.0)(@babel/preset-env@7.24.8)(@types/react@18.3.12)(react@18.3.1)
     dev: false
 
-  /@react-native-picker/picker@2.9.0(react-native@0.76.3)(react@18.3.1):
-    resolution: {integrity: sha512-khEhIW/uhfMqq/+tvg4rEAiPGT8GX+Y6QydlP2TSMSmRHoSJK+ShXvXZXSr4Sii4imkj4BwvLunGywwtQDODqg==}
+  /@react-native-picker/picker@2.10.1(react-native@0.76.3)(react@18.3.1):
+    resolution: {integrity: sha512-OOcvPl+JrvobwjNREO1A9gxc+5mD74gp2ZcUJf/wcKtgNByS6XBxwiOwaCRvVbIcb6NQN06bMVVqjJEA0X+Tlg==}
     peerDependencies:
       react: '*'
       react-native: '*'
