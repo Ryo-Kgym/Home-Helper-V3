@@ -23,7 +23,7 @@ export const ReactNativePicker = <T,>({
         <Picker
           selectedValue={value ?? data[0]?.value}
           onValueChange={setValue}
-          itemStyle={{ height: 250, fontSize: 18 }}
+          itemStyle={{ height: 250, fontSize: 18, color: "black" }}
         >
           {data
             .filter(
