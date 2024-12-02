@@ -1,15 +1,12 @@
 "use client";
 
+import { ReactNode } from "react";
 import { NavbarSection } from "@app/_layout/NavbarSection";
 import { Navi } from "@app/_layout/navi";
 import { RegisterDailyButton } from "@components/molecules";
 import { paths } from "@routing/paths";
 
-export const HouseholdLayout = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => (
+export const HouseholdLayout = ({ children }: { children: ReactNode }) => (
   <div className={"bg-white text-black"}>
     <NavbarSection header={"家計簿アプリ"} naviArray={householdMenu}>
       {children}
@@ -27,14 +24,14 @@ const householdMenu: Navi[] = [
   },
   {
     label: "ダッシュボード",
-    url: "#",
-  },
-  {
-    label: "> 残高",
     url: paths.household.dashboard,
   },
   {
-    label: "> カテゴリ",
+    label: "残高チャート",
+    url: paths.household.dashboard,
+  },
+  {
+    label: "カテゴリチャート",
     url: paths.household.categoryChart,
   },
   {
