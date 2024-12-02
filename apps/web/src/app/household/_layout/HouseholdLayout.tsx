@@ -3,6 +3,7 @@
 import { NavbarSection } from "@app/_layout/NavbarSection";
 import { Navi } from "@app/_layout/navi";
 import { RegisterDailyButton } from "@components/molecules";
+import { paths } from "@routing/paths";
 
 export const HouseholdLayout = ({
   children,
@@ -10,7 +11,7 @@ export const HouseholdLayout = ({
   children: React.ReactNode;
 }) => (
   <div className={"bg-white text-black"}>
-    <NavbarSection header={"家計簿アプリ"} naviArray={householdNavis}>
+    <NavbarSection header={"家計簿アプリ"} naviArray={householdMenu}>
       {children}
       <div className={"absolute bottom-16 left-12 z-[110]"}>
         <RegisterDailyButton />
@@ -19,10 +20,10 @@ export const HouseholdLayout = ({
   </div>
 );
 
-const householdNavis: Navi[] = [
+const householdMenu: Navi[] = [
   {
     label: "戻る",
-    url: "/top",
+    url: paths.group.select,
   },
   {
     label: "ダッシュボード",
@@ -30,26 +31,26 @@ const householdNavis: Navi[] = [
   },
   {
     label: "> 残高",
-    url: "/household/dashboard",
+    url: paths.household.dashboard,
   },
   {
     label: "> カテゴリ",
-    url: "/household/dashboard?type=category",
+    url: paths.household.categoryChart,
   },
   {
     label: "アカウント",
-    url: "/household/account",
+    url: paths.household.account,
   },
   {
     label: "クレカ履歴",
-    url: "/household/creditCard",
+    url: paths.household.creditCard,
   },
   {
     label: "ファイル取込",
-    url: "/household/fileImport",
+    url: paths.household.fileImport,
   },
   {
     label: "設定",
-    url: "/household/setting",
+    url: paths.household.setting,
   },
 ];

@@ -19,5 +19,11 @@ export const paths = {
   },
   household: {
     dashboard: "/household/dashboard",
+    balanceChart: "/household/dashboard",
+    categoryChart: "/household/dashboard?type=category",
+    account: "/household/account",
+    creditCard: "/household/creditCard",
+    fileImport: "/household/fileImport",
+    setting: "/household/setting",
   },
 };
