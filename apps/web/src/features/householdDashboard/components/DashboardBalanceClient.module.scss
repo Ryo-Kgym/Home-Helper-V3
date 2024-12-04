@@ -1,0 +1,23 @@
+.module {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.totalBody,
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+}

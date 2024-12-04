@@ -1,5 +1,7 @@
+import { HouseholdDashboardServer } from "features/householdDashboard/components/HouseholdDashboardServer";
+
 const Page = () => {
-  return <div>Dashboard</div>;
+  return <HouseholdDashboardServer />;
 };
 
 export default Page;
