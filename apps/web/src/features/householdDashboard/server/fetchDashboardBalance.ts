@@ -1,8 +1,6 @@
 "use server";
 
 type Results = {
-  favoriteFilterId: string;
-  favoriteFilterName: string;
   income: Nominal;
   outcome: Nominal;
 };
@@ -21,10 +19,9 @@ export const fetchDashboardBalance = async ({
 }: {
   favoriteFilterId: string;
 }): Promise<Results> => {
+  favoriteFilterId;
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return {
-    favoriteFilterId,
-    favoriteFilterName: "2024年12月の収支",
     income: {
       total: 1000000,
       details: [

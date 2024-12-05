@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import { Loading } from "@components/ui/v5/loading/Loading";
 import { useDashboardBalance } from "@features/householdDashboard/client/useDashboardBalance";
@@ -17,7 +19,6 @@ export const DashboardBalanceClient: FC<Props> = ({ favoriteFilterId }) => {
 
   return (
     <div className={styles.module}>
-      <div>{data.favoriteFilterName}</div>
       <div>
         <div>合計</div>
         <div className={styles.totalBody}>
