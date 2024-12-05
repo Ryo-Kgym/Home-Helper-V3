@@ -20,7 +20,7 @@ export const NavbarSection = ({
     <AppShell
       header={{ height: 60 }}
       navbar={{
-        width: 150,
+        width: 180,
         breakpoint: "sm",
         collapsed: { desktop: !opened, mobile: !opened },
       }}

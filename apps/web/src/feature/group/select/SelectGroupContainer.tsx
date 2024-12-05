@@ -10,6 +10,7 @@ import { User } from "@domain/model/User";
 import { useAuth } from "@hooks/authentication/useAuth";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
+import { paths } from "@routing/paths";
 import { saveUser } from "persistence/browser/client";
 
 export const SelectGroupContainer = ({
@@ -34,7 +35,7 @@ export const SelectGroupContainer = ({
     },
   ].concat(
     groups.map((group) => ({
-      href: "/top",
+      href: paths.household.dashboard,
       label: group.name,
       back: false,
       handleClick: async () => {

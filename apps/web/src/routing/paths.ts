@@ -17,4 +17,13 @@ export const paths = {
   group: {
     select: "/group",
   },
+  household: {
+    dashboard: "/household/dashboard",
+    balanceChart: "/household/chart",
+    categoryChart: "/household/chart?type=category",
+    account: "/household/account",
+    creditCard: "/household/creditCard",
+    fileImport: "/household/fileImport",
+    setting: "/household/setting",
+  },
 };
