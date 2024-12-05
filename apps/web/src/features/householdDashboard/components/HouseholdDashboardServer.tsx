@@ -10,7 +10,7 @@ export const HouseholdDashboardServer = async () => {
     dashboardSettings.map((setting) => ({
       feature: setting.feature,
       dashboardSettingId: setting.id,
-      args: setting.args,
+      dashboardSettingArgs: setting.args,
     }));
 
   return <HouseholdDashboardClient items={items} />;

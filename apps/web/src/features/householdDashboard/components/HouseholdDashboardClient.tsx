@@ -1,17 +1,16 @@
 import { FC } from "react";
+import { DashboardComponentProps } from "@features/householdDashboard/types/dashboardFC";
 import { DashboardFeature } from "@features/householdDashboard/types/dashboardFeature";
 
 import { DashboardBalanceClient } from "./DashboardBalanceClient";
-import { DashboardTotalClient } from "./DashboardTotalClient";
+import { DashboardMonthlyClient } from "./DashboardMonthlyClient";
 import styles from "./HouseholdDashboardClient.module.scss";
 import { ItemCard } from "./ItemCard";
 
 type Props = {
-  items: {
+  items: ({
     feature: DashboardFeature;
-    dashboardSettingId: string;
-    args: { id: string; type: string; value: string }[];
-  }[];
+  } & DashboardComponentProps)[];
 };
 
 export const HouseholdDashboardClient: FC<Props> = ({ items }) => {
@@ -19,8 +18,8 @@ export const HouseholdDashboardClient: FC<Props> = ({ items }) => {
     <div className={styles.module}>
       {items.map((item) => (
         <ItemCard key={item.dashboardSettingId} itemName={item.feature}>
-          {item.feature === "balance" && <DashboardTotalClient {...item} />}
-          {item.feature === "monthly" && <DashboardBalanceClient {...item} />}
+          {item.feature === "balance" && <DashboardBalanceClient {...item} />}
+          {item.feature === "monthly" && <DashboardMonthlyClient {...item} />}
         </ItemCard>
       ))}
     </div>

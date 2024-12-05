@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import { fetchDashboardTotal } from "@features/householdDashboard/server/fetchDashboardTotal";
+import { fetchDashboardMonthly } from "@features/householdDashboard/server/fetchDashboardMonthly";
 import { LoadingData } from "@global/type/loadingData";
 
-type DataType = Awaited<ReturnType<typeof fetchDashboardTotal>>;
+type DataType = Awaited<ReturnType<typeof fetchDashboardMonthly>>;
 
-export const useDashboardTotal = ({
-  favoriteFilterId,
+export const useDashboardMonthly = ({
+  dashboardSettingId,
 }: {
-  favoriteFilterId: string;
+  dashboardSettingId: string;
 }): LoadingData<DataType> => {
   const [data, setData] = useState<DataType>();
 
   useEffect(() => {
     void (async () => {
-      setData(await fetchDashboardTotal({ favoriteFilterId }));
+      setData(await fetchDashboardMonthly({ dashboardSettingId }));
     })();
-  }, [favoriteFilterId]);
+  }, [dashboardSettingId]);
 
   if (!data) {
     return {

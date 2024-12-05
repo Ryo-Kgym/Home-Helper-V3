@@ -4,6 +4,13 @@
   gap: 1rem;
 }
 
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.totalBody,
 .body {
   display: grid;
   grid-template-columns: 1fr 1fr;
