@@ -5766,23 +5766,6 @@ export type GetValidGenreListByIocomeTypeQuery = {
   }>;
 };
 
-export type FragDailyDetailFragment = {
-  __typename: "HouseholdDailyDetail";
-  id: string;
-  date: any;
-  amount: any;
-  memo?: string | null;
-  genre: {
-    __typename?: "HouseholdGenre";
-    id: string;
-    name: string;
-    genreType: string;
-    iocomeType: string;
-  };
-  category: { __typename?: "HouseholdCategory"; id: string; name: string };
-  account: { __typename?: "HouseholdAccount"; id: string; name: string };
-};
-
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -5823,27 +5806,6 @@ export type GetDailyDetailByIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   } | null;
-};
-
-export type FragCreditCardDetailFragment = {
-  __typename?: "HouseholdCreditCardDetail";
-  id: string;
-  date: any;
-  amount: any;
-  memo?: string | null;
-  genre: {
-    __typename?: "HouseholdGenre";
-    id: string;
-    name: string;
-    iocomeType: string;
-    genreType: string;
-  };
-  category: { __typename?: "HouseholdCategory"; id: string; name: string };
-  summary: {
-    __typename?: "HouseholdCreditCardSummary";
-    id: string;
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  };
 };
 
 export type FragFavoriteFilterFragment = {
@@ -6002,81 +5964,6 @@ export type GetDailyByAccountIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   }>;
-};
-
-export type GetDashboardSettingQueryVariables = Exact<{
-  userId: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetDashboardSettingQuery = {
-  __typename?: "query_root";
-  setting: Array<{
-    __typename: "HouseholdDashboardSetting";
-    id: string;
-    feature: string;
-    order: number;
-    args: Array<{
-      __typename: "HouseholdDashboardSettingArgs";
-      id: string;
-      type: string;
-      value: string;
-    }>;
-  }>;
-};
-
-export type GetDetailsByCategoryQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-  iocomeType?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
-}>;
-
-export type GetDetailsByCategoryQuery = {
-  __typename?: "query_root";
-  group?: {
-    __typename?: "Group";
-    transfer?: {
-      __typename?: "HouseholdTransferCategory";
-      outcomeCategoryId: string;
-      incomeCategoryId: string;
-    } | null;
-    dailyDetails: Array<{
-      __typename?: "HouseholdDailyDetail";
-      id: string;
-      date: any;
-      amount: any;
-      memo?: string | null;
-      genre: {
-        __typename?: "HouseholdGenre";
-        id: string;
-        name: string;
-        iocomeType: string;
-        genreType: string;
-      };
-      category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    }>;
-    creditCardDetails: Array<{
-      __typename?: "HouseholdCreditCardDetail";
-      id: string;
-      date: any;
-      amount: any;
-      memo?: string | null;
-      genre: {
-        __typename?: "HouseholdGenre";
-        id: string;
-        name: string;
-        iocomeType: string;
-        genreType: string;
-      };
-      category: { __typename?: "HouseholdCategory"; id: string; name: string };
-      summary: {
-        __typename?: "HouseholdCreditCardSummary";
-        id: string;
-        account: { __typename?: "HouseholdAccount"; id: string; name: string };
-      };
-    }>;
-  } | null;
 };
 
 export type GetFavoriteFilterQueryVariables = Exact<{
@@ -6279,6 +6166,44 @@ export type FragChartDetailTableFragment = {
   } | null;
 };
 
+export type FragCreditCardDetailFragment = {
+  __typename?: "HouseholdCreditCardDetail";
+  id: string;
+  date: any;
+  amount: any;
+  memo?: string | null;
+  genre: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    iocomeType: string;
+    genreType: string;
+  };
+  category: { __typename?: "HouseholdCategory"; id: string; name: string };
+  summary: {
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  };
+};
+
+export type FragDailyDetailFragment = {
+  __typename: "HouseholdDailyDetail";
+  id: string;
+  date: any;
+  amount: any;
+  memo?: string | null;
+  genre: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    genreType: string;
+    iocomeType: string;
+  };
+  category: { __typename?: "HouseholdCategory"; id: string; name: string };
+  account: { __typename?: "HouseholdAccount"; id: string; name: string };
+};
+
 export type GetAccountBalanceListQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
@@ -6302,6 +6227,102 @@ export type GetAccountBalanceListQuery = {
       } | null;
     };
   }>;
+};
+
+export type GetDashboardSettingQueryVariables = Exact<{
+  userId: Scalars["String"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetDashboardSettingQuery = {
+  __typename?: "query_root";
+  setting: Array<{
+    __typename: "HouseholdDashboardSetting";
+    id: string;
+    feature: string;
+    order: number;
+    args: Array<{
+      __typename: "HouseholdDashboardSettingArgs";
+      id: string;
+      type: string;
+      value: string;
+    }>;
+  }>;
+};
+
+export type GetDetailsByCategoryQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["String"];
+  iocomeType?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
+}>;
+
+export type GetDetailsByCategoryQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    transfer?: {
+      __typename?: "HouseholdTransferCategory";
+      outcomeCategoryId: string;
+      incomeCategoryId: string;
+    } | null;
+    dailyDetails: Array<{
+      __typename: "HouseholdDailyDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        genreType: string;
+        iocomeType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    }>;
+    creditCardDetails: Array<{
+      __typename?: "HouseholdCreditCardDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+        genreType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      summary: {
+        __typename?: "HouseholdCreditCardSummary";
+        id: string;
+        account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      };
+    }>;
+    withdrawalCreditCardDetails: Array<{
+      __typename?: "HouseholdCreditCardDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+        genreType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      summary: {
+        __typename?: "HouseholdCreditCardSummary";
+        id: string;
+        account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      };
+    }>;
+  } | null;
 };
 
 export type GetTransferCategoryByQueryVariables = Exact<{
@@ -6338,54 +6359,6 @@ export type GetTransferCategoryByQuery = {
   } | null;
 };
 
-export const FragDailyDetailFragmentDoc = gql`
-  fragment fragDailyDetail on HouseholdDailyDetail {
-    __typename
-    id
-    date
-    genre {
-      id
-      name
-      genreType
-      iocomeType
-    }
-    category {
-      id
-      name
-    }
-    account {
-      id
-      name
-    }
-    amount
-    memo
-  }
-`;
-export const FragCreditCardDetailFragmentDoc = gql`
-  fragment fragCreditCardDetail on HouseholdCreditCardDetail {
-    id
-    date
-    amount
-    memo
-    genre {
-      id
-      name
-      iocomeType
-      genreType
-    }
-    category {
-      id
-      name
-    }
-    summary: creditCardSummary {
-      id
-      account {
-        id
-        name
-      }
-    }
-  }
-`;
 export const FragFavoriteFilterFragmentDoc = gql`
   fragment fragFavoriteFilter on HouseholdFavoriteFilter {
     __typename
@@ -6434,6 +6407,54 @@ export const FragChartDetailTableFragmentDoc = gql`
         id: categoryId
       }
     }
+    memo
+  }
+`;
+export const FragCreditCardDetailFragmentDoc = gql`
+  fragment fragCreditCardDetail on HouseholdCreditCardDetail {
+    id
+    date
+    amount
+    memo
+    genre {
+      id
+      name
+      iocomeType
+      genreType
+    }
+    category {
+      id
+      name
+    }
+    summary: creditCardSummary {
+      id
+      account {
+        id
+        name
+      }
+    }
+  }
+`;
+export const FragDailyDetailFragmentDoc = gql`
+  fragment fragDailyDetail on HouseholdDailyDetail {
+    __typename
+    id
+    date
+    genre {
+      id
+      name
+      genreType
+      iocomeType
+    }
+    category {
+      id
+      name
+    }
+    account {
+      id
+      name
+    }
+    amount
     memo
   }
 `;
@@ -7632,88 +7653,6 @@ export function useGetDailyByAccountIdQuery(
     GetDailyByAccountIdQueryVariables
   >({ query: GetDailyByAccountIdDocument, ...options });
 }
-export const GetDashboardSettingDocument = gql`
-  query getDashboardSetting($userId: String!, $groupId: String!) {
-    setting: householdDashboardSetting(
-      where: { userId: { _eq: $userId }, _and: { groupId: { _eq: $groupId } } }
-      orderBy: { order: ASC }
-    ) {
-      id
-      feature
-      order
-      __typename
-      args: dashboardSettingArgs(orderBy: { type: ASC }) {
-        id
-        type
-        value
-        __typename
-      }
-    }
-  }
-`;
-
-export function useGetDashboardSettingQuery(
-  options: Omit<Urql.UseQueryArgs<GetDashboardSettingQueryVariables>, "query">,
-) {
-  return Urql.useQuery<
-    GetDashboardSettingQuery,
-    GetDashboardSettingQueryVariables
-  >({ query: GetDashboardSettingDocument, ...options });
-}
-export const GetDetailsByCategoryDocument = gql`
-  query getDetailsByCategory(
-    $fromDate: date!
-    $toDate: date!
-    $groupId: String!
-    $iocomeType: [String!] = ["INCOME", "OUTCOME"]
-  ) {
-    group: groupByPk(id: $groupId) {
-      transfer: transferCategory {
-        outcomeCategoryId
-        incomeCategoryId
-      }
-      dailyDetails(
-        where: {
-          date: { _gte: $fromDate, _lte: $toDate }
-          _and: { iocomeType: { _in: $iocomeType } }
-        }
-      ) {
-        id
-        date
-        genre {
-          id
-          name
-          iocomeType
-          genreType
-        }
-        category {
-          id
-          name
-        }
-        amount
-        memo
-      }
-      creditCardDetails(
-        where: {
-          date: { _gte: $fromDate, _lte: $toDate }
-          _and: { iocomeType: { _in: $iocomeType } }
-        }
-      ) {
-        ...fragCreditCardDetail
-      }
-    }
-  }
-  ${FragCreditCardDetailFragmentDoc}
-`;
-
-export function useGetDetailsByCategoryQuery(
-  options: Omit<Urql.UseQueryArgs<GetDetailsByCategoryQueryVariables>, "query">,
-) {
-  return Urql.useQuery<
-    GetDetailsByCategoryQuery,
-    GetDetailsByCategoryQueryVariables
-  >({ query: GetDetailsByCategoryDocument, ...options });
-}
 export const GetFavoriteFilterDocument = gql`
   query getFavoriteFilter($filterId: String!) {
     filter: householdFavoriteFilterByPk(id: $filterId) {
@@ -7903,6 +7842,86 @@ export function useGetAccountBalanceListQuery(
     GetAccountBalanceListQuery,
     GetAccountBalanceListQueryVariables
   >({ query: GetAccountBalanceListDocument, ...options });
+}
+export const GetDashboardSettingDocument = gql`
+  query getDashboardSetting($userId: String!, $groupId: String!) {
+    setting: householdDashboardSetting(
+      where: { userId: { _eq: $userId }, _and: { groupId: { _eq: $groupId } } }
+      orderBy: { order: ASC }
+    ) {
+      id
+      feature
+      order
+      __typename
+      args: dashboardSettingArgs(orderBy: { type: ASC }) {
+        id
+        type
+        value
+        __typename
+      }
+    }
+  }
+`;
+
+export function useGetDashboardSettingQuery(
+  options: Omit<Urql.UseQueryArgs<GetDashboardSettingQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDashboardSettingQuery,
+    GetDashboardSettingQueryVariables
+  >({ query: GetDashboardSettingDocument, ...options });
+}
+export const GetDetailsByCategoryDocument = gql`
+  query getDetailsByCategory(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: String!
+    $iocomeType: [String!] = ["INCOME", "OUTCOME"]
+  ) {
+    group: groupByPk(id: $groupId) {
+      transfer: transferCategory {
+        outcomeCategoryId
+        incomeCategoryId
+      }
+      dailyDetails(
+        where: {
+          date: { _gte: $fromDate, _lte: $toDate }
+          _and: { iocomeType: { _in: $iocomeType } }
+        }
+      ) {
+        ...fragDailyDetail
+      }
+      creditCardDetails(
+        where: {
+          date: { _gte: $fromDate, _lte: $toDate }
+          _and: { iocomeType: { _in: $iocomeType } }
+        }
+      ) {
+        ...fragCreditCardDetail
+      }
+      withdrawalCreditCardDetails: creditCardDetails(
+        where: {
+          creditCardSummary: {
+            withdrawalDate: { _gte: $fromDate, _lte: $toDate }
+          }
+          _and: { iocomeType: { _in: $iocomeType } }
+        }
+      ) {
+        ...fragCreditCardDetail
+      }
+    }
+  }
+  ${FragDailyDetailFragmentDoc}
+  ${FragCreditCardDetailFragmentDoc}
+`;
+
+export function useGetDetailsByCategoryQuery(
+  options: Omit<Urql.UseQueryArgs<GetDetailsByCategoryQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDetailsByCategoryQuery,
+    GetDetailsByCategoryQueryVariables
+  >({ query: GetDetailsByCategoryDocument, ...options });
 }
 export const GetTransferCategoryByDocument = gql`
   query GetTransferCategoryBy($groupId: String!) {
