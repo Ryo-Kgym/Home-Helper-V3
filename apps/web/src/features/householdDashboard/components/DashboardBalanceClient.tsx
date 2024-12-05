@@ -7,12 +7,12 @@ import { useDashboardBalance } from "@features/householdDashboard/client/useDash
 import styles from "./DashboardBalanceClient.module.scss";
 
 type Props = {
-  favoriteFilterId: string;
+  dashboardSettingId: string;
 };
 
-export const DashboardBalanceClient: FC<Props> = ({ favoriteFilterId }) => {
+export const DashboardBalanceClient: FC<Props> = ({ dashboardSettingId }) => {
   const { loading, data } = useDashboardBalance({
-    favoriteFilterId,
+    favoriteFilterId: dashboardSettingId,
   });
 
   if (loading) return <Loading />;

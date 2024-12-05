@@ -7,11 +7,13 @@ import { useDashboardTotal } from "@features/householdDashboard/client/useDashbo
 import styles from "./DashboardTotalClient.module.scss";
 
 type Props = {
-  favoriteFilterId: string;
+  dashboardSettingId: string;
 };
 
-export const DashboardTotalClient: FC<Props> = ({ favoriteFilterId }) => {
-  const { loading, data } = useDashboardTotal({ favoriteFilterId });
+export const DashboardTotalClient: FC<Props> = ({ dashboardSettingId }) => {
+  const { loading, data } = useDashboardTotal({
+    favoriteFilterId: dashboardSettingId,
+  });
 
   if (loading) return <Loading />;
 
