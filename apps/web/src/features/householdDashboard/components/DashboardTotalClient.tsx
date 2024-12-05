@@ -16,17 +16,28 @@ export const DashboardTotalClient: FC<Props> = ({
   currentDatetime,
 }) => {
   return (
-    <div>
+    <div className={styles.module}>
       <div>資産合計</div>
       <div className={styles.body}>
-        <div className={styles.detail}>現金: {cash}</div>
-        <div className={styles.detail}>投資: {investment}</div>
+        <div className={styles.detail}>
+          <span>現金</span>
+          <span>{cash.toLocaleString()}</span>
+        </div>
+        <div className={styles.detail}>
+          <span>投資</span>
+          <span>{investment.toLocaleString()}</span>
+        </div>
+        <div />
+        <div className={styles.detail}>
+          <span>合計</span>
+          <span>{total.toLocaleString()}</span>
+        </div>
+        <div />
+        <div className={styles.detail}>
+          <span> {currentDatetime.toLocaleString("ja-JP")} </span>
+          <span>現在</span>
+        </div>
       </div>
-      <div className={styles.detail}>
-        <span>合計</span>
-        <span>{total}</span>
-      </div>
-      <div>Current Datetime: {currentDatetime.toLocaleString("ja-JP")}</div>
     </div>
   );
 };
