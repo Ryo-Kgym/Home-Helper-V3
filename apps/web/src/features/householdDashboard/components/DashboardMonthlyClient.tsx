@@ -6,9 +6,13 @@ import { DashboardFC } from "@features/householdDashboard/types/dashboardFC";
 
 import styles from "./DashboardMonthlyClient.module.scss";
 
-export const DashboardMonthlyClient: DashboardFC = ({ dashboardSettingId }) => {
+export const DashboardMonthlyClient: DashboardFC = ({
+  dashboardSettingId,
+  dashboardSettingArgs,
+}) => {
   const { loading, data } = useDashboardMonthly({
     dashboardSettingId,
+    dashboardSettingArgs,
   });
 
   if (loading) return <Loading />;
@@ -31,7 +35,7 @@ export const DashboardMonthlyClient: DashboardFC = ({ dashboardSettingId }) => {
       <div>
         <div>明細</div>
         <div className={styles.body}>
-          <div>
+          <div className={styles.nominal}>
             {data.income.details.map((d) => (
               <div key={d.id} className={styles.detail}>
                 <span>{d.name}</span>
@@ -39,7 +43,7 @@ export const DashboardMonthlyClient: DashboardFC = ({ dashboardSettingId }) => {
               </div>
             ))}
           </div>
-          <div>
+          <div className={styles.nominal}>
             {data.outcome.details.map((d) => (
               <div key={d.id} className={styles.detail}>
                 <span>{d.name}</span>

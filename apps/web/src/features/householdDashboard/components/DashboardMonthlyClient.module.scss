@@ -17,6 +17,11 @@
   gap: 1rem;
 }
 
+.nominal {
+  max-height: 10rem;
+  overflow-y: auto;
+}
+
 .detail {
   display: flex;
   justify-content: space-between;
