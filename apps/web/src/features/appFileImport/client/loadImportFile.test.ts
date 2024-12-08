@@ -5,7 +5,7 @@ import { loadImportFile } from "./loadImportFile";
 import * as readFileMock from "./readFile";
 import * as splitRowsMock from "./splitRows";
 
-jest.mock("@provider/file/loader/csv/loadCsvFile");
+jest.mock("~/provider/file/loader/csv/loadCsvFile");
 
 jest.spyOn(readFileMock, "readFile").mockResolvedValue({
   value: new Uint8Array([0x74, 0x65]),

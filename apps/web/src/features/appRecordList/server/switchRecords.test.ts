@@ -7,7 +7,7 @@ import * as getLookupRecordsMod from "~/server/lookupRecords";
 import { switchRecords } from "./switchRecords";
 
 jest.mock("@oneforall/domain/sql/execution");
-jest.mock("@server/lookupRecords");
+jest.mock("~/server/lookupRecords");
 jest.mock("@oneforall/domain/convert/mapSqlRecordsToAppRecords");
 jest.mock("@v3/graphql/public/convert/parseToRecords");
 
