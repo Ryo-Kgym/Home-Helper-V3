@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { TabsProps } from "@components/ui/v4/tab/index";
+
+import { TabsProps } from "~/components/ui/v4/tab/index";
 
 /**
  * @package

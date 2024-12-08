@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { Table } from "@components/ui/v4/table";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
+import { Table } from "~/components/ui/v4/table";
 import { useGetViewApps } from "../hook";
 import { AppListData } from "../type/appListData";
 import { RemoveViewApp } from "./RemoveViewApp";

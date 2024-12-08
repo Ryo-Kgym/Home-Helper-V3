@@ -1,4 +1,4 @@
-import { TextArea } from "@components/ui";
+import { TextArea } from "~/components/ui";
 
 export const MemoTextAreaPresenter = ({
   memo,

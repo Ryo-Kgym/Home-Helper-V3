@@ -1,11 +1,12 @@
 import { ComponentProps } from "react";
-import { Select } from "@components/ui/v4/select";
-import { TextInput } from "@components/ui/v4/textInput";
-import { useGetAppFieldValue } from "@feature/app/create/useAppFieldValueState";
 import {
   Field,
   FieldOptionsLookupFilter,
 } from "@oneforall/domain/schema/appSchema";
+
+import { Select } from "~/components/ui/v4/select";
+import { TextInput } from "~/components/ui/v4/textInput";
+import { useGetAppFieldValue } from "../../../feature/app/create/useAppFieldValueState";
 
 /**
  * @package

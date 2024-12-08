@@ -1,4 +1,4 @@
-import { convertDateStyle } from "@feature/app/function/convertDateStyle";
+import { convertDateStyle } from "./convertDateStyle";
 
 describe("convertDateStyle", () => {
   it.each`

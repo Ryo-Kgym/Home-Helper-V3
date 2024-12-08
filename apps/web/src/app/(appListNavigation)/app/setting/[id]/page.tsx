@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { RoutingTabs } from "@components/ui/v4/routingTab";
-import { AppDangerous } from "@pageComponents/appDangerous";
-import { ModifyApp } from "@pageComponents/appModify";
 import { LinkDatabase } from "pageComponents/appLinkDatabase";
+
+import { RoutingTabs } from "~/components/ui/v4/routingTab";
+import { AppDangerous } from "../../../../../pageComponents/appDangerous";
+import { ModifyApp } from "../../../../../pageComponents/appModify";
 
 const tabGroup: Record<
   string,

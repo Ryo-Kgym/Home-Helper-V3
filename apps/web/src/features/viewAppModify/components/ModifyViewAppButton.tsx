@@ -1,6 +1,5 @@
-import { Button } from "@components/ui/v4/button";
-import { notify } from "@components/ui/v4/notify/notify";
-
+import { Button } from "~/components/ui/v4/button";
+import { notify } from "~/components/ui/v4/notify/notify";
 import { useChangeToModifyMode, useGetViewApps, useModifyView } from "../hook";
 
 /**

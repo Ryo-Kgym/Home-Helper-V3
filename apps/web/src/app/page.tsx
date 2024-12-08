@@ -1,4 +1,4 @@
-import { LoginContainer } from "@components/organisms/login/LoginContainer";
+import { LoginContainer } from "~/components/organisms/login/LoginContainer";
 
 const TopPage = () => {
   return <LoginContainer />;

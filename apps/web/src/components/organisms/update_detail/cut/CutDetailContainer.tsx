@@ -2,12 +2,12 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { CutDetailPresenter } from "@components/organisms/update_detail/cut/CutDetailPresenter";
-import { errorPopup, successPopup } from "@function/successPopup";
-import { useCutDetail } from "@hooks/household/daily_detail/useCutDetail";
 import { useState } from "react";
 
-import type { DailyDetail } from "@domain/model/household/DailyDetail";
+import { CutDetailPresenter } from "~/components/organisms/update_detail/cut/CutDetailPresenter";
+import { errorPopup, successPopup } from "~/functions/successPopup";
+import { useCutDetail } from "~/hooks/household/daily_detail/useCutDetail";
+import { DailyDetail } from "../../../../domain/model/household/DailyDetail";
 
 export const CutDetailContainer = ({
   initData,
@@ -16,7 +16,9 @@ export const CutDetailContainer = ({
   initData: DailyDetail;
   onClose: () => void;
 }) => {
-  const [detailDate, setDetailDate] = useState<Date>(initData.date!);
+  const [detailDate, setDetailDate] = useState<Date>(
+    initData.date ?? new Date(),
+  );
   const [genreId, setGenreId] = useState<string | null>(initData?.genreId);
   const [categoryId, setCategoryId] = useState<string | null>(
     initData?.categoryId,
@@ -60,7 +62,7 @@ export const CutDetailContainer = ({
   };
 
   const clearHandler = () => {
-    setDetailDate(initData.date!);
+    setDetailDate(initData.date ?? new Date());
     setGenreId(initData?.genreId);
     setCategoryId(initData?.categoryId);
     setAccountId(initData.accountId);

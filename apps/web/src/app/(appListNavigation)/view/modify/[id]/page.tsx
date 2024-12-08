@@ -1,7 +1,8 @@
 import { FC } from "react";
-import { RoutingTabs } from "@components/ui/v4/routingTab";
-import { ModifyView } from "@features/viewAppModify";
-import { ViewDangerous } from "@pageComponents/viewDangerous";
+
+import { RoutingTabs } from "~/components/ui/v4/routingTab";
+import { ModifyView } from "../../../../../features/viewAppModify";
+import { ViewDangerous } from "../../../../../pageComponents/viewDangerous";
 
 const tabGroup: Record<
   string,

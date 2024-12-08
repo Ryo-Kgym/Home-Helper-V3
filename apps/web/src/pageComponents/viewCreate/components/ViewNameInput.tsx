@@ -1,4 +1,4 @@
-import { TextInput } from "@components/ui/v4/textInput";
+import { TextInput } from "~/components/ui/v4/textInput";
 
 export const ViewNameInput = ({
   viewName,

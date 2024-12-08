@@ -1,7 +1,7 @@
-import { GenreType } from "@domain/model/household/GenreType";
-import { IocomeType } from "@domain/model/household/IocomeType";
 import { ChartDataQuery } from "@v3/graphql/household/type";
 
+import { GenreType } from "../../../domain/model/household/GenreType";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { CategoryChartData } from "../types";
 
 export const convertToCategoryChartData = (

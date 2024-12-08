@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSaveAppFieldValue } from "@feature/app/create/useAppFieldValueState";
-import { isEquals } from "@function/isEquals";
 import { FieldKind } from "@oneforall/domain/field/type";
 import {
   AppFieldOptions,
@@ -8,6 +6,8 @@ import {
   modifyAppFieldValueSchema,
 } from "@oneforall/domain/schema/appFieldValue";
 
+import { isEquals } from "~/functions/isEquals";
+import { useSaveAppFieldValue } from "../create/useAppFieldValueState";
 import { AppFieldPresenter } from "./AppFieldPresenter";
 
 export const ModifyAppFieldContainer = ({

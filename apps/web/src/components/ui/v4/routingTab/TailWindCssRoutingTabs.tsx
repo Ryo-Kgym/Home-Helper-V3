@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { RoutingTabsProps } from "@components/ui/v4/routingTab/index";
+
+import { RoutingTabsProps } from "~/components/ui/v4/routingTab/index";
 
 /**
  * @package

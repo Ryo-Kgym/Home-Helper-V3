@@ -1,7 +1,11 @@
 import type { ImportFileSettings } from "@oneforall/domain/schema/importFileSettingsSchema";
-import { readFile } from "@features/appFileImport/client/readFile";
-import { splitRows } from "@features/appFileImport/client/splitRows";
-import { decodeCsv, separateRows } from "@provider/file/loader/csv/loadCsvFile";
+
+import {
+  decodeCsv,
+  separateRows,
+} from "../../../provider/file/loader/csv/loadCsvFile";
+import { readFile } from "./readFile";
+import { splitRows } from "./splitRows";
 
 export const loadImportFile = async (
   file: File,

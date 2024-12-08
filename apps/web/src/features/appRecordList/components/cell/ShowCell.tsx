@@ -1,9 +1,10 @@
-import { ShowCellDateFactory } from "@features/appRecordList/components/cell/ShowCellDateFactory";
-import { ShowCellLookupFactory } from "@features/appRecordList/components/cell/ShowCellLookupFactory";
-import { ShowCellNumericFactory } from "@features/appRecordList/components/cell/ShowCellNumericFactory";
-import { ShowCellSelectBoxFactory } from "@features/appRecordList/components/cell/ShowCellSelectBoxFactory";
 import { Field } from "@oneforall/domain/schema/appSchema";
 import { RecordColumn } from "@oneforall/domain/schema/recordSchema";
+
+import { ShowCellDateFactory } from "./ShowCellDateFactory";
+import { ShowCellLookupFactory } from "./ShowCellLookupFactory";
+import { ShowCellNumericFactory } from "./ShowCellNumericFactory";
+import { ShowCellSelectBoxFactory } from "./ShowCellSelectBoxFactory";
 
 export const ShowCell = ({
   field,

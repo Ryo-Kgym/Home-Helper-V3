@@ -1,10 +1,11 @@
-import { switchRecords } from "@features/appRecordList/server/switchRecords";
-import { ViewRecordListClient } from "@features/viewRecordList/components/ViewRecordListClient";
 import { recordFiltersSchema } from "@oneforall/domain/schema/filter/recordFiltersSchema";
 import { View } from "@oneforall/domain/schema/view/viewSchema";
 import { parseToApp } from "@v3/graphql/public/convert/parseToApp";
 import { parseToViewRecords } from "@v3/graphql/public/convert/parseToViewRecords";
 import { GetViewRecordsSourceQuery } from "@v3/graphql/public/type";
+
+import { switchRecords } from "../../appRecordList/server/switchRecords";
+import { ViewRecordListClient } from "./ViewRecordListClient";
 
 export const ViewRecordListServer = async ({
   view,

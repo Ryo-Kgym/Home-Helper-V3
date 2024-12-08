@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { Select } from "@components/ui/v4/select";
-import { OptionsState } from "@features/fieldOptions/FieldOptionsInput";
-import { FilterInputTable } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInputTable";
 import { lookupOptionsSchema } from "@oneforall/domain/schema/appFieldValue";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { SortDirection } from "@oneforall/domain/schema/sortDirectionSchema";
 
+import { Button } from "~/components/ui/v4/button";
+import { Select } from "~/components/ui/v4/select";
+import { OptionsState } from "../FieldOptionsInput";
+import { FilterInputTable } from "./FilterInputTable";
 import { useMakeSelector } from "./useMakeSelector";
 
 export const FieldOptionsLookUpInputFactory = ({

@@ -5,11 +5,11 @@ import { useCreateView } from "./useCreateView";
 
 jest.mock("../../../../../../packages/graphql/public");
 
-jest.mock("@feature/app/function/generateId", () => ({
+jest.mock("../../../feature/app/function/generateId", () => ({
   generateId: jest.fn().mockReturnValue("123"),
 }));
 
-jest.mock("@hooks/user/useUser", () => ({
+jest.mock("~/hooks/user/useUser", () => ({
   useUser: jest.fn().mockReturnValue({
     userId: "user1",
     email: "",
@@ -19,7 +19,7 @@ jest.mock("@hooks/user/useUser", () => ({
   }),
 }));
 
-jest.mock("@hooks/group/useGroup", () => ({
+jest.mock("~/hooks/group/useGroup", () => ({
   useGroup: jest.fn().mockReturnValue({
     groupId: "group1",
     groupName: "",

@@ -1,9 +1,10 @@
 "use client";
 
-import type { SelectData } from "@components/ui";
-import { Select } from "@components/ui";
-import { useGroup } from "@hooks/group/useGroup";
 import { useGetValidCategoryByGenreIdQuery } from "@v3/graphql/household";
+
+import type { SelectData } from "~/components/ui";
+import { Select } from "~/components/ui";
+import { useGroup } from "~/hooks/group/useGroup";
 
 export const CategorySelect = ({
   categoryId,

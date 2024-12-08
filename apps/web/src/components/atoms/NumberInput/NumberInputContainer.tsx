@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { NumberInputPresenter } from "@components/atoms/NumberInput/NumberInputPresenter";
+import { NumberInputPresenter } from "~/components/atoms/NumberInput/NumberInputPresenter";
 
 type NumberInputContainerProps = {
   label: string;

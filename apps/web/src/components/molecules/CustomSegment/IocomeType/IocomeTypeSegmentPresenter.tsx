@@ -1,5 +1,5 @@
-import { Segment } from "@components/atoms/Segment";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import { Segment } from "~/components/atoms/Segment";
+import { IocomeType } from "../../../../domain/model/household/IocomeType";
 
 type IocomeTypeSegmentPresenterProps = {
   value: string;

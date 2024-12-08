@@ -1,7 +1,7 @@
-import { AppDeleteRelations } from "@features/appDelete/types/appDeleteRelations";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetAppDangerousSourceDocument } from "@v3/graphql/public/type";
 
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { AppDeleteRelations } from "../../../features/appDelete/types/appDeleteRelations";
 import { AppDangerousClient } from "./AppDangerousClient";
 
 export const AppDangerousServer = async ({ appId }: { appId: string }) => {

@@ -1,5 +1,6 @@
-import { sortLookupData } from "@features/appRecordList/client/useGetLookupOptions/sortLookupData";
 import { Record } from "@oneforall/domain/schema/recordSchema";
+
+import { sortLookupData } from "./sortLookupData";
 
 describe("sortLookupData", () => {
   const r1: Record = {

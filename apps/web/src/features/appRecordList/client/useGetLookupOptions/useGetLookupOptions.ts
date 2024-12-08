@@ -1,9 +1,10 @@
-import { filterLookupData } from "@features/appRecordList/client/useGetLookupOptions/filterLookupData";
-import { sortLookupData } from "@features/appRecordList/client/useGetLookupOptions/sortLookupData";
 import { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
 import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 import { useGetRecordsQuery } from "@v3/graphql/public";
 import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
+
+import { filterLookupData } from "./filterLookupData";
+import { sortLookupData } from "./sortLookupData";
 
 export const useGetLookupOptions = ({
   options: {

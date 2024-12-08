@@ -1,10 +1,11 @@
 "use client";
 
 import type { RecordColumns } from "@oneforall/domain/schema/recordSchema";
-import { generateId } from "@feature/app/function/generateId";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
-import { useInitNewRecord } from "@hooks/states/app/record/useInitNewRecord";
-import { useRecordListMode } from "@hooks/states/app/recordListMode/useRecordListMode";
+
+import { useInitNewRecord } from "~/hooks/states/app/record/useInitNewRecord";
+import { useRecordListMode } from "~/hooks/states/app/recordListMode/useRecordListMode";
+import { RecordListMode } from "../../../features/appRecordList/types/recordListMode";
+import { generateId } from "../function/generateId";
 
 export const AddRecordButton = ({
   columnTemplate,

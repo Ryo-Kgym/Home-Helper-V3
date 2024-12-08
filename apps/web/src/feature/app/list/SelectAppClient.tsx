@@ -6,10 +6,10 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Modal } from "@components/ui/v4/modal";
-import { useFindUser } from "@persistence/browser/client/useFindUser";
-import { paths } from "@routing/paths";
 
+import { Modal } from "~/components/ui/v4/modal";
+import { useFindUser } from "~/persistence/browser/client/useFindUser";
+import { paths } from "~/routing/paths";
 import { AppListType } from "./fetch-app-list";
 
 export const SelectAppClient = ({

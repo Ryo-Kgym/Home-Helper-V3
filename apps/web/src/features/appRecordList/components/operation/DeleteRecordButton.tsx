@@ -1,8 +1,9 @@
-import { Trash } from "@components/ui/v4/icon/Trash";
-import { notify } from "@components/ui/v4/notify/notify";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
-import { useRecords } from "@hooks/states/app/records/useRecords";
 import { useDeleteRecordMutation } from "@v3/graphql/public";
+
+import { Trash } from "~/components/ui/v4/icon/Trash";
+import { notify } from "~/components/ui/v4/notify/notify";
+import { useRecords } from "~/hooks/states/app/records/useRecords";
+import { RecordListMode } from "../../types/recordListMode";
 
 export const DeleteRecordButton = ({
   recordId,

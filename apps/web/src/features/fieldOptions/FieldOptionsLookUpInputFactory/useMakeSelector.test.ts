@@ -2,7 +2,7 @@ import * as useGetAppFieldListQueryMock from "../../../../../../packages/graphql
 import { useMakeSelector } from "./useMakeSelector";
 
 jest.mock("../../../../../../packages/graphql/public");
-jest.mock("@persistence/browser/client/useFindUser", () => ({
+jest.mock("~/persistence/browser/client/useFindUser", () => ({
   useFindUser: jest.fn().mockReturnValue({ group: { id: "groupId" } }),
 }));
 

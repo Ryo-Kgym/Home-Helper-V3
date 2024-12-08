@@ -1,7 +1,7 @@
-import { fetchAppList } from "@feature/app/list/fetch-app-list";
-import { fetchViewList } from "@feature/app/list/fetch-view-list";
-import { SelectAppClient } from "@feature/app/list/SelectAppClient";
-import { findUser } from "@persistence/browser/server/find-user";
+import { findUser } from "~/persistence/browser/server/find-user";
+import { fetchAppList } from "./fetch-app-list";
+import { fetchViewList } from "./fetch-view-list";
+import { SelectAppClient } from "./SelectAppClient";
 
 export const SelectAppServer = async () => {
   const { group } = await findUser();

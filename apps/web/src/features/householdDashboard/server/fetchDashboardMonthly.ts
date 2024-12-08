@@ -1,11 +1,12 @@
 "use server";
 
-import { buildParams } from "@features/householdDashboard/server/buildParams";
-import { convertToNominal } from "@features/householdDashboard/server/convertToNominal";
-import { DashboardComponentProps } from "@features/householdDashboard/types/dashboardFC";
-import { findUser } from "@persistence/browser/server/find-user";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetDetailsByCategoryDocument } from "@v3/graphql/household/type";
+
+import { findUser } from "~/persistence/browser/server/find-user";
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { DashboardComponentProps } from "../types/dashboardFC";
+import { buildParams } from "./buildParams";
+import { convertToNominal } from "./convertToNominal";
 
 type Results = {
   income: Nominal;

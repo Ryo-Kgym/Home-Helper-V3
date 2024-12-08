@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Select } from "@components/ui/v4/select";
-import { ChartKind } from "@features/chart/types/chartKind";
 
+import { Select } from "~/components/ui/v4/select";
+import { ChartKind } from "../../../../features/chart/types/chartKind";
 import { chartRecord, FactoryComponentProps } from "./ChartFactoryClient";
 
 /**

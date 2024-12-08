@@ -1,7 +1,8 @@
 "use client";
 
-import { useFindUser } from "@persistence/browser/client/useFindUser";
 import { useEffect, useState } from "react";
+
+import { useFindUser } from "~/persistence/browser/client/useFindUser";
 
 export const CurrentGroupClient = () => {
   const [groupName, setGroupName] = useState<string>("Loading...");

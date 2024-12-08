@@ -1,6 +1,6 @@
-import { NumberInput } from "@components/ui/v4/textInput";
-import { useImportFileFieldMapping } from "@features/appImportFileFieldMapping/client/useImportFileFieldMapping";
-import { useSetFieldIndex } from "@features/appImportFileFieldMapping/client/useSetFieldIndex";
+import { NumberInput } from "~/components/ui/v4/textInput";
+import { useImportFileFieldMapping } from "../client/useImportFileFieldMapping";
+import { useSetFieldIndex } from "../client/useSetFieldIndex";
 
 export const SetImportFileFieldMapping = () => {
   const importFileFieldMapping = useImportFileFieldMapping();

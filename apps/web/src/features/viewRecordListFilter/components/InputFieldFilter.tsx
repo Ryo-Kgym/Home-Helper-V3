@@ -1,9 +1,4 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { DateInput } from "@components/ui/v4/dateInput/DateInput";
-import { Select } from "@components/ui/v4/select";
-import { Table } from "@components/ui/v4/table";
-import { NumberInput, TextInput } from "@components/ui/v4/textInput";
 import { FilterComplexity } from "@oneforall/domain/schema/filter/filterComplexitySchema";
 import { FilterOperator } from "@oneforall/domain/schema/filter/filterOperatorSchema";
 import { RecordFilters } from "@oneforall/domain/schema/filter/recordFiltersSchema";
@@ -11,6 +6,12 @@ import {
   ViewField,
   ViewFields,
 } from "@oneforall/domain/schema/view/viewSchema";
+
+import { Button } from "~/components/ui/v4/button";
+import { DateInput } from "~/components/ui/v4/dateInput/DateInput";
+import { Select } from "~/components/ui/v4/select";
+import { Table } from "~/components/ui/v4/table";
+import { NumberInput, TextInput } from "~/components/ui/v4/textInput";
 
 export const InputFieldFilter = ({
   index,

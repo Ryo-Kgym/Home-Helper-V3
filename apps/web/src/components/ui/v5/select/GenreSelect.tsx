@@ -1,9 +1,10 @@
 "use client";
 
-import type { IocomeType } from "@domain/model/household/IocomeType";
-import { Select } from "@components/ui";
-import { useGroup } from "@hooks/group/useGroup";
 import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
+
+import { Select } from "~/components/ui";
+import { useGroup } from "~/hooks/group/useGroup";
+import { IocomeType } from "../../../../domain/model/household/IocomeType";
 
 export const GenreSelect = ({
   genreId,

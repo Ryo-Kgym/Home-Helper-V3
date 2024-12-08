@@ -1,6 +1,7 @@
-import { generateId } from "@feature/app/function/generateId";
 import { AppFieldValue } from "@oneforall/domain/schema/appFieldValue";
 import { FieldUpdates, useUpdateAppMutation } from "@v3/graphql/public";
+
+import { generateId } from "../function/generateId";
 
 export const useModifyApp = ({ appId }: { appId: string }) => {
   const [, mutation] = useUpdateAppMutation();

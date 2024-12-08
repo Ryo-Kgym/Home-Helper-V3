@@ -1,17 +1,17 @@
 "use client";
 
 import { FC, useState } from "react";
-import { AccountSelect } from "@components/molecules/CustomSelect/Account";
-import { DatePicker } from "@components/ui/date";
-import { Button } from "@components/ui/v4/button";
-import { notify } from "@components/ui/v4/notify/notify";
-import { FileInput } from "@components/ui/v5/file/FileInput";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { useCreateImportFile } from "@features/householdFileImport/client/useCreateImportFile";
-import { useFileImportColumnMapping } from "@features/householdFileImport/client/useFileImportColumnMapping";
-import { useImportFileRowAware } from "@features/householdFileImport/client/useImportFileRowAware";
 
+import { AccountSelect } from "~/components/molecules/CustomSelect/Account";
+import { DatePicker } from "~/components/ui/date";
+import { Button } from "~/components/ui/v4/button";
+import { notify } from "~/components/ui/v4/notify/notify";
+import { FileInput } from "~/components/ui/v5/file/FileInput";
+import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { useBuildTable } from "../../client/useBuildTable";
+import { useCreateImportFile } from "../../client/useCreateImportFile";
+import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
+import { useImportFileRowAware } from "../../client/useImportFileRowAware";
 import { useLoadFile } from "../../client/useLoadFile";
 import { useMessage } from "../../client/useMessage";
 import { LoadFileInputTable } from "./LoadFileInputTable";

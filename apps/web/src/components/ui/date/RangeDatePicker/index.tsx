@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { DatePicker } from "@components/ui/date";
+import { DatePicker } from "~/components/ui/date";
 
 export const RangeDatePicker = ({
   fromDate = new Date("2010-01-01"),

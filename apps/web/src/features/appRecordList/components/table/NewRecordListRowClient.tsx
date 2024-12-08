@@ -1,9 +1,10 @@
-import { Table } from "@components/ui/v4/table";
-import { AddCell } from "@features/appRecordList/components/cell/AddCell";
-import { AddRecordRowOperation } from "@features/appRecordList/components/operation/AddRecordRowOperation";
-import { useNewRecord } from "@hooks/states/app/record/useNewRecord";
-import { useRecordListMode } from "@hooks/states/app/recordListMode/useRecordListMode";
 import { App } from "@oneforall/domain/schema/appSchema";
+
+import { Table } from "~/components/ui/v4/table";
+import { useNewRecord } from "~/hooks/states/app/record/useNewRecord";
+import { useRecordListMode } from "~/hooks/states/app/recordListMode/useRecordListMode";
+import { AddCell } from "../cell/AddCell";
+import { AddRecordRowOperation } from "../operation/AddRecordRowOperation";
 
 export const NewRecordListRowClient = ({ app }: { app: App }) => {
   const { record, setRecord } = useNewRecord();

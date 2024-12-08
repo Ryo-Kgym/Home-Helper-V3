@@ -1,4 +1,4 @@
-import { CreateAppClient } from "@feature/app/create/CreateAppClient";
+import { CreateAppClient } from "./CreateAppClient";
 
 export const CreateAppServer = async () => {
   return <CreateAppClient />;

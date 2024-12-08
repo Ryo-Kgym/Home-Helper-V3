@@ -1,6 +1,7 @@
-import { Group } from "@domain/model/Group";
-import { groupState } from "@recoil/groupState";
 import { useRecoilState } from "recoil";
+
+import { Group } from "../../domain/model/Group";
+import { groupState } from "../../recoil/groupState";
 
 export const useGroup = () => {
   const [group, setGroup] = useRecoilState(groupState);

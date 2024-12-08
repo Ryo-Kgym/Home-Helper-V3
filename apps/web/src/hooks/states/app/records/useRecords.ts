@@ -1,4 +1,4 @@
-import { useRecordsZustand } from "@hooks/states/app/records/useRecordsZustand";
+import { useRecordsZustand } from "~/hooks/states/app/records/useRecordsZustand";
 
 export const useRecords = () =>
   useRecordsZustand((store) => ({

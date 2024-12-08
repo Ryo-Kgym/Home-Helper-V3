@@ -1,8 +1,9 @@
-import type { ModifyCellFactoryChangeHandler } from "@features/appRecordList/components/cell/cellFactoryChangeHandler";
 import type { FieldOptionsLookup } from "@oneforall/domain/schema/appSchema";
-import { Select } from "@components/ui/v4/select";
 import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 import { useGetLookupOptions } from "features/appRecordList/client/useGetLookupOptions";
+
+import { Select } from "~/components/ui/v4/select";
+import { ModifyCellFactoryChangeHandler } from "./cellFactoryChangeHandler";
 
 export const ModifyCellLookupFactory = ({
   value,

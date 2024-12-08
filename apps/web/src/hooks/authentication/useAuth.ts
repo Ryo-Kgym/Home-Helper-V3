@@ -2,11 +2,12 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useClerk } from "@clerk/nextjs";
-import { useGroup } from "@hooks/group/useGroup";
-import { useMessage } from "@hooks/message/useMessage";
-import { useUser } from "@hooks/user/useUser";
 import { useRouter } from "next/navigation";
+import { useClerk } from "@clerk/nextjs";
+
+import { useGroup } from "~/hooks/group/useGroup";
+import { useMessage } from "~/hooks/message/useMessage";
+import { useUser } from "~/hooks/user/useUser";
 
 export const useAuth = () => {
   const { save: saveUser } = useUser();

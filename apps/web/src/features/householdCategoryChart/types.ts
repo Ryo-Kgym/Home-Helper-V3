@@ -1,5 +1,5 @@
-import { GenreType } from "@domain/model/household/GenreType";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import { GenreType } from "../../domain/model/household/GenreType";
+import { IocomeType } from "../../domain/model/household/IocomeType";
 
 export type CategoryChartData = Record<
   string, // categoryId

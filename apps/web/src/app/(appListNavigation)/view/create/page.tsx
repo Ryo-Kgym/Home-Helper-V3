@@ -1,4 +1,4 @@
-import { CreateView } from "@pageComponents/viewCreate";
+import { CreateView } from "../../../../pageComponents/viewCreate";
 
 const Page = () => <CreateView />;
 

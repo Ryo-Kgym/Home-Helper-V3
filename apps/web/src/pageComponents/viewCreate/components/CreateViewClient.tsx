@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { Title } from "@components/ui/v4/frame/Title";
-import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
-import { useGetViewFieldValue } from "@feature/view/create/useGetViewFieldValue";
-import { useResetViewFieldValue } from "@feature/view/create/useResetViewFieldValue";
-import { ViewFieldInput } from "@feature/view/field/ViewFieldInput";
-import { CreateViewButton } from "@features/viewCreate/components/CreateViewButton";
-import { ViewFieldAddButton } from "@pageComponents/viewCreate/components/ViewFieldAddButton";
-import { ViewNameInput } from "@pageComponents/viewCreate/components/ViewNameInput";
+
+import { Button } from "~/components/ui/v4/button";
+import { Title } from "~/components/ui/v4/frame/Title";
+import { PageClientFrame } from "~/components/ui/v4/PageClientFrame";
+import { useGetViewFieldValue } from "../../../feature/view/create/useGetViewFieldValue";
+import { useResetViewFieldValue } from "../../../feature/view/create/useResetViewFieldValue";
+import { ViewFieldInput } from "../../../feature/view/field/ViewFieldInput";
+import { CreateViewButton } from "../../../features/viewCreate/components/CreateViewButton";
+import { ViewFieldAddButton } from "./ViewFieldAddButton";
+import { ViewNameInput } from "./ViewNameInput";
 
 export const CreateViewClient = () => {
   const [viewName, setViewName] = useState<string>("");

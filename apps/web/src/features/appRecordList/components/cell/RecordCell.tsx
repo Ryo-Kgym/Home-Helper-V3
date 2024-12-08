@@ -1,7 +1,7 @@
 import { ComponentProps, ReactNode } from "react";
-import { ModifyCell } from "@features/appRecordList/components/cell/ModifyCell";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 
+import { RecordListMode } from "../../types/recordListMode";
+import { ModifyCell } from "./ModifyCell";
 import { ShowCell } from "./ShowCell";
 
 export const RecordCell = (

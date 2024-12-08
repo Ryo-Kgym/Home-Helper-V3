@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
-import { fetchDashboardSettings } from "@features/householdDashboard/server/fetchDashboardSettings";
 
+import { fetchDashboardSettings } from "../server/fetchDashboardSettings";
 import { HouseholdDashboardClient } from "./HouseholdDashboardClient";
 
 export const HouseholdDashboardServer = async () => {

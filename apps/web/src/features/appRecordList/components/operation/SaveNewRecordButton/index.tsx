@@ -1,6 +1,6 @@
-import { notify } from "@components/ui/v4/notify/notify";
 import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 
+import { notify } from "~/components/ui/v4/notify/notify";
 import { useSaveNewRecord } from "./useSaveNewRecord";
 
 export const SaveNewRecordButton = ({

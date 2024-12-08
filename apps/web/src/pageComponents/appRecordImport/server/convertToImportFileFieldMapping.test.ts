@@ -1,6 +1,7 @@
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
-import { convertToImportFileFieldMapping } from "@pageComponents/appRecordImport/server/convertToImportFileFieldMapping";
+
+import { convertToImportFileFieldMapping } from "./convertToImportFileFieldMapping";
 
 describe("convertToImportFileFieldMapping", () => {
   it("should convert fields to import file field mapping", () => {

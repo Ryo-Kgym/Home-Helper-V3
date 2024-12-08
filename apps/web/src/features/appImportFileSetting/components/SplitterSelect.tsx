@@ -1,5 +1,6 @@
 import type { Splitter } from "@oneforall/domain/schema/importFileSettingsSchema";
-import { Select } from "@components/ui/v4/select";
+
+import { Select } from "~/components/ui/v4/select";
 
 export const SplitterSelect = ({
   value,

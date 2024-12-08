@@ -1,5 +1,5 @@
-import { useGetAppFieldValue } from "@feature/app/create/useAppFieldValueState";
-import { AppFieldInput } from "@feature/app/field/AppFieldInput";
+import { useGetAppFieldValue } from "../create/useAppFieldValueState";
+import { AppFieldInput } from "../field/AppFieldInput";
 
 export const FieldInputTable = () => {
   const { fields } = useGetAppFieldValue();

@@ -2,14 +2,13 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { useDeleteDailyDetailBySerialNo } from "@hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
-import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
 import { useEffect, useState } from "react";
 
+import { useDeleteDailyDetailBySerialNo } from "~/hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
+import { useUpdateDailyDetailBySerialNo } from "~/hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
+import { DailyDetail } from "../../../../domain/model/household/DailyDetail";
+import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { ChangeDetailPresenter } from "./ChangeDetailPresenter";
-
-import type { DailyDetail } from "@domain/model/household/DailyDetail";
 
 export const ChangeDetailContainer = ({
   initData,
@@ -42,12 +41,12 @@ export const ChangeDetailContainer = ({
 
   const resetClickHandler = () => {
     setDate(initData!.date);
-    setIocomeType(initData!.iocomeType!);
+    setIocomeType(initData?.iocomeType ?? IocomeType.Income);
     setGenreId(initData!.genreId);
     setCategoryId(initData!.categoryId);
     setAccountId(initData!.accountId);
     setAmount(initData!.amount);
-    setMemo(initData!.memo!);
+    setMemo(initData?.memo ?? "");
   };
 
   useEffect(resetClickHandler, [initData]);

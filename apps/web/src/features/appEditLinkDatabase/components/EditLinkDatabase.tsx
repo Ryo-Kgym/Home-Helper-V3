@@ -1,9 +1,4 @@
 import { useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { MultiTextInput } from "@components/ui/v4/multiTextInput";
-import { notify } from "@components/ui/v4/notify/notify";
-import { Select } from "@components/ui/v4/select";
-import { FieldColumnInput } from "@features/appEditLinkDatabase/components/FieldColumnInput";
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { FieldColumnMaps } from "@oneforall/domain/schema/linkDatabase/fieldColumnMapsSchema";
 import {
@@ -12,7 +7,12 @@ import {
   linkDatabaseSchema,
 } from "@oneforall/domain/schema/linkDatabase/linkDatabaseSchema";
 
+import { Button } from "~/components/ui/v4/button";
+import { MultiTextInput } from "~/components/ui/v4/multiTextInput";
+import { notify } from "~/components/ui/v4/notify/notify";
+import { Select } from "~/components/ui/v4/select";
 import { useUpdateLinkDatabase } from "../hooks/useUpdateLinkDatabase";
+import { FieldColumnInput } from "./FieldColumnInput";
 
 export const EditLinkDatabase = ({
   appId,

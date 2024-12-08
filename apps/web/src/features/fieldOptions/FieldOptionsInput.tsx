@@ -1,10 +1,11 @@
 import React, { ComponentProps, ReactNode } from "react";
-import { FieldOptionsDateInputFactory } from "@features/fieldOptions/FieldOptionsDateInputFactory";
-import { FieldOptionsLookUpInputFactory } from "@features/fieldOptions/FieldOptionsLookUpInputFactory";
-import { FieldOptionsNumericInputFactory } from "@features/fieldOptions/FieldOptionsNumericInputFactory";
-import { FieldOptionsSelectBoxInputFactory } from "@features/fieldOptions/FieldOptionsSelectBoxInputFactory";
 import { FieldKind } from "@oneforall/domain/field/type";
 import { AppFieldOptions } from "@oneforall/domain/schema/appFieldValue";
+
+import { FieldOptionsDateInputFactory } from "./FieldOptionsDateInputFactory";
+import { FieldOptionsLookUpInputFactory } from "./FieldOptionsLookUpInputFactory";
+import { FieldOptionsNumericInputFactory } from "./FieldOptionsNumericInputFactory";
+import { FieldOptionsSelectBoxInputFactory } from "./FieldOptionsSelectBoxInputFactory";
 
 export type OptionsState = {
   value: AppFieldOptions;

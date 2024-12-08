@@ -4,10 +4,11 @@ import {
   LinkDatabase,
   linkDatabaseSchema,
 } from "@oneforall/domain/schema/linkDatabase/linkDatabaseSchema";
-import { LinkDatabaseAppClient } from "@pageComponents/appLinkDatabase/components/LinkDatabaseAppClient";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToFields } from "@v3/graphql/public/convert/parseToFields";
 import { GetAppLinkDatabaseDocument } from "@v3/graphql/public/type";
+
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { LinkDatabaseAppClient } from "./LinkDatabaseAppClient";
 
 export const LinkDatabaseAppServer: FC<{ appId: string }> = async ({
   appId,

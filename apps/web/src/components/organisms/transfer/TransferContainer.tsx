@@ -3,10 +3,11 @@
  */
 "use client";
 
-import { TransferPresenter } from "@components/organisms/transfer/TransferPresenter";
-import { errorPopup, successPopup } from "@function/successPopup";
-import { useRegisterTransfer } from "@hooks/household/transfer/useRegisterTransfer";
 import { useState } from "react";
+
+import { TransferPresenter } from "~/components/organisms/transfer/TransferPresenter";
+import { errorPopup, successPopup } from "~/functions/successPopup";
+import { useRegisterTransfer } from "~/hooks/household/transfer/useRegisterTransfer";
 
 export const TransferContainer = ({ date }: { date: Date }) => {
   const [registerDate, setRegisterDate] = useState<Date>(date);

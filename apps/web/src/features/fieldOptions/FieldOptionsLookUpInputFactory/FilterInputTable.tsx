@@ -1,13 +1,14 @@
 import { ComponentProps, useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { Table } from "@components/ui/v4/table";
-import { FilterInputRow } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterInputRow";
 import {
   FieldOptionsLookup,
   FieldOptionsLookupFilter,
   Fields,
 } from "@oneforall/domain/schema/appSchema";
 import { FilterComplexity } from "@oneforall/domain/schema/filter/filterComplexitySchema";
+
+import { Button } from "~/components/ui/v4/button";
+import { Table } from "~/components/ui/v4/table";
+import { FilterInputRow } from "./FilterInputRow";
 
 /**
  * @package

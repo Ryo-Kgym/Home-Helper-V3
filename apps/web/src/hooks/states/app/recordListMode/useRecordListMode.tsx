@@ -1,4 +1,4 @@
-import { useModeStateZustand } from "@hooks/states/app/recordListMode/useModeStateZustand";
+import { useModeStateZustand } from "~/hooks/states/app/recordListMode/useModeStateZustand";
 
 export const useRecordListMode = () =>
   useModeStateZustand((store) => ({

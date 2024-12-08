@@ -1,9 +1,10 @@
 import { useRouter } from "next/navigation";
-import { Button } from "@components/ui/v4/button";
-import { notify } from "@components/ui/v4/notify/notify";
-import { useDeleteAppRelations } from "@features/appDelete/client/useDeleteAppRelations";
-import { AppDeleteRelations } from "@features/appDelete/types/appDeleteRelations";
-import { paths } from "@routing/paths";
+
+import { Button } from "~/components/ui/v4/button";
+import { notify } from "~/components/ui/v4/notify/notify";
+import { paths } from "~/routing/paths";
+import { useDeleteAppRelations } from "../client/useDeleteAppRelations";
+import { AppDeleteRelations } from "../types/appDeleteRelations";
 
 export const DeleteAppRelationsClient = ({
   appDeleteRelations: { app, viewApps, ...other },

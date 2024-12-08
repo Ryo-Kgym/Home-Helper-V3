@@ -1,6 +1,7 @@
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { PreviewRecordColumns } from "@oneforall/domain/schema/previewRecordsSchema";
-import { convertToPreviewRecordColumns } from "@pageComponents/appRecordImport/client/convertRecords/convertToPreviewRecordColumns";
+
+import { convertToPreviewRecordColumns } from "./convertToPreviewRecordColumns";
 
 describe("convertToPreviewRecordColumns", () => {
   const testFields: Fields = {

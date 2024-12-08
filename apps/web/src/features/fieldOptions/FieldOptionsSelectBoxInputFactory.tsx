@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { TextInput } from "@components/ui/v4/textInput";
-import { generateId } from "@feature/app/function/generateId";
-import { OptionsState } from "@features/fieldOptions/FieldOptionsInput";
 import {
   SelectBoxOptions,
   selectBoxOptionsSchema,
 } from "@oneforall/domain/schema/appFieldValue";
+
+import { Button } from "~/components/ui/v4/button";
+import { TextInput } from "~/components/ui/v4/textInput";
+import { generateId } from "../../feature/app/function/generateId";
+import { OptionsState } from "./FieldOptionsInput";
 
 export const FieldOptionsSelectBoxInputFactory = ({
   value,

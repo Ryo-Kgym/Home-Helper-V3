@@ -1,5 +1,6 @@
-import { DashboardComponentProps } from "@features/householdDashboard/types/dashboardFC";
 import { z } from "zod";
+
+import { DashboardComponentProps } from "../types/dashboardFC";
 
 export const buildParams = (
   params: Pick<DashboardComponentProps, "dashboardSettingArgs"> & {

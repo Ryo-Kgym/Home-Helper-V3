@@ -1,11 +1,12 @@
 "use client";
 
 import { ComponentProps, useEffect } from "react";
-import { Table } from "@components/ui/v4/table";
-import { useInitViewRecords } from "@features/viewRecordList/client/useViewRecordsState";
-import { ViewRecordListTable } from "@features/viewRecordList/components/ViewRecordListTable";
 import { ViewRecords } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { View } from "@oneforall/domain/schema/view/viewSchema";
+
+import { Table } from "~/components/ui/v4/table";
+import { useInitViewRecords } from "../client/useViewRecordsState";
+import { ViewRecordListTable } from "./ViewRecordListTable";
 
 export const ViewRecordListClient = ({
   view,

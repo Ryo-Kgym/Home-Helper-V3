@@ -1,5 +1,6 @@
-import { makeHeaderItems } from "@features/appRecordList/server/makeHeaderItems";
 import { Fields } from "@oneforall/domain/schema/appSchema";
+
+import { makeHeaderItems } from "./makeHeaderItems";
 
 describe("makeHeaderItems", () => {
   it("fields が空でない場合", () => {

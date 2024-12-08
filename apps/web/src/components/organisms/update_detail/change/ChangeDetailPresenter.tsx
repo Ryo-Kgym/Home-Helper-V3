@@ -2,16 +2,15 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { AmountInput } from "@components/molecules/CustomNumberInput/Amount/index";
-import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType/index";
-import { AccountSelect } from "@components/molecules/CustomSelect/Account";
-import { CategorySelect } from "@components/molecules/CustomSelect/Category";
-import { GenreSelect } from "@components/molecules/CustomSelect/Genre/index";
-import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo/index";
-import { DatePicker } from "@components/ui/date/index";
-import { Button } from "@components/ui/index";
-
-import type { IocomeType } from "@domain/model/household/IocomeType";
+import { AmountInput } from "~/components/molecules/CustomNumberInput/Amount/index";
+import { IocomeTypeSegment } from "~/components/molecules/CustomSegment/IocomeType/index";
+import { AccountSelect } from "~/components/molecules/CustomSelect/Account";
+import { CategorySelect } from "~/components/molecules/CustomSelect/Category";
+import { GenreSelect } from "~/components/molecules/CustomSelect/Genre/index";
+import { MemoTextArea } from "~/components/molecules/CustomTextArea/Memo/index";
+import { DatePicker } from "~/components/ui/date/index";
+import { Button } from "~/components/ui/index";
+import { IocomeType } from "../../../../domain/model/household/IocomeType";
 
 export const ChangeDetailPresenter = ({
   date,

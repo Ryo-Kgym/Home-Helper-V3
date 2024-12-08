@@ -1,5 +1,6 @@
-import { SumBalance } from "@features/householdBalanceChart/server/types";
 import { ChartDataQuery } from "@v3/graphql/household/type";
+
+import { SumBalance } from "./types";
 
 export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
   return data.detailView?.reduce<SumBalance>((sum, cur) => {

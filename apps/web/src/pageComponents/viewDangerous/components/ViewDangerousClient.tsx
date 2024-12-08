@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Title } from "@components/ui/v4/frame/Title";
-import { Modal } from "@components/ui/v4/modal";
-import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
-import { DeleteViewRelationsClient } from "@features/viewDelete/components/DeleteViewRelationsClient";
-import { ViewDeleteRelations } from "@features/viewDelete/types/viewDeleteRelations";
-import { Section } from "@pageComponents/viewDangerous/components/Section";
+
+import { Title } from "~/components/ui/v4/frame/Title";
+import { Modal } from "~/components/ui/v4/modal";
+import { PageClientFrame } from "~/components/ui/v4/PageClientFrame";
+import { DeleteViewRelationsClient } from "../../../features/viewDelete/components/DeleteViewRelationsClient";
+import { ViewDeleteRelations } from "../../../features/viewDelete/types/viewDeleteRelations";
+import { Section } from "./Section";
 
 export const ViewDangerousClient = ({
   viewDeleteRelations,

@@ -1,11 +1,11 @@
 "use client";
 
 import { FC, useState } from "react";
-import { ComboBox } from "@components/ui/v4/comboBox";
-import { RangeMonthPicker } from "@components/ui/v5/date/RangeMonthPicker";
-import { useNavigation } from "@routing/client/useNavigation";
-import { colors } from "@styles/colors";
 
+import { ComboBox } from "~/components/ui/v4/comboBox";
+import { RangeMonthPicker } from "~/components/ui/v5/date/RangeMonthPicker";
+import { useNavigation } from "~/routing/client/useNavigation";
+import { colors } from "~/styles/colors";
 import { CategoryChartData } from "../types";
 import { CategoryChart } from "./CategoryChart";
 import { YearMonth } from "./types";

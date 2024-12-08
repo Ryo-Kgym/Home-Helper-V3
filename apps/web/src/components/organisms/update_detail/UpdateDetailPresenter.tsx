@@ -2,13 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Modal, Tab } from "@components/ui";
-import { IocomeType } from "@domain/model/household/IocomeType";
-
+import { Modal, Tab } from "~/components/ui";
+import { DailyDetail } from "../../../domain/model/household/DailyDetail";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { ChangeDetailContainer } from "./change/ChangeDetailContainer";
 import { CutDetailContainer } from "./cut/CutDetailContainer";
-
-import type { DailyDetail } from "@domain/model/household/DailyDetail";
 
 export const UpdateDetailPresenter = ({
   initData,

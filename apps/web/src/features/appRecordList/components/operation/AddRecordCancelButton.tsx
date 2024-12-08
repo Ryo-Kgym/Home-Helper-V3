@@ -1,5 +1,5 @@
-import { useResetNewRecord } from "@hooks/states/app/record/useResetNewRecord";
-import { useResetMode } from "@hooks/states/app/recordListMode/useModeStateZustand";
+import { useResetNewRecord } from "~/hooks/states/app/record/useResetNewRecord";
+import { useResetMode } from "~/hooks/states/app/recordListMode/useModeStateZustand";
 
 export const AddRecordCancelButton = () => {
   const reset = useResetNewRecord();

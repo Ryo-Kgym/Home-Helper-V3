@@ -2,20 +2,21 @@
 
 import type { ChangeEvent } from "react";
 import { useRef, useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { notify } from "@components/ui/v4/notify/notify";
-import { loadImportFile } from "@features/appFileImport/client/loadImportFile";
-import { selectSingleFile } from "@features/appFileImport/client/selectSingleFile";
-import { useImportFileFieldMapping } from "@features/appImportFileFieldMapping/client/useImportFileFieldMapping";
-import { useImportFileSettings } from "@features/appImportFileSetting/client/useImportSettingsState";
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
-import { convertPreviewRecords } from "@pageComponents/appRecordImport/client/convertRecords";
-import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
-import { useInsertImportFileRecords } from "@pageComponents/appRecordImport/hooks/useInsertImportFileRecords";
-import { usePreviewRecords } from "@pageComponents/appRecordImport/hooks/usePreviewRecords";
-import { useResetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useResetPreviewRecords";
-import { useSetPreviewRecords } from "@pageComponents/appRecordImport/hooks/useSetPreviewRecords";
+
+import { Button } from "~/components/ui/v4/button";
+import { notify } from "~/components/ui/v4/notify/notify";
+import { loadImportFile } from "../../../features/appFileImport/client/loadImportFile";
+import { selectSingleFile } from "../../../features/appFileImport/client/selectSingleFile";
+import { useImportFileFieldMapping } from "../../../features/appImportFileFieldMapping/client/useImportFileFieldMapping";
+import { useImportFileSettings } from "../../../features/appImportFileSetting/client/useImportSettingsState";
+import { convertPreviewRecords } from "../client/convertRecords";
+import { useImportFileHistories } from "../hooks/useImportFileHistories";
+import { useInsertImportFileRecords } from "../hooks/useInsertImportFileRecords";
+import { usePreviewRecords } from "../hooks/usePreviewRecords";
+import { useResetPreviewRecords } from "../hooks/useResetPreviewRecords";
+import { useSetPreviewRecords } from "../hooks/useSetPreviewRecords";
 
 export const ImportFilePickerClient = ({
   appId,

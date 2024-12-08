@@ -2,8 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FormatPricePresenter } from "@components/molecules/FormatPrice/FormatPricePresenter";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import { FormatPricePresenter } from "~/components/molecules/FormatPrice/FormatPricePresenter";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const FormatPriceContainer = ({
   iocomeType,

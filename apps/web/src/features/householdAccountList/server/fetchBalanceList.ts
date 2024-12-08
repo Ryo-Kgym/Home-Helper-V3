@@ -1,10 +1,11 @@
-import { findUser } from "@persistence/browser/server/find-user";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import {
   convertToAccounts,
   totalBalance,
 } from "@v3/graphql/household/convert/parseToAccounts";
 import { GetAccountBalanceListDocument } from "@v3/graphql/household/type";
+
+import { findUser } from "~/persistence/browser/server/find-user";
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
 
 export const fetchBalanceList = async ({
   fromDate,

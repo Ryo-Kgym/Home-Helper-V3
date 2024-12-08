@@ -4,10 +4,10 @@
 
 "use client";
 
-import { useAuth } from "@hooks/authentication/useAuth";
-import { useMessage } from "@hooks/message/useMessage";
 import { useEffect, useState } from "react";
 
+import { useAuth } from "~/hooks/authentication/useAuth";
+import { useMessage } from "~/hooks/message/useMessage";
 import { LoginPresenter } from "./LoginPresenter";
 
 export const LoginContainer = () => {

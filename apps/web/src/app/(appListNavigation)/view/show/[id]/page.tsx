@@ -1,4 +1,4 @@
-import { ViewRecordList } from "@pageComponents/viewRecordList";
+import { ViewRecordList } from "../../../../../pageComponents/viewRecordList";
 
 const Page = ({
   params: { id },

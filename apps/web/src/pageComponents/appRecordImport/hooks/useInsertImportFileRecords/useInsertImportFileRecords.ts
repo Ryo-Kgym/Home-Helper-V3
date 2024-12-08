@@ -1,4 +1,3 @@
-import { generateId, generateIds } from "@feature/app/function/generateId";
 import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
 import { PreviewRecords } from "@oneforall/domain/schema/previewRecordsSchema";
 import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
@@ -8,6 +7,10 @@ import {
   useInsertImportFileRecordsMutation,
 } from "@v3/graphql/public";
 
+import {
+  generateId,
+  generateIds,
+} from "../../../../feature/app/function/generateId";
 import { convertToRecordObjects } from "./convertToRecordObjects";
 
 // TODO test

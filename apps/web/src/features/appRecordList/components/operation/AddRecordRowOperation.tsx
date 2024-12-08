@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
-import { AddRecordCancelButton } from "@features/appRecordList/components/operation/AddRecordCancelButton";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 
+import { RecordListMode } from "../../types/recordListMode";
+import { AddRecordCancelButton } from "./AddRecordCancelButton";
 import { SaveNewRecordButton } from "./SaveNewRecordButton";
 
 export const AddRecordRowOperation = (

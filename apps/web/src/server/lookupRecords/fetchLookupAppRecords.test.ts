@@ -1,8 +1,7 @@
-import * as fetchQuery from "@persistence/database/server/fetchQuery";
-
+import * as fetchQuery from "~/persistence/database/server/fetchQuery";
 import { fetchLookupAppRecords } from "./fetchLookupAppRecords";
 
-jest.mock("@persistence/database/server/fetchQuery");
+jest.mock("~/persistence/database/server/fetchQuery");
 
 describe("fetchLookupAppRecords", () => {
   it("期待した値が返されること", async () => {

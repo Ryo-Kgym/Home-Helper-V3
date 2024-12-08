@@ -1,9 +1,9 @@
 "use client";
 
 import React, { ComponentProps } from "react";
-import { Title } from "@components/ui/v4/frame/Title";
-import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
 
+import { Title } from "~/components/ui/v4/frame/Title";
+import { PageClientFrame } from "~/components/ui/v4/PageClientFrame";
 import { SwitchingCharts } from "./SwitchingCharts";
 
 const ShowChartClient = ({

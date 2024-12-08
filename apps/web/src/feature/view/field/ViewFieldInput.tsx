@@ -1,5 +1,4 @@
-import { useGetViewFieldValue } from "@feature/view/create/useGetViewFieldValue";
-
+import { useGetViewFieldValue } from "../create/useGetViewFieldValue";
 import { AddViewFieldContainer } from "./AddViewFieldContainer";
 import { ModifyViewFieldContainer } from "./ModifyViewFieldContainer";
 

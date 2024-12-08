@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-// eslint-disable-next-line strict-dependencies/strict-dependencies
-import { useImportFileSettings } from "@features/appImportFileSetting/client/useImportSettingsState";
-import { decodeCsv } from "@provider/file/loader/csv/loadCsvFile";
+
+import { decodeCsv } from "../../../provider/file/loader/csv/loadCsvFile";
+import { useImportFileSettings } from "../../appImportFileSetting/client/useImportSettingsState";
 
 export const useLoadFile = () => {
   const { importFileSettings } = useImportFileSettings();
@@ -9,19 +9,23 @@ export const useLoadFile = () => {
   const [loadFile, setLoadFile] = useState<string>("");
   const { encodingTo, encodingFrom, encodingType } = importFileSettings;
 
-  useEffect(() => {
-    const fn = async () => {
-      if (!uploadFile) {
-        setLoadFile("");
-        return;
-      }
+  useEffect(
+    () => {
+      const fn = async () => {
+        if (!uploadFile) {
+          setLoadFile("");
+          return;
+        }
 
-      const readFile = await uploadFile.stream().getReader().read();
-      const csv = decodeCsv(readFile, encodingTo, encodingFrom, encodingType);
-      setLoadFile(csv);
-    };
-    void fn();
-  }, [uploadFile]);
+        const readFile = await uploadFile.stream().getReader().read();
+        const csv = decodeCsv(readFile, encodingTo, encodingFrom, encodingType);
+        setLoadFile(csv);
+      };
+      void fn();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [uploadFile],
+  );
 
   return {
     uploadFile,

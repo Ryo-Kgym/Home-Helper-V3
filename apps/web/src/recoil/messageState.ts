@@ -1,5 +1,6 @@
-import { persist } from "@recoil/recoilPersist";
 import { atom } from "recoil";
+
+import { persist } from "./recoilPersist";
 
 export const messageState = atom<string[]>({
   key: "message",

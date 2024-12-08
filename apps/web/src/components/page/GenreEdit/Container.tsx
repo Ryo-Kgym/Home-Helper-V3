@@ -3,15 +3,15 @@
  */
 "use client";
 
-import { GenreType } from "@domain/model/household/GenreType";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { errorPopup, successPopup } from "@function/successPopup";
+import { useEffect, useState } from "react";
 import {
   useGetGenreByIdQuery,
   useUpdateGenreByIdMutation,
 } from "@v3/graphql/household";
-import { useEffect, useState } from "react";
 
+import { errorPopup, successPopup } from "~/functions/successPopup";
+import { GenreType } from "../../../domain/model/household/GenreType";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { Presenter_ } from "./Presenter";
 
 export const Container_ = ({ genreId }: { genreId: string }) => {

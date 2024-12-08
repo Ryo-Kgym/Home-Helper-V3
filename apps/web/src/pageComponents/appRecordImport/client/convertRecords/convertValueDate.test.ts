@@ -1,4 +1,4 @@
-import { convertValueDate } from "@pageComponents/appRecordImport/client/convertRecords/convertValueDate";
+import { convertValueDate } from "./convertValueDate";
 
 describe("convertValueDate", () => {
   it.each`

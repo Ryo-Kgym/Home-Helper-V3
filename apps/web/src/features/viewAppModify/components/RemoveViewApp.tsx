@@ -1,4 +1,4 @@
-import { Trash } from "@components/ui/v4/icon/Trash";
+import { Trash } from "~/components/ui/v4/icon/Trash";
 
 /**
  * @package
