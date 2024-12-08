@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import "@styles/globals.css";
+import "~/styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/core/styles.layer.css";
 import "@mantine/dates/styles.css";
@@ -11,7 +11,8 @@ import "mantine-datatable/styles.layer.css";
 import { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript } from "@mantine/core";
-import { ClientsProviders } from "app/_provider/ClientsProviders";
+
+import { ClientsProviders } from "./_provider/ClientsProviders";
 
 export const metadata: Metadata = {
   title: "One for All",
