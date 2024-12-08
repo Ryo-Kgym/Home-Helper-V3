@@ -1,56 +1,38 @@
 "use client";
 
-import { FC } from "react";
 import { Loading } from "@components/ui/v5/loading/Loading";
 import { useDashboardBalance } from "@features/householdDashboard/client/useDashboardBalance";
+import { DashboardFC } from "@features/householdDashboard/types/dashboardFC";
 
 import styles from "./DashboardBalanceClient.module.scss";
 
-type Props = {
-  favoriteFilterId: string;
-};
-
-export const DashboardBalanceClient: FC<Props> = ({ favoriteFilterId }) => {
+export const DashboardBalanceClient: DashboardFC = ({ dashboardSettingId }) => {
   const { loading, data } = useDashboardBalance({
-    favoriteFilterId,
+    favoriteFilterId: dashboardSettingId,
   });
 
   if (loading) return <Loading />;
 
   return (
     <div className={styles.module}>
-      <div>
-        <div>合計</div>
-        <div className={styles.totalBody}>
-          <div className={styles.total}>
-            <span>収入</span>
-            <span>{data.income.total.toLocaleString()}</span>
-          </div>
-          <div className={styles.total}>
-            <span>支出</span>
-            <span>{data.outcome.total.toLocaleString()}</span>
-          </div>
+      <div className={styles.body}>
+        <div className={styles.detail}>
+          <span>現金</span>
+          <span>{data.cash.toLocaleString()}</span>
         </div>
-      </div>
-      <div>
-        <div>明細</div>
-        <div className={styles.body}>
-          <div>
-            {data.income.details.map((d) => (
-              <div key={d.id} className={styles.detail}>
-                <span>{d.name}</span>
-                <span>{d.amount.toLocaleString()}</span>
-              </div>
-            ))}
-          </div>
-          <div>
-            {data.outcome.details.map((d) => (
-              <div key={d.id} className={styles.detail}>
-                <span>{d.name}</span>
-                <span>{d.amount.toLocaleString()}</span>
-              </div>
-            ))}
-          </div>
+        <div className={styles.detail}>
+          <span>投資</span>
+          <span>{data.investment.toLocaleString()}</span>
+        </div>
+        <div />
+        <div className={styles.detail}>
+          <span>合計</span>
+          <span>{data.total.toLocaleString()}</span>
+        </div>
+        <div />
+        <div className={styles.detail}>
+          <span> {data.currentDatetime.toLocaleString("ja-JP")} </span>
+          <span>現在</span>
         </div>
       </div>
     </div>

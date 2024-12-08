@@ -4,10 +4,22 @@
   gap: 1rem;
 }
 
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.totalBody,
 .body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+.nominal {
+  max-height: 10rem;
+  overflow-y: auto;
 }
 
 .detail {

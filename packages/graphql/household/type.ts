@@ -5676,23 +5676,6 @@ export type GetValidGenreListByIocomeTypeQuery = {
   }>;
 };
 
-export type FragDailyDetailFragment = {
-  __typename: "HouseholdDailyDetail";
-  id: string;
-  date: any;
-  amount: any;
-  memo?: string | null;
-  genre: {
-    __typename?: "HouseholdGenre";
-    id: string;
-    name: string;
-    genreType: string;
-    iocomeType: string;
-  };
-  category: { __typename?: "HouseholdCategory"; id: string; name: string };
-  account: { __typename?: "HouseholdAccount"; id: string; name: string };
-};
-
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -5733,27 +5716,6 @@ export type GetDailyDetailByIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   } | null;
-};
-
-export type FragCreditCardDetailFragment = {
-  __typename?: "HouseholdCreditCardDetail";
-  id: string;
-  date: any;
-  amount: any;
-  memo?: string | null;
-  genre: {
-    __typename?: "HouseholdGenre";
-    id: string;
-    name: string;
-    iocomeType: string;
-    genreType: string;
-  };
-  category: { __typename?: "HouseholdCategory"; id: string; name: string };
-  summary: {
-    __typename?: "HouseholdCreditCardSummary";
-    id: string;
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-  };
 };
 
 export type FragFavoriteFilterFragment = {
@@ -5912,81 +5874,6 @@ export type GetDailyByAccountIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   }>;
-};
-
-export type GetDashboardSettingQueryVariables = Exact<{
-  userId: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetDashboardSettingQuery = {
-  __typename?: "query_root";
-  setting: Array<{
-    __typename: "HouseholdDashboardSetting";
-    id: string;
-    feature: string;
-    order: number;
-    args: Array<{
-      __typename: "HouseholdDashboardSettingArgs";
-      id: string;
-      type: string;
-      value: string;
-    }>;
-  }>;
-};
-
-export type GetDetailsByCategoryQueryVariables = Exact<{
-  fromDate: Scalars["date"];
-  toDate: Scalars["date"];
-  groupId: Scalars["String"];
-  iocomeType?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
-}>;
-
-export type GetDetailsByCategoryQuery = {
-  __typename?: "query_root";
-  group?: {
-    __typename?: "Group";
-    transfer?: {
-      __typename?: "HouseholdTransferCategory";
-      outcomeCategoryId: string;
-      incomeCategoryId: string;
-    } | null;
-    dailyDetails: Array<{
-      __typename?: "HouseholdDailyDetail";
-      id: string;
-      date: any;
-      amount: any;
-      memo?: string | null;
-      genre: {
-        __typename?: "HouseholdGenre";
-        id: string;
-        name: string;
-        iocomeType: string;
-        genreType: string;
-      };
-      category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    }>;
-    creditCardDetails: Array<{
-      __typename?: "HouseholdCreditCardDetail";
-      id: string;
-      date: any;
-      amount: any;
-      memo?: string | null;
-      genre: {
-        __typename?: "HouseholdGenre";
-        id: string;
-        name: string;
-        iocomeType: string;
-        genreType: string;
-      };
-      category: { __typename?: "HouseholdCategory"; id: string; name: string };
-      summary: {
-        __typename?: "HouseholdCreditCardSummary";
-        id: string;
-        account: { __typename?: "HouseholdAccount"; id: string; name: string };
-      };
-    }>;
-  } | null;
 };
 
 export type GetFavoriteFilterQueryVariables = Exact<{
@@ -6189,6 +6076,44 @@ export type FragChartDetailTableFragment = {
   } | null;
 };
 
+export type FragCreditCardDetailFragment = {
+  __typename?: "HouseholdCreditCardDetail";
+  id: string;
+  date: any;
+  amount: any;
+  memo?: string | null;
+  genre: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    iocomeType: string;
+    genreType: string;
+  };
+  category: { __typename?: "HouseholdCategory"; id: string; name: string };
+  summary: {
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  };
+};
+
+export type FragDailyDetailFragment = {
+  __typename: "HouseholdDailyDetail";
+  id: string;
+  date: any;
+  amount: any;
+  memo?: string | null;
+  genre: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    genreType: string;
+    iocomeType: string;
+  };
+  category: { __typename?: "HouseholdCategory"; id: string; name: string };
+  account: { __typename?: "HouseholdAccount"; id: string; name: string };
+};
+
 export type GetAccountBalanceListQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
@@ -6212,6 +6137,102 @@ export type GetAccountBalanceListQuery = {
       } | null;
     };
   }>;
+};
+
+export type GetDashboardSettingQueryVariables = Exact<{
+  userId: Scalars["String"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetDashboardSettingQuery = {
+  __typename?: "query_root";
+  setting: Array<{
+    __typename: "HouseholdDashboardSetting";
+    id: string;
+    feature: string;
+    order: number;
+    args: Array<{
+      __typename: "HouseholdDashboardSettingArgs";
+      id: string;
+      type: string;
+      value: string;
+    }>;
+  }>;
+};
+
+export type GetDetailsByCategoryQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["String"];
+  iocomeType?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
+}>;
+
+export type GetDetailsByCategoryQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    transfer?: {
+      __typename?: "HouseholdTransferCategory";
+      outcomeCategoryId: string;
+      incomeCategoryId: string;
+    } | null;
+    dailyDetails: Array<{
+      __typename: "HouseholdDailyDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        genreType: string;
+        iocomeType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    }>;
+    creditCardDetails: Array<{
+      __typename?: "HouseholdCreditCardDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+        genreType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      summary: {
+        __typename?: "HouseholdCreditCardSummary";
+        id: string;
+        account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      };
+    }>;
+    withdrawalCreditCardDetails: Array<{
+      __typename?: "HouseholdCreditCardDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+        genreType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      summary: {
+        __typename?: "HouseholdCreditCardSummary";
+        id: string;
+        account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      };
+    }>;
+  } | null;
 };
 
 export type GetTransferCategoryByQueryVariables = Exact<{
@@ -6248,132 +6269,6 @@ export type GetTransferCategoryByQuery = {
   } | null;
 };
 
-export const FragDailyDetailFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragDailyDetail" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "HouseholdDailyDetail" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "genre" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "genreType" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "category" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "account" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "amount" } },
-          { kind: "Field", name: { kind: "Name", value: "memo" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<FragDailyDetailFragment, unknown>;
-export const FragCreditCardDetailFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragCreditCardDetail" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "HouseholdCreditCardDetail" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
-          { kind: "Field", name: { kind: "Name", value: "amount" } },
-          { kind: "Field", name: { kind: "Name", value: "memo" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "genre" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                { kind: "Field", name: { kind: "Name", value: "genreType" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "category" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "summary" },
-            name: { kind: "Name", value: "creditCardSummary" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "account" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<FragCreditCardDetailFragment, unknown>;
 export const FragFavoriteFilterFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -6530,6 +6425,132 @@ export const FragChartDetailTableFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<FragChartDetailTableFragment, unknown>;
+export const FragCreditCardDetailFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragCreditCardDetail" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdCreditCardDetail" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          { kind: "Field", name: { kind: "Name", value: "amount" } },
+          { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "genre" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "category" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "summary" },
+            name: { kind: "Name", value: "creditCardSummary" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "account" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FragCreditCardDetailFragment, unknown>;
+export const FragDailyDetailFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragDailyDetail" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdDailyDetail" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "genre" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "category" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "account" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "amount" } },
+          { kind: "Field", name: { kind: "Name", value: "memo" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FragDailyDetailFragment, unknown>;
 export const CreateCategoryDocument = {
   kind: "Document",
   definitions: [
@@ -12879,551 +12900,6 @@ export const GetDailyByAccountIdDocument = {
   GetDailyByAccountIdQuery,
   GetDailyByAccountIdQueryVariables
 >;
-export const GetDashboardSettingDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getDashboardSetting" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "userId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "setting" },
-            name: { kind: "Name", value: "householdDashboardSetting" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "userId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "userId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "_and" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "groupId" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "groupId" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "order" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "feature" } },
-                { kind: "Field", name: { kind: "Name", value: "order" } },
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "args" },
-                  name: { kind: "Name", value: "dashboardSettingArgs" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "orderBy" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "type" },
-                            value: { kind: "EnumValue", value: "ASC" },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "type" } },
-                      { kind: "Field", name: { kind: "Name", value: "value" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetDashboardSettingQuery,
-  GetDashboardSettingQueryVariables
->;
-export const GetDetailsByCategoryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getDetailsByCategory" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fromDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "toDate" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "iocomeType" },
-          },
-          type: {
-            kind: "ListType",
-            type: {
-              kind: "NonNullType",
-              type: {
-                kind: "NamedType",
-                name: { kind: "Name", value: "String" },
-              },
-            },
-          },
-          defaultValue: {
-            kind: "ListValue",
-            values: [
-              { kind: "StringValue", value: "INCOME", block: false },
-              { kind: "StringValue", value: "OUTCOME", block: false },
-            ],
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "group" },
-            name: { kind: "Name", value: "groupByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "groupId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "transfer" },
-                  name: { kind: "Name", value: "transferCategory" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "outcomeCategoryId" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "incomeCategoryId" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "dailyDetails" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "date" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_gte" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "fromDate" },
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_lte" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "toDate" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_and" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "iocomeType" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_in" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "iocomeType",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "date" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "genre" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "iocomeType" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "genreType" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "category" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "amount" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "memo" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "creditCardDetails" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "date" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_gte" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "fromDate" },
-                                  },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_lte" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "toDate" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_and" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "iocomeType" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_in" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "iocomeType",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "fragCreditCardDetail" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragCreditCardDetail" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "HouseholdCreditCardDetail" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
-          { kind: "Field", name: { kind: "Name", value: "amount" } },
-          { kind: "Field", name: { kind: "Name", value: "memo" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "genre" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                { kind: "Field", name: { kind: "Name", value: "genreType" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "category" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "summary" },
-            name: { kind: "Name", value: "creditCardSummary" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "account" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetDetailsByCategoryQuery,
-  GetDetailsByCategoryQueryVariables
->;
 export const GetFavoriteFilterDocument = {
   kind: "Document",
   definitions: [
@@ -14678,6 +14154,656 @@ export const GetAccountBalanceListDocument = {
 } as unknown as DocumentNode<
   GetAccountBalanceListQuery,
   GetAccountBalanceListQueryVariables
+>;
+export const GetDashboardSettingDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getDashboardSetting" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "userId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "setting" },
+            name: { kind: "Name", value: "householdDashboardSetting" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "userId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "userId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "_and" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "groupId" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "groupId" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "order" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "feature" } },
+                { kind: "Field", name: { kind: "Name", value: "order" } },
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "args" },
+                  name: { kind: "Name", value: "dashboardSettingArgs" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "type" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "type" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetDashboardSettingQuery,
+  GetDashboardSettingQueryVariables
+>;
+export const GetDetailsByCategoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getDetailsByCategory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "fromDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "toDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "iocomeType" },
+          },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NonNullType",
+              type: {
+                kind: "NamedType",
+                name: { kind: "Name", value: "String" },
+              },
+            },
+          },
+          defaultValue: {
+            kind: "ListValue",
+            values: [
+              { kind: "StringValue", value: "INCOME", block: false },
+              { kind: "StringValue", value: "OUTCOME", block: false },
+            ],
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "group" },
+            name: { kind: "Name", value: "groupByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "groupId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "transfer" },
+                  name: { kind: "Name", value: "transferCategory" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "outcomeCategoryId" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "incomeCategoryId" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "dailyDetails" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "date" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_gte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "fromDate" },
+                                  },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_lte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "toDate" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_and" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "iocomeType" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_in" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "iocomeType",
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragDailyDetail" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "creditCardDetails" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "date" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_gte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "fromDate" },
+                                  },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_lte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "toDate" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_and" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "iocomeType" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_in" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "iocomeType",
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragCreditCardDetail" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "withdrawalCreditCardDetails" },
+                  name: { kind: "Name", value: "creditCardDetails" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "creditCardSummary" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: {
+                                    kind: "Name",
+                                    value: "withdrawalDate",
+                                  },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_gte" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "fromDate",
+                                          },
+                                        },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_lte" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "toDate",
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_and" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "iocomeType" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_in" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "iocomeType",
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragCreditCardDetail" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragDailyDetail" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdDailyDetail" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "genre" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "category" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "account" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "amount" } },
+          { kind: "Field", name: { kind: "Name", value: "memo" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragCreditCardDetail" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdCreditCardDetail" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          { kind: "Field", name: { kind: "Name", value: "amount" } },
+          { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "genre" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "category" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "summary" },
+            name: { kind: "Name", value: "creditCardSummary" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "account" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetDetailsByCategoryQuery,
+  GetDetailsByCategoryQueryVariables
 >;
 export const GetTransferCategoryByDocument = {
   kind: "Document",

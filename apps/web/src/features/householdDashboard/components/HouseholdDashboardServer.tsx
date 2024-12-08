@@ -1,20 +1,17 @@
 import { ComponentProps } from "react";
+import { fetchDashboardSettings } from "@features/householdDashboard/server/fetchDashboardSettings";
 
 import { HouseholdDashboardClient } from "./HouseholdDashboardClient";
 
-export const HouseholdDashboardServer = () => {
-  const items: ComponentProps<typeof HouseholdDashboardClient>["items"] = [
-    {
-      type: "total",
-      favoriteFilterId: "1",
-      favoriteFilterName: "総資産",
-    },
-    {
-      type: "balance",
-      favoriteFilterId: "2",
-      favoriteFilterName: "2024年12月の収支",
-    },
-  ];
+export const HouseholdDashboardServer = async () => {
+  const dashboardSettings = await fetchDashboardSettings();
+
+  const items: ComponentProps<typeof HouseholdDashboardClient>["items"] =
+    dashboardSettings.map((setting) => ({
+      feature: setting.feature,
+      dashboardSettingId: setting.id,
+      dashboardSettingArgs: setting.args,
+    }));
 
   return <HouseholdDashboardClient items={items} />;
 };
