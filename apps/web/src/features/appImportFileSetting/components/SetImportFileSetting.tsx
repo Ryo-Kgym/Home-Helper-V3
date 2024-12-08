@@ -1,15 +1,16 @@
 import type { ReactNode } from "react";
-import { Button } from "@components/ui/v4/button";
-import { notify } from "@components/ui/v4/notify/notify";
-import { NumberInput } from "@components/ui/v4/textInput";
-import { useImportFileSettings } from "@features/appImportFileSetting/client/useImportSettingsState";
-import { EncodingSelect } from "@features/appImportFileSetting/components/EncodingSelect";
-import { EncodingTypeSelect } from "@features/appImportFileSetting/components/EncodingTypeSelect";
-import { LineBreakCodeSelect } from "@features/appImportFileSetting/components/LineBreakCodeSelect";
-import { QuotationSelect } from "@features/appImportFileSetting/components/QuotationSelect";
-import { SplitterSelect } from "@features/appImportFileSetting/components/SplitterSelect";
 import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { useInsertImportFileSettingMutation } from "@v3/graphql/public";
+
+import { Button } from "~/components/ui/v4/button";
+import { notify } from "~/components/ui/v4/notify/notify";
+import { NumberInput } from "~/components/ui/v4/textInput";
+import { useImportFileSettings } from "../client/useImportSettingsState";
+import { EncodingSelect } from "./EncodingSelect";
+import { EncodingTypeSelect } from "./EncodingTypeSelect";
+import { LineBreakCodeSelect } from "./LineBreakCodeSelect";
+import { QuotationSelect } from "./QuotationSelect";
+import { SplitterSelect } from "./SplitterSelect";
 
 export const SetImportFileSetting = ({
   appId,

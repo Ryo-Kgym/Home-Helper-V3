@@ -1,8 +1,7 @@
-import { LoadFileProps } from "@features/householdFileImport/types";
-import { FileType } from "@provider/file/FileType";
-
-import { useCreateImportHistory } from "../client/useCreateImportHistory";
-import { useRegisterCreditCard } from "../client/useRegisterCreditCard";
+import { FileType } from "../../../provider/file/FileType";
+import { LoadFileProps } from "../types";
+import { useCreateImportHistory } from "./useCreateImportHistory";
+import { useRegisterCreditCard } from "./useRegisterCreditCard";
 
 export const useCreateImportFile = ({
   fileType,

@@ -1,27 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Title } from "@components/ui/v4/frame/Title";
-import { Modal } from "@components/ui/v4/modal";
-import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
-import { Tabs } from "@components/ui/v4/tab";
-import { OpenSettingButton } from "@feature/app/nav/OpenSettingButton";
-import { RedirectImportButton } from "@feature/app/nav/RedirectImportButton";
-import { RedirectListButton } from "@feature/app/nav/RedirectListButton";
-import { RedirectSettingButton } from "@feature/app/nav/RedirectSettingButton";
-import { useSetImportFileFieldMapping } from "@features/appImportFileFieldMapping/client/useSetImportFileFieldMapping";
-import { SetImportFileFieldMapping } from "@features/appImportFileFieldMapping/components/SetImportFileFieldMapping";
-import { useImportFileSettings } from "@features/appImportFileSetting/client/useImportSettingsState";
-import { SetImportFileSetting } from "@features/appImportFileSetting/components/SetImportFileSetting";
 import { App } from "@oneforall/domain/schema/appSchema";
 import { ImportFileFieldMapping } from "@oneforall/domain/schema/importFileFieldMappingSchema";
 import { ImportFileHistory } from "@oneforall/domain/schema/importFileHistorySchema";
 import { ImportFileSettings } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { LookupRecords } from "@oneforall/domain/type/lookupRecords";
-import { ImportHistoryList } from "@pageComponents/appRecordImport/components/ImportHistoryList";
-import { useImportFileHistories } from "@pageComponents/appRecordImport/hooks/useImportFileHistories";
-import { usePreviewRecords } from "@pageComponents/appRecordImport/hooks/usePreviewRecords";
 
+import { Title } from "~/components/ui/v4/frame/Title";
+import { Modal } from "~/components/ui/v4/modal";
+import { PageClientFrame } from "~/components/ui/v4/PageClientFrame";
+import { Tabs } from "~/components/ui/v4/tab";
+import { OpenSettingButton } from "../../../feature/app/nav/OpenSettingButton";
+import { RedirectImportButton } from "../../../feature/app/nav/RedirectImportButton";
+import { RedirectListButton } from "../../../feature/app/nav/RedirectListButton";
+import { RedirectSettingButton } from "../../../feature/app/nav/RedirectSettingButton";
+import { useSetImportFileFieldMapping } from "../../../features/appImportFileFieldMapping/client/useSetImportFileFieldMapping";
+import { SetImportFileFieldMapping } from "../../../features/appImportFileFieldMapping/components/SetImportFileFieldMapping";
+import { useImportFileSettings } from "../../../features/appImportFileSetting/client/useImportSettingsState";
+import { SetImportFileSetting } from "../../../features/appImportFileSetting/components/SetImportFileSetting";
+import { useImportFileHistories } from "../hooks/useImportFileHistories";
+import { usePreviewRecords } from "../hooks/usePreviewRecords";
+import { ImportHistoryList } from "./ImportHistoryList";
 import { ImportPreview } from "./ImportPreview";
 
 /**

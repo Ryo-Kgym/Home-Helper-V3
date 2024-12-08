@@ -1,6 +1,7 @@
-import { Edit } from "@components/ui/v4/icon/Edit";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 import { Records } from "@oneforall/domain/schema/recordSchema";
+
+import { Edit } from "~/components/ui/v4/icon/Edit";
+import { RecordListMode } from "../../types/recordListMode";
 
 export const ModifyRecordButton = ({
   setMode,

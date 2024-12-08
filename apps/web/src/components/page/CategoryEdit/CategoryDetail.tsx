@@ -3,19 +3,20 @@
  */
 "use client";
 
-import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
-import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
-import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySegment";
-import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
-import { GenreNameTextInput } from "@components/molecules/CustomTextInput";
-import { Button } from "@components/ui";
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { errorPopup, successPopup } from "@function/successPopup";
+import { useEffect, useState } from "react";
 import {
   useGetCategoryByIdQuery,
   useUpdateCategoryByIdMutation,
 } from "@v3/graphql/household";
-import { useEffect, useState } from "react";
+
+import { DisplayOrderInput } from "~/components/molecules/CustomNumberInput/DisplayOrder";
+import { IocomeTypeSegment } from "~/components/molecules/CustomSegment/IocomeType";
+import { ValiditySegment } from "~/components/molecules/CustomSegment/ValiditySegment";
+import { GenreSelect } from "~/components/molecules/CustomSelect/Genre";
+import { GenreNameTextInput } from "~/components/molecules/CustomTextInput";
+import { Button } from "~/components/ui";
+import { errorPopup, successPopup } from "~/functions/successPopup";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   const [inputCategoryName, setInputCategoryName] = useState<string>("");
@@ -70,7 +71,6 @@ export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   }, [iocomeType]);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     setInputGenreId(inputIocomeType !== iocomeType ? null : genreId);
   }, [inputIocomeType, genreId, iocomeType]);
 

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Table } from "@components/ui/v4/table";
-import { useStateRecord } from "@features/appRecordList/client/useStateRecord";
-import { RecordCell } from "@features/appRecordList/components/cell/RecordCell";
-import { RecordRowOperation } from "@features/appRecordList/components/operation/RecordRowOperation";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 import { App } from "@oneforall/domain/schema/appSchema";
 import { Record } from "@oneforall/domain/schema/recordSchema";
+
+import { Table } from "~/components/ui/v4/table";
+import { useStateRecord } from "../../client/useStateRecord";
+import { RecordListMode } from "../../types/recordListMode";
+import { RecordCell } from "../cell/RecordCell";
+import { RecordRowOperation } from "../operation/RecordRowOperation";
 
 export const RecordListRowClient = ({
   record: defaultRecord,

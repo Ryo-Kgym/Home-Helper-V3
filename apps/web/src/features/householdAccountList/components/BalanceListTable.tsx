@@ -1,10 +1,11 @@
 "use client";
 
-import { Total } from "@components/molecules/Total";
-import { RangeDatePicker } from "@components/ui/date";
-import { DataTable } from "@components/ui/v4/table";
 import { AccountBalance } from "@oneforall/domain/household/accountBalance";
-import { useNavigation } from "@routing/client/useNavigation";
+
+import { Total } from "~/components/molecules/Total";
+import { RangeDatePicker } from "~/components/ui/date";
+import { DataTable } from "~/components/ui/v4/table";
+import { useNavigation } from "~/routing/client/useNavigation";
 
 export const BalanceListTable = ({
   balanceRecords,

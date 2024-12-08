@@ -1,14 +1,15 @@
 import { Suspense } from "react";
-import { Title } from "@components/ui/v4/frame/Title";
-import { TableLoading } from "@components/ui/v4/loading/TableLoading";
-import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
-import { RedirectViewSettingButton } from "@features/viewNav/RedirectViewSettingButton";
-import { ViewRecordListServer } from "@features/viewRecordList/components/ViewRecordListServer";
-import { OpenViewFilterButton } from "@features/viewRecordListFilter/components/OpenViewFilterButton";
 import { recordFiltersSchema } from "@oneforall/domain/schema/filter/recordFiltersSchema";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToView } from "@v3/graphql/public/convert/parseToView";
 import { GetViewRecordsSourceDocument } from "@v3/graphql/public/type";
+
+import { Title } from "~/components/ui/v4/frame/Title";
+import { TableLoading } from "~/components/ui/v4/loading/TableLoading";
+import { PageClientFrame } from "~/components/ui/v4/PageClientFrame";
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { RedirectViewSettingButton } from "../../../features/viewNav/RedirectViewSettingButton";
+import { ViewRecordListServer } from "../../../features/viewRecordList/components/ViewRecordListServer";
+import { OpenViewFilterButton } from "../../../features/viewRecordListFilter/components/OpenViewFilterButton";
 
 export const ViewRecordListPage = async ({
   viewId,

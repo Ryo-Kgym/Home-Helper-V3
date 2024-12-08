@@ -1,6 +1,7 @@
-import { Reset } from "@components/ui/v4/icon/Reset";
-import { Trash } from "@components/ui/v4/icon/Trash";
 import { AppFieldValue } from "@oneforall/domain/schema/appFieldValue";
+
+import { Reset } from "~/components/ui/v4/icon/Reset";
+import { Trash } from "~/components/ui/v4/icon/Trash";
 
 export const DeleteFieldButton = ({
   onClick,

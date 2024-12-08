@@ -3,14 +3,13 @@
  */
 "use client";
 
-import { FormatPrice } from "@components/molecules/FormatPrice";
-import { useGetCreditCardDetailBySummaryIdQuery } from "@v3/graphql/household";
 import { useRouter } from "next/navigation";
+import { useGetCreditCardDetailBySummaryIdQuery } from "@v3/graphql/household";
 
+import type { TableProps } from "~/components/atoms/Table";
+import { FormatPrice } from "~/components/molecules/FormatPrice";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { Presenter_ } from "./Presenter";
-
-import type { TableProps } from "@components/atoms/Table";
-import type { IocomeType } from "@domain/model/household/IocomeType";
 
 type CreditCardDetailTableContainerProps = {
   creditCardSummaryId: string;

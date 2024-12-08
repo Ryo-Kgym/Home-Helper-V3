@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Segment } from "@components/atoms/Segment";
-import { GenreType } from "@domain/model/household/GenreType";
+import { Segment } from "~/components/atoms/Segment";
+import { GenreType } from "../../../domain/model/household/GenreType";
 
 type GenreTypeSegmentProps = {
   genreType: GenreType;

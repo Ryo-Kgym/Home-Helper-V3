@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-// eslint-disable-next-line strict-dependencies/strict-dependencies
-import { useImportFileSettings } from "@features/appImportFileSetting/client/useImportSettingsState";
-import { decodeCsv } from "@provider/file/loader/csv/loadCsvFile";
+
+import { decodeCsv } from "../../../provider/file/loader/csv/loadCsvFile";
+import { useImportFileSettings } from "../../appImportFileSetting/client/useImportSettingsState";
 
 export const useLoadFile = () => {
   const { importFileSettings } = useImportFileSettings();

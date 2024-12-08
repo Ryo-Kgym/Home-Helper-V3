@@ -1,11 +1,11 @@
-import { findUser } from "@persistence/browser/server/find-user";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToView } from "@v3/graphql/public/convert/parseToView";
 import {
   GetAppFieldListDocument,
   GetViewDocument,
 } from "@v3/graphql/public/type";
 
+import { findUser } from "~/persistence/browser/server/find-user";
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
 import { convertToAppListData } from "../function/convertToAppListData";
 import { convertToInputViewApps } from "../function/convertToInputViewApps";
 import { ModifyViewClient } from "./ModifyViewClient";

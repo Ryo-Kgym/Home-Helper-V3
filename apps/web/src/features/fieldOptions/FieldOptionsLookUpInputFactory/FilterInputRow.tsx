@@ -1,13 +1,14 @@
 import { ComponentProps } from "react";
-import { Trash } from "@components/ui/v4/icon/Trash";
-import { Select } from "@components/ui/v4/select";
-import { Table } from "@components/ui/v4/table";
-import { FilterValueSwitcher } from "@features/fieldOptions/FieldOptionsLookUpInputFactory/FilterValueSwitcher";
 import {
   FieldOptionsLookupFilter,
   Fields,
 } from "@oneforall/domain/schema/appSchema";
 import { FilterComplexity } from "@oneforall/domain/schema/filter/filterComplexitySchema";
+
+import { Trash } from "~/components/ui/v4/icon/Trash";
+import { Select } from "~/components/ui/v4/select";
+import { Table } from "~/components/ui/v4/table";
+import { FilterValueSwitcher } from "./FilterValueSwitcher";
 
 /**
  * @package

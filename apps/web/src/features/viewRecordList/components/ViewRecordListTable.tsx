@@ -1,11 +1,11 @@
 import type { View } from "@oneforall/domain/schema/view/viewSchema";
 import type { ComponentProps } from "react";
 import { useRouter } from "next/navigation";
-import { Table } from "@components/ui/v4/table";
-import { ViewRecordCell } from "@features/viewRecordList/components/ViewRecordCell";
-import { paths } from "@routing/paths";
 
+import { Table } from "~/components/ui/v4/table";
+import { paths } from "~/routing/paths";
 import { useViewRecords } from "../client/useViewRecordsState";
+import { ViewRecordCell } from "./ViewRecordCell";
 
 export const ViewRecordListTable = ({
   view,

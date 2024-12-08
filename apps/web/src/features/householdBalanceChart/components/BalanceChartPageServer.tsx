@@ -1,6 +1,6 @@
-import { BalanceChartClient } from "@features/householdBalanceChart/components/BalanceChartClient";
-import { fetchBalanceChartData } from "@features/householdBalanceChart/server/fetchBalanceChartData";
-import { colors } from "@styles/colors";
+import { colors } from "~/styles/colors";
+import { fetchBalanceChartData } from "../server/fetchBalanceChartData";
+import { BalanceChartClient } from "./BalanceChartClient";
 
 const getPast12MonthDate = () => {
   const date = new Date();

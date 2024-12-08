@@ -1,4 +1,4 @@
-import { CurrentGroupClient } from "@feature/group/current/CurrentGroupClient";
+import { CurrentGroupClient } from "./CurrentGroupClient";
 
 export const CurrentGroupServer = async () => {
   return <CurrentGroupClient />;

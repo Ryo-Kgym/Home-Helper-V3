@@ -2,11 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Select } from "@components/ui";
-import { useGroup } from "@hooks/group/useGroup";
 import { useGetValidCategoryByGenreIdQuery } from "@v3/graphql/household";
 
-import type { SelectData } from "@components/ui";
+import type { SelectData } from "~/components/ui";
+import { Select } from "~/components/ui";
+import { useGroup } from "~/hooks/group/useGroup";
 
 type CategorySelectProps = {
   categoryId: string | null;

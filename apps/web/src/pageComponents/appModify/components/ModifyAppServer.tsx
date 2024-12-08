@@ -1,8 +1,9 @@
 import { AppFieldValue } from "@oneforall/domain/schema/appFieldValue";
-import { ModifyAppClient } from "@pageComponents/appModify/components/ModifyAppClient";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToApp } from "@v3/graphql/public/convert/parseToApp";
 import { GetAppDocument } from "@v3/graphql/public/type";
+
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { ModifyAppClient } from "./ModifyAppClient";
 
 export const ModifyAppServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });

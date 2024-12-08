@@ -1,18 +1,19 @@
 import { Suspense } from "react";
-import { Title } from "@components/ui/v4/frame/Title";
-import { TableLoading } from "@components/ui/v4/loading/TableLoading";
-import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
-import { AddRecordButton } from "@feature/app/nav/AddRecordButton";
-import { RedirectChartButton } from "@feature/app/nav/RedirectChartButton";
-import { RedirectImportButton } from "@feature/app/nav/RedirectImportButton";
-import { RedirectSettingButton } from "@feature/app/nav/RedirectSettingButton";
-import { RecordListTableServer } from "@features/appRecordList/components/table/RecordListTableServer";
-import { makeColumnsTemplate } from "@features/appRecordList/server/makeColumnsTemplate";
-import { makeHeaderItems } from "@features/appRecordList/server/makeHeaderItems";
-import { switchRecords } from "@features/appRecordList/server/switchRecords";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToApp } from "@v3/graphql/public/convert/parseToApp";
 import { GetAppDocument } from "@v3/graphql/public/type";
+
+import { Title } from "~/components/ui/v4/frame/Title";
+import { TableLoading } from "~/components/ui/v4/loading/TableLoading";
+import { PageClientFrame } from "~/components/ui/v4/PageClientFrame";
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { AddRecordButton } from "../../../feature/app/nav/AddRecordButton";
+import { RedirectChartButton } from "../../../feature/app/nav/RedirectChartButton";
+import { RedirectImportButton } from "../../../feature/app/nav/RedirectImportButton";
+import { RedirectSettingButton } from "../../../feature/app/nav/RedirectSettingButton";
+import { RecordListTableServer } from "../../../features/appRecordList/components/table/RecordListTableServer";
+import { makeColumnsTemplate } from "../../../features/appRecordList/server/makeColumnsTemplate";
+import { makeHeaderItems } from "../../../features/appRecordList/server/makeHeaderItems";
+import { switchRecords } from "../../../features/appRecordList/server/switchRecords";
 
 export const RecordListPage = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });

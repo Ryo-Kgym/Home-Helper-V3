@@ -1,4 +1,4 @@
-export { TailWindCssTabs as Tabs } from "@components/ui/v4/tab/TailWindCssTabs";
+export { TailWindCssTabs as Tabs } from "~/components/ui/v4/tab/TailWindCssTabs";
 
 /**
  * @package

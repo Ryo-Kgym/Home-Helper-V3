@@ -1,8 +1,9 @@
-import { loadImportFile } from "@features/appFileImport/client/loadImportFile";
-import * as readFileMock from "@features/appFileImport/client/readFile";
-import * as splitRowsMock from "@features/appFileImport/client/splitRows";
 import { ImportFileSettings } from "@oneforall/domain/schema/importFileSettingsSchema";
-import * as loadCsvFileMock from "@provider/file/loader/csv/loadCsvFile";
+
+import * as loadCsvFileMock from "../../../provider/file/loader/csv/loadCsvFile";
+import { loadImportFile } from "./loadImportFile";
+import * as readFileMock from "./readFile";
+import * as splitRowsMock from "./splitRows";
 
 jest.mock("@provider/file/loader/csv/loadCsvFile");
 

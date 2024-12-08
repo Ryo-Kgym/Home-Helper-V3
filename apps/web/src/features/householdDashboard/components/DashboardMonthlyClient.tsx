@@ -1,9 +1,8 @@
 "use client";
 
-import { Loading } from "@components/ui/v5/loading/Loading";
-import { useDashboardMonthly } from "@features/householdDashboard/client/useDashboardMonthly";
-import { DashboardFC } from "@features/householdDashboard/types/dashboardFC";
-
+import { Loading } from "~/components/ui/v5/loading/Loading";
+import { useDashboardMonthly } from "../client/useDashboardMonthly";
+import { DashboardFC } from "../types/dashboardFC";
 import styles from "./DashboardMonthlyClient.module.scss";
 
 export const DashboardMonthlyClient: DashboardFC = ({

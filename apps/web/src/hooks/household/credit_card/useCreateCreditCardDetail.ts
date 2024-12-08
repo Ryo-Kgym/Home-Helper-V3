@@ -2,12 +2,13 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { useGroup } from "@hooks/group/useGroup";
-import { useUpdateCreditCardSummaryTotal } from "@hooks/household/credit_card/useUpdateCreditCardSummaryTotal";
-import { useGenerateId } from "@hooks/useGenerateId";
-import { useUser } from "@hooks/user/useUser";
 import { useCreateCreditCardDetailMutation } from "@v3/graphql/household";
+
+import { useGroup } from "~/hooks/group/useGroup";
+import { useUpdateCreditCardSummaryTotal } from "~/hooks/household/credit_card/useUpdateCreditCardSummaryTotal";
+import { useGenerateId } from "~/hooks/useGenerateId";
+import { useUser } from "~/hooks/user/useUser";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const useCreateCreditCardDetail = ({
   summaryId,

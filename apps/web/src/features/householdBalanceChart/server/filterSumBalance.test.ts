@@ -1,4 +1,4 @@
-import { filterSumBalance } from "@features/householdBalanceChart/server/filterSumBalance";
+import { filterSumBalance } from "./filterSumBalance";
 
 describe("filterSumBalance", () => {
   test("期待通りに処理されること", () => {

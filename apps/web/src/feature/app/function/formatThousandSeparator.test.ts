@@ -1,4 +1,4 @@
-import { formatThousandSeparator } from "@feature/app/function/formatThousandSeparator";
+import { formatThousandSeparator } from "./formatThousandSeparator";
 
 describe("formatThousandSeparator", () => {
   it.each`

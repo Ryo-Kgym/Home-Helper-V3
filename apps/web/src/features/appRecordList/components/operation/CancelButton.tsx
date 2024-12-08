@@ -1,5 +1,6 @@
 import type { Records } from "@oneforall/domain/schema/recordSchema";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
+
+import { RecordListMode } from "../../types/recordListMode";
 
 export const CancelButton = ({
   setMode,

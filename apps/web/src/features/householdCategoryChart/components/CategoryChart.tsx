@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { YearMonth } from "@features/householdCategoryChart/components/types";
 import {
   CartesianGrid,
   Legend,
@@ -11,6 +10,8 @@ import {
   YAxis,
 } from "recharts";
 import { CategoricalChartState } from "recharts/types/chart/types";
+
+import { YearMonth } from "./types";
 
 type Props = {
   categories: { categoryId: string; categoryName: string; color: string }[];

@@ -3,13 +3,13 @@
  */
 "use client";
 
-import { ValidityStatus } from "@components/atoms";
-import { Presenter_ } from "@components/page/CategoryList/Presenter";
-import { useGroup } from "@hooks/group/useGroup";
-import { useGetAllCategoriesQuery } from "@v3/graphql/household";
 import { useRouter } from "next/navigation";
+import { useGetAllCategoriesQuery } from "@v3/graphql/household";
 
-import type { TableProps } from "@components/atoms/Table";
+import type { TableProps } from "~/components/atoms/Table";
+import { ValidityStatus } from "~/components/atoms";
+import { Presenter_ } from "~/components/page/CategoryList/Presenter";
+import { useGroup } from "~/hooks/group/useGroup";
 
 export const Container_ = () => {
   const { push } = useRouter();

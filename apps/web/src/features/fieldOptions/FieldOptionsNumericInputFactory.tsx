@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { NumberInput } from "@components/ui/v4/textInput";
-import { OptionsState } from "@features/fieldOptions/FieldOptionsInput";
 import {
   NumericOptions,
   numericOptionsSchema,
 } from "@oneforall/domain/schema/appFieldValue";
+
+import { Button } from "~/components/ui/v4/button";
+import { NumberInput } from "~/components/ui/v4/textInput";
+import { OptionsState } from "./FieldOptionsInput";
 
 export const FieldOptionsNumericInputFactory = ({
   value,

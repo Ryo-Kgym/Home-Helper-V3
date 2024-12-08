@@ -1,14 +1,10 @@
 import type { FC, ReactNode } from "react";
-// eslint-disable-next-line strict-dependencies/strict-dependencies
-import { useImportFileSettings } from "@features/appImportFileSetting/client/useImportSettingsState";
-// eslint-disable-next-line strict-dependencies/strict-dependencies
-import { EncodingSelect } from "@features/appImportFileSetting/components/EncodingSelect";
-// eslint-disable-next-line strict-dependencies/strict-dependencies
-import { EncodingTypeSelect } from "@features/appImportFileSetting/components/EncodingTypeSelect";
-// eslint-disable-next-line strict-dependencies/strict-dependencies
-import { LineBreakCodeSelect } from "@features/appImportFileSetting/components/LineBreakCodeSelect";
-// eslint-disable-next-line strict-dependencies/strict-dependencies
-import { SplitterSelect } from "@features/appImportFileSetting/components/SplitterSelect";
+
+import { useImportFileSettings } from "../../../appImportFileSetting/client/useImportSettingsState";
+import { EncodingSelect } from "../../../appImportFileSetting/components/EncodingSelect";
+import { EncodingTypeSelect } from "../../../appImportFileSetting/components/EncodingTypeSelect";
+import { LineBreakCodeSelect } from "../../../appImportFileSetting/components/LineBreakCodeSelect";
+import { SplitterSelect } from "../../../appImportFileSetting/components/SplitterSelect";
 
 export const FileImportSetting: FC = () => {
   const { importFileSettings, setImportFileSettings } = useImportFileSettings();

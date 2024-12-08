@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Navi } from "@app/_layout/navi";
 import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+
+import { Navi } from "./navi";
 
 export const NavbarSection = ({
   header,

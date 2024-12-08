@@ -1,10 +1,11 @@
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { findUser } from "@persistence/browser/server/find-user";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import {
   ChartDetailTableFilterSettlementDateDocument,
   ChartDetailTableFilterWithdrawalDateDocument,
 } from "@v3/graphql/household/type";
+
+import { findUser } from "~/persistence/browser/server/find-user";
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const fetchWatchTableData = async ({
   watchFirstDate,

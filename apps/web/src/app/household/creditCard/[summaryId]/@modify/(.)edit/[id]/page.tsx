@@ -2,8 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { CreditCardDetailEdit } from "@components/page/CreditCardDetailEdit";
-import { BackModal } from "@components/ui";
+import { CreditCardDetailEdit } from "~/components/page/CreditCardDetailEdit";
+import { BackModal } from "~/components/ui";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
   <BackModal>

@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 import { Records } from "@oneforall/domain/schema/recordSchema";
 
+import { RecordListMode } from "../../types/recordListMode";
 import { CancelButton } from "./CancelButton";
 import { DeleteRecordButton } from "./DeleteRecordButton";
 import { ModifyRecordButton } from "./ModifyRecordButton";

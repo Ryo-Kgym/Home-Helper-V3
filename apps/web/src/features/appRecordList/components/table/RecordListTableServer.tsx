@@ -1,6 +1,7 @@
 import type { App } from "@oneforall/domain/schema/appSchema";
-import { RecordListTableClient } from "@features/appRecordList/components/table/RecordListTableClient";
-import { SwitchedRecords } from "@features/appRecordList/server/switchRecords";
+
+import { SwitchedRecords } from "../../server/switchRecords";
+import { RecordListTableClient } from "./RecordListTableClient";
 
 export const RecordListTableServer = async ({
   app,

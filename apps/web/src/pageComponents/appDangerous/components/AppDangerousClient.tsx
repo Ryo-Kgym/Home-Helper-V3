@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Title } from "@components/ui/v4/frame/Title";
-import { Modal } from "@components/ui/v4/modal";
-import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
-import { DeleteAppRelationsClient } from "@features/appDelete/components/DeleteAppRelationsClient";
-import { AppDeleteRelations } from "@features/appDelete/types/appDeleteRelations";
 
+import { Title } from "~/components/ui/v4/frame/Title";
+import { Modal } from "~/components/ui/v4/modal";
+import { PageClientFrame } from "~/components/ui/v4/PageClientFrame";
+import { DeleteAppRelationsClient } from "../../../features/appDelete/components/DeleteAppRelationsClient";
+import { AppDeleteRelations } from "../../../features/appDelete/types/appDeleteRelations";
 import { Section } from "./Section";
 
 export const AppDangerousClient = ({

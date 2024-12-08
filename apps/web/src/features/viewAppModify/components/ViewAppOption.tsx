@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button } from "@components/ui/v4/button";
-import { Select } from "@components/ui/v4/select";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
+import { Button } from "~/components/ui/v4/button";
+import { Select } from "~/components/ui/v4/select";
 import { useAppendViewApp } from "../hook";
 import { AppListData } from "../type/appListData";
 

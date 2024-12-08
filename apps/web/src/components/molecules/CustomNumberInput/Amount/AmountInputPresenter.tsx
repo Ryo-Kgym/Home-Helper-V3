@@ -1,4 +1,4 @@
-import { NumberInput } from "@components/atoms/NumberInput";
+import { NumberInput } from "~/components/atoms/NumberInput";
 
 type AmountInputPresenterProps = {
   value: number | "";

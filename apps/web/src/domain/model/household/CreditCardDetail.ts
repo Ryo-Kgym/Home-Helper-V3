@@ -1,4 +1,4 @@
-import type { IocomeType } from "@domain/model/household/IocomeType";
+import { IocomeType } from "./IocomeType";
 
 export type CreditCardDetail = {
   serialNo: number | null;

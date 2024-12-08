@@ -1,11 +1,11 @@
 import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
-import { convertToImportFileFieldMapping } from "@pageComponents/appRecordImport/server/convertToImportFileFieldMapping";
-import { convertToImportHistories } from "@pageComponents/appRecordImport/server/convertToImportHistories";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
-import { getLookupRecords } from "@server/lookupRecords";
 import { parseToApp } from "@v3/graphql/public/convert/parseToApp";
 import { GetAppDocument, GetImportFileDocument } from "@v3/graphql/public/type";
 
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { getLookupRecords } from "~/server/lookupRecords";
+import { convertToImportFileFieldMapping } from "../server/convertToImportFileFieldMapping";
+import { convertToImportHistories } from "../server/convertToImportHistories";
 import { RecordImportClient } from "./RecordImportClient";
 
 export const RecordImportServer = async ({ appId }: { appId: string }) => {

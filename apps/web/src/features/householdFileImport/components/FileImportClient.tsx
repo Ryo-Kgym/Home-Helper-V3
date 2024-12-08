@@ -1,9 +1,9 @@
 "use client";
 
 import { FC } from "react";
-import { FileImportColumnMapping } from "@features/householdFileImport/components/setting/FileImportColumnMapping";
 
 import { FileImportForm } from "./form/FileImportForm";
+import { FileImportColumnMapping } from "./setting/FileImportColumnMapping";
 import { FileImportSetting } from "./setting/FileImportSetting";
 
 export const FileImportClient: FC = () => {

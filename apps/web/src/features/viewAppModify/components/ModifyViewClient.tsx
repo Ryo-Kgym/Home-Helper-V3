@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { Title } from "@components/ui/v4/frame/Title";
-import { PageClientFrame } from "@components/ui/v4/PageClientFrame";
-import { RedirectViewRecordListButton } from "@feature/app/nav/RedirectViewRecordListButton";
 import { ViewFields } from "@oneforall/domain/schema/view/viewSchema";
 
+import { Title } from "~/components/ui/v4/frame/Title";
+import { PageClientFrame } from "~/components/ui/v4/PageClientFrame";
+import { RedirectViewRecordListButton } from "../../../feature/app/nav/RedirectViewRecordListButton";
 import { useSetViewApps } from "../hook";
 import { AppListData } from "../type/appListData";
 import { InputViewApps } from "../type/inputViewApps";

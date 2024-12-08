@@ -4,14 +4,13 @@
 
 "use client";
 
-import { useGroup } from "@hooks/group/useGroup";
-import { useGetCreditCardListQuery } from "@v3/graphql/household";
 import { useRouter } from "next/navigation";
+import { useGetCreditCardListQuery } from "@v3/graphql/household";
 
+import type { TableProps } from "~/components/atoms/Table";
+import { useGroup } from "~/hooks/group/useGroup";
 import { creditCardListConverter } from "./creditCardListConverter";
 import { CreditCardTablePresenter } from "./CreditCardTablePresenter";
-
-import type { TableProps } from "@components/atoms/Table";
 
 export const CreditCardTableContainer = () => {
   const { groupId } = useGroup();

@@ -1,5 +1,6 @@
 import type { FieldOptionsNumeric } from "@oneforall/domain/schema/appSchema";
-import { formatThousandSeparator } from "@feature/app/function/formatThousandSeparator";
+
+import { formatThousandSeparator } from "../../../../feature/app/function/formatThousandSeparator";
 
 export const ShowCellNumericFactory = ({
   value,

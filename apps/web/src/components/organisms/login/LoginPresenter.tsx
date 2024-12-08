@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { LoginButton } from "@components/molecules/AuthButton";
+import { LoginButton } from "~/components/molecules/AuthButton";
 
 export const LoginPresenter = ({
   message,

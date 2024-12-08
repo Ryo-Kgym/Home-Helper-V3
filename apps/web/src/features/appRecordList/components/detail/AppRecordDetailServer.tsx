@@ -1,9 +1,9 @@
-import { NoData } from "@components/ui/v4/NoData";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToFields } from "@v3/graphql/public/convert/parseToFields";
 import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
 import { GetRecordDocument } from "@v3/graphql/public/type";
 
+import { NoData } from "~/components/ui/v4/NoData";
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
 import { AppRecordDetailClient } from "./AppRecordDetailClient";
 
 export const AppRecordDetailServer = async ({

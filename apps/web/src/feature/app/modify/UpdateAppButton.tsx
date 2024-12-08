@@ -1,10 +1,10 @@
-import { Button } from "@components/ui/v4/button";
-import { notify } from "@components/ui/v4/notify/notify";
+import { Button } from "~/components/ui/v4/button";
+import { notify } from "~/components/ui/v4/notify/notify";
 import {
   useGetAppFieldValue,
   useInitializeAppFieldValue,
-} from "@feature/app/create/useAppFieldValueState";
-import { useModifyApp } from "@feature/app/modify/useModifyApp";
+} from "../create/useAppFieldValueState";
+import { useModifyApp } from "./useModifyApp";
 
 export const UpdateAppButton = ({
   appId,

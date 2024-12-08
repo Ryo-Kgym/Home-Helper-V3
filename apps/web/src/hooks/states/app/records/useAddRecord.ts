@@ -1,5 +1,6 @@
-import { useRecordsZustand } from "@hooks/states/app/records/useRecordsZustand";
 import { Record } from "@oneforall/domain/schema/recordSchema";
+
+import { useRecordsZustand } from "~/hooks/states/app/records/useRecordsZustand";
 
 export const useAddRecord = () =>
   useRecordsZustand(

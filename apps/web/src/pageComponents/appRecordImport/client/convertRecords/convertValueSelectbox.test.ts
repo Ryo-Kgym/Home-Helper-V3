@@ -1,5 +1,6 @@
 import { FieldOptionsSelectBox } from "@oneforall/domain/schema/appSchema";
-import { convertValueSelectbox } from "@pageComponents/appRecordImport/client/convertRecords/convertValueSelectbox";
+
+import { convertValueSelectbox } from "./convertValueSelectbox";
 
 describe("convertValueSelectBox", () => {
   const options: FieldOptionsSelectBox = {

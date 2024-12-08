@@ -1,4 +1,4 @@
-import { selectSingleFile } from "@features/appFileImport/client/selectSingleFile";
+import { selectSingleFile } from "./selectSingleFile";
 
 describe("selectSingleFile", () => {
   it("ファイルが存在しないとき", () => {

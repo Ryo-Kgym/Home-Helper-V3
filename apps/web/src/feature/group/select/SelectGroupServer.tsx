@@ -1,9 +1,10 @@
-import { Group } from "@domain/model/Group";
-import { User } from "@domain/model/User";
-import { SelectGroupContainer } from "@feature/group/select/SelectGroupContainer";
-import { findEmail } from "@persistence/browser/server/find-email";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { GetUserByEmailDocument } from "@v3/graphql/public/type";
+
+import { findEmail } from "~/persistence/browser/server/find-email";
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { Group } from "../../../domain/model/Group";
+import { User } from "../../../domain/model/User";
+import { SelectGroupContainer } from "./SelectGroupContainer";
 
 export const SelectGroupServer = async () => {
   const email = await findEmail();

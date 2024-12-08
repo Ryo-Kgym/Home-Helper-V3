@@ -1,4 +1,4 @@
-import { CreateAppServer } from "@feature/app/create/CreateAppServer";
+import { CreateAppServer } from "../../../../feature/app/create/CreateAppServer";
 
 const Page = () => <CreateAppServer />;
 

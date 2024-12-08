@@ -1,4 +1,4 @@
-import { buildParams } from "@features/householdDashboard/server/buildParams";
+import { buildParams } from "./buildParams";
 
 describe("buildParams", () => {
   test("複数の引数があっても、1番目にとれたデータを採択する", () => {

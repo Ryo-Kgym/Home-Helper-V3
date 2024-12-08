@@ -1,6 +1,5 @@
-import { TextField } from "@components/atoms/Input/TextField";
-
-import type { InputValidator } from "@components/atoms/Input/InputValidator";
+import type { InputValidator } from "~/components/atoms/Input/InputValidator";
+import { TextField } from "~/components/atoms/Input/TextField";
 
 type InputContainerProps = {
   label: string;

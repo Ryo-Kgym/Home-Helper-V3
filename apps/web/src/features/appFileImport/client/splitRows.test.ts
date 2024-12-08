@@ -1,4 +1,4 @@
-import { splitRows } from "@features/appFileImport/client/splitRows";
+import { splitRows } from "./splitRows";
 
 describe("splitRows", () => {
   it("期待した変換がされること", () => {

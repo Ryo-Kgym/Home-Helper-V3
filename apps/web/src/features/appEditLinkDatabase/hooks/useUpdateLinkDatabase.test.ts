@@ -1,6 +1,7 @@
-import { useUpdateLinkDatabase } from "@features/appEditLinkDatabase/hooks/useUpdateLinkDatabase";
 import { renderHook } from "@testing-library/react";
 import * as useUpdateLinkDatabaseMutation from "@v3/graphql/public";
+
+import { useUpdateLinkDatabase } from "./useUpdateLinkDatabase";
 
 jest.mock("@v3/graphql/public");
 

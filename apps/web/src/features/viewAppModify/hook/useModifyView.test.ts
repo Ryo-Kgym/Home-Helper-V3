@@ -2,9 +2,9 @@ import { renderHook } from "@testing-library/react";
 import * as graphqlMock from "@v3/graphql/public";
 import { act } from "react-dom/test-utils";
 
-import { useModifyView } from "../hook/useModifyView";
+import { useModifyView } from "./useModifyView";
 
-jest.mock("@feature/app/function/generateId", () => ({
+jest.mock("../../../feature/app/function/generateId", () => ({
   generateId: jest.fn().mockReturnValue("generated"),
 }));
 

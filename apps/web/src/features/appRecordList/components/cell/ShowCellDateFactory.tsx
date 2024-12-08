@@ -1,5 +1,6 @@
 import type { FieldOptionsDate } from "@oneforall/domain/schema/appSchema";
-import { convertDateStyle } from "@feature/app/function/convertDateStyle";
+
+import { convertDateStyle } from "../../../../feature/app/function/convertDateStyle";
 
 export const ShowCellDateFactory = ({
   value,

@@ -1,8 +1,9 @@
 import type { Records } from "@oneforall/domain/schema/recordSchema";
-import { Floppy } from "@components/ui/v4/icon/Floppy";
-import { notify } from "@components/ui/v4/notify/notify";
-import { RecordListMode } from "@features/appRecordList/types/recordListMode";
 import { useUpdateRecordMutation } from "@v3/graphql/public";
+
+import { Floppy } from "~/components/ui/v4/icon/Floppy";
+import { notify } from "~/components/ui/v4/notify/notify";
+import { RecordListMode } from "../../types/recordListMode";
 
 export const UpdateRecordButton = ({
   record,

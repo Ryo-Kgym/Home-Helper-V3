@@ -1,10 +1,11 @@
-import type { DailyDetail } from "@domain/model/household/DailyDetail";
 import { useState } from "react";
-import { IocomeTotal } from "@components/molecules/Total";
-import { UpdateDetail } from "@components/organisms";
-import { DataTable } from "@components/ui/v4/table";
-import { useGetCreditCardSummaryByAccountIdBetweenDate } from "@hooks/household/credit_card/useGetCreditCardSummaryByAccountIdBetweenDate";
-import { useGetDailyDetailByDateAccountId } from "@hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
+
+import { IocomeTotal } from "~/components/molecules/Total";
+import { UpdateDetail } from "~/components/organisms";
+import { DataTable } from "~/components/ui/v4/table";
+import { useGetCreditCardSummaryByAccountIdBetweenDate } from "~/hooks/household/credit_card/useGetCreditCardSummaryByAccountIdBetweenDate";
+import { useGetDailyDetailByDateAccountId } from "~/hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
+import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 
 export const AccountDailyTable = ({
   fromDate,

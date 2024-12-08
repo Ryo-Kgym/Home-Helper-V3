@@ -1,4 +1,4 @@
-import { IocomeType } from "@domain/model/household/IocomeType";
+import { IocomeType } from "../../domain/model/household/IocomeType";
 
 export type LoadFileProps = {
   date: Date;

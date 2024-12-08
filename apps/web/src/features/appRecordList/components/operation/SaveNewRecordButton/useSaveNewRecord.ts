@@ -1,11 +1,12 @@
-import { generateId } from "@feature/app/function/generateId";
-import { calcNextIndex } from "@features/appRecordList/components/operation/SaveNewRecordButton/calcNextIndex";
-import { useResetNewRecord } from "@hooks/states/app/record/useResetNewRecord";
-import { useResetMode } from "@hooks/states/app/recordListMode/useModeStateZustand";
-import { useAddRecord } from "@hooks/states/app/records/useAddRecord";
-import { useRecords } from "@hooks/states/app/records/useRecords";
 import { RecordColumns } from "@oneforall/domain/schema/recordSchema";
 import { useInsertRecordMutation } from "@v3/graphql/public";
+
+import { useResetNewRecord } from "~/hooks/states/app/record/useResetNewRecord";
+import { useResetMode } from "~/hooks/states/app/recordListMode/useModeStateZustand";
+import { useAddRecord } from "~/hooks/states/app/records/useAddRecord";
+import { useRecords } from "~/hooks/states/app/records/useRecords";
+import { generateId } from "../../../../../feature/app/function/generateId";
+import { calcNextIndex } from "./calcNextIndex";
 
 export const useSaveNewRecord = (appId: string) => {
   const { records } = useRecords();

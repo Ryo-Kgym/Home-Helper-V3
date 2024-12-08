@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@components/ui/v4/button";
-import { Table } from "@components/ui/v4/table";
-import { InputFieldFilter } from "@features/viewRecordListFilter/components/InputFieldFilter";
 import { RecordFilters } from "@oneforall/domain/schema/filter/recordFiltersSchema";
 import { View } from "@oneforall/domain/schema/view/viewSchema";
-import { paths } from "@routing/paths";
+
+import { Button } from "~/components/ui/v4/button";
+import { Table } from "~/components/ui/v4/table";
+import { paths } from "~/routing/paths";
+import { InputFieldFilter } from "./InputFieldFilter";
 
 export const ViewRecordFilterSetting = ({
   view,

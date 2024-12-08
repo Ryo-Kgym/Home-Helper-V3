@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchDashboardMonthly } from "@features/householdDashboard/server/fetchDashboardMonthly";
-import { DashboardComponentProps } from "@features/householdDashboard/types/dashboardFC";
-import { LoadingData } from "@global/type/loadingData";
+
+import { LoadingData } from "~/global/type/loadingData";
+import { fetchDashboardMonthly } from "../server/fetchDashboardMonthly";
+import { DashboardComponentProps } from "../types/dashboardFC";
 
 type DataType = Awaited<ReturnType<typeof fetchDashboardMonthly>>;
 

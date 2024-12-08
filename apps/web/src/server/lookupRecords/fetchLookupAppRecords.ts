@@ -1,6 +1,9 @@
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
 import { GetRecordsInAppIdsDocument } from "@v3/graphql/public/type";
+
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+
+// import { fetchQuery } from "~/persistence/database/server/fetchQuery";
 
 /**
  * @package

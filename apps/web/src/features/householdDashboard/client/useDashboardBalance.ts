@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchDashboardBalance } from "@features/householdDashboard/server/fetchDashboardBalance";
-import { LoadingData } from "@global/type/loadingData";
+
+import { LoadingData } from "~/global/type/loadingData";
+import { fetchDashboardBalance } from "../server/fetchDashboardBalance";
 
 type DataType = Awaited<ReturnType<typeof fetchDashboardBalance>>;
 

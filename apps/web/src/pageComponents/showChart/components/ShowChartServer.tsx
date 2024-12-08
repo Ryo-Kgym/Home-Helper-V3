@@ -1,9 +1,10 @@
 import { SummaryCriteria } from "@oneforall/domain/schema/summary/sumRecordsSchema";
-import { createDataArray } from "@pageComponents/showChart/components/createDataArray";
-import ShowChartClient from "@pageComponents/showChart/components/ShowChartClient";
-import { fetchQuery } from "@persistence/database/server/fetchQuery";
 import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
 import { GetAppDocument } from "@v3/graphql/public/type";
+
+import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { createDataArray } from "./createDataArray";
+import ShowChartClient from "./ShowChartClient";
 
 export const ShowChartServer = async ({ appId }: { appId: string }) => {
   const { data } = await fetchQuery(GetAppDocument, { appId });

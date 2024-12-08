@@ -1,6 +1,7 @@
 import { Records } from "@oneforall/domain/schema/recordSchema";
 import { SummaryCriteria } from "@oneforall/domain/schema/summary/sumRecordsSchema";
-import { createDataArray } from "@pageComponents/showChart/components/createDataArray";
+
+import { createDataArray } from "./createDataArray";
 
 describe("createDataArray", () => {
   it("", () => {

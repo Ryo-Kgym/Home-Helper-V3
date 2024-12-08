@@ -1,10 +1,11 @@
 "use client";
 
 import { ReactNode } from "react";
-import { NavbarSection } from "@app/_layout/NavbarSection";
-import { Navi } from "@app/_layout/navi";
-import { RegisterDailyButton } from "@components/molecules";
-import { paths } from "@routing/paths";
+
+import { RegisterDailyButton } from "~/components/molecules";
+import { paths } from "~/routing/paths";
+import { NavbarSection } from "../../_layout/NavbarSection";
+import { Navi } from "../../_layout/navi";
 
 export const HouseholdLayout = ({ children }: { children: ReactNode }) => (
   <div className={"bg-white text-black"}>

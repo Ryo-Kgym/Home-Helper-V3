@@ -1,11 +1,11 @@
-import { MultiTextInput } from "@components/ui/v4/multiTextInput";
-import { TextInput } from "@components/ui/v4/textInput";
 import { Field, Fields } from "@oneforall/domain/schema/appSchema";
 import {
   RecordColumn,
   RecordColumns,
 } from "@oneforall/domain/schema/recordSchema";
 
+import { MultiTextInput } from "~/components/ui/v4/multiTextInput";
+import { TextInput } from "~/components/ui/v4/textInput";
 import { AddCellDateFactory } from "./AddCellDateFactory";
 import { AddCellLookupFactory } from "./AddCellLookupFactory";
 import { AddCellNumericFactory } from "./AddCellNumericFactory";

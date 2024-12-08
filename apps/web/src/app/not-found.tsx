@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { paths } from "@routing/paths";
+
+import { paths } from "~/routing/paths";
 
 const NotFound = () => {
   return (

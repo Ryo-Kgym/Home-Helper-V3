@@ -1,5 +1,4 @@
-import { fetchBalanceList } from "@features/householdAccountList/server/fetchBalanceList";
-
+import { fetchBalanceList } from "../server/fetchBalanceList";
 import { AccountListClient } from "./AccountListClient";
 
 export const AccountListServer = async ({

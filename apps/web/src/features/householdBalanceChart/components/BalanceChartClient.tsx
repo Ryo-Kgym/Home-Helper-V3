@@ -1,9 +1,10 @@
 "use client";
 
 import { FC } from "react";
-import { RangeMonthPicker } from "@components/ui/v5/date/RangeMonthPicker";
-import { BalanceChart } from "@features/householdBalanceChart/components/BalanceChart";
-import { useNavigation } from "@routing/client/useNavigation";
+
+import { RangeMonthPicker } from "~/components/ui/v5/date/RangeMonthPicker";
+import { useNavigation } from "~/routing/client/useNavigation";
+import { BalanceChart } from "./BalanceChart";
 
 type Props = Pick<
   Parameters<typeof BalanceChart>[0],

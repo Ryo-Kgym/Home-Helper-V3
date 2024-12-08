@@ -1,7 +1,8 @@
-import { convertDateStyle } from "@feature/app/function/convertDateStyle";
-import { formatThousandSeparator } from "@feature/app/function/formatThousandSeparator";
 import { ViewRecordColumn } from "@oneforall/domain/schema/view/viewRecordSchema";
 import { ViewField } from "@oneforall/domain/schema/view/viewSchema";
+
+import { convertDateStyle } from "../../../feature/app/function/convertDateStyle";
+import { formatThousandSeparator } from "../../../feature/app/function/formatThousandSeparator";
 
 export const ViewRecordCell = ({
   viewField,

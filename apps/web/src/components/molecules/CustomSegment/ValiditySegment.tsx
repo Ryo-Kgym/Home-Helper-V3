@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Segment } from "@components/atoms/Segment";
+import { Segment } from "~/components/atoms/Segment";
 
 type ValiditySegmentProps = {
   isValid: boolean;

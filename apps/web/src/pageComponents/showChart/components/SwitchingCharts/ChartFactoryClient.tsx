@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import BarChart from "@features/chart/components/BarChart";
-import LineChart from "@features/chart/components/LineChart";
-import PieChart from "@features/chart/components/PieChart";
-import RadarChart from "@features/chart/components/RadarChart";
-import { ChartKind } from "@features/chart/types/chartKind";
+
+import BarChart from "../../../../features/chart/components/BarChart";
+import LineChart from "../../../../features/chart/components/LineChart";
+import PieChart from "../../../../features/chart/components/PieChart";
+import RadarChart from "../../../../features/chart/components/RadarChart";
+import { ChartKind } from "../../../../features/chart/types/chartKind";
 
 /**
  * @package

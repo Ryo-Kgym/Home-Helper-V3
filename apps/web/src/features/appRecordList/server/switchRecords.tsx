@@ -3,9 +3,10 @@ import { App } from "@oneforall/domain/schema/appSchema";
 import { linkDatabaseSchema } from "@oneforall/domain/schema/linkDatabase/linkDatabaseSchema";
 import { Records } from "@oneforall/domain/schema/recordSchema";
 import { executeSql } from "@oneforall/domain/sql/execution";
-import { getLookupRecords } from "@server/lookupRecords";
 import { parseToRecords } from "@v3/graphql/public/convert/parseToRecords";
 import { GetAppQuery } from "@v3/graphql/public/type";
+
+import { getLookupRecords } from "~/server/lookupRecords";
 
 export type SwitchedRecords = {
   type: "linkDatabase" | "records";

@@ -2,11 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { AmountInput } from "@components/molecules/CustomNumberInput/Amount/index";
-import { AccountSelect } from "@components/molecules/CustomSelect/Account/index";
-import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo/index";
-import { DatePicker } from "@components/ui/date/index";
-import { Button } from "@components/ui/index";
+import { AmountInput } from "~/components/molecules/CustomNumberInput/Amount/index";
+import { AccountSelect } from "~/components/molecules/CustomSelect/Account/index";
+import { MemoTextArea } from "~/components/molecules/CustomTextArea/Memo/index";
+import { DatePicker } from "~/components/ui/date/index";
+import { Button } from "~/components/ui/index";
 
 export const TransferPresenter = ({
   date,
@@ -39,7 +39,7 @@ export const TransferPresenter = ({
 }) => (
   <div className={"space-y-2"}>
     <DatePicker value={date} onChange={setDate} required defaultValue={date} />
-    <div className={"flex justify-items-center items-center space-x-2"}>
+    <div className={"flex items-center justify-items-center space-x-2"}>
       <AccountSelect
         accountId={sendAccountId}
         setAccountId={setSendAccountId}

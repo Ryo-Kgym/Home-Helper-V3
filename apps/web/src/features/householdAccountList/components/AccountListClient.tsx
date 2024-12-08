@@ -1,9 +1,10 @@
 "use client";
 
-import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
-import { AccountDailyTable } from "@features/householdAccountList/components/AccountDailyTable";
-import { BalanceListTable } from "@features/householdAccountList/components/BalanceListTable";
 import { AccountBalance } from "@oneforall/domain/household/accountBalance";
+
+import { ResponsiveSwitcher } from "../../../app/household/_layout/ResponsiveSwitcher";
+import { AccountDailyTable } from "./AccountDailyTable";
+import { BalanceListTable } from "./BalanceListTable";
 
 export const AccountListClient = ({
   balanceRecords,

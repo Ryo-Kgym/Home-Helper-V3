@@ -1,7 +1,8 @@
 import "server-only";
 
-import { Nominal } from "@features/householdDashboard/server/fetchDashboardMonthly";
 import { GetDetailsByCategoryQuery } from "@v3/graphql/household/type";
+
+import { Nominal } from "./fetchDashboardMonthly";
 
 export const convertToNominal = (data: GetDetailsByCategoryQuery): Nominal => {
   const transferCategories = [

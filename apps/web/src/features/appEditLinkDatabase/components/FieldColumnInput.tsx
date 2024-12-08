@@ -1,8 +1,9 @@
-import { FieldContainer } from "@components/ui/v4/FieldContainer";
-import { Table } from "@components/ui/v4/table";
-import { TextInput } from "@components/ui/v4/textInput";
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { FieldColumnMaps } from "@oneforall/domain/schema/linkDatabase/fieldColumnMapsSchema";
+
+import { FieldContainer } from "~/components/ui/v4/FieldContainer";
+import { Table } from "~/components/ui/v4/table";
+import { TextInput } from "~/components/ui/v4/textInput";
 
 export const FieldColumnInput = ({
   label,

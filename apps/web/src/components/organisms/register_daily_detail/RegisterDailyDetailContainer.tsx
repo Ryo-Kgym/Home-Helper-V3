@@ -2,11 +2,11 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { IocomeType } from "@domain/model/household/IocomeType";
-import { errorPopup, successPopup } from "@function/successPopup";
-import { useRegisterDailyDetail } from "@hooks/household/daily_detail/useRegisterDailyDetail";
 import { useState } from "react";
 
+import { errorPopup, successPopup } from "~/functions/successPopup";
+import { useRegisterDailyDetail } from "~/hooks/household/daily_detail/useRegisterDailyDetail";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { RegisterDailyDetailPresenter } from "./RegisterDailyDetailPresenter";
 
 export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {

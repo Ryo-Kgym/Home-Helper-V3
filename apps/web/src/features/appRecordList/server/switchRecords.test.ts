@@ -1,9 +1,10 @@
-import { switchRecords } from "@features/appRecordList/server/switchRecords";
 import * as mapSqlRecordsToAppRecords from "@oneforall/domain/convert/mapSqlRecordsToAppRecords";
 import { App } from "@oneforall/domain/schema/appSchema";
 import * as executeSql from "@oneforall/domain/sql/execution";
-import * as getLookupRecords from "@server/lookupRecords";
 import * as parseToRecords from "@v3/graphql/public/convert/parseToRecords";
+
+import * as getLookupRecordsMod from "~/server/lookupRecords";
+import { switchRecords } from "./switchRecords";
 
 jest.mock("@oneforall/domain/sql/execution");
 jest.mock("@server/lookupRecords");
@@ -12,7 +13,10 @@ jest.mock("@v3/graphql/public/convert/parseToRecords");
 
 describe("switchRecords", () => {
   const executeSqlSpy = jest.spyOn(executeSql, "executeSql");
-  const getLookupRecordsSpy = jest.spyOn(getLookupRecords, "getLookupRecords");
+  const getLookupRecordsSpy = jest.spyOn(
+    getLookupRecordsMod,
+    "getLookupRecords",
+  );
   const mapSqlRecordsToAppRecordsSpy = jest.spyOn(
     mapSqlRecordsToAppRecords,
     "mapSqlRecordsToAppRecords",

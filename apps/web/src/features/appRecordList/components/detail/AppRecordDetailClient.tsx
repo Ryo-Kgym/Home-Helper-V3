@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ModifyCell } from "@features/appRecordList/components/cell/ModifyCell";
-import { UpdateRecordButton } from "@features/appRecordList/components/operation/UpdateRecordButton";
 import { Fields } from "@oneforall/domain/schema/appSchema";
 import { Record } from "@oneforall/domain/schema/recordSchema";
+
+import { ModifyCell } from "../cell/ModifyCell";
+import { UpdateRecordButton } from "../operation/UpdateRecordButton";
 
 export const AppRecordDetailClient = ({
   fields,
