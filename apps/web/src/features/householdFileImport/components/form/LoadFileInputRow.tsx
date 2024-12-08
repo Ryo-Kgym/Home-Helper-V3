@@ -41,6 +41,12 @@ export const LoadFileInputRow: FC<Props> = ({ item, rowNumber }) => {
     [categoryId, memo],
   );
 
+  useEffect(() => {
+    if (!mapping.memo) return;
+
+    setMemo(item[mapping.memo - 1] ?? "");
+  }, [mapping.memo]);
+
   const hasNull = Object.values(mapping).some((v) => v === null);
 
   return (

@@ -37,4 +37,5 @@ export const FileImportColumnMapping: FC = () => {
 const label: Record<ColumnName, string> = {
   settlementDate: "決済日",
   amount: "金額",
+  memo: "メモ",
 };
