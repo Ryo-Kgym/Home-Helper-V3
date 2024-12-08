@@ -71,7 +71,9 @@ export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   }, [iocomeType]);
 
   useEffect(() => {
-    setInputGenreId(inputIocomeType !== iocomeType ? null : genreId);
+    setInputGenreId(
+      inputIocomeType !== (iocomeType as IocomeType) ? null : genreId,
+    );
   }, [inputIocomeType, genreId, iocomeType]);
 
   useEffect(() => {
