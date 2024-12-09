@@ -15,8 +15,7 @@ import { ColorSchemeScript } from "@mantine/core";
 import { ClientsProviders } from "./_provider/ClientsProviders";
 
 export const metadata: Metadata = {
-  title: "One for All",
-  description: "アプリを作るアプリ",
+  title: "我が家の家計簿",
 };
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
