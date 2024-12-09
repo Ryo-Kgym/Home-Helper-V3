@@ -3,7 +3,7 @@
 import { PropsWithChildren } from "react";
 import { useRouter } from "next/navigation";
 
-import { Drawer } from "~/components/ui/v4/drawer/index";
+import { Drawer } from "./index";
 
 export const OpenedDrawer = ({ children }: PropsWithChildren) => {
   const { back } = useRouter();

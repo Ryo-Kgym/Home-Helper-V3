@@ -9,9 +9,9 @@ import {
   useUpdateGenreByIdMutation,
 } from "@v3/graphql/household";
 
-import { errorPopup, successPopup } from "~/functions/successPopup";
 import { GenreType } from "../../../domain/model/household/GenreType";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { errorPopup, successPopup } from "../../../function/successPopup";
 import { Presenter_ } from "./Presenter";
 
 export const Container_ = ({ genreId }: { genreId: string }) => {

@@ -3,20 +3,20 @@
  */
 "use client";
 
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import {
   useGetCategoryByIdQuery,
   useUpdateCategoryByIdMutation,
 } from "@v3/graphql/household";
 
-import { DisplayOrderInput } from "~/components/molecules/CustomNumberInput/DisplayOrder";
-import { IocomeTypeSegment } from "~/components/molecules/CustomSegment/IocomeType";
-import { ValiditySegment } from "~/components/molecules/CustomSegment/ValiditySegment";
-import { GenreSelect } from "~/components/molecules/CustomSelect/Genre";
-import { GenreNameTextInput } from "~/components/molecules/CustomTextInput";
-import { Button } from "~/components/ui";
-import { errorPopup, successPopup } from "~/functions/successPopup";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { errorPopup, successPopup } from "../../../function/successPopup";
+import { DisplayOrderInput } from "../../molecules/CustomNumberInput/DisplayOrder";
+import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
+import { ValiditySegment } from "../../molecules/CustomSegment/ValiditySegment";
+import { GenreSelect } from "../../molecules/CustomSelect/Genre";
+import { GenreNameTextInput } from "../../molecules/CustomTextInput";
+import { Button } from "../../ui";
 
 export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   const [inputCategoryName, setInputCategoryName] = useState<string>("");
@@ -126,13 +126,7 @@ export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   );
 };
 
-const Frame = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => (
+const Frame = ({ title, children }: { title: string; children: ReactNode }) => (
   <div className={"my-4 rounded bg-gray-100 p-4"}>
     <div className={"text-gray-500"}>{title}</div>
     <div className={"ml-[1em] text-xl"}>{children}</div>

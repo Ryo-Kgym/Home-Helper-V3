@@ -21,16 +21,6 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./src/",
-    "paths": {
-      "~/components/*": ["./components/*"],
-      "~/functions/*": ["./function/*"],
-      "~/global/*": ["./global/*"],
-      "~/hooks/*": ["./hooks/*"],
-      "~/persistence/*": ["./persistence/*"],
-      "~/routing/*": ["./routing/*"],
-      "~/server/*": ["./server/*"],
-        "~/styles/*": ["./styles/*"],
-    },
     "plugins": [
       {
         "name": "next"

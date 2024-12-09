@@ -2,11 +2,11 @@
 
 import { FC, useState } from "react";
 
-import { AccountSelect } from "~/components/molecules/CustomSelect/Account";
-import { DatePicker } from "~/components/ui/date";
-import { Button } from "~/components/ui/v4/button";
-import { notify } from "~/components/ui/v4/notify/notify";
-import { FileInput } from "~/components/ui/v5/file/FileInput";
+import { AccountSelect } from "../../../../components/molecules/CustomSelect/Account";
+import { DatePicker } from "../../../../components/ui/date";
+import { Button } from "../../../../components/ui/v4/button";
+import { notify } from "../../../../components/ui/v4/notify/notify";
+import { FileInput } from "../../../../components/ui/v5/file/FileInput";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { useBuildTable } from "../../client/useBuildTable";
 import { useCreateImportFile } from "../../client/useCreateImportFile";

@@ -1,4 +1,4 @@
-import { AccountListServer } from "features/householdAccountList/components/AccountListServer";
+import { AccountListServer } from "../../../features/householdAccountList/components/AccountListServer";
 
 const Page = ({
   searchParams,

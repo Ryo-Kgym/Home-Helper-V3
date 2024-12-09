@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { TextInputPresenter } from "~/components/atoms/TextInput/TextInputPresenter";
+import { TextInputPresenter } from "./TextInputPresenter";
 
 export const TextInputContainer = ({
   label,

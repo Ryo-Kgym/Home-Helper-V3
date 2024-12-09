@@ -2,14 +2,16 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { DisplayOrderInput } from "~/components/molecules/CustomNumberInput/DisplayOrder";
-import { GenreTypeSegment } from "~/components/molecules/CustomSegment/GenreTypeSegment";
-import { IocomeTypeSegment } from "~/components/molecules/CustomSegment/IocomeType";
-import { ValiditySegment } from "~/components/molecules/CustomSegment/ValiditySegment";
-import { GenreNameTextInput } from "~/components/molecules/CustomTextInput";
-import { Button } from "~/components/ui";
+import { ReactNode } from "react";
+
 import { GenreType } from "../../../domain/model/household/GenreType";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { DisplayOrderInput } from "../../molecules/CustomNumberInput/DisplayOrder";
+import { GenreTypeSegment } from "../../molecules/CustomSegment/GenreTypeSegment";
+import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
+import { ValiditySegment } from "../../molecules/CustomSegment/ValiditySegment";
+import { GenreNameTextInput } from "../../molecules/CustomTextInput";
+import { Button } from "../../ui";
 
 export const Presenter_ = ({
   categories = [],
@@ -86,7 +88,7 @@ const FrameDiv = ({
   children,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) => (
   <div className={"my-4 rounded bg-gray-100 p-4"}>
     <div className={"text-gray-500"}>{title}</div>

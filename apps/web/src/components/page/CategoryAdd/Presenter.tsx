@@ -2,13 +2,14 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { DisplayOrderInput } from "~/components/molecules/CustomNumberInput/DisplayOrder";
-import { IocomeTypeSegment } from "~/components/molecules/CustomSegment/IocomeType";
-import { ValiditySegment } from "~/components/molecules/CustomSegment/ValiditySegment";
-import { GenreSelect } from "~/components/molecules/CustomSelect/Genre";
-import { GenreNameTextInput } from "~/components/molecules/CustomTextInput";
-import { Button, FieldFrame } from "~/components/ui";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { DisplayOrderInput } from "../../molecules/CustomNumberInput/DisplayOrder";
+import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
+import { ValiditySegment } from "../../molecules/CustomSegment/ValiditySegment";
+import { GenreSelect } from "../../molecules/CustomSelect/Genre";
+import { GenreNameTextInput } from "../../molecules/CustomTextInput";
+import { Button } from "../../ui";
+import { FieldFrame } from "../../ui/FieldFrame/FieldFrame";
 
 export const Presenter_ = ({
   inputCategoryName,

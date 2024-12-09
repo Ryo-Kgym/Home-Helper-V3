@@ -4,8 +4,8 @@
 
 import { useGetValidAccountsQuery } from "@v3/graphql/household";
 
-import { Select } from "~/components/ui/index";
-import { useGroup } from "~/hooks/group/useGroup";
+import { useGroup } from "../../../../hooks/group/useGroup";
+import { Select } from "../../../ui";
 
 type AccountSelectProps = {
   accountId: string | null;

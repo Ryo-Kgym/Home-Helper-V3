@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { NumberInput } from "~/components/atoms/NumberInput";
+import { NumberInput } from "../../../atoms/NumberInput";
 
 export const DisplayOrderInputPresenter = ({
   value,

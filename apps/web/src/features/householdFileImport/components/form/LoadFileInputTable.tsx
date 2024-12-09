@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Table } from "~/components/ui/v4/table";
+import { Table } from "../../../../components/ui/v4/table";
 import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
 import { LoadFileInputRow } from "./LoadFileInputRow";
 

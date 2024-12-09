@@ -1,5 +1,5 @@
-import type { FieldValueProps } from "~/components/ui/v4/property";
-import { FieldContainer } from "~/components/ui/v4/FieldContainer";
+import { FieldContainer } from "../FieldContainer";
+import { FieldValueProps } from "../property";
 
 export const MultiTextInput = ({
   label,

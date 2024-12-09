@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { ModalProps } from "~/components/ui/v4/modal/index";
+import { ModalProps } from "./index";
 
 export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
   if (!isOpen) {

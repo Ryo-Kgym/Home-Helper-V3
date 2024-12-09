@@ -2,9 +2,9 @@
 
 import { useGetValidCategoryByGenreIdQuery } from "@v3/graphql/household";
 
-import type { SelectData } from "~/components/ui";
-import { Select } from "~/components/ui";
-import { useGroup } from "~/hooks/group/useGroup";
+import type { SelectData } from "../../Select";
+import { useGroup } from "../../../../hooks/group/useGroup";
+import { Select } from "../../Select";
 
 export const CategorySelect = ({
   categoryId,

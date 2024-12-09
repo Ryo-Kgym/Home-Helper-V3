@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 
-import type { ButtonProps } from "~/components/ui/v4/button/index";
+import { ButtonProps } from "./index";
 
 export const TailWindCSSButton = ({
   label,

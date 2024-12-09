@@ -10,8 +10,8 @@ import {
   useUpdateCreditCardDetailByIdMutation,
 } from "@v3/graphql/household";
 
-import { successPopup } from "~/functions/successPopup";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { successPopup } from "../../../function/successPopup";
 import { Presenter_ } from "./Presenter";
 
 export const Container_ = ({ id }: { id: string | null }) => {

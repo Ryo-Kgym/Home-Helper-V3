@@ -1,5 +1,5 @@
-import { BalanceChartPageServer } from "features/householdBalanceChart/components/BalanceChartPageServer";
-import { CategoryChartServer } from "features/householdCategoryChart/components/CategoryChartServer";
+import { BalanceChartPageServer } from "../../../../features/householdBalanceChart/components/BalanceChartPageServer";
+import { CategoryChartServer } from "../../../../features/householdCategoryChart/components/CategoryChartServer";
 
 const Page = ({
   searchParams,

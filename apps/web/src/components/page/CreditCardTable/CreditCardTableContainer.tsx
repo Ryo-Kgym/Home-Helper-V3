@@ -7,8 +7,8 @@
 import { useRouter } from "next/navigation";
 import { useGetCreditCardListQuery } from "@v3/graphql/household";
 
-import type { TableProps } from "~/components/atoms/Table";
-import { useGroup } from "~/hooks/group/useGroup";
+import { useGroup } from "../../../hooks/group/useGroup";
+import { TableProps } from "../../atoms/Table";
 import { creditCardListConverter } from "./creditCardListConverter";
 import { CreditCardTablePresenter } from "./CreditCardTablePresenter";
 

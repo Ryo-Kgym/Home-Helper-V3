@@ -4,10 +4,10 @@
 
 import { useEffect, useState } from "react";
 
-import { useDeleteDailyDetailBySerialNo } from "~/hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
-import { useUpdateDailyDetailBySerialNo } from "~/hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
 import { DailyDetail } from "../../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
+import { useDeleteDailyDetailBySerialNo } from "../../../../hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
+import { useUpdateDailyDetailBySerialNo } from "../../../../hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
 import { ChangeDetailPresenter } from "./ChangeDetailPresenter";
 
 export const ChangeDetailContainer = ({

@@ -2,9 +2,8 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import type { TableProps } from "~/components/atoms/Table";
-import { Table } from "~/components/atoms/Table";
-import { Button } from "~/components/ui";
+import { Table, TableProps } from "../../atoms/Table";
+import { Button } from "../../ui";
 
 export const Presenter_ = ({
   summary,

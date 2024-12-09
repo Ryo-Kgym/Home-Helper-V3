@@ -4,10 +4,10 @@
 
 import { useState } from "react";
 
-import { CutDetailPresenter } from "~/components/organisms/update_detail/cut/CutDetailPresenter";
-import { errorPopup, successPopup } from "~/functions/successPopup";
-import { useCutDetail } from "~/hooks/household/daily_detail/useCutDetail";
 import { DailyDetail } from "../../../../domain/model/household/DailyDetail";
+import { errorPopup, successPopup } from "../../../../function/successPopup";
+import { useCutDetail } from "../../../../hooks/household/daily_detail/useCutDetail";
+import { CutDetailPresenter } from "./CutDetailPresenter";
 
 export const CutDetailContainer = ({
   initData,

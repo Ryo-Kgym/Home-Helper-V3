@@ -5,9 +5,9 @@
 
 import { useState } from "react";
 
-import { TransferPresenter } from "~/components/organisms/transfer/TransferPresenter";
-import { errorPopup, successPopup } from "~/functions/successPopup";
-import { useRegisterTransfer } from "~/hooks/household/transfer/useRegisterTransfer";
+import { errorPopup, successPopup } from "../../../function/successPopup";
+import { useRegisterTransfer } from "../../../hooks/household/transfer/useRegisterTransfer";
+import { TransferPresenter } from "./TransferPresenter";
 
 export const TransferContainer = ({ date }: { date: Date }) => {
   const [registerDate, setRegisterDate] = useState<Date>(date);

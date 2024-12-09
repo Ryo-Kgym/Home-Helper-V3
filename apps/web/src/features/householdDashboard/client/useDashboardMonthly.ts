@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { LoadingData } from "~/global/type/loadingData";
+import { LoadingData } from "../../../global/type/loadingData";
 import { fetchDashboardMonthly } from "../server/fetchDashboardMonthly";
 import { DashboardComponentProps } from "../types/dashboardFC";
 

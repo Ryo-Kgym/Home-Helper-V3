@@ -3,9 +3,9 @@ import {
   useCreateCreditCardSummaryMutation,
 } from "@v3/graphql/household";
 
-import { useGroup } from "~/hooks/group/useGroup";
-import { useGenerateId } from "~/hooks/useGenerateId";
-import { useUser } from "~/hooks/user/useUser";
+import { useGroup } from "../../../hooks/group/useGroup";
+import { useGenerateId } from "../../../hooks/useGenerateId";
+import { useUser } from "../../../hooks/user/useUser";
 import { FileType } from "../../../provider/file/FileType";
 import { LoadFileProps } from "../types";
 

@@ -2,8 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import type { SelectData } from "~/components/ui";
-import { Select } from "~/components/ui";
+import { Select, SelectData } from "../../../ui";
 
 type GenreSelectPresenterProps = {
   value: string | null;

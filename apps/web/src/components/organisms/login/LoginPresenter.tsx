@@ -2,7 +2,9 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { LoginButton } from "~/components/molecules/AuthButton";
+import { ReactNode } from "react";
+
+import { LoginButton } from "../../molecules/AuthButton";
 
 export const LoginPresenter = ({
   message,
@@ -22,11 +24,7 @@ const Title = () => (
   <h1 className="font-serif text-6xl font-bold text-yellow-400">One for All</h1>
 );
 
-const ButtonArea = ({
-  children,
-}: {
-  children: React.ReactNode | React.ReactNode[];
-}) => (
+const ButtonArea = ({ children }: { children: ReactNode }) => (
   <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
     {children}
   </div>

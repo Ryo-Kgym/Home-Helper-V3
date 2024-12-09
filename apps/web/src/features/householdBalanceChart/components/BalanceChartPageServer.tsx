@@ -1,4 +1,4 @@
-import { colors } from "~/styles/colors";
+import { colors } from "../../../styles/colors";
 import { fetchBalanceChartData } from "../server/fetchBalanceChartData";
 import { BalanceChartClient } from "./BalanceChartClient";
 

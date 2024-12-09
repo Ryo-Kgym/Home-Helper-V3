@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Split } from "~/components/atoms/Split/index";
+import { Split } from "../../../components/atoms/Split";
 
 export const ResponsiveSwitcher = ({
   first: firstContents,

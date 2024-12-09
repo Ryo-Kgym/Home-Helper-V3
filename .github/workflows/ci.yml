@@ -31,7 +31,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Web-Test
-        run: cd apps/web && pnpm jest && cd ../../
+        run: cd apps/web && pnpm vitest --run && cd ../../
 
       - name: Expo-Test
         run: cd apps/expo && pnpm jest && cd ../../

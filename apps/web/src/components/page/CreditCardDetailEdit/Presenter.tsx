@@ -2,14 +2,14 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { AmountInput } from "~/components/molecules/CustomNumberInput/Amount";
-import { IocomeTypeSegment } from "~/components/molecules/CustomSegment/IocomeType";
-import { CategorySelect } from "~/components/molecules/CustomSelect/Category";
-import { GenreSelect } from "~/components/molecules/CustomSelect/Genre";
-import { MemoTextArea } from "~/components/molecules/CustomTextArea/Memo";
-import { Button } from "~/components/ui";
-import { DatePicker } from "~/components/ui/date";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { AmountInput } from "../../molecules/CustomNumberInput/Amount";
+import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
+import { CategorySelect } from "../../molecules/CustomSelect/Category";
+import { GenreSelect } from "../../molecules/CustomSelect/Genre";
+import { MemoTextArea } from "../../molecules/CustomTextArea/Memo";
+import { Button } from "../../ui";
+import { DatePicker } from "../../ui/date";
 
 export const Presenter_ = ({
   date,
