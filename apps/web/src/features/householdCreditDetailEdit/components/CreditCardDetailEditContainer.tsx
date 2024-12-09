@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -12,9 +8,13 @@ import {
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { successPopup } from "../../../function/successPopup";
-import { Presenter_ } from "./Presenter";
+import { CreditCardDetailEditPresenter } from "./CreditCardDetailEditPresenter";
 
-export const Container_ = ({ id }: { id: string | null }) => {
+export const CreditCardDetailEditContainer = ({
+  id,
+}: {
+  id: string | null;
+}) => {
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
   const [genreId, setGenreId] = useState<string | null>(null);
   const [categoryId, setCategoryId] = useState<string | null>(null);
@@ -63,7 +63,7 @@ export const Container_ = ({ id }: { id: string | null }) => {
   if (data == null) return <div>No Data</div>;
 
   return (
-    <Presenter_
+    <CreditCardDetailEditPresenter
       date={initData.date}
       iocomeType={iocomeType}
       changeIocomeTypeHandler={(value: IocomeType) => {
