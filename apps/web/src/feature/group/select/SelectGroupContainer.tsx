@@ -6,13 +6,13 @@
 
 import { saveUser } from "persistence/browser/client";
 
-import { LinkList } from "~/components/atoms/Card";
-import { useAuth } from "~/hooks/authentication/useAuth";
-import { useGroup } from "~/hooks/group/useGroup";
-import { useUser } from "~/hooks/user/useUser";
-import { paths } from "~/routing/paths";
+import { LinkList } from "../../../components/atoms/Card";
 import { Group } from "../../../domain/model/Group";
 import { User } from "../../../domain/model/User";
+import { useAuth } from "../../../hooks/authentication/useAuth";
+import { useGroup } from "../../../hooks/group/useGroup";
+import { useUser } from "../../../hooks/user/useUser";
+import { paths } from "../../../routing/paths";
 
 export const SelectGroupContainer = ({
   user,

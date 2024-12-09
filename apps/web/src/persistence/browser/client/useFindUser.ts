@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { getCookieValue } from "~/persistence/browser/client/cookie";
 import { User } from "../../../type/user";
+import { getCookieValue } from "./cookie";
 
 export const useFindUser = (): User => {
   const [user, setUser] = useState<User>({

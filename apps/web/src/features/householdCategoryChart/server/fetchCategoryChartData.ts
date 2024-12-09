@@ -1,7 +1,7 @@
 import { ChartDataDocument } from "@v3/graphql/household/type";
 
-import { findUser } from "~/persistence/browser/server/find-user";
-import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { findUser } from "../../../persistence/browser/server/find-user";
+import { fetchQuery } from "../../../persistence/database/server/fetchQuery";
 import { convertToCategoryChartData } from "./convertToCategoryChartData";
 
 export const fetchCategoryChartData = async ({

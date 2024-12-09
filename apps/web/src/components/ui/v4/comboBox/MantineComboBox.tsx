@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { Combobox, Pill, PillsInput, useCombobox } from "@mantine/core";
 
-import { ComboBoxProps } from "~/components/ui/v4/comboBox/index";
+import { ComboBoxProps } from "./index";
 
 export const MantineComboBox: FC<ComboBoxProps> = ({
   value,

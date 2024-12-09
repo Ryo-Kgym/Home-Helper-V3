@@ -5,9 +5,9 @@
 import { useRouter } from "next/navigation";
 import { useClerk } from "@clerk/nextjs";
 
-import { useGroup } from "~/hooks/group/useGroup";
-import { useMessage } from "~/hooks/message/useMessage";
-import { useUser } from "~/hooks/user/useUser";
+import { useGroup } from "../group/useGroup";
+import { useMessage } from "../message/useMessage";
+import { useUser } from "../user/useUser";
 
 export const useAuth = () => {
   const { save: saveUser } = useUser();

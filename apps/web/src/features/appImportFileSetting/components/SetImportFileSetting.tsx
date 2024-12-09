@@ -2,9 +2,9 @@ import type { ReactNode } from "react";
 import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { useInsertImportFileSettingMutation } from "@v3/graphql/public";
 
-import { Button } from "~/components/ui/v4/button";
-import { notify } from "~/components/ui/v4/notify/notify";
-import { NumberInput } from "~/components/ui/v4/textInput";
+import { Button } from "../../../components/ui/v4/button";
+import { notify } from "../../../components/ui/v4/notify/notify";
+import { NumberInput } from "../../../components/ui/v4/textInput";
 import { useImportFileSettings } from "../client/useImportSettingsState";
 import { EncodingSelect } from "./EncodingSelect";
 import { EncodingTypeSelect } from "./EncodingTypeSelect";

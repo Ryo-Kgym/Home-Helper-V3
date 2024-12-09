@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { IocomeTotalPresenter } from "~/components/molecules/Total/IocomeTotalPresenter";
+import { IocomeTotalPresenter } from "./IocomeTotalPresenter";
 
 export const IocomeTotalContainer = ({
   income = 0,

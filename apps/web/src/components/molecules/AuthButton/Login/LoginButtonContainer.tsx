@@ -5,8 +5,8 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import { AuthButtonPresenter } from "~/components/molecules/AuthButton/AuthButtonPresenter";
-import { useUser } from "~/hooks/user/useUser";
+import { useUser } from "../../../../hooks/user/useUser";
+import { AuthButtonPresenter } from "../AuthButtonPresenter";
 
 export const LoginButtonContainer = () => {
   const { push } = useRouter();

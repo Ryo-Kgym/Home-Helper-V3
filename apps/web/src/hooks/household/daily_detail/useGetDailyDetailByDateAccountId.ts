@@ -4,9 +4,9 @@
 
 import { useGetDailyByAccountIdQuery } from "@v3/graphql/household";
 
-import { useGroup } from "~/hooks/group/useGroup";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { useGroup } from "../../group/useGroup";
 
 export const useGetDailyDetailByDateAccountId = (
   accountId: string,

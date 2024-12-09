@@ -6,9 +6,6 @@
 import { useRouter } from "next/navigation";
 import { useGetAllGenreQuery } from "@v3/graphql/household";
 
-import type { TableProps } from "~/components/atoms/Table";
-import { ValidityStatus } from "~/components/atoms";
-import { useGroup } from "~/hooks/group/useGroup";
 import {
   GenreType,
   getLabel as getGenreTypeLabel,
@@ -17,6 +14,9 @@ import {
   getLabel as getIocomeTypeLabel,
   IocomeType,
 } from "../../../domain/model/household/IocomeType";
+import { useGroup } from "../../../hooks/group/useGroup";
+import { ValidityStatus } from "../../atoms";
+import { TableProps } from "../../atoms/Table";
 import { Presenter_ } from "./Presenter";
 
 export const Container_ = () => {

@@ -1,1 +1,1 @@
-export * from "~/persistence/browser/client/save-user";
+export * from "./save-user";

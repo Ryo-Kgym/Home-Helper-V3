@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from "react";
 
-import { MemoTextArea } from "~/components/molecules/CustomTextArea/Memo";
-import { Table } from "~/components/ui/v4/table";
-import { CategorySelect } from "~/components/ui/v5/select/CategorySelect";
-import { GenreSelect } from "~/components/ui/v5/select/GenreSelect";
+import { MemoTextArea } from "../../../../components/molecules/CustomTextArea/Memo";
+import { Table } from "../../../../components/ui/v4/table";
+import { CategorySelect } from "../../../../components/ui/v5/select/CategorySelect";
+import { GenreSelect } from "../../../../components/ui/v5/select/GenreSelect";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
 import { useImportFileRowAware } from "../../client/useImportFileRowAware";
@@ -41,11 +41,15 @@ export const LoadFileInputRow: FC<Props> = ({ item, rowNumber }) => {
     [categoryId, memo],
   );
 
-  useEffect(() => {
-    if (!mapping.memo) return;
+  useEffect(
+    () => {
+      if (!mapping.memo) return;
 
-    setMemo(item[mapping.memo - 1] ?? "");
-  }, [mapping.memo]);
+      setMemo(item[mapping.memo - 1] ?? "");
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [mapping.memo],
+  );
 
   const hasNull = Object.values(mapping).some((v) => v === null);
 

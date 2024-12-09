@@ -4,8 +4,8 @@
 
 import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
 
-import { useGroup } from "~/hooks/group/useGroup";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
+import { useGroup } from "../../../../hooks/group/useGroup";
 import { GenreSelectPresenter } from "./GenreSelectPresenter";
 
 type GenreSelectContainerProps = {

@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { RoutingTabs } from "~/components/ui";
+import { RoutingTabs } from "../../../components/ui/RoutingTabs";
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <RoutingTabs

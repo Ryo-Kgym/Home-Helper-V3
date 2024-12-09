@@ -1,6 +1,6 @@
 "use client";
 
-import { Loading } from "~/components/ui/v5/loading/Loading";
+import { Loading } from "../../../components/ui/v5/loading/Loading";
 import { useDashboardBalance } from "../client/useDashboardBalance";
 import { DashboardFC } from "../types/dashboardFC";
 import styles from "./DashboardBalanceClient.module.scss";

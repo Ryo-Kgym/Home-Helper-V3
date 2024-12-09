@@ -6,11 +6,11 @@
 import { useState } from "react";
 import { useCreateCategoryMutation } from "@v3/graphql/household";
 
-import { Presenter_ } from "~/components/page/CategoryAdd/Presenter";
-import { errorPopup, successPopup } from "~/functions/successPopup";
-import { useGroup } from "~/hooks/group/useGroup";
-import { useGenerateId } from "~/hooks/useGenerateId";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { errorPopup, successPopup } from "../../../function/successPopup";
+import { useGroup } from "../../../hooks/group/useGroup";
+import { useGenerateId } from "../../../hooks/useGenerateId";
+import { Presenter_ } from "./Presenter";
 
 export const Container_ = () => {
   const { generate } = useGenerateId();

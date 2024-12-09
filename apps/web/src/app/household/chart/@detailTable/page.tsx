@@ -1,4 +1,4 @@
-import { ChartDetailTableServer } from "features/householdChartDetailTable/components/ChartDetailTableServer";
+import { ChartDetailTableServer } from "../../../../features/householdChartDetailTable/components/ChartDetailTableServer";
 
 const Page = ({
   searchParams,

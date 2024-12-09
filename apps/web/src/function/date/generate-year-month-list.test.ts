@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { describe, it, expect } from "@jest/globals";
+import { describe, expect, it } from "vitest";
 
 import { generateYearMonthList as testTarget } from "./generate-year-month-list";
 

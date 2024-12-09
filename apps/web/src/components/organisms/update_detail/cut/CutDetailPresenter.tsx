@@ -2,14 +2,14 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { AmountInput } from "~/components/molecules/CustomNumberInput/Amount/index";
-import { AccountSelect } from "~/components/molecules/CustomSelect/Account";
-import { CategorySelect } from "~/components/molecules/CustomSelect/Category";
-import { GenreSelect } from "~/components/molecules/CustomSelect/Genre/index";
-import { MemoTextArea } from "~/components/molecules/CustomTextArea/Memo/index";
-import { DatePicker } from "~/components/ui/date/index";
-import { Button } from "~/components/ui/index";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
+import { AmountInput } from "../../../molecules/CustomNumberInput/Amount";
+import { AccountSelect } from "../../../molecules/CustomSelect/Account";
+import { CategorySelect } from "../../../molecules/CustomSelect/Category";
+import { GenreSelect } from "../../../molecules/CustomSelect/Genre";
+import { MemoTextArea } from "../../../molecules/CustomTextArea/Memo";
+import { Button } from "../../../ui";
+import { DatePicker } from "../../../ui/date";
 
 export const CutDetailPresenter = ({
   detailDate,

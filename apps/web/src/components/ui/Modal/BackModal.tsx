@@ -5,7 +5,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { Modal } from "~/components/atoms/Modal";
+import { Modal } from "../../atoms/Modal";
 
 export const BackModal = ({ children }: { children: React.ReactNode }) => {
   const { back } = useRouter();

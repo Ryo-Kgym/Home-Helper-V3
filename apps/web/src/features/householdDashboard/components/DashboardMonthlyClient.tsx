@@ -1,6 +1,6 @@
 "use client";
 
-import { Loading } from "~/components/ui/v5/loading/Loading";
+import { Loading } from "../../../components/ui/v5/loading/Loading";
 import { useDashboardMonthly } from "../client/useDashboardMonthly";
 import { DashboardFC } from "../types/dashboardFC";
 import styles from "./DashboardMonthlyClient.module.scss";

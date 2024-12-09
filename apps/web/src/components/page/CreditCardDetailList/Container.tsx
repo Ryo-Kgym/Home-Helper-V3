@@ -6,9 +6,11 @@
 import { useRouter } from "next/navigation";
 import { useGetCreditCardDetailBySummaryIdQuery } from "@v3/graphql/household";
 
-import type { TableProps } from "~/components/atoms/Table";
-import { FormatPrice } from "~/components/molecules/FormatPrice";
+// import type { TableProps } from "~/components/atoms/Table";
+// import { FormatPrice } from "~/components/molecules/FormatPrice";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { TableProps } from "../../atoms/Table";
+import { FormatPrice } from "../../molecules/FormatPrice";
 import { Presenter_ } from "./Presenter";
 
 type CreditCardDetailTableContainerProps = {

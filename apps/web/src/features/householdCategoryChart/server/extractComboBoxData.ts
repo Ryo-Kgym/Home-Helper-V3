@@ -1,4 +1,4 @@
-import { ComboBox } from "~/components/ui/v4/comboBox";
+import { ComboBox } from "../../../components/ui/v4/comboBox";
 import { CategoryChartData } from "../types";
 
 export const extractComboBoxData = (data: CategoryChartData) =>

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
-import { FieldFrame } from "~/components/ui/v4/FieldFrame";
-import { FieldLabel } from "~/components/ui/v4/FieldLabel";
+import { FieldFrame } from "./FieldFrame";
+import { FieldLabel } from "./FieldLabel";
 
 export const FieldContainer = ({
   label,

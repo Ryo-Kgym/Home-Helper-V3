@@ -1,4 +1,4 @@
-import { TextInput } from "~/components/atoms/TextInput";
+import { TextInput } from "../../atoms/TextInput";
 
 type GenreNameTextInputProps = {
   genreName: string;

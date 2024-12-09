@@ -2,9 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Modal, Tab } from "~/components/ui";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { Modal } from "../../atoms/Modal";
+import { Tab } from "../../ui";
 import { ChangeDetailContainer } from "./change/ChangeDetailContainer";
 import { CutDetailContainer } from "./cut/CutDetailContainer";
 

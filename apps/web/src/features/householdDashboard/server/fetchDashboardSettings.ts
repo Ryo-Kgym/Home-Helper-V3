@@ -2,8 +2,8 @@ import "server-only";
 
 import { GetDashboardSettingDocument } from "@v3/graphql/household/type";
 
-import { findUser } from "~/persistence/browser/server/find-user";
-import { fetchQuery } from "~/persistence/database/server/fetchQuery";
+import { findUser } from "../../../persistence/browser/server/find-user";
+import { fetchQuery } from "../../../persistence/database/server/fetchQuery";
 import { DashboardFeature } from "../types/dashboardFeature";
 
 export const fetchDashboardSettings = async () => {

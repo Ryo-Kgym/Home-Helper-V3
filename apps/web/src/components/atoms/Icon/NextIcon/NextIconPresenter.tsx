@@ -4,7 +4,7 @@
 
 import { IconPlayerTrackNext } from "@tabler/icons";
 
-import { Icon } from "~/components/atoms/Icon";
+import { Icon } from "../index";
 
 export const NextIconPresenter = ({
   onClickHandler,

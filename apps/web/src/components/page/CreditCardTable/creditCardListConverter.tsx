@@ -4,9 +4,9 @@
 
 import type { GetCreditCardListQuery } from "@v3/graphql/household";
 
-import type { TableProps } from "~/components/atoms/Table";
-import { FormatPrice } from "~/components/molecules/FormatPrice";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { TableProps } from "../../atoms/Table";
+import { FormatPrice } from "../../molecules/FormatPrice";
 
 export const creditCardListConverter = ({
   data,

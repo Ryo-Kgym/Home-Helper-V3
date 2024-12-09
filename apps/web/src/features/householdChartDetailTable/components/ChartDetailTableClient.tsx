@@ -1,8 +1,8 @@
 "use client";
 
-import { DataTable } from "~/components/ui/v4/table";
-import { colors } from "~/styles/colors";
+import { DataTable } from "../../../components/ui/v4/table";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { colors } from "../../../styles/colors";
 
 export const ChartDetailTableClient = ({
   records,

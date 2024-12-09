@@ -3,10 +3,6 @@ const fs = require("fs");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
 
-const pagesDirs = fs.readdirSync(
-  path.resolve(__dirname, "../../apps/web/src/pageComponents"),
-);
-
 const featuresDirs = fs.readdirSync(
   path.resolve(__dirname, "../../apps/web/src/features"),
 );
@@ -55,28 +51,6 @@ const config = {
     "strict-dependencies/strict-dependencies": [
       "error",
       [
-        ...pagesDirs.map((name) => ({
-          module: `src/pageComponents/${name}/server`,
-          allowReferenceFrom: [
-            `src/pageComponents/${name}/components/*Server.tsx`,
-          ],
-          allowSameModule: true,
-        })),
-        ...pagesDirs.map((name) => ({
-          module: `src/pageComponents/${name}/client`,
-          allowReferenceFrom: [`src/pageComponents/${name}/components/*.tsx`],
-          allowSameModule: true,
-        })),
-        ...pagesDirs.map((name) => ({
-          module: `src/pageComponents/${name}`,
-          allowReferenceFrom: [`src/app/**/**/page.tsx`],
-          allowSameModule: true,
-        })),
-        ...pagesDirs.map((name) => ({
-          module: `src/pageComponents/${name}/components`,
-          allowReferenceFrom: [],
-          allowSameModule: true,
-        })),
         ...featuresDirs.map((name) => ({
           module: `src/features/${name}/server`,
           allowReferenceFrom: [
