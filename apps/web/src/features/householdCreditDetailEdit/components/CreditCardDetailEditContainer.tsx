@@ -1,87 +1,95 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import {
-  useGetCreditCardDetailByIdQuery,
-  useUpdateCreditCardDetailByIdMutation,
-} from "@v3/graphql/household";
-
+import { Loading } from "../../../components/ui/v5/loading/Loading";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { successPopup } from "../../../function/successPopup";
+import { errorPopup, successPopup } from "../../../function/successPopup";
+import { useStateCreditDetail } from "../hooks/useStateCreditDetail";
+import { useUpdateCreditDetail } from "../hooks/useUpdateCreditDetail";
 import { CreditCardDetailEditPresenter } from "./CreditCardDetailEditPresenter";
 
-export const CreditCardDetailEditContainer = ({
-  id,
-}: {
-  id: string | null;
-}) => {
-  const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
-  const [genreId, setGenreId] = useState<string | null>(null);
-  const [categoryId, setCategoryId] = useState<string | null>(null);
-  const [memo, setMemo] = useState<string | null>(null);
+export const CreditCardDetailEditContainer = ({ id }: { id: string }) => {
+  const { formData, setFormData, initializeForm, display } =
+    useStateCreditDetail({
+      id,
+    });
 
-  const [{ data }] = useGetCreditCardDetailByIdQuery({
-    variables: {
-      id: id ?? Number.MIN_VALUE.toString(),
-    },
-  });
-
-  const [, update] = useUpdateCreditCardDetailByIdMutation();
+  const { updateCreditDetail } = useUpdateCreditDetail({ id });
 
   const updateHandler = async () => {
-    await update({
-      id: id!,
-      genreId: genreId!,
-      categoryId: categoryId!,
-      memo: memo,
-    });
-    successPopup("更新しました。");
+    if (!formData) return;
+    const { genreId, categoryId, memo } = formData;
+
+    try {
+      if (genreId === null) {
+        errorPopup("ジャンルを選択してください。");
+        return;
+      }
+      if (categoryId === null) {
+        errorPopup("カテゴリーを選択してください。");
+        return;
+      }
+
+      await updateCreditDetail({
+        genreId,
+        categoryId,
+        memo,
+      });
+      successPopup("更新しました。");
+    } catch (e) {
+      errorPopup("更新に失敗しました。");
+    }
   };
 
-  const initData = useMemo(
-    () => ({
-      date: new Date(data?.creditCardDetail?.date as string),
-      iocomeType:
-        data?.creditCardDetail?.genre?.iocomeType ?? IocomeType.Income,
-      genreId: data?.creditCardDetail?.genre?.id ?? null,
-      categoryId: data?.creditCardDetail?.category?.id ?? null,
-      amount: Number(data?.creditCardDetail?.amount) ?? "",
-      memo: data?.creditCardDetail?.memo,
-    }),
-    [data],
-  );
-
-  const resetClickHandler = () => {
-    setIocomeType(initData.iocomeType as IocomeType);
-    setGenreId(initData.genreId);
-    setCategoryId(initData.categoryId);
-    setMemo(initData.memo ?? null);
-  };
-
-  useEffect(resetClickHandler, [initData]);
-
-  if (data == null) return <div>No Data</div>;
+  if (formData === undefined) return <Loading />;
 
   return (
     <CreditCardDetailEditPresenter
-      date={initData.date}
-      iocomeType={iocomeType}
+      date={display.date}
+      iocomeType={display.iocomeType}
       changeIocomeTypeHandler={(value: IocomeType) => {
-        setIocomeType(value);
-        setGenreId(null);
-        setCategoryId(null);
+        setFormData((prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            iocomeType: value,
+            genreId: null,
+            categoryId: null,
+          };
+        });
       }}
-      genreId={genreId}
-      changeGenreIdHandler={(value: string | null) => {
-        setGenreId(value);
-        setCategoryId(null);
+      genreId={formData.genreId}
+      changeGenreIdHandler={(value) => {
+        setFormData((prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            genreId: value,
+            categoryId: null,
+          };
+        });
       }}
-      categoryId={categoryId}
-      changeCategoryIdHandler={setCategoryId}
-      amount={initData.amount}
-      memo={memo ?? ""}
-      changeMemoHandler={setMemo}
-      resetClickHandler={resetClickHandler}
+      categoryId={formData.categoryId}
+      changeCategoryIdHandler={(value) => {
+        setFormData((prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            categoryId: value,
+          };
+        });
+      }}
+      amount={display.amount}
+      memo={formData.memo}
+      changeMemoHandler={(value: string) => {
+        setFormData((prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            memo: value,
+          };
+        });
+      }}
+      resetClickHandler={initializeForm}
       updateClickHandler={updateHandler}
     />
   );
