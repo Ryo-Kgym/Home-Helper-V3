@@ -1,5 +1,7 @@
 "use client";
 
+import { FC } from "react";
+
 import { Loading } from "../../../components/ui/v5/loading/Loading";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
@@ -7,7 +9,11 @@ import { useStateCreditDetail } from "../hooks/useStateCreditDetail";
 import { useUpdateCreditDetail } from "../hooks/useUpdateCreditDetail";
 import { CreditCardDetailEditPresenter } from "./CreditCardDetailEditPresenter";
 
-export const CreditCardDetailEditContainer = ({ id }: { id: string }) => {
+type Props = {
+  id: string;
+};
+
+export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
   const { formData, setFormData, initializeForm, display } =
     useStateCreditDetail({
       id,
@@ -44,9 +50,9 @@ export const CreditCardDetailEditContainer = ({ id }: { id: string }) => {
 
   return (
     <CreditCardDetailEditPresenter
-      date={display.date}
-      iocomeType={display.iocomeType}
-      changeIocomeTypeHandler={(value: IocomeType) => {
+      formData={formData}
+      display={display}
+      setIocomeType={(value: IocomeType) => {
         setFormData((prev) => {
           if (!prev) return prev;
           return {
@@ -57,8 +63,7 @@ export const CreditCardDetailEditContainer = ({ id }: { id: string }) => {
           };
         });
       }}
-      genreId={formData.genreId}
-      changeGenreIdHandler={(value) => {
+      setGenreId={(value) => {
         setFormData((prev) => {
           if (!prev) return prev;
           return {
@@ -68,8 +73,7 @@ export const CreditCardDetailEditContainer = ({ id }: { id: string }) => {
           };
         });
       }}
-      categoryId={formData.categoryId}
-      changeCategoryIdHandler={(value) => {
+      setCategoryId={(value) => {
         setFormData((prev) => {
           if (!prev) return prev;
           return {
@@ -78,9 +82,7 @@ export const CreditCardDetailEditContainer = ({ id }: { id: string }) => {
           };
         });
       }}
-      amount={display.amount}
-      memo={formData.memo}
-      changeMemoHandler={(value: string) => {
+      setMemo={(value: string) => {
         setFormData((prev) => {
           if (!prev) return prev;
           return {
@@ -89,8 +91,8 @@ export const CreditCardDetailEditContainer = ({ id }: { id: string }) => {
           };
         });
       }}
-      resetClickHandler={initializeForm}
-      updateClickHandler={updateHandler}
+      onClickUpdate={updateHandler}
+      onClickReset={initializeForm}
     />
   );
 };

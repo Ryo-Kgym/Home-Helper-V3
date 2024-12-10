@@ -1,80 +1,80 @@
+import { ReactNode } from "react";
+
 import { AmountInput } from "../../../components/molecules/CustomNumberInput/Amount";
 import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
 import { CategorySelect } from "../../../components/molecules/CustomSelect/Category";
 import { GenreSelect } from "../../../components/molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
-import { Button } from "../../../components/ui";
 import { DatePicker } from "../../../components/ui/date";
+import { Button } from "../../../components/ui/v4/button";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import {
+  CreditDetailEditDisplayState,
+  CreditDetailEditFormState,
+} from "../types/type";
 
 export const CreditCardDetailEditPresenter = ({
-  date,
-  iocomeType,
-  changeIocomeTypeHandler,
-  categoryId,
-  changeCategoryIdHandler,
-  genreId,
-  changeGenreIdHandler,
-  amount,
-  memo,
-  changeMemoHandler,
-  resetClickHandler,
-  updateClickHandler,
+  formData,
+  display,
+  setIocomeType,
+  setCategoryId,
+  setGenreId,
+  setMemo,
+  onClickUpdate,
+  onClickReset,
 }: {
-  date: Date | null;
-  iocomeType: IocomeType;
-  changeIocomeTypeHandler: (_: IocomeType) => void;
-  categoryId: string | null;
-  changeCategoryIdHandler: (_: string | null) => void;
-  genreId: string | null;
-  changeGenreIdHandler: (_: string | null) => void;
-  amount: number | "";
-  memo: string;
-  changeMemoHandler: (_: string) => void;
-  resetClickHandler: () => void;
-  updateClickHandler: () => void;
+  formData: CreditDetailEditFormState;
+  display: CreditDetailEditDisplayState;
+  setIocomeType: (_: IocomeType) => void;
+  setCategoryId: (_: string | null) => void;
+  setGenreId: (_: string | null) => void;
+  setMemo: (_: string) => void;
+  onClickUpdate: () => void;
+  onClickReset: () => void;
 }) => (
   <div className={"grid w-full grid-cols-1"}>
-    <Field>
+    <Frame>
       <DatePicker
-        value={date ?? new Date()}
+        value={display.date}
         onChange={() => undefined}
-        defaultValue={date ?? new Date()}
+        defaultValue={display.date}
         disabled
       />
-    </Field>
-    <Field>
+    </Frame>
+    <Frame>
       <IocomeTypeSegment
-        iocomeType={iocomeType}
-        setIocomeType={changeIocomeTypeHandler}
+        iocomeType={display.iocomeType}
+        setIocomeType={setIocomeType}
         disabled
       />
-    </Field>
-    <Field>
+    </Frame>
+    <Frame>
       <GenreSelect
-        iocomeType={iocomeType}
-        genreId={genreId}
-        setGenreId={changeGenreIdHandler}
+        iocomeType={display.iocomeType}
+        genreId={formData.genreId}
+        setGenreId={setGenreId}
       />
-    </Field>
-    <Field>
+    </Frame>
+    <Frame>
       <CategorySelect
-        genreId={genreId}
-        categoryId={categoryId}
-        setCategoryId={changeCategoryIdHandler}
+        genreId={formData.genreId}
+        categoryId={formData.categoryId}
+        setCategoryId={setCategoryId}
       />
-    </Field>
-    <Field>
-      <AmountInput value={amount} onChange={() => undefined} disabled />
-    </Field>
-    <Field>
-      <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
-    </Field>
-    <Button colorType={"update"} onClick={updateClickHandler} />
-    <Button colorType={"reset"} onClick={resetClickHandler} />
+    </Frame>
+    <Frame>
+      <AmountInput value={display.amount} onChange={() => undefined} disabled />
+    </Frame>
+    <Frame>
+      <MemoTextArea memo={formData.memo} setMemo={setMemo} />
+    </Frame>
+    <div className={"flex justify-end space-x-5"}>
+      <Button clickHandler={onClickUpdate} label={"更新"} type={"modify"} />
+      <Button clickHandler={onClickReset} label={"リセット"} type={"reset"} />
+    </div>
   </div>
 );
 
-const Field = ({ children }: { children: React.ReactNode }) => (
+const Frame = ({ children }: { children: ReactNode }) => (
   <div className={"py-2"}>{children}</div>
 );
