@@ -91,9 +91,9 @@ export const ChangeDetailPresenter = ({
       <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
     </Field>
     <div className={"grid grid-cols-3 justify-items-center"}>
-      <Button colorType={"update"} onClick={updateClickHandler} />
-      <Button colorType={"reset"} onClick={resetClickHandler} />
-      <Button colorType={"delete"} onClick={deleteClickHandler} />
+      <Button type={"update"} onClick={updateClickHandler} />
+      <Button type={"reset"} onClick={resetClickHandler} />
+      <Button type={"delete"} onClick={deleteClickHandler} />
     </div>
   </div>
 );

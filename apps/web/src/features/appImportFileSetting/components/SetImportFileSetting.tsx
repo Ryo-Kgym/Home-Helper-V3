@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { importFileSettingsSchema } from "@oneforall/domain/schema/importFileSettingsSchema";
 import { useInsertImportFileSettingMutation } from "@v3/graphql/public";
 
-import { Button } from "../../../components/ui/v4/button";
+import { Button } from "../../../components/ui/button/v5";
 import { notify } from "../../../components/ui/v4/notify/notify";
 import { NumberInput } from "../../../components/ui/v4/textInput";
 import { useImportFileSettings } from "../client/useImportSettingsState";
@@ -129,7 +129,7 @@ export const SetImportFileSetting = ({
         />
       </Section>
 
-      <Button label={"設定"} clickHandler={setHandler} type={"modify"} />
+      <Button label={"設定"} onClick={setHandler} type={"modify"} />
     </div>
   );
 };

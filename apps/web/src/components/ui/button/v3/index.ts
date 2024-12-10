@@ -1,16 +1,21 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
+/**
+ * @deprecated
  */
-
 export { MantineButton as Button } from "./MantineButton";
 
+/**
+ * @deprecated
+ */
 export type ButtonProps = {
-  onClick: () => void;
-  colorType?: ButtonColorType;
   label?: string;
+  onClick: () => void;
   disabled?: boolean;
+  type?: ButtonColorType;
 };
 
+/**
+ * @deprecated
+ */
 export type ButtonColorType =
   | "default"
   | "register"

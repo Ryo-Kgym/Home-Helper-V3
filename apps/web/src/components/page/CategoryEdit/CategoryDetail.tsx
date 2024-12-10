@@ -121,7 +121,7 @@ export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
         />
       </Frame>
 
-      <Button onClick={updateHandler} colorType={"update"} />
+      <Button onClick={updateHandler} type={"update"} />
     </div>
   );
 };

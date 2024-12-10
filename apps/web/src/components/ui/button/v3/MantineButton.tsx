@@ -1,16 +1,15 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
+import type { MantineColor, MantineSize } from "@mantine/core";
 import { Button } from "@mantine/core";
 
-import type { ButtonColorType, ButtonProps } from "./";
-import type { MantineColor, MantineSize } from "@mantine/core";
+import type { ButtonColorType, ButtonProps } from "./index";
 
+/**
+ * @deprecated
+ */
 export const MantineButton = ({
   onClick,
-  colorType = "default",
-  label = colorType.toUpperCase(),
+  type = "default",
+  label = type.toUpperCase(),
   disabled = false,
 }: ButtonProps) => {
   const {
@@ -18,7 +17,7 @@ export const MantineButton = ({
     className,
     size,
     color,
-  } = PropMap.get(colorType) ?? {};
+  } = PropMap.get(type) ?? {};
 
   return (
     <Button

@@ -54,11 +54,11 @@ export const TransferPresenter = ({
     <MemoTextArea memo={memo} setMemo={setMemo} />
     <div className={"grid grid-cols-2 justify-items-center"}>
       <Button
-        colorType={"register"}
+        type={"register"}
         onClick={registerHandler}
         disabled={!isRegisterable}
       />
-      <Button colorType={"clear"} onClick={clearHandler} />
+      <Button type={"clear"} onClick={clearHandler} />
     </div>
   </div>
 );

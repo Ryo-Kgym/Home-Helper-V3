@@ -5,8 +5,8 @@ import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/I
 import { CategorySelect } from "../../../components/molecules/CustomSelect/Category";
 import { GenreSelect } from "../../../components/molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
+import { Button } from "../../../components/ui/button/v5";
 import { DatePicker } from "../../../components/ui/date";
-import { Button } from "../../../components/ui/v4/button";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import {
   CreditDetailEditDisplayState,
@@ -69,8 +69,8 @@ export const CreditCardDetailEditPresenter = ({
       <MemoTextArea memo={formData.memo} setMemo={setMemo} />
     </Frame>
     <div className={"flex justify-end space-x-5"}>
-      <Button clickHandler={onClickUpdate} label={"更新"} type={"modify"} />
-      <Button clickHandler={onClickReset} label={"リセット"} type={"reset"} />
+      <Button onClick={onClickUpdate} label={"更新"} type={"modify"} />
+      <Button onClick={onClickReset} label={"リセット"} type={"reset"} />
     </div>
   </div>
 );

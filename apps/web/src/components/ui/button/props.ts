@@ -1,8 +1,6 @@
-export { TailWindCSSButton as Button } from "./TailWindCSSButton";
-
 export type ButtonProps = {
   label: string;
-  clickHandler: () => void;
+  onClick: () => void;
   disabled?: boolean;
   type:
     | "create"

@@ -163,11 +163,11 @@ export const CutDetailPresenter = ({
     </div>
     <div className={"grid grid-cols-2 justify-items-center"}>
       <Button
-        colorType={"update"}
+        type={"update"}
         onClick={updateHandler}
         disabled={updateButtonDisabled}
       />
-      <Button colorType={"clear"} onClick={clearHandler} />
+      <Button type={"clear"} onClick={clearHandler} />
     </div>
   </div>
 );

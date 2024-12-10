@@ -32,8 +32,8 @@ export const Presenter_ = ({
       <div>{summary.totalAmount.toLocaleString()}円</div>
     </div>
     <div className={"grid grid-cols-2"}>
-      <Button colorType={"back"} onClick={backHandler} />
-      <Button colorType={"add"} onClick={addHandler} />
+      <Button type={"back"} onClick={backHandler} />
+      <Button type={"add"} onClick={addHandler} />
     </div>
     <Table
       header={["日付", "ジャンル", "カテゴリ", "金額", "メモ"]}

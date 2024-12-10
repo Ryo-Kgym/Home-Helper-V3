@@ -3,8 +3,8 @@
 import { FC, useState } from "react";
 
 import { AccountSelect } from "../../../../components/molecules/CustomSelect/Account";
+import { Button } from "../../../../components/ui/button/v5";
 import { DatePicker } from "../../../../components/ui/date";
-import { Button } from "../../../../components/ui/v4/button";
 import { notify } from "../../../../components/ui/v4/notify/notify";
 import { FileInput } from "../../../../components/ui/v5/file/FileInput";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
@@ -98,7 +98,7 @@ export const FileImportForm: FC = () => {
       </div>
       <Button
         label={"登録"}
-        clickHandler={registerHandler}
+        onClick={registerHandler}
         type={"create"}
         disabled={registerButtonDisabled}
       />

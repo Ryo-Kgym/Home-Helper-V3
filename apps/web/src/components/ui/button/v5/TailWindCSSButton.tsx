@@ -1,10 +1,10 @@
 import type { ComponentProps } from "react";
 
-import { ButtonProps } from "./index";
+import { ButtonProps } from "../props";
 
 export const TailWindCSSButton = ({
   label,
-  clickHandler,
+  onClick,
   disabled,
   type,
 }: ButtonProps) => {
@@ -18,7 +18,7 @@ export const TailWindCSSButton = ({
   return (
     <button
       className={`p-2 ${bgColor} ${textColor} rounded-xl shadow-md`}
-      onClick={clickHandler}
+      onClick={onClick}
       disabled={disabled}
     >
       {label}

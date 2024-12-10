@@ -62,7 +62,7 @@ export const Presenter_ = ({
 
     <div>
       <Button
-        colorType={"register"}
+        type={"register"}
         onClick={registerHandler}
         disabled={!registerable}
       />

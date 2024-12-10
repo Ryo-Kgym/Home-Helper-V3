@@ -96,8 +96,8 @@ export const RegisterDailyDetailPresenter = ({
       <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
     </Field>
     <div className={"grid grid-cols-2 justify-items-center"}>
-      <Button colorType={"register"} onClick={registerClickHandler} />
-      <Button colorType={"clear"} onClick={clearClickHandler} />
+      <Button type={"register"} onClick={registerClickHandler} />
+      <Button type={"clear"} onClick={clearClickHandler} />
     </div>
   </div>
 );

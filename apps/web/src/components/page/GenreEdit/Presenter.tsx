@@ -79,7 +79,7 @@ export const Presenter_ = ({
       </div>
     </FrameDiv>
 
-    <Button onClick={updateHandler} colorType={"update"} />
+    <Button onClick={updateHandler} type={"update"} />
   </div>
 );
 
