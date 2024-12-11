@@ -1,20 +1,20 @@
 import { ChartDetailTableServer } from "../../../../features/householdChartDetailTable/components/ChartDetailTableServer";
 
-const Page = ({
+const Page = async ({
   searchParams,
 }: {
-  searchParams: {
+  searchParams: Promise<{
     watch: string | undefined; // yyyy-mm
     dateType: string | undefined;
-  };
+  }>;
 }) => {
+  const { watch, dateType } = await searchParams;
+
   return (
     <ChartDetailTableServer
-      watchFirstDate={
-        searchParams.watch ? new Date(`${searchParams.watch}-01`) : null
-      }
+      watchFirstDate={watch ? new Date(`${watch}-01`) : null}
       dateType={(() => {
-        switch (searchParams.dateType) {
+        switch (dateType) {
           case "withdrawalDate":
             return "withdrawalDate";
           case "settlementDate":

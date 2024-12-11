@@ -1,21 +1,23 @@
 import { AccountListServer } from "../../../features/householdAccountList/components/AccountListServer";
 
-const Page = ({
+const Page = async ({
   searchParams,
 }: {
-  searchParams: {
+  searchParams: Promise<{
     fromDate: string | undefined;
     toDate: string | undefined;
     accountId: string | undefined;
-  };
-}) => (
-  <AccountListServer
-    fromDate={
-      searchParams.fromDate ? new Date(searchParams.fromDate) : undefined
-    }
-    toDate={searchParams.toDate ? new Date(searchParams.toDate) : undefined}
-    accountId={searchParams.accountId}
-  />
-);
+  }>;
+}) => {
+  const { fromDate, toDate, accountId } = await searchParams;
+
+  return (
+    <AccountListServer
+      fromDate={fromDate ? new Date(fromDate) : undefined}
+      toDate={toDate ? new Date(toDate) : undefined}
+      accountId={accountId}
+    />
+  );
+};
 
 export default Page;
