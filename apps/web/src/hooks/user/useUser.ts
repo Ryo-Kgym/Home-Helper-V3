@@ -4,25 +4,34 @@
 
 "use client";
 
-import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
 
-import { User } from "../../domain/model/User";
-import { userState } from "../../recoil/userState";
+import { fetchUser } from "./fetchUser";
 
+/**
+ * @deprecated {@link findUser()} を使用してください。
+ */
 export const useUser = () => {
-  const [user, setUser] = useRecoilState(userState);
+  const [user, setUser] = useState({
+    id: "",
+    name: "",
+    email: "",
+  });
 
-  const save = (user: User) => {
-    setUser(user);
-  };
-
-  const hasUserId = () => user.id !== "";
+  useEffect(() => {
+    void (async () => {
+      const user = await fetchUser();
+      setUser({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      });
+    })();
+  }, []);
 
   return {
     userId: user.id,
     email: user.email,
     userName: user.name,
-    save,
-    hasUserId,
   };
 };
