@@ -2,11 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { AmountInput } from "../../molecules/CustomNumberInput/Amount";
 import { AccountSelect } from "../../molecules/CustomSelect/Account";
 import { MemoTextArea } from "../../molecules/CustomTextArea/Memo";
 import { Button } from "../../ui";
 import { DatePicker } from "../../ui/date";
+import { AmountInput } from "../../ui/numberInput/amount/AmountInput";
 
 export const TransferPresenter = ({
   date,
@@ -54,11 +54,11 @@ export const TransferPresenter = ({
     <MemoTextArea memo={memo} setMemo={setMemo} />
     <div className={"grid grid-cols-2 justify-items-center"}>
       <Button
-        colorType={"register"}
+        type={"register"}
         onClick={registerHandler}
         disabled={!isRegisterable}
       />
-      <Button colorType={"clear"} onClick={clearHandler} />
+      <Button type={"clear"} onClick={clearHandler} />
     </div>
   </div>
 );

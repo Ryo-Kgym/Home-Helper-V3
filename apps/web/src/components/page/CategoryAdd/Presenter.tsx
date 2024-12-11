@@ -3,13 +3,12 @@
  */
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { DisplayOrderInput } from "../../molecules/CustomNumberInput/DisplayOrder";
 import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
 import { ValiditySegment } from "../../molecules/CustomSegment/ValiditySegment";
 import { GenreSelect } from "../../molecules/CustomSelect/Genre";
 import { GenreNameTextInput } from "../../molecules/CustomTextInput";
-import { Button } from "../../ui";
-import { FieldFrame } from "../../ui/FieldFrame/FieldFrame";
+import { Button, FieldFrame } from "../../ui";
+import { DisplayOrderInput } from "../../ui/numberInput/displayOrder/DisplayOrderInput";
 
 export const Presenter_ = ({
   inputCategoryName,
@@ -70,7 +69,7 @@ export const Presenter_ = ({
 
     <Button
       onClick={registerHandler}
-      colorType={"register"}
+      type={"register"}
       disabled={!registerable}
     />
   </div>

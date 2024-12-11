@@ -3,13 +3,13 @@
  */
 
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
-import { AmountInput } from "../../../molecules/CustomNumberInput/Amount";
 import { AccountSelect } from "../../../molecules/CustomSelect/Account";
 import { CategorySelect } from "../../../molecules/CustomSelect/Category";
 import { GenreSelect } from "../../../molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../../molecules/CustomTextArea/Memo";
 import { Button } from "../../../ui";
 import { DatePicker } from "../../../ui/date";
+import { AmountInput } from "../../../ui/numberInput/amount/AmountInput";
 
 export const CutDetailPresenter = ({
   detailDate,
@@ -163,11 +163,11 @@ export const CutDetailPresenter = ({
     </div>
     <div className={"grid grid-cols-2 justify-items-center"}>
       <Button
-        colorType={"update"}
+        type={"update"}
         onClick={updateHandler}
         disabled={updateButtonDisabled}
       />
-      <Button colorType={"clear"} onClick={clearHandler} />
+      <Button type={"clear"} onClick={clearHandler} />
     </div>
   </div>
 );

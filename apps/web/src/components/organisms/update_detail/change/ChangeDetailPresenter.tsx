@@ -3,7 +3,6 @@
  */
 
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
-import { AmountInput } from "../../../molecules/CustomNumberInput/Amount";
 import { IocomeTypeSegment } from "../../../molecules/CustomSegment/IocomeType";
 import { AccountSelect } from "../../../molecules/CustomSelect/Account";
 import { CategorySelect } from "../../../molecules/CustomSelect/Category";
@@ -11,6 +10,7 @@ import { GenreSelect } from "../../../molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../../molecules/CustomTextArea/Memo";
 import { Button } from "../../../ui";
 import { DatePicker } from "../../../ui/date";
+import { AmountInput } from "../../../ui/numberInput/amount/AmountInput";
 
 export const ChangeDetailPresenter = ({
   date,
@@ -91,9 +91,9 @@ export const ChangeDetailPresenter = ({
       <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
     </Field>
     <div className={"grid grid-cols-3 justify-items-center"}>
-      <Button colorType={"update"} onClick={updateClickHandler} />
-      <Button colorType={"reset"} onClick={resetClickHandler} />
-      <Button colorType={"delete"} onClick={deleteClickHandler} />
+      <Button type={"update"} onClick={updateClickHandler} />
+      <Button type={"reset"} onClick={resetClickHandler} />
+      <Button type={"delete"} onClick={deleteClickHandler} />
     </div>
   </div>
 );

@@ -1,0 +1,19 @@
+mutation updateCreditCardDetailById(
+  $id: String!
+  $genreId: String!
+  $categoryId: String!
+  $memo: String
+  $businessOptions: json
+) {
+  updateHouseholdCreditCardDetailByPk(
+    pkColumns: { id: $id }
+    _set: {
+      genreId: $genreId
+      categoryId: $categoryId
+      memo: $memo
+      businessOptions: $businessOptions
+    }
+  ) {
+    id
+  }
+}

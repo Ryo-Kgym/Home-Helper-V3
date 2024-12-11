@@ -1,19 +1,4 @@
 export const paths = {
-  app: {
-    create: "/app/create",
-    show: ({ id }: { id: string }) => `/app/show/${id}`,
-    setting: ({ id }: { id: string }) => `/app/setting/${id}`,
-    import: ({ id }: { id: string }) => `/app/import/${id}`,
-    chart: ({ id }: { id: string }) => `/app/chart/${id}`,
-  },
-  view: {
-    create: "/view/create",
-    show: ({ id }: { id: string }) => `/view/show/${id}`,
-    modify: ({ id }: { id: string }) => `/view/modify/${id}`,
-  },
-  record: {
-    show: ({ id }: { id: string }) => `/record/show/${id}`,
-  },
   group: {
     select: "/group",
   },
@@ -25,5 +10,17 @@ export const paths = {
     creditCard: "/household/creditCard",
     fileImport: "/household/fileImport",
     setting: "/household/setting",
+    creditDetail: {
+      edit: ({
+        creditCardSummaryId,
+        creditDetailId,
+      }: {
+        creditCardSummaryId: string;
+        creditDetailId: string;
+      }) =>
+        `/household/creditCard/${creditCardSummaryId}/edit/${creditDetailId}`,
+      add: ({ creditCardSummaryId }: { creditCardSummaryId: string }) =>
+        `/household/creditCard/${creditCardSummaryId}/add`,
+    },
   },
 };

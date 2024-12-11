@@ -24,7 +24,6 @@ export type Scalars = {
   json: any;
   numeric: any;
   timestamp: any;
-  timestamptz: any;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -140,162 +139,6 @@ export enum AffiliationUpdateColumn {
   Placeholder = "_PLACEHOLDER",
 }
 
-/** order by aggregate values of table "app" */
-export type AppAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<AppMaxOrderBy>;
-  min?: InputMaybe<AppMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "app" */
-export type AppArrRelInsertInput = {
-  data: Array<AppInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<AppOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "app". All fields are combined with a logical 'AND'. */
-export type AppBoolExp = {
-  _and?: InputMaybe<Array<AppBoolExp>>;
-  _not?: InputMaybe<AppBoolExp>;
-  _or?: InputMaybe<Array<AppBoolExp>>;
-  createUserId?: InputMaybe<StringComparisonExp>;
-  fields?: InputMaybe<FieldBoolExp>;
-  group?: InputMaybe<GroupBoolExp>;
-  groupId?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  importFileHistories?: InputMaybe<ImportFileHistoryBoolExp>;
-  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
-  importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
-  linkDatabase?: InputMaybe<LinkDatabaseBoolExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  records?: InputMaybe<RecordBoolExp>;
-  recordsAggregate?: InputMaybe<RecordAggregateBoolExp>;
-  user?: InputMaybe<UserBoolExp>;
-  viewApps?: InputMaybe<ViewAppBoolExp>;
-};
-
-/** unique or primary key constraints on table "app" */
-export enum AppConstraint {
-  /** unique or primary key constraint on columns "id" */
-  AppPkey = "app_pkey",
-}
-
-/** input type for inserting data into table "app" */
-export type AppInsertInput = {
-  createUserId?: InputMaybe<Scalars["String"]>;
-  fields?: InputMaybe<FieldArrRelInsertInput>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  importFileHistories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
-  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
-  importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
-  linkDatabase?: InputMaybe<LinkDatabaseObjRelInsertInput>;
-  name?: InputMaybe<Scalars["String"]>;
-  records?: InputMaybe<RecordArrRelInsertInput>;
-  user?: InputMaybe<UserObjRelInsertInput>;
-  viewApps?: InputMaybe<ViewAppArrRelInsertInput>;
-};
-
-/** order by max() on columns of table "app" */
-export type AppMaxOrderBy = {
-  createUserId?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "app" */
-export type AppMinOrderBy = {
-  createUserId?: InputMaybe<OrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "app" */
-export type AppObjRelInsertInput = {
-  data: AppInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<AppOnConflict>;
-};
-
-/** on_conflict condition type for table "app" */
-export type AppOnConflict = {
-  constraint: AppConstraint;
-  updateColumns?: Array<AppUpdateColumn>;
-  where?: InputMaybe<AppBoolExp>;
-};
-
-/** Ordering options when selecting data from "app". */
-export type AppOrderBy = {
-  createUserId?: InputMaybe<OrderBy>;
-  fieldsAggregate?: InputMaybe<FieldAggregateOrderBy>;
-  group?: InputMaybe<GroupOrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importFileHistoriesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
-  importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
-  linkDatabase?: InputMaybe<LinkDatabaseOrderBy>;
-  name?: InputMaybe<OrderBy>;
-  recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
-  user?: InputMaybe<UserOrderBy>;
-  viewAppsAggregate?: InputMaybe<ViewAppAggregateOrderBy>;
-};
-
-/** primary key columns input for table: app */
-export type AppPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "app" */
-export enum AppSelectColumn {
-  /** column name */
-  CreateUserId = "createUserId",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Id = "id",
-  /** column name */
-  Name = "name",
-}
-
-/** input type for updating data in table "app" */
-export type AppSetInput = {
-  name?: InputMaybe<Scalars["String"]>;
-};
-
-/** Streaming cursor of the table "app" */
-export type AppStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: AppStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type AppStreamCursorValueInput = {
-  createUserId?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-};
-
-/** update columns of table "app" */
-export enum AppUpdateColumn {
-  /** column name */
-  Name = "name",
-}
-
-export type AppUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<AppSetInput>;
-  /** filter the rows which have to be updated */
-  where: AppBoolExp;
-};
-
 /** Boolean expression to filter rows from the table "application". All fields are combined with a logical 'AND'. */
 export type ApplicationBoolExp = {
   _and?: InputMaybe<Array<ApplicationBoolExp>>;
@@ -380,208 +223,6 @@ export type DateComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["date"]>>;
 };
 
-/** order by aggregate values of table "field" */
-export type FieldAggregateOrderBy = {
-  avg?: InputMaybe<FieldAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<FieldMaxOrderBy>;
-  min?: InputMaybe<FieldMinOrderBy>;
-  stddev?: InputMaybe<FieldStddevOrderBy>;
-  stddevPop?: InputMaybe<FieldStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<FieldStddevSampOrderBy>;
-  sum?: InputMaybe<FieldSumOrderBy>;
-  varPop?: InputMaybe<FieldVarPopOrderBy>;
-  varSamp?: InputMaybe<FieldVarSampOrderBy>;
-  variance?: InputMaybe<FieldVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "field" */
-export type FieldArrRelInsertInput = {
-  data: Array<FieldInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<FieldOnConflict>;
-};
-
-/** order by avg() on columns of table "field" */
-export type FieldAvgOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "field". All fields are combined with a logical 'AND'. */
-export type FieldBoolExp = {
-  _and?: InputMaybe<Array<FieldBoolExp>>;
-  _not?: InputMaybe<FieldBoolExp>;
-  _or?: InputMaybe<Array<FieldBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  fieldKind?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  index?: InputMaybe<IntComparisonExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  options?: InputMaybe<JsonComparisonExp>;
-};
-
-/** unique or primary key constraints on table "field" */
-export enum FieldConstraint {
-  /** unique or primary key constraint on columns "id" */
-  FieldPkey = "field_pkey",
-}
-
-/** input type for incrementing numeric columns in table "field" */
-export type FieldIncInput = {
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "field" */
-export type FieldInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-};
-
-/** order by max() on columns of table "field" */
-export type FieldMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "field" */
-export type FieldMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "field" */
-export type FieldOnConflict = {
-  constraint: FieldConstraint;
-  updateColumns?: Array<FieldUpdateColumn>;
-  where?: InputMaybe<FieldBoolExp>;
-};
-
-/** Ordering options when selecting data from "field". */
-export type FieldOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  options?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: field */
-export type FieldPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "field" */
-export enum FieldSelectColumn {
-  /** column name */
-  AppId = "appId",
-  /** column name */
-  FieldKind = "fieldKind",
-  /** column name */
-  Id = "id",
-  /** column name */
-  Index = "index",
-  /** column name */
-  Name = "name",
-  /** column name */
-  Options = "options",
-}
-
-/** input type for updating data in table "field" */
-export type FieldSetInput = {
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-};
-
-/** order by stddev() on columns of table "field" */
-export type FieldStddevOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "field" */
-export type FieldStddevPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "field" */
-export type FieldStddevSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "field" */
-export type FieldStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: FieldStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type FieldStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-};
-
-/** order by sum() on columns of table "field" */
-export type FieldSumOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "field" */
-export enum FieldUpdateColumn {
-  /** column name */
-  FieldKind = "fieldKind",
-  /** column name */
-  Index = "index",
-  /** column name */
-  Name = "name",
-  /** column name */
-  Options = "options",
-}
-
-export type FieldUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<FieldIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<FieldSetInput>;
-  /** filter the rows which have to be updated */
-  where: FieldBoolExp;
-};
-
-/** order by varPop() on columns of table "field" */
-export type FieldVarPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "field" */
-export type FieldVarSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "field" */
-export type FieldVarianceOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
 export type GroupApplicationAggregateBoolExp = {
   count?: InputMaybe<GroupApplicationAggregateBoolExpCount>;
 };
@@ -662,7 +303,6 @@ export type GroupBoolExp = {
   accountsAggregate?: InputMaybe<HouseholdAccountAggregateBoolExp>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
   affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
-  apps?: InputMaybe<AppBoolExp>;
   categories?: InputMaybe<HouseholdCategoryBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
@@ -683,18 +323,15 @@ export type GroupBoolExp = {
   importFileHistories?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryViews?: InputMaybe<SummaryViewBoolExp>;
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryBoolExp>;
-  views?: InputMaybe<ViewBoolExp>;
 };
 
 /** Ordering options when selecting data from "group". */
 export type GroupOrderBy = {
   accountsAggregate?: InputMaybe<HouseholdAccountAggregateOrderBy>;
   affiliationsAggregate?: InputMaybe<AffiliationAggregateOrderBy>;
-  appsAggregate?: InputMaybe<AppAggregateOrderBy>;
   categoriesAggregate?: InputMaybe<HouseholdCategoryAggregateOrderBy>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateOrderBy>;
@@ -707,10 +344,8 @@ export type GroupOrderBy = {
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
-  viewsAggregate?: InputMaybe<ViewAggregateOrderBy>;
 };
 
 /** select columns of table "group" */
@@ -1390,6 +1025,7 @@ export type HouseholdCreditCardDetailBoolExp = {
   _not?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   _or?: InputMaybe<Array<HouseholdCreditCardDetailBoolExp>>;
   amount?: InputMaybe<NumericComparisonExp>;
+  businessOptions?: InputMaybe<JsonComparisonExp>;
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
@@ -1420,6 +1056,7 @@ export type HouseholdCreditCardDetailIncInput = {
 /** input type for inserting data into table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailInsertInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
+  businessOptions?: InputMaybe<Scalars["json"]>;
   category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryObjRelInsertInput>;
@@ -1473,6 +1110,7 @@ export type HouseholdCreditCardDetailOnConflict = {
 /** Ordering options when selecting data from "household.credit_card_detail". */
 export type HouseholdCreditCardDetailOrderBy = {
   amount?: InputMaybe<OrderBy>;
+  businessOptions?: InputMaybe<OrderBy>;
   category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryOrderBy>;
@@ -1499,6 +1137,8 @@ export enum HouseholdCreditCardDetailSelectColumn {
   /** column name */
   Amount = "amount",
   /** column name */
+  BusinessOptions = "businessOptions",
+  /** column name */
   CategoryId = "categoryId",
   /** column name */
   Date = "date",
@@ -1521,6 +1161,7 @@ export enum HouseholdCreditCardDetailSelectColumn {
 /** input type for updating data in table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailSetInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
+  businessOptions?: InputMaybe<Scalars["json"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
@@ -1558,6 +1199,7 @@ export type HouseholdCreditCardDetailStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HouseholdCreditCardDetailStreamCursorValueInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
+  businessOptions?: InputMaybe<Scalars["json"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
@@ -1578,6 +1220,8 @@ export type HouseholdCreditCardDetailSumOrderBy = {
 export enum HouseholdCreditCardDetailUpdateColumn {
   /** column name */
   Amount = "amount",
+  /** column name */
+  BusinessOptions = "businessOptions",
   /** column name */
   CategoryId = "categoryId",
   /** column name */
@@ -1971,6 +1615,7 @@ export type HouseholdDailyDetailBoolExp = {
   account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
   amount?: InputMaybe<NumericComparisonExp>;
+  businessOptions?: InputMaybe<JsonComparisonExp>;
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
@@ -2001,6 +1646,7 @@ export type HouseholdDailyDetailInsertInput = {
   account?: InputMaybe<HouseholdAccountObjRelInsertInput>;
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
+  businessOptions?: InputMaybe<Scalars["json"]>;
   category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
@@ -2054,6 +1700,7 @@ export type HouseholdDailyDetailOrderBy = {
   account?: InputMaybe<HouseholdAccountOrderBy>;
   accountId?: InputMaybe<OrderBy>;
   amount?: InputMaybe<OrderBy>;
+  businessOptions?: InputMaybe<OrderBy>;
   category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
@@ -2080,6 +1727,8 @@ export enum HouseholdDailyDetailSelectColumn {
   /** column name */
   Amount = "amount",
   /** column name */
+  BusinessOptions = "businessOptions",
+  /** column name */
   CategoryId = "categoryId",
   /** column name */
   Date = "date",
@@ -2101,6 +1750,7 @@ export enum HouseholdDailyDetailSelectColumn {
 export type HouseholdDailyDetailSetInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
+  businessOptions?: InputMaybe<Scalars["json"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
@@ -2138,6 +1788,7 @@ export type HouseholdDailyDetailStreamCursorInput = {
 export type HouseholdDailyDetailStreamCursorValueInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
+  businessOptions?: InputMaybe<Scalars["json"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
@@ -2159,6 +1810,8 @@ export enum HouseholdDailyDetailUpdateColumn {
   AccountId = "accountId",
   /** column name */
   Amount = "amount",
+  /** column name */
+  BusinessOptions = "businessOptions",
   /** column name */
   CategoryId = "categoryId",
   /** column name */
@@ -3497,385 +3150,6 @@ export type HouseholdTransferCategoryStreamCursorValueInput = {
   outcomeCategoryId?: InputMaybe<Scalars["String"]>;
 };
 
-/** order by aggregate values of table "import_file_history" */
-export type ImportFileHistoryAggregateOrderBy = {
-  avg?: InputMaybe<ImportFileHistoryAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ImportFileHistoryMaxOrderBy>;
-  min?: InputMaybe<ImportFileHistoryMinOrderBy>;
-  stddev?: InputMaybe<ImportFileHistoryStddevOrderBy>;
-  stddevPop?: InputMaybe<ImportFileHistoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<ImportFileHistoryStddevSampOrderBy>;
-  sum?: InputMaybe<ImportFileHistorySumOrderBy>;
-  varPop?: InputMaybe<ImportFileHistoryVarPopOrderBy>;
-  varSamp?: InputMaybe<ImportFileHistoryVarSampOrderBy>;
-  variance?: InputMaybe<ImportFileHistoryVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "import_file_history" */
-export type ImportFileHistoryArrRelInsertInput = {
-  data: Array<ImportFileHistoryInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
-};
-
-/** order by avg() on columns of table "import_file_history" */
-export type ImportFileHistoryAvgOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "import_file_history". All fields are combined with a logical 'AND'. */
-export type ImportFileHistoryBoolExp = {
-  _and?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
-  _not?: InputMaybe<ImportFileHistoryBoolExp>;
-  _or?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  count?: InputMaybe<IntComparisonExp>;
-  fileName?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  importDatetime?: InputMaybe<TimestamptzComparisonExp>;
-  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
-};
-
-/** unique or primary key constraints on table "import_file_history" */
-export enum ImportFileHistoryConstraint {
-  /** unique or primary key constraint on columns "id" */
-  ImportFileHistoryPkey = "import_file_history_pkey",
-}
-
-/** input type for inserting data into table "import_file_history" */
-export type ImportFileHistoryInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  count?: InputMaybe<Scalars["Int"]>;
-  fileName?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  importDatetime?: InputMaybe<Scalars["timestamptz"]>;
-  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
-};
-
-/** order by max() on columns of table "import_file_history" */
-export type ImportFileHistoryMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  count?: InputMaybe<OrderBy>;
-  fileName?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importDatetime?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "import_file_history" */
-export type ImportFileHistoryMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  count?: InputMaybe<OrderBy>;
-  fileName?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importDatetime?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "import_file_history" */
-export type ImportFileHistoryObjRelInsertInput = {
-  data: ImportFileHistoryInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
-};
-
-/** on_conflict condition type for table "import_file_history" */
-export type ImportFileHistoryOnConflict = {
-  constraint: ImportFileHistoryConstraint;
-  updateColumns?: Array<ImportFileHistoryUpdateColumn>;
-  where?: InputMaybe<ImportFileHistoryBoolExp>;
-};
-
-/** Ordering options when selecting data from "import_file_history". */
-export type ImportFileHistoryOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  count?: InputMaybe<OrderBy>;
-  fileName?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importDatetime?: InputMaybe<OrderBy>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
-};
-
-/** select columns of table "import_file_history" */
-export enum ImportFileHistorySelectColumn {
-  /** column name */
-  AppId = "appId",
-  /** column name */
-  Count = "count",
-  /** column name */
-  FileName = "fileName",
-  /** column name */
-  Id = "id",
-  /** column name */
-  ImportDatetime = "importDatetime",
-}
-
-/** order by stddev() on columns of table "import_file_history" */
-export type ImportFileHistoryStddevOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "import_file_history" */
-export type ImportFileHistoryStddevPopOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "import_file_history" */
-export type ImportFileHistoryStddevSampOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "import_file_history" */
-export type ImportFileHistoryStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ImportFileHistoryStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ImportFileHistoryStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  count?: InputMaybe<Scalars["Int"]>;
-  fileName?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  importDatetime?: InputMaybe<Scalars["timestamptz"]>;
-};
-
-/** order by sum() on columns of table "import_file_history" */
-export type ImportFileHistorySumOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** placeholder for update columns of table "import_file_history" (current role has no relevant permissions) */
-export enum ImportFileHistoryUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
-
-/** order by varPop() on columns of table "import_file_history" */
-export type ImportFileHistoryVarPopOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "import_file_history" */
-export type ImportFileHistoryVarSampOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "import_file_history" */
-export type ImportFileHistoryVarianceOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-export type ImportFileRecordAggregateBoolExp = {
-  count?: InputMaybe<ImportFileRecordAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "import_file_record" */
-export type ImportFileRecordAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ImportFileRecordMaxOrderBy>;
-  min?: InputMaybe<ImportFileRecordMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "import_file_record" */
-export type ImportFileRecordArrRelInsertInput = {
-  data: Array<ImportFileRecordInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileRecordOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "import_file_record". All fields are combined with a logical 'AND'. */
-export type ImportFileRecordBoolExp = {
-  _and?: InputMaybe<Array<ImportFileRecordBoolExp>>;
-  _not?: InputMaybe<ImportFileRecordBoolExp>;
-  _or?: InputMaybe<Array<ImportFileRecordBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  historyId?: InputMaybe<StringComparisonExp>;
-  importFileHistory?: InputMaybe<ImportFileHistoryBoolExp>;
-  record?: InputMaybe<RecordBoolExp>;
-  recordId?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "import_file_record" */
-export enum ImportFileRecordConstraint {
-  /** unique or primary key constraint on columns "record_id" */
-  ImportFileRecordPkey = "import_file_record_pkey",
-}
-
-/** input type for inserting data into table "import_file_record" */
-export type ImportFileRecordInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  historyId?: InputMaybe<Scalars["String"]>;
-  importFileHistory?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
-  record?: InputMaybe<RecordObjRelInsertInput>;
-  recordId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "import_file_record" */
-export type ImportFileRecordMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  historyId?: InputMaybe<OrderBy>;
-  recordId?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "import_file_record" */
-export type ImportFileRecordMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  historyId?: InputMaybe<OrderBy>;
-  recordId?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "import_file_record" */
-export type ImportFileRecordObjRelInsertInput = {
-  data: ImportFileRecordInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileRecordOnConflict>;
-};
-
-/** on_conflict condition type for table "import_file_record" */
-export type ImportFileRecordOnConflict = {
-  constraint: ImportFileRecordConstraint;
-  updateColumns?: Array<ImportFileRecordUpdateColumn>;
-  where?: InputMaybe<ImportFileRecordBoolExp>;
-};
-
-/** Ordering options when selecting data from "import_file_record". */
-export type ImportFileRecordOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  historyId?: InputMaybe<OrderBy>;
-  importFileHistory?: InputMaybe<ImportFileHistoryOrderBy>;
-  record?: InputMaybe<RecordOrderBy>;
-  recordId?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "import_file_record" */
-export enum ImportFileRecordSelectColumn {
-  /** column name */
-  AppId = "appId",
-  /** column name */
-  HistoryId = "historyId",
-  /** column name */
-  RecordId = "recordId",
-}
-
-/** Streaming cursor of the table "import_file_record" */
-export type ImportFileRecordStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ImportFileRecordStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ImportFileRecordStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  historyId?: InputMaybe<Scalars["String"]>;
-  recordId?: InputMaybe<Scalars["String"]>;
-};
-
-/** placeholder for update columns of table "import_file_record" (current role has no relevant permissions) */
-export enum ImportFileRecordUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
-
-/** Boolean expression to filter rows from the table "import_file_setting". All fields are combined with a logical 'AND'. */
-export type ImportFileSettingBoolExp = {
-  _and?: InputMaybe<Array<ImportFileSettingBoolExp>>;
-  _not?: InputMaybe<ImportFileSettingBoolExp>;
-  _or?: InputMaybe<Array<ImportFileSettingBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  settings?: InputMaybe<JsonComparisonExp>;
-};
-
-/** unique or primary key constraints on table "import_file_setting" */
-export enum ImportFileSettingConstraint {
-  /** unique or primary key constraint on columns "app_id" */
-  ImportFileSettingPkey = "import_file_setting_pkey",
-}
-
-/** input type for inserting data into table "import_file_setting" */
-export type ImportFileSettingInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  settings?: InputMaybe<Scalars["json"]>;
-};
-
-/** input type for inserting object relation for remote table "import_file_setting" */
-export type ImportFileSettingObjRelInsertInput = {
-  data: ImportFileSettingInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileSettingOnConflict>;
-};
-
-/** on_conflict condition type for table "import_file_setting" */
-export type ImportFileSettingOnConflict = {
-  constraint: ImportFileSettingConstraint;
-  updateColumns?: Array<ImportFileSettingUpdateColumn>;
-  where?: InputMaybe<ImportFileSettingBoolExp>;
-};
-
-/** Ordering options when selecting data from "import_file_setting". */
-export type ImportFileSettingOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  settings?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: import_file_setting */
-export type ImportFileSettingPkColumnsInput = {
-  appId: Scalars["String"];
-};
-
-/** select columns of table "import_file_setting" */
-export enum ImportFileSettingSelectColumn {
-  /** column name */
-  AppId = "appId",
-  /** column name */
-  Settings = "settings",
-}
-
-/** input type for updating data in table "import_file_setting" */
-export type ImportFileSettingSetInput = {
-  settings?: InputMaybe<Scalars["json"]>;
-};
-
-/** Streaming cursor of the table "import_file_setting" */
-export type ImportFileSettingStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ImportFileSettingStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ImportFileSettingStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  settings?: InputMaybe<Scalars["json"]>;
-};
-
-/** update columns of table "import_file_setting" */
-export enum ImportFileSettingUpdateColumn {
-  /** column name */
-  Settings = "settings",
-}
-
-export type ImportFileSettingUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ImportFileSettingSetInput>;
-  /** filter the rows which have to be updated */
-  where: ImportFileSettingBoolExp;
-};
-
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type IntComparisonExp = {
   _eq?: InputMaybe<Scalars["Int"]>;
@@ -3900,131 +3174,6 @@ export type JsonComparisonExp = {
   _lte?: InputMaybe<Scalars["json"]>;
   _neq?: InputMaybe<Scalars["json"]>;
   _nin?: InputMaybe<Array<Scalars["json"]>>;
-};
-
-/** Boolean expression to filter rows from the table "link_database". All fields are combined with a logical 'AND'. */
-export type LinkDatabaseBoolExp = {
-  _and?: InputMaybe<Array<LinkDatabaseBoolExp>>;
-  _not?: InputMaybe<LinkDatabaseBoolExp>;
-  _or?: InputMaybe<Array<LinkDatabaseBoolExp>>;
-  appId?: InputMaybe<StringComparisonExp>;
-  connection?: InputMaybe<JsonComparisonExp>;
-  database?: InputMaybe<StringComparisonExp>;
-  fieldColumnMaps?: InputMaybe<JsonComparisonExp>;
-  parameters?: InputMaybe<JsonComparisonExp>;
-  sql?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "link_database" */
-export enum LinkDatabaseConstraint {
-  /** unique or primary key constraint on columns "app_id" */
-  LinkDatabasePkey = "link_database_pkey",
-}
-
-/** input type for inserting data into table "link_database" */
-export type LinkDatabaseInsertInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  connection?: InputMaybe<Scalars["json"]>;
-  database?: InputMaybe<Scalars["String"]>;
-  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
-  parameters?: InputMaybe<Scalars["json"]>;
-  sql?: InputMaybe<Scalars["String"]>;
-};
-
-/** input type for inserting object relation for remote table "link_database" */
-export type LinkDatabaseObjRelInsertInput = {
-  data: LinkDatabaseInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<LinkDatabaseOnConflict>;
-};
-
-/** on_conflict condition type for table "link_database" */
-export type LinkDatabaseOnConflict = {
-  constraint: LinkDatabaseConstraint;
-  updateColumns?: Array<LinkDatabaseUpdateColumn>;
-  where?: InputMaybe<LinkDatabaseBoolExp>;
-};
-
-/** Ordering options when selecting data from "link_database". */
-export type LinkDatabaseOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  connection?: InputMaybe<OrderBy>;
-  database?: InputMaybe<OrderBy>;
-  fieldColumnMaps?: InputMaybe<OrderBy>;
-  parameters?: InputMaybe<OrderBy>;
-  sql?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: link_database */
-export type LinkDatabasePkColumnsInput = {
-  appId: Scalars["String"];
-};
-
-/** select columns of table "link_database" */
-export enum LinkDatabaseSelectColumn {
-  /** column name */
-  AppId = "appId",
-  /** column name */
-  Connection = "connection",
-  /** column name */
-  Database = "database",
-  /** column name */
-  FieldColumnMaps = "fieldColumnMaps",
-  /** column name */
-  Parameters = "parameters",
-  /** column name */
-  Sql = "sql",
-}
-
-/** input type for updating data in table "link_database" */
-export type LinkDatabaseSetInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  connection?: InputMaybe<Scalars["json"]>;
-  database?: InputMaybe<Scalars["String"]>;
-  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
-  parameters?: InputMaybe<Scalars["json"]>;
-  sql?: InputMaybe<Scalars["String"]>;
-};
-
-/** Streaming cursor of the table "link_database" */
-export type LinkDatabaseStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: LinkDatabaseStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type LinkDatabaseStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  connection?: InputMaybe<Scalars["json"]>;
-  database?: InputMaybe<Scalars["String"]>;
-  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
-  parameters?: InputMaybe<Scalars["json"]>;
-  sql?: InputMaybe<Scalars["String"]>;
-};
-
-/** update columns of table "link_database" */
-export enum LinkDatabaseUpdateColumn {
-  /** column name */
-  AppId = "appId",
-  /** column name */
-  Connection = "connection",
-  /** column name */
-  Database = "database",
-  /** column name */
-  FieldColumnMaps = "fieldColumnMaps",
-  /** column name */
-  Parameters = "parameters",
-  /** column name */
-  Sql = "sql",
-}
-
-export type LinkDatabaseUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<LinkDatabaseSetInput>;
-  /** filter the rows which have to be updated */
-  where: LinkDatabaseBoolExp;
 };
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
@@ -4055,200 +3204,6 @@ export enum OrderBy {
   /** in descending order, nulls last */
   DescNullsLast = "DESC_NULLS_LAST",
 }
-
-export type RecordAggregateBoolExp = {
-  count?: InputMaybe<RecordAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "record" */
-export type RecordAggregateOrderBy = {
-  avg?: InputMaybe<RecordAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<RecordMaxOrderBy>;
-  min?: InputMaybe<RecordMinOrderBy>;
-  stddev?: InputMaybe<RecordStddevOrderBy>;
-  stddevPop?: InputMaybe<RecordStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<RecordStddevSampOrderBy>;
-  sum?: InputMaybe<RecordSumOrderBy>;
-  varPop?: InputMaybe<RecordVarPopOrderBy>;
-  varSamp?: InputMaybe<RecordVarSampOrderBy>;
-  variance?: InputMaybe<RecordVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "record" */
-export type RecordArrRelInsertInput = {
-  data: Array<RecordInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<RecordOnConflict>;
-};
-
-/** order by avg() on columns of table "record" */
-export type RecordAvgOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "record". All fields are combined with a logical 'AND'. */
-export type RecordBoolExp = {
-  _and?: InputMaybe<Array<RecordBoolExp>>;
-  _not?: InputMaybe<RecordBoolExp>;
-  _or?: InputMaybe<Array<RecordBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  columns?: InputMaybe<JsonComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  importFileRecord?: InputMaybe<ImportFileRecordBoolExp>;
-  index?: InputMaybe<IntComparisonExp>;
-};
-
-/** unique or primary key constraints on table "record" */
-export enum RecordConstraint {
-  /** unique or primary key constraint on columns "id" */
-  RecordPkey = "record_pkey",
-}
-
-/** input type for incrementing numeric columns in table "record" */
-export type RecordIncInput = {
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "record" */
-export type RecordInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  columns?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  importFileRecord?: InputMaybe<ImportFileRecordObjRelInsertInput>;
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** order by max() on columns of table "record" */
-export type RecordMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "record" */
-export type RecordMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "record" */
-export type RecordObjRelInsertInput = {
-  data: RecordInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<RecordOnConflict>;
-};
-
-/** on_conflict condition type for table "record" */
-export type RecordOnConflict = {
-  constraint: RecordConstraint;
-  updateColumns?: Array<RecordUpdateColumn>;
-  where?: InputMaybe<RecordBoolExp>;
-};
-
-/** Ordering options when selecting data from "record". */
-export type RecordOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  columns?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importFileRecord?: InputMaybe<ImportFileRecordOrderBy>;
-  index?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: record */
-export type RecordPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "record" */
-export enum RecordSelectColumn {
-  /** column name */
-  AppId = "appId",
-  /** column name */
-  Columns = "columns",
-  /** column name */
-  Id = "id",
-  /** column name */
-  Index = "index",
-}
-
-/** input type for updating data in table "record" */
-export type RecordSetInput = {
-  columns?: InputMaybe<Scalars["json"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** order by stddev() on columns of table "record" */
-export type RecordStddevOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "record" */
-export type RecordStddevPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "record" */
-export type RecordStddevSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "record" */
-export type RecordStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: RecordStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type RecordStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  columns?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** order by sum() on columns of table "record" */
-export type RecordSumOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "record" */
-export enum RecordUpdateColumn {
-  /** column name */
-  Columns = "columns",
-  /** column name */
-  Index = "index",
-}
-
-export type RecordUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<RecordIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<RecordSetInput>;
-  /** filter the rows which have to be updated */
-  where: RecordBoolExp;
-};
-
-/** order by varPop() on columns of table "record" */
-export type RecordVarPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "record" */
-export type RecordVarSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "record" */
-export type RecordVarianceOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
@@ -4283,127 +3238,6 @@ export type StringComparisonExp = {
   _similar?: InputMaybe<Scalars["String"]>;
 };
 
-/** order by aggregate values of table "summary_view" */
-export type SummaryViewAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<SummaryViewMaxOrderBy>;
-  min?: InputMaybe<SummaryViewMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "summary_view" */
-export type SummaryViewArrRelInsertInput = {
-  data: Array<SummaryViewInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<SummaryViewOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "summary_view". All fields are combined with a logical 'AND'. */
-export type SummaryViewBoolExp = {
-  _and?: InputMaybe<Array<SummaryViewBoolExp>>;
-  _not?: InputMaybe<SummaryViewBoolExp>;
-  _or?: InputMaybe<Array<SummaryViewBoolExp>>;
-  group?: InputMaybe<GroupBoolExp>;
-  groupId?: InputMaybe<StringComparisonExp>;
-  groupingFields?: InputMaybe<JsonComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  summaryFields?: InputMaybe<JsonComparisonExp>;
-  view?: InputMaybe<ViewBoolExp>;
-  viewId?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "summary_view" */
-export enum SummaryViewConstraint {
-  /** unique or primary key constraint on columns "id" */
-  SummaryViewPkey = "summary_view_pkey",
-}
-
-/** input type for inserting data into table "summary_view" */
-export type SummaryViewInsertInput = {
-  groupId?: InputMaybe<Scalars["String"]>;
-  groupingFields?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  summaryFields?: InputMaybe<Scalars["json"]>;
-  view?: InputMaybe<ViewObjRelInsertInput>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "summary_view" */
-export type SummaryViewMaxOrderBy = {
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "summary_view" */
-export type SummaryViewMinOrderBy = {
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "summary_view" */
-export type SummaryViewOnConflict = {
-  constraint: SummaryViewConstraint;
-  updateColumns?: Array<SummaryViewUpdateColumn>;
-  where?: InputMaybe<SummaryViewBoolExp>;
-};
-
-/** Ordering options when selecting data from "summary_view". */
-export type SummaryViewOrderBy = {
-  group?: InputMaybe<GroupOrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  groupingFields?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  summaryFields?: InputMaybe<OrderBy>;
-  view?: InputMaybe<ViewOrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "summary_view" */
-export enum SummaryViewSelectColumn {
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  GroupingFields = "groupingFields",
-  /** column name */
-  Id = "id",
-  /** column name */
-  Name = "name",
-  /** column name */
-  SummaryFields = "summaryFields",
-  /** column name */
-  ViewId = "viewId",
-}
-
-/** Streaming cursor of the table "summary_view" */
-export type SummaryViewStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: SummaryViewStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type SummaryViewStreamCursorValueInput = {
-  groupId?: InputMaybe<Scalars["String"]>;
-  groupingFields?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  summaryFields?: InputMaybe<Scalars["json"]>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** placeholder for update columns of table "summary_view" (current role has no relevant permissions) */
-export enum SummaryViewUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
-
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
 export type TimestampComparisonExp = {
   _eq?: InputMaybe<Scalars["timestamp"]>;
@@ -4417,19 +3251,6 @@ export type TimestampComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["timestamp"]>>;
 };
 
-/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
-export type TimestamptzComparisonExp = {
-  _eq?: InputMaybe<Scalars["timestamptz"]>;
-  _gt?: InputMaybe<Scalars["timestamptz"]>;
-  _gte?: InputMaybe<Scalars["timestamptz"]>;
-  _in?: InputMaybe<Array<Scalars["timestamptz"]>>;
-  _isNull?: InputMaybe<Scalars["Boolean"]>;
-  _lt?: InputMaybe<Scalars["timestamptz"]>;
-  _lte?: InputMaybe<Scalars["timestamptz"]>;
-  _neq?: InputMaybe<Scalars["timestamptz"]>;
-  _nin?: InputMaybe<Array<Scalars["timestamptz"]>>;
-};
-
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
 export type UserBoolExp = {
   _and?: InputMaybe<Array<UserBoolExp>>;
@@ -4437,7 +3258,6 @@ export type UserBoolExp = {
   _or?: InputMaybe<Array<UserBoolExp>>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
   affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
-  apps?: InputMaybe<AppBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
@@ -4446,7 +3266,6 @@ export type UserBoolExp = {
   email?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
-  views?: InputMaybe<ViewBoolExp>;
 };
 
 /** unique or primary key constraints on table "user" */
@@ -4460,14 +3279,12 @@ export enum UserConstraint {
 /** input type for inserting data into table "user" */
 export type UserInsertInput = {
   affiliations?: InputMaybe<AffiliationArrRelInsertInput>;
-  apps?: InputMaybe<AppArrRelInsertInput>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailArrRelInsertInput>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   email?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-  views?: InputMaybe<ViewArrRelInsertInput>;
 };
 
 /** input type for inserting object relation for remote table "user" */
@@ -4487,14 +3304,12 @@ export type UserOnConflict = {
 /** Ordering options when selecting data from "user". */
 export type UserOrderBy = {
   affiliationsAggregate?: InputMaybe<AffiliationAggregateOrderBy>;
-  appsAggregate?: InputMaybe<AppAggregateOrderBy>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
   email?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-  viewsAggregate?: InputMaybe<ViewAggregateOrderBy>;
 };
 
 /** select columns of table "user" */
@@ -4530,441 +3345,6 @@ export enum UserUpdateColumn {
   /** placeholder (do not use) */
   Placeholder = "_PLACEHOLDER",
 }
-
-/** order by aggregate values of table "view" */
-export type ViewAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ViewMaxOrderBy>;
-  min?: InputMaybe<ViewMinOrderBy>;
-};
-
-/** order by aggregate values of table "view_app" */
-export type ViewAppAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ViewAppMaxOrderBy>;
-  min?: InputMaybe<ViewAppMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "view_app" */
-export type ViewAppArrRelInsertInput = {
-  data: Array<ViewAppInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ViewAppOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "view_app". All fields are combined with a logical 'AND'. */
-export type ViewAppBoolExp = {
-  _and?: InputMaybe<Array<ViewAppBoolExp>>;
-  _not?: InputMaybe<ViewAppBoolExp>;
-  _or?: InputMaybe<Array<ViewAppBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  fields?: InputMaybe<JsonComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  view?: InputMaybe<ViewBoolExp>;
-  viewId?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "view_app" */
-export enum ViewAppConstraint {
-  /** unique or primary key constraint on columns "id" */
-  ViewAppPkey = "view_app_pkey",
-}
-
-/** input type for inserting data into table "view_app" */
-export type ViewAppInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  fields?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  view?: InputMaybe<ViewObjRelInsertInput>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "view_app" */
-export type ViewAppMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "view_app" */
-export type ViewAppMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "view_app" */
-export type ViewAppOnConflict = {
-  constraint: ViewAppConstraint;
-  updateColumns?: Array<ViewAppUpdateColumn>;
-  where?: InputMaybe<ViewAppBoolExp>;
-};
-
-/** Ordering options when selecting data from "view_app". */
-export type ViewAppOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  fields?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  view?: InputMaybe<ViewOrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "view_app" */
-export enum ViewAppSelectColumn {
-  /** column name */
-  AppId = "appId",
-  /** column name */
-  Fields = "fields",
-  /** column name */
-  Id = "id",
-  /** column name */
-  ViewId = "viewId",
-}
-
-/** Streaming cursor of the table "view_app" */
-export type ViewAppStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ViewAppStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ViewAppStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  fields?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** placeholder for update columns of table "view_app" (current role has no relevant permissions) */
-export enum ViewAppUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
-}
-
-/** input type for inserting array relation for remote table "view" */
-export type ViewArrRelInsertInput = {
-  data: Array<ViewInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ViewOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "view". All fields are combined with a logical 'AND'. */
-export type ViewBoolExp = {
-  _and?: InputMaybe<Array<ViewBoolExp>>;
-  _not?: InputMaybe<ViewBoolExp>;
-  _or?: InputMaybe<Array<ViewBoolExp>>;
-  group?: InputMaybe<GroupBoolExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  summaryViews?: InputMaybe<SummaryViewBoolExp>;
-  user?: InputMaybe<UserBoolExp>;
-  viewApps?: InputMaybe<ViewAppBoolExp>;
-  viewFields?: InputMaybe<ViewFieldBoolExp>;
-};
-
-/** unique or primary key constraints on table "view" */
-export enum ViewConstraint {
-  /** unique or primary key constraint on columns "id" */
-  ViewPkey = "view_pkey",
-}
-
-/** order by aggregate values of table "view_field" */
-export type ViewFieldAggregateOrderBy = {
-  avg?: InputMaybe<ViewFieldAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ViewFieldMaxOrderBy>;
-  min?: InputMaybe<ViewFieldMinOrderBy>;
-  stddev?: InputMaybe<ViewFieldStddevOrderBy>;
-  stddevPop?: InputMaybe<ViewFieldStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<ViewFieldStddevSampOrderBy>;
-  sum?: InputMaybe<ViewFieldSumOrderBy>;
-  varPop?: InputMaybe<ViewFieldVarPopOrderBy>;
-  varSamp?: InputMaybe<ViewFieldVarSampOrderBy>;
-  variance?: InputMaybe<ViewFieldVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "view_field" */
-export type ViewFieldArrRelInsertInput = {
-  data: Array<ViewFieldInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ViewFieldOnConflict>;
-};
-
-/** order by avg() on columns of table "view_field" */
-export type ViewFieldAvgOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "view_field". All fields are combined with a logical 'AND'. */
-export type ViewFieldBoolExp = {
-  _and?: InputMaybe<Array<ViewFieldBoolExp>>;
-  _not?: InputMaybe<ViewFieldBoolExp>;
-  _or?: InputMaybe<Array<ViewFieldBoolExp>>;
-  fieldKind?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  index?: InputMaybe<IntComparisonExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  options?: InputMaybe<JsonComparisonExp>;
-  view?: InputMaybe<ViewBoolExp>;
-  viewId?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "view_field" */
-export enum ViewFieldConstraint {
-  /** unique or primary key constraint on columns "id" */
-  ViewFieldPkey = "view_field_pkey",
-}
-
-/** input type for incrementing numeric columns in table "view_field" */
-export type ViewFieldIncInput = {
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "view_field" */
-export type ViewFieldInsertInput = {
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-  view?: InputMaybe<ViewObjRelInsertInput>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "view_field" */
-export type ViewFieldMaxOrderBy = {
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "view_field" */
-export type ViewFieldMinOrderBy = {
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "view_field" */
-export type ViewFieldOnConflict = {
-  constraint: ViewFieldConstraint;
-  updateColumns?: Array<ViewFieldUpdateColumn>;
-  where?: InputMaybe<ViewFieldBoolExp>;
-};
-
-/** Ordering options when selecting data from "view_field". */
-export type ViewFieldOrderBy = {
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  options?: InputMaybe<OrderBy>;
-  view?: InputMaybe<ViewOrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: view_field */
-export type ViewFieldPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "view_field" */
-export enum ViewFieldSelectColumn {
-  /** column name */
-  FieldKind = "fieldKind",
-  /** column name */
-  Id = "id",
-  /** column name */
-  Index = "index",
-  /** column name */
-  Name = "name",
-  /** column name */
-  Options = "options",
-  /** column name */
-  ViewId = "viewId",
-}
-
-/** input type for updating data in table "view_field" */
-export type ViewFieldSetInput = {
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-};
-
-/** order by stddev() on columns of table "view_field" */
-export type ViewFieldStddevOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "view_field" */
-export type ViewFieldStddevPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "view_field" */
-export type ViewFieldStddevSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "view_field" */
-export type ViewFieldStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ViewFieldStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ViewFieldStreamCursorValueInput = {
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by sum() on columns of table "view_field" */
-export type ViewFieldSumOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "view_field" */
-export enum ViewFieldUpdateColumn {
-  /** column name */
-  Index = "index",
-  /** column name */
-  Name = "name",
-  /** column name */
-  Options = "options",
-}
-
-export type ViewFieldUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<ViewFieldIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ViewFieldSetInput>;
-  /** filter the rows which have to be updated */
-  where: ViewFieldBoolExp;
-};
-
-/** order by varPop() on columns of table "view_field" */
-export type ViewFieldVarPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "view_field" */
-export type ViewFieldVarSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "view_field" */
-export type ViewFieldVarianceOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting data into table "view" */
-export type ViewInsertInput = {
-  createUserId?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  summaryViews?: InputMaybe<SummaryViewArrRelInsertInput>;
-  user?: InputMaybe<UserObjRelInsertInput>;
-  viewApps?: InputMaybe<ViewAppArrRelInsertInput>;
-  viewFields?: InputMaybe<ViewFieldArrRelInsertInput>;
-};
-
-/** order by max() on columns of table "view" */
-export type ViewMaxOrderBy = {
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "view" */
-export type ViewMinOrderBy = {
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "view" */
-export type ViewObjRelInsertInput = {
-  data: ViewInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ViewOnConflict>;
-};
-
-/** on_conflict condition type for table "view" */
-export type ViewOnConflict = {
-  constraint: ViewConstraint;
-  updateColumns?: Array<ViewUpdateColumn>;
-  where?: InputMaybe<ViewBoolExp>;
-};
-
-/** Ordering options when selecting data from "view". */
-export type ViewOrderBy = {
-  group?: InputMaybe<GroupOrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
-  user?: InputMaybe<UserOrderBy>;
-  viewAppsAggregate?: InputMaybe<ViewAppAggregateOrderBy>;
-  viewFieldsAggregate?: InputMaybe<ViewFieldAggregateOrderBy>;
-};
-
-/** primary key columns input for table: view */
-export type ViewPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "view" */
-export enum ViewSelectColumn {
-  /** column name */
-  Id = "id",
-  /** column name */
-  Name = "name",
-}
-
-/** input type for updating data in table "view" */
-export type ViewSetInput = {
-  name?: InputMaybe<Scalars["String"]>;
-};
-
-/** Streaming cursor of the table "view" */
-export type ViewStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ViewStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ViewStreamCursorValueInput = {
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-};
-
-/** update columns of table "view" */
-export enum ViewUpdateColumn {
-  /** column name */
-  Name = "name",
-}
-
-export type ViewUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ViewSetInput>;
-  /** filter the rows which have to be updated */
-  where: ViewBoolExp;
-};
 
 export type AffiliationAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<AffiliationSelectColumn>>;
@@ -5107,20 +3487,6 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdTransferCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdTransferCategoryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type ImportFileRecordAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<ImportFileRecordSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<ImportFileRecordBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type RecordAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<RecordSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<RecordBoolExp>;
   predicate: IntComparisonExp;
 };
 
@@ -5434,21 +3800,6 @@ export type UpdateCreditCardDetailAmountByIdMutation = {
   } | null;
 };
 
-export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
-  id: Scalars["String"];
-  genreId: Scalars["String"];
-  categoryId: Scalars["String"];
-  memo?: InputMaybe<Scalars["String"]>;
-}>;
-
-export type UpdateCreditCardDetailByIdMutation = {
-  __typename?: "mutation_root";
-  updateHouseholdCreditCardDetailByPk?: {
-    __typename?: "HouseholdCreditCardDetail";
-    id: string;
-  } | null;
-};
-
 export type UpdateDashboardSettingMutationVariables = Exact<{
   settingId: Scalars["String"];
   feature: Scalars["String"];
@@ -5497,6 +3848,22 @@ export type UpdateFavoriteFilterArgMutationVariables = Exact<{
 export type UpdateFavoriteFilterArgMutation = {
   __typename?: "mutation_root";
   insertArg?: { __typename: "HouseholdFavoriteFilterArgs"; id: string } | null;
+};
+
+export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
+  id: Scalars["String"];
+  genreId: Scalars["String"];
+  categoryId: Scalars["String"];
+  memo?: InputMaybe<Scalars["String"]>;
+  businessOptions?: InputMaybe<Scalars["json"]>;
+}>;
+
+export type UpdateCreditCardDetailByIdMutation = {
+  __typename?: "mutation_root";
+  updateHouseholdCreditCardDetailByPk?: {
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+  } | null;
 };
 
 export type GetAllCategoriesQueryVariables = Exact<{
@@ -5595,42 +3962,6 @@ export type GetCategoryByIdQuery = {
       iocomeType: string;
       genreId: string;
     };
-  } | null;
-};
-
-export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type GetCreditCardDetailBySummaryIdQuery = {
-  __typename?: "query_root";
-  creditCardSummary?: {
-    __typename?: "HouseholdCreditCardSummary";
-    id: string;
-    creditCard: string;
-    withdrawalDate: any;
-    count: number;
-    totalAmount: any;
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-    creditCardDetails: Array<{
-      __typename?: "HouseholdCreditCardDetail";
-      id: string;
-      date: any;
-      memo?: string | null;
-      amount: any;
-      category: {
-        __typename?: "HouseholdCategory";
-        id: string;
-        name: string;
-        genre: {
-          __typename?: "HouseholdGenre";
-          id: string;
-          name: string;
-          genreType: string;
-          iocomeType: string;
-        };
-      };
-    }>;
   } | null;
 };
 
@@ -5845,34 +4176,6 @@ export type GetAccountByIdQuery = {
   } | null;
 };
 
-export type GetCreditCardDetailByIdQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type GetCreditCardDetailByIdQuery = {
-  __typename?: "query_root";
-  creditCardDetail?: {
-    __typename?: "HouseholdCreditCardDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    genre: {
-      __typename?: "HouseholdGenre";
-      id: string;
-      name: string;
-      iocomeType: string;
-      genreType: string;
-    };
-    category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    summary: {
-      __typename?: "HouseholdCreditCardSummary";
-      id: string;
-      account: { __typename?: "HouseholdAccount"; id: string; name: string };
-    };
-  } | null;
-};
-
 export type GetCreditCardDetailListQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -5887,6 +4190,7 @@ export type GetCreditCardDetailListQuery = {
     date: any;
     amount: any;
     memo?: string | null;
+    businessOptions?: any | null;
     genre: {
       __typename?: "HouseholdGenre";
       id: string;
@@ -6172,6 +4476,7 @@ export type FragCreditCardDetailFragment = {
   date: any;
   amount: any;
   memo?: string | null;
+  businessOptions?: any | null;
   genre: {
     __typename?: "HouseholdGenre";
     id: string;
@@ -6227,6 +4532,73 @@ export type GetAccountBalanceListQuery = {
       } | null;
     };
   }>;
+};
+
+export type GetCreditCardDetailByIdQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetCreditCardDetailByIdQuery = {
+  __typename?: "query_root";
+  creditCardDetail?: {
+    __typename?: "HouseholdCreditCardDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    businessOptions?: any | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      iocomeType: string;
+      genreType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    summary: {
+      __typename?: "HouseholdCreditCardSummary";
+      id: string;
+      account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    };
+  } | null;
+};
+
+export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetCreditCardDetailBySummaryIdQuery = {
+  __typename?: "query_root";
+  creditCardSummary?: {
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+    creditCard: string;
+    withdrawalDate: any;
+    count: number;
+    totalAmount: any;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    creditCardDetails: Array<{
+      __typename?: "HouseholdCreditCardDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      businessOptions?: any | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        iocomeType: string;
+        genreType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      summary: {
+        __typename?: "HouseholdCreditCardSummary";
+        id: string;
+        account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      };
+    }>;
+  } | null;
 };
 
 export type GetDashboardSettingQueryVariables = Exact<{
@@ -6288,6 +4660,7 @@ export type GetDetailsByCategoryQuery = {
       date: any;
       amount: any;
       memo?: string | null;
+      businessOptions?: any | null;
       genre: {
         __typename?: "HouseholdGenre";
         id: string;
@@ -6308,6 +4681,7 @@ export type GetDetailsByCategoryQuery = {
       date: any;
       amount: any;
       memo?: string | null;
+      businessOptions?: any | null;
       genre: {
         __typename?: "HouseholdGenre";
         id: string;
@@ -6416,6 +4790,7 @@ export const FragCreditCardDetailFragmentDoc = gql`
     date
     amount
     memo
+    businessOptions
     genre {
       id
       name
@@ -6977,28 +5352,6 @@ export function useUpdateCreditCardDetailAmountByIdMutation() {
     UpdateCreditCardDetailAmountByIdMutationVariables
   >(UpdateCreditCardDetailAmountByIdDocument);
 }
-export const UpdateCreditCardDetailByIdDocument = gql`
-  mutation updateCreditCardDetailById(
-    $id: String!
-    $genreId: String!
-    $categoryId: String!
-    $memo: String
-  ) {
-    updateHouseholdCreditCardDetailByPk(
-      pkColumns: { id: $id }
-      _set: { genreId: $genreId, categoryId: $categoryId, memo: $memo }
-    ) {
-      id
-    }
-  }
-`;
-
-export function useUpdateCreditCardDetailByIdMutation() {
-  return Urql.useMutation<
-    UpdateCreditCardDetailByIdMutation,
-    UpdateCreditCardDetailByIdMutationVariables
-  >(UpdateCreditCardDetailByIdDocument);
-}
 export const UpdateDashboardSettingDocument = gql`
   mutation updateDashboardSetting(
     $settingId: String!
@@ -7074,6 +5427,34 @@ export function useUpdateFavoriteFilterArgMutation() {
     UpdateFavoriteFilterArgMutation,
     UpdateFavoriteFilterArgMutationVariables
   >(UpdateFavoriteFilterArgDocument);
+}
+export const UpdateCreditCardDetailByIdDocument = gql`
+  mutation updateCreditCardDetailById(
+    $id: String!
+    $genreId: String!
+    $categoryId: String!
+    $memo: String
+    $businessOptions: json
+  ) {
+    updateHouseholdCreditCardDetailByPk(
+      pkColumns: { id: $id }
+      _set: {
+        genreId: $genreId
+        categoryId: $categoryId
+        memo: $memo
+        businessOptions: $businessOptions
+      }
+    ) {
+      id
+    }
+  }
+`;
+
+export function useUpdateCreditCardDetailByIdMutation() {
+  return Urql.useMutation<
+    UpdateCreditCardDetailByIdMutation,
+    UpdateCreditCardDetailByIdMutationVariables
+  >(UpdateCreditCardDetailByIdDocument);
 }
 export const GetAllCategoriesDocument = gql`
   query GetAllCategories($groupId: String!) {
@@ -7217,49 +5598,6 @@ export function useGetCategoryByIdQuery(
     query: GetCategoryByIdDocument,
     ...options,
   });
-}
-export const GetCreditCardDetailBySummaryIdDocument = gql`
-  query GetCreditCardDetailBySummaryId($id: String!) {
-    creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
-      id
-      creditCard
-      withdrawalDate
-      account {
-        id
-        name
-      }
-      count
-      totalAmount
-      creditCardDetails(orderBy: { date: ASC }) {
-        id
-        date
-        memo
-        amount
-        category {
-          id
-          name
-          genre {
-            id
-            name
-            genreType
-            iocomeType
-          }
-        }
-      }
-    }
-  }
-`;
-
-export function useGetCreditCardDetailBySummaryIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCreditCardDetailBySummaryIdQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCreditCardDetailBySummaryIdQuery,
-    GetCreditCardDetailBySummaryIdQueryVariables
-  >({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
 }
 export const GetCreditCardListDocument = gql`
   query GetCreditCardList($groupId: String!) {
@@ -7508,26 +5846,6 @@ export function useGetAccountByIdQuery(
     query: GetAccountByIdDocument,
     ...options,
   });
-}
-export const GetCreditCardDetailByIdDocument = gql`
-  query getCreditCardDetailById($id: String!) {
-    creditCardDetail: householdCreditCardDetailByPk(id: $id) {
-      ...fragCreditCardDetail
-    }
-  }
-  ${FragCreditCardDetailFragmentDoc}
-`;
-
-export function useGetCreditCardDetailByIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetCreditCardDetailByIdQuery,
-    GetCreditCardDetailByIdQueryVariables
-  >({ query: GetCreditCardDetailByIdDocument, ...options });
 }
 export const GetCreditCardDetailListDocument = gql`
   query getCreditCardDetailList(
@@ -7842,6 +6160,57 @@ export function useGetAccountBalanceListQuery(
     GetAccountBalanceListQuery,
     GetAccountBalanceListQueryVariables
   >({ query: GetAccountBalanceListDocument, ...options });
+}
+export const GetCreditCardDetailByIdDocument = gql`
+  query getCreditCardDetailById($id: String!) {
+    creditCardDetail: householdCreditCardDetailByPk(id: $id) {
+      ...fragCreditCardDetail
+    }
+  }
+  ${FragCreditCardDetailFragmentDoc}
+`;
+
+export function useGetCreditCardDetailByIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailByIdQuery,
+    GetCreditCardDetailByIdQueryVariables
+  >({ query: GetCreditCardDetailByIdDocument, ...options });
+}
+export const GetCreditCardDetailBySummaryIdDocument = gql`
+  query getCreditCardDetailBySummaryId($id: String!) {
+    creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
+      id
+      creditCard
+      withdrawalDate
+      account {
+        id
+        name
+      }
+      count
+      totalAmount
+      creditCardDetails(orderBy: { date: ASC }) {
+        ...fragCreditCardDetail
+      }
+    }
+  }
+  ${FragCreditCardDetailFragmentDoc}
+`;
+
+export function useGetCreditCardDetailBySummaryIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailBySummaryIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailBySummaryIdQuery,
+    GetCreditCardDetailBySummaryIdQueryVariables
+  >({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
 }
 export const GetDashboardSettingDocument = gql`
   query getDashboardSetting($userId: String!, $groupId: String!) {
