@@ -91,6 +91,15 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
           };
         });
       }}
+      setIsExpense={(value: boolean) => {
+        setFormData((prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            isExpense: value,
+          };
+        });
+      }}
       onClickUpdate={updateHandler}
       onClickReset={initializeForm}
     />
