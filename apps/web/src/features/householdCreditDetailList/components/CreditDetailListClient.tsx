@@ -55,7 +55,7 @@ export const CreditDetailListClient: FC<Props> = ({
       ],
       onClick: () =>
         push(
-          paths.household.creditCardDetail.edit({
+          paths.household.creditDetail.edit({
             creditCardSummaryId,
             creditDetailId: detail.id,
           }),
@@ -63,7 +63,7 @@ export const CreditDetailListClient: FC<Props> = ({
     })) ?? [];
 
   const addHandler = () =>
-    push(paths.household.creditCardDetail.add({ creditCardSummaryId }));
+    push(paths.household.creditDetail.add({ creditCardSummaryId }));
 
   const backHandler = () => push(paths.household.creditCard);
 
