@@ -5,7 +5,9 @@ query getDetailsByCategory(
   $iocomeType: [String!] = ["INCOME", "OUTCOME"]
 ) {
   group: groupByPk(id: $groupId) {
+    id
     transfer: transferCategory {
+      id: groupId
       outcomeCategoryId
       incomeCategoryId
     }
