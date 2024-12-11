@@ -19,9 +19,9 @@ export const useGetCreditCardDetailBySummaryId = ({
       id: d.id,
       date: new Date(d.date ?? 0) ?? new Date(),
       genre: {
-        id: d.category.genre.id,
-        name: d.category.genre.name,
-        iocomeType: d.category.genre.iocomeType as IocomeType,
+        id: d.genre.id,
+        name: d.genre.name,
+        iocomeType: d.genre.iocomeType as IocomeType,
       },
       category: {
         id: d.category.id,

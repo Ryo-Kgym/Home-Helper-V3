@@ -30,11 +30,12 @@ export const CreditDetailListServer = async ({
     data.creditCardSummary.creditCardDetails.map((d) => ({
       id: d.id,
       date: d.date,
-      genreName: d.category.genre.name,
+      genreName: d.genre.name,
       categoryName: d.category.name,
-      iocomeType: d.category.genre.iocomeType as IocomeType,
+      iocomeType: d.genre.iocomeType as IocomeType,
       amount: d.amount,
       memo: d.memo ?? "",
+      isExpense: d.businessOptions?.isExpense ?? false,
     })) ?? [];
 
   return (

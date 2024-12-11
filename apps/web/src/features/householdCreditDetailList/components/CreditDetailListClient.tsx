@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Table, TableProps } from "../../../components/atoms/Table";
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { Button } from "../../../components/ui/button/v5";
+import { IsExpenseTag } from "../../../components/ui/tag/v5/IsExpenseTag";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { paths } from "../../../routing/paths";
 
@@ -27,6 +28,7 @@ type Props = {
     iocomeType: IocomeType;
     amount: number;
     memo: string;
+    isExpense: boolean;
   }[];
 };
 export const CreditDetailListClient: FC<Props> = ({
@@ -51,7 +53,14 @@ export const CreditDetailListClient: FC<Props> = ({
           ),
           align: "right",
         },
-        { value: detail.memo },
+        {
+          value: (
+            <div className={"flex items-center"}>
+              {detail.isExpense && <IsExpenseTag />}
+              <span>{detail.memo}</span>
+            </div>
+          ),
+        },
       ],
       onClick: () =>
         push(
