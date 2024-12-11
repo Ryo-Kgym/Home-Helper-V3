@@ -35,6 +35,7 @@ export const useStateCreditDetail = ({ id }: { id: string }) => {
       categoryId: data?.creditCardDetail?.category?.id,
       amount: Number(data?.creditCardDetail?.amount) ?? "",
       memo: data?.creditCardDetail?.memo,
+      isExpense: data?.creditCardDetail?.businessOptions?.isExpense ?? false,
     }),
     [data],
   );
@@ -49,7 +50,7 @@ export const useStateCreditDetail = ({ id }: { id: string }) => {
       genreId: data.creditCardDetail?.genre?.id ?? "",
       categoryId: data.creditCardDetail?.category?.id ?? "",
       memo: data.creditCardDetail?.memo ?? "",
-      isExpense: false, // TODO
+      isExpense: data?.creditCardDetail?.businessOptions?.isExpense ?? false,
     });
     setDisplay({
       id: data.creditCardDetail?.id ?? "",
@@ -68,7 +69,7 @@ export const useStateCreditDetail = ({ id }: { id: string }) => {
       genreId: initData.genreId ?? "",
       categoryId: initData.categoryId ?? "",
       memo: initData.memo ?? "",
-      isExpense: false, // TODO
+      isExpense: initData.isExpense,
     });
   };
 

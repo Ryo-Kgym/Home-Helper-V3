@@ -3,6 +3,7 @@ fragment fragCreditCardDetail on HouseholdCreditCardDetail {
   date
   amount
   memo
+  businessOptions
   genre {
     id
     name
