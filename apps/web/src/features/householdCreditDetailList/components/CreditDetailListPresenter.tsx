@@ -1,11 +1,7 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
+import { Table, TableProps } from "../../../components/atoms/Table";
+import { Button } from "../../../components/ui/button/v5";
 
-import { Table, TableProps } from "../../atoms/Table";
-import { Button } from "../../ui";
-
-export const Presenter_ = ({
+export const CreditDetailListPresenter = ({
   summary,
   tableProps,
   addHandler,
@@ -32,8 +28,8 @@ export const Presenter_ = ({
       <div>{summary.totalAmount.toLocaleString()}円</div>
     </div>
     <div className={"grid grid-cols-2"}>
-      <Button type={"back"} onClick={backHandler} />
-      <Button type={"add"} onClick={addHandler} />
+      <Button type={"back"} onClick={backHandler} label={"戻る"} />
+      <Button type={"add"} onClick={addHandler} label={"追加"} />
     </div>
     <Table
       header={["日付", "ジャンル", "カテゴリ", "金額", "メモ"]}

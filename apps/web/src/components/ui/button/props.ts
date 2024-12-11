@@ -3,11 +3,12 @@ export type ButtonProps = {
   onClick: () => void;
   disabled?: boolean;
   type:
-    | "create"
     | "add"
-    | "reset"
-    | "modify"
+    | "back"
+    | "create"
+    | "dangerous"
     | "display"
-    | "save"
-    | "dangerous";
+    | "modify"
+    | "reset"
+    | "save";
 };

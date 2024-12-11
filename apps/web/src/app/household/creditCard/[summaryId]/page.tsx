@@ -1,11 +1,7 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
-import { CreditCardDetailList } from "components/page/CreditCardDetailList";
+import { CreditDetailListContainer } from "../../../../features/householdCreditDetailList/components/CreditDetailListContainer";
 
 const Page = ({ params: { summaryId } }: { params: { summaryId: string } }) => (
-  <CreditCardDetailList creditCardSummaryId={summaryId} />
+  <CreditDetailListContainer creditCardSummaryId={summaryId} />
 );
 
 export default Page;

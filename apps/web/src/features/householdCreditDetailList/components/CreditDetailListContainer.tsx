@@ -1,24 +1,20 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
 "use client";
 
+import { FC } from "react";
 import { useRouter } from "next/navigation";
 import { useGetCreditCardDetailBySummaryIdQuery } from "@v3/graphql/household";
 
-// import type { TableProps } from "~/components/atoms/Table";
-// import { FormatPrice } from "~/components/molecules/FormatPrice";
+import { TableProps } from "../../../components/atoms/Table";
+import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { TableProps } from "../../atoms/Table";
-import { FormatPrice } from "../../molecules/FormatPrice";
-import { Presenter_ } from "./Presenter";
+import { CreditDetailListPresenter } from "./CreditDetailListPresenter";
 
-type CreditCardDetailTableContainerProps = {
+type Props = {
   creditCardSummaryId: string;
 };
-export const Container_ = ({
+export const CreditDetailListContainer: FC<Props> = ({
   creditCardSummaryId,
-}: CreditCardDetailTableContainerProps) => {
+}) => {
   const { push } = useRouter();
 
   const [{ data }] = useGetCreditCardDetailBySummaryIdQuery({
@@ -62,7 +58,7 @@ export const Container_ = ({
     })) ?? [];
 
   return (
-    <Presenter_
+    <CreditDetailListPresenter
       summary={summary}
       tableProps={tableProps}
       addHandler={() =>

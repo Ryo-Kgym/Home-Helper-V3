@@ -34,39 +34,44 @@ const typeAttribute: Record<
     activeBgColor: `active:bg-${string}-${number}`;
   }
 > = {
-  create: {
-    enableBgColor: "bg-green-200",
-    hoverBgColor: "hover:bg-green-300",
-    activeBgColor: "active:bg-green-500",
-  },
   add: {
     enableBgColor: "bg-blue-200",
     hoverBgColor: "hover:bg-blue-300",
     activeBgColor: "active:bg-blue-500",
   },
-  reset: {
+  back: {
     enableBgColor: "bg-gray-200",
     hoverBgColor: "hover:bg-gray-300",
     activeBgColor: "active:bg-gray-500",
   },
-  modify: {
-    enableBgColor: "bg-yellow-200",
-    hoverBgColor: "hover:bg-yellow-300",
-    activeBgColor: "active:bg-yellow-500",
+  create: {
+    enableBgColor: "bg-green-200",
+    hoverBgColor: "hover:bg-green-300",
+    activeBgColor: "active:bg-green-500",
+  },
+  dangerous: {
+    enableBgColor: "bg-red-200",
+    hoverBgColor: "hover:bg-red-300",
+    activeBgColor: "active:bg-red-500",
   },
   display: {
     enableBgColor: "bg-gray-100",
     hoverBgColor: "hover:bg-gray-100",
     activeBgColor: "active:bg-gray-200",
   },
+  modify: {
+    enableBgColor: "bg-yellow-200",
+    hoverBgColor: "hover:bg-yellow-300",
+    activeBgColor: "active:bg-yellow-500",
+  },
+  reset: {
+    enableBgColor: "bg-gray-200",
+    hoverBgColor: "hover:bg-gray-300",
+    activeBgColor: "active:bg-gray-500",
+  },
   save: {
     enableBgColor: "bg-gray-100",
     hoverBgColor: "hover:bg-gray-100",
     activeBgColor: "active:bg-gray-200",
-  },
-  dangerous: {
-    enableBgColor: "bg-red-200",
-    hoverBgColor: "hover:bg-red-300",
-    activeBgColor: "active:bg-red-500",
   },
 };
