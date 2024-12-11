@@ -6,12 +6,12 @@ import { ReactNode } from "react";
 
 import { GenreType } from "../../../domain/model/household/GenreType";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { DisplayOrderInput } from "../../molecules/CustomNumberInput/DisplayOrder";
 import { GenreTypeSegment } from "../../molecules/CustomSegment/GenreTypeSegment";
 import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
 import { ValiditySegment } from "../../molecules/CustomSegment/ValiditySegment";
 import { GenreNameTextInput } from "../../molecules/CustomTextInput";
 import { Button } from "../../ui";
+import { DisplayOrderInput } from "../../ui/numberInput/displayOrder/DisplayOrderInput";
 
 export const Presenter_ = ({
   categories = [],

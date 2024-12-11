@@ -1,10 +1,6 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
+import { NumberInputContainer } from "../v5/NumberInputContainer";
 
-import { NumberInput } from "../../../atoms/NumberInput";
-
-export const DisplayOrderInputPresenter = ({
+export const DisplayOrderInput = ({
   value,
   onChange,
   disabled = false,
@@ -13,7 +9,7 @@ export const DisplayOrderInputPresenter = ({
   onChange: (_: number | "") => void;
   disabled?: boolean;
 }) => (
-  <NumberInput
+  <NumberInputContainer
     label={""}
     value={value}
     onChange={onChange}

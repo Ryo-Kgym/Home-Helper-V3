@@ -1,16 +1,17 @@
-import { NumberInput } from "../../../atoms/NumberInput";
+import { NumberInputContainer } from "../v5/NumberInputContainer";
 
 type AmountInputPresenterProps = {
   value: number | "";
   onChange: (_: number | "") => void;
   disabled?: boolean;
 };
-export const AmountInputPresenter = ({
+
+export const AmountInput = ({
   value,
   onChange,
   disabled = false,
 }: AmountInputPresenterProps) => (
-  <NumberInput
+  <NumberInputContainer
     label={"Amount"}
     value={value}
     onChange={onChange}

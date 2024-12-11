@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 
-import { AmountInput } from "../../../components/molecules/CustomNumberInput/Amount";
 import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
 import { CategorySelect } from "../../../components/molecules/CustomSelect/Category";
 import { GenreSelect } from "../../../components/molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
 import { Button } from "../../../components/ui/button/v5";
 import { DatePicker } from "../../../components/ui/date";
+import { AmountInput } from "../../../components/ui/numberInput/amount/AmountInput";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import {
   CreditDetailEditDisplayState,

@@ -1,9 +1,8 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 import { NumberInput } from "@mantine/core";
 
+/**
+ * @package
+ */
 export const NumberInputPresenter = ({
   label,
   value,

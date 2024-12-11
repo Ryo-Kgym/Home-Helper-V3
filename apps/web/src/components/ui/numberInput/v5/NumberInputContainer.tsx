@@ -1,18 +1,6 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
+import { Props } from "../props";
 import { NumberInputPresenter } from "./NumberInputPresenter";
 
-type NumberInputContainerProps = {
-  label: string;
-  value: number | "";
-  onChange: (_: number | "") => void;
-  placeholder?: string;
-  withAsterisk?: boolean;
-  disabled?: boolean;
-  maxLength?: number;
-};
 export const NumberInputContainer = ({
   label,
   value,
@@ -21,7 +9,7 @@ export const NumberInputContainer = ({
   withAsterisk,
   disabled = false,
   maxLength = 9,
-}: NumberInputContainerProps) => {
+}: Props) => {
   const checkValue = (value: number | "") => {
     if (value === "") {
       return "Required";
