@@ -7,12 +7,16 @@ export const useUpdateCreditDetail = ({ id }: { id: string }) => {
     genreId: string;
     categoryId: string;
     memo: string;
+    isExpense: boolean;
   }) => {
     await update({
       id,
       genreId: params.genreId,
       categoryId: params.categoryId,
       memo: params.memo,
+      businessOptions: {
+        isExpense: params.isExpense,
+      },
     });
   };
 

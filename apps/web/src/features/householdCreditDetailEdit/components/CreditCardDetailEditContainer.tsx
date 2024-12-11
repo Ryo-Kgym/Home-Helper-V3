@@ -23,7 +23,7 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
 
   const updateHandler = async () => {
     if (!formData) return;
-    const { genreId, categoryId, memo } = formData;
+    const { genreId, categoryId, memo, isExpense } = formData;
 
     try {
       if (genreId === null) {
@@ -39,6 +39,7 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
         genreId,
         categoryId,
         memo,
+        isExpense,
       });
       successPopup("更新しました。");
     } catch (e) {
