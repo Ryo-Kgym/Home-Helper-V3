@@ -25,5 +25,17 @@ export const paths = {
     creditCard: "/household/creditCard",
     fileImport: "/household/fileImport",
     setting: "/household/setting",
+    creditCardDetail: {
+      edit: ({
+        creditCardSummaryId,
+        creditDetailId,
+      }: {
+        creditCardSummaryId: string;
+        creditDetailId: string;
+      }) =>
+        `/household/creditCard/${creditCardSummaryId}/edit/${creditDetailId}`,
+      add: ({ creditCardSummaryId }: { creditCardSummaryId: string }) =>
+        `/household/creditCard/${creditCardSummaryId}/add`,
+    },
   },
 };

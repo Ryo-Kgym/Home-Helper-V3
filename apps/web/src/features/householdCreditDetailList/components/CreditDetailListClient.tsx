@@ -7,6 +7,7 @@ import { Table, TableProps } from "../../../components/atoms/Table";
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { Button } from "../../../components/ui/button/v5";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { paths } from "../../../routing/paths";
 
 type Props = {
   creditCardSummaryId: string;
@@ -37,7 +38,7 @@ export const CreditDetailListClient: FC<Props> = ({
 
   const tableProps: TableProps[] =
     details.map((detail) => ({
-      keyPrefix: "creditCardDetail",
+      keyPrefix: "creditDetail",
       columns: [
         { value: detail.date, align: "center" },
         {
@@ -53,13 +54,18 @@ export const CreditDetailListClient: FC<Props> = ({
         { value: detail.memo },
       ],
       onClick: () =>
-        push(`/household/creditCard/${creditCardSummaryId}/edit/${detail.id}`),
+        push(
+          paths.household.creditCardDetail.edit({
+            creditCardSummaryId,
+            creditDetailId: detail.id,
+          }),
+        ),
     })) ?? [];
 
   const addHandler = () =>
-    push(`/household/creditCard/${creditCardSummaryId}/add`);
+    push(paths.household.creditCardDetail.add({ creditCardSummaryId }));
 
-  const backHandler = () => push(`/household/creditCard`);
+  const backHandler = () => push(paths.household.creditCard);
 
   return (
     <div className={"space-y-3"}>
