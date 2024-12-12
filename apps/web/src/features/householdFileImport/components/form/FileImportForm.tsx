@@ -2,9 +2,9 @@
 
 import { FC, useState } from "react";
 
-import { AccountSelect } from "../../../../components/molecules/CustomSelect/Account";
 import { Button } from "../../../../components/ui/button/v5";
 import { DatePicker } from "../../../../components/ui/date";
+import { AccountSelect } from "../../../../components/ui/select/AccountSelect";
 import { notify } from "../../../../components/ui/v4/notify/notify";
 import { FileInput } from "../../../../components/ui/v5/file/FileInput";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";

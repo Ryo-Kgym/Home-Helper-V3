@@ -7,11 +7,11 @@ import { DatePicker } from "components/ui/date";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
-import { AccountSelect } from "../../molecules/CustomSelect/Account";
 import { CategorySelect } from "../../molecules/CustomSelect/Category";
 import { GenreSelect } from "../../molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../molecules/CustomTextArea/Memo";
 import { AmountInput } from "../../ui/numberInput/amount/AmountInput";
+import { AccountSelect } from "../../ui/select/AccountSelect";
 
 export const RegisterDailyDetailPresenter = ({
   date,

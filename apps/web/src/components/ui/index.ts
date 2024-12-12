@@ -26,7 +26,7 @@ export { RoutingTabs } from "./RoutingTabs";
 /**
  * @deprecated v5 を使用してください
  */
-export * from "./Select";
+export * from "./select/v5";
 
 /**
  * @deprecated v5 を使用してください

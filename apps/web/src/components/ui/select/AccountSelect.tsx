@@ -1,11 +1,7 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import { useGetValidAccountsQuery } from "@v3/graphql/household";
 
-import { useGroup } from "../../../../hooks/group/useGroup";
-import { Select } from "../../../ui";
+import { useGroup } from "../../../hooks/group/useGroup";
+import { Select } from "../index";
 
 type AccountSelectProps = {
   accountId: string | null;
@@ -13,6 +9,7 @@ type AccountSelectProps = {
   disabled?: boolean;
   noLabel?: boolean;
 };
+
 export const AccountSelect = ({
   accountId,
   setAccountId,

@@ -14,6 +14,7 @@ type CategorySelectProps = {
   setCategoryName?: (_: string | null) => void;
   disabled?: boolean;
 };
+/** @deprecated */
 export const CategorySelect = ({
   categoryId,
   setCategoryId,

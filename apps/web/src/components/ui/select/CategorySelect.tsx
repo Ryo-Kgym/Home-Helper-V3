@@ -2,20 +2,22 @@
 
 import { useGetValidCategoryByGenreIdQuery } from "@v3/graphql/household";
 
-import type { SelectData } from "../../Select";
-import { useGroup } from "../../../../hooks/group/useGroup";
-import { Select } from "../../Select";
+import type { SelectData } from "./v5";
+import { useGroup } from "../../../hooks/group/useGroup";
+import { Select } from "./v5";
 
 export const CategorySelect = ({
   categoryId,
   setCategoryId,
   genreId,
   disabled,
+  withLabel = false,
 }: {
   categoryId: string | null;
   setCategoryId: (_: string | null) => void;
   genreId: string | null;
   disabled?: boolean;
+  withLabel?: boolean;
 }) => {
   const { groupId } = useGroup();
 
@@ -38,7 +40,7 @@ export const CategorySelect = ({
 
   return (
     <Select
-      label={""}
+      label={withLabel ? "カテゴリ" : ""}
       value={categoryId}
       onChange={setCategoryId}
       data={categories}

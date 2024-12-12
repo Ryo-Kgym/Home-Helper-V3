@@ -15,6 +15,7 @@ type GenreSelectContainerProps = {
   setGenreName?: (_: string | null) => void;
   disabled?: boolean;
 };
+/** @deprecated */
 export const GenreSelectContainer = ({
   genreId,
   setGenreId,

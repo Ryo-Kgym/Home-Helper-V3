@@ -1,6 +1,6 @@
 import { Select as MantineSelect } from "@mantine/core";
 
-import { FieldContainer } from "../FieldContainer";
+import { FieldContainer } from "../../v4/FieldContainer";
 import { SelectProps } from "./index";
 
 export const Select = <T extends string | number>({
