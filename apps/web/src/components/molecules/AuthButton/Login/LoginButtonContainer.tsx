@@ -1,23 +1,20 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import { useUser } from "../../../../hooks/user/useUser";
 import { AuthButtonPresenter } from "../AuthButtonPresenter";
+import { checkLogin } from "./checkLogin";
 
 export const LoginButtonContainer = () => {
   const { push } = useRouter();
-  const { hasUserId } = useUser();
 
   const label = "Login";
-  const onClickHandler = () => {
-    if (hasUserId()) {
+  const onClickHandler = async () => {
+    try {
+      await checkLogin();
       push("/group");
+    } catch (e) {
+      push("/sign-in");
     }
-    push("/sign-in");
   };
 
   return <AuthButtonPresenter label={label} onClickHandler={onClickHandler} />;

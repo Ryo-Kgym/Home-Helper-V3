@@ -4633,10 +4633,12 @@ export type GetDetailsByCategoryQuery = {
   __typename?: "query_root";
   group?: {
     __typename?: "Group";
+    id: string;
     transfer?: {
       __typename?: "HouseholdTransferCategory";
       outcomeCategoryId: string;
       incomeCategoryId: string;
+      id: string;
     } | null;
     dailyDetails: Array<{
       __typename: "HouseholdDailyDetail";
@@ -6248,7 +6250,9 @@ export const GetDetailsByCategoryDocument = gql`
     $iocomeType: [String!] = ["INCOME", "OUTCOME"]
   ) {
     group: groupByPk(id: $groupId) {
+      id
       transfer: transferCategory {
+        id: groupId
         outcomeCategoryId
         incomeCategoryId
       }

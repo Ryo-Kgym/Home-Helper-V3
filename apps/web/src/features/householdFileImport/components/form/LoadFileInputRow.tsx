@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from "react";
 
 import { MemoTextArea } from "../../../../components/molecules/CustomTextArea/Memo";
+import { CategorySelect } from "../../../../components/ui/select/CategorySelect";
+import { GenreSelect } from "../../../../components/ui/select/GenreSelect";
 import { Table } from "../../../../components/ui/v4/table";
-import { CategorySelect } from "../../../../components/ui/v5/select/CategorySelect";
-import { GenreSelect } from "../../../../components/ui/v5/select/GenreSelect";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
 import { useImportFileRowAware } from "../../client/useImportFileRowAware";

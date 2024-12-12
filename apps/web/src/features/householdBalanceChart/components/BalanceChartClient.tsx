@@ -28,7 +28,7 @@ export const BalanceChartClient: FC<Props> = ({
       style={{
         height: "100%",
       }}
-      className="flex flex-row"
+      className="space-y-5"
     >
       <div className={"w-96"}>
         <RangeMonthPicker

@@ -4576,10 +4576,12 @@ export type GetDetailsByCategoryQuery = {
   __typename?: "query_root";
   group?: {
     __typename?: "Group";
+    id: string;
     transfer?: {
       __typename?: "HouseholdTransferCategory";
       outcomeCategoryId: string;
       incomeCategoryId: string;
+      id: string;
     } | null;
     dailyDetails: Array<{
       __typename: "HouseholdDailyDetail";
@@ -12852,6 +12854,7 @@ export const GetDetailsByCategoryDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
                   alias: { kind: "Name", value: "transfer" },
@@ -12859,6 +12862,11 @@ export const GetDetailsByCategoryDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "id" },
+                        name: { kind: "Name", value: "groupId" },
+                      },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "outcomeCategoryId" },

@@ -2,11 +2,11 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { AccountSelect } from "../../molecules/CustomSelect/Account";
 import { MemoTextArea } from "../../molecules/CustomTextArea/Memo";
 import { Button } from "../../ui";
 import { DatePicker } from "../../ui/date";
 import { AmountInput } from "../../ui/numberInput/amount/AmountInput";
+import { AccountSelect } from "../../ui/select/AccountSelect";
 
 export const TransferPresenter = ({
   date,

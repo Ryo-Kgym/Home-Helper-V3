@@ -1,9 +1,8 @@
-import { useRecoilState } from "recoil";
-
-import { messageState } from "../../recoil/messageState";
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
 
 export const useMessage = () => {
-  const [messages, setMessages] = useRecoilState(messageState);
+  const { messages, setMessages } = useStateMessages();
 
   const setMessage = (message: string) => {
     setMessages([message]);
@@ -25,3 +24,21 @@ export const useMessage = () => {
     clear,
   };
 };
+
+type State = {
+  messages: string[];
+};
+
+type Actions = {
+  setMessages: (value: string[]) => void;
+};
+
+const useStateMessages = create<State & Actions>()(
+  immer((set) => ({
+    messages: [],
+    setMessages: (value) =>
+      set((state) => {
+        state.messages = value;
+      }),
+  })),
+);

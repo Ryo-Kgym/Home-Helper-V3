@@ -1,26 +1,15 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import { useRouter } from "next/navigation";
 import { useClerk } from "@clerk/nextjs";
 
-import { useGroup } from "../group/useGroup";
 import { useMessage } from "../message/useMessage";
-import { useUser } from "../user/useUser";
 
 export const useAuth = () => {
-  const { save: saveUser } = useUser();
-  const { save: saveGroup } = useGroup();
   const { setMessage } = useMessage();
   const { signOut, session } = useClerk();
   const { push } = useRouter();
 
   const logout = async () => {
-    saveUser({ id: "", name: "", email: "" });
-    saveGroup({ id: "", name: "" });
     setMessage("ログアウトしました。");
-
     await signOut();
     push("/");
   };

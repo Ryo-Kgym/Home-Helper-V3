@@ -2,20 +2,22 @@
 
 import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
 
-import { Select } from "../../../../components/ui";
-import { IocomeType } from "../../../../domain/model/household/IocomeType";
-import { useGroup } from "../../../../hooks/group/useGroup";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { useGroup } from "../../../hooks/group/useGroup";
+import { Select } from "../index";
 
 export const GenreSelect = ({
   genreId,
   setGenreId,
   iocomeType,
   disabled,
+  withLabel = false,
 }: {
   genreId: string | null;
   setGenreId: (_: string | null) => void;
   iocomeType: IocomeType;
   disabled?: boolean;
+  withLabel?: boolean;
 }) => {
   const { groupId } = useGroup();
   const [{ data }] = useGetValidGenreListByIocomeTypeQuery({
@@ -33,7 +35,7 @@ export const GenreSelect = ({
 
   return (
     <Select
-      label={""}
+      label={withLabel ? "ジャンル" : ""}
       value={genreId}
       onChange={setGenreId}
       data={genres}

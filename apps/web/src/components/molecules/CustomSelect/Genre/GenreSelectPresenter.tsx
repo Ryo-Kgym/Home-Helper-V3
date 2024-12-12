@@ -10,6 +10,7 @@ type GenreSelectPresenterProps = {
   genres: SelectData[];
   disabled?: boolean;
 };
+/** @deprecated */
 export const GenreSelectPresenter = ({
   value,
   onChange,

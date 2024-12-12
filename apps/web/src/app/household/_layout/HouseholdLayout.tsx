@@ -29,7 +29,7 @@ const householdMenu: Navi[] = [
   },
   {
     label: "残高チャート",
-    url: paths.household.dashboard,
+    url: paths.household.balanceChart,
   },
   {
     label: "カテゴリチャート",
