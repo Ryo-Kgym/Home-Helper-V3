@@ -337,8 +337,8 @@ importers:
         specifier: ^2.0.14
         version: 2.0.14(react@18.3.1)
       recharts:
-        specifier: 2.13.0-alpha.1
-        version: 2.13.0-alpha.1(react-dom@18.3.1)(react@18.3.1)
+        specifier: 2.14.1
+        version: 2.14.1(react-dom@18.3.1)(react@18.3.1)
       sass:
         specifier: ^1.72.0
         version: 1.77.8
@@ -14748,8 +14748,8 @@ packages:
       decimal.js-light: 2.5.1
     dev: false
 
-  /recharts@2.13.0-alpha.1(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-RjMA5YaEWpQOiVe5LXhqdBULcGpxGLS1U9FdTf7Tg8GwkM/KxUcMASRIBBNoMj2TAe9ee3o5/w7SNkwvZsWhKQ==}
+  /recharts@2.14.1(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-xtWulflkA+/xu4/QClBdtZYN30dbvTHjxjkh5XTMrH/CQ3WGDDPHHa/LLKCbgoqz0z3UaSH2/blV1i6VNMeh1g==}
     engines: {node: '>=14'}
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
