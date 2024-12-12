@@ -7,12 +7,12 @@
 import { useRouter } from "next/navigation";
 import { useGetCreditCardListQuery } from "@v3/graphql/household";
 
+import { TableProps } from "../../../components/atoms/Table";
 import { useGroup } from "../../../hooks/group/useGroup";
-import { TableProps } from "../../atoms/Table";
 import { creditCardListConverter } from "./creditCardListConverter";
-import { CreditCardTablePresenter } from "./CreditCardTablePresenter";
+import { CreditHistoryListPresenter } from "./CreditHistoryListPresenter";
 
-export const CreditCardTableContainer = () => {
+export const CreditHistoryListContainer = () => {
   const { groupId } = useGroup();
   const { push } = useRouter();
 
@@ -27,5 +27,5 @@ export const CreditCardTableContainer = () => {
     showDetailPage,
   });
 
-  return <CreditCardTablePresenter tableProps={tableProps} />;
+  return <CreditHistoryListPresenter tableProps={tableProps} />;
 };
