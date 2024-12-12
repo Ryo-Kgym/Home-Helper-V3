@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 import "styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/core/styles.layer.css";
@@ -10,7 +6,6 @@ import "mantine-datatable/styles.layer.css";
 
 import { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ColorSchemeScript } from "@mantine/core";
 
 import { ClientsProviders } from "./_provider/ClientsProviders";
 
@@ -26,7 +21,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
         type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
       />
-      <ColorSchemeScript />
     </head>
     <body>
       <ClerkProvider>

@@ -1,6 +1,6 @@
 "use server";
 
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const findEmail = async () => {
   const nullableUser = await currentUser();

@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.9.9",
-    "@clerk/nextjs": "^4.29.9",
+    "@clerk/nextjs": "^6.9.0",
     "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
     "@graphql-codegen/cli": "^3.3.1",
