@@ -56,7 +56,7 @@ export const BalanceChart = <T extends string>({
           top: 5,
           right: 30,
           left: 20,
-          bottom: 5,
+          bottom: 30,
         }}
         onClick={onClick}
       >
