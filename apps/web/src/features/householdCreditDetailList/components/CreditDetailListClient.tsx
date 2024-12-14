@@ -40,9 +40,10 @@ export const CreditDetailListClient: FC<Props> = ({
   const { push } = useRouter();
 
   const tableProps: TableProps[] =
-    details.map((detail) => ({
+    details.map((detail, index) => ({
       keyPrefix: "creditDetail",
       columns: [
+        { value: index + 1 },
         { value: detail.date, align: "center" },
         {
           value: detail.genreName,
@@ -85,7 +86,7 @@ export const CreditDetailListClient: FC<Props> = ({
         <Button type={"add"} onClick={addHandler} label={"追加"} />
       </div>
       <Table
-        header={["日付", "ジャンル", "カテゴリ", "金額", "メモ"]}
+        header={["No.", "日付", "ジャンル", "カテゴリ", "金額", "メモ"]}
         tablePropsList={tableProps}
         size={"xs"}
         toBottom
