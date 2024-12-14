@@ -9,6 +9,7 @@ import { Button } from "../../../components/ui/button/v5";
 import { IsExpenseTag } from "../../../components/ui/tag/v5/IsExpenseTag";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { paths } from "../../../routing/paths";
+import { CreditSummaryTable } from "./CreditSummaryTable";
 
 type Props = {
   creditCardSummaryId: string;
@@ -78,14 +79,8 @@ export const CreditDetailListClient: FC<Props> = ({
 
   return (
     <div className={"space-y-3"}>
-      <div className={"flex space-x-5 p-3 text-2xl"}>
-        <div>カード： {summary.creditCard}</div>
-        <div>引落日： {summary.withdrawalDate}</div>
-        <div>アカウント： {summary.accountName}</div>
-        <div>{summary.count}件</div>
-        <div>{summary.totalAmount.toLocaleString()}円</div>
-      </div>
-      <div className={"grid grid-cols-2"}>
+      <CreditSummaryTable {...summary} />
+      <div className={"flex"}>
         <Button type={"back"} onClick={backHandler} label={"戻る"} />
         <Button type={"add"} onClick={addHandler} label={"追加"} />
       </div>
