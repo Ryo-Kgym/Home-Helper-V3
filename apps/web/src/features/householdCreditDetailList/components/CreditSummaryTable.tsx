@@ -3,24 +3,15 @@ import { FC } from "react";
 import { AccountSelect } from "../../../components/ui/select/AccountSelect";
 import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";
 import { TextInput } from "../../../components/ui/v4/textInput";
+import { SummaryDisplayState, SummaryFormState } from "../types/summaryProps";
 import styles from "./CreditSummaryTable.module.scss";
+import { useStateCreditSummary } from "./useStateCreditSummary";
 
 type Props = SummaryFormState & SummaryDisplayState;
 
-type SummaryFormState = {
-  creditCard: string;
-  withdrawalDate: Date;
-  accountId: string;
-};
-
-type SummaryDisplayState = {
-  id: string;
-  creditCard: string;
-  totalAmount: number;
-  count: number;
-};
-
 export const CreditSummaryTable: FC<Props> = (summary) => {
+  const { form, setForm } = useStateCreditSummary({ init: summary });
+
   return (
     <table className={styles.table}>
       <tbody>
@@ -29,8 +20,8 @@ export const CreditSummaryTable: FC<Props> = (summary) => {
           <td>
             <TextInput
               label={""}
-              value={summary.creditCard}
-              setValue={() => undefined}
+              value={form.creditCard}
+              setValue={(v) => setForm({ ...form, creditCard: v })}
             />
           </td>
         </tr>
@@ -39,8 +30,11 @@ export const CreditSummaryTable: FC<Props> = (summary) => {
           <td>
             <DateInput
               label={""}
-              value={summary.withdrawalDate}
-              setValue={() => undefined}
+              value={form.withdrawalDate}
+              setValue={(v) => {
+                if (!v) return;
+                setForm({ ...form, withdrawalDate: v });
+              }}
             />
           </td>
         </tr>
@@ -48,8 +42,11 @@ export const CreditSummaryTable: FC<Props> = (summary) => {
           <td>アカウント</td>
           <td>
             <AccountSelect
-              accountId={summary.accountId}
-              setAccountId={() => undefined}
+              accountId={form.accountId}
+              setAccountId={(v) => {
+                if (!v) return;
+                setForm({ ...form, accountId: v });
+              }}
               noLabel
             />
           </td>
