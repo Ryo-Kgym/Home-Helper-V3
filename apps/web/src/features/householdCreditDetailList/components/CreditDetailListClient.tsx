@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { ComponentProps, FC } from "react";
 import { useRouter } from "next/navigation";
 
 import { Table, TableProps } from "../../../components/atoms/Table";
@@ -13,14 +13,7 @@ import { CreditSummaryTable } from "./CreditSummaryTable";
 
 type Props = {
   creditCardSummaryId: string;
-  summary: {
-    id: string;
-    creditCard: string;
-    withdrawalDate: string;
-    accountName: string;
-    totalAmount: number;
-    count: number;
-  };
+  summary: ComponentProps<typeof CreditSummaryTable>;
   details: {
     id: string;
     date: string;
