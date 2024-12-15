@@ -74,18 +74,18 @@ export const CreditDetailListClient: FC<Props> = ({
   return (
     <div className={"space-y-3"}>
       <CreditSummaryTable {...summary} />
-      <div className={"flex"}>
-        <Button type={"back"} onClick={backHandler} label={"戻る"} />
-        <Button type={"add"} onClick={addHandler} label={"追加"} />
-      </div>
       <Table
         header={["No.", "日付", "ジャンル", "カテゴリ", "金額", "メモ"]}
         tablePropsList={tableProps}
         size={"xs"}
-        toBottom
-        height={"80vh"}
+        // toBottom
+        height={"50vh"}
         defaultBottom={false}
       />
+      <div className={"flex"}>
+        <Button type={"back"} onClick={backHandler} label={"戻る"} />
+        <Button type={"add"} onClick={addHandler} label={"追加"} />
+      </div>
     </div>
   );
 };

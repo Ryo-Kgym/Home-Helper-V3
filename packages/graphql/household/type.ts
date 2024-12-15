@@ -134,6 +134,70 @@ export type AffiliationUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
 
+/** order by aggregate values of table "app" */
+export type AppAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<AppMaxOrderBy>;
+  min?: InputMaybe<AppMinOrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "app". All fields are combined with a logical 'AND'. */
+export type AppBoolExp = {
+  _and?: InputMaybe<Array<AppBoolExp>>;
+  _not?: InputMaybe<AppBoolExp>;
+  _or?: InputMaybe<Array<AppBoolExp>>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+};
+
+/** order by max() on columns of table "app" */
+export type AppMaxOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "app" */
+export type AppMinOrderBy = {
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** Ordering options when selecting data from "app". */
+export type AppOrderBy = {
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "app" */
+export type AppSelectColumn =
+  /** column name */
+  | "groupId"
+  /** column name */
+  | "id"
+  /** column name */
+  | "name";
+
+/** Streaming cursor of the table "app" */
+export type AppStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: AppStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type AppStreamCursorValueInput = {
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
+};
+
 /** Boolean expression to filter rows from the table "application". All fields are combined with a logical 'AND'. */
 export type ApplicationBoolExp = {
   _and?: InputMaybe<Array<ApplicationBoolExp>>;
@@ -295,6 +359,7 @@ export type GroupBoolExp = {
   accountsAggregate?: InputMaybe<HouseholdAccountAggregateBoolExp>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
   affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
+  apps?: InputMaybe<AppBoolExp>;
   categories?: InputMaybe<HouseholdCategoryBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
@@ -324,6 +389,7 @@ export type GroupBoolExp = {
 export type GroupOrderBy = {
   accountsAggregate?: InputMaybe<HouseholdAccountAggregateOrderBy>;
   affiliationsAggregate?: InputMaybe<AffiliationAggregateOrderBy>;
+  appsAggregate?: InputMaybe<AppAggregateOrderBy>;
   categoriesAggregate?: InputMaybe<HouseholdCategoryAggregateOrderBy>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateOrderBy>;
@@ -3805,6 +3871,19 @@ export type UpdateCreditCardDetailByIdMutation = {
   __typename?: "mutation_root";
   updateHouseholdCreditCardDetailByPk?: {
     __typename?: "HouseholdCreditCardDetail";
+    id: string;
+  } | null;
+};
+
+export type UpdateCreditSummaryMutationVariables = Exact<{
+  id: Scalars["String"];
+  form: HouseholdCreditCardSummarySetInput;
+}>;
+
+export type UpdateCreditSummaryMutation = {
+  __typename?: "mutation_root";
+  updateCreditCardSummary?: {
+    __typename?: "HouseholdCreditCardSummary";
     id: string;
   } | null;
 };
@@ -8382,6 +8461,92 @@ export const UpdateCreditCardDetailByIdDocument = {
 } as unknown as DocumentNode<
   UpdateCreditCardDetailByIdMutation,
   UpdateCreditCardDetailByIdMutationVariables
+>;
+export const UpdateCreditSummaryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "updateCreditSummary" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "form" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: {
+                kind: "Name",
+                value: "HouseholdCreditCardSummarySetInput",
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "updateCreditCardSummary" },
+            name: {
+              kind: "Name",
+              value: "updateHouseholdCreditCardSummaryByPk",
+            },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "pkColumns" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "id" },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "_set" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "form" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateCreditSummaryMutation,
+  UpdateCreditSummaryMutationVariables
 >;
 export const GetAllCategoriesDocument = {
   kind: "Document",

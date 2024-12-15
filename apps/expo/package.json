@@ -45,7 +45,7 @@
     "react-native-swipe-list-view": "^3.2.9",
     "react-native-url-polyfill": "^2.0.0",
     "superjson": "2.2.1",
-    "urql": "^4.0.0"
+    "urql": "^4.0.6"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:^",

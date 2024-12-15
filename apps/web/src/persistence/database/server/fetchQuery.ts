@@ -24,6 +24,9 @@ type Exact<T extends Record<string, unknown>> = {
   [K in keyof T]: T[K];
 };
 
+/**
+ * @deprecated {@link execQuery} を使用してください。
+ */
 export const fetchQuery = async <
   Q extends {
     __typename?: "query_root";
