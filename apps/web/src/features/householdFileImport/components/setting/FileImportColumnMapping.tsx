@@ -1,10 +1,7 @@
 import { FC } from "react";
 
 import { NumberInput } from "../../../../components/ui/v4/textInput";
-import {
-  ColumnName,
-  useFileImportColumnMapping,
-} from "../../client/useFileImportColumnMapping";
+import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
 
 export const FileImportColumnMapping: FC = () => {
   const { mapping, setMapping } = useFileImportColumnMapping();
@@ -12,19 +9,19 @@ export const FileImportColumnMapping: FC = () => {
     <div className={"space-y-5"}>
       <span className={"font-bold"}>列のマッピング</span>
       <div className={"space-y-5"}>
-        {Object.entries(mapping).map(([columnName, value]) => (
+        {Object.values(fields).map(({ columnName, label }) => (
           <div key={columnName}>
             <div>
               <NumberInput
-                label={label[columnName as ColumnName]}
-                value={value ?? ""}
+                label={label}
+                value={mapping[columnName] ?? ""}
                 setValue={(value) => {
                   if (value === "") {
-                    setMapping(columnName as ColumnName, null);
+                    setMapping(columnName, null);
                     return;
                   }
 
-                  setMapping(columnName as ColumnName, value);
+                  setMapping(columnName, value);
                 }}
               />
             </div>
@@ -35,8 +32,25 @@ export const FileImportColumnMapping: FC = () => {
   );
 };
 
-const label: Record<ColumnName, string> = {
-  settlementDate: "決済日",
-  amount: "金額",
-  memo: "メモ",
+export type ColumnName = "settlementDate" | "amount" | "memo";
+
+const fields: Record<
+  ColumnName,
+  {
+    columnName: ColumnName;
+    label: string;
+  }
+> = {
+  settlementDate: {
+    columnName: "settlementDate",
+    label: "決済日",
+  },
+  amount: {
+    columnName: "amount",
+    label: "金額",
+  },
+  memo: {
+    columnName: "memo",
+    label: "メモ",
+  },
 };

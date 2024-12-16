@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+import { ColumnName } from "../components/setting/FileImportColumnMapping";
+
 export const useFileImportColumnMapping = () =>
   useFileImportColumnMappingState((store) => ({
     mapping: store.fileImportColumnMapping,
@@ -11,8 +13,6 @@ export const useFileImportColumnMapping = () =>
       });
     },
   }));
-
-export type ColumnName = "settlementDate" | "amount" | "memo";
 
 type State = {
   fileImportColumnMapping: Record<ColumnName, number | null>;
