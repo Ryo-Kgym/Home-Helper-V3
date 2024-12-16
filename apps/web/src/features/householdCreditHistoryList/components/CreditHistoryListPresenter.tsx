@@ -1,13 +1,9 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-import { Table, TableProps } from "../../atoms/Table";
+import { Table, TableProps } from "../../../components/atoms/Table";
 
 type CreditCardTablePresenterProps = {
   tableProps: TableProps[];
 };
-export const CreditCardTablePresenter = ({
+export const CreditHistoryListPresenter = ({
   tableProps,
 }: CreditCardTablePresenterProps) => (
   <div className={"col-span-1 grid"}>

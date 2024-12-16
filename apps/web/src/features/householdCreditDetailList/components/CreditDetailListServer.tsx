@@ -20,8 +20,8 @@ export const CreditDetailListServer = async ({
   const summary = {
     id: data.creditCardSummary.id,
     creditCard: data.creditCardSummary.creditCard,
-    withdrawalDate: data.creditCardSummary.withdrawalDate,
-    accountName: data.creditCardSummary.account.name,
+    withdrawalDate: new Date(data.creditCardSummary.withdrawalDate),
+    accountId: data.creditCardSummary.account.id,
     totalAmount: data.creditCardSummary.totalAmount as number,
     count: data.creditCardSummary.creditCardDetails.length,
   };

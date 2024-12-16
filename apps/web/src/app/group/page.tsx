@@ -1,4 +1,4 @@
-import { SelectGroup } from "../../feature/group/select";
+import { SelectGroupServer } from "../../features/groupSelect/components/SelectGroupServer";
 
-const SelectGroupPage = () => <SelectGroup />;
+const SelectGroupPage = () => <SelectGroupServer />;
 export default SelectGroupPage;

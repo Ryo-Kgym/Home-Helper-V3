@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
+import { CreditHistoryListContainer } from "../../../features/householdCreditHistoryList/components/CreditHistoryListContainer";
 
-import { CreditCardTable } from "components/page/CreditCardTable";
-
-export default CreditCardTable;
+export default CreditHistoryListContainer;
