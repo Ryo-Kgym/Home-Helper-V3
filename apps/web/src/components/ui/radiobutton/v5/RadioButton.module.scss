@@ -1,0 +1,16 @@
+.module {
+  display: flex;
+  gap: 8px;
+}
+
+.moduleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
