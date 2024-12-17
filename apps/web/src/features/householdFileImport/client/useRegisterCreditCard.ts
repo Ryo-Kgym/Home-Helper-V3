@@ -6,13 +6,17 @@ import {
 import { useGroup } from "../../../hooks/group/useGroup";
 import { useGenerateId } from "../../../hooks/useGenerateId";
 import { useUser } from "../../../hooks/user/useUser";
-import { FileType } from "../../../provider/file/FileType";
 import { LoadFileProps } from "../types";
+import { ImportFileType } from "../types/importFileType";
 
 /**
  * @package
  */
-export const useRegisterCreditCard = ({ fileType }: { fileType: FileType }) => {
+export const useRegisterCreditCard = ({
+  fileType,
+}: {
+  fileType: ImportFileType;
+}) => {
   const { generate } = useGenerateId();
   const { userId } = useUser();
   const { groupId } = useGroup();

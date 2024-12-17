@@ -10,6 +10,9 @@ export const useImportFileRowAware = () =>
         [row]: attributes,
       });
     },
+    clearImportFileRowAware: () => {
+      store.setImportFileRowAware({});
+    },
   }));
 
 type Attributes = {

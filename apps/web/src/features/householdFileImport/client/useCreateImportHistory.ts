@@ -3,13 +3,13 @@ import { useCreateImportFileHistoryMutation } from "@v3/graphql/household";
 import { useGroup } from "../../../hooks/group/useGroup";
 import { useGenerateId } from "../../../hooks/useGenerateId";
 import { useUser } from "../../../hooks/user/useUser";
-import { FileType } from "../../../provider/file/FileType";
+import { ImportFileType } from "../types/importFileType";
 
 export const useCreateImportHistory = ({
   fileType,
   fileName,
 }: {
-  fileType: FileType;
+  fileType: ImportFileType;
   fileName: string;
 }) => {
   const { generate } = useGenerateId();

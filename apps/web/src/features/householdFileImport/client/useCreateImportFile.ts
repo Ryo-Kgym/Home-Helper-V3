@@ -1,5 +1,5 @@
-import { FileType } from "../../../provider/file/FileType";
 import { LoadFileProps } from "../types";
+import { ImportFileType } from "../types/importFileType";
 import { useCreateImportHistory } from "./useCreateImportHistory";
 import { useRegisterCreditCard } from "./useRegisterCreditCard";
 
@@ -7,7 +7,7 @@ export const useCreateImportFile = ({
   fileType,
   fileName,
 }: {
-  fileType: FileType;
+  fileType: ImportFileType;
   fileName: string;
 }) => {
   const { registerImportHistory } = useCreateImportHistory({

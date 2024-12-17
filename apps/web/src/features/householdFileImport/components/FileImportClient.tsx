@@ -23,7 +23,7 @@ export const FileImportClient: FC = () => {
         <FileImportColumnMapping importFileType={importFileType} />
       </div>
       <div className={"h-full flex-1"}>
-        <FileImportForm />
+        <FileImportForm importFileType={importFileType} />
       </div>
     </div>
   );

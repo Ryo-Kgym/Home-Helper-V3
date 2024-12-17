@@ -2,15 +2,22 @@ import { FC } from "react";
 
 import { Table } from "../../../../components/ui/v4/table";
 import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
+import { ImportFileType } from "../../types/importFileType";
 import { LoadFileInputRow } from "./LoadFileInputRow";
 
 type Props = {
+  importFileType: ImportFileType;
   visible: boolean;
   header: string[];
   body: string[][];
 };
 
-export const LoadFileInputTable: FC<Props> = ({ visible, header, body }) => {
+export const LoadFileInputTable: FC<Props> = ({
+  importFileType,
+  visible,
+  header,
+  body,
+}) => {
   const { mapping } = useFileImportColumnMapping();
 
   return (
@@ -34,7 +41,12 @@ export const LoadFileInputTable: FC<Props> = ({ visible, header, body }) => {
       <Table.Body
         data={visible ? body : []}
         renderItem={(item, rowNumber) => (
-          <LoadFileInputRow key={rowNumber} item={item} rowNumber={rowNumber} />
+          <LoadFileInputRow
+            key={rowNumber}
+            importFileType={importFileType}
+            item={item}
+            rowNumber={rowNumber}
+          />
         )}
       />
     </Table>
