@@ -32,7 +32,7 @@ export const FileImportForm: FC = () => {
 
   const total =
     body.reduce((acc, cur) => {
-      if (mapping.amount === null) return acc;
+      if (!mapping?.amount) return acc;
 
       const amount = Number(cur[mapping.amount - 1]);
 
