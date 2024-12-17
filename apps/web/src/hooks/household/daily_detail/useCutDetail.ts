@@ -3,7 +3,7 @@
  */
 
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
-import { useRegisterDailyDetail } from "./useRegisterDailyDetail";
+import { registerDailyDetail } from "../../../useServer/household/daily_detail/registerDailyDetail";
 import { useUpdateDailyDetailBySerialNo } from "./useUpdateDailyDetailBySerialNo";
 
 export const useCutDetail = ({
@@ -34,19 +34,17 @@ export const useCutDetail = ({
     amount: origin.deductedAmount,
     memo: origin.rewrittenMemo,
   });
-  const { registerHandler } = useRegisterDailyDetail({
-    date: newDetail.detailDate,
-    genreId: newDetail.genreId,
-    iocomeType: origin.initData.iocomeType!,
-    categoryId: newDetail.categoryId,
-    accountId: newDetail.accountId,
-    amount: newDetail.amount,
-    memo: newDetail.memo,
-  });
-
   const cutDetailHandler = async () => {
     await updateHandler();
-    await registerHandler();
+    await registerDailyDetail({
+      date: newDetail.detailDate,
+      genreId: newDetail.genreId,
+      iocomeType: origin.initData.iocomeType!,
+      categoryId: newDetail.categoryId,
+      accountId: newDetail.accountId,
+      amount: newDetail.amount,
+      memo: newDetail.memo,
+    });
   };
 
   return {

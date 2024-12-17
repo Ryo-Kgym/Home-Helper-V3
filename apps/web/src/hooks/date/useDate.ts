@@ -1,5 +1,8 @@
 import dayjs from "dayjs";
 
+/**
+ * @deprecated {@link convertToFull} を使用してください。
+ */
 export const useDate = () => {
   const getNow = () => {
     const date = new Date();
