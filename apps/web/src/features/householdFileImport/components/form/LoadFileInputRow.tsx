@@ -17,6 +17,7 @@ export const LoadFileInputRow: FC<Props> = ({ item, rowNumber }) => {
   const [genreId, setGenreId] = useState<string | null>(null);
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const [memo, setMemo] = useState<string>("");
+  const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Outcome);
   const { mapping } = useFileImportColumnMapping();
   const { setImportFileRowAware } = useImportFileRowAware();
 
@@ -41,6 +42,19 @@ export const LoadFileInputRow: FC<Props> = ({ item, rowNumber }) => {
     [categoryId, memo],
   );
 
+  useEffect(() => {
+    if (!mapping.income || !mapping.outcome) {
+      return;
+    }
+
+    if (item[mapping.income - 1] !== "" && item[mapping.outcome - 1] === "") {
+      setIocomeType(IocomeType.Income);
+    }
+    if (item[mapping.income - 1] === "" && item[mapping.outcome - 1] !== "") {
+      setIocomeType(IocomeType.Outcome);
+    }
+  }, [item, mapping]);
+
   useEffect(
     () => {
       if (!mapping.memo) return;
@@ -62,7 +76,7 @@ export const LoadFileInputRow: FC<Props> = ({ item, rowNumber }) => {
             <GenreSelect
               genreId={genreId}
               setGenreId={setGenreId}
-              iocomeType={IocomeType.Outcome}
+              iocomeType={iocomeType}
               disabled={hasNull}
             />
           </Table.BodyTd>,
