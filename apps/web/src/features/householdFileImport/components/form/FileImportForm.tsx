@@ -9,11 +9,11 @@ import { FileInput } from "../../../../components/ui/v5/file/FileInput";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../../function/successPopup";
 import { useBuildTable } from "../../client/useBuildTable";
-import { useCreateImportFile } from "../../client/useCreateImportFile";
 import { useImportFileRowAware } from "../../client/useImportFileRowAware";
 import { useLoadFile } from "../../client/useLoadFile";
 import { useMessage } from "../../client/useMessage";
 import { ImportFileType } from "../../types/importFileType";
+import { registerImported } from "../../useServer/registerImported";
 import { LoadFileInputTable } from "./LoadFileInputTable";
 
 type Props = {
@@ -29,10 +29,6 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
   const { message } = useMessage(loadFile);
   const { importFileRowAware, clearImportFileRowAware } =
     useImportFileRowAware();
-  const { registerImported } = useCreateImportFile({
-    fileType: importFileType,
-    fileName: uploadFile?.name ?? "",
-  });
 
   const total =
     Object.values(importFileRowAware).reduce((acc, cur) => {
@@ -48,8 +44,9 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
     try {
       console.log(importFileRowAware);
       console.log(body);
-      return;
       await registerImported({
+        importFileType,
+        fileName: uploadFile?.name ?? "",
         withdrawalDate,
         accountId: accountId ?? "",
         loadData: Object.values(importFileRowAware).map((v) => ({
