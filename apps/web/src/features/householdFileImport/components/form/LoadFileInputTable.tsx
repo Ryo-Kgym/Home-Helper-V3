@@ -23,7 +23,9 @@ export const LoadFileInputTable: FC<Props> = ({ visible, header, body }) => {
               ([, value]) => value === columnNumber,
             ) ?? [null, null];
 
-            return { name: columnName ? `[${columnName}]` : name };
+            return {
+              name: columnName ? `[${columnName}]` : `${index + 1}:${name}`,
+            };
           })
           .concat({ name: "ジャンル" })
           .concat({ name: "カテゴリ" })
