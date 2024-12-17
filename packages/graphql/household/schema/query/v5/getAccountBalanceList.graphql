@@ -15,7 +15,11 @@ query getAccountBalanceList(
     ) {
       aggregate {
         sum {
+          id: originalAmount
           signedAmount
+        }
+        max {
+          id: accountId
         }
       }
     }

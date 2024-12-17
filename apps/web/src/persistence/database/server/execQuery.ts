@@ -5,7 +5,7 @@ import { makeClient } from "./makeClient";
 
 export const execQuery = async <
   Q extends {
-    __typename?: "Query";
+    __typename?: "query_root";
   },
   V extends Exact<Record<string, unknown>>,
 >(

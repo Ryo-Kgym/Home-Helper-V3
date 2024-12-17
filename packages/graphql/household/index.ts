@@ -4608,6 +4608,11 @@ export type GetAccountBalanceListQuery = {
         sum?: {
           __typename?: "HouseholdAllDetailViewSumFields";
           signedAmount?: any | null;
+          id?: any | null;
+        } | null;
+        max?: {
+          __typename?: "HouseholdAllDetailViewMaxFields";
+          id?: string | null;
         } | null;
       } | null;
     };
@@ -6244,7 +6249,11 @@ export const GetAccountBalanceListDocument = gql`
       ) {
         aggregate {
           sum {
+            id: originalAmount
             signedAmount
+          }
+          max {
+            id: accountId
           }
         }
       }

@@ -5,7 +5,7 @@ import {
 import { GetAccountBalanceListDocument } from "@v3/graphql/household/type";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
-import { fetchQuery } from "../../../persistence/database/server/fetchQuery";
+import { execQuery } from "../../../persistence/database/server/execQuery";
 
 export const fetchBalanceList = async ({
   fromDate,
@@ -14,13 +14,19 @@ export const fetchBalanceList = async ({
   fromDate: Date;
   toDate: Date;
 }) => {
-  const { group } = await findUser();
+  const {
+    group: { id: groupId },
+  } = await findUser();
 
-  const { data } = await fetchQuery(GetAccountBalanceListDocument, {
-    fromDate: fromDate,
-    toDate: toDate,
-    groupId: group.id,
+  const { data } = await execQuery(GetAccountBalanceListDocument, {
+    fromDate,
+    toDate,
+    groupId,
   });
+
+  if (!data) {
+    throw new Error("Failed to fetch balance list");
+  }
 
   const records = convertToAccounts(data);
   const total = totalBalance(data);
