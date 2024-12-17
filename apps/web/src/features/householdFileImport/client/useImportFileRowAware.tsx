@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+import { IocomeType } from "../../../domain/model/household/IocomeType";
+
 export const useImportFileRowAware = () =>
   useImportFileRowAwareZustandState((store) => ({
     importFileRowAware: store.importFileRowAware,
@@ -21,6 +23,7 @@ type Attributes = {
   memo: string;
   genreId: string;
   categoryId: string;
+  iocomeType: IocomeType;
 };
 
 type State = {

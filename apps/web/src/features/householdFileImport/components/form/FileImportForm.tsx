@@ -6,7 +6,6 @@ import { Button } from "../../../../components/ui/button/v5";
 import { DatePicker } from "../../../../components/ui/date";
 import { AccountSelect } from "../../../../components/ui/select/AccountSelect";
 import { FileInput } from "../../../../components/ui/v5/file/FileInput";
-import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../../function/successPopup";
 import { useBuildTable } from "../../client/useBuildTable";
 import { useImportFileRowAware } from "../../client/useImportFileRowAware";
@@ -42,17 +41,22 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
 
   const registerHandler = async () => {
     try {
+      if (!accountId) {
+        throw new Error("accountId is required");
+      }
+      if (uploadFile === null) {
+        throw new Error("uploadFile is required");
+      }
+
       console.log(importFileRowAware);
       console.log(body);
+
       await registerImported({
         importFileType,
-        fileName: uploadFile?.name ?? "",
+        fileName: uploadFile.name,
         withdrawalDate,
-        accountId: accountId ?? "",
-        loadData: Object.values(importFileRowAware).map((v) => ({
-          ...v,
-          iocomeType: IocomeType.Outcome,
-        })),
+        accountId,
+        loadData: Object.values(importFileRowAware),
       });
       successPopup("登録しました");
       onChange(null);

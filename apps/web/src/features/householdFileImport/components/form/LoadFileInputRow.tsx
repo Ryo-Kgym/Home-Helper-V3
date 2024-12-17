@@ -45,6 +45,7 @@ export const LoadFileInputRow: FC<Props> = ({
             memo: memo,
             genreId: genreId ?? "",
             categoryId: categoryId ?? "",
+            iocomeType,
           });
           break;
         }
@@ -65,6 +66,7 @@ export const LoadFileInputRow: FC<Props> = ({
             memo: memo,
             genreId: genreId ?? "",
             categoryId: categoryId ?? "",
+            iocomeType,
           });
           break;
         }

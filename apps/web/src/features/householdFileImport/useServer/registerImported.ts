@@ -1,5 +1,6 @@
 "use server";
 
+import { registerDailyDetail } from "../../../useServer/household/daily_detail/registerDailyDetail";
 import { LoadFileProps } from "../types";
 import { ImportFileType } from "../types/importFileType";
 import { registerCreditCard } from "./registerCreditCard";
@@ -22,10 +23,34 @@ export const registerImported = async ({
     importFileType,
     fileName,
   });
-  await registerCreditCard({
-    summaryId: fileImportId,
-    withdrawalDate,
-    accountId,
-    loadData,
-  });
+
+  switch (importFileType) {
+    case "creditCsv": {
+      await registerCreditCard({
+        summaryId: fileImportId,
+        withdrawalDate,
+        accountId,
+        loadData,
+      });
+      break;
+    }
+    case "bankCsv": {
+      await Promise.all(
+        loadData.map(
+          async (data) =>
+            await registerDailyDetail({
+              ...data,
+              accountId,
+            }),
+        ),
+      );
+
+      break;
+    }
+    default: {
+      ((_: never) => {
+        // noop
+      })(importFileType);
+    }
+  }
 };
