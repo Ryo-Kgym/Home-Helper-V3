@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
@@ -9,16 +6,16 @@ import {
   useUpdateCategoryByIdMutation,
 } from "@v3/graphql/household";
 
+import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
+import { ValiditySegment } from "../../../components/molecules/CustomSegment/ValiditySegment";
+import { GenreSelect } from "../../../components/molecules/CustomSelect/Genre";
+import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
+import { Button } from "../../../components/ui";
+import { DisplayOrderInput } from "../../../components/ui/numberInput/displayOrder/DisplayOrderInput";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
-import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
-import { ValiditySegment } from "../../molecules/CustomSegment/ValiditySegment";
-import { GenreSelect } from "../../molecules/CustomSelect/Genre";
-import { GenreNameTextInput } from "../../molecules/CustomTextInput";
-import { Button } from "../../ui";
-import { DisplayOrderInput } from "../../ui/numberInput/displayOrder/DisplayOrderInput";
 
-export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
+export const CategoryEdit = ({ categoryId }: { categoryId: string }) => {
   const [inputCategoryName, setInputCategoryName] = useState<string>("");
   const [inputIocomeType, setInputIocomeType] = useState<IocomeType>(
     IocomeType.Income,
