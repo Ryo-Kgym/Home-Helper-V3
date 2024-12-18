@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
 "use client";
 
 import { useState } from "react";
@@ -10,9 +7,9 @@ import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useGroup } from "../../../hooks/group/useGroup";
 import { useGenerateId } from "../../../hooks/useGenerateId";
-import { Presenter_ } from "./Presenter";
+import { CategoryAddPresenter } from "./CategoryAddPresenter";
 
-export const Container_ = () => {
+export const CategoryAddContainer = () => {
   const { generate } = useGenerateId();
   const { groupId } = useGroup();
   const [inputCategoryName, setInputCategoryName] = useState<string>("");
@@ -47,7 +44,7 @@ export const Container_ = () => {
   const registerable = inputCategoryName !== "" && inputGenreId !== null;
 
   return (
-    <Presenter_
+    <CategoryAddPresenter
       inputCategoryName={inputCategoryName}
       setInputCategoryName={setInputCategoryName}
       inputIocomeType={inputIocomeType}

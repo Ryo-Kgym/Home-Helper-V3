@@ -1,13 +1,9 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
-import { CategoryAdd } from "../../../../../../components/page/CategoryAdd";
 import { BackModal } from "../../../../../../components/ui";
+import { CategoryAddContainer } from "../../../../../../features/householdCategoryAdd/components/CategoryAddContainer";
 
 const Page = () => (
   <BackModal>
-    <CategoryAdd />
+    <CategoryAddContainer />
   </BackModal>
 );
 
