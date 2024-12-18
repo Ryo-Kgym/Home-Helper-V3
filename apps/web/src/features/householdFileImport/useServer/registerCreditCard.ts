@@ -44,9 +44,14 @@ export const registerCreditCard = async ({
     groupId,
   }));
 
-  await Promise.all(
-    detailVariableList.map(async (detail) => {
-      await execMutation(CreateCreditCardDetailDocument, detail);
-    }),
+  const results = await Promise.all(
+    detailVariableList.map(
+      async (detail) =>
+        await execMutation(CreateCreditCardDetailDocument, detail),
+    ),
   );
+
+  return {
+    count: results.length,
+  };
 };

@@ -34,36 +34,45 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
       return acc + cur.amount;
     }, 0) ?? 0;
 
-  const registerButtonDisabled =
-    !accountId ||
-    Object.keys(importFileRowAware).length === 0 ||
-    Object.keys(importFileRowAware).length !== body.length;
-
   const registerHandler = async () => {
-    try {
-      if (!accountId) {
-        throw new Error("accountId is required");
-      }
-      if (uploadFile === null) {
-        throw new Error("uploadFile is required");
-      }
+    if (!accountId) {
+      errorPopup("口座を選択してください");
+      return;
+    }
+    if (uploadFile === null) {
+      errorPopup("ファイルを選択してください");
+      return;
+    }
+    if (!Object.keys(importFileRowAware).length) {
+      errorPopup("ファイルを読み込んでください");
+      return;
+    }
+    if (
+      Object.values(importFileRowAware).some((v) => !v.genreId || !v.categoryId)
+    ) {
+      errorPopup("読み込んだ明細のうち、未入力な項目があります");
+      return;
+    }
 
+    try {
       console.log(importFileRowAware);
       console.log(body);
 
-      await registerImported({
+      const { count } = await registerImported({
         importFileType,
         fileName: uploadFile.name,
         withdrawalDate,
         accountId,
         loadData: Object.values(importFileRowAware),
       });
-      successPopup("登録しました");
+      successPopup(`${count}件の明細を登録しました`);
       onChange(null);
       setLoadFile("");
     } catch (e) {
       console.error(e);
-      errorPopup("登録に失敗しました");
+      errorPopup(
+        "登録に失敗しました。コンソールを開いて内容を確認してください。",
+      );
     }
   };
 
@@ -108,12 +117,7 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
         <span>合計</span>
         <span>{total.toLocaleString()}</span>
       </div>
-      <Button
-        label={"登録"}
-        onClick={registerHandler}
-        type={"create"}
-        disabled={registerButtonDisabled}
-      />
+      <Button label={"登録"} onClick={registerHandler} type={"create"} />
     </div>
   );
 };

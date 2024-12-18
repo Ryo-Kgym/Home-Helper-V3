@@ -24,18 +24,22 @@ export const registerImported = async ({
     fileName,
   });
 
+  let count = 0;
+
   switch (importFileType) {
     case "creditCsv": {
-      await registerCreditCard({
-        summaryId: fileImportId,
-        withdrawalDate,
-        accountId,
-        loadData,
-      });
+      count = (
+        await registerCreditCard({
+          summaryId: fileImportId,
+          withdrawalDate,
+          accountId,
+          loadData,
+        })
+      ).count;
       break;
     }
     case "bankCsv": {
-      await Promise.all(
+      const results = await Promise.all(
         loadData.map(
           async (data) =>
             await registerDailyDetail({
@@ -45,6 +49,7 @@ export const registerImported = async ({
         ),
       );
 
+      count = results.length;
       break;
     }
     default: {
@@ -53,4 +58,6 @@ export const registerImported = async ({
       })(importFileType);
     }
   }
+
+  return { count };
 };
