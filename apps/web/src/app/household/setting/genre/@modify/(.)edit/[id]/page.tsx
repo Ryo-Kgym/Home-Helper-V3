@@ -1,11 +1,11 @@
-import { GenreEdit } from "../../../../../../../components/page/GenreEdit";
 import { BackModal } from "../../../../../../../components/ui";
+import { GenreEditContainer } from "../../../../../../../features/householdGenreEdit/components/GenreEditContainer";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   return (
     <BackModal>
-      <GenreEdit genreId={id} />
+      <GenreEditContainer genreId={id} />
     </BackModal>
   );
 };

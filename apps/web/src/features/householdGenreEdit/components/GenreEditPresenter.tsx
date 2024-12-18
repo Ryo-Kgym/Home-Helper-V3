@@ -4,16 +4,16 @@
 
 import { ReactNode } from "react";
 
+import { GenreTypeSegment } from "../../../components/molecules/CustomSegment/GenreTypeSegment";
+import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
+import { ValiditySegment } from "../../../components/molecules/CustomSegment/ValiditySegment";
+import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
+import { Button } from "../../../components/ui";
+import { DisplayOrderInput } from "../../../components/ui/numberInput/displayOrder/DisplayOrderInput";
 import { GenreType } from "../../../domain/model/household/GenreType";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { GenreTypeSegment } from "../../molecules/CustomSegment/GenreTypeSegment";
-import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
-import { ValiditySegment } from "../../molecules/CustomSegment/ValiditySegment";
-import { GenreNameTextInput } from "../../molecules/CustomTextInput";
-import { Button } from "../../ui";
-import { DisplayOrderInput } from "../../ui/numberInput/displayOrder/DisplayOrderInput";
 
-export const Presenter_ = ({
+export const GenreEditPresenter = ({
   categories = [],
   inputGenreName,
   setInputGenreName,

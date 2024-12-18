@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -12,9 +9,9 @@ import {
 import { GenreType } from "../../../domain/model/household/GenreType";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
-import { Presenter_ } from "./Presenter";
+import { GenreEditPresenter } from "./GenreEditPresenter";
 
-export const Container_ = ({ genreId }: { genreId: string }) => {
+export const GenreEditContainer = ({ genreId }: { genreId: string }) => {
   const [inputGenreName, setInputGenreName] = useState<string>("");
   const [inputGenreType, setInputGenreType] = useState<GenreType>(
     GenreType.FIXED,
@@ -83,7 +80,7 @@ export const Container_ = ({ genreId }: { genreId: string }) => {
   }
 
   return (
-    <Presenter_
+    <GenreEditPresenter
       categories={categories}
       inputGenreName={inputGenreName}
       setInputGenreName={setInputGenreName}
