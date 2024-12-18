@@ -1,42 +1,40 @@
-import { useGetValidAccountsQuery } from "@v3/graphql/household";
+import { useEffect, useState } from "react";
 
-import { useGroup } from "../../../hooks/group/useGroup";
-import { Select } from "../index";
+import { fetchAccountList } from "./fetchAccountList";
+import { SelectProps } from "./v4";
+import { Select } from "./v5";
 
 type AccountSelectProps = {
   accountId: string | null;
   setAccountId: (_: string | null) => void;
   disabled?: boolean;
-  noLabel?: boolean;
+  withLabel?: boolean;
 };
 
 export const AccountSelect = ({
   accountId,
   setAccountId,
   disabled = false,
-  noLabel = false,
+  withLabel = false,
 }: AccountSelectProps) => {
-  const { groupId } = useGroup();
-  const [{ data }] = useGetValidAccountsQuery({
-    variables: {
-      groupId,
-    },
-  });
+  const [options, setOptions] = useState<SelectProps<string>["data"]>([]);
 
-  const accounts =
-    data?.allAccountsList?.map((account) => ({
-      label: account.accountName,
-      value: account.accountId,
-    })) ?? [];
+  useEffect(() => {
+    void (async () => {
+      const { accounts } = await fetchAccountList();
+      setOptions(accounts);
+    })();
+  }, []);
 
   return (
     <Select
-      label={noLabel ? "" : "ACCOUNT"}
+      label={withLabel ? "アカウント" : ""}
       value={accountId}
       onChange={setAccountId}
-      data={accounts}
+      data={options}
       placeholder={"アカウントを選択してください"}
       withAsterisk
+      size={"xs"}
       disabled={disabled}
     />
   );
