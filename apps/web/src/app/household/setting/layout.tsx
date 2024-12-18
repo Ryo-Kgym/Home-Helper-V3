@@ -1,8 +1,5 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 import { RoutingTabs } from "../../../components/ui/RoutingTabs";
+import { paths } from "../../../routing/paths";
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <RoutingTabs
@@ -11,17 +8,22 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
       {
         value: "genre",
         label: "ジャンル",
-        url: "/household/setting/genre",
+        url: paths.household.setting.genre,
       },
       {
         value: "category",
         label: "カテゴリ",
-        url: "/household/setting/category",
+        url: paths.household.setting.category,
       },
       {
         value: "categoryAdd",
         label: "カテゴリ登録",
-        url: "/household/setting/category/add",
+        url: paths.household.setting.categoryAdd,
+      },
+      {
+        value: "tag",
+        label: "タグ",
+        url: paths.household.setting.tag,
       },
     ]}
   >
