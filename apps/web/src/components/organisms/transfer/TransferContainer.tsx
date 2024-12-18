@@ -1,12 +1,9 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
 "use client";
 
 import { useState } from "react";
 
 import { errorPopup, successPopup } from "../../../function/successPopup";
-import { useRegisterTransfer } from "../../../hooks/household/transfer/useRegisterTransfer";
+import { registerTransfer } from "../../../hooks/household/transfer/useRegisterTransfer";
 import { TransferPresenter } from "./TransferPresenter";
 
 export const TransferContainer = ({ date }: { date: Date }) => {
@@ -21,17 +18,15 @@ export const TransferContainer = ({ date }: { date: Date }) => {
     receiveAccountId !== null &&
     amount !== 0;
 
-  const { registerTransfer } = useRegisterTransfer({
-    date: registerDate,
-    sendAccountId: sendAccountId!,
-    receiveAccountId: receiveAccountId!,
-    amount: amount as number,
-    memo: memo,
-  });
-
   const registerHandler = async () => {
     try {
-      await registerTransfer();
+      await registerTransfer({
+        date: registerDate,
+        sendAccountId: sendAccountId!,
+        receiveAccountId: receiveAccountId!,
+        amount: amount as number,
+        memo: memo,
+      });
       clearHandler();
       successPopup("振替を登録しました。");
     } catch (e) {
