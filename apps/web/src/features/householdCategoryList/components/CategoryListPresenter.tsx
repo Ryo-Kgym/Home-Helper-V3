@@ -1,11 +1,8 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
 "use client";
 
-import { Table, TableProps } from "../../atoms/Table";
+import { Table, TableProps } from "../../../components/atoms/Table";
 
-export const Presenter_ = ({
+export const CategoryListPresenter = ({
   tablePropsList,
 }: {
   tablePropsList: TableProps[];

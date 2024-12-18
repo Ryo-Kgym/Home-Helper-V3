@@ -1,17 +1,14 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
 "use client";
 
 import { useRouter } from "next/navigation";
 import { useGetAllCategoriesQuery } from "@v3/graphql/household";
 
+import { ValidityStatus } from "../../../components/atoms";
+import { TableProps } from "../../../components/atoms/Table";
 import { useGroup } from "../../../hooks/group/useGroup";
-import { ValidityStatus } from "../../atoms";
-import { TableProps } from "../../atoms/Table";
-import { Presenter_ } from "./Presenter";
+import { CategoryListPresenter } from "./CategoryListPresenter";
 
-export const Container_ = () => {
+export const CategoryListContainer = () => {
   const { push } = useRouter();
   const { groupId } = useGroup();
   const [{ data, fetching }] = useGetAllCategoriesQuery({
@@ -47,5 +44,5 @@ export const Container_ = () => {
       }),
     ) ?? [];
 
-  return <Presenter_ tablePropsList={tablePropsList} />;
+  return <CategoryListPresenter tablePropsList={tablePropsList} />;
 };
