@@ -3691,20 +3691,6 @@ export type UpdateCategoryByIdMutation = {
   updateCategoryByPk?: { __typename?: "HouseholdCategory"; id: string } | null;
 };
 
-export type UpdateCreditCardSummaryTotalMutationVariables = Exact<{
-  id: Scalars["String"];
-  totalAmount: Scalars["numeric"];
-  count: Scalars["Int"];
-}>;
-
-export type UpdateCreditCardSummaryTotalMutation = {
-  __typename?: "mutation_root";
-  updateCreditCardSummary?: {
-    __typename?: "HouseholdCreditCardSummary";
-    id: string;
-  } | null;
-};
-
 export type UpdateDailyDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   date: Scalars["date"];
@@ -5171,27 +5157,6 @@ export function useUpdateCategoryByIdMutation() {
     UpdateCategoryByIdMutation,
     UpdateCategoryByIdMutationVariables
   >(UpdateCategoryByIdDocument);
-}
-export const UpdateCreditCardSummaryTotalDocument = gql`
-  mutation UpdateCreditCardSummaryTotal(
-    $id: String!
-    $totalAmount: numeric!
-    $count: Int!
-  ) {
-    updateCreditCardSummary: updateHouseholdCreditCardSummaryByPk(
-      pkColumns: { id: $id }
-      _set: { totalAmount: $totalAmount, count: $count }
-    ) {
-      id
-    }
-  }
-`;
-
-export function useUpdateCreditCardSummaryTotalMutation() {
-  return Urql.useMutation<
-    UpdateCreditCardSummaryTotalMutation,
-    UpdateCreditCardSummaryTotalMutationVariables
-  >(UpdateCreditCardSummaryTotalDocument);
 }
 export const UpdateDailyDetailByIdDocument = gql`
   mutation UpdateDailyDetailById(

@@ -66,9 +66,6 @@ export const CreditDetailListClient: FC<Props> = ({
         ),
     })) ?? [];
 
-  const addHandler = () =>
-    push(paths.household.creditDetail.add({ creditCardSummaryId }));
-
   const backHandler = () => push(paths.household.creditCard);
 
   return (
@@ -84,7 +81,6 @@ export const CreditDetailListClient: FC<Props> = ({
       />
       <div className={"flex"}>
         <Button type={"back"} onClick={backHandler} label={"戻る"} />
-        <Button type={"add"} onClick={addHandler} label={"追加"} />
       </div>
     </div>
   );
