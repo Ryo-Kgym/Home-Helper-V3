@@ -23,7 +23,7 @@ export const RegisterDailyButton = ({ date = new Date() }: { date?: Date }) => {
       >
         ＋
       </button>
-      <Modal opened={opened} onClose={() => setOpened(false)}>
+      <Modal opened={opened} onClose={() => setOpened(false)} size={"500px"}>
         <Tab
           defaultSelect="daily"
           tabPropsList={[

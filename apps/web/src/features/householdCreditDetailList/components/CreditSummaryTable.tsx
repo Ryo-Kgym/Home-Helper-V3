@@ -65,7 +65,7 @@ export const CreditSummaryTable: FC<Props> = (summary) => {
                   if (!v) return;
                   setForm({ ...form, accountId: v });
                 }}
-                noLabel
+                withLabel
               />
             </td>
           </tr>

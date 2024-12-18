@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 import { useState } from "react";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";

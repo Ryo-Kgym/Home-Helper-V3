@@ -3633,20 +3633,6 @@ export type UpdateCategoryByIdMutation = {
   updateCategoryByPk?: { __typename?: "HouseholdCategory"; id: string } | null;
 };
 
-export type UpdateCreditCardSummaryTotalMutationVariables = Exact<{
-  id: Scalars["String"];
-  totalAmount: Scalars["numeric"];
-  count: Scalars["Int"];
-}>;
-
-export type UpdateCreditCardSummaryTotalMutation = {
-  __typename?: "mutation_root";
-  updateCreditCardSummary?: {
-    __typename?: "HouseholdCreditCardSummary";
-    id: string;
-  } | null;
-};
-
 export type UpdateDailyDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   date: Scalars["date"];
@@ -4050,73 +4036,6 @@ export type GetGenreByIdQuery = {
       categoryName: string;
     }>;
   } | null;
-};
-
-export type GetValidAccountsQueryVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type GetValidAccountsQuery = {
-  __typename?: "query_root";
-  allAccountsList: Array<{
-    __typename?: "HouseholdAccount";
-    accountId: string;
-    accountName: string;
-  }>;
-};
-
-export type GetValidCategoryByGenreIdQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  genreId: Scalars["String"];
-}>;
-
-export type GetValidCategoryByGenreIdQuery = {
-  __typename?: "query_root";
-  genreById: Array<{
-    __typename?: "HouseholdGenre";
-    id: string;
-    name: string;
-    categories: Array<{
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      displayOrder: number;
-    }>;
-  }>;
-  genre?: {
-    __typename?: "HouseholdGenre";
-    id: string;
-    name: string;
-    categories: Array<{
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      displayOrder: number;
-    }>;
-  } | null;
-};
-
-export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
-  iocomeType: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetValidGenreListByIocomeTypeQuery = {
-  __typename?: "query_root";
-  allGenresList: Array<{
-    __typename?: "HouseholdGenre";
-    genreType: string;
-    iocomeType: string;
-    displayOrder: number;
-    genreId: string;
-    genreName: string;
-    categoriesByGenreIdList: Array<{
-      __typename?: "HouseholdCategory";
-      displayOrder: number;
-      categoryId: string;
-      categoryName: string;
-    }>;
-  }>;
 };
 
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
@@ -4760,6 +4679,75 @@ export type GetTransferCategoryByQuery = {
       };
     };
   } | null;
+};
+
+export type GetValidAccountsQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetValidAccountsQuery = {
+  __typename?: "query_root";
+  allAccountsList: Array<{
+    __typename?: "HouseholdAccount";
+    id: string;
+    accountId: string;
+    accountName: string;
+  }>;
+};
+
+export type GetValidCategoryByGenreIdQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  genreId: Scalars["String"];
+}>;
+
+export type GetValidCategoryByGenreIdQuery = {
+  __typename?: "query_root";
+  genreById: Array<{
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    categories: Array<{
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      displayOrder: number;
+    }>;
+  }>;
+  genre?: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    categories: Array<{
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      displayOrder: number;
+    }>;
+  } | null;
+};
+
+export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
+  iocomeType: Scalars["String"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetValidGenreListByIocomeTypeQuery = {
+  __typename?: "query_root";
+  allGenresList: Array<{
+    __typename?: "HouseholdGenre";
+    genreType: string;
+    iocomeType: string;
+    displayOrder: number;
+    genreId: string;
+    genreName: string;
+    categoriesByGenreIdList: Array<{
+      __typename?: "HouseholdCategory";
+      id: string;
+      displayOrder: number;
+      categoryId: string;
+      categoryName: string;
+    }>;
+  }>;
 };
 
 export const FragFavoriteFilterFragmentDoc = {
@@ -6467,120 +6455,6 @@ export const UpdateCategoryByIdDocument = {
 } as unknown as DocumentNode<
   UpdateCategoryByIdMutation,
   UpdateCategoryByIdMutationVariables
->;
-export const UpdateCreditCardSummaryTotalDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpdateCreditCardSummaryTotal" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "totalAmount" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "numeric" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "count" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "updateCreditCardSummary" },
-            name: {
-              kind: "Name",
-              value: "updateHouseholdCreditCardSummaryByPk",
-            },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "pkColumns" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "id" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "_set" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "totalAmount" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "totalAmount" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "count" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "count" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateCreditCardSummaryTotalMutation,
-  UpdateCreditCardSummaryTotalMutationVariables
 >;
 export const UpdateDailyDetailByIdDocument = {
   kind: "Document",
@@ -9613,605 +9487,6 @@ export const GetGenreByIdDocument = {
     },
   ],
 } as unknown as DocumentNode<GetGenreByIdQuery, GetGenreByIdQueryVariables>;
-export const GetValidAccountsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetValidAccounts" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "allAccountsList" },
-            name: { kind: "Name", value: "householdAccount" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "validFlag" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: { kind: "BooleanValue", value: true },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "_and" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "groupId" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "groupId" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "accountId" },
-                  name: { kind: "Name", value: "id" },
-                },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "accountName" },
-                  name: { kind: "Name", value: "name" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetValidAccountsQuery,
-  GetValidAccountsQueryVariables
->;
-export const GetValidCategoryByGenreIdDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetValidCategoryByGenreId" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "genreId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "genreById" },
-            name: { kind: "Name", value: "householdGenre" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "groupId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "_and" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "validFlag" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: { kind: "BooleanValue", value: true },
-                                },
-                              ],
-                            },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_and" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "id" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "_eq" },
-                                        value: {
-                                          kind: "Variable",
-                                          name: {
-                                            kind: "Name",
-                                            value: "genreId",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "categories" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "validFlag" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: { kind: "BooleanValue", value: true },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "displayOrder" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "genre" },
-            name: { kind: "Name", value: "householdGenreByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "genreId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "categories" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "validFlag" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: { kind: "BooleanValue", value: true },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "orderBy" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "displayOrder" },
-                            value: { kind: "EnumValue", value: "ASC" },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "displayOrder" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetValidCategoryByGenreIdQuery,
-  GetValidCategoryByGenreIdQueryVariables
->;
-export const GetValidGenreListByIocomeTypeDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetValidGenreListByIocomeType" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "iocomeType" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "allGenresList" },
-            name: { kind: "Name", value: "householdGenre" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "validFlag" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: { kind: "BooleanValue", value: true },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "iocomeType" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "iocomeType" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "groupId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "genreId" },
-                  name: { kind: "Name", value: "id" },
-                },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "genreName" },
-                  name: { kind: "Name", value: "name" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "genreType" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "displayOrder" },
-                },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "categoriesByGenreIdList" },
-                  name: { kind: "Name", value: "categories" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "orderBy" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "displayOrder" },
-                            value: { kind: "EnumValue", value: "ASC" },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "validFlag" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: { kind: "BooleanValue", value: true },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "categoryId" },
-                        name: { kind: "Name", value: "id" },
-                      },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "categoryName" },
-                        name: { kind: "Name", value: "name" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "displayOrder" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetValidGenreListByIocomeTypeQuery,
-  GetValidGenreListByIocomeTypeQueryVariables
->;
 export const GetCreditCardSummaryByDateDocument = {
   kind: "Document",
   definitions: [
@@ -13585,4 +12860,605 @@ export const GetTransferCategoryByDocument = {
 } as unknown as DocumentNode<
   GetTransferCategoryByQuery,
   GetTransferCategoryByQueryVariables
+>;
+export const GetValidAccountsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getValidAccounts" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "allAccountsList" },
+            name: { kind: "Name", value: "householdAccount" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "validFlag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: { kind: "BooleanValue", value: true },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "_and" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "groupId" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "groupId" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "displayOrder" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "accountId" },
+                  name: { kind: "Name", value: "id" },
+                },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "accountName" },
+                  name: { kind: "Name", value: "name" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetValidAccountsQuery,
+  GetValidAccountsQueryVariables
+>;
+export const GetValidCategoryByGenreIdDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getValidCategoryByGenreId" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "genreId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "genreById" },
+            name: { kind: "Name", value: "householdGenre" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "groupId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "groupId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "_and" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "validFlag" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: { kind: "BooleanValue", value: true },
+                                },
+                              ],
+                            },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_and" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "id" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_eq" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "genreId",
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "displayOrder" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "categories" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "validFlag" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: { kind: "BooleanValue", value: true },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "displayOrder" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "genre" },
+            name: { kind: "Name", value: "householdGenreByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "genreId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "categories" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "validFlag" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: { kind: "BooleanValue", value: true },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "displayOrder" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetValidCategoryByGenreIdQuery,
+  GetValidCategoryByGenreIdQueryVariables
+>;
+export const GetValidGenreListByIocomeTypeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getValidGenreListByIocomeType" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "iocomeType" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "allGenresList" },
+            name: { kind: "Name", value: "householdGenre" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "validFlag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: { kind: "BooleanValue", value: true },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "iocomeType" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "iocomeType" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "groupId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "groupId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "displayOrder" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "genreId" },
+                  name: { kind: "Name", value: "id" },
+                },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "genreName" },
+                  name: { kind: "Name", value: "name" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "displayOrder" },
+                },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "categoriesByGenreIdList" },
+                  name: { kind: "Name", value: "categories" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "validFlag" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: { kind: "BooleanValue", value: true },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "categoryId" },
+                        name: { kind: "Name", value: "id" },
+                      },
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "categoryName" },
+                        name: { kind: "Name", value: "name" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "displayOrder" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetValidGenreListByIocomeTypeQuery,
+  GetValidGenreListByIocomeTypeQueryVariables
 >;

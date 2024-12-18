@@ -1,4 +1,4 @@
-query GetValidGenreListByIocomeType($iocomeType: String!, $groupId: String!) {
+query getValidGenreListByIocomeType($iocomeType: String!, $groupId: String!) {
   allGenresList: householdGenre(
     where: {
       validFlag: { _eq: true }
@@ -16,6 +16,7 @@ query GetValidGenreListByIocomeType($iocomeType: String!, $groupId: String!) {
       orderBy: { displayOrder: ASC }
       where: { validFlag: { _eq: true } }
     ) {
+      id
       categoryId: id
       categoryName: name
       displayOrder

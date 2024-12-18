@@ -1,19 +1,18 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
+"use server";
 
 import {
-  useCreateDailyDetailMutation,
-  useGetTransferCategoryByQuery,
-} from "@v3/graphql/household";
+  CreateDailyDetailDocument,
+  GetTransferCategoryByDocument,
+} from "@v3/graphql/household/type";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { useDate } from "../../date/useDate";
-import { useGroup } from "../../group/useGroup";
-import { useGenerateId } from "../../useGenerateId";
-import { useUser } from "../../user/useUser";
+import { convertToFull } from "../../../function/date/convertToFull";
+import { generateId } from "../../../function/generateId";
+import { findUser } from "../../../persistence/browser/server/find-user";
+import { execMutation } from "../../../persistence/database/server/execMutation";
+import { execQuery } from "../../../persistence/database/server/execQuery";
 
-export const useRegisterTransfer = ({
+export const registerTransfer = async ({
   date,
   sendAccountId,
   receiveAccountId,
@@ -26,17 +25,14 @@ export const useRegisterTransfer = ({
   amount: number;
   memo?: string;
 }) => {
-  const { userId } = useUser();
-  const { groupId } = useGroup();
-  const { convertToFull } = useDate();
-  const { generate } = useGenerateId();
+  const {
+    id: userId,
+    group: { id: groupId },
+  } = await findUser();
 
-  const [{ data }] = useGetTransferCategoryByQuery({
-    variables: {
-      groupId,
-    },
+  const { data } = await execQuery(GetTransferCategoryByDocument, {
+    groupId,
   });
-  const [, dailyRegistrationMutation] = useCreateDailyDetailMutation();
 
   const _registerDaily = async ({
     accountId,
@@ -49,7 +45,7 @@ export const useRegisterTransfer = ({
     iocomeType: IocomeType;
     categoryId: string;
   }) =>
-    dailyRegistrationMutation({
+    await execMutation(CreateDailyDetailDocument, {
       accountId: accountId,
       amount: amount,
       genreId,
@@ -57,29 +53,23 @@ export const useRegisterTransfer = ({
       categoryId,
       date: convertToFull(date),
       groupId,
-      id: generate(),
+      id: generateId(),
       memo: memo,
       userId,
     });
 
-  const registerTransfer = async () => {
-    await _registerDaily({
-      accountId: sendAccountId,
-      genreId: data?.transferCategory?.outcomeCategory.genre.genreId ?? "",
-      iocomeType: data?.transferCategory?.outcomeCategory.genre
-        .iocomeType as IocomeType,
-      categoryId: data?.transferCategory?.outcomeCategory.categoryId ?? "",
-    });
-    await _registerDaily({
-      accountId: receiveAccountId,
-      genreId: data?.transferCategory?.incomeCategory.genre.genreId ?? "",
-      iocomeType: data?.transferCategory?.incomeCategory.genre
-        .iocomeType as IocomeType,
-      categoryId: data?.transferCategory?.incomeCategory.categoryId ?? "",
-    });
-  };
-
-  return {
-    registerTransfer,
-  };
+  await _registerDaily({
+    accountId: sendAccountId,
+    genreId: data?.transferCategory?.outcomeCategory.genre.genreId ?? "",
+    iocomeType: data?.transferCategory?.outcomeCategory.genre
+      .iocomeType as IocomeType,
+    categoryId: data?.transferCategory?.outcomeCategory.categoryId ?? "",
+  });
+  await _registerDaily({
+    accountId: receiveAccountId,
+    genreId: data?.transferCategory?.incomeCategory.genre.genreId ?? "",
+    iocomeType: data?.transferCategory?.incomeCategory.genre
+      .iocomeType as IocomeType,
+    categoryId: data?.transferCategory?.incomeCategory.categoryId ?? "",
+  });
 };

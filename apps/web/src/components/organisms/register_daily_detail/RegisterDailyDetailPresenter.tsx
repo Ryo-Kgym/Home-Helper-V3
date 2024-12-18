@@ -1,17 +1,13 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
-import { Button } from "components/ui";
+import { Button } from "components/ui/button/v5";
 import { DatePicker } from "components/ui/date";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
-import { CategorySelect } from "../../molecules/CustomSelect/Category";
-import { GenreSelect } from "../../molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../molecules/CustomTextArea/Memo";
 import { AmountInput } from "../../ui/numberInput/amount/AmountInput";
 import { AccountSelect } from "../../ui/select/AccountSelect";
+import { CategorySelect } from "../../ui/select/CategorySelect";
+import { GenreSelect } from "../../ui/select/GenreSelect";
 
 export const RegisterDailyDetailPresenter = ({
   date,
@@ -90,8 +86,8 @@ export const RegisterDailyDetailPresenter = ({
       <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
     </Field>
     <div className={"grid grid-cols-2 justify-items-center"}>
-      <Button type={"register"} onClick={registerClickHandler} />
-      <Button type={"clear"} onClick={clearClickHandler} />
+      <Button type={"add"} onClick={registerClickHandler} label={"登録"} />
+      <Button type={"back"} onClick={clearClickHandler} label={"クリア"} />
     </div>
   </div>
 );

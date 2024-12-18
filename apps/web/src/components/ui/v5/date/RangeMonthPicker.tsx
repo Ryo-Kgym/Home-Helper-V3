@@ -15,19 +15,23 @@ export const RangeMonthPicker = ({
   const [value, setValue] =
     useState<[NullableDate, NullableDate]>(defaultValue);
 
-  useEffect(() => {
-    const [fromFirstDayOfMonth, toFirstDayOfMonth] = value;
+  useEffect(
+    () => {
+      const [fromFirstDayOfMonth, toFirstDayOfMonth] = value;
 
-    const toLastDayOfMonth = toFirstDayOfMonth
-      ? new Date(
-          toFirstDayOfMonth.getFullYear(),
-          toFirstDayOfMonth.getMonth() + 1,
-          0,
-        )
-      : null;
+      const toLastDayOfMonth = toFirstDayOfMonth
+        ? new Date(
+            toFirstDayOfMonth.getFullYear(),
+            toFirstDayOfMonth.getMonth() + 1,
+            0,
+          )
+        : null;
 
-    void onChange([fromFirstDayOfMonth, toLastDayOfMonth]);
-  }, [value, onChange]);
+      void onChange([fromFirstDayOfMonth, toLastDayOfMonth]);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [value],
+  );
 
   return (
     <MantineMonthPickerInput

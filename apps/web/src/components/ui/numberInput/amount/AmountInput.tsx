@@ -12,7 +12,7 @@ export const AmountInput = ({
   disabled = false,
 }: AmountInputPresenterProps) => (
   <NumberInputContainer
-    label={"Amount"}
+    label={""}
     value={value}
     onChange={onChange}
     placeholder="0 - 999,999,999"

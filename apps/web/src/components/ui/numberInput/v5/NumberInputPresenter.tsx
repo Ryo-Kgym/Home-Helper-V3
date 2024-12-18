@@ -27,7 +27,7 @@ export const NumberInputPresenter = ({
       placeholder={placeholder}
       label={label}
       error={error}
-      size="lg"
+      size="xs"
       withAsterisk={withAsterisk}
       hideControls
       disabled={disabled}

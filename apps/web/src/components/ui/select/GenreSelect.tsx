@@ -1,10 +1,11 @@
 "use client";
 
-import { useGetValidGenreListByIocomeTypeQuery } from "@v3/graphql/household";
+import { useEffect, useState } from "react";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { useGroup } from "../../../hooks/group/useGroup";
 import { Select } from "../index";
+import { fetchGenreList } from "./fetchGenreList";
+import { SelectProps } from "./v4";
 
 export const GenreSelect = ({
   genreId,
@@ -19,27 +20,23 @@ export const GenreSelect = ({
   disabled?: boolean;
   withLabel?: boolean;
 }) => {
-  const { groupId } = useGroup();
-  const [{ data }] = useGetValidGenreListByIocomeTypeQuery({
-    variables: { iocomeType: iocomeType, groupId },
-  });
+  const [options, setOptions] = useState<SelectProps<string>["data"]>([]);
 
-  const genres =
-    data?.allGenresList?.map((genre) => ({
-      label: genre.genreName,
-      value: genre.genreId,
-      description: genre.categoriesByGenreIdList
-        .map((c) => c.categoryName)
-        .join(", "),
-    })) ?? [];
+  useEffect(() => {
+    void (async () => {
+      const { genres } = await fetchGenreList({ iocomeType });
+      setOptions(genres);
+    })();
+  }, [iocomeType]);
 
   return (
     <Select
       label={withLabel ? "ジャンル" : ""}
       value={genreId}
       onChange={setGenreId}
-      data={genres}
+      data={options}
       placeholder={"ジャンルを選択してください"}
+      withAsterisk
       size={"xs"}
       disabled={disabled}
     />

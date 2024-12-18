@@ -3691,20 +3691,6 @@ export type UpdateCategoryByIdMutation = {
   updateCategoryByPk?: { __typename?: "HouseholdCategory"; id: string } | null;
 };
 
-export type UpdateCreditCardSummaryTotalMutationVariables = Exact<{
-  id: Scalars["String"];
-  totalAmount: Scalars["numeric"];
-  count: Scalars["Int"];
-}>;
-
-export type UpdateCreditCardSummaryTotalMutation = {
-  __typename?: "mutation_root";
-  updateCreditCardSummary?: {
-    __typename?: "HouseholdCreditCardSummary";
-    id: string;
-  } | null;
-};
-
 export type UpdateDailyDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   date: Scalars["date"];
@@ -4108,73 +4094,6 @@ export type GetGenreByIdQuery = {
       categoryName: string;
     }>;
   } | null;
-};
-
-export type GetValidAccountsQueryVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type GetValidAccountsQuery = {
-  __typename?: "query_root";
-  allAccountsList: Array<{
-    __typename?: "HouseholdAccount";
-    accountId: string;
-    accountName: string;
-  }>;
-};
-
-export type GetValidCategoryByGenreIdQueryVariables = Exact<{
-  groupId: Scalars["String"];
-  genreId: Scalars["String"];
-}>;
-
-export type GetValidCategoryByGenreIdQuery = {
-  __typename?: "query_root";
-  genreById: Array<{
-    __typename?: "HouseholdGenre";
-    id: string;
-    name: string;
-    categories: Array<{
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      displayOrder: number;
-    }>;
-  }>;
-  genre?: {
-    __typename?: "HouseholdGenre";
-    id: string;
-    name: string;
-    categories: Array<{
-      __typename?: "HouseholdCategory";
-      id: string;
-      name: string;
-      displayOrder: number;
-    }>;
-  } | null;
-};
-
-export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
-  iocomeType: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type GetValidGenreListByIocomeTypeQuery = {
-  __typename?: "query_root";
-  allGenresList: Array<{
-    __typename?: "HouseholdGenre";
-    genreType: string;
-    iocomeType: string;
-    displayOrder: number;
-    genreId: string;
-    genreName: string;
-    categoriesByGenreIdList: Array<{
-      __typename?: "HouseholdCategory";
-      displayOrder: number;
-      categoryId: string;
-      categoryName: string;
-    }>;
-  }>;
 };
 
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
@@ -4820,6 +4739,75 @@ export type GetTransferCategoryByQuery = {
   } | null;
 };
 
+export type GetValidAccountsQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetValidAccountsQuery = {
+  __typename?: "query_root";
+  allAccountsList: Array<{
+    __typename?: "HouseholdAccount";
+    id: string;
+    accountId: string;
+    accountName: string;
+  }>;
+};
+
+export type GetValidCategoryByGenreIdQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  genreId: Scalars["String"];
+}>;
+
+export type GetValidCategoryByGenreIdQuery = {
+  __typename?: "query_root";
+  genreById: Array<{
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    categories: Array<{
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      displayOrder: number;
+    }>;
+  }>;
+  genre?: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    categories: Array<{
+      __typename?: "HouseholdCategory";
+      id: string;
+      name: string;
+      displayOrder: number;
+    }>;
+  } | null;
+};
+
+export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
+  iocomeType: Scalars["String"];
+  groupId: Scalars["String"];
+}>;
+
+export type GetValidGenreListByIocomeTypeQuery = {
+  __typename?: "query_root";
+  allGenresList: Array<{
+    __typename?: "HouseholdGenre";
+    genreType: string;
+    iocomeType: string;
+    displayOrder: number;
+    genreId: string;
+    genreName: string;
+    categoriesByGenreIdList: Array<{
+      __typename?: "HouseholdCategory";
+      id: string;
+      displayOrder: number;
+      categoryId: string;
+      categoryName: string;
+    }>;
+  }>;
+};
+
 export const FragFavoriteFilterFragmentDoc = gql`
   fragment fragFavoriteFilter on HouseholdFavoriteFilter {
     __typename
@@ -5171,27 +5159,6 @@ export function useUpdateCategoryByIdMutation() {
     UpdateCategoryByIdMutation,
     UpdateCategoryByIdMutationVariables
   >(UpdateCategoryByIdDocument);
-}
-export const UpdateCreditCardSummaryTotalDocument = gql`
-  mutation UpdateCreditCardSummaryTotal(
-    $id: String!
-    $totalAmount: numeric!
-    $count: Int!
-  ) {
-    updateCreditCardSummary: updateHouseholdCreditCardSummaryByPk(
-      pkColumns: { id: $id }
-      _set: { totalAmount: $totalAmount, count: $count }
-    ) {
-      id
-    }
-  }
-`;
-
-export function useUpdateCreditCardSummaryTotalMutation() {
-  return Urql.useMutation<
-    UpdateCreditCardSummaryTotalMutation,
-    UpdateCreditCardSummaryTotalMutationVariables
-  >(UpdateCreditCardSummaryTotalDocument);
 }
 export const UpdateDailyDetailByIdDocument = gql`
   mutation UpdateDailyDetailById(
@@ -5780,107 +5747,6 @@ export function useGetGenreByIdQuery(
     ...options,
   });
 }
-export const GetValidAccountsDocument = gql`
-  query GetValidAccounts($groupId: String!) {
-    allAccountsList: householdAccount(
-      where: { validFlag: { _eq: true }, _and: { groupId: { _eq: $groupId } } }
-      orderBy: { displayOrder: ASC }
-    ) {
-      accountId: id
-      accountName: name
-    }
-  }
-`;
-
-export function useGetValidAccountsQuery(
-  options: Omit<Urql.UseQueryArgs<GetValidAccountsQueryVariables>, "query">,
-) {
-  return Urql.useQuery<GetValidAccountsQuery, GetValidAccountsQueryVariables>({
-    query: GetValidAccountsDocument,
-    ...options,
-  });
-}
-export const GetValidCategoryByGenreIdDocument = gql`
-  query GetValidCategoryByGenreId($groupId: String!, $genreId: String!) {
-    genreById: householdGenre(
-      where: {
-        groupId: { _eq: $groupId }
-        _and: { validFlag: { _eq: true }, _and: { id: { _eq: $genreId } } }
-      }
-      orderBy: { displayOrder: ASC }
-    ) {
-      id
-      name
-      categories(where: { validFlag: { _eq: true } }) {
-        id
-        name
-        displayOrder
-      }
-    }
-    genre: householdGenreByPk(id: $genreId) {
-      id
-      name
-      categories(
-        where: { validFlag: { _eq: true } }
-        orderBy: { displayOrder: ASC }
-      ) {
-        id
-        name
-        displayOrder
-      }
-    }
-  }
-`;
-
-export function useGetValidCategoryByGenreIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetValidCategoryByGenreIdQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetValidCategoryByGenreIdQuery,
-    GetValidCategoryByGenreIdQueryVariables
-  >({ query: GetValidCategoryByGenreIdDocument, ...options });
-}
-export const GetValidGenreListByIocomeTypeDocument = gql`
-  query GetValidGenreListByIocomeType($iocomeType: String!, $groupId: String!) {
-    allGenresList: householdGenre(
-      where: {
-        validFlag: { _eq: true }
-        iocomeType: { _eq: $iocomeType }
-        groupId: { _eq: $groupId }
-      }
-      orderBy: { displayOrder: ASC }
-    ) {
-      genreId: id
-      genreName: name
-      genreType
-      iocomeType
-      displayOrder
-      categoriesByGenreIdList: categories(
-        orderBy: { displayOrder: ASC }
-        where: { validFlag: { _eq: true } }
-      ) {
-        categoryId: id
-        categoryName: name
-        displayOrder
-      }
-    }
-  }
-`;
-
-export function useGetValidGenreListByIocomeTypeQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetValidGenreListByIocomeTypeQueryVariables>,
-    "query"
-  >,
-) {
-  return Urql.useQuery<
-    GetValidGenreListByIocomeTypeQuery,
-    GetValidGenreListByIocomeTypeQueryVariables
-  >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
-}
 export const GetCreditCardSummaryByDateDocument = gql`
   query getCreditCardSummaryByDate(
     $fromDate: date!
@@ -6441,4 +6307,107 @@ export function useGetTransferCategoryByQuery(
     GetTransferCategoryByQuery,
     GetTransferCategoryByQueryVariables
   >({ query: GetTransferCategoryByDocument, ...options });
+}
+export const GetValidAccountsDocument = gql`
+  query getValidAccounts($groupId: String!) {
+    allAccountsList: householdAccount(
+      where: { validFlag: { _eq: true }, _and: { groupId: { _eq: $groupId } } }
+      orderBy: { displayOrder: ASC }
+    ) {
+      id
+      accountId: id
+      accountName: name
+    }
+  }
+`;
+
+export function useGetValidAccountsQuery(
+  options: Omit<Urql.UseQueryArgs<GetValidAccountsQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetValidAccountsQuery, GetValidAccountsQueryVariables>({
+    query: GetValidAccountsDocument,
+    ...options,
+  });
+}
+export const GetValidCategoryByGenreIdDocument = gql`
+  query getValidCategoryByGenreId($groupId: String!, $genreId: String!) {
+    genreById: householdGenre(
+      where: {
+        groupId: { _eq: $groupId }
+        _and: { validFlag: { _eq: true }, _and: { id: { _eq: $genreId } } }
+      }
+      orderBy: { displayOrder: ASC }
+    ) {
+      id
+      name
+      categories(where: { validFlag: { _eq: true } }) {
+        id
+        name
+        displayOrder
+      }
+    }
+    genre: householdGenreByPk(id: $genreId) {
+      id
+      name
+      categories(
+        where: { validFlag: { _eq: true } }
+        orderBy: { displayOrder: ASC }
+      ) {
+        id
+        name
+        displayOrder
+      }
+    }
+  }
+`;
+
+export function useGetValidCategoryByGenreIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetValidCategoryByGenreIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetValidCategoryByGenreIdQuery,
+    GetValidCategoryByGenreIdQueryVariables
+  >({ query: GetValidCategoryByGenreIdDocument, ...options });
+}
+export const GetValidGenreListByIocomeTypeDocument = gql`
+  query getValidGenreListByIocomeType($iocomeType: String!, $groupId: String!) {
+    allGenresList: householdGenre(
+      where: {
+        validFlag: { _eq: true }
+        iocomeType: { _eq: $iocomeType }
+        groupId: { _eq: $groupId }
+      }
+      orderBy: { displayOrder: ASC }
+    ) {
+      genreId: id
+      genreName: name
+      genreType
+      iocomeType
+      displayOrder
+      categoriesByGenreIdList: categories(
+        orderBy: { displayOrder: ASC }
+        where: { validFlag: { _eq: true } }
+      ) {
+        id
+        categoryId: id
+        categoryName: name
+        displayOrder
+      }
+    }
+  }
+`;
+
+export function useGetValidGenreListByIocomeTypeQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetValidGenreListByIocomeTypeQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetValidGenreListByIocomeTypeQuery,
+    GetValidGenreListByIocomeTypeQueryVariables
+  >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
 }

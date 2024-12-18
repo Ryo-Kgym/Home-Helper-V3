@@ -91,7 +91,7 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
         <AccountSelect
           accountId={accountId}
           setAccountId={setAccountId}
-          noLabel
+          withLabel
         />
         <FileInput onChange={onChange} />
       </div>

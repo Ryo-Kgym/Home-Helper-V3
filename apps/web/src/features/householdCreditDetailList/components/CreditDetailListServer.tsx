@@ -1,7 +1,7 @@
 import { GetCreditCardDetailBySummaryIdDocument } from "@v3/graphql/household/type";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { fetchQuery } from "../../../persistence/database/server/fetchQuery";
+import { execQuery } from "../../../persistence/database/server/execQuery";
 import { CreditDetailListClient } from "./CreditDetailListClient";
 
 export const CreditDetailListServer = async ({
@@ -9,7 +9,7 @@ export const CreditDetailListServer = async ({
 }: {
   creditCardSummaryId: string;
 }) => {
-  const { data } = await fetchQuery(GetCreditCardDetailBySummaryIdDocument, {
+  const { data } = await execQuery(GetCreditCardDetailBySummaryIdDocument, {
     id: creditCardSummaryId,
   });
 

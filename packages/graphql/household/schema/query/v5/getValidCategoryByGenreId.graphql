@@ -1,4 +1,4 @@
-query GetValidCategoryByGenreId($groupId: String!, $genreId: String!) {
+query getValidCategoryByGenreId($groupId: String!, $genreId: String!) {
   genreById: householdGenre(
     where: {
       groupId: { _eq: $groupId }
