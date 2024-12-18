@@ -8,7 +8,7 @@ import {
 } from "@v3/graphql/household";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { useDate } from "../../date/useDate";
+import { convertToFull } from "../../../function/date/convertToFull";
 import { useGroup } from "../../group/useGroup";
 import { useGenerateId } from "../../useGenerateId";
 import { useUser } from "../../user/useUser";
@@ -28,7 +28,6 @@ export const useRegisterTransfer = ({
 }) => {
   const { userId } = useUser();
   const { groupId } = useGroup();
-  const { convertToFull } = useDate();
   const { generate } = useGenerateId();
 
   const [{ data }] = useGetTransferCategoryByQuery({
