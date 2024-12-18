@@ -3,6 +3,7 @@
 import { FC } from "react";
 
 import { RangeMonthPicker } from "../../../components/ui/v5/date/RangeMonthPicker";
+import { convertToYmd } from "../../../function/date/convertToYmd";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { BalanceChart } from "./BalanceChart";
 
@@ -33,12 +34,9 @@ export const BalanceChartClient: FC<Props> = ({
       <div className={"w-96"}>
         <RangeMonthPicker
           onChange={async ([fromDate, toDate]) => {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
             prependParamAndPush({
-              fromDate: (fromDate ?? defaultFromDate).toLocaleDateString(
-                "sv-SE",
-              ),
-              toDate: (toDate ?? defaultToDate).toLocaleDateString("sv-SE"),
+              fromDate: convertToYmd(fromDate ?? defaultFromDate),
+              toDate: convertToYmd(toDate ?? defaultToDate),
             });
           }}
           label={"期間"}
