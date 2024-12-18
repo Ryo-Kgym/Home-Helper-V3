@@ -4550,6 +4550,11 @@ export type GetAccountBalanceListQuery = {
         sum?: {
           __typename?: "HouseholdAllDetailViewSumFields";
           signedAmount?: any | null;
+          id?: any | null;
+        } | null;
+        max?: {
+          __typename?: "HouseholdAllDetailViewMaxFields";
+          id?: string | null;
         } | null;
       } | null;
     };
@@ -12460,10 +12465,32 @@ export const GetAccountBalanceListDocument = {
                                 selections: [
                                   {
                                     kind: "Field",
+                                    alias: { kind: "Name", value: "id" },
+                                    name: {
+                                      kind: "Name",
+                                      value: "originalAmount",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
                                     name: {
                                       kind: "Name",
                                       value: "signedAmount",
                                     },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "max" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    alias: { kind: "Name", value: "id" },
+                                    name: { kind: "Name", value: "accountId" },
                                   },
                                 ],
                               },

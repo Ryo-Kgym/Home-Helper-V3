@@ -36,6 +36,7 @@ export const AccountListClient = ({
           accountId={accountId ?? ""}
         />
       }
+      size={25}
     />
   );
 };

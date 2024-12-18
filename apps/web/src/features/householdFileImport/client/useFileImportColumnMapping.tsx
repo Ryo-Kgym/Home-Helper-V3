@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
+import { ImportFileColumn } from "../types/importFileColumn";
+
 export const useFileImportColumnMapping = () =>
   useFileImportColumnMappingState((store) => ({
     mapping: store.fileImportColumnMapping,
-    setMapping: (key: ColumnName, value: number | null) => {
+    setMapping: (key: ImportFileColumn, value: number | null) => {
       store.setFileImportColumnMapping({
         ...store.fileImportColumnMapping,
         [key]: value,
@@ -12,25 +14,19 @@ export const useFileImportColumnMapping = () =>
     },
   }));
 
-export type ColumnName = "settlementDate" | "amount" | "memo";
-
 type State = {
-  fileImportColumnMapping: Record<ColumnName, number | null>;
+  fileImportColumnMapping: Record<ImportFileColumn, number | null>;
 };
 
 type Actions = {
   setFileImportColumnMapping: (
-    mapping: Record<ColumnName, number | null>,
+    mapping: Record<ImportFileColumn, number | null>,
   ) => void;
 };
 
 const useFileImportColumnMappingState = create<State & Actions>()(
   immer((set) => ({
-    fileImportColumnMapping: {
-      settlementDate: null,
-      amount: null,
-      memo: null,
-    },
+    fileImportColumnMapping: {},
     setFileImportColumnMapping: (mapping) =>
       set((state) => {
         state.fileImportColumnMapping = mapping;

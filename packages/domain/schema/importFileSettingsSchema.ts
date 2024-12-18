@@ -45,7 +45,7 @@ export type Splitter = z.infer<typeof splitterSchema>;
 
 export const IMPORT_FILE_SETTINGS_DEFAULT = {
   encodingTo: "UNICODE",
-  encodingFrom: "UTF8",
+  encodingFrom: "SJIS",
   encodingType: "array",
   splitSeparator: "\n",
   headerRows: 0,

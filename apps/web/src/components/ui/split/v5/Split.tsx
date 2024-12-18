@@ -1,21 +1,18 @@
-/*
- * Copyright (c) 2024 Ryo-Kgym.
- */
-
 "use client";
 
-import Split from "react-split";
+import { ReactNode } from "react";
+import ReactSplit from "react-split";
 
-export const SplitPresenter = ({
+export const Split = ({
   first,
   second,
   size = 50,
 }: {
-  first: React.ReactNode;
-  second: React.ReactNode;
+  first: ReactNode;
+  second: ReactNode;
   size?: number;
 }) => (
-  <Split
+  <ReactSplit
     className="flex"
     gutter={() => {
       const gutterElement = document.createElement("div");
@@ -28,5 +25,5 @@ export const SplitPresenter = ({
   >
     <div className="flex items-center justify-center">{first}</div>
     <div className="flex items-center justify-center">{second}</div>
-  </Split>
+  </ReactSplit>
 );
