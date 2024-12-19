@@ -10,7 +10,7 @@ export const modifyCreditSummary = async (
     id: string;
   } & SummaryFormState,
 ) => {
-  const { data, error } = await execMutation(UpdateCreditSummaryDocument, {
+  const { data } = await execMutation(UpdateCreditSummaryDocument, {
     id: params.id,
     form: {
       creditCard: params.creditCard,
@@ -19,7 +19,7 @@ export const modifyCreditSummary = async (
     },
   });
 
-  if (!data || error) {
+  if (!data) {
     throw new Error("Failed to update credit summary");
   }
 };

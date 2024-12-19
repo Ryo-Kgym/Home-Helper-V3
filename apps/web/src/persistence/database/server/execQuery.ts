@@ -16,8 +16,12 @@ export const execQuery = async <
   const { data, error } = await getClient().query(query, variables).toPromise();
 
   if (!data) {
-    new Error("Failed data fetching.");
+    throw new Error("Failed data fetching.");
   }
 
-  return { data, error };
+  if (error) {
+    throw error;
+  }
+
+  return { data };
 };

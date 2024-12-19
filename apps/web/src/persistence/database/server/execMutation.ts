@@ -18,8 +18,12 @@ export const execMutation = async <
     .toPromise();
 
   if (!data) {
-    new Error("Failed to execute mutation.");
+    throw Error("Failed to execute mutation.");
   }
 
-  return { data, error };
+  if (error) {
+    throw error;
+  }
+
+  return { data };
 };

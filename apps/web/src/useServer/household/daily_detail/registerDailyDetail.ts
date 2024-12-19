@@ -30,7 +30,7 @@ export const registerDailyDetail = async ({
     group: { id: groupId },
   } = await findUser();
 
-  const { data, error } = await execMutation(CreateDailyDetailDocument, {
+  await execMutation(CreateDailyDetailDocument, {
     id: generateId(),
     date: convertToFull(date),
     amount,
@@ -42,12 +42,4 @@ export const registerDailyDetail = async ({
     groupId,
     userId,
   });
-
-  if (error) {
-    throw error;
-  }
-
-  if (!data) {
-    throw new Error("Failed to register daily detail");
-  }
 };

@@ -1,0 +1,10 @@
+query getTagList($groupId: String!) {
+  group: groupByPk(id: $groupId) {
+    id
+    tags {
+      id
+      name
+      colorCode
+    }
+  }
+}

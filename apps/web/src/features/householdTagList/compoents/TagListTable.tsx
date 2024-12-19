@@ -3,7 +3,9 @@ import { FC } from "react";
 import { Button } from "../../../components/ui/button/v5";
 import { DataTable } from "../../../components/ui/v4/table";
 import { TextInput } from "../../../components/ui/v4/textInput";
+import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useStateSetTag, useStateTagList } from "../hooks/useStateTagList";
+import { modifyTag } from "../useServer/modifyTag";
 
 type Props = {
   // empty
@@ -65,11 +67,19 @@ export const TagListTable: FC<Props> = () => {
           title: "更新",
           textAlign: "center",
           width: "10%",
-          render: () => {
+          render: (tag) => {
             return (
               <Button
                 label={"更新"}
-                onClick={() => undefined}
+                onClick={async () => {
+                  try {
+                    await modifyTag(tag);
+                    successPopup("更新しました");
+                  } catch (e) {
+                    console.error(e);
+                    errorPopup("更新に失敗しました");
+                  }
+                }}
                 type={"modify"}
               />
             );

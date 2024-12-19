@@ -18,6 +18,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  bpchar: any;
   date: any;
   json: any;
   numeric: any;
@@ -260,6 +261,39 @@ export type BooleanComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["Boolean"]>>;
 };
 
+/** Boolean expression to compare columns of type "bpchar". All fields are combined with logical 'AND'. */
+export type BpcharComparisonExp = {
+  _eq?: InputMaybe<Scalars["bpchar"]>;
+  _gt?: InputMaybe<Scalars["bpchar"]>;
+  _gte?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column match the given case-insensitive pattern */
+  _ilike?: InputMaybe<Scalars["bpchar"]>;
+  _in?: InputMaybe<Array<Scalars["bpchar"]>>;
+  /** does the column match the given POSIX regular expression, case insensitive */
+  _iregex?: InputMaybe<Scalars["bpchar"]>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  /** does the column match the given pattern */
+  _like?: InputMaybe<Scalars["bpchar"]>;
+  _lt?: InputMaybe<Scalars["bpchar"]>;
+  _lte?: InputMaybe<Scalars["bpchar"]>;
+  _neq?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column NOT match the given case-insensitive pattern */
+  _nilike?: InputMaybe<Scalars["bpchar"]>;
+  _nin?: InputMaybe<Array<Scalars["bpchar"]>>;
+  /** does the column NOT match the given POSIX regular expression, case insensitive */
+  _niregex?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column NOT match the given pattern */
+  _nlike?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column NOT match the given POSIX regular expression, case sensitive */
+  _nregex?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column NOT match the given SQL regular expression */
+  _nsimilar?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column match the given POSIX regular expression, case sensitive */
+  _regex?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column match the given SQL regular expression */
+  _similar?: InputMaybe<Scalars["bpchar"]>;
+};
+
 /** ordering argument of a cursor */
 export type CursorOrdering =
   /** ascending ordering of the cursor */
@@ -380,6 +414,7 @@ export type GroupBoolExp = {
   importFileHistories?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
+  tags?: InputMaybe<HouseholdTagBoolExp>;
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryBoolExp>;
@@ -402,6 +437,7 @@ export type GroupOrderBy = {
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
+  tagsAggregate?: InputMaybe<HouseholdTagAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
 };
@@ -2884,6 +2920,122 @@ export type HouseholdImportFileHistoryUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
 
+/** order by aggregate values of table "household.tag" */
+export type HouseholdTagAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdTagMaxOrderBy>;
+  min?: InputMaybe<HouseholdTagMinOrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "household.tag". All fields are combined with a logical 'AND'. */
+export type HouseholdTagBoolExp = {
+  _and?: InputMaybe<Array<HouseholdTagBoolExp>>;
+  _not?: InputMaybe<HouseholdTagBoolExp>;
+  _or?: InputMaybe<Array<HouseholdTagBoolExp>>;
+  colorCode?: InputMaybe<BpcharComparisonExp>;
+  group?: InputMaybe<GroupBoolExp>;
+  groupId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household.tag" */
+export type HouseholdTagConstraint =
+  /** unique or primary key constraint on columns "id" */
+  "m_tag_pkey";
+
+/** input type for inserting data into table "household.tag" */
+export type HouseholdTagInsertInput = {
+  colorCode?: InputMaybe<Scalars["bpchar"]>;
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "household.tag" */
+export type HouseholdTagMaxOrderBy = {
+  colorCode?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "household.tag" */
+export type HouseholdTagMinOrderBy = {
+  colorCode?: InputMaybe<OrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "household.tag" */
+export type HouseholdTagOnConflict = {
+  constraint: HouseholdTagConstraint;
+  updateColumns?: Array<HouseholdTagUpdateColumn>;
+  where?: InputMaybe<HouseholdTagBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.tag". */
+export type HouseholdTagOrderBy = {
+  colorCode?: InputMaybe<OrderBy>;
+  group?: InputMaybe<GroupOrderBy>;
+  groupId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: household.tag */
+export type HouseholdTagPkColumnsInput = {
+  id: Scalars["String"];
+};
+
+/** select columns of table "household.tag" */
+export type HouseholdTagSelectColumn =
+  /** column name */
+  | "colorCode"
+  /** column name */
+  | "groupId"
+  /** column name */
+  | "id"
+  /** column name */
+  | "name";
+
+/** input type for updating data in table "household.tag" */
+export type HouseholdTagSetInput = {
+  colorCode?: InputMaybe<Scalars["bpchar"]>;
+  name?: InputMaybe<Scalars["String"]>;
+};
+
+/** Streaming cursor of the table "household_tag" */
+export type HouseholdTagStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: HouseholdTagStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type HouseholdTagStreamCursorValueInput = {
+  colorCode?: InputMaybe<Scalars["bpchar"]>;
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
+};
+
+/** update columns of table "household.tag" */
+export type HouseholdTagUpdateColumn =
+  /** column name */
+  | "colorCode"
+  /** column name */
+  | "name";
+
+export type HouseholdTagUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdTagSetInput>;
+  /** filter the rows which have to be updated */
+  where: HouseholdTagBoolExp;
+};
+
 export type HouseholdTotalByCategoryViewAggregateBoolExp = {
   count?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExpCount>;
 };
@@ -3845,6 +3997,25 @@ export type UpdateFavoriteFilterArgMutation = {
   insertArg?: { __typename: "HouseholdFavoriteFilterArgs"; id: string } | null;
 };
 
+export type ModifyTagMutationVariables = Exact<{
+  id: Scalars["String"];
+  form: HouseholdTagSetInput;
+}>;
+
+export type ModifyTagMutation = {
+  __typename?: "mutation_root";
+  updateHouseholdTagByPk?: { __typename?: "HouseholdTag"; id: string } | null;
+};
+
+export type AddTagMutationVariables = Exact<{
+  form: HouseholdTagInsertInput;
+}>;
+
+export type AddTagMutation = {
+  __typename?: "mutation_root";
+  insertHouseholdTagOne?: { __typename?: "HouseholdTag"; id: string } | null;
+};
+
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   genreId: Scalars["String"];
@@ -4748,6 +4919,24 @@ export type GetValidGenreListByIocomeTypeQuery = {
       categoryName: string;
     }>;
   }>;
+};
+
+export type GetTagListQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetTagListQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    id: string;
+    tags: Array<{
+      __typename?: "HouseholdTag";
+      id: string;
+      name: string;
+      colorCode: any;
+    }>;
+  } | null;
 };
 
 export const FragFavoriteFilterFragmentDoc = {
@@ -8196,6 +8385,130 @@ export const UpdateFavoriteFilterArgDocument = {
   UpdateFavoriteFilterArgMutation,
   UpdateFavoriteFilterArgMutationVariables
 >;
+export const ModifyTagDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "modifyTag" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "form" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "HouseholdTagSetInput" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateHouseholdTagByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "pkColumns" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "id" },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "_set" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "form" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ModifyTagMutation, ModifyTagMutationVariables>;
+export const AddTagDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "addTag" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "form" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "HouseholdTagInsertInput" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "insertHouseholdTagOne" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "object" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "form" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AddTagMutation, AddTagMutationVariables>;
 export const UpdateCreditCardDetailByIdDocument = {
   kind: "Document",
   definitions: [
@@ -13462,3 +13775,70 @@ export const GetValidGenreListByIocomeTypeDocument = {
   GetValidGenreListByIocomeTypeQuery,
   GetValidGenreListByIocomeTypeQueryVariables
 >;
+export const GetTagListDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getTagList" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "group" },
+            name: { kind: "Name", value: "groupByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "groupId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tags" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetTagListQuery, GetTagListQueryVariables>;
