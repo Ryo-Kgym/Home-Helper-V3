@@ -1,9 +1,0 @@
-fragment fragLinkDatabase on LinkDatabase {
-  __typename
-  id: appId
-  database
-  connection
-  sql
-  parameters
-  fieldColumnMaps
-}
