@@ -19,8 +19,8 @@ export const useNavigation = () => {
       .map(({ key, value }) => `${key}=${value}`)
       .join("&");
 
-    return push(`${pathname}?${searchParamJoined}&${newParams}`);
+    return push(`?${searchParamJoined}&${newParams}`);
   };
 
-  return { prependParamAndPush };
+  return { prependParamAndPush, refresh: () => push(pathname) };
 };

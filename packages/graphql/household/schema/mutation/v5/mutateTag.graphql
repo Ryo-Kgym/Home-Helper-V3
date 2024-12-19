@@ -1,11 +1,13 @@
 mutation modifyTag($id: String!, $form: HouseholdTagSetInput!) {
   updateHouseholdTagByPk(pkColumns: { id: $id }, _set: $form) {
+    __typename
     id
   }
 }
 
 mutation addTag($form: HouseholdTagInsertInput!) {
   insertHouseholdTagOne(object: $form) {
+    __typename
     id
   }
 }

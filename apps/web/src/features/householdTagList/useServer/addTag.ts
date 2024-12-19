@@ -7,7 +7,7 @@ import { findUser } from "../../../persistence/browser/server/find-user";
 import { execMutation } from "../../../persistence/database/server/execMutation";
 import { Tag } from "../types/tag";
 
-export const addTag = async (tag: Tag) => {
+export const addTag = async (tag: Omit<Tag, "id">) => {
   const { group } = await findUser();
 
   const { data } = await execMutation(AddTagDocument, {

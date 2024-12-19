@@ -4004,7 +4004,7 @@ export type ModifyTagMutationVariables = Exact<{
 
 export type ModifyTagMutation = {
   __typename?: "mutation_root";
-  updateHouseholdTagByPk?: { __typename?: "HouseholdTag"; id: string } | null;
+  updateHouseholdTagByPk?: { __typename: "HouseholdTag"; id: string } | null;
 };
 
 export type AddTagMutationVariables = Exact<{
@@ -4013,7 +4013,7 @@ export type AddTagMutationVariables = Exact<{
 
 export type AddTagMutation = {
   __typename?: "mutation_root";
-  insertHouseholdTagOne?: { __typename?: "HouseholdTag"; id: string } | null;
+  insertHouseholdTagOne?: { __typename: "HouseholdTag"; id: string } | null;
 };
 
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
@@ -4931,7 +4931,7 @@ export type GetTagListQuery = {
     __typename?: "Group";
     id: string;
     tags: Array<{
-      __typename?: "HouseholdTag";
+      __typename: "HouseholdTag";
       id: string;
       name: string;
       colorCode: any;
@@ -8452,6 +8452,7 @@ export const ModifyTagDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
               ],
             },
@@ -8500,6 +8501,7 @@ export const AddTagDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
               ],
             },
@@ -13825,6 +13827,10 @@ export const GetTagListDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
                       {

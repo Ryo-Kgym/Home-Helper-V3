@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-import { TagFrom } from "../types/tagForm";
+import { TagListRow } from "../types/tagListRow";
 
-export const useStateSetTagList = (tagList: TagFrom[]) => {
+export const useStateSetTagList = (tagList: TagListRow[]) => {
   const set = useTagListZustand((store) => ({
     setTagList: store.setTagList,
   }));
@@ -14,7 +14,7 @@ export const useStateSetTagList = (tagList: TagFrom[]) => {
       set.setTagList(tagList);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [tagList],
   );
 };
 
@@ -35,13 +35,13 @@ export const useStateSetTag = () => {
 };
 
 type State = {
-  tagListObject: Record<string, TagFrom>;
+  tagListObject: Record<string, TagListRow>;
 };
 
 type Actions = {
-  getTagList: () => TagFrom[];
-  setTagList: (tags: TagFrom[]) => void;
-  setTag: (tag: TagFrom) => void;
+  getTagList: () => TagListRow[];
+  setTagList: (tags: TagListRow[]) => void;
+  setTag: (tag: TagListRow) => void;
 };
 
 const useTagListZustand = create<State & Actions>()(

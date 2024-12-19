@@ -2,6 +2,7 @@ query getTagList($groupId: String!) {
   group: groupByPk(id: $groupId) {
     id
     tags {
+      __typename
       id
       name
       colorCode

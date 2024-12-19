@@ -3,11 +3,12 @@
 import { FC } from "react";
 
 import { useStateSetTagList } from "../hooks/useStateTagList";
-import { TagFrom } from "../types/tagForm";
+import { TagListRow } from "../types/tagListRow";
+import { TagAddForm } from "./TagAddForm";
 import { TagListTable } from "./TagListTable";
 
 type Props = {
-  tags: TagFrom[];
+  tags: TagListRow[];
 };
 
 export const TagListClient: FC<Props> = ({ tags }) => {
@@ -15,6 +16,7 @@ export const TagListClient: FC<Props> = ({ tags }) => {
 
   return (
     <div>
+      <TagAddForm />
       <TagListTable />
     </div>
   );

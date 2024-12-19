@@ -1,5 +1,5 @@
 import { Tag } from "./tag";
 
-export type TagFrom = Tag & {
+export type TagListRow = Tag & {
   count: number;
 };
