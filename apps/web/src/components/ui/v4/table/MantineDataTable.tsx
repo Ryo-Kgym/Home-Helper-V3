@@ -3,35 +3,32 @@
 import { ReactNode, useEffect, useState } from "react";
 import { DataTable } from "mantine-datatable";
 
-type DataTableRowType<H extends string> = { id: string } & Record<
-  H,
-  string | number | boolean
->;
+type DataTableRowType<R extends object> = { id: string } & R;
 
-type ColumnProps<H extends string> = {
-  accessor: H;
+type ColumnProps<R extends object> = {
+  accessor: keyof R;
   title?: string;
   width?: number | string;
   textAlign?: "left" | "center" | "right";
-  render?: (record: Record<H, string | number | boolean>) => ReactNode;
+  render?: (record: R) => ReactNode;
   hidden?: boolean;
 };
 
-type DataTableProps<H extends string> = {
-  columns: ColumnProps<H>[];
-  records: DataTableRowType<H>[];
-  onRowClick?: (record: DataTableRowType<H>) => void;
+type DataTableProps<R extends object> = {
+  columns: ColumnProps<R>[];
+  records: DataTableRowType<R>[];
+  onRowClick?: (record: DataTableRowType<R>) => void;
   height?: string;
   recordsPerPage?: number;
 };
 
-export const MantineDataTable = <H extends string>({
+export const MantineDataTable = <R extends object>({
   columns,
   records: defaultRecords,
   onRowClick,
   height = "85vh",
   recordsPerPage = 30,
-}: DataTableProps<H>) => {
+}: DataTableProps<R>) => {
   const [page, setPage] = useState(1);
   const [records, setRecords] = useState(
     defaultRecords?.slice(0, recordsPerPage),

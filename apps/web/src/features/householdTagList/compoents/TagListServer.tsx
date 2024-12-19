@@ -6,13 +6,13 @@ export const TagListServer = async () => {
       tags={[
         {
           id: "1",
-          tagName: "tag1",
+          name: "tag1",
           colorCode: "#FF0000",
           count: 1,
         },
         {
           id: "2",
-          tagName: "tag2",
+          name: "tag2",
           colorCode: "#00FF00",
           count: 2,
         },
