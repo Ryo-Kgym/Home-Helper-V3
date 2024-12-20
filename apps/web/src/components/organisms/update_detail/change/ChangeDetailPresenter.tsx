@@ -4,13 +4,13 @@
 
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { IocomeTypeSegment } from "../../../molecules/CustomSegment/IocomeType";
-import { CategorySelect } from "../../../molecules/CustomSelect/Category";
-import { GenreSelect } from "../../../molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../../molecules/CustomTextArea/Memo";
 import { Button } from "../../../ui";
 import { DatePicker } from "../../../ui/date";
 import { AmountInput } from "../../../ui/numberInput/amount/AmountInput";
 import { AccountSelect } from "../../../ui/select/AccountSelect";
+import { CategorySelect } from "../../../ui/select/CategorySelect";
+import { GenreSelect } from "../../../ui/select/GenreSelect";
 
 export const ChangeDetailPresenter = ({
   date,

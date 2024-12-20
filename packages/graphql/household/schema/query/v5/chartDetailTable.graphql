@@ -43,6 +43,7 @@ query chartDetailTableFilterSettlementDate(
 fragment fragChartDetailTable on HouseholdAllDetailView {
   __typename
   id
+  type
   settlementDate
   withdrawalDate
   amount: originalAmount

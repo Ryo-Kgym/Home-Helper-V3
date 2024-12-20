@@ -7,6 +7,8 @@ query getValidGenreListByIocomeType($iocomeType: String!, $groupId: String!) {
     }
     orderBy: { displayOrder: ASC }
   ) {
+    __typename
+    id
     genreId: id
     genreName: name
     genreType
@@ -16,6 +18,7 @@ query getValidGenreListByIocomeType($iocomeType: String!, $groupId: String!) {
       orderBy: { displayOrder: ASC }
       where: { validFlag: { _eq: true } }
     ) {
+      __typename
       id
       categoryId: id
       categoryName: name

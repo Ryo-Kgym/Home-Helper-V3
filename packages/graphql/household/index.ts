@@ -4248,28 +4248,6 @@ export type GetDailyDetailByDateQuery = {
   }>;
 };
 
-export type GetGenreByIdQueryVariables = Exact<{
-  genreId: Scalars["String"];
-}>;
-
-export type GetGenreByIdQuery = {
-  __typename?: "query_root";
-  genreById?: {
-    __typename?: "HouseholdGenre";
-    id: string;
-    genreType: string;
-    iocomeType: string;
-    validFlag?: boolean | null;
-    displayOrder: number;
-    genreName: string;
-    categories: Array<{
-      __typename?: "HouseholdCategory";
-      categoryId: string;
-      categoryName: string;
-    }>;
-  } | null;
-};
-
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -4561,6 +4539,7 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
   detailView: Array<{
     __typename: "HouseholdAllDetailView";
     id?: string | null;
+    type?: string | null;
     settlementDate?: any | null;
     withdrawalDate?: any | null;
     iocomeType?: string | null;
@@ -4595,6 +4574,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
   detailView: Array<{
     __typename: "HouseholdAllDetailView";
     id?: string | null;
+    type?: string | null;
     settlementDate?: any | null;
     withdrawalDate?: any | null;
     iocomeType?: string | null;
@@ -4621,6 +4601,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
 export type FragChartDetailTableFragment = {
   __typename: "HouseholdAllDetailView";
   id?: string | null;
+  type?: string | null;
   settlementDate?: any | null;
   withdrawalDate?: any | null;
   iocomeType?: string | null;
@@ -4879,6 +4860,29 @@ export type GetDetailsByCategoryQuery = {
   } | null;
 };
 
+export type GetGenreByIdQueryVariables = Exact<{
+  genreId: Scalars["String"];
+}>;
+
+export type GetGenreByIdQuery = {
+  __typename?: "query_root";
+  genreById?: {
+    __typename: "HouseholdGenre";
+    id: string;
+    genreType: string;
+    iocomeType: string;
+    validFlag?: boolean | null;
+    displayOrder: number;
+    genreName: string;
+    categories: Array<{
+      __typename: "HouseholdCategory";
+      id: string;
+      categoryId: string;
+      categoryName: string;
+    }>;
+  } | null;
+};
+
 export type GetTransferCategoryByQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -4935,7 +4939,7 @@ export type GetValidCategoryByGenreIdQueryVariables = Exact<{
 export type GetValidCategoryByGenreIdQuery = {
   __typename?: "query_root";
   genreById: Array<{
-    __typename?: "HouseholdGenre";
+    __typename: "HouseholdGenre";
     id: string;
     name: string;
     categories: Array<{
@@ -4946,11 +4950,11 @@ export type GetValidCategoryByGenreIdQuery = {
     }>;
   }>;
   genre?: {
-    __typename?: "HouseholdGenre";
+    __typename: "HouseholdGenre";
     id: string;
     name: string;
     categories: Array<{
-      __typename?: "HouseholdCategory";
+      __typename: "HouseholdCategory";
       id: string;
       name: string;
       displayOrder: number;
@@ -4966,14 +4970,15 @@ export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
 export type GetValidGenreListByIocomeTypeQuery = {
   __typename?: "query_root";
   allGenresList: Array<{
-    __typename?: "HouseholdGenre";
+    __typename: "HouseholdGenre";
+    id: string;
     genreType: string;
     iocomeType: string;
     displayOrder: number;
     genreId: string;
     genreName: string;
     categoriesByGenreIdList: Array<{
-      __typename?: "HouseholdCategory";
+      __typename: "HouseholdCategory";
       id: string;
       displayOrder: number;
       categoryId: string;
@@ -5029,6 +5034,7 @@ export const FragChartDetailTableFragmentDoc = gql`
   fragment fragChartDetailTable on HouseholdAllDetailView {
     __typename
     id
+    type
     settlementDate
     withdrawalDate
     amount: originalAmount
@@ -5942,31 +5948,6 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
 }
-export const GetGenreByIdDocument = gql`
-  query GetGenreById($genreId: String!) {
-    genreById: householdGenreByPk(id: $genreId) {
-      id
-      genreName: name
-      genreType
-      iocomeType
-      validFlag
-      displayOrder
-      categories(where: { validFlag: { _eq: true } }) {
-        categoryId: id
-        categoryName: name
-      }
-    }
-  }
-`;
-
-export function useGetGenreByIdQuery(
-  options: Omit<Urql.UseQueryArgs<GetGenreByIdQueryVariables>, "query">,
-) {
-  return Urql.useQuery<GetGenreByIdQuery, GetGenreByIdQueryVariables>({
-    query: GetGenreByIdDocument,
-    ...options,
-  });
-}
 export const GetCreditCardSummaryByDateDocument = gql`
   query getCreditCardSummaryByDate(
     $fromDate: date!
@@ -6491,6 +6472,34 @@ export function useGetDetailsByCategoryQuery(
     GetDetailsByCategoryQueryVariables
   >({ query: GetDetailsByCategoryDocument, ...options });
 }
+export const GetGenreByIdDocument = gql`
+  query getGenreById($genreId: String!) {
+    genreById: householdGenreByPk(id: $genreId) {
+      __typename
+      id
+      genreName: name
+      genreType
+      iocomeType
+      validFlag
+      displayOrder
+      categories(where: { validFlag: { _eq: true } }) {
+        __typename
+        id
+        categoryId: id
+        categoryName: name
+      }
+    }
+  }
+`;
+
+export function useGetGenreByIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetGenreByIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetGenreByIdQuery, GetGenreByIdQueryVariables>({
+    query: GetGenreByIdDocument,
+    ...options,
+  });
+}
 export const GetTransferCategoryByDocument = gql`
   query GetTransferCategoryBy($groupId: String!) {
     transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
@@ -6558,6 +6567,7 @@ export const GetValidCategoryByGenreIdDocument = gql`
       }
       orderBy: { displayOrder: ASC }
     ) {
+      __typename
       id
       name
       categories(where: { validFlag: { _eq: true } }) {
@@ -6567,12 +6577,14 @@ export const GetValidCategoryByGenreIdDocument = gql`
       }
     }
     genre: householdGenreByPk(id: $genreId) {
+      __typename
       id
       name
       categories(
         where: { validFlag: { _eq: true } }
         orderBy: { displayOrder: ASC }
       ) {
+        __typename
         id
         name
         displayOrder
@@ -6602,6 +6614,8 @@ export const GetValidGenreListByIocomeTypeDocument = gql`
       }
       orderBy: { displayOrder: ASC }
     ) {
+      __typename
+      id
       genreId: id
       genreName: name
       genreType
@@ -6611,6 +6625,7 @@ export const GetValidGenreListByIocomeTypeDocument = gql`
         orderBy: { displayOrder: ASC }
         where: { validFlag: { _eq: true } }
       ) {
+        __typename
         id
         categoryId: id
         categoryName: name

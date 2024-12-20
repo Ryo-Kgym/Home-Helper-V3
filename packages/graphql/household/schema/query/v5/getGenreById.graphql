@@ -1,5 +1,6 @@
-query GetGenreById($genreId: String!) {
+query getGenreById($genreId: String!) {
   genreById: householdGenreByPk(id: $genreId) {
+    __typename
     id
     genreName: name
     genreType
@@ -7,6 +8,8 @@ query GetGenreById($genreId: String!) {
     validFlag
     displayOrder
     categories(where: { validFlag: { _eq: true } }) {
+      __typename
+      id
       categoryId: id
       categoryName: name
     }

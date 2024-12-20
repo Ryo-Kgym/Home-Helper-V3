@@ -5,7 +5,7 @@ import {
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { findUser } from "../../../persistence/browser/server/find-user";
-import { fetchQuery } from "../../../persistence/database/server/fetchQuery";
+import { execQuery } from "../../../persistence/database/server/execQuery";
 
 export const fetchWatchTableData = async ({
   watchFirstDate,
@@ -24,7 +24,7 @@ export const fetchWatchTableData = async ({
       ? ChartDetailTableFilterWithdrawalDateDocument
       : ChartDetailTableFilterSettlementDateDocument;
 
-  const { data } = await fetchQuery(query, {
+  const { data } = await execQuery(query, {
     groupId: group.id,
     fromDate: watchFirstDate,
     toDate: watchLastDate,
@@ -33,12 +33,16 @@ export const fetchWatchTableData = async ({
   return {
     records: data?.detailView.map((rec) => ({
       id: rec.id!,
+      type: rec.type!,
       withdrawalDate: rec.withdrawalDate,
       settlementDate: rec.settlementDate,
       amount: rec.amount as number,
       iocomeType: rec.iocomeType as IocomeType,
+      accountId: rec.account?.id ?? "",
       accountName: rec.account?.name ?? "",
+      genreId: rec.genre?.id ?? "",
       genreName: rec.genre?.name ?? "",
+      categoryId: rec.category?.id ?? "",
       categoryName: rec.category?.name ?? "",
       memo: rec.memo ?? "",
       isDeposit: !!rec.category?.depositCategory,

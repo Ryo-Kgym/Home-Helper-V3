@@ -4187,28 +4187,6 @@ export type GetDailyDetailByDateQuery = {
   }>;
 };
 
-export type GetGenreByIdQueryVariables = Exact<{
-  genreId: Scalars["String"];
-}>;
-
-export type GetGenreByIdQuery = {
-  __typename?: "query_root";
-  genreById?: {
-    __typename?: "HouseholdGenre";
-    id: string;
-    genreType: string;
-    iocomeType: string;
-    validFlag?: boolean | null;
-    displayOrder: number;
-    genreName: string;
-    categories: Array<{
-      __typename?: "HouseholdCategory";
-      categoryId: string;
-      categoryName: string;
-    }>;
-  } | null;
-};
-
 export type GetCreditCardSummaryByDateQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -4500,6 +4478,7 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
   detailView: Array<{
     __typename: "HouseholdAllDetailView";
     id?: string | null;
+    type?: string | null;
     settlementDate?: any | null;
     withdrawalDate?: any | null;
     iocomeType?: string | null;
@@ -4534,6 +4513,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
   detailView: Array<{
     __typename: "HouseholdAllDetailView";
     id?: string | null;
+    type?: string | null;
     settlementDate?: any | null;
     withdrawalDate?: any | null;
     iocomeType?: string | null;
@@ -4560,6 +4540,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
 export type FragChartDetailTableFragment = {
   __typename: "HouseholdAllDetailView";
   id?: string | null;
+  type?: string | null;
   settlementDate?: any | null;
   withdrawalDate?: any | null;
   iocomeType?: string | null;
@@ -4818,6 +4799,29 @@ export type GetDetailsByCategoryQuery = {
   } | null;
 };
 
+export type GetGenreByIdQueryVariables = Exact<{
+  genreId: Scalars["String"];
+}>;
+
+export type GetGenreByIdQuery = {
+  __typename?: "query_root";
+  genreById?: {
+    __typename: "HouseholdGenre";
+    id: string;
+    genreType: string;
+    iocomeType: string;
+    validFlag?: boolean | null;
+    displayOrder: number;
+    genreName: string;
+    categories: Array<{
+      __typename: "HouseholdCategory";
+      id: string;
+      categoryId: string;
+      categoryName: string;
+    }>;
+  } | null;
+};
+
 export type GetTransferCategoryByQueryVariables = Exact<{
   groupId: Scalars["String"];
 }>;
@@ -4874,7 +4878,7 @@ export type GetValidCategoryByGenreIdQueryVariables = Exact<{
 export type GetValidCategoryByGenreIdQuery = {
   __typename?: "query_root";
   genreById: Array<{
-    __typename?: "HouseholdGenre";
+    __typename: "HouseholdGenre";
     id: string;
     name: string;
     categories: Array<{
@@ -4885,11 +4889,11 @@ export type GetValidCategoryByGenreIdQuery = {
     }>;
   }>;
   genre?: {
-    __typename?: "HouseholdGenre";
+    __typename: "HouseholdGenre";
     id: string;
     name: string;
     categories: Array<{
-      __typename?: "HouseholdCategory";
+      __typename: "HouseholdCategory";
       id: string;
       name: string;
       displayOrder: number;
@@ -4905,14 +4909,15 @@ export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
 export type GetValidGenreListByIocomeTypeQuery = {
   __typename?: "query_root";
   allGenresList: Array<{
-    __typename?: "HouseholdGenre";
+    __typename: "HouseholdGenre";
+    id: string;
     genreType: string;
     iocomeType: string;
     displayOrder: number;
     genreId: string;
     genreName: string;
     categoriesByGenreIdList: Array<{
-      __typename?: "HouseholdCategory";
+      __typename: "HouseholdCategory";
       id: string;
       displayOrder: number;
       categoryId: string;
@@ -5034,6 +5039,7 @@ export const FragChartDetailTableFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "settlementDate" } },
           { kind: "Field", name: { kind: "Name", value: "withdrawalDate" } },
           {
@@ -9694,114 +9700,6 @@ export const GetDailyDetailByDateDocument = {
   GetDailyDetailByDateQuery,
   GetDailyDetailByDateQueryVariables
 >;
-export const GetGenreByIdDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetGenreById" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "genreId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "genreById" },
-            name: { kind: "Name", value: "householdGenreByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "genreId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "genreName" },
-                  name: { kind: "Name", value: "name" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "genreType" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                { kind: "Field", name: { kind: "Name", value: "validFlag" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "displayOrder" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "categories" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "validFlag" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: { kind: "BooleanValue", value: true },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "categoryId" },
-                        name: { kind: "Name", value: "id" },
-                      },
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "categoryName" },
-                        name: { kind: "Name", value: "name" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetGenreByIdQuery, GetGenreByIdQueryVariables>;
 export const GetCreditCardSummaryByDateDocument = {
   kind: "Document",
   definitions: [
@@ -11541,6 +11439,7 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "settlementDate" } },
           { kind: "Field", name: { kind: "Name", value: "withdrawalDate" } },
           {
@@ -11801,6 +11700,7 @@ export const ChartDetailTableFilterSettlementDateDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "settlementDate" } },
           { kind: "Field", name: { kind: "Name", value: "withdrawalDate" } },
           {
@@ -13041,6 +12941,120 @@ export const GetDetailsByCategoryDocument = {
   GetDetailsByCategoryQuery,
   GetDetailsByCategoryQueryVariables
 >;
+export const GetGenreByIdDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getGenreById" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "genreId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "genreById" },
+            name: { kind: "Name", value: "householdGenreByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "genreId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "genreName" },
+                  name: { kind: "Name", value: "name" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+                { kind: "Field", name: { kind: "Name", value: "validFlag" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "displayOrder" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "categories" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "validFlag" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_eq" },
+                                  value: { kind: "BooleanValue", value: true },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "categoryId" },
+                        name: { kind: "Name", value: "id" },
+                      },
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "categoryName" },
+                        name: { kind: "Name", value: "name" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetGenreByIdQuery, GetGenreByIdQueryVariables>;
 export const GetTransferCategoryByDocument = {
   kind: "Document",
   definitions: [
@@ -13437,6 +13451,7 @@ export const GetValidCategoryByGenreIdDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 {
@@ -13499,6 +13514,7 @@ export const GetValidCategoryByGenreIdDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 {
@@ -13546,6 +13562,10 @@ export const GetValidCategoryByGenreIdDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
@@ -13686,6 +13706,8 @@ export const GetValidGenreListByIocomeTypeDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
                   alias: { kind: "Name", value: "genreId" },
@@ -13748,6 +13770,10 @@ export const GetValidGenreListByIocomeTypeDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       {
                         kind: "Field",

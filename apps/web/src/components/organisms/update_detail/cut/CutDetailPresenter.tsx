@@ -3,13 +3,13 @@
  */
 
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
-import { CategorySelect } from "../../../molecules/CustomSelect/Category";
-import { GenreSelect } from "../../../molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../../molecules/CustomTextArea/Memo";
-import { Button } from "../../../ui";
+import { Button } from "../../../ui/button/v5";
 import { DatePicker } from "../../../ui/date";
 import { AmountInput } from "../../../ui/numberInput/amount/AmountInput";
 import { AccountSelect } from "../../../ui/select/AccountSelect";
+import { CategorySelect } from "../../../ui/select/CategorySelect";
+import { GenreSelect } from "../../../ui/select/GenreSelect";
 
 export const CutDetailPresenter = ({
   detailDate,
@@ -163,11 +163,12 @@ export const CutDetailPresenter = ({
     </div>
     <div className={"grid grid-cols-2 justify-items-center"}>
       <Button
-        type={"update"}
+        type={"modify"}
+        label={"更新"}
         onClick={updateHandler}
         disabled={updateButtonDisabled}
       />
-      <Button type={"clear"} onClick={clearHandler} />
+      <Button type={"back"} label={"クリア"} onClick={clearHandler} />
     </div>
   </div>
 );

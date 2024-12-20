@@ -40,13 +40,15 @@ export const ChangeDetailContainer = ({
   });
 
   const resetClickHandler = () => {
-    setDate(initData!.date);
-    setIocomeType(initData?.iocomeType ?? IocomeType.Income);
-    setGenreId(initData!.genreId);
-    setCategoryId(initData!.categoryId);
-    setAccountId(initData!.accountId);
-    setAmount(initData!.amount);
-    setMemo(initData?.memo ?? "");
+    if (!initData) return;
+
+    setDate(initData.date);
+    setIocomeType(initData.iocomeType ?? IocomeType.Income);
+    setGenreId(initData.genreId);
+    setCategoryId(initData.categoryId);
+    setAccountId(initData.accountId);
+    setAmount(initData.amount);
+    setMemo(initData.memo ?? "");
   };
 
   useEffect(resetClickHandler, [initData]);
