@@ -3,31 +3,37 @@ import { useState } from "react";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { registerDailyDetail } from "../../../useServer/household/daily_detail/registerDailyDetail";
+import { DailyDetailForm } from "./dailyDetailForm";
 import { RegisterDailyDetailPresenter } from "./RegisterDailyDetailPresenter";
 
 export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
-  const [registerDate, setRegisterDate] = useState<Date>(date);
-  const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
-  const [categoryId, setCategoryId] = useState<string | null>(null);
-  const [genreId, setGenreId] = useState<string | null>(null);
-  const [accountId, setAccountId] = useState<string | null>(null);
-  const [amount, setAmount] = useState<number | "">("");
-  const [memo, setMemo] = useState("");
+  const [form, setForm] = useState<DailyDetailForm>({
+    date,
+    genreId: "",
+    iocomeType: IocomeType.Income,
+    categoryId: "",
+    accountId: "",
+    amount: "",
+    memo: "",
+  });
 
   const allClear = () => {
-    setIocomeType(IocomeType.Income);
-    setCategoryId(null);
-    setGenreId(null);
-    setAccountId(null);
-    setAmount("");
-    setMemo("");
+    setForm({
+      date: new Date(),
+      genreId: "",
+      iocomeType: IocomeType.Income,
+      categoryId: "",
+      accountId: "",
+      amount: 0,
+      memo: "",
+    });
   };
 
   const anyFieldIsInvalid = () => {
-    const genreIdIsInvalid = genreId === null || genreId === "";
-    const categoryIdIsInvalid = categoryId === null || categoryId === "";
-    const accountIdIsInvalid = accountId === null || accountId === "";
-    const amountIsInvalid = amount === undefined || amount === null;
+    const genreIdIsInvalid = !form.genreId;
+    const categoryIdIsInvalid = !form.categoryId;
+    const accountIdIsInvalid = !form.accountId;
+    const amountIsInvalid = !form.amount;
 
     return (
       genreIdIsInvalid ||
@@ -44,16 +50,15 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
     }
     try {
       await registerDailyDetail({
-        date: registerDate,
-        genreId: genreId!,
-        iocomeType: iocomeType,
-        categoryId: categoryId!,
-        accountId: accountId!,
-        amount: amount as number,
-        memo: memo,
+        date: form.date,
+        iocomeType: form.iocomeType,
+        genreId: form.genreId,
+        categoryId: form.categoryId,
+        accountId: form.accountId,
+        amount: form.amount as number,
+        memo: form.memo,
       });
-      setAmount("");
-      setMemo("");
+      setForm({ ...form, amount: 0, memo: "" });
       successPopup("登録しました");
     } catch (e) {
       console.error(e);
@@ -63,29 +68,25 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
 
   return (
     <RegisterDailyDetailPresenter
-      date={registerDate}
-      setDate={setRegisterDate}
-      iocomeType={iocomeType}
-      changeIocomeTypeHandler={(value: IocomeType) => {
-        setIocomeType(value);
-        setGenreId(null);
-        setCategoryId(null);
-      }}
-      genreId={genreId}
-      changeGenreIdHandler={(value: string | null) => {
-        setGenreId(value);
-        setCategoryId(null);
-      }}
-      categoryId={categoryId}
-      changeCategoryIdHandler={setCategoryId}
-      accountId={accountId}
-      changeAccountIdHandler={setAccountId}
-      amount={amount}
-      changeAmountHandler={setAmount}
-      memo={memo}
-      changeMemoHandler={setMemo}
-      clearClickHandler={allClear}
-      registerClickHandler={registerClickHandler}
+      form={form}
+      setDate={(v) => setForm({ ...form, date: v })}
+      setIocomeType={(v) =>
+        setForm({
+          ...form,
+          iocomeType: v,
+          genreId: "",
+          categoryId: "",
+        })
+      }
+      setGenreId={(value) =>
+        setForm({ ...form, genreId: value ?? "", categoryId: "" })
+      }
+      setCategoryId={(v) => setForm({ ...form, categoryId: v ?? "" })}
+      setAccountId={(v) => setForm({ ...form, accountId: v ?? "" })}
+      setAmount={(v) => setForm({ ...form, amount: v })}
+      setMemo={(v) => setForm({ ...form, memo: v })}
+      clearClick={allClear}
+      registerClick={registerClickHandler}
     />
   );
 };
