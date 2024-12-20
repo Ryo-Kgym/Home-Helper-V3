@@ -5,12 +5,12 @@ import {
   useGetCategoryByIdQuery,
   useUpdateCategoryByIdMutation,
 } from "@v3/graphql/household";
+import { GenreSelect } from "components/ui/select/GenreSelect";
 
 import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
 import { ValiditySegment } from "../../../components/molecules/CustomSegment/ValiditySegment";
-import { GenreSelect } from "../../../components/molecules/CustomSelect/Genre";
 import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
-import { Button } from "../../../components/ui";
+import { Button } from "../../../components/ui/button/v5";
 import { DisplayOrderInput } from "../../../components/ui/numberInput/displayOrder/DisplayOrderInput";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
@@ -118,7 +118,7 @@ export const CategoryEdit = ({ categoryId }: { categoryId: string }) => {
         />
       </Frame>
 
-      <Button onClick={updateHandler} type={"update"} />
+      <Button onClick={updateHandler} type={"modify"} label={"更新"} />
     </div>
   );
 };

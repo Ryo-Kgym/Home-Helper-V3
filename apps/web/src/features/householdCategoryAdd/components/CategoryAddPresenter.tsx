@@ -1,9 +1,10 @@
 import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
 import { ValiditySegment } from "../../../components/molecules/CustomSegment/ValiditySegment";
-import { GenreSelect } from "../../../components/molecules/CustomSelect/Genre";
 import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
-import { Button, FieldFrame } from "../../../components/ui";
+import { FieldFrame } from "../../../components/ui";
+import { Button } from "../../../components/ui/button/v5";
 import { DisplayOrderInput } from "../../../components/ui/numberInput/displayOrder/DisplayOrderInput";
+import { GenreSelect } from "../../../components/ui/select/GenreSelect";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const CategoryAddPresenter = ({
@@ -65,7 +66,8 @@ export const CategoryAddPresenter = ({
 
     <Button
       onClick={registerHandler}
-      type={"register"}
+      type={"add"}
+      label={"登録"}
       disabled={!registerable}
     />
   </div>
