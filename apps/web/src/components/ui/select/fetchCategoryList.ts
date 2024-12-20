@@ -5,15 +5,8 @@ import { GetValidCategoryByGenreIdDocument } from "@v3/graphql/household/type";
 import type { SelectData } from "./v5";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { findCategoryList } from "./findCategoryList";
 
 export const fetchCategoryList = async ({ genreId }: { genreId: string }) => {
-  const cache = await findCategoryList();
-
-  if (cache) {
-    return { categories: cache };
-  }
-
   const { group } = await findUser();
   const { data } = await execQuery(GetValidCategoryByGenreIdDocument, {
     genreId,

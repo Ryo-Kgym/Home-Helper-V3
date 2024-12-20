@@ -1,22 +1,22 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { fetchAccountList } from "./fetchAccountList";
 import { SelectProps } from "./v4";
 import { Select } from "./v5";
 
-type Props = {
+type AccountSelectProps = {
   accountId: string | null;
   setAccountId: (_: string | null) => void;
   disabled?: boolean;
   withLabel?: boolean;
 };
 
-export const AccountSelect: FC<Props> = ({
+export const AccountSelect = ({
   accountId,
   setAccountId,
   disabled = false,
   withLabel = false,
-}) => {
+}: AccountSelectProps) => {
   const [options, setOptions] = useState<SelectProps<string>["data"]>([]);
 
   useEffect(() => {
