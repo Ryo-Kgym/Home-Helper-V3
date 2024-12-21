@@ -1,9 +1,10 @@
 "use client";
 
-import { ComponentProps, useState } from "react";
+import { useState } from "react";
 
-import { UpdateDetail } from "../../../components/organisms";
+import { UpdateDetail } from "../../../components/organisms/update_detail/UpdateDetail";
 import { DataTable } from "../../../components/ui/v4/table";
+import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { colors } from "../../../styles/colors";
 
@@ -27,8 +28,7 @@ export const ChartDetailTableClient = ({
     isDeposit: boolean;
   }[];
 }) => {
-  const [detail, setDetail] =
-    useState<ComponentProps<typeof UpdateDetail>["initData"]>(null);
+  const [detail, setDetail] = useState<DailyDetail | undefined>(undefined);
 
   return (
     <>
@@ -87,11 +87,13 @@ export const ChartDetailTableClient = ({
           });
         }}
       />
-      <UpdateDetail
-        initData={detail}
-        isOpen={!!detail}
-        onCloseHandler={() => setDetail(null)}
-      />
+      {detail && (
+        <UpdateDetail
+          initData={detail}
+          isOpen={!!detail}
+          onCloseHandler={() => setDetail(undefined)}
+        />
+      )}
     </>
   );
 };

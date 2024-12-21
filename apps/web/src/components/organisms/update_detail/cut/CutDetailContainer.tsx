@@ -74,9 +74,9 @@ export const CutDetailContainer = ({
   return (
     <CutDetailPresenter
       detailDate={detailDate}
-      defaultDetailDate={initData.date!}
+      defaultDetailDate={initData.date}
       setDetailDate={setDetailDate}
-      iocomeType={initData.iocomeType!}
+      iocomeType={initData.iocomeType}
       genreId={genreId}
       defaultGenreId={initData?.genreId}
       changeGenreIdHandler={setGenreId}

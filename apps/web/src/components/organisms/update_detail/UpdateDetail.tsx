@@ -6,15 +6,15 @@ import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { Modal } from "../../atoms/Modal";
 import { Tab } from "../../ui";
-import { ChangeDetailContainer } from "./change/ChangeDetailContainer";
+import { ModifyDailyDetail } from "./change/ModifyDailyDetail";
 import { CutDetailContainer } from "./cut/CutDetailContainer";
 
-export const UpdateDetailPresenter = ({
+export const UpdateDetail = ({
   initData,
   isOpen,
   onCloseHandler,
 }: {
-  initData: DailyDetail | null;
+  initData: DailyDetail;
   isOpen: boolean;
   onCloseHandler: () => void;
 }) => (
@@ -27,10 +27,7 @@ export const UpdateDetailPresenter = ({
           label: "変更",
           icon: null,
           contents: (
-            <ChangeDetailContainer
-              initData={initData}
-              onClose={onCloseHandler}
-            />
+            <ModifyDailyDetail initData={initData} onClose={onCloseHandler} />
           ),
         },
         {

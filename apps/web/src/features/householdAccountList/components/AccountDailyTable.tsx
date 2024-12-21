@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { IocomeTotal } from "../../../components/molecules/Total";
-import { UpdateDetail } from "../../../components/organisms";
+import { UpdateDetail } from "../../../components/organisms/update_detail/UpdateDetail";
 import { DataTable } from "../../../components/ui/v4/table";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
@@ -104,11 +104,13 @@ export const AccountDailyTable = ({
         income={(incomeTotal ?? 0) + creditCardIncomeTotal}
         outcome={(outcomeTotal ?? 0) + (creditCardOutcomeTotal ?? 0)}
       />
-      <UpdateDetail
-        initData={dailyDetail}
-        isOpen={modifyModalOpen}
-        onCloseHandler={() => setModifyModalOpen(false)}
-      />
+      {dailyDetail && (
+        <UpdateDetail
+          initData={dailyDetail}
+          isOpen={modifyModalOpen}
+          onCloseHandler={() => setModifyModalOpen(false)}
+        />
+      )}
     </>
   );
 };

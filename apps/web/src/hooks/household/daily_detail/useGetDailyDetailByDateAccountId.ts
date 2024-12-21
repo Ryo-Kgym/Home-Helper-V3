@@ -36,15 +36,28 @@ export const useGetDailyDetailByDateAccountId = (
   const getDetail = (id: string): DailyDetail => {
     const dailyDetail = data?.dailies?.find((e) => e.id === id);
 
+    if (!dailyDetail) {
+      return {
+        id: "",
+        date: new Date(),
+        amount: 0,
+        iocomeType: IocomeType.Outcome,
+        genreId: "",
+        categoryId: "",
+        accountId: "",
+        memo: "",
+      };
+    }
+
     return {
-      id: dailyDetail?.id ?? null,
-      date: new Date(dailyDetail?.date as string),
-      amount: Number(dailyDetail?.amount) ?? "",
-      iocomeType: (dailyDetail?.genre.iocomeType as IocomeType) ?? null,
-      genreId: dailyDetail?.genre.id ?? null,
-      categoryId: dailyDetail?.category.id ?? null,
-      accountId: dailyDetail?.account.id ?? null,
-      memo: dailyDetail?.memo ?? null,
+      id: dailyDetail.id,
+      date: new Date(dailyDetail.date),
+      amount: Number(dailyDetail.amount) ?? "",
+      iocomeType: dailyDetail.genre.iocomeType as IocomeType,
+      genreId: dailyDetail.genre.id,
+      categoryId: dailyDetail.category.id,
+      accountId: dailyDetail.account.id,
+      memo: dailyDetail.memo ?? "",
     };
   };
 
