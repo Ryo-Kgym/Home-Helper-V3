@@ -21,7 +21,7 @@ type Props = {
 
 export const FileImportForm: FC<Props> = ({ importFileType }) => {
   const [withdrawalDate, setWithdrawalDate] = useState<Date>(new Date());
-  const [accountId, setAccountId] = useState<string | null>(null);
+  const [accountId, setAccountId] = useState<string>("");
 
   const { uploadFile, onChange, loadFile, setLoadFile } = useLoadFile();
   const { buildable, header, body } = useBuildTable(loadFile);
@@ -90,7 +90,7 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
         <DatePicker value={withdrawalDate} onChange={setWithdrawalDate} />
         <AccountSelect
           accountId={accountId}
-          setAccountId={setAccountId}
+          onChange={setAccountId}
           withLabel
         />
         <FileInput onChange={onChange} />

@@ -1,13 +1,11 @@
 import { ReactNode } from "react";
 
-import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
-// import { CategorySelect } from "../../../components/molecules/CustomSelect/Category";
-// import { GenreSelect } from "../../../components/molecules/CustomSelect/Genre";
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
 import { Button } from "../../../components/ui/button/v5";
 import { IsExpenseCheckbox } from "../../../components/ui/checkbox/isExpense/IsExpenseCheckbox";
 import { DatePicker } from "../../../components/ui/date";
 import { AmountInput } from "../../../components/ui/numberInput/amount/AmountInput";
+import { IocomeTypeSegment } from "../../../components/ui/segment/IocomeTypeSegment";
 import { CategorySelect } from "../../../components/ui/select/CategorySelect";
 import { GenreSelect } from "../../../components/ui/select/GenreSelect";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
@@ -49,7 +47,7 @@ export const CreditCardDetailEditPresenter = ({
     <Frame>
       <IocomeTypeSegment
         iocomeType={display.iocomeType}
-        setIocomeType={setIocomeType}
+        onChange={setIocomeType}
         disabled
       />
     </Frame>
@@ -57,7 +55,7 @@ export const CreditCardDetailEditPresenter = ({
       <GenreSelect
         iocomeType={display.iocomeType}
         genreId={formData.genreId}
-        setGenreId={setGenreId}
+        onChange={setGenreId}
         withLabel
       />
     </Frame>
@@ -65,7 +63,7 @@ export const CreditCardDetailEditPresenter = ({
       <CategorySelect
         genreId={formData.genreId}
         categoryId={formData.categoryId}
-        setCategoryId={setCategoryId}
+        onChange={setCategoryId}
         withLabel
       />
     </Frame>

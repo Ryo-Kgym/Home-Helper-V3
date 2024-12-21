@@ -3,9 +3,9 @@ import { Button } from "components/ui/button/v5";
 import { DatePicker } from "components/ui/date";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
 import { MemoTextArea } from "../../molecules/CustomTextArea/Memo";
 import { AmountInput } from "../../ui/numberInput/amount/AmountInput";
+import { IocomeTypeSegment } from "../../ui/segment/IocomeTypeSegment";
 import { AccountSelect } from "../../ui/select/AccountSelect";
 import { CategorySelect } from "../../ui/select/CategorySelect";
 import { GenreSelect } from "../../ui/select/GenreSelect";
@@ -18,7 +18,7 @@ type Props = {
   setCategoryId: (_: string | null) => void;
   setGenreId: (_: string | null) => void;
   setAccountId: (_: string | null) => void;
-  setAmount: (_: number | "") => void;
+  setAmount: (_: number) => void;
   setMemo: (_: string) => void;
   clearClick: () => void;
   registerClick: () => void;
@@ -48,25 +48,25 @@ export const RegisterDailyDetailPresenter: FC<Props> = ({
     <Field>
       <IocomeTypeSegment
         iocomeType={form.iocomeType}
-        setIocomeType={setIocomeType}
+        onChange={setIocomeType}
       />
     </Field>
     <Field>
       <GenreSelect
         iocomeType={form.iocomeType}
         genreId={form.genreId}
-        setGenreId={setGenreId}
+        onChange={setGenreId}
       />
     </Field>
     <Field>
       <CategorySelect
         genreId={form.genreId}
         categoryId={form.categoryId}
-        setCategoryId={setCategoryId}
+        onChange={setCategoryId}
       />
     </Field>
     <Field>
-      <AccountSelect accountId={form.accountId} setAccountId={setAccountId} />
+      <AccountSelect accountId={form.accountId} onChange={setAccountId} />
     </Field>
     <Field>
       <AmountInput value={form.amount} onChange={setAmount} />

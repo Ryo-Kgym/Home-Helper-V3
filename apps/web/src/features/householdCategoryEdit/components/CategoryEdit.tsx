@@ -7,11 +7,11 @@ import {
 } from "@v3/graphql/household";
 import { GenreSelect } from "components/ui/select/GenreSelect";
 
-import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
-import { ValiditySegment } from "../../../components/molecules/CustomSegment/ValiditySegment";
 import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
 import { Button } from "../../../components/ui/button/v5";
 import { DisplayOrderInput } from "../../../components/ui/numberInput/displayOrder/DisplayOrderInput";
+import { IocomeTypeSegment } from "../../../components/ui/segment/IocomeTypeSegment";
+import { ValiditySegment } from "../../../components/ui/segment/ValiditySegment";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 
@@ -98,18 +98,18 @@ export const CategoryEdit = ({ categoryId }: { categoryId: string }) => {
       <Frame title={"収支区分"}>
         <IocomeTypeSegment
           iocomeType={inputIocomeType}
-          setIocomeType={setInputIocomeType}
+          onChange={setInputIocomeType}
         />
       </Frame>
       <Frame title={"ジャンル"}>
         <GenreSelect
           genreId={inputGenreId}
-          setGenreId={setInputGenreId}
+          onChange={setInputGenreId}
           iocomeType={inputIocomeType}
         />
       </Frame>
       <Frame title={"有効・無効"}>
-        <ValiditySegment isValid={inputIsValid} setIsValid={setInputIsValid} />
+        <ValiditySegment isValid={inputIsValid} onChange={setInputIsValid} />
       </Frame>
       <Frame title={"表示順"}>
         <DisplayOrderInput

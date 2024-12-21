@@ -13,7 +13,7 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
     iocomeType: IocomeType.Income,
     categoryId: "",
     accountId: "",
-    amount: "",
+    amount: 0,
     memo: "",
   });
 
@@ -55,7 +55,7 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
         genreId: form.genreId,
         categoryId: form.categoryId,
         accountId: form.accountId,
-        amount: form.amount as number,
+        amount: form.amount,
         memo: form.memo,
       });
       setForm({ ...form, amount: 0, memo: "" });

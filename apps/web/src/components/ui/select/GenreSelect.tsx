@@ -9,13 +9,13 @@ import { SelectProps } from "./v4";
 
 export const GenreSelect = ({
   genreId,
-  setGenreId,
+  onChange,
   iocomeType,
   disabled,
   withLabel = false,
 }: {
   genreId: string | null;
-  setGenreId: (_: string | null) => void;
+  onChange: (_: string) => void;
   iocomeType: IocomeType;
   disabled?: boolean;
   withLabel?: boolean;
@@ -33,7 +33,7 @@ export const GenreSelect = ({
     <Select
       label={withLabel ? "ジャンル" : ""}
       value={genreId}
-      onChange={setGenreId}
+      onChange={onChange}
       data={options}
       placeholder={"ジャンルを選択してください"}
       withAsterisk

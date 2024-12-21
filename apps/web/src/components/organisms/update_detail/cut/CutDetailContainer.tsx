@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import { useState } from "react";
 
 import { DailyDetail } from "../../../../domain/model/household/DailyDetail";
@@ -19,12 +15,10 @@ export const CutDetailContainer = ({
   const [detailDate, setDetailDate] = useState<Date>(
     initData.date ?? new Date(),
   );
-  const [genreId, setGenreId] = useState<string | null>(initData?.genreId);
-  const [categoryId, setCategoryId] = useState<string | null>(
-    initData?.categoryId,
-  );
-  const [accountId, setAccountId] = useState<string | null>(initData.accountId);
-  const [amount, setAmount] = useState<number | "">(0);
+  const [genreId, setGenreId] = useState<string>(initData?.genreId);
+  const [categoryId, setCategoryId] = useState<string>(initData?.categoryId);
+  const [accountId, setAccountId] = useState<string>(initData.accountId);
+  const [amount, setAmount] = useState<number>(0);
   const [newMemo, setNewMemo] = useState<string>("");
   const [cutAfterMemo, setCutAfterMemo] = useState<string>(
     initData?.memo ?? "",
@@ -32,7 +26,7 @@ export const CutDetailContainer = ({
   const cutAfterAmount = Number(initData.amount) - Number(amount);
 
   const updateButtonDisabled =
-    amount === 0 || amount === "" || cutAfterAmount < 0;
+    amount === 0 || amount === 0 || cutAfterAmount < 0;
 
   const { cutDetailHandler } = useCutDetail({
     origin: {
@@ -42,9 +36,9 @@ export const CutDetailContainer = ({
     },
     newDetail: {
       detailDate: detailDate,
-      genreId: genreId!,
-      categoryId: categoryId!,
-      accountId: accountId!,
+      genreId: genreId,
+      categoryId: categoryId,
+      accountId: accountId,
       amount: Number(amount),
       memo: newMemo,
     },

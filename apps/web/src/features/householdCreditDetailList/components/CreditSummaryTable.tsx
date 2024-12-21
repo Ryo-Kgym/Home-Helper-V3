@@ -61,7 +61,7 @@ export const CreditSummaryTable: FC<Props> = (summary) => {
             <td>
               <AccountSelect
                 accountId={form.accountId}
-                setAccountId={(v) => {
+                onChange={(v) => {
                   if (!v) return;
                   setForm({ ...form, accountId: v });
                 }}

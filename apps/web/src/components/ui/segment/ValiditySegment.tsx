@@ -1,27 +1,19 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
+import { Segment } from "./Segment";
 
-import { Segment } from "../../atoms/Segment";
-
-type ValiditySegmentProps = {
+type Props = {
   isValid: boolean;
-  setIsValid: (_: boolean) => void;
+  onChange: (_: boolean) => void;
   disabled?: boolean;
 };
 export const ValiditySegment = ({
   isValid,
-  setIsValid,
+  onChange,
   disabled = false,
-}: ValiditySegmentProps) => {
-  const onChange = (value: string) => {
-    setIsValid(value as unknown as boolean);
-  };
-
+}: Props) => {
   return (
     <Segment
       value={String(isValid)}
-      onChange={onChange}
+      onChange={(value) => onChange(value === "true")}
       data={data}
       disabled={disabled}
     />

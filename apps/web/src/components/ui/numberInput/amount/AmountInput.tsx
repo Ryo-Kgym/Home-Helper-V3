@@ -1,8 +1,8 @@
 import { NumberInputContainer } from "../v5/NumberInputContainer";
 
 type AmountInputPresenterProps = {
-  value: number | "";
-  onChange: (_: number | "") => void;
+  value: number;
+  onChange: (_: number) => void;
   disabled?: boolean;
 };
 

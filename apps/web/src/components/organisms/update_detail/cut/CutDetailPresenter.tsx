@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { MemoTextArea } from "../../../molecules/CustomTextArea/Memo";
 import { Button } from "../../../ui/button/v5";
@@ -40,17 +36,17 @@ export const CutDetailPresenter = ({
   defaultDetailDate: Date;
   setDetailDate: (_: Date) => void;
   iocomeType: IocomeType;
-  genreId: string | null;
-  defaultGenreId: string | null;
-  changeGenreIdHandler: (_: string | null) => void;
-  categoryId: string | null;
-  defaultCategoryId: string | null;
-  changeCategoryIdHandler: (_: string | null) => void;
-  defaultAccountId: string | null;
-  amount: number | "";
+  genreId: string;
+  defaultGenreId: string;
+  changeGenreIdHandler: (_: string) => void;
+  categoryId: string;
+  defaultCategoryId: string;
+  changeCategoryIdHandler: (_: string) => void;
+  defaultAccountId: string;
+  amount: number;
   cutAfterAmount: number;
-  defaultAmount: number | "";
-  changeAmountHandler: (_: number | "") => void;
+  defaultAmount: number;
+  changeAmountHandler: (_: number) => void;
   defaultMemo: string;
   newMemo: string;
   changeNewMemoHandler: (_: string) => void;
@@ -73,19 +69,19 @@ export const CutDetailPresenter = ({
         />
         <GenreSelect
           genreId={defaultGenreId}
-          setGenreId={() => undefined}
+          onChange={() => undefined}
           iocomeType={iocomeType}
           disabled
         />
         <CategorySelect
           genreId={defaultGenreId}
           categoryId={defaultCategoryId}
-          setCategoryId={() => undefined}
+          onChange={() => undefined}
           disabled
         />
         <AccountSelect
           accountId={defaultAccountId}
-          setAccountId={() => undefined}
+          onChange={() => undefined}
           disabled
         />
         <AmountInput
@@ -109,19 +105,19 @@ export const CutDetailPresenter = ({
         />
         <GenreSelect
           genreId={defaultGenreId}
-          setGenreId={() => undefined}
+          onChange={() => undefined}
           iocomeType={iocomeType}
           disabled
         />
         <CategorySelect
           genreId={defaultGenreId}
           categoryId={defaultCategoryId}
-          setCategoryId={() => undefined}
+          onChange={() => undefined}
           disabled
         />
         <AccountSelect
           accountId={defaultAccountId}
-          setAccountId={() => undefined}
+          onChange={() => undefined}
           disabled
         />
         <AmountInput
@@ -144,17 +140,17 @@ export const CutDetailPresenter = ({
         />
         <GenreSelect
           genreId={genreId}
-          setGenreId={changeGenreIdHandler}
+          onChange={changeGenreIdHandler}
           iocomeType={iocomeType}
         />
         <CategorySelect
           genreId={genreId}
           categoryId={categoryId}
-          setCategoryId={changeCategoryIdHandler}
+          onChange={changeCategoryIdHandler}
         />
         <AccountSelect
           accountId={defaultAccountId}
-          setAccountId={() => undefined}
+          onChange={() => undefined}
           disabled
         />
         <AmountInput value={amount} onChange={changeAmountHandler} />

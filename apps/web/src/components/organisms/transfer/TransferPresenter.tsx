@@ -25,12 +25,12 @@ export const TransferPresenter = ({
 }: {
   date: Date;
   setDate: (_: Date) => void;
-  sendAccountId: string | null;
-  setSendAccountId: (_: string | null) => void;
-  receiveAccountId: string | null;
-  setReceiveAccountId: (_: string | null) => void;
-  amount: number | "";
-  setAmount: (_: number | "") => void;
+  sendAccountId: string;
+  setSendAccountId: (_: string) => void;
+  receiveAccountId: string;
+  setReceiveAccountId: (_: string) => void;
+  amount: number;
+  setAmount: (_: number) => void;
   memo: string;
   setMemo: (_: string) => void;
   registerHandler: () => void;
@@ -40,14 +40,11 @@ export const TransferPresenter = ({
   <div className={"space-y-2"}>
     <DatePicker value={date} onChange={setDate} required defaultValue={date} />
     <div className={"flex items-center justify-items-center space-x-2"}>
-      <AccountSelect
-        accountId={sendAccountId}
-        setAccountId={setSendAccountId}
-      />
+      <AccountSelect accountId={sendAccountId} onChange={setSendAccountId} />
       <div>{"=>"}</div>
       <AccountSelect
         accountId={receiveAccountId}
-        setAccountId={setReceiveAccountId}
+        onChange={setReceiveAccountId}
       />
     </div>
     <AmountInput value={amount} onChange={setAmount} />

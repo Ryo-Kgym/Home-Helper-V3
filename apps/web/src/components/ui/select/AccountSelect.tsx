@@ -5,15 +5,15 @@ import { SelectProps } from "./v4";
 import { Select } from "./v5";
 
 type AccountSelectProps = {
-  accountId: string | null;
-  setAccountId: (_: string | null) => void;
+  accountId: string;
+  onChange: (_: string) => void;
   disabled?: boolean;
   withLabel?: boolean;
 };
 
 export const AccountSelect = ({
   accountId,
-  setAccountId,
+  onChange,
   disabled = false,
   withLabel = false,
 }: AccountSelectProps) => {
@@ -30,7 +30,7 @@ export const AccountSelect = ({
     <Select
       label={withLabel ? "アカウント" : ""}
       value={accountId}
-      onChange={setAccountId}
+      onChange={onChange}
       data={options}
       placeholder={"アカウントを選択してください"}
       withAsterisk

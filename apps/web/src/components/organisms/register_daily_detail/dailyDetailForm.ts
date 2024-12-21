@@ -6,6 +6,6 @@ export type DailyDetailForm = {
   iocomeType: IocomeType;
   categoryId: string;
   accountId: string;
-  amount: number | "";
+  amount: number;
   memo: string;
 };

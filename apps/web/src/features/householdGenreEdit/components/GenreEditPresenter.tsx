@@ -4,12 +4,12 @@
 
 import { ReactNode } from "react";
 
-import { GenreTypeSegment } from "../../../components/molecules/CustomSegment/GenreTypeSegment";
-import { IocomeTypeSegment } from "../../../components/molecules/CustomSegment/IocomeType";
-import { ValiditySegment } from "../../../components/molecules/CustomSegment/ValiditySegment";
 import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
 import { Button } from "../../../components/ui";
 import { DisplayOrderInput } from "../../../components/ui/numberInput/displayOrder/DisplayOrderInput";
+import { GenreTypeSegment } from "../../../components/ui/segment/GenreTypeSegment";
+import { IocomeTypeSegment } from "../../../components/ui/segment/IocomeTypeSegment";
+import { ValiditySegment } from "../../../components/ui/segment/ValiditySegment";
 import { GenreType } from "../../../domain/model/household/GenreType";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 
@@ -53,17 +53,17 @@ export const GenreEditPresenter = ({
     <FrameDiv title={"ジャンル区分"}>
       <GenreTypeSegment
         genreType={inputGenreType}
-        setGenreType={setInputGenreType}
+        onChange={setInputGenreType}
       />
     </FrameDiv>
     <FrameDiv title={"収支区分"}>
       <IocomeTypeSegment
         iocomeType={inputIocomeType}
-        setIocomeType={setInputIocomeType}
+        onChange={setInputIocomeType}
       />
     </FrameDiv>
     <FrameDiv title={"有効・無効"}>
-      <ValiditySegment isValid={inputIsValid} setIsValid={setInputIsValid} />
+      <ValiditySegment isValid={inputIsValid} onChange={setInputIsValid} />
     </FrameDiv>
     <FrameDiv title={"表示順"}>
       <DisplayOrderInput

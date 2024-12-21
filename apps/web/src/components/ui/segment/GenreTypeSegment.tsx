@@ -1,24 +1,16 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import { GenreType } from "../../../domain/model/household/GenreType";
-import { Segment } from "../../atoms/Segment";
+import { Segment } from "./Segment";
 
-type GenreTypeSegmentProps = {
+type Props = {
   genreType: GenreType;
-  setGenreType: (_: GenreType) => void;
+  onChange: (_: GenreType) => void;
   disabled?: boolean;
 };
 export const GenreTypeSegment = ({
   genreType,
-  setGenreType,
+  onChange,
   disabled = false,
-}: GenreTypeSegmentProps) => {
-  const onChange = (value: string) => {
-    setGenreType(value as unknown as GenreType);
-  };
-
+}: Props) => {
   return (
     <Segment
       value={genreType}
