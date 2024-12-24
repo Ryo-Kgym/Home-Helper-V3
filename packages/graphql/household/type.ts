@@ -4433,7 +4433,6 @@ export type GetCreditCardDetailListQuery = {
     date: any;
     amount: any;
     memo?: string | null;
-    businessOptions?: any | null;
     genre: {
       __typename?: "HouseholdGenre";
       id: string;
@@ -4450,7 +4449,12 @@ export type GetCreditCardDetailListQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   }>;
 };
@@ -4762,7 +4766,6 @@ export type FragCreditCardDetailFragment = {
   date: any;
   amount: any;
   memo?: string | null;
-  businessOptions?: any | null;
   genre: {
     __typename?: "HouseholdGenre";
     id: string;
@@ -4779,7 +4782,12 @@ export type FragCreditCardDetailFragment = {
   tags: Array<{
     __typename?: "HouseholdDetailTag";
     id: string;
-    tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    tag: {
+      __typename?: "HouseholdTag";
+      id: string;
+      name: string;
+      colorCode: any;
+    };
   }>;
 };
 
@@ -4847,7 +4855,6 @@ export type GetCreditCardDetailByIdQuery = {
     date: any;
     amount: any;
     memo?: string | null;
-    businessOptions?: any | null;
     genre: {
       __typename?: "HouseholdGenre";
       id: string;
@@ -4864,7 +4871,12 @@ export type GetCreditCardDetailByIdQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   } | null;
 };
@@ -4889,7 +4901,6 @@ export type GetCreditCardDetailBySummaryIdQuery = {
       date: any;
       amount: any;
       memo?: string | null;
-      businessOptions?: any | null;
       genre: {
         __typename?: "HouseholdGenre";
         id: string;
@@ -4906,7 +4917,12 @@ export type GetCreditCardDetailBySummaryIdQuery = {
       tags: Array<{
         __typename?: "HouseholdDetailTag";
         id: string;
-        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
       }>;
     }>;
   } | null;
@@ -4978,7 +4994,6 @@ export type GetDetailsByCategoryQuery = {
       date: any;
       amount: any;
       memo?: string | null;
-      businessOptions?: any | null;
       genre: {
         __typename?: "HouseholdGenre";
         id: string;
@@ -4995,7 +5010,12 @@ export type GetDetailsByCategoryQuery = {
       tags: Array<{
         __typename?: "HouseholdDetailTag";
         id: string;
-        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
       }>;
     }>;
     withdrawalCreditCardDetails: Array<{
@@ -5004,7 +5024,6 @@ export type GetDetailsByCategoryQuery = {
       date: any;
       amount: any;
       memo?: string | null;
-      businessOptions?: any | null;
       genre: {
         __typename?: "HouseholdGenre";
         id: string;
@@ -5021,7 +5040,12 @@ export type GetDetailsByCategoryQuery = {
       tags: Array<{
         __typename?: "HouseholdDetailTag";
         id: string;
-        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
       }>;
     }>;
   } | null;
@@ -5372,7 +5396,6 @@ export const FragCreditCardDetailFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
-          { kind: "Field", name: { kind: "Name", value: "businessOptions" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "genre" },
@@ -5435,6 +5458,10 @@ export const FragCreditCardDetailFragmentDoc = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },
@@ -10687,7 +10714,6 @@ export const GetCreditCardDetailListDocument = {
           { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
-          { kind: "Field", name: { kind: "Name", value: "businessOptions" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "genre" },
@@ -10750,6 +10776,10 @@ export const GetCreditCardDetailListDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },
@@ -12666,7 +12696,6 @@ export const GetCreditCardDetailByIdDocument = {
           { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
-          { kind: "Field", name: { kind: "Name", value: "businessOptions" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "genre" },
@@ -12729,6 +12758,10 @@ export const GetCreditCardDetailByIdDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },
@@ -12851,7 +12884,6 @@ export const GetCreditCardDetailBySummaryIdDocument = {
           { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
-          { kind: "Field", name: { kind: "Name", value: "businessOptions" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "genre" },
@@ -12914,6 +12946,10 @@ export const GetCreditCardDetailBySummaryIdDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },
@@ -13552,7 +13588,6 @@ export const GetDetailsByCategoryDocument = {
           { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
-          { kind: "Field", name: { kind: "Name", value: "businessOptions" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "genre" },
@@ -13615,6 +13650,10 @@ export const GetDetailsByCategoryDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },

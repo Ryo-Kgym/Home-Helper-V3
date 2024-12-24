@@ -3,7 +3,6 @@ fragment fragCreditCardDetail on HouseholdCreditCardDetail {
   date
   amount
   memo
-  businessOptions
   genre {
     id
     name
@@ -26,6 +25,7 @@ fragment fragCreditCardDetail on HouseholdCreditCardDetail {
     tag {
       id
       name
+      colorCode
     }
   }
 }
