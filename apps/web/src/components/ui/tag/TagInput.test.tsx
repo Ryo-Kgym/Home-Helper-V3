@@ -26,12 +26,12 @@ describe("TagInput", () => {
     await userEvent.click(screen.getByLabelText("タグ3"));
 
     const expected1 = ["タグ2", "タグ3"];
-    screen.getAllByTestId("tagInput-selected-value").forEach((element) => {
+    screen.getAllByTestId("tag").forEach((element) => {
       expect(element).toHaveTextContent(expected1.shift()!);
     });
     await userEvent.click(screen.getByLabelText("タグ3"));
     const expected2 = ["タグ2"];
-    screen.getAllByTestId("tagInput-selected-value").forEach((element) => {
+    screen.getAllByTestId("tag").forEach((element) => {
       expect(element).toHaveTextContent(expected2.shift()!);
     });
   });

@@ -46,6 +46,11 @@ export const fetchWatchTableData = async ({
       categoryName: rec.category?.name ?? "",
       memo: rec.memo ?? "",
       isDeposit: !!rec.category?.depositCategory,
+      tags: rec.tags.map((tag) => ({
+        label: tag.tag.name,
+        value: tag.tag.id,
+        colorCode: tag.tag.colorCode,
+      })),
     })),
   };
 };

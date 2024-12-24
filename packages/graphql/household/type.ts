@@ -682,6 +682,7 @@ export type HouseholdAllDetailViewBoolExp = {
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -736,6 +737,7 @@ export type HouseholdAllDetailViewOrderBy = {
   category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
@@ -4642,6 +4644,15 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
         id: string;
       } | null;
     } | null;
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
+    }>;
   }>;
 };
 
@@ -4677,6 +4688,15 @@ export type ChartDetailTableFilterSettlementDateQuery = {
         id: string;
       } | null;
     } | null;
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
+    }>;
   }>;
 };
 
@@ -4704,6 +4724,15 @@ export type FragChartDetailTableFragment = {
       id: string;
     } | null;
   } | null;
+  tags: Array<{
+    __typename?: "HouseholdDetailTag";
+    tag: {
+      __typename?: "HouseholdTag";
+      id: string;
+      name: string;
+      colorCode: any;
+    };
+  }>;
 };
 
 export type FragCreditCardDetailFragment = {
@@ -5249,6 +5278,31 @@ export const FragChartDetailTableFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -11826,6 +11880,31 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -12087,6 +12166,31 @@ export const ChartDetailTableFilterSettlementDateDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },

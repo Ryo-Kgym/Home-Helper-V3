@@ -64,4 +64,11 @@ fragment fragChartDetailTable on HouseholdAllDetailView {
     }
   }
   memo
+  tags: detailTags {
+    tag {
+      id
+      name
+      colorCode
+    }
+  }
 }

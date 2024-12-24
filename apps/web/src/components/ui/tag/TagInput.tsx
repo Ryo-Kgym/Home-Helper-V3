@@ -2,6 +2,7 @@
 
 import { FC, useState } from "react";
 
+import { Tag } from "./Tag";
 import styles from "./TagInput.module.scss";
 
 type Props = {
@@ -36,13 +37,11 @@ export const TagInput: FC<Props> = ({
         onFocus={() => setOpenSelect(true)}
       >
         {selected.map((tag) => (
-          <span
+          <Tag
             key={tag}
-            data-testid={"tagInput-selected-value"}
-            style={{ backgroundColor: dataObject[tag]?.colorCode }}
-          >
-            {dataObject[tag]?.label}
-          </span>
+            label={dataObject[tag]?.label ?? ""}
+            colorCode={dataObject[tag]?.colorCode ?? ""}
+          />
         ))}
       </button>
       {openSelect && (

@@ -697,6 +697,7 @@ export type HouseholdAllDetailViewBoolExp = {
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -751,6 +752,7 @@ export type HouseholdAllDetailViewOrderBy = {
   category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
@@ -4706,6 +4708,15 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
         id: string;
       } | null;
     } | null;
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
+    }>;
   }>;
 };
 
@@ -4741,6 +4752,15 @@ export type ChartDetailTableFilterSettlementDateQuery = {
         id: string;
       } | null;
     } | null;
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
+    }>;
   }>;
 };
 
@@ -4768,6 +4788,15 @@ export type FragChartDetailTableFragment = {
       id: string;
     } | null;
   } | null;
+  tags: Array<{
+    __typename?: "HouseholdDetailTag";
+    tag: {
+      __typename?: "HouseholdTag";
+      id: string;
+      name: string;
+      colorCode: any;
+    };
+  }>;
 };
 
 export type FragCreditCardDetailFragment = {
@@ -5211,6 +5240,13 @@ export const FragChartDetailTableFragmentDoc = gql`
       }
     }
     memo
+    tags: detailTags {
+      tag {
+        id
+        name
+        colorCode
+      }
+    }
   }
 `;
 export const FragCreditCardDetailFragmentDoc = gql`

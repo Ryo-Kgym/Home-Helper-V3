@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { Tag } from "../../../components/ui/tag/Tag";
 import { DataTable } from "../../../components/ui/v4/table";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
@@ -25,6 +26,7 @@ export const ChartDetailTableClient = ({
     categoryId: string;
     categoryName: string;
     memo: string;
+    tags: { label: string; value: string; colorCode: string }[];
     isDeposit: boolean;
   }[];
 }) => {
@@ -66,7 +68,25 @@ export const ChartDetailTableClient = ({
           { accessor: "accountName", title: "アカウント" },
           { accessor: "genreName", title: "ジャンル" },
           { accessor: "categoryName", title: "カテゴリ" },
-          { accessor: "memo", title: "メモ" },
+          {
+            accessor: "memo",
+            title: "メモ",
+            render: ({ memo, tags }) => {
+              return (
+                <div>
+                  {tags.map((tag) => (
+                    <Tag
+                      key={tag.value}
+                      label={tag.label}
+                      colorCode={tag.colorCode}
+                    />
+                  ))}
+                  {memo}
+                </div>
+              );
+            },
+          },
+          { accessor: "tags", title: "タグ", hidden: true },
           { accessor: "isDeposit", hidden: true },
         ]}
         records={records}
@@ -84,7 +104,7 @@ export const ChartDetailTableClient = ({
             accountId: detail.accountId,
             amount: detail.amount,
             memo: detail.memo,
-            tags: [], // TODO: タグの実装
+            tags: detail.tags.map((tag) => tag.value),
           });
         }}
       />
