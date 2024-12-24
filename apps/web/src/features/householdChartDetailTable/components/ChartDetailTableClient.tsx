@@ -84,6 +84,7 @@ export const ChartDetailTableClient = ({
             accountId: detail.accountId,
             amount: detail.amount,
             memo: detail.memo,
+            tags: [], // TODO: タグの実装
           });
         }}
       />

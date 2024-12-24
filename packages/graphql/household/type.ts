@@ -1696,6 +1696,7 @@ export type HouseholdDailyDetailBoolExp = {
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -1726,6 +1727,7 @@ export type HouseholdDailyDetailInsertInput = {
   category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
+  detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
   genre?: InputMaybe<HouseholdGenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
@@ -1780,6 +1782,7 @@ export type HouseholdDailyDetailOrderBy = {
   category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
@@ -2341,6 +2344,110 @@ export type HouseholdDepositCategoryStreamCursorValueInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
 };
+
+/** order by aggregate values of table "household.detail_tag" */
+export type HouseholdDetailTagAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdDetailTagMaxOrderBy>;
+  min?: InputMaybe<HouseholdDetailTagMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "household.detail_tag" */
+export type HouseholdDetailTagArrRelInsertInput = {
+  data: Array<HouseholdDetailTagInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdDetailTagOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "household.detail_tag". All fields are combined with a logical 'AND'. */
+export type HouseholdDetailTagBoolExp = {
+  _and?: InputMaybe<Array<HouseholdDetailTagBoolExp>>;
+  _not?: InputMaybe<HouseholdDetailTagBoolExp>;
+  _or?: InputMaybe<Array<HouseholdDetailTagBoolExp>>;
+  creditCardDetailsDetailTag?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  creditCardDetailsDetailTagAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
+  dailyDetailsDetailTag?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  dailyDetailsDetailTagAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
+  detailId?: InputMaybe<StringComparisonExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  tag?: InputMaybe<HouseholdTagBoolExp>;
+  tagId?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household.detail_tag" */
+export type HouseholdDetailTagConstraint =
+  /** unique or primary key constraint on columns "id" */
+  "detail_tag_pkey";
+
+/** input type for inserting data into table "household.detail_tag" */
+export type HouseholdDetailTagInsertInput = {
+  creditCardDetailsDetailTag?: InputMaybe<HouseholdCreditCardDetailArrRelInsertInput>;
+  dailyDetailsDetailTag?: InputMaybe<HouseholdDailyDetailArrRelInsertInput>;
+  detailId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  tag?: InputMaybe<HouseholdTagObjRelInsertInput>;
+  tagId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "household.detail_tag" */
+export type HouseholdDetailTagMaxOrderBy = {
+  detailId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "household.detail_tag" */
+export type HouseholdDetailTagMinOrderBy = {
+  detailId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "household.detail_tag" */
+export type HouseholdDetailTagOnConflict = {
+  constraint: HouseholdDetailTagConstraint;
+  updateColumns?: Array<HouseholdDetailTagUpdateColumn>;
+  where?: InputMaybe<HouseholdDetailTagBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.detail_tag". */
+export type HouseholdDetailTagOrderBy = {
+  creditCardDetailsDetailTagAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
+  dailyDetailsDetailTagAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  detailId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tag?: InputMaybe<HouseholdTagOrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "household.detail_tag" */
+export type HouseholdDetailTagSelectColumn =
+  /** column name */
+  | "detailId"
+  /** column name */
+  | "id"
+  /** column name */
+  | "tagId";
+
+/** Streaming cursor of the table "household_detail_tag" */
+export type HouseholdDetailTagStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: HouseholdDetailTagStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type HouseholdDetailTagStreamCursorValueInput = {
+  detailId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  tagId?: InputMaybe<Scalars["String"]>;
+};
+
+/** placeholder for update columns of table "household.detail_tag" (current role has no relevant permissions) */
+export type HouseholdDetailTagUpdateColumn =
+  /** placeholder (do not use) */
+  "_PLACEHOLDER";
 
 export type HouseholdFavoriteFilterAggregateBoolExp = {
   count?: InputMaybe<HouseholdFavoriteFilterAggregateBoolExpCount>;
@@ -2933,6 +3040,7 @@ export type HouseholdTagBoolExp = {
   _not?: InputMaybe<HouseholdTagBoolExp>;
   _or?: InputMaybe<Array<HouseholdTagBoolExp>>;
   colorCode?: InputMaybe<BpcharComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
@@ -2947,6 +3055,7 @@ export type HouseholdTagConstraint =
 /** input type for inserting data into table "household.tag" */
 export type HouseholdTagInsertInput = {
   colorCode?: InputMaybe<Scalars["bpchar"]>;
+  detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
@@ -2968,6 +3077,13 @@ export type HouseholdTagMinOrderBy = {
   name?: InputMaybe<OrderBy>;
 };
 
+/** input type for inserting object relation for remote table "household.tag" */
+export type HouseholdTagObjRelInsertInput = {
+  data: HouseholdTagInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdTagOnConflict>;
+};
+
 /** on_conflict condition type for table "household.tag" */
 export type HouseholdTagOnConflict = {
   constraint: HouseholdTagConstraint;
@@ -2978,6 +3094,7 @@ export type HouseholdTagOnConflict = {
 /** Ordering options when selecting data from "household.tag". */
 export type HouseholdTagOrderBy = {
   colorCode?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
@@ -4184,6 +4301,11 @@ export type GetDailyDetailByDateQuery = {
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    }>;
   }>;
 };
 
@@ -4226,6 +4348,11 @@ export type GetDailyDetailByIdQuery = {
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    }>;
   } | null;
 };
 
@@ -4357,6 +4484,11 @@ export type GetDailyByAccountIdQuery = {
     };
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    }>;
   }>;
 };
 
@@ -4600,6 +4732,11 @@ export type FragDailyDetailFragment = {
   };
   category: { __typename?: "HouseholdCategory"; id: string; name: string };
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
+  tags: Array<{
+    __typename?: "HouseholdDetailTag";
+    id: string;
+    tag: { __typename?: "HouseholdTag"; id: string; name: string };
+  }>;
 };
 
 export type GetAccountBalanceListQueryVariables = Exact<{
@@ -4753,6 +4890,11 @@ export type GetDetailsByCategoryQuery = {
       };
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      }>;
     }>;
     creditCardDetails: Array<{
       __typename?: "HouseholdCreditCardDetail";
@@ -5223,6 +5365,28 @@ export const FragDailyDetailFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -9692,6 +9856,28 @@ export const GetDailyDetailByDateDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -9981,6 +10167,28 @@ export const GetDailyDetailByIdDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -10715,6 +10923,28 @@ export const GetDailyByAccountIdDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -12869,6 +13099,28 @@ export const GetDetailsByCategoryDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "amount" } },
           { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },

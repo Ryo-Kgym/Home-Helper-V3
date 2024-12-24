@@ -5,6 +5,8 @@ import { FC, useState } from "react";
 import styles from "./TagInput.module.scss";
 
 type Props = {
+  values: string[];
+  onChange: (values: string[]) => void;
   data: {
     label: string;
     value: string;
@@ -12,9 +14,12 @@ type Props = {
   }[];
 };
 
-export const TagInput: FC<Props> = ({ data }) => {
+export const TagInput: FC<Props> = ({
+  values: selected,
+  onChange: setSelected,
+  data,
+}) => {
   const [openSelect, setOpenSelect] = useState(false);
-  const [selected, setSelected] = useState<string[]>([]);
 
   const dataObject = Object.fromEntries(
     data.map((tag) => [

@@ -46,6 +46,7 @@ export const useGetDailyDetailByDateAccountId = (
         categoryId: "",
         accountId: "",
         memo: "",
+        tags: [],
       };
     }
 
@@ -58,6 +59,7 @@ export const useGetDailyDetailByDateAccountId = (
       categoryId: dailyDetail.category.id,
       accountId: dailyDetail.account.id,
       memo: dailyDetail.memo ?? "",
+      tags: dailyDetail.tags.map((tag) => tag.tag.id) ?? [],
     };
   };
 

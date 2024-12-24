@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { describe, expect, test } from "vitest";
@@ -6,7 +7,7 @@ import { TagInput } from "./TagInput";
 
 describe("TagInput", () => {
   test("ホバーすると、セレクトボックスが表示される。さらに、アンホバーすると、セレクトボックスが非表示になる。", async () => {
-    render(<TagInput data={data} />);
+    render(<TestTagInput />);
 
     expect(document.querySelector("ul")).not.toBeInTheDocument();
     await userEvent.hover(screen.getByRole("button"));
@@ -16,7 +17,7 @@ describe("TagInput", () => {
   });
 
   test("選択したものが入力欄に表示される。さらに、選択中のものをクリックすると、入力欄から取り除かれる", async () => {
-    render(<TagInput data={data} />);
+    render(<TestTagInput />);
 
     await userEvent.hover(screen.getByRole("button"));
     expect(document.querySelector("ul")).toBeInTheDocument();
@@ -53,3 +54,8 @@ const data = [
     colorCode: "#0000FF",
   },
 ];
+
+const TestTagInput = () => {
+  const [values, setValues] = useState<string[]>([]);
+  return <TagInput values={values} onChange={setValues} data={data} />;
+};

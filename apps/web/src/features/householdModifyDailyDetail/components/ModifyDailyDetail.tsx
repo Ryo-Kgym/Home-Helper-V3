@@ -98,7 +98,10 @@ export const ModifyDailyDetail = ({
         />
       </Field>
       <Field>
-        <TagInputWrapper values={["tag1", "tag2"]} />
+        <TagInputWrapper
+          values={form.tags}
+          onChange={(values) => setForm({ ...form, tags: values })}
+        />
       </Field>
       <div className={"flex justify-items-center"}>
         <Button

@@ -9,4 +9,5 @@ export type DailyDetail = {
   categoryId: string;
   accountId: string;
   memo: string;
+  tags: string[];
 };
