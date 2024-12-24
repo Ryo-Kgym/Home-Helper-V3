@@ -12,6 +12,7 @@ import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { deleteDailyDetail } from "../../../hooks/household/daily_detail/deleteDailyDatail";
+import { useNavigation } from "../../../routing/client/useNavigation";
 import { modifyDailyDetail } from "../useServer/modifyDailyDetail";
 
 export const ModifyDailyDetail = ({
@@ -22,6 +23,7 @@ export const ModifyDailyDetail = ({
   onClose: () => void;
 }) => {
   const [form, setForm] = useState<DailyDetail>(initData);
+  const { refresh } = useNavigation();
 
   const updateClick = async () => {
     if (!form) return;
@@ -31,6 +33,7 @@ export const ModifyDailyDetail = ({
         ...form,
       });
       successPopup("更新しました");
+      refresh();
     } catch (e) {
       errorPopup("更新に失敗しました");
     }

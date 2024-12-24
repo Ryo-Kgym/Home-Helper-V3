@@ -1,8 +1,7 @@
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const useNavigation = () => {
   const { push } = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const prependParamAndPush = (args: Record<string, string>) => {
@@ -22,5 +21,8 @@ export const useNavigation = () => {
     return push(`?${searchParamJoined}&${newParams}`);
   };
 
-  return { prependParamAndPush, refresh: () => push(pathname) };
+  return {
+    prependParamAndPush,
+    refresh: () => push(`?${searchParams.toString()}`),
+  };
 };
