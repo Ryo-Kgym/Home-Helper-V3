@@ -65,6 +65,7 @@ fragment fragChartDetailTable on HouseholdAllDetailView {
   }
   memo
   tags: detailTags {
+    id
     tag {
       id
       name

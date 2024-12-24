@@ -1,5 +1,7 @@
 import { useUpdateCreditCardDetailByIdMutation } from "@v3/graphql/household";
 
+import { generateId } from "../../../function/generateId";
+
 export const useUpdateCreditDetail = ({ id }: { id: string }) => {
   const [, update] = useUpdateCreditCardDetailByIdMutation();
 
@@ -7,16 +9,18 @@ export const useUpdateCreditDetail = ({ id }: { id: string }) => {
     genreId: string;
     categoryId: string;
     memo: string;
-    isExpense: boolean;
+    tags: string[];
   }) => {
     await update({
       id,
       genreId: params.genreId,
       categoryId: params.categoryId,
       memo: params.memo,
-      businessOptions: {
-        isExpense: params.isExpense,
-      },
+      tagDetails: params.tags.map((tag) => ({
+        id: generateId(),
+        detailId: id,
+        tagId: tag,
+      })),
     });
   };
 

@@ -1135,6 +1135,7 @@ export type HouseholdCreditCardDetailBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   date?: InputMaybe<DateComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -1166,6 +1167,7 @@ export type HouseholdCreditCardDetailInsertInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryObjRelInsertInput>;
   date?: InputMaybe<Scalars["date"]>;
+  detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
   genre?: InputMaybe<HouseholdGenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
@@ -1220,6 +1222,7 @@ export type HouseholdCreditCardDetailOrderBy = {
   categoryId?: InputMaybe<OrderBy>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryOrderBy>;
   date?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
@@ -4215,7 +4218,9 @@ export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   genreId: Scalars["String"];
   categoryId: Scalars["String"];
   memo?: InputMaybe<Scalars["String"]>;
-  businessOptions?: InputMaybe<Scalars["json"]>;
+  tagDetails:
+    | Array<HouseholdDetailTagInsertInput>
+    | HouseholdDetailTagInsertInput;
 }>;
 
 export type UpdateCreditCardDetailByIdMutation = {
@@ -4223,6 +4228,14 @@ export type UpdateCreditCardDetailByIdMutation = {
   updateHouseholdCreditCardDetailByPk?: {
     __typename?: "HouseholdCreditCardDetail";
     id: string;
+  } | null;
+  deleteDetailTags?: {
+    __typename?: "HouseholdDetailTagMutationResponse";
+    affectedRows: number;
+  } | null;
+  insertDetailTags?: {
+    __typename?: "HouseholdDetailTagMutationResponse";
+    affectedRows: number;
   } | null;
 };
 
@@ -4498,6 +4511,11 @@ export type GetCreditCardDetailListQuery = {
       id: string;
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    }>;
   }>;
 };
 
@@ -4710,6 +4728,7 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
     } | null;
     tags: Array<{
       __typename?: "HouseholdDetailTag";
+      id: string;
       tag: {
         __typename?: "HouseholdTag";
         id: string;
@@ -4754,6 +4773,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
     } | null;
     tags: Array<{
       __typename?: "HouseholdDetailTag";
+      id: string;
       tag: {
         __typename?: "HouseholdTag";
         id: string;
@@ -4790,6 +4810,7 @@ export type FragChartDetailTableFragment = {
   } | null;
   tags: Array<{
     __typename?: "HouseholdDetailTag";
+    id: string;
     tag: {
       __typename?: "HouseholdTag";
       id: string;
@@ -4819,6 +4840,11 @@ export type FragCreditCardDetailFragment = {
     id: string;
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   };
+  tags: Array<{
+    __typename?: "HouseholdDetailTag";
+    id: string;
+    tag: { __typename?: "HouseholdTag"; id: string; name: string };
+  }>;
 };
 
 export type FragDailyDetailFragment = {
@@ -4899,6 +4925,11 @@ export type GetCreditCardDetailByIdQuery = {
       id: string;
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    }>;
   } | null;
 };
 
@@ -4936,6 +4967,11 @@ export type GetCreditCardDetailBySummaryIdQuery = {
         id: string;
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      }>;
     }>;
   } | null;
 };
@@ -5020,6 +5056,11 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      }>;
     }>;
     withdrawalCreditCardDetails: Array<{
       __typename?: "HouseholdCreditCardDetail";
@@ -5041,6 +5082,11 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      }>;
     }>;
   } | null;
 };
@@ -5241,6 +5287,7 @@ export const FragChartDetailTableFragmentDoc = gql`
     }
     memo
     tags: detailTags {
+      id
       tag {
         id
         name
@@ -5269,6 +5316,13 @@ export const FragCreditCardDetailFragmentDoc = gql`
     summary: creditCardSummary {
       id
       account {
+        id
+        name
+      }
+    }
+    tags: detailTags {
+      id
+      tag {
         id
         name
       }
@@ -5922,18 +5976,21 @@ export const UpdateCreditCardDetailByIdDocument = gql`
     $genreId: String!
     $categoryId: String!
     $memo: String
-    $businessOptions: json
+    $tagDetails: [HouseholdDetailTagInsertInput!]!
   ) {
     updateHouseholdCreditCardDetailByPk(
       pkColumns: { id: $id }
-      _set: {
-        genreId: $genreId
-        categoryId: $categoryId
-        memo: $memo
-        businessOptions: $businessOptions
-      }
+      _set: { genreId: $genreId, categoryId: $categoryId, memo: $memo }
     ) {
       id
+    }
+    deleteDetailTags: deleteHouseholdDetailTag(
+      where: { detailId: { _eq: $id } }
+    ) {
+      affectedRows
+    }
+    insertDetailTags: insertHouseholdDetailTag(objects: $tagDetails) {
+      affectedRows
     }
   }
 `;

@@ -2,12 +2,12 @@ import { ReactNode } from "react";
 
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
 import { Button } from "../../../components/ui/button/v5";
-import { IsExpenseCheckbox } from "../../../components/ui/checkbox/isExpense/IsExpenseCheckbox";
 import { DatePicker } from "../../../components/ui/date";
 import { AmountInput } from "../../../components/ui/numberInput/amount/AmountInput";
 import { IocomeTypeSegment } from "../../../components/ui/segment/IocomeTypeSegment";
 import { CategorySelect } from "../../../components/ui/select/CategorySelect";
 import { GenreSelect } from "../../../components/ui/select/GenreSelect";
+import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import {
   CreditDetailEditDisplayState,
@@ -21,7 +21,7 @@ export const CreditCardDetailEditPresenter = ({
   setCategoryId,
   setGenreId,
   setMemo,
-  setIsExpense,
+  setTags,
   onClickUpdate,
   onClickReset,
 }: {
@@ -31,7 +31,7 @@ export const CreditCardDetailEditPresenter = ({
   setCategoryId: (_: string | null) => void;
   setGenreId: (_: string | null) => void;
   setMemo: (_: string) => void;
-  setIsExpense: (_: boolean) => void;
+  setTags: (_: string[]) => void;
   onClickUpdate: () => void;
   onClickReset: () => void;
 }) => (
@@ -74,7 +74,7 @@ export const CreditCardDetailEditPresenter = ({
       <MemoTextArea memo={formData.memo} setMemo={setMemo} />
     </Frame>
     <Frame>
-      <IsExpenseCheckbox checked={formData.isExpense} onChange={setIsExpense} />
+      <TagInputWrapper values={formData.tags} onChange={setTags} />
     </Frame>
     <div className={"flex justify-end space-x-5"}>
       <Button onClick={onClickUpdate} label={"更新"} type={"modify"} />

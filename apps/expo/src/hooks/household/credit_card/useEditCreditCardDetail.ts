@@ -19,6 +19,7 @@ export const useEditCreditCardDetail = () => {
       genreId,
       categoryId,
       memo,
+      tagDetails: [], // FIXME: tagDetails is not defined
     });
     if (error) {
       throw error;

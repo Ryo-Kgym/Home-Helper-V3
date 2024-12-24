@@ -1116,6 +1116,7 @@ export type HouseholdCreditCardDetailBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   date?: InputMaybe<DateComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -1146,6 +1147,7 @@ export type HouseholdCreditCardDetailInsertInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryObjRelInsertInput>;
   date?: InputMaybe<Scalars["date"]>;
+  detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
   genre?: InputMaybe<HouseholdGenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
@@ -1200,6 +1202,7 @@ export type HouseholdCreditCardDetailOrderBy = {
   categoryId?: InputMaybe<OrderBy>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryOrderBy>;
   date?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
@@ -4151,7 +4154,9 @@ export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   genreId: Scalars["String"];
   categoryId: Scalars["String"];
   memo?: InputMaybe<Scalars["String"]>;
-  businessOptions?: InputMaybe<Scalars["json"]>;
+  tagDetails:
+    | Array<HouseholdDetailTagInsertInput>
+    | HouseholdDetailTagInsertInput;
 }>;
 
 export type UpdateCreditCardDetailByIdMutation = {
@@ -4159,6 +4164,14 @@ export type UpdateCreditCardDetailByIdMutation = {
   updateHouseholdCreditCardDetailByPk?: {
     __typename?: "HouseholdCreditCardDetail";
     id: string;
+  } | null;
+  deleteDetailTags?: {
+    __typename?: "HouseholdDetailTagMutationResponse";
+    affectedRows: number;
+  } | null;
+  insertDetailTags?: {
+    __typename?: "HouseholdDetailTagMutationResponse";
+    affectedRows: number;
   } | null;
 };
 
@@ -4434,6 +4447,11 @@ export type GetCreditCardDetailListQuery = {
       id: string;
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    }>;
   }>;
 };
 
@@ -4646,6 +4664,7 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
     } | null;
     tags: Array<{
       __typename?: "HouseholdDetailTag";
+      id: string;
       tag: {
         __typename?: "HouseholdTag";
         id: string;
@@ -4690,6 +4709,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
     } | null;
     tags: Array<{
       __typename?: "HouseholdDetailTag";
+      id: string;
       tag: {
         __typename?: "HouseholdTag";
         id: string;
@@ -4726,6 +4746,7 @@ export type FragChartDetailTableFragment = {
   } | null;
   tags: Array<{
     __typename?: "HouseholdDetailTag";
+    id: string;
     tag: {
       __typename?: "HouseholdTag";
       id: string;
@@ -4755,6 +4776,11 @@ export type FragCreditCardDetailFragment = {
     id: string;
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   };
+  tags: Array<{
+    __typename?: "HouseholdDetailTag";
+    id: string;
+    tag: { __typename?: "HouseholdTag"; id: string; name: string };
+  }>;
 };
 
 export type FragDailyDetailFragment = {
@@ -4835,6 +4861,11 @@ export type GetCreditCardDetailByIdQuery = {
       id: string;
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    }>;
   } | null;
 };
 
@@ -4872,6 +4903,11 @@ export type GetCreditCardDetailBySummaryIdQuery = {
         id: string;
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      }>;
     }>;
   } | null;
 };
@@ -4956,6 +4992,11 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      }>;
     }>;
     withdrawalCreditCardDetails: Array<{
       __typename?: "HouseholdCreditCardDetail";
@@ -4977,6 +5018,11 @@ export type GetDetailsByCategoryQuery = {
         id: string;
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      }>;
     }>;
   } | null;
 };
@@ -5285,6 +5331,7 @@ export const FragChartDetailTableFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "tag" },
@@ -5361,6 +5408,28 @@ export const FragCreditCardDetailFragmentDoc = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "account" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
@@ -8891,9 +8960,24 @@ export const UpdateCreditCardDetailByIdDocument = {
           kind: "VariableDefinition",
           variable: {
             kind: "Variable",
-            name: { kind: "Name", value: "businessOptions" },
+            name: { kind: "Name", value: "tagDetails" },
           },
-          type: { kind: "NamedType", name: { kind: "Name", value: "json" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: {
+                    kind: "Name",
+                    value: "HouseholdDetailTagInsertInput",
+                  },
+                },
+              },
+            },
+          },
         },
       ],
       selectionSet: {
@@ -8953,12 +9037,43 @@ export const UpdateCreditCardDetailByIdDocument = {
                         name: { kind: "Name", value: "memo" },
                       },
                     },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "deleteDetailTags" },
+            name: { kind: "Name", value: "deleteHouseholdDetailTag" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
                     {
                       kind: "ObjectField",
-                      name: { kind: "Name", value: "businessOptions" },
+                      name: { kind: "Name", value: "detailId" },
                       value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "businessOptions" },
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "id" },
+                            },
+                          },
+                        ],
                       },
                     },
                   ],
@@ -8968,7 +9083,34 @@ export const UpdateCreditCardDetailByIdDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "insertDetailTags" },
+            name: { kind: "Name", value: "insertHouseholdDetailTag" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "objects" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "tagDetails" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
               ],
             },
           },
@@ -10592,6 +10734,28 @@ export const GetCreditCardDetailListDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -11887,6 +12051,7 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "tag" },
@@ -12173,6 +12338,7 @@ export const ChartDetailTableFilterSettlementDateDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "tag" },
@@ -12547,6 +12713,28 @@ export const GetCreditCardDetailByIdDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -12699,6 +12887,28 @@ export const GetCreditCardDetailBySummaryIdDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "account" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
@@ -13378,6 +13588,28 @@ export const GetDetailsByCategoryDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "account" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [

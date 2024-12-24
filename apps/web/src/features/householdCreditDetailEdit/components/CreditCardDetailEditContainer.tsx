@@ -23,7 +23,7 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
 
   const updateHandler = async () => {
     if (!formData) return;
-    const { genreId, categoryId, memo, isExpense } = formData;
+    const { genreId, categoryId, memo, tags } = formData;
 
     try {
       if (genreId === null) {
@@ -39,7 +39,7 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
         genreId,
         categoryId,
         memo,
-        isExpense,
+        tags,
       });
       successPopup("更新しました。");
     } catch (e) {
@@ -92,12 +92,12 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
           };
         });
       }}
-      setIsExpense={(value: boolean) => {
+      setTags={(value) => {
         setFormData((prev) => {
           if (!prev) return prev;
           return {
             ...prev,
-            isExpense: value,
+            tags: value,
           };
         });
       }}
