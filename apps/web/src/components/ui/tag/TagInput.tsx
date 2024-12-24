@@ -8,6 +8,7 @@ type Props = {
   data: {
     label: string;
     value: string;
+    colorCode: string;
   }[];
 };
 
@@ -16,7 +17,10 @@ export const TagInput: FC<Props> = ({ data }) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   const dataObject = Object.fromEntries(
-    data.map((tag) => [tag.value, tag.label]),
+    data.map((tag) => [
+      tag.value,
+      { label: tag.label, colorCode: tag.colorCode },
+    ]),
   );
 
   return (
@@ -27,8 +31,12 @@ export const TagInput: FC<Props> = ({ data }) => {
         onFocus={() => setOpenSelect(true)}
       >
         {selected.map((tag) => (
-          <span key={tag} data-testid={"tagInput-selected-value"}>
-            {dataObject[tag]}
+          <span
+            key={tag}
+            data-testid={"tagInput-selected-value"}
+            style={{ backgroundColor: dataObject[tag]?.colorCode }}
+          >
+            {dataObject[tag]?.label}
           </span>
         ))}
       </button>

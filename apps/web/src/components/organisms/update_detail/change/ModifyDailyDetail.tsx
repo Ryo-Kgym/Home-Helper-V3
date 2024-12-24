@@ -12,6 +12,7 @@ import { IocomeTypeSegment } from "../../../ui/segment/IocomeTypeSegment";
 import { AccountSelect } from "../../../ui/select/AccountSelect";
 import { CategorySelect } from "../../../ui/select/CategorySelect";
 import { GenreSelect } from "../../../ui/select/GenreSelect";
+import { TagInput } from "../../../ui/tag/TagInput";
 
 export const ModifyDailyDetail = ({
   initData,
@@ -94,6 +95,27 @@ export const ModifyDailyDetail = ({
         <MemoTextArea
           memo={form.memo}
           setMemo={(value) => setForm({ ...form, memo: value })}
+        />
+      </Field>
+      <Field>
+        <TagInput
+          data={[
+            {
+              label: "タグ1",
+              value: "tag1",
+              colorCode: "#FF0000",
+            },
+            {
+              label: "タグ2",
+              value: "tag2",
+              colorCode: "#00FF00",
+            },
+            {
+              label: "タグ3",
+              value: "tag3",
+              colorCode: "#0000FF",
+            },
+          ]}
         />
       </Field>
       <div className={"flex justify-items-center"}>

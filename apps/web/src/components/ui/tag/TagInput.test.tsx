@@ -40,13 +40,16 @@ const data = [
   {
     label: "タグ1",
     value: "tag1",
+    colorCode: "#FF0000",
   },
   {
     label: "タグ2",
     value: "tag2",
+    colorCode: "#00FF00",
   },
   {
     label: "タグ3",
     value: "tag3",
+    colorCode: "#0000FF",
   },
 ];
