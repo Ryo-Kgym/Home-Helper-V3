@@ -3911,6 +3911,9 @@ export type UpdateDailyDetailByIdMutationVariables = Exact<{
   accountId: Scalars["String"];
   amount: Scalars["numeric"];
   memo?: InputMaybe<Scalars["String"]>;
+  tagDetails:
+    | Array<HouseholdDetailTagInsertInput>
+    | HouseholdDetailTagInsertInput;
 }>;
 
 export type UpdateDailyDetailByIdMutation = {
@@ -3918,6 +3921,14 @@ export type UpdateDailyDetailByIdMutation = {
   updateDailyDetailByPk?: {
     __typename: "HouseholdDailyDetail";
     id: string;
+  } | null;
+  deleteDetailTags?: {
+    __typename?: "HouseholdDetailTagMutationResponse";
+    affectedRows: number;
+  } | null;
+  insertDetailTags?: {
+    __typename?: "HouseholdDetailTagMutationResponse";
+    affectedRows: number;
   } | null;
 };
 
@@ -6917,6 +6928,29 @@ export const UpdateDailyDetailByIdDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "memo" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "tagDetails" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: {
+                    kind: "Name",
+                    value: "HouseholdDetailTagInsertInput",
+                  },
+                },
+              },
+            },
+          },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -7014,6 +7048,72 @@ export const UpdateDailyDetailByIdDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "deleteDetailTags" },
+            name: { kind: "Name", value: "deleteHouseholdDetailTag" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "detailId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "id" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "insertDetailTags" },
+            name: { kind: "Name", value: "insertHouseholdDetailTag" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "objects" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "tagDetails" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "affectedRows" },
+                },
               ],
             },
           },

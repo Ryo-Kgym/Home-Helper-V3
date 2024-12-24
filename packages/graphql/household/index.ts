@@ -3975,6 +3975,9 @@ export type UpdateDailyDetailByIdMutationVariables = Exact<{
   accountId: Scalars["String"];
   amount: Scalars["numeric"];
   memo?: InputMaybe<Scalars["String"]>;
+  tagDetails:
+    | Array<HouseholdDetailTagInsertInput>
+    | HouseholdDetailTagInsertInput;
 }>;
 
 export type UpdateDailyDetailByIdMutation = {
@@ -3982,6 +3985,14 @@ export type UpdateDailyDetailByIdMutation = {
   updateDailyDetailByPk?: {
     __typename: "HouseholdDailyDetail";
     id: string;
+  } | null;
+  deleteDetailTags?: {
+    __typename?: "HouseholdDetailTagMutationResponse";
+    affectedRows: number;
+  } | null;
+  insertDetailTags?: {
+    __typename?: "HouseholdDetailTagMutationResponse";
+    affectedRows: number;
   } | null;
 };
 
@@ -5520,6 +5531,7 @@ export const UpdateDailyDetailByIdDocument = gql`
     $accountId: String!
     $amount: numeric!
     $memo: String
+    $tagDetails: [HouseholdDetailTagInsertInput!]!
   ) {
     updateDailyDetailByPk: updateHouseholdDailyDetailByPk(
       _set: {
@@ -5535,6 +5547,14 @@ export const UpdateDailyDetailByIdDocument = gql`
     ) {
       __typename
       id
+    }
+    deleteDetailTags: deleteHouseholdDetailTag(
+      where: { detailId: { _eq: $id } }
+    ) {
+      affectedRows
+    }
+    insertDetailTags: insertHouseholdDetailTag(objects: $tagDetails) {
+      affectedRows
     }
   }
 `;

@@ -33,6 +33,7 @@ export const useEditDaily = () => {
       accountId,
       amount,
       memo,
+      tagDetails: [], // FIXME 未実装
     });
     if (error) {
       throw error;

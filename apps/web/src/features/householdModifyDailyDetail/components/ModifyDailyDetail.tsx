@@ -12,7 +12,7 @@ import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { deleteDailyDetail } from "../../../hooks/household/daily_detail/deleteDailyDatail";
-import { modifyDailyDetail } from "../../../hooks/household/daily_detail/modifyDailyDetail";
+import { modifyDailyDetail } from "../useServer/modifyDailyDetail";
 
 export const ModifyDailyDetail = ({
   initData,
