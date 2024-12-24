@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { DailyDetail } from "../../../../domain/model/household/DailyDetail";
-import { errorPopup, successPopup } from "../../../../function/successPopup";
-import { useCutDetail } from "../../../../hooks/household/daily_detail/useCutDetail";
+import { DailyDetail } from "../../../domain/model/household/DailyDetail";
+import { errorPopup, successPopup } from "../../../function/successPopup";
+import { useCutDetail } from "../../../hooks/household/daily_detail/useCutDetail";
 import { CutDetailPresenter } from "./CutDetailPresenter";
 
 export const CutDetailContainer = ({

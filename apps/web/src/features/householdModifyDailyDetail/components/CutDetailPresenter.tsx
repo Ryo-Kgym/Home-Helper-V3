@@ -1,11 +1,11 @@
-import { IocomeType } from "../../../../domain/model/household/IocomeType";
-import { MemoTextArea } from "../../../molecules/CustomTextArea/Memo";
-import { Button } from "../../../ui/button/v5";
-import { DatePicker } from "../../../ui/date";
-import { AmountInput } from "../../../ui/numberInput/amount/AmountInput";
-import { AccountSelect } from "../../../ui/select/AccountSelect";
-import { CategorySelect } from "../../../ui/select/CategorySelect";
-import { GenreSelect } from "../../../ui/select/GenreSelect";
+import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
+import { Button } from "../../../components/ui/button/v5";
+import { DatePicker } from "../../../components/ui/date";
+import { AmountInput } from "../../../components/ui/numberInput/amount/AmountInput";
+import { AccountSelect } from "../../../components/ui/select/AccountSelect";
+import { CategorySelect } from "../../../components/ui/select/CategorySelect";
+import { GenreSelect } from "../../../components/ui/select/GenreSelect";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const CutDetailPresenter = ({
   detailDate,

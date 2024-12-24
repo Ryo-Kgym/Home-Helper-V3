@@ -25,12 +25,12 @@ export const useCutDetail = ({
   };
 }) => {
   const { updateHandler } = useUpdateDailyDetailBySerialNo({
-    id: origin.initData.id!,
-    date: origin.initData.date!,
-    genreId: origin.initData.genreId!,
-    iocomeType: origin.initData.iocomeType!,
-    categoryId: origin.initData.categoryId!,
-    accountId: origin.initData.accountId!,
+    id: origin.initData.id,
+    date: origin.initData.date,
+    genreId: origin.initData.genreId,
+    iocomeType: origin.initData.iocomeType,
+    categoryId: origin.initData.categoryId,
+    accountId: origin.initData.accountId,
     amount: origin.deductedAmount,
     memo: origin.rewrittenMemo,
   });
@@ -39,7 +39,7 @@ export const useCutDetail = ({
     await registerDailyDetail({
       date: newDetail.detailDate,
       genreId: newDetail.genreId,
-      iocomeType: origin.initData.iocomeType!,
+      iocomeType: origin.initData.iocomeType,
       categoryId: newDetail.categoryId,
       accountId: newDetail.accountId,
       amount: newDetail.amount,

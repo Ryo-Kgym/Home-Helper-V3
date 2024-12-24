@@ -1,18 +1,18 @@
 import { FC, PropsWithChildren, useState } from "react";
 
-import { DailyDetail } from "../../../../domain/model/household/DailyDetail";
-import { errorPopup, successPopup } from "../../../../function/successPopup";
-import { deleteDailyDetail } from "../../../../hooks/household/daily_detail/deleteDailyDatail";
-import { modifyDailyDetail } from "../../../../hooks/household/daily_detail/modifyDailyDetail";
-import { MemoTextArea } from "../../../molecules/CustomTextArea/Memo";
-import { Button } from "../../../ui/button/v5";
-import { DatePicker } from "../../../ui/date";
-import { AmountInput } from "../../../ui/numberInput/amount/AmountInput";
-import { IocomeTypeSegment } from "../../../ui/segment/IocomeTypeSegment";
-import { AccountSelect } from "../../../ui/select/AccountSelect";
-import { CategorySelect } from "../../../ui/select/CategorySelect";
-import { GenreSelect } from "../../../ui/select/GenreSelect";
-import { TagInputWrapper } from "../../../ui/tag/TagInputWrapper";
+import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
+import { Button } from "../../../components/ui/button/v5";
+import { DatePicker } from "../../../components/ui/date";
+import { AmountInput } from "../../../components/ui/numberInput/amount/AmountInput";
+import { IocomeTypeSegment } from "../../../components/ui/segment/IocomeTypeSegment";
+import { AccountSelect } from "../../../components/ui/select/AccountSelect";
+import { CategorySelect } from "../../../components/ui/select/CategorySelect";
+import { GenreSelect } from "../../../components/ui/select/GenreSelect";
+import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
+import { DailyDetail } from "../../../domain/model/household/DailyDetail";
+import { errorPopup, successPopup } from "../../../function/successPopup";
+import { deleteDailyDetail } from "../../../hooks/household/daily_detail/deleteDailyDatail";
+import { modifyDailyDetail } from "../../../hooks/household/daily_detail/modifyDailyDetail";
 
 export const ModifyDailyDetail = ({
   initData,

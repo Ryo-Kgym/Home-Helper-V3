@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 
-import { UpdateDetail } from "../../../components/organisms/update_detail/UpdateDetail";
 import { DataTable } from "../../../components/ui/v4/table";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { colors } from "../../../styles/colors";
+import { UpdateDetail } from "../../householdModifyDailyDetail/components/UpdateDetail";
 
 export const ChartDetailTableClient = ({
   records,

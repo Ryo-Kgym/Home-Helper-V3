@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { IocomeTotal } from "../../../components/molecules/Total";
-import { UpdateDetail } from "../../../components/organisms/update_detail/UpdateDetail";
 import { DataTable } from "../../../components/ui/v4/table";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { useGetCreditCardSummaryByAccountIdBetweenDate } from "../../../hooks/household/credit_card/useGetCreditCardSummaryByAccountIdBetweenDate";
 import { useGetDailyDetailByDateAccountId } from "../../../hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
+import { UpdateDetail } from "../../householdModifyDailyDetail/components/UpdateDetail";
 
 export const AccountDailyTable = ({
   fromDate,

@@ -1,13 +1,9 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
+import { Modal } from "../../../components/atoms/Modal";
+import { Tab } from "../../../components/ui";
 import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { Modal } from "../../atoms/Modal";
-import { Tab } from "../../ui";
-import { ModifyDailyDetail } from "./change/ModifyDailyDetail";
-import { CutDetailContainer } from "./cut/CutDetailContainer";
+import { CutDetailContainer } from "./CutDetailContainer";
+import { ModifyDailyDetail } from "./ModifyDailyDetail";
 
 export const UpdateDetail = ({
   initData,
