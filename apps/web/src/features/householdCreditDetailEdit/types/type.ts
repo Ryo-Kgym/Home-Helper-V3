@@ -4,7 +4,7 @@ export type CreditDetailEditFormState = {
   genreId: string | null;
   categoryId: string | null;
   memo: string;
-  isExpense: boolean;
+  tags: string[];
 };
 export type CreditDetailEditDisplayState = {
   id: string;

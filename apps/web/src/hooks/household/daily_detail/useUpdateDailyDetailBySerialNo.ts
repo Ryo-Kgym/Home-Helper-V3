@@ -38,6 +38,7 @@ export const useUpdateDailyDetailBySerialNo = ({
       accountId,
       amount,
       memo,
+      tagDetails: [], // FIXME 未実装
     });
 
   return {

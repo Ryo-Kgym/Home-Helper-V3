@@ -1,0 +1,24 @@
+.module {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input {
+  border: solid 1px #ccc;
+  padding: 0.5rem;
+  background-color: inherit;
+  text-align: left;
+  min-height: 43px;
+}
+
+.selector {
+  border: solid 1px #ccc;
+  height: 10rem;
+  padding: 0.5rem;
+  width: fit-content;
+}
+
+.selector li:hover {
+  background-color: #f0f0f0;
+}

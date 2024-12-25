@@ -1,5 +1,5 @@
-import { CategoryEdit } from "../../../../../../../components/page/CategoryEdit";
 import { BackModal } from "../../../../../../../components/ui";
+import { CategoryEdit } from "../../../../../../../features/householdCategoryEdit/components/CategoryEdit";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;

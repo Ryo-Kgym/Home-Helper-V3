@@ -6,6 +6,7 @@ query getValidCategoryByGenreId($groupId: String!, $genreId: String!) {
     }
     orderBy: { displayOrder: ASC }
   ) {
+    __typename
     id
     name
     categories(where: { validFlag: { _eq: true } }) {
@@ -15,12 +16,14 @@ query getValidCategoryByGenreId($groupId: String!, $genreId: String!) {
     }
   }
   genre: householdGenreByPk(id: $genreId) {
+    __typename
     id
     name
     categories(
       where: { validFlag: { _eq: true } }
       orderBy: { displayOrder: ASC }
     ) {
+      __typename
       id
       name
       displayOrder

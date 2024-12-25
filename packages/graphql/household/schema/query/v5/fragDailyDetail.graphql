@@ -1,21 +1,28 @@
 fragment fragDailyDetail on HouseholdDailyDetail {
-    __typename
+  __typename
+  id
+  date
+  genre {
     id
-    date
-    genre {
-        id
-        name
-        genreType
-        iocomeType
+    name
+    genreType
+    iocomeType
+  }
+  category {
+    id
+    name
+  }
+  account {
+    id
+    name
+  }
+  amount
+  memo
+  tags: detailTags {
+    id
+    tag {
+      id
+      name
     }
-    category {
-        id
-        name
-    }
-    account {
-        id
-        name
-    }
-    amount
-    memo
+  }
 }

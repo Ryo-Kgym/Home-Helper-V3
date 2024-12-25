@@ -3,17 +3,20 @@ mutation updateCreditCardDetailById(
   $genreId: String!
   $categoryId: String!
   $memo: String
-  $businessOptions: json
+  $tagDetails: [HouseholdDetailTagInsertInput!]!
 ) {
   updateHouseholdCreditCardDetailByPk(
     pkColumns: { id: $id }
-    _set: {
-      genreId: $genreId
-      categoryId: $categoryId
-      memo: $memo
-      businessOptions: $businessOptions
-    }
+    _set: { genreId: $genreId, categoryId: $categoryId, memo: $memo }
   ) {
     id
+  }
+  deleteDetailTags: deleteHouseholdDetailTag(
+    where: { detailId: { _eq: $id } }
+  ) {
+    affectedRows
+  }
+  insertDetailTags: insertHouseholdDetailTag(objects: $tagDetails) {
+    affectedRows
   }
 }

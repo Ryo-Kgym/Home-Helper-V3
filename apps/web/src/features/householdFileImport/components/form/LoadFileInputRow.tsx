@@ -114,7 +114,7 @@ export const LoadFileInputRow: FC<Props> = ({
           <Table.BodyTd key={`genre-${rowNumber}`}>
             <GenreSelect
               genreId={genreId}
-              setGenreId={setGenreId}
+              onChange={setGenreId}
               iocomeType={iocomeType}
               disabled={hasNull}
             />
@@ -124,7 +124,7 @@ export const LoadFileInputRow: FC<Props> = ({
           <Table.BodyTd key={`category-${rowNumber}`}>
             <CategorySelect
               categoryId={categoryId}
-              setCategoryId={setCategoryId}
+              onChange={setCategoryId}
               genreId={genreId}
               disabled={hasNull}
             />

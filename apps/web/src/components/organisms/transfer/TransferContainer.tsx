@@ -8,9 +8,9 @@ import { TransferPresenter } from "./TransferPresenter";
 
 export const TransferContainer = ({ date }: { date: Date }) => {
   const [registerDate, setRegisterDate] = useState<Date>(date);
-  const [sendAccountId, setSendAccountId] = useState<string | null>(null);
-  const [receiveAccountId, setReceiveAccountId] = useState<string | null>(null);
-  const [amount, setAmount] = useState<number | "">(0);
+  const [sendAccountId, setSendAccountId] = useState<string>("");
+  const [receiveAccountId, setReceiveAccountId] = useState<string>("");
+  const [amount, setAmount] = useState<number>(0);
   const [memo, setMemo] = useState("");
   const isRegisterable: boolean =
     sendAccountId !== receiveAccountId &&
@@ -22,9 +22,9 @@ export const TransferContainer = ({ date }: { date: Date }) => {
     try {
       await registerTransfer({
         date: registerDate,
-        sendAccountId: sendAccountId!,
-        receiveAccountId: receiveAccountId!,
-        amount: amount as number,
+        sendAccountId: sendAccountId,
+        receiveAccountId: receiveAccountId,
+        amount: amount,
         memo: memo,
       });
       clearHandler();
@@ -36,8 +36,8 @@ export const TransferContainer = ({ date }: { date: Date }) => {
 
   const clearHandler = () => {
     setRegisterDate(date);
-    setSendAccountId(null);
-    setReceiveAccountId(null);
+    setSendAccountId("");
+    setReceiveAccountId("");
     setAmount(0);
     setMemo("");
   };

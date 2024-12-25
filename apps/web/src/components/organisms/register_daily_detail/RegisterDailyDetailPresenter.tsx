@@ -1,99 +1,86 @@
+import { FC, PropsWithChildren } from "react";
 import { Button } from "components/ui/button/v5";
 import { DatePicker } from "components/ui/date";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { IocomeTypeSegment } from "../../molecules/CustomSegment/IocomeType";
 import { MemoTextArea } from "../../molecules/CustomTextArea/Memo";
 import { AmountInput } from "../../ui/numberInput/amount/AmountInput";
+import { IocomeTypeSegment } from "../../ui/segment/IocomeTypeSegment";
 import { AccountSelect } from "../../ui/select/AccountSelect";
 import { CategorySelect } from "../../ui/select/CategorySelect";
 import { GenreSelect } from "../../ui/select/GenreSelect";
+import { DailyDetailForm } from "./dailyDetailForm";
 
-export const RegisterDailyDetailPresenter = ({
-  date,
-  setDate,
-  iocomeType,
-  changeIocomeTypeHandler,
-  categoryId,
-  changeCategoryIdHandler,
-  genreId,
-  changeGenreIdHandler,
-  accountId,
-  changeAccountIdHandler,
-  amount,
-  changeAmountHandler,
-  memo,
-  changeMemoHandler,
-  clearClickHandler,
-  registerClickHandler,
-}: {
-  date: Date;
+type Props = {
+  form: DailyDetailForm;
   setDate: (_: Date) => void;
-  iocomeType: IocomeType;
-  changeIocomeTypeHandler: (_: IocomeType) => void;
-  categoryId: string | null;
-  changeCategoryIdHandler: (_: string | null) => void;
-  genreId: string | null;
-  changeGenreIdHandler: (_: string | null) => void;
-  accountId: string | null;
-  changeAccountIdHandler: (_: string | null) => void;
-  amount: number | "";
-  changeAmountHandler: (_: number | "") => void;
-  memo: string;
-  changeMemoHandler: (_: string) => void;
-  clearClickHandler: () => void;
-  registerClickHandler: () => void;
+  setIocomeType: (_: IocomeType) => void;
+  setCategoryId: (_: string | null) => void;
+  setGenreId: (_: string | null) => void;
+  setAccountId: (_: string | null) => void;
+  setAmount: (_: number) => void;
+  setMemo: (_: string) => void;
+  clearClick: () => void;
+  registerClick: () => void;
+};
+
+export const RegisterDailyDetailPresenter: FC<Props> = ({
+  form,
+  setDate,
+  setIocomeType,
+  setCategoryId,
+  setGenreId,
+  setAccountId,
+  setAmount,
+  setMemo,
+  clearClick,
+  registerClick,
 }) => (
   <div className={"grid w-full grid-cols-1"}>
     <Field>
       <DatePicker
-        value={date}
+        value={form.date}
         onChange={setDate}
         required
-        defaultValue={date}
+        defaultValue={form.date}
       />
     </Field>
     <Field>
       <IocomeTypeSegment
-        iocomeType={iocomeType}
-        setIocomeType={changeIocomeTypeHandler}
+        iocomeType={form.iocomeType}
+        onChange={setIocomeType}
       />
     </Field>
     <Field>
       <GenreSelect
-        iocomeType={iocomeType}
-        genreId={genreId}
-        setGenreId={changeGenreIdHandler}
+        iocomeType={form.iocomeType}
+        genreId={form.genreId}
+        onChange={setGenreId}
       />
     </Field>
     <Field>
       <CategorySelect
-        genreId={genreId}
-        categoryId={categoryId}
-        setCategoryId={changeCategoryIdHandler}
+        genreId={form.genreId}
+        categoryId={form.categoryId}
+        onChange={setCategoryId}
       />
     </Field>
     <Field>
-      <AccountSelect
-        accountId={accountId}
-        setAccountId={changeAccountIdHandler}
-      />
+      <AccountSelect accountId={form.accountId} onChange={setAccountId} />
     </Field>
     <Field>
-      <AmountInput value={amount} onChange={changeAmountHandler} />
+      <AmountInput value={form.amount} onChange={setAmount} />
     </Field>
     <Field>
-      <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
+      <MemoTextArea memo={form.memo} setMemo={setMemo} />
     </Field>
     <div className={"grid grid-cols-2 justify-items-center"}>
-      <Button type={"add"} onClick={registerClickHandler} label={"登録"} />
-      <Button type={"back"} onClick={clearClickHandler} label={"クリア"} />
+      <Button type={"add"} onClick={registerClick} label={"登録"} />
+      <Button type={"back"} onClick={clearClick} label={"クリア"} />
     </div>
   </div>
 );
 
-const Field = ({ children }: { children: React.ReactNode }) => (
-  <>
-    <div className={"py-2 max-sm:py-1"}>{children}</div>
-  </>
+const Field: FC<PropsWithChildren> = ({ children }) => (
+  <div className={"py-2 max-sm:py-1"}>{children}</div>
 );

@@ -1,8 +1,0 @@
-mutation updateView($viewAppObjects: [ViewAppInsertInput!]!) {
-  insertViewApp(
-    objects: $viewAppObjects
-    onConflict: { constraint: view_app_pkey, updateColumns: [] }
-  ) {
-    affectedRows
-  }
-}

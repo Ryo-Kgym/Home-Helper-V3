@@ -1,6 +1,0 @@
-fragment fragRecords on Record {
-  __typename
-  id
-  index
-  columns
-}

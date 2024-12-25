@@ -1,8 +1,0 @@
-query getAppLinkDatabase($appId: String!) {
-  linkDatabase: linkDatabaseByPk(appId: $appId) {
-    ...fragLinkDatabase
-  }
-  fields: field(where: { appId: { _eq: $appId } }) {
-    ...fragFields
-  }
-}

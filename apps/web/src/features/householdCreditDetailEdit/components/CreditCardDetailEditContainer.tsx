@@ -5,6 +5,7 @@ import { FC } from "react";
 import { Loading } from "../../../components/ui/v5/loading/Loading";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
+import { useNavigation } from "../../../routing/client/useNavigation";
 import { useStateCreditDetail } from "../hooks/useStateCreditDetail";
 import { useUpdateCreditDetail } from "../hooks/useUpdateCreditDetail";
 import { CreditCardDetailEditPresenter } from "./CreditCardDetailEditPresenter";
@@ -20,10 +21,11 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
     });
 
   const { updateCreditDetail } = useUpdateCreditDetail({ id });
+  const { refresh } = useNavigation();
 
   const updateHandler = async () => {
     if (!formData) return;
-    const { genreId, categoryId, memo, isExpense } = formData;
+    const { genreId, categoryId, memo, tags } = formData;
 
     try {
       if (genreId === null) {
@@ -39,9 +41,10 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
         genreId,
         categoryId,
         memo,
-        isExpense,
+        tags,
       });
       successPopup("更新しました。");
+      refresh();
     } catch (e) {
       errorPopup("更新に失敗しました。");
     }
@@ -92,12 +95,12 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
           };
         });
       }}
-      setIsExpense={(value: boolean) => {
+      setTags={(value) => {
         setFormData((prev) => {
           if (!prev) return prev;
           return {
             ...prev,
-            isExpense: value,
+            tags: value,
           };
         });
       }}

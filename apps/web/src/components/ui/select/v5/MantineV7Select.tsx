@@ -10,7 +10,7 @@ import type { SelectData } from "./index";
 type MantineSelectProps = {
   label: string;
   value: string | null;
-  onChange: (_: string | null) => void;
+  onChange: (_: string) => void;
   data: SelectData[];
   placeholder?: string;
   maxDropdownHeight?: number;
@@ -51,7 +51,10 @@ export const MantineV7Select = ({
     <Select
       label={label}
       value={value}
-      onChange={onChange}
+      onChange={(value) => {
+        if (!value) return;
+        onChange(value);
+      }}
       placeholder={placeholder}
       data={data}
       // searchable

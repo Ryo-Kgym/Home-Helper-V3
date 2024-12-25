@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Table, TableProps } from "../../../components/atoms/Table";
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { Button } from "../../../components/ui/button/v5";
-import { IsExpenseTag } from "../../../components/ui/tag/v5/IsExpenseTag";
+import { Tag } from "../../../components/ui/tag/Tag";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { paths } from "../../../routing/paths";
 import { CreditSummaryTable } from "./CreditSummaryTable";
@@ -22,7 +22,7 @@ type Props = {
     iocomeType: IocomeType;
     amount: number;
     memo: string;
-    isExpense: boolean;
+    tags: { label: string; value: string; colorCode: string }[];
   }[];
 };
 export const CreditDetailListClient: FC<Props> = ({
@@ -51,7 +51,13 @@ export const CreditDetailListClient: FC<Props> = ({
         {
           value: (
             <div className={"flex items-center"}>
-              {detail.isExpense && <IsExpenseTag />}
+              {detail.tags.map((tag) => (
+                <Tag
+                  key={tag.value}
+                  label={tag.label}
+                  colorCode={tag.colorCode}
+                />
+              ))}
               <span>{detail.memo}</span>
             </div>
           ),

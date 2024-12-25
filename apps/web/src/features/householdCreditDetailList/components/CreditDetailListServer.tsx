@@ -35,7 +35,11 @@ export const CreditDetailListServer = async ({
       iocomeType: d.genre.iocomeType as IocomeType,
       amount: d.amount,
       memo: d.memo ?? "",
-      isExpense: d.businessOptions?.isExpense ?? false,
+      tags: d.tags.map((t) => ({
+        label: t.tag.name,
+        value: t.tag.id,
+        colorCode: t.tag.colorCode,
+      })),
     })) ?? [];
 
   return (

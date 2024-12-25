@@ -9,7 +9,12 @@ export const paths = {
     account: "/household/account",
     creditCard: "/household/creditCard",
     fileImport: "/household/fileImport",
-    setting: "/household/setting",
+    setting: {
+      genre: "/household/setting/genre",
+      category: "/household/setting/category",
+      categoryAdd: "/household/setting/category/add",
+      tag: "/household/setting/tag",
+    },
     creditDetail: {
       edit: ({
         creditCardSummaryId,

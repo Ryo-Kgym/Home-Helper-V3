@@ -8,13 +8,13 @@ import { Select } from "./v5";
 
 export const CategorySelect = ({
   categoryId,
-  setCategoryId,
+  onChange,
   genreId,
   disabled,
   withLabel = false,
 }: {
   categoryId: string | null;
-  setCategoryId: (_: string | null) => void;
+  onChange: (_: string) => void;
   genreId: string | null;
   disabled?: boolean;
   withLabel?: boolean;
@@ -34,7 +34,7 @@ export const CategorySelect = ({
     <Select
       label={withLabel ? "カテゴリ" : ""}
       value={categoryId}
-      onChange={setCategoryId}
+      onChange={onChange}
       data={options}
       placeholder={"カテゴリを選択してください"}
       withAsterisk
