@@ -22,7 +22,6 @@ export type Scalars = {
   Float: number;
   bpchar: any;
   date: any;
-  json: any;
   numeric: any;
   timestamp: any;
 };
@@ -405,11 +404,9 @@ export type GroupBoolExp = {
   apps?: InputMaybe<AppBoolExp>;
   categories?: InputMaybe<HouseholdCategoryBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   creditCardSummaries?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   dashboardSettings?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
@@ -509,7 +506,6 @@ export type HouseholdAccountBoolExp = {
   creditCardSummaries?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -896,9 +892,7 @@ export type HouseholdCategoryBoolExp = {
   _not?: InputMaybe<HouseholdCategoryBoolExp>;
   _or?: InputMaybe<Array<HouseholdCategoryBoolExp>>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   depositCategory?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
@@ -1093,10 +1087,6 @@ export type HouseholdCategoryVarianceOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-export type HouseholdCreditCardDetailAggregateBoolExp = {
-  count?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExpCount>;
-};
-
 /** order by aggregate values of table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailAggregateOrderBy = {
   avg?: InputMaybe<HouseholdCreditCardDetailAvgOrderBy>;
@@ -1130,7 +1120,6 @@ export type HouseholdCreditCardDetailBoolExp = {
   _not?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   _or?: InputMaybe<Array<HouseholdCreditCardDetailBoolExp>>;
   amount?: InputMaybe<NumericComparisonExp>;
-  businessOptions?: InputMaybe<JsonComparisonExp>;
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
@@ -1162,7 +1151,6 @@ export type HouseholdCreditCardDetailIncInput = {
 /** input type for inserting data into table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailInsertInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
-  businessOptions?: InputMaybe<Scalars["json"]>;
   category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryObjRelInsertInput>;
@@ -1217,7 +1205,6 @@ export type HouseholdCreditCardDetailOnConflict = {
 /** Ordering options when selecting data from "household.credit_card_detail". */
 export type HouseholdCreditCardDetailOrderBy = {
   amount?: InputMaybe<OrderBy>;
-  businessOptions?: InputMaybe<OrderBy>;
   category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryOrderBy>;
@@ -1245,8 +1232,6 @@ export enum HouseholdCreditCardDetailSelectColumn {
   /** column name */
   Amount = "amount",
   /** column name */
-  BusinessOptions = "businessOptions",
-  /** column name */
   CategoryId = "categoryId",
   /** column name */
   Date = "date",
@@ -1269,16 +1254,10 @@ export enum HouseholdCreditCardDetailSelectColumn {
 /** input type for updating data in table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailSetInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
-  businessOptions?: InputMaybe<Scalars["json"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
-  date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
-  summaryId?: InputMaybe<Scalars["String"]>;
-  userId?: InputMaybe<Scalars["String"]>;
 };
 
 /** order by stddev() on columns of table "household.credit_card_detail" */
@@ -1307,7 +1286,6 @@ export type HouseholdCreditCardDetailStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HouseholdCreditCardDetailStreamCursorValueInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
-  businessOptions?: InputMaybe<Scalars["json"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
@@ -1329,25 +1307,13 @@ export enum HouseholdCreditCardDetailUpdateColumn {
   /** column name */
   Amount = "amount",
   /** column name */
-  BusinessOptions = "businessOptions",
-  /** column name */
   CategoryId = "categoryId",
   /** column name */
-  Date = "date",
-  /** column name */
   GenreId = "genreId",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Id = "id",
   /** column name */
   IocomeType = "iocomeType",
   /** column name */
   Memo = "memo",
-  /** column name */
-  SummaryId = "summaryId",
-  /** column name */
-  UserId = "userId",
 }
 
 export type HouseholdCreditCardDetailUpdates = {
@@ -1416,7 +1382,6 @@ export type HouseholdCreditCardSummaryBoolExp = {
   count?: InputMaybe<IntComparisonExp>;
   creditCard?: InputMaybe<StringComparisonExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
@@ -1684,10 +1649,6 @@ export type HouseholdCreditCardSummaryVarianceOrderBy = {
   totalAmount?: InputMaybe<OrderBy>;
 };
 
-export type HouseholdDailyDetailAggregateBoolExp = {
-  count?: InputMaybe<HouseholdDailyDetailAggregateBoolExpCount>;
-};
-
 /** order by aggregate values of table "household.daily_detail" */
 export type HouseholdDailyDetailAggregateOrderBy = {
   avg?: InputMaybe<HouseholdDailyDetailAvgOrderBy>;
@@ -1723,7 +1684,6 @@ export type HouseholdDailyDetailBoolExp = {
   account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
   amount?: InputMaybe<NumericComparisonExp>;
-  businessOptions?: InputMaybe<JsonComparisonExp>;
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
@@ -1755,7 +1715,6 @@ export type HouseholdDailyDetailInsertInput = {
   account?: InputMaybe<HouseholdAccountObjRelInsertInput>;
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
-  businessOptions?: InputMaybe<Scalars["json"]>;
   category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
@@ -1810,7 +1769,6 @@ export type HouseholdDailyDetailOrderBy = {
   account?: InputMaybe<HouseholdAccountOrderBy>;
   accountId?: InputMaybe<OrderBy>;
   amount?: InputMaybe<OrderBy>;
-  businessOptions?: InputMaybe<OrderBy>;
   category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
@@ -1838,8 +1796,6 @@ export enum HouseholdDailyDetailSelectColumn {
   /** column name */
   Amount = "amount",
   /** column name */
-  BusinessOptions = "businessOptions",
-  /** column name */
   CategoryId = "categoryId",
   /** column name */
   Date = "date",
@@ -1861,15 +1817,11 @@ export enum HouseholdDailyDetailSelectColumn {
 export type HouseholdDailyDetailSetInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
-  businessOptions?: InputMaybe<Scalars["json"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
-  userId?: InputMaybe<Scalars["String"]>;
 };
 
 /** order by stddev() on columns of table "household.daily_detail" */
@@ -1899,7 +1851,6 @@ export type HouseholdDailyDetailStreamCursorInput = {
 export type HouseholdDailyDetailStreamCursorValueInput = {
   accountId?: InputMaybe<Scalars["String"]>;
   amount?: InputMaybe<Scalars["numeric"]>;
-  businessOptions?: InputMaybe<Scalars["json"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
@@ -1922,23 +1873,15 @@ export enum HouseholdDailyDetailUpdateColumn {
   /** column name */
   Amount = "amount",
   /** column name */
-  BusinessOptions = "businessOptions",
-  /** column name */
   CategoryId = "categoryId",
   /** column name */
   Date = "date",
   /** column name */
   GenreId = "genreId",
   /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Id = "id",
-  /** column name */
   IocomeType = "iocomeType",
   /** column name */
   Memo = "memo",
-  /** column name */
-  UserId = "userId",
 }
 
 export type HouseholdDailyDetailUpdates = {
@@ -2407,9 +2350,7 @@ export type HouseholdDetailTagBoolExp = {
   _not?: InputMaybe<HouseholdDetailTagBoolExp>;
   _or?: InputMaybe<Array<HouseholdDetailTagBoolExp>>;
   creditCardDetailsDetailTag?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsDetailTagAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetailsDetailTag?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsDetailTagAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   detailId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   tag?: InputMaybe<HouseholdTagBoolExp>;
@@ -2753,9 +2694,7 @@ export type HouseholdGenreBoolExp = {
   _or?: InputMaybe<Array<HouseholdGenreBoolExp>>;
   categories?: InputMaybe<HouseholdCategoryBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   genreType?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -3510,19 +3449,6 @@ export type IntComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["Int"]>>;
 };
 
-/** Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'. */
-export type JsonComparisonExp = {
-  _eq?: InputMaybe<Scalars["json"]>;
-  _gt?: InputMaybe<Scalars["json"]>;
-  _gte?: InputMaybe<Scalars["json"]>;
-  _in?: InputMaybe<Array<Scalars["json"]>>;
-  _isNull?: InputMaybe<Scalars["Boolean"]>;
-  _lt?: InputMaybe<Scalars["json"]>;
-  _lte?: InputMaybe<Scalars["json"]>;
-  _neq?: InputMaybe<Scalars["json"]>;
-  _nin?: InputMaybe<Array<Scalars["json"]>>;
-};
-
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
 export type NumericComparisonExp = {
   _eq?: InputMaybe<Scalars["numeric"]>;
@@ -3606,9 +3532,7 @@ export type UserBoolExp = {
   affiliations?: InputMaybe<AffiliationBoolExp>;
   affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   email?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
@@ -3753,24 +3677,10 @@ export type HouseholdAllDetailViewAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HouseholdCreditCardDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HouseholdCreditCardSummaryAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type HouseholdDailyDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdDailyDetailBoolExp>;
   predicate: IntComparisonExp;
 };
 
