@@ -10,9 +10,10 @@ type Props = {
   onChange: (
     values: ComponentProps<typeof TagInput>["data"][number]["value"][],
   ) => void;
+  label?: string;
 };
 
-export const TagInputWrapper: FC<Props> = ({ values, onChange }) => {
+export const TagInputWrapper: FC<Props> = ({ values, onChange, label }) => {
   const [data, setData] = useState<ComponentProps<typeof TagInput>["data"]>([]);
 
   useEffect(() => {
@@ -21,5 +22,7 @@ export const TagInputWrapper: FC<Props> = ({ values, onChange }) => {
     })();
   }, []);
 
-  return <TagInput values={values} onChange={onChange} data={data} />;
+  return (
+    <TagInput values={values} onChange={onChange} data={data} label={label} />
+  );
 };

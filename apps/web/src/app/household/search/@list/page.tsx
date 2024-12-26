@@ -7,9 +7,10 @@ const Page = async ({
   searchParams: Promise<{
     fromDate: YYYY_MM_DD | undefined;
     toDate: YYYY_MM_DD | undefined;
+    tag: string | undefined;
   }>;
 }) => {
-  const { fromDate, toDate } = await searchParams;
+  const { fromDate, toDate, tag } = await searchParams;
   const getThisYearFirstDate = () => {
     const date = new Date();
     return `${date.getFullYear()}-01-01` as YYYY_MM_DD;
@@ -22,6 +23,7 @@ const Page = async ({
     <SearchListServer
       fromDate={fromDate ?? getThisYearFirstDate()}
       toDate={toDate ?? getThisYearLastDate()}
+      tagIds={tag?.split(",") ?? []}
     />
   );
 };

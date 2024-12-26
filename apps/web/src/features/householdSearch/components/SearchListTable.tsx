@@ -15,8 +15,8 @@ export const SearchListTable: FC<Props> = ({ records }) => {
   return (
     <DataTable
       columns={[
-        { accessor: "settlementDate", title: "決済日", width: 100 },
-        { accessor: "withdrawalDate", title: "引落日", width: 100 },
+        { accessor: "settlementDate", title: "決済日", width: 120 },
+        { accessor: "withdrawalDate", title: "引落日", width: 120 },
         {
           accessor: "amount",
           title: "金額",
@@ -39,10 +39,10 @@ export const SearchListTable: FC<Props> = ({ records }) => {
           title: "メモ",
           render: (record) => {
             return (
-              <div>
+              <>
                 <TagGroup tags={record.tags} />
                 {record.memo}
-              </div>
+              </>
             );
           },
         },

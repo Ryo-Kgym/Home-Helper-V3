@@ -2318,6 +2318,8 @@ export type HouseholdDetailTagBoolExp = {
   creditCardDetailsDetailTag?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   dailyDetailsDetailTag?: InputMaybe<HouseholdDailyDetailBoolExp>;
   detailId?: InputMaybe<StringComparisonExp>;
+  details?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
   id?: InputMaybe<StringComparisonExp>;
   tag?: InputMaybe<HouseholdTagBoolExp>;
   tagId?: InputMaybe<StringComparisonExp>;
@@ -2364,6 +2366,7 @@ export type HouseholdDetailTagOrderBy = {
   creditCardDetailsDetailTagAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   dailyDetailsDetailTagAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   detailId?: InputMaybe<OrderBy>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
   id?: InputMaybe<OrderBy>;
   tag?: InputMaybe<HouseholdTagOrderBy>;
   tagId?: InputMaybe<OrderBy>;
@@ -4760,6 +4763,7 @@ export type GetAllDetailViewQueryVariables = Exact<{
   groupId: Scalars["String"];
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
+  tagIds?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
 }>;
 
 export type GetAllDetailViewQuery = {
@@ -4804,6 +4808,53 @@ export type GetAllDetailViewQuery = {
           name: string;
           colorCode: any;
         };
+      }>;
+    }>;
+    tags: Array<{
+      __typename?: "HouseholdTag";
+      id: string;
+      detailTags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        details: Array<{
+          __typename: "HouseholdAllDetailView";
+          id?: string | null;
+          type?: string | null;
+          settlementDate?: any | null;
+          withdrawalDate?: any | null;
+          iocomeType?: string | null;
+          memo?: string | null;
+          amount?: any | null;
+          account?: {
+            __typename?: "HouseholdAccount";
+            id: string;
+            name: string;
+          } | null;
+          genre?: {
+            __typename?: "HouseholdGenre";
+            id: string;
+            name: string;
+          } | null;
+          category?: {
+            __typename?: "HouseholdCategory";
+            id: string;
+            name: string;
+            depositCategory?: {
+              __typename?: "HouseholdDepositCategory";
+              id: string;
+            } | null;
+          } | null;
+          tags: Array<{
+            __typename?: "HouseholdDetailTag";
+            id: string;
+            tag: {
+              __typename?: "HouseholdTag";
+              id: string;
+              name: string;
+              colorCode: any;
+            };
+          }>;
+        }>;
       }>;
     }>;
   } | null;
@@ -12642,6 +12693,24 @@ export const GetAllDetailViewDocument = {
             type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "tagIds" },
+          },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NonNullType",
+              type: {
+                kind: "NamedType",
+                name: { kind: "Name", value: "String" },
+              },
+            },
+          },
+          defaultValue: { kind: "ListValue", values: [] },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -12752,6 +12821,189 @@ export const GetAllDetailViewDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "fragAllDetailView" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tags" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "id" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_in" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "tagIds" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "detailTags" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "details" },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "distinctOn" },
+                                  value: {
+                                    kind: "ListValue",
+                                    values: [
+                                      {
+                                        kind: "EnumValue",
+                                        value: "settlementDate",
+                                      },
+                                    ],
+                                  },
+                                },
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "where" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: {
+                                          kind: "Name",
+                                          value: "settlementDate",
+                                        },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: {
+                                                kind: "Name",
+                                                value: "_gte",
+                                              },
+                                              value: {
+                                                kind: "Variable",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "fromDate",
+                                                },
+                                              },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_and" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: {
+                                                kind: "Name",
+                                                value: "settlementDate",
+                                              },
+                                              value: {
+                                                kind: "ObjectValue",
+                                                fields: [
+                                                  {
+                                                    kind: "ObjectField",
+                                                    name: {
+                                                      kind: "Name",
+                                                      value: "_lte",
+                                                    },
+                                                    value: {
+                                                      kind: "Variable",
+                                                      name: {
+                                                        kind: "Name",
+                                                        value: "toDate",
+                                                      },
+                                                    },
+                                                  },
+                                                ],
+                                              },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "orderBy" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: {
+                                          kind: "Name",
+                                          value: "settlementDate",
+                                        },
+                                        value: {
+                                          kind: "EnumValue",
+                                          value: "DESC",
+                                        },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: {
+                                          kind: "Name",
+                                          value: "withdrawalDate",
+                                        },
+                                        value: {
+                                          kind: "EnumValue",
+                                          value: "DESC",
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "FragmentSpread",
+                                    name: {
+                                      kind: "Name",
+                                      value: "fragAllDetailView",
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
                       },
                     ],
                   },

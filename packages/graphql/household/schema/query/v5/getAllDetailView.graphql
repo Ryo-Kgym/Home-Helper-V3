@@ -1,4 +1,9 @@
-query getAllDetailView($groupId: String!, $fromDate: date!, $toDate: date!) {
+query getAllDetailView(
+  $groupId: String!
+  $fromDate: date!
+  $toDate: date!
+  $tagIds: [String!] = []
+) {
   group: groupByPk(id: $groupId) {
     id
     details(
@@ -9,6 +14,21 @@ query getAllDetailView($groupId: String!, $fromDate: date!, $toDate: date!) {
       orderBy: { settlementDate: DESC, withdrawalDate: DESC }
     ) {
       ...fragAllDetailView
+    }
+    tags(where: { id: { _in: $tagIds } }) {
+      id
+      detailTags {
+        id
+        details(
+          where: {
+            settlementDate: { _gte: $fromDate }
+            _and: { settlementDate: { _lte: $toDate } }
+          }
+          orderBy: { settlementDate: DESC, withdrawalDate: DESC }
+        ) {
+          ...fragAllDetailView
+        }
+      }
     }
   }
 }
