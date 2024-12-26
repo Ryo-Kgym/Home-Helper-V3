@@ -24,5 +24,6 @@ export const useNavigation = () => {
   return {
     prependParamAndPush,
     refresh: () => push(`?${searchParams.toString()}`),
+    push,
   };
 };
