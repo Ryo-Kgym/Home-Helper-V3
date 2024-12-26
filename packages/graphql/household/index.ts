@@ -4822,6 +4822,8 @@ export type GetAccountBalanceListQuery = {
 
 export type GetAllDetailViewQueryVariables = Exact<{
   groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
 }>;
 
 export type GetAllDetailViewQuery = {
@@ -6593,10 +6595,16 @@ export function useGetAccountBalanceListQuery(
   >({ query: GetAccountBalanceListDocument, ...options });
 }
 export const GetAllDetailViewDocument = gql`
-  query getAllDetailView($groupId: String!) {
+  query getAllDetailView($groupId: String!, $fromDate: date!, $toDate: date!) {
     group: groupByPk(id: $groupId) {
       id
-      details(orderBy: { settlementDate: DESC, withdrawalDate: DESC }) {
+      details(
+        where: {
+          settlementDate: { _gte: $fromDate }
+          _and: { settlementDate: { _lte: $toDate } }
+        }
+        orderBy: { settlementDate: DESC, withdrawalDate: DESC }
+      ) {
         ...fragAllDetailView
       }
     }
