@@ -1,0 +1,8 @@
+query getAllDetailView($groupId: String!) {
+  group: groupByPk(id: $groupId) {
+    id
+    details(orderBy: { settlementDate: DESC, withdrawalDate: DESC }) {
+      ...fragAllDetailView
+    }
+  }
+}

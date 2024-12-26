@@ -401,6 +401,8 @@ export type GroupBoolExp = {
   dashboardSettings?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
+  details?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
   favoriteFilters?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
   favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateBoolExp>;
   genres?: InputMaybe<HouseholdGenreBoolExp>;
@@ -428,6 +430,7 @@ export type GroupOrderBy = {
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   dashboardSettingsAggregate?: InputMaybe<HouseholdDashboardSettingAggregateOrderBy>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
   favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateOrderBy>;
   genresAggregate?: InputMaybe<HouseholdGenreAggregateOrderBy>;
   groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
@@ -4751,6 +4754,57 @@ export type GetAccountBalanceListQuery = {
       } | null;
     };
   }>;
+};
+
+export type GetAllDetailViewQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetAllDetailViewQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    id: string;
+    details: Array<{
+      __typename: "HouseholdAllDetailView";
+      id?: string | null;
+      type?: string | null;
+      settlementDate?: any | null;
+      withdrawalDate?: any | null;
+      iocomeType?: string | null;
+      memo?: string | null;
+      amount?: any | null;
+      account?: {
+        __typename?: "HouseholdAccount";
+        id: string;
+        name: string;
+      } | null;
+      genre?: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+      } | null;
+      category?: {
+        __typename?: "HouseholdCategory";
+        id: string;
+        name: string;
+        depositCategory?: {
+          __typename?: "HouseholdDepositCategory";
+          id: string;
+        } | null;
+      } | null;
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
+      }>;
+    }>;
+  } | null;
 };
 
 export type GetCreditCardDetailByIdQueryVariables = Exact<{
@@ -12541,6 +12595,193 @@ export const GetAccountBalanceListDocument = {
 } as unknown as DocumentNode<
   GetAccountBalanceListQuery,
   GetAccountBalanceListQueryVariables
+>;
+export const GetAllDetailViewDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getAllDetailView" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "group" },
+            name: { kind: "Name", value: "groupByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "groupId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "details" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "settlementDate" },
+                            value: { kind: "EnumValue", value: "DESC" },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "withdrawalDate" },
+                            value: { kind: "EnumValue", value: "DESC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragAllDetailView" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragAllDetailView" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdAllDetailView" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "settlementDate" } },
+          { kind: "Field", name: { kind: "Name", value: "withdrawalDate" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "amount" },
+            name: { kind: "Name", value: "originalAmount" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "account" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "genre" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "category" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "depositCategory" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "id" },
+                        name: { kind: "Name", value: "categoryId" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetAllDetailViewQuery,
+  GetAllDetailViewQueryVariables
 >;
 export const GetCreditCardDetailByIdDocument = {
   kind: "Document",

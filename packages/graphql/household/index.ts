@@ -410,6 +410,8 @@ export type GroupBoolExp = {
   dashboardSettings?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
+  details?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
   favoriteFilters?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
   favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateBoolExp>;
   genres?: InputMaybe<HouseholdGenreBoolExp>;
@@ -437,6 +439,7 @@ export type GroupOrderBy = {
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   dashboardSettingsAggregate?: InputMaybe<HouseholdDashboardSettingAggregateOrderBy>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
   favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateOrderBy>;
   genresAggregate?: InputMaybe<HouseholdGenreAggregateOrderBy>;
   groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
@@ -4817,6 +4820,57 @@ export type GetAccountBalanceListQuery = {
   }>;
 };
 
+export type GetAllDetailViewQueryVariables = Exact<{
+  groupId: Scalars["String"];
+}>;
+
+export type GetAllDetailViewQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    id: string;
+    details: Array<{
+      __typename: "HouseholdAllDetailView";
+      id?: string | null;
+      type?: string | null;
+      settlementDate?: any | null;
+      withdrawalDate?: any | null;
+      iocomeType?: string | null;
+      memo?: string | null;
+      amount?: any | null;
+      account?: {
+        __typename?: "HouseholdAccount";
+        id: string;
+        name: string;
+      } | null;
+      genre?: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+      } | null;
+      category?: {
+        __typename?: "HouseholdCategory";
+        id: string;
+        name: string;
+        depositCategory?: {
+          __typename?: "HouseholdDepositCategory";
+          id: string;
+        } | null;
+      } | null;
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
+      }>;
+    }>;
+  } | null;
+};
+
 export type GetCreditCardDetailByIdQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
@@ -6537,6 +6591,26 @@ export function useGetAccountBalanceListQuery(
     GetAccountBalanceListQuery,
     GetAccountBalanceListQueryVariables
   >({ query: GetAccountBalanceListDocument, ...options });
+}
+export const GetAllDetailViewDocument = gql`
+  query getAllDetailView($groupId: String!) {
+    group: groupByPk(id: $groupId) {
+      id
+      details(orderBy: { settlementDate: DESC, withdrawalDate: DESC }) {
+        ...fragAllDetailView
+      }
+    }
+  }
+  ${FragAllDetailViewFragmentDoc}
+`;
+
+export function useGetAllDetailViewQuery(
+  options: Omit<Urql.UseQueryArgs<GetAllDetailViewQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAllDetailViewQuery, GetAllDetailViewQueryVariables>({
+    query: GetAllDetailViewDocument,
+    ...options,
+  });
 }
 export const GetCreditCardDetailByIdDocument = gql`
   query getCreditCardDetailById($id: String!) {
