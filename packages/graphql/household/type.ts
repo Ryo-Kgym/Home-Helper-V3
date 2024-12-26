@@ -4634,7 +4634,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
   }>;
 };
 
-export type FragChartDetailTableFragment = {
+export type FragAllDetailViewFragment = {
   __typename: "HouseholdAllDetailView";
   id?: string | null;
   type?: string | null;
@@ -5186,12 +5186,12 @@ export const FragFavoriteFilterFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<FragFavoriteFilterFragment, unknown>;
-export const FragChartDetailTableFragmentDoc = {
+export const FragAllDetailViewFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragChartDetailTable" },
+      name: { kind: "Name", value: "fragAllDetailView" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "HouseholdAllDetailView" },
@@ -5288,7 +5288,7 @@ export const FragChartDetailTableFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<FragChartDetailTableFragment, unknown>;
+} as unknown as DocumentNode<FragAllDetailViewFragment, unknown>;
 export const FragCreditCardDetailFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -11907,7 +11907,7 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "fragChartDetailTable" },
+                  name: { kind: "Name", value: "fragAllDetailView" },
                 },
               ],
             },
@@ -11917,7 +11917,7 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragChartDetailTable" },
+      name: { kind: "Name", value: "fragAllDetailView" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "HouseholdAllDetailView" },
@@ -12194,7 +12194,7 @@ export const ChartDetailTableFilterSettlementDateDocument = {
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "fragChartDetailTable" },
+                  name: { kind: "Name", value: "fragAllDetailView" },
                 },
               ],
             },
@@ -12204,7 +12204,7 @@ export const ChartDetailTableFilterSettlementDateDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragChartDetailTable" },
+      name: { kind: "Name", value: "fragAllDetailView" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "HouseholdAllDetailView" },

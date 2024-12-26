@@ -4698,7 +4698,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
   }>;
 };
 
-export type FragChartDetailTableFragment = {
+export type FragAllDetailViewFragment = {
   __typename: "HouseholdAllDetailView";
   id?: string | null;
   type?: string | null;
@@ -5195,8 +5195,8 @@ export const FragFavoriteFilterFragmentDoc = gql`
     }
   }
 `;
-export const FragChartDetailTableFragmentDoc = gql`
-  fragment fragChartDetailTable on HouseholdAllDetailView {
+export const FragAllDetailViewFragmentDoc = gql`
+  fragment fragAllDetailView on HouseholdAllDetailView {
     __typename
     id
     type
@@ -6445,10 +6445,10 @@ export const ChartDetailTableFilterWithdrawalDateDocument = gql`
         { category: { displayOrder: ASC } }
       ]
     ) {
-      ...fragChartDetailTable
+      ...fragAllDetailView
     }
   }
-  ${FragChartDetailTableFragmentDoc}
+  ${FragAllDetailViewFragmentDoc}
 `;
 
 export function useChartDetailTableFilterWithdrawalDateQuery(
@@ -6480,10 +6480,10 @@ export const ChartDetailTableFilterSettlementDateDocument = gql`
         { category: { displayOrder: ASC } }
       ]
     ) {
-      ...fragChartDetailTable
+      ...fragAllDetailView
     }
   }
-  ${FragChartDetailTableFragmentDoc}
+  ${FragAllDetailViewFragmentDoc}
 `;
 
 export function useChartDetailTableFilterSettlementDateQuery(

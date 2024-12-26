@@ -1,0 +1,33 @@
+fragment fragAllDetailView on HouseholdAllDetailView {
+  __typename
+  id
+  type
+  settlementDate
+  withdrawalDate
+  amount: originalAmount
+  iocomeType
+  account {
+    id
+    name
+  }
+  genre {
+    id
+    name
+  }
+  category {
+    id
+    name
+    depositCategory {
+      id: categoryId
+    }
+  }
+  memo
+  tags: detailTags {
+    id
+    tag {
+      id
+      name
+      colorCode
+    }
+  }
+}
