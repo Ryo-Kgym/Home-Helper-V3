@@ -23,6 +23,7 @@ fragment fragDailyDetail on HouseholdDailyDetail {
     tag {
       id
       name
+      colorCode
     }
   }
 }

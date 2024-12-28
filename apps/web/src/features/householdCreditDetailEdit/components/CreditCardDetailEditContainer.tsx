@@ -12,9 +12,13 @@ import { CreditCardDetailEditPresenter } from "./CreditCardDetailEditPresenter";
 
 type Props = {
   id: string;
+  onClose?: () => void;
 };
 
-export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
+export const CreditCardDetailEditContainer: FC<Props> = ({
+  id,
+  onClose = () => undefined,
+}) => {
   const { formData, setFormData, initializeForm, display } =
     useStateCreditDetail({
       id,
@@ -45,6 +49,7 @@ export const CreditCardDetailEditContainer: FC<Props> = ({ id }) => {
       });
       successPopup("更新しました。");
       refresh();
+      onClose();
     } catch (e) {
       errorPopup("更新に失敗しました。");
     }

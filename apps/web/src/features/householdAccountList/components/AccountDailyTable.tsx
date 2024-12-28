@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { IocomeTotal } from "../../../components/molecules/Total";
+import { TagGroup } from "../../../components/ui/tag/TagGroup";
 import { DataTable } from "../../../components/ui/v4/table";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { useGetCreditCardSummaryByAccountIdBetweenDate } from "../../../hooks/household/credit_card/useGetCreditCardSummaryByAccountIdBetweenDate";
@@ -60,7 +61,19 @@ export const AccountDailyTable = ({
               />
             ),
           },
-          { accessor: "memo", title: "メモ", width: "50%" },
+          {
+            accessor: "memo",
+            title: "メモ",
+            width: "50%",
+            render: (record) => {
+              return (
+                <>
+                  <TagGroup tags={record.tags} />
+                  {record.memo}
+                </>
+              );
+            },
+          },
         ]}
         records={(
           data?.dailies.map((d) => ({
@@ -72,6 +85,11 @@ export const AccountDailyTable = ({
             category: d.category.name,
             amount: d.amount,
             memo: d.memo ?? "",
+            tags: d.tags.map((tag) => ({
+              id: tag.tag.id,
+              label: tag.tag.name,
+              colorCode: tag.tag.colorCode,
+            })),
           })) ?? []
         )
           .concat(
@@ -84,6 +102,7 @@ export const AccountDailyTable = ({
               category: s.creditCard,
               amount: s.totalAmount,
               memo: "",
+              tags: [],
             })) ?? [],
           )
           .sort((a, b) => {

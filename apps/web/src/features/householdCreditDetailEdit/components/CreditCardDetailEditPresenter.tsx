@@ -76,7 +76,7 @@ export const CreditCardDetailEditPresenter = ({
     <Frame>
       <TagInputWrapper values={formData.tags} onChange={setTags} />
     </Frame>
-    <div className={"flex justify-end space-x-5"}>
+    <div className={"flex space-x-5"}>
       <Button onClick={onClickUpdate} label={"更新"} type={"modify"} />
       <Button onClick={onClickReset} label={"リセット"} type={"reset"} />
     </div>

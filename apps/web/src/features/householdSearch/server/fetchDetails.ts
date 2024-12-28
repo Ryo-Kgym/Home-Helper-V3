@@ -38,9 +38,9 @@ export const fetchDetails = async (params: Params) => {
     const uniqueIds = Array.from(new Set(duplicatedRecords.map((r) => r.id)));
 
     return {
-      records: uniqueIds.map(
-        (id) => duplicatedRecords.find((r) => r.id === id)!,
-      ),
+      records: uniqueIds
+        .map((id) => duplicatedRecords.find((r) => r.id === id)!)
+        .sort((a, b) => b.settlementDate.localeCompare(a.settlementDate)),
     };
   }
 
@@ -70,10 +70,12 @@ const converter = (detail: FragAllDetailViewFragment): SearchRow => {
       name: detail.category?.name ?? "",
     },
     memo: detail.memo ?? "",
-    tags: detail.tags.map((tag) => ({
-      id: tag.id ?? "",
-      name: tag.tag.name ?? "",
-      colorCode: tag.tag.colorCode ?? "",
-    })),
+    tags: detail.tags
+      .sort((a, b) => a.tag.id.localeCompare(b.tag.id))
+      .map((tag) => ({
+        id: tag.id ?? "",
+        name: tag.tag.name ?? "",
+        colorCode: tag.tag.colorCode ?? "",
+      })),
   };
 };

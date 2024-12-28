@@ -4246,7 +4246,12 @@ export type GetDailyDetailByDateQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   }>;
 };
@@ -4409,7 +4414,12 @@ export type GetDailyByAccountIdQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   }>;
 };
@@ -4696,7 +4706,12 @@ export type FragDailyDetailFragment = {
   tags: Array<{
     __typename?: "HouseholdDetailTag";
     id: string;
-    tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    tag: {
+      __typename?: "HouseholdTag";
+      id: string;
+      name: string;
+      colorCode: any;
+    };
   }>;
 };
 
@@ -4940,7 +4955,12 @@ export type GetDailyDetailByIdQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   } | null;
 };
@@ -5002,7 +5022,12 @@ export type GetDetailsByCategoryQuery = {
       tags: Array<{
         __typename?: "HouseholdDetailTag";
         id: string;
-        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
       }>;
     }>;
     creditCardDetails: Array<{
@@ -5559,6 +5584,10 @@ export const FragDailyDetailFragmentDoc = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },
@@ -10212,6 +10241,10 @@ export const GetDailyDetailByDateDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },
@@ -11174,6 +11207,10 @@ export const GetDailyByAccountIdDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },
@@ -13422,6 +13459,10 @@ export const GetDailyDetailByIdDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },
@@ -14037,6 +14078,10 @@ export const GetDetailsByCategoryDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
                     ],
                   },
                 },

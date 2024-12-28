@@ -4310,7 +4310,12 @@ export type GetDailyDetailByDateQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   }>;
 };
@@ -4473,7 +4478,12 @@ export type GetDailyByAccountIdQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   }>;
 };
@@ -4760,7 +4770,12 @@ export type FragDailyDetailFragment = {
   tags: Array<{
     __typename?: "HouseholdDetailTag";
     id: string;
-    tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    tag: {
+      __typename?: "HouseholdTag";
+      id: string;
+      name: string;
+      colorCode: any;
+    };
   }>;
 };
 
@@ -5004,7 +5019,12 @@ export type GetDailyDetailByIdQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   } | null;
 };
@@ -5066,7 +5086,12 @@ export type GetDetailsByCategoryQuery = {
       tags: Array<{
         __typename?: "HouseholdDetailTag";
         id: string;
-        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
       }>;
     }>;
     creditCardDetails: Array<{
@@ -5396,6 +5421,7 @@ export const FragDailyDetailFragmentDoc = gql`
       tag {
         id
         name
+        colorCode
       }
     }
   }
