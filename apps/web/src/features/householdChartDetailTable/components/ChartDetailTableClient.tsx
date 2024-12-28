@@ -8,7 +8,7 @@ import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { colors } from "../../../styles/colors";
 import { CreditCardDetailEditModal } from "../../householdCreditDetailEdit/components/CreditCardDetailEditModel";
-import { UpdateDetail } from "../../householdModifyDailyDetail/components/UpdateDetail";
+import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
 
 export const ChartDetailTableClient = ({
   records,
@@ -127,7 +127,7 @@ export const ChartDetailTableClient = ({
         }}
       />
       {detail && detail.type === "daily" && (
-        <UpdateDetail
+        <DailyDetailEditModal
           initData={detail}
           isOpen={!!detail}
           onCloseHandler={() => setDetail(undefined)}

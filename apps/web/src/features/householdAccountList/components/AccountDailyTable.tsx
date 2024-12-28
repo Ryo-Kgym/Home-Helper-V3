@@ -7,7 +7,7 @@ import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { useGetCreditCardSummaryByAccountIdBetweenDate } from "../../../hooks/household/credit_card/useGetCreditCardSummaryByAccountIdBetweenDate";
 import { useGetDailyDetailByDateAccountId } from "../../../hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
-import { UpdateDetail } from "../../householdModifyDailyDetail/components/UpdateDetail";
+import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
 
 export const AccountDailyTable = ({
   fromDate,
@@ -105,7 +105,7 @@ export const AccountDailyTable = ({
         outcome={(outcomeTotal ?? 0) + (creditCardOutcomeTotal ?? 0)}
       />
       {dailyDetail && (
-        <UpdateDetail
+        <DailyDetailEditModal
           initData={dailyDetail}
           isOpen={modifyModalOpen}
           onCloseHandler={() => setModifyModalOpen(false)}

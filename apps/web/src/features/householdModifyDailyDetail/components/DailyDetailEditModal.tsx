@@ -5,7 +5,7 @@ import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { CutDetailContainer } from "./CutDetailContainer";
 import { ModifyDailyDetail } from "./ModifyDailyDetail";
 
-export const UpdateDetail = ({
+export const DailyDetailEditModal = ({
   initData,
   isOpen,
   onCloseHandler,
