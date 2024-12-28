@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import { Tag } from "../../../components/ui/tag/Tag";
 import { DataTable } from "../../../components/ui/v4/table";
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { colors } from "../../../styles/colors";
 import { CreditCardDetailEditModal } from "../../householdCreditDetailEdit/components/CreditCardDetailEditModel";
@@ -32,7 +31,7 @@ export const ChartDetailTableClient = ({
   }[];
 }) => {
   const [detail, setDetail] = useState<
-    (DailyDetail & { type: "daily" | "credit" }) | undefined
+    { id: string; type: "daily" | "credit" } | undefined
   >(undefined);
 
   return (
@@ -100,14 +99,6 @@ export const ChartDetailTableClient = ({
             setDetail({
               type: "credit",
               id: detail.id,
-              date: new Date(detail.settlementDate),
-              iocomeType: detail.iocomeType,
-              genreId: detail.genreId,
-              categoryId: detail.categoryId,
-              accountId: detail.accountId,
-              amount: detail.amount,
-              memo: detail.memo,
-              tags: detail.tags.map((tag) => tag.value),
             });
             return;
           }
@@ -115,20 +106,12 @@ export const ChartDetailTableClient = ({
           setDetail({
             type: "daily",
             id: detail.id,
-            date: new Date(detail.settlementDate),
-            iocomeType: detail.iocomeType,
-            genreId: detail.genreId,
-            categoryId: detail.categoryId,
-            accountId: detail.accountId,
-            amount: detail.amount,
-            memo: detail.memo,
-            tags: detail.tags.map((tag) => tag.value),
           });
         }}
       />
       {detail && detail.type === "daily" && (
         <DailyDetailEditModal
-          initData={detail}
+          id={detail.id}
           isOpen={!!detail}
           onCloseHandler={() => setDetail(undefined)}
         />

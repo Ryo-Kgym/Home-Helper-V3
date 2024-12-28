@@ -1,18 +1,14 @@
 import { Modal } from "../../../components/atoms/Modal";
 import { Tab } from "../../../components/ui";
-import {
-  DailyDetail,
-  initialState,
-} from "../../../domain/model/household/DailyDetail";
-import { CutDetailContainer } from "./CutDetailContainer";
+import { CutDailyDetail } from "./CutDailyDetail";
 import { ModifyDailyDetail } from "./ModifyDailyDetail";
 
 export const DailyDetailEditModal = ({
-  initData,
+  id,
   isOpen,
   onCloseHandler,
 }: {
-  initData: DailyDetail;
+  id: string;
   isOpen: boolean;
   onCloseHandler: () => void;
 }) => (
@@ -24,20 +20,13 @@ export const DailyDetailEditModal = ({
           value: "change",
           label: "変更",
           icon: null,
-          contents: (
-            <ModifyDailyDetail id={initData.id} onClose={onCloseHandler} />
-          ),
+          contents: <ModifyDailyDetail id={id} onClose={onCloseHandler} />,
         },
         {
           value: "cut",
           label: "分解",
           icon: null,
-          contents: (
-            <CutDetailContainer
-              initData={initData ?? initialState}
-              onClose={onCloseHandler}
-            />
-          ),
+          contents: <CutDailyDetail id={id} onClose={onCloseHandler} />,
         },
       ]}
     />

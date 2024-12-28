@@ -3,7 +3,6 @@ import { useState } from "react";
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { IocomeTotal } from "../../../components/molecules/Total";
 import { DataTable } from "../../../components/ui/v4/table";
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { useGetCreditCardSummaryByAccountIdBetweenDate } from "../../../hooks/household/credit_card/useGetCreditCardSummaryByAccountIdBetweenDate";
 import { useGetDailyDetailByDateAccountId } from "../../../hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
@@ -19,10 +18,13 @@ export const AccountDailyTable = ({
   accountId: string;
 }) => {
   const [modifyModalOpen, setModifyModalOpen] = useState<boolean>(false);
-  const [dailyDetail, setDailyDetail] = useState<DailyDetail | null>(null);
+  const [id, setId] = useState<string | null>(null);
 
-  const { data, incomeTotal, outcomeTotal, getDetail } =
-    useGetDailyDetailByDateAccountId(accountId, fromDate, toDate);
+  const { data, incomeTotal, outcomeTotal } = useGetDailyDetailByDateAccountId(
+    accountId,
+    fromDate,
+    toDate,
+  );
 
   const {
     data: creditCardSummaryData,
@@ -96,7 +98,7 @@ export const AccountDailyTable = ({
         onRowClick={({ id, type }) => {
           if (type === "credit") return;
 
-          setDailyDetail(getDetail(id));
+          setId(id);
           setModifyModalOpen(true);
         }}
       />
@@ -104,9 +106,9 @@ export const AccountDailyTable = ({
         income={(incomeTotal ?? 0) + creditCardIncomeTotal}
         outcome={(outcomeTotal ?? 0) + (creditCardOutcomeTotal ?? 0)}
       />
-      {dailyDetail && (
+      {id && (
         <DailyDetailEditModal
-          initData={dailyDetail}
+          id={id}
           isOpen={modifyModalOpen}
           onCloseHandler={() => setModifyModalOpen(false)}
         />

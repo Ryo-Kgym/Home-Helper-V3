@@ -26,6 +26,6 @@ export const getDailyDetail = async (params: {
     categoryId: data.daily.category.id,
     accountId: data.daily.account.id,
     memo: data.daily.memo ?? "",
-    tags: data.daily.tags.map((tag) => tag.id),
+    tags: data.daily.tags.map((tag) => tag.tag.id),
   };
 };
