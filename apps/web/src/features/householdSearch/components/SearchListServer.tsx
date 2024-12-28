@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { IocomeTotal } from "../../../components/molecules/Total";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { fetchDetails } from "../server/fetchDetails";
 import { SearchListTable } from "./SearchListTable";
@@ -21,5 +23,21 @@ export const SearchListServer: FC<Props> = async ({
     tagIds,
   });
 
-  return <SearchListTable records={records} />;
+  const { income, outcome } = {
+    income:
+      records
+        .filter((d) => d.genre.iocomeType === IocomeType.Income)
+        .reduce((acc, cur) => acc + cur.amount, 0) ?? 0,
+    outcome:
+      records
+        .filter((d) => d.genre.iocomeType === IocomeType.Outcome)
+        .reduce((acc, cur) => acc + cur.amount, 0) ?? 0,
+  };
+
+  return (
+    <>
+      <SearchListTable records={records} />
+      <IocomeTotal income={income} outcome={outcome} />
+    </>
+  );
 };
