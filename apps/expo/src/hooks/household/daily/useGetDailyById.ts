@@ -11,19 +11,17 @@ export const useGetDailyById = ({ id }: { id: string }) => {
   });
 
   const daily: Daily = {
-    id: data?.dailyDetail?.id ?? "",
-    date: data?.dailyDetail?.date
-      ? new Date(data?.dailyDetail?.date)
-      : undefined,
-    account: data?.dailyDetail?.account ?? { id: "", name: "" },
-    amount: (data?.dailyDetail?.amount as number) ?? 0,
-    category: data?.dailyDetail?.category ?? { id: "", name: "" },
+    id: data?.daily?.id ?? "",
+    date: data?.daily?.date ? new Date(data?.daily?.date) : undefined,
+    account: data?.daily?.account ?? { id: "", name: "" },
+    amount: (data?.daily?.amount as number) ?? 0,
+    category: data?.daily?.category ?? { id: "", name: "" },
     genre: {
-      id: data?.dailyDetail?.genre?.id ?? "",
-      name: data?.dailyDetail?.genre?.name ?? "",
-      iocomeType: data?.dailyDetail?.genre?.iocomeType as IocomeType,
+      id: data?.daily?.genre?.id ?? "",
+      name: data?.daily?.genre?.name ?? "",
+      iocomeType: data?.daily?.genre?.iocomeType as IocomeType,
     },
-    memo: data?.dailyDetail?.memo ?? null,
+    memo: data?.daily?.memo ?? null,
   };
 
   return { daily, loading };

@@ -4333,35 +4333,6 @@ export type GetCreditCardSummaryByDateQuery = {
   }>;
 };
 
-export type GetDailyDetailByIdQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type GetDailyDetailByIdQuery = {
-  __typename?: "query_root";
-  dailyDetail?: {
-    __typename: "HouseholdDailyDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    genre: {
-      __typename?: "HouseholdGenre";
-      id: string;
-      name: string;
-      genreType: string;
-      iocomeType: string;
-    };
-    category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-    tags: Array<{
-      __typename?: "HouseholdDetailTag";
-      id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
-    }>;
-  } | null;
-};
-
 export type FragFavoriteFilterFragment = {
   __typename: "HouseholdFavoriteFilter";
   id: string;
@@ -5005,6 +4976,35 @@ export type GetCreditCardDetailBySummaryIdQuery = {
           colorCode: any;
         };
       }>;
+    }>;
+  } | null;
+};
+
+export type GetDailyDetailByIdQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetDailyDetailByIdQuery = {
+  __typename?: "query_root";
+  daily?: {
+    __typename: "HouseholdDailyDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+      iocomeType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
     }>;
   } | null;
 };
@@ -6293,23 +6293,6 @@ export function useGetCreditCardSummaryByDateQuery(
     GetCreditCardSummaryByDateQueryVariables
   >({ query: GetCreditCardSummaryByDateDocument, ...options });
 }
-export const GetDailyDetailByIdDocument = gql`
-  query GetDailyDetailById($id: String!) {
-    dailyDetail: householdDailyDetailByPk(id: $id) {
-      ...fragDailyDetail
-    }
-  }
-  ${FragDailyDetailFragmentDoc}
-`;
-
-export function useGetDailyDetailByIdQuery(
-  options: Omit<Urql.UseQueryArgs<GetDailyDetailByIdQueryVariables>, "query">,
-) {
-  return Urql.useQuery<
-    GetDailyDetailByIdQuery,
-    GetDailyDetailByIdQueryVariables
-  >({ query: GetDailyDetailByIdDocument, ...options });
-}
 export const GetAccountByIdDocument = gql`
   query getAccountById($accountId: String!) {
     account: householdAccountByPk(id: $accountId) {
@@ -6668,7 +6651,6 @@ export const GetAllDetailViewDocument = gql`
         detailTags {
           id
           details(
-            distinctOn: [settlementDate]
             where: {
               settlementDate: { _gte: $fromDate }
               _and: { settlementDate: { _lte: $toDate } }
@@ -6742,6 +6724,23 @@ export function useGetCreditCardDetailBySummaryIdQuery(
     GetCreditCardDetailBySummaryIdQuery,
     GetCreditCardDetailBySummaryIdQueryVariables
   >({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
+}
+export const GetDailyDetailByIdDocument = gql`
+  query getDailyDetailById($id: String!) {
+    daily: householdDailyDetailByPk(id: $id) {
+      ...fragDailyDetail
+    }
+  }
+  ${FragDailyDetailFragmentDoc}
+`;
+
+export function useGetDailyDetailByIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetDailyDetailByIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDailyDetailByIdQuery,
+    GetDailyDetailByIdQueryVariables
+  >({ query: GetDailyDetailByIdDocument, ...options });
 }
 export const GetDashboardSettingDocument = gql`
   query getDashboardSetting($userId: String!, $groupId: String!) {

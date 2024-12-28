@@ -4269,35 +4269,6 @@ export type GetCreditCardSummaryByDateQuery = {
   }>;
 };
 
-export type GetDailyDetailByIdQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type GetDailyDetailByIdQuery = {
-  __typename?: "query_root";
-  dailyDetail?: {
-    __typename: "HouseholdDailyDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    genre: {
-      __typename?: "HouseholdGenre";
-      id: string;
-      name: string;
-      genreType: string;
-      iocomeType: string;
-    };
-    category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-    tags: Array<{
-      __typename?: "HouseholdDetailTag";
-      id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
-    }>;
-  } | null;
-};
-
 export type FragFavoriteFilterFragment = {
   __typename: "HouseholdFavoriteFilter";
   id: string;
@@ -4941,6 +4912,35 @@ export type GetCreditCardDetailBySummaryIdQuery = {
           colorCode: any;
         };
       }>;
+    }>;
+  } | null;
+};
+
+export type GetDailyDetailByIdQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetDailyDetailByIdQuery = {
+  __typename?: "query_root";
+  daily?: {
+    __typename: "HouseholdDailyDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+      iocomeType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: { __typename?: "HouseholdTag"; id: string; name: string };
     }>;
   } | null;
 };
@@ -10407,136 +10407,6 @@ export const GetCreditCardSummaryByDateDocument = {
   GetCreditCardSummaryByDateQuery,
   GetCreditCardSummaryByDateQueryVariables
 >;
-export const GetDailyDetailByIdDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetDailyDetailById" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "dailyDetail" },
-            name: { kind: "Name", value: "householdDailyDetailByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "id" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "fragDailyDetail" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragDailyDetail" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "HouseholdDailyDetail" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "genre" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "genreType" } },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "category" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "account" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "amount" } },
-          { kind: "Field", name: { kind: "Name", value: "memo" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "tags" },
-            name: { kind: "Name", value: "detailTags" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "tag" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetDailyDetailByIdQuery,
-  GetDailyDetailByIdQueryVariables
->;
 export const GetAccountByIdDocument = {
   kind: "Document",
   definitions: [
@@ -12876,19 +12746,6 @@ export const GetAllDetailViewDocument = {
                               arguments: [
                                 {
                                   kind: "Argument",
-                                  name: { kind: "Name", value: "distinctOn" },
-                                  value: {
-                                    kind: "ListValue",
-                                    values: [
-                                      {
-                                        kind: "EnumValue",
-                                        value: "settlementDate",
-                                      },
-                                    ],
-                                  },
-                                },
-                                {
-                                  kind: "Argument",
                                   name: { kind: "Name", value: "where" },
                                   value: {
                                     kind: "ObjectValue",
@@ -13448,6 +13305,136 @@ export const GetCreditCardDetailBySummaryIdDocument = {
 } as unknown as DocumentNode<
   GetCreditCardDetailBySummaryIdQuery,
   GetCreditCardDetailBySummaryIdQueryVariables
+>;
+export const GetDailyDetailByIdDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getDailyDetailById" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "daily" },
+            name: { kind: "Name", value: "householdDailyDetailByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "fragDailyDetail" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragDailyDetail" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdDailyDetail" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "genre" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "category" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "account" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "amount" } },
+          { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetDailyDetailByIdQuery,
+  GetDailyDetailByIdQueryVariables
 >;
 export const GetDashboardSettingDocument = {
   kind: "Document",

@@ -1,7 +1,9 @@
 import { Modal } from "../../../components/atoms/Modal";
 import { Tab } from "../../../components/ui";
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import {
+  DailyDetail,
+  initialState,
+} from "../../../domain/model/household/DailyDetail";
 import { CutDetailContainer } from "./CutDetailContainer";
 import { ModifyDailyDetail } from "./ModifyDailyDetail";
 
@@ -23,7 +25,7 @@ export const DailyDetailEditModal = ({
           label: "変更",
           icon: null,
           contents: (
-            <ModifyDailyDetail initData={initData} onClose={onCloseHandler} />
+            <ModifyDailyDetail id={initData.id} onClose={onCloseHandler} />
           ),
         },
         {
@@ -32,18 +34,7 @@ export const DailyDetailEditModal = ({
           icon: null,
           contents: (
             <CutDetailContainer
-              initData={
-                initData ?? {
-                  id: "",
-                  date: new Date(),
-                  iocomeType: IocomeType.Income,
-                  genreId: "",
-                  categoryId: "",
-                  accountId: "",
-                  amount: 0,
-                  memo: "",
-                }
-              }
+              initData={initData ?? initialState}
               onClose={onCloseHandler}
             />
           ),
