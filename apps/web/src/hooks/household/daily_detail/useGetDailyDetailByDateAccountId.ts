@@ -4,7 +4,6 @@
 
 import { useGetDailyByAccountIdQuery } from "@v3/graphql/household";
 
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { useGroup } from "../../group/useGroup";
 
@@ -33,35 +32,5 @@ export const useGetDailyDetailByDateAccountId = (
     ?.filter((c) => (c.genre.iocomeType as IocomeType) === IocomeType.Outcome)
     .reduce((a, b) => a + Number(b.amount), 0);
 
-  const getDetail = (id: string): DailyDetail => {
-    const dailyDetail = data?.dailies?.find((e) => e.id === id);
-
-    if (!dailyDetail) {
-      return {
-        id: "",
-        date: new Date(),
-        amount: 0,
-        iocomeType: IocomeType.Outcome,
-        genreId: "",
-        categoryId: "",
-        accountId: "",
-        memo: "",
-        tags: [],
-      };
-    }
-
-    return {
-      id: dailyDetail.id,
-      date: new Date(dailyDetail.date),
-      amount: Number(dailyDetail.amount) ?? "",
-      iocomeType: dailyDetail.genre.iocomeType as IocomeType,
-      genreId: dailyDetail.genre.id,
-      categoryId: dailyDetail.category.id,
-      accountId: dailyDetail.account.id,
-      memo: dailyDetail.memo ?? "",
-      tags: dailyDetail.tags.map((tag) => tag.tag.id) ?? [],
-    };
-  };
-
-  return { data, fetching, error, incomeTotal, outcomeTotal, getDetail };
+  return { data, fetching, error, incomeTotal, outcomeTotal };
 };

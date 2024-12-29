@@ -11,3 +11,15 @@ export type DailyDetail = {
   memo: string;
   tags: string[];
 };
+
+export const initialState = {
+  id: "",
+  date: new Date(),
+  amount: 0,
+  iocomeType: IocomeType.Income,
+  genreId: "",
+  categoryId: "",
+  accountId: "",
+  memo: "",
+  tags: [],
+};

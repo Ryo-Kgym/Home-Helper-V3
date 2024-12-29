@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren } from "react";
 
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
 import { Button } from "../../../components/ui/button/v5";
@@ -9,20 +9,23 @@ import { AccountSelect } from "../../../components/ui/select/AccountSelect";
 import { CategorySelect } from "../../../components/ui/select/CategorySelect";
 import { GenreSelect } from "../../../components/ui/select/GenreSelect";
 import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
+import { Loading } from "../../../components/ui/v5/loading/Loading";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { deleteDailyDetail } from "../../../hooks/household/daily_detail/deleteDailyDatail";
 import { useNavigation } from "../../../routing/client/useNavigation";
+import { useStateDailyDetail } from "../hooks/useStateDailyDetail";
 import { modifyDailyDetail } from "../useServer/modifyDailyDetail";
 
 export const ModifyDailyDetail = ({
-  initData,
+  id,
   onClose,
 }: {
-  initData: DailyDetail;
+  id: string;
   onClose: () => void;
 }) => {
-  const [form, setForm] = useState<DailyDetail>(initData);
+  const { loading, form, setForm, initState, resetForm } = useStateDailyDetail({
+    id,
+  });
   const { refresh } = useNavigation();
 
   const updateClick = async () => {
@@ -38,6 +41,8 @@ export const ModifyDailyDetail = ({
       errorPopup("更新に失敗しました");
     }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <div className={"grid w-full grid-cols-1"}>
@@ -56,8 +61,8 @@ export const ModifyDailyDetail = ({
             setForm({
               ...form,
               iocomeType: value,
-              genreId: initData.genreId,
-              categoryId: initData.categoryId,
+              genreId: initState.genreId,
+              categoryId: initState.categoryId,
             })
           }
         />
@@ -70,7 +75,7 @@ export const ModifyDailyDetail = ({
             setForm({
               ...form,
               genreId: value,
-              categoryId: initData.categoryId,
+              categoryId: initState.categoryId,
             })
           }
         />
@@ -115,16 +120,12 @@ export const ModifyDailyDetail = ({
             onClose();
           }}
         />
-        <Button
-          type={"reset"}
-          label={"リセット"}
-          onClick={() => setForm(initData)}
-        />
+        <Button type={"reset"} label={"リセット"} onClick={resetForm} />
         <Button
           type={"dangerous"}
           label={"削除"}
           onClick={async () => {
-            await deleteDailyDetail({ id: initData.id });
+            await deleteDailyDetail({ id });
             onClose();
           }}
         />

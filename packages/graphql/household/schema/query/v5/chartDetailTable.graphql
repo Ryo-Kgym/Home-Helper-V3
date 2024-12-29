@@ -15,7 +15,7 @@ query chartDetailTableFilterWithdrawalDate(
       { category: { displayOrder: ASC } }
     ]
   ) {
-    ...fragChartDetailTable
+    ...fragAllDetailView
   }
 }
 
@@ -36,40 +36,6 @@ query chartDetailTableFilterSettlementDate(
       { category: { displayOrder: ASC } }
     ]
   ) {
-    ...fragChartDetailTable
-  }
-}
-
-fragment fragChartDetailTable on HouseholdAllDetailView {
-  __typename
-  id
-  type
-  settlementDate
-  withdrawalDate
-  amount: originalAmount
-  iocomeType
-  account {
-    id
-    name
-  }
-  genre {
-    id
-    name
-  }
-  category {
-    id
-    name
-    depositCategory {
-      id: categoryId
-    }
-  }
-  memo
-  tags: detailTags {
-    id
-    tag {
-      id
-      name
-      colorCode
-    }
+    ...fragAllDetailView
   }
 }

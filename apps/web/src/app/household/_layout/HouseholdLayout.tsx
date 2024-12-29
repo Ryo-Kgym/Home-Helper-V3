@@ -36,6 +36,10 @@ const householdMenu: Navi[] = [
     url: paths.household.categoryChart,
   },
   {
+    label: "検索",
+    url: paths.household.search,
+  },
+  {
     label: "アカウント",
     url: paths.household.account,
   },

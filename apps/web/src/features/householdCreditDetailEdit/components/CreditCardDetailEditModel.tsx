@@ -15,7 +15,7 @@ export const CreditCardDetailEditModal: FC<Props> = ({
 }) => {
   return (
     <Modal opened={isOpen} onClose={onCloseHandler}>
-      <CreditCardDetailEditContainer id={id} />
+      <CreditCardDetailEditContainer id={id} onClose={onCloseHandler} />
     </Modal>
   );
 };

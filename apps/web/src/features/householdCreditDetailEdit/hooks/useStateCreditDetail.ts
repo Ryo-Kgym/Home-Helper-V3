@@ -35,7 +35,7 @@ export const useStateCreditDetail = ({ id }: { id: string }) => {
       categoryId: data?.creditCardDetail?.category?.id,
       amount: Number(data?.creditCardDetail?.amount) ?? "",
       memo: data?.creditCardDetail?.memo,
-      tags: data?.creditCardDetail?.tags.map((tag) => tag.id) ?? [],
+      tags: data?.creditCardDetail?.tags.map((tag) => tag.tag.id) ?? [],
     }),
     [data],
   );
@@ -50,7 +50,7 @@ export const useStateCreditDetail = ({ id }: { id: string }) => {
       genreId: data.creditCardDetail?.genre?.id ?? "",
       categoryId: data.creditCardDetail?.category?.id ?? "",
       memo: data.creditCardDetail?.memo ?? "",
-      tags: data.creditCardDetail?.tags.map((tag) => tag.id) ?? [],
+      tags: data.creditCardDetail?.tags.map((tag) => tag.tag.id) ?? [],
     });
     setDisplay({
       id: data.creditCardDetail?.id ?? "",

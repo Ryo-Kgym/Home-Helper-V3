@@ -2,6 +2,7 @@
 
 import { FC, useState } from "react";
 
+import { FieldContainer } from "../v4/FieldContainer";
 import { Tag } from "./Tag";
 import styles from "./TagInput.module.scss";
 
@@ -15,7 +16,20 @@ type Props = {
   }[];
 };
 
-export const TagInput: FC<Props> = ({
+export const TagInput: FC<Props & { label?: string }> = ({
+  values: selected,
+  onChange: setSelected,
+  data,
+  label = "",
+}) => {
+  return (
+    <FieldContainer label={label}>
+      <TagInputCore values={selected} onChange={setSelected} data={data} />
+    </FieldContainer>
+  );
+};
+
+export const TagInputCore: FC<Props> = ({
   values: selected,
   onChange: setSelected,
   data,

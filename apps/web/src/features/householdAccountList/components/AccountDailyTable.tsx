@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { IocomeTotal } from "../../../components/molecules/Total";
+import { TagGroup } from "../../../components/ui/tag/TagGroup";
 import { DataTable } from "../../../components/ui/v4/table";
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { useGetCreditCardSummaryByAccountIdBetweenDate } from "../../../hooks/household/credit_card/useGetCreditCardSummaryByAccountIdBetweenDate";
 import { useGetDailyDetailByDateAccountId } from "../../../hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
-import { UpdateDetail } from "../../householdModifyDailyDetail/components/UpdateDetail";
+import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
 
 export const AccountDailyTable = ({
   fromDate,
@@ -19,10 +19,13 @@ export const AccountDailyTable = ({
   accountId: string;
 }) => {
   const [modifyModalOpen, setModifyModalOpen] = useState<boolean>(false);
-  const [dailyDetail, setDailyDetail] = useState<DailyDetail | null>(null);
+  const [id, setId] = useState<string | null>(null);
 
-  const { data, incomeTotal, outcomeTotal, getDetail } =
-    useGetDailyDetailByDateAccountId(accountId, fromDate, toDate);
+  const { data, incomeTotal, outcomeTotal } = useGetDailyDetailByDateAccountId(
+    accountId,
+    fromDate,
+    toDate,
+  );
 
   const {
     data: creditCardSummaryData,
@@ -58,7 +61,19 @@ export const AccountDailyTable = ({
               />
             ),
           },
-          { accessor: "memo", title: "メモ", width: "50%" },
+          {
+            accessor: "memo",
+            title: "メモ",
+            width: "50%",
+            render: (record) => {
+              return (
+                <>
+                  <TagGroup tags={record.tags} />
+                  {record.memo}
+                </>
+              );
+            },
+          },
         ]}
         records={(
           data?.dailies.map((d) => ({
@@ -70,6 +85,11 @@ export const AccountDailyTable = ({
             category: d.category.name,
             amount: d.amount,
             memo: d.memo ?? "",
+            tags: d.tags.map((tag) => ({
+              id: tag.tag.id,
+              label: tag.tag.name,
+              colorCode: tag.tag.colorCode,
+            })),
           })) ?? []
         )
           .concat(
@@ -82,6 +102,7 @@ export const AccountDailyTable = ({
               category: s.creditCard,
               amount: s.totalAmount,
               memo: "",
+              tags: [],
             })) ?? [],
           )
           .sort((a, b) => {
@@ -96,7 +117,7 @@ export const AccountDailyTable = ({
         onRowClick={({ id, type }) => {
           if (type === "credit") return;
 
-          setDailyDetail(getDetail(id));
+          setId(id);
           setModifyModalOpen(true);
         }}
       />
@@ -104,9 +125,9 @@ export const AccountDailyTable = ({
         income={(incomeTotal ?? 0) + creditCardIncomeTotal}
         outcome={(outcomeTotal ?? 0) + (creditCardOutcomeTotal ?? 0)}
       />
-      {dailyDetail && (
-        <UpdateDetail
-          initData={dailyDetail}
+      {id && (
+        <DailyDetailEditModal
+          id={id}
           isOpen={modifyModalOpen}
           onCloseHandler={() => setModifyModalOpen(false)}
         />

@@ -410,6 +410,8 @@ export type GroupBoolExp = {
   dashboardSettings?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
+  details?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
   favoriteFilters?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
   favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateBoolExp>;
   genres?: InputMaybe<HouseholdGenreBoolExp>;
@@ -437,6 +439,7 @@ export type GroupOrderBy = {
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   dashboardSettingsAggregate?: InputMaybe<HouseholdDashboardSettingAggregateOrderBy>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
   favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateOrderBy>;
   genresAggregate?: InputMaybe<HouseholdGenreAggregateOrderBy>;
   groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
@@ -2352,6 +2355,8 @@ export type HouseholdDetailTagBoolExp = {
   creditCardDetailsDetailTag?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   dailyDetailsDetailTag?: InputMaybe<HouseholdDailyDetailBoolExp>;
   detailId?: InputMaybe<StringComparisonExp>;
+  details?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
   id?: InputMaybe<StringComparisonExp>;
   tag?: InputMaybe<HouseholdTagBoolExp>;
   tagId?: InputMaybe<StringComparisonExp>;
@@ -2399,6 +2404,7 @@ export type HouseholdDetailTagOrderBy = {
   creditCardDetailsDetailTagAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   dailyDetailsDetailTagAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   detailId?: InputMaybe<OrderBy>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
   id?: InputMaybe<OrderBy>;
   tag?: InputMaybe<HouseholdTagOrderBy>;
   tagId?: InputMaybe<OrderBy>;
@@ -4304,7 +4310,12 @@ export type GetDailyDetailByDateQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   }>;
 };
@@ -4325,35 +4336,6 @@ export type GetCreditCardSummaryByDateQuery = {
     creditCard: string;
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   }>;
-};
-
-export type GetDailyDetailByIdQueryVariables = Exact<{
-  id: Scalars["String"];
-}>;
-
-export type GetDailyDetailByIdQuery = {
-  __typename?: "query_root";
-  dailyDetail?: {
-    __typename: "HouseholdDailyDetail";
-    id: string;
-    date: any;
-    amount: any;
-    memo?: string | null;
-    genre: {
-      __typename?: "HouseholdGenre";
-      id: string;
-      name: string;
-      genreType: string;
-      iocomeType: string;
-    };
-    category: { __typename?: "HouseholdCategory"; id: string; name: string };
-    account: { __typename?: "HouseholdAccount"; id: string; name: string };
-    tags: Array<{
-      __typename?: "HouseholdDetailTag";
-      id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
-    }>;
-  } | null;
 };
 
 export type FragFavoriteFilterFragment = {
@@ -4496,7 +4478,12 @@ export type GetDailyByAccountIdQuery = {
     tags: Array<{
       __typename?: "HouseholdDetailTag";
       id: string;
-      tag: { __typename?: "HouseholdTag"; id: string; name: string };
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
     }>;
   }>;
 };
@@ -4698,7 +4685,7 @@ export type ChartDetailTableFilterSettlementDateQuery = {
   }>;
 };
 
-export type FragChartDetailTableFragment = {
+export type FragAllDetailViewFragment = {
   __typename: "HouseholdAllDetailView";
   id?: string | null;
   type?: string | null;
@@ -4783,7 +4770,12 @@ export type FragDailyDetailFragment = {
   tags: Array<{
     __typename?: "HouseholdDetailTag";
     id: string;
-    tag: { __typename?: "HouseholdTag"; id: string; name: string };
+    tag: {
+      __typename?: "HouseholdTag";
+      id: string;
+      name: string;
+      colorCode: any;
+    };
   }>;
 };
 
@@ -4815,6 +4807,107 @@ export type GetAccountBalanceListQuery = {
       } | null;
     };
   }>;
+};
+
+export type GetAllDetailViewQueryVariables = Exact<{
+  groupId: Scalars["String"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  tagIds?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
+}>;
+
+export type GetAllDetailViewQuery = {
+  __typename?: "query_root";
+  group?: {
+    __typename?: "Group";
+    id: string;
+    details: Array<{
+      __typename: "HouseholdAllDetailView";
+      id?: string | null;
+      type?: string | null;
+      settlementDate?: any | null;
+      withdrawalDate?: any | null;
+      iocomeType?: string | null;
+      memo?: string | null;
+      amount?: any | null;
+      account?: {
+        __typename?: "HouseholdAccount";
+        id: string;
+        name: string;
+      } | null;
+      genre?: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+      } | null;
+      category?: {
+        __typename?: "HouseholdCategory";
+        id: string;
+        name: string;
+        depositCategory?: {
+          __typename?: "HouseholdDepositCategory";
+          id: string;
+        } | null;
+      } | null;
+      tags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
+      }>;
+    }>;
+    tags: Array<{
+      __typename?: "HouseholdTag";
+      id: string;
+      detailTags: Array<{
+        __typename?: "HouseholdDetailTag";
+        id: string;
+        details: Array<{
+          __typename: "HouseholdAllDetailView";
+          id?: string | null;
+          type?: string | null;
+          settlementDate?: any | null;
+          withdrawalDate?: any | null;
+          iocomeType?: string | null;
+          memo?: string | null;
+          amount?: any | null;
+          account?: {
+            __typename?: "HouseholdAccount";
+            id: string;
+            name: string;
+          } | null;
+          genre?: {
+            __typename?: "HouseholdGenre";
+            id: string;
+            name: string;
+          } | null;
+          category?: {
+            __typename?: "HouseholdCategory";
+            id: string;
+            name: string;
+            depositCategory?: {
+              __typename?: "HouseholdDepositCategory";
+              id: string;
+            } | null;
+          } | null;
+          tags: Array<{
+            __typename?: "HouseholdDetailTag";
+            id: string;
+            tag: {
+              __typename?: "HouseholdTag";
+              id: string;
+              name: string;
+              colorCode: any;
+            };
+          }>;
+        }>;
+      }>;
+    }>;
+  } | null;
 };
 
 export type GetCreditCardDetailByIdQueryVariables = Exact<{
@@ -4902,6 +4995,40 @@ export type GetCreditCardDetailBySummaryIdQuery = {
   } | null;
 };
 
+export type GetDailyDetailByIdQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type GetDailyDetailByIdQuery = {
+  __typename?: "query_root";
+  daily?: {
+    __typename: "HouseholdDailyDetail";
+    id: string;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    genre: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+      iocomeType: string;
+    };
+    category: { __typename?: "HouseholdCategory"; id: string; name: string };
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    tags: Array<{
+      __typename?: "HouseholdDetailTag";
+      id: string;
+      tag: {
+        __typename?: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+      };
+    }>;
+  } | null;
+};
+
 export type GetDashboardSettingQueryVariables = Exact<{
   userId: Scalars["String"];
   groupId: Scalars["String"];
@@ -4959,7 +5086,12 @@ export type GetDetailsByCategoryQuery = {
       tags: Array<{
         __typename?: "HouseholdDetailTag";
         id: string;
-        tag: { __typename?: "HouseholdTag"; id: string; name: string };
+        tag: {
+          __typename?: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+        };
       }>;
     }>;
     creditCardDetails: Array<{
@@ -5195,8 +5327,8 @@ export const FragFavoriteFilterFragmentDoc = gql`
     }
   }
 `;
-export const FragChartDetailTableFragmentDoc = gql`
-  fragment fragChartDetailTable on HouseholdAllDetailView {
+export const FragAllDetailViewFragmentDoc = gql`
+  fragment fragAllDetailView on HouseholdAllDetailView {
     __typename
     id
     type
@@ -5289,6 +5421,7 @@ export const FragDailyDetailFragmentDoc = gql`
       tag {
         id
         name
+        colorCode
       }
     }
   }
@@ -6186,23 +6319,6 @@ export function useGetCreditCardSummaryByDateQuery(
     GetCreditCardSummaryByDateQueryVariables
   >({ query: GetCreditCardSummaryByDateDocument, ...options });
 }
-export const GetDailyDetailByIdDocument = gql`
-  query GetDailyDetailById($id: String!) {
-    dailyDetail: householdDailyDetailByPk(id: $id) {
-      ...fragDailyDetail
-    }
-  }
-  ${FragDailyDetailFragmentDoc}
-`;
-
-export function useGetDailyDetailByIdQuery(
-  options: Omit<Urql.UseQueryArgs<GetDailyDetailByIdQueryVariables>, "query">,
-) {
-  return Urql.useQuery<
-    GetDailyDetailByIdQuery,
-    GetDailyDetailByIdQueryVariables
-  >({ query: GetDailyDetailByIdDocument, ...options });
-}
 export const GetAccountByIdDocument = gql`
   query getAccountById($accountId: String!) {
     account: householdAccountByPk(id: $accountId) {
@@ -6445,10 +6561,10 @@ export const ChartDetailTableFilterWithdrawalDateDocument = gql`
         { category: { displayOrder: ASC } }
       ]
     ) {
-      ...fragChartDetailTable
+      ...fragAllDetailView
     }
   }
-  ${FragChartDetailTableFragmentDoc}
+  ${FragAllDetailViewFragmentDoc}
 `;
 
 export function useChartDetailTableFilterWithdrawalDateQuery(
@@ -6480,10 +6596,10 @@ export const ChartDetailTableFilterSettlementDateDocument = gql`
         { category: { displayOrder: ASC } }
       ]
     ) {
-      ...fragChartDetailTable
+      ...fragAllDetailView
     }
   }
-  ${FragChartDetailTableFragmentDoc}
+  ${FragAllDetailViewFragmentDoc}
 `;
 
 export function useChartDetailTableFilterSettlementDateQuery(
@@ -6538,6 +6654,52 @@ export function useGetAccountBalanceListQuery(
     GetAccountBalanceListQueryVariables
   >({ query: GetAccountBalanceListDocument, ...options });
 }
+export const GetAllDetailViewDocument = gql`
+  query getAllDetailView(
+    $groupId: String!
+    $fromDate: date!
+    $toDate: date!
+    $tagIds: [String!] = []
+  ) {
+    group: groupByPk(id: $groupId) {
+      id
+      details(
+        where: {
+          settlementDate: { _gte: $fromDate }
+          _and: { settlementDate: { _lte: $toDate } }
+        }
+        orderBy: { settlementDate: DESC, withdrawalDate: DESC }
+      ) {
+        ...fragAllDetailView
+      }
+      tags(where: { id: { _in: $tagIds } }) {
+        id
+        detailTags {
+          id
+          details(
+            where: {
+              settlementDate: { _gte: $fromDate }
+              _and: { settlementDate: { _lte: $toDate } }
+            }
+            orderBy: { settlementDate: DESC, withdrawalDate: DESC }
+          ) {
+            ...fragAllDetailView
+          }
+        }
+      }
+    }
+  }
+  ${FragAllDetailViewFragmentDoc}
+`;
+
+export function useGetAllDetailViewQuery(
+  options: Omit<Urql.UseQueryArgs<GetAllDetailViewQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAllDetailViewQuery, GetAllDetailViewQueryVariables>({
+    query: GetAllDetailViewDocument,
+    ...options,
+  });
+}
 export const GetCreditCardDetailByIdDocument = gql`
   query getCreditCardDetailById($id: String!) {
     creditCardDetail: householdCreditCardDetailByPk(id: $id) {
@@ -6588,6 +6750,23 @@ export function useGetCreditCardDetailBySummaryIdQuery(
     GetCreditCardDetailBySummaryIdQuery,
     GetCreditCardDetailBySummaryIdQueryVariables
   >({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
+}
+export const GetDailyDetailByIdDocument = gql`
+  query getDailyDetailById($id: String!) {
+    daily: householdDailyDetailByPk(id: $id) {
+      ...fragDailyDetail
+    }
+  }
+  ${FragDailyDetailFragmentDoc}
+`;
+
+export function useGetDailyDetailByIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetDailyDetailByIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDailyDetailByIdQuery,
+    GetDailyDetailByIdQueryVariables
+  >({ query: GetDailyDetailByIdDocument, ...options });
 }
 export const GetDashboardSettingDocument = gql`
   query getDashboardSetting($userId: String!, $groupId: String!) {
