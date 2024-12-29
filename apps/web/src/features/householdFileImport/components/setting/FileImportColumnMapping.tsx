@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { NumberInput } from "../../../../components/ui/v4/textInput";
+import { NumberInput } from "../../../../components/ui/numberInput/v4/NumberInput";
 import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
 import { importFileFields } from "../../types/importFileColumn";
 import { ImportFileType } from "../../types/importFileType";

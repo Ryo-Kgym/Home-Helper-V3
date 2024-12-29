@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
 import { AccountSelect } from "../../../components/ui/select/AccountSelect";
+import { TextInput } from "../../../components/ui/textInput/TextInput";
 import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";
-import { TextInput } from "../../../components/ui/v4/textInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useStateCreditSummary } from "../hooks/useStateCreditSummary";
 import { SummaryDisplayState, SummaryFormState } from "../types/summaryProps";

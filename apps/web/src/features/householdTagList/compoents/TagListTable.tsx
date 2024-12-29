@@ -1,8 +1,9 @@
 import { FC } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
+import { NumberInput } from "../../../components/ui/numberInput/v4/NumberInput";
+import { TextInput } from "../../../components/ui/textInput/TextInput";
 import { DataTable } from "../../../components/ui/v4/table";
-import { NumberInput, TextInput } from "../../../components/ui/v4/textInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { useStateSetTag, useStateTagList } from "../hooks/useStateTagList";

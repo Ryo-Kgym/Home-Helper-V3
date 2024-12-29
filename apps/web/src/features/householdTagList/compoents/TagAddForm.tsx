@@ -1,7 +1,8 @@
 import { FC, useState } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
-import { NumberInput, TextInput } from "../../../components/ui/v4/textInput";
+import { NumberInput } from "../../../components/ui/numberInput/v4/NumberInput";
+import { TextInput } from "../../../components/ui/textInput/TextInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { Tag } from "../types/tag";
