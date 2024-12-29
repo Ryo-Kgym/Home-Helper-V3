@@ -21,11 +21,10 @@ fragment fragCreditCardDetail on HouseholdCreditCardDetail {
     }
   }
   tags: detailTags {
+    __typename
     id
     tag {
-      id
-      name
-      colorCode
+      ...fragTag
     }
   }
 }

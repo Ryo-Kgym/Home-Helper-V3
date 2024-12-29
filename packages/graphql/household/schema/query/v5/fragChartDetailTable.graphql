@@ -13,6 +13,7 @@ fragment fragAllDetailView on HouseholdAllDetailView {
   genre {
     id
     name
+    genreType
   }
   category {
     id
@@ -23,11 +24,10 @@ fragment fragAllDetailView on HouseholdAllDetailView {
   }
   memo
   tags: detailTags {
+    __typename
     id
     tag {
-      id
-      name
-      colorCode
+      ...fragTag
     }
   }
 }

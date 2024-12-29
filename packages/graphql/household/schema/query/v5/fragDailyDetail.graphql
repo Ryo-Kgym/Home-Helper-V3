@@ -19,11 +19,10 @@ fragment fragDailyDetail on HouseholdDailyDetail {
   amount
   memo
   tags: detailTags {
+    __typename
     id
     tag {
-      id
-      name
-      colorCode
+      ...fragTag
     }
   }
 }

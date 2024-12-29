@@ -6,29 +6,7 @@ query chartData($groupId: String!, $fromDate: date!, $toDate: date!) {
       _and: { date: { _lte: $toDate } }
     }
   ) {
-    __typename
-    id
-    settlementDate
-    withdrawalDate
-    amount: originalAmount
-    iocomeType
-    account {
-      id
-      name
-    }
-    genre {
-      id
-      name
-      genreType
-    }
-    category {
-      id
-      name
-      depositCategory {
-        id: categoryId
-      }
-    }
-    memo
+    ...fragAllDetailView
   }
   transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
     __typename

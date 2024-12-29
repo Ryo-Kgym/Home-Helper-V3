@@ -10,6 +10,7 @@ describe("sumBalanceData", () => {
           withdrawalDate: "2023-08-01",
           iocomeType: "INCOME",
           amount: 100,
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -17,6 +18,7 @@ describe("sumBalanceData", () => {
           withdrawalDate: "2023-08-02",
           iocomeType: "OUTCOME",
           amount: 50,
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -24,6 +26,7 @@ describe("sumBalanceData", () => {
           withdrawalDate: "2023-08-03",
           iocomeType: "INCOME",
           amount: 200,
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -31,6 +34,7 @@ describe("sumBalanceData", () => {
           withdrawalDate: "2023-09-01",
           iocomeType: "OUTCOME",
           amount: 100,
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -38,6 +42,7 @@ describe("sumBalanceData", () => {
           withdrawalDate: "2023-09-02",
           iocomeType: "INCOME",
           amount: 300,
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -52,6 +57,7 @@ describe("sumBalanceData", () => {
               id: "on",
             },
           },
+          tags: [],
         },
       ],
     };

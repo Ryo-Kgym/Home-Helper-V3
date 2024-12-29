@@ -2979,9 +2979,22 @@ export type HouseholdImportFileHistoryUpdateColumn =
 
 /** order by aggregate values of table "household.tag" */
 export type HouseholdTagAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdTagAvgOrderBy>;
   count?: InputMaybe<OrderBy>;
   max?: InputMaybe<HouseholdTagMaxOrderBy>;
   min?: InputMaybe<HouseholdTagMinOrderBy>;
+  stddev?: InputMaybe<HouseholdTagStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdTagStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdTagStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdTagSumOrderBy>;
+  varPop?: InputMaybe<HouseholdTagVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdTagVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdTagVarianceOrderBy>;
+};
+
+/** order by avg() on columns of table "household.tag" */
+export type HouseholdTagAvgOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
 };
 
 /** Boolean expression to filter rows from the table "household.tag". All fields are combined with a logical 'AND'. */
@@ -2991,6 +3004,7 @@ export type HouseholdTagBoolExp = {
   _or?: InputMaybe<Array<HouseholdTagBoolExp>>;
   colorCode?: InputMaybe<BpcharComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
@@ -3002,10 +3016,16 @@ export type HouseholdTagConstraint =
   /** unique or primary key constraint on columns "id" */
   "m_tag_pkey";
 
+/** input type for incrementing numeric columns in table "household.tag" */
+export type HouseholdTagIncInput = {
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+};
+
 /** input type for inserting data into table "household.tag" */
 export type HouseholdTagInsertInput = {
   colorCode?: InputMaybe<Scalars["bpchar"]>;
   detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
@@ -3014,6 +3034,7 @@ export type HouseholdTagInsertInput = {
 /** order by max() on columns of table "household.tag" */
 export type HouseholdTagMaxOrderBy = {
   colorCode?: InputMaybe<OrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
@@ -3022,6 +3043,7 @@ export type HouseholdTagMaxOrderBy = {
 /** order by min() on columns of table "household.tag" */
 export type HouseholdTagMinOrderBy = {
   colorCode?: InputMaybe<OrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
@@ -3045,6 +3067,7 @@ export type HouseholdTagOnConflict = {
 export type HouseholdTagOrderBy = {
   colorCode?: InputMaybe<OrderBy>;
   detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
@@ -3061,6 +3084,8 @@ export type HouseholdTagSelectColumn =
   /** column name */
   | "colorCode"
   /** column name */
+  | "displayOrder"
+  /** column name */
   | "groupId"
   /** column name */
   | "id"
@@ -3070,7 +3095,23 @@ export type HouseholdTagSelectColumn =
 /** input type for updating data in table "household.tag" */
 export type HouseholdTagSetInput = {
   colorCode?: InputMaybe<Scalars["bpchar"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by stddev() on columns of table "household.tag" */
+export type HouseholdTagStddevOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "household.tag" */
+export type HouseholdTagStddevPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "household.tag" */
+export type HouseholdTagStddevSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
 };
 
 /** Streaming cursor of the table "household_tag" */
@@ -3084,9 +3125,15 @@ export type HouseholdTagStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HouseholdTagStreamCursorValueInput = {
   colorCode?: InputMaybe<Scalars["bpchar"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by sum() on columns of table "household.tag" */
+export type HouseholdTagSumOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
 };
 
 /** update columns of table "household.tag" */
@@ -3094,13 +3141,32 @@ export type HouseholdTagUpdateColumn =
   /** column name */
   | "colorCode"
   /** column name */
+  | "displayOrder"
+  /** column name */
   | "name";
 
 export type HouseholdTagUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<HouseholdTagIncInput>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<HouseholdTagSetInput>;
   /** filter the rows which have to be updated */
   where: HouseholdTagBoolExp;
+};
+
+/** order by varPop() on columns of table "household.tag" */
+export type HouseholdTagVarPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "household.tag" */
+export type HouseholdTagVarSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "household.tag" */
+export type HouseholdTagVarianceOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
 };
 
 export type HouseholdTotalByCategoryViewAggregateBoolExp = {
@@ -4244,13 +4310,14 @@ export type GetDailyDetailByDateQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4339,13 +4406,14 @@ export type GetCreditCardDetailListQuery = {
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4412,13 +4480,14 @@ export type GetDailyByAccountIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4497,6 +4566,7 @@ export type ChartDataQuery = {
   detailView: Array<{
     __typename: "HouseholdAllDetailView";
     id?: string | null;
+    type?: string | null;
     settlementDate?: any | null;
     withdrawalDate?: any | null;
     iocomeType?: string | null;
@@ -4522,6 +4592,17 @@ export type ChartDataQuery = {
         id: string;
       } | null;
     } | null;
+    tags: Array<{
+      __typename: "HouseholdDetailTag";
+      id: string;
+      tag: {
+        __typename: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+        displayOrder: number;
+      };
+    }>;
   }>;
   transferCategory?: {
     __typename: "HouseholdTransferCategory";
@@ -4553,7 +4634,12 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
       id: string;
       name: string;
     } | null;
-    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
     category?: {
       __typename?: "HouseholdCategory";
       id: string;
@@ -4564,13 +4650,14 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
       } | null;
     } | null;
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4598,7 +4685,12 @@ export type ChartDetailTableFilterSettlementDateQuery = {
       id: string;
       name: string;
     } | null;
-    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
     category?: {
       __typename?: "HouseholdCategory";
       id: string;
@@ -4609,13 +4701,14 @@ export type ChartDetailTableFilterSettlementDateQuery = {
       } | null;
     } | null;
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4635,7 +4728,12 @@ export type FragAllDetailViewFragment = {
     id: string;
     name: string;
   } | null;
-  genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+  genre?: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    genreType: string;
+  } | null;
   category?: {
     __typename?: "HouseholdCategory";
     id: string;
@@ -4646,13 +4744,14 @@ export type FragAllDetailViewFragment = {
     } | null;
   } | null;
   tags: Array<{
-    __typename?: "HouseholdDetailTag";
+    __typename: "HouseholdDetailTag";
     id: string;
     tag: {
-      __typename?: "HouseholdTag";
+      __typename: "HouseholdTag";
       id: string;
       name: string;
       colorCode: any;
+      displayOrder: number;
     };
   }>;
 };
@@ -4677,13 +4776,14 @@ export type FragCreditCardDetailFragment = {
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   };
   tags: Array<{
-    __typename?: "HouseholdDetailTag";
+    __typename: "HouseholdDetailTag";
     id: string;
     tag: {
-      __typename?: "HouseholdTag";
+      __typename: "HouseholdTag";
       id: string;
       name: string;
       colorCode: any;
+      displayOrder: number;
     };
   }>;
 };
@@ -4704,15 +4804,24 @@ export type FragDailyDetailFragment = {
   category: { __typename?: "HouseholdCategory"; id: string; name: string };
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
   tags: Array<{
-    __typename?: "HouseholdDetailTag";
+    __typename: "HouseholdDetailTag";
     id: string;
     tag: {
-      __typename?: "HouseholdTag";
+      __typename: "HouseholdTag";
       id: string;
       name: string;
       colorCode: any;
+      displayOrder: number;
     };
   }>;
+};
+
+export type FragTagFragment = {
+  __typename: "HouseholdTag";
+  id: string;
+  name: string;
+  colorCode: any;
+  displayOrder: number;
 };
 
 export type GetAccountBalanceListQueryVariables = Exact<{
@@ -4775,6 +4884,7 @@ export type GetAllDetailViewQuery = {
         __typename?: "HouseholdGenre";
         id: string;
         name: string;
+        genreType: string;
       } | null;
       category?: {
         __typename?: "HouseholdCategory";
@@ -4786,13 +4896,14 @@ export type GetAllDetailViewQuery = {
         } | null;
       } | null;
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -4820,6 +4931,7 @@ export type GetAllDetailViewQuery = {
             __typename?: "HouseholdGenre";
             id: string;
             name: string;
+            genreType: string;
           } | null;
           category?: {
             __typename?: "HouseholdCategory";
@@ -4831,13 +4943,14 @@ export type GetAllDetailViewQuery = {
             } | null;
           } | null;
           tags: Array<{
-            __typename?: "HouseholdDetailTag";
+            __typename: "HouseholdDetailTag";
             id: string;
             tag: {
-              __typename?: "HouseholdTag";
+              __typename: "HouseholdTag";
               id: string;
               name: string;
               colorCode: any;
+              displayOrder: number;
             };
           }>;
         }>;
@@ -4872,13 +4985,14 @@ export type GetCreditCardDetailByIdQuery = {
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   } | null;
@@ -4918,13 +5032,14 @@ export type GetCreditCardDetailBySummaryIdQuery = {
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -4953,13 +5068,14 @@ export type GetDailyDetailByIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   } | null;
@@ -5020,13 +5136,14 @@ export type GetDetailsByCategoryQuery = {
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -5050,13 +5167,14 @@ export type GetDetailsByCategoryQuery = {
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -5080,13 +5198,14 @@ export type GetDetailsByCategoryQuery = {
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -5234,6 +5353,7 @@ export type GetTagListQuery = {
       id: string;
       name: string;
       colorCode: any;
+      displayOrder: number;
     }>;
   } | null;
 };
@@ -5318,6 +5438,29 @@ export const FragFavoriteFilterFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<FragFavoriteFilterFragment, unknown>;
+export const FragTagFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FragTagFragment, unknown>;
 export const FragAllDetailViewFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -5361,6 +5504,7 @@ export const FragAllDetailViewFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
               ],
             },
           },
@@ -5397,6 +5541,7 @@ export const FragAllDetailViewFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -5404,11 +5549,9 @@ export const FragAllDetailViewFragmentDoc = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -5416,6 +5559,24 @@ export const FragAllDetailViewFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
         ],
       },
     },
@@ -5491,6 +5652,7 @@ export const FragCreditCardDetailFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -5498,11 +5660,9 @@ export const FragCreditCardDetailFragmentDoc = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -5510,6 +5670,24 @@ export const FragCreditCardDetailFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
         ],
       },
     },
@@ -5575,6 +5753,7 @@ export const FragDailyDetailFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -5582,11 +5761,9 @@ export const FragDailyDetailFragmentDoc = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -5594,6 +5771,24 @@ export const FragDailyDetailFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
         ],
       },
     },
@@ -10177,6 +10372,24 @@ export const GetDailyDetailByDateDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragDailyDetail" },
       typeCondition: {
         kind: "NamedType",
@@ -10232,6 +10445,7 @@ export const GetDailyDetailByDateDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -10239,11 +10453,9 @@ export const GetDailyDetailByDateDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -10622,6 +10834,24 @@ export const GetCreditCardDetailListDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragCreditCardDetail" },
       typeCondition: {
         kind: "NamedType",
@@ -10687,6 +10917,7 @@ export const GetCreditCardDetailListDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -10694,11 +10925,9 @@ export const GetCreditCardDetailListDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -11143,6 +11372,24 @@ export const GetDailyByAccountIdDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragDailyDetail" },
       typeCondition: {
         kind: "NamedType",
@@ -11198,6 +11445,7 @@ export const GetDailyByAccountIdDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -11205,11 +11453,9 @@ export const GetDailyByAccountIdDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -11635,74 +11881,10 @@ export const ChartDataDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "settlementDate" },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "fragAllDetailView" },
                 },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "withdrawalDate" },
-                },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "amount" },
-                  name: { kind: "Name", value: "originalAmount" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "account" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "genre" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "genreType" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "category" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "depositCategory" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              alias: { kind: "Name", value: "id" },
-                              name: { kind: "Name", value: "categoryId" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "memo" } },
               ],
             },
           },
@@ -11736,6 +11918,122 @@ export const ChartDataDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "outcomeCategoryId" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragAllDetailView" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdAllDetailView" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "settlementDate" } },
+          { kind: "Field", name: { kind: "Name", value: "withdrawalDate" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "amount" },
+            name: { kind: "Name", value: "originalAmount" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "account" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "genre" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "category" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "depositCategory" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "id" },
+                        name: { kind: "Name", value: "categoryId" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
+                      },
+                    ],
+                  },
                 },
               ],
             },
@@ -11931,6 +12229,24 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragAllDetailView" },
       typeCondition: {
         kind: "NamedType",
@@ -11969,6 +12285,7 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
               ],
             },
           },
@@ -12005,6 +12322,7 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -12012,11 +12330,9 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -12218,6 +12534,24 @@ export const ChartDetailTableFilterSettlementDateDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragAllDetailView" },
       typeCondition: {
         kind: "NamedType",
@@ -12256,6 +12590,7 @@ export const ChartDetailTableFilterSettlementDateDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
               ],
             },
           },
@@ -12292,6 +12627,7 @@ export const ChartDetailTableFilterSettlementDateDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -12299,11 +12635,9 @@ export const ChartDetailTableFilterSettlementDateDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -12910,6 +13244,24 @@ export const GetAllDetailViewDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragAllDetailView" },
       typeCondition: {
         kind: "NamedType",
@@ -12948,6 +13300,7 @@ export const GetAllDetailViewDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
               ],
             },
           },
@@ -12984,6 +13337,7 @@ export const GetAllDetailViewDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -12991,11 +13345,9 @@ export const GetAllDetailViewDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -13058,6 +13410,24 @@ export const GetCreditCardDetailByIdDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
         ],
       },
     },
@@ -13128,6 +13498,7 @@ export const GetCreditCardDetailByIdDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -13135,11 +13506,9 @@ export const GetCreditCardDetailByIdDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -13251,6 +13620,24 @@ export const GetCreditCardDetailBySummaryIdDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragCreditCardDetail" },
       typeCondition: {
         kind: "NamedType",
@@ -13316,6 +13703,7 @@ export const GetCreditCardDetailBySummaryIdDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -13323,11 +13711,9 @@ export const GetCreditCardDetailBySummaryIdDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -13395,6 +13781,24 @@ export const GetDailyDetailByIdDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragDailyDetail" },
       typeCondition: {
         kind: "NamedType",
@@ -13450,6 +13854,7 @@ export const GetDailyDetailByIdDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -13457,11 +13862,9 @@ export const GetDailyDetailByIdDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -14014,6 +14417,24 @@ export const GetDetailsByCategoryDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "fragDailyDetail" },
       typeCondition: {
         kind: "NamedType",
@@ -14069,6 +14490,7 @@ export const GetDetailsByCategoryDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -14076,11 +14498,9 @@ export const GetDetailsByCategoryDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -14158,6 +14578,7 @@ export const GetDetailsByCategoryDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
@@ -14165,11 +14586,9 @@ export const GetDetailsByCategoryDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -15098,14 +15517,8 @@ export const GetTagListDocument = {
                     kind: "SelectionSet",
                     selections: [
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "colorCode" },
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
                       },
                     ],
                   },
@@ -15113,6 +15526,24 @@ export const GetTagListDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
         ],
       },
     },
