@@ -18,7 +18,7 @@ fragment fragDailyDetail on HouseholdDailyDetail {
   }
   amount
   memo
-  tags: detailTags {
+  tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
     __typename
     id
     tag {

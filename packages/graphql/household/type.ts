@@ -5538,6 +5538,36 @@ export const FragAllDetailViewFragmentDoc = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: { kind: "EnumValue", value: "DESC" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -5649,6 +5679,31 @@ export const FragCreditCardDetailFragmentDoc = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -5750,6 +5805,31 @@ export const FragDailyDetailFragmentDoc = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -10442,6 +10522,31 @@ export const GetDailyDetailByDateDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -10914,6 +11019,31 @@ export const GetCreditCardDetailListDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -11442,6 +11572,31 @@ export const GetDailyByAccountIdDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -12017,6 +12172,36 @@ export const ChartDataDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: { kind: "EnumValue", value: "DESC" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -12319,6 +12504,36 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: { kind: "EnumValue", value: "DESC" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -12624,6 +12839,36 @@ export const ChartDetailTableFilterSettlementDateDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: { kind: "EnumValue", value: "DESC" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -13334,6 +13579,36 @@ export const GetAllDetailViewDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "id" },
+                      value: { kind: "EnumValue", value: "DESC" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -13495,6 +13770,31 @@ export const GetCreditCardDetailByIdDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -13700,6 +14000,31 @@ export const GetCreditCardDetailBySummaryIdDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -13851,6 +14176,31 @@ export const GetDailyDetailByIdDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -14487,6 +14837,31 @@ export const GetDetailsByCategoryDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -14575,6 +14950,31 @@ export const GetDetailsByCategoryDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "tags" },
             name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -15513,6 +15913,22 @@ export const GetTagListDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "tags" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [

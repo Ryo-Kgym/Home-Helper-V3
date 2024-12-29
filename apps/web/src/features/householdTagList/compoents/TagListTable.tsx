@@ -57,6 +57,12 @@ export const TagListTable: FC<Props> = () => {
           },
         },
         {
+          accessor: "displayOrder",
+          title: "表示順序",
+          textAlign: "right",
+          width: "10%",
+        },
+        {
           accessor: "count",
           title: "使用件数",
           textAlign: "right",
@@ -90,6 +96,7 @@ export const TagListTable: FC<Props> = () => {
         id: tag.id,
         name: tag.name,
         colorCode: tag.colorCode,
+        displayOrder: tag.displayOrder,
         count: tag.count,
       }))}
     />

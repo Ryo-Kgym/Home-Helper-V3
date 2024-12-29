@@ -11,6 +11,7 @@ export const TagAddForm: FC = () => {
   const [tag, setTag] = useState<Omit<Tag, "id">>({
     name: "",
     colorCode: "",
+    displayOrder: 0,
   });
   const { refresh } = useNavigation();
 

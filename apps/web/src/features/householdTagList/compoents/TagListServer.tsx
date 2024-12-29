@@ -13,6 +13,7 @@ export const TagListServer = async () => {
       id: tag.id,
       name: tag.name,
       colorCode: tag.colorCode,
+      displayOrder: tag.displayOrder,
       count: 0,
     })) ?? [];
 

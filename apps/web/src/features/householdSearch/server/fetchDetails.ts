@@ -76,6 +76,7 @@ const converter = (detail: FragAllDetailViewFragment): SearchRow => {
         id: tag.id ?? "",
         name: tag.tag.name ?? "",
         colorCode: tag.tag.colorCode ?? "",
+        displayOrder: tag.tag.displayOrder ?? 0,
       })),
   };
 };

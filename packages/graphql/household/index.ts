@@ -5482,7 +5482,7 @@ export const FragAllDetailViewFragmentDoc = gql`
       }
     }
     memo
-    tags: detailTags {
+    tags: detailTags(orderBy: { id: DESC, tag: { displayOrder: ASC } }) {
       __typename
       id
       tag {
@@ -5515,7 +5515,7 @@ export const FragCreditCardDetailFragmentDoc = gql`
         name
       }
     }
-    tags: detailTags {
+    tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
       __typename
       id
       tag {
@@ -5546,7 +5546,7 @@ export const FragDailyDetailFragmentDoc = gql`
     }
     amount
     memo
-    tags: detailTags {
+    tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
       __typename
       id
       tag {
@@ -7137,7 +7137,7 @@ export const GetTagListDocument = gql`
   query getTagList($groupId: String!) {
     group: groupByPk(id: $groupId) {
       id
-      tags {
+      tags(orderBy: { displayOrder: ASC }) {
         ...fragTag
       }
     }

@@ -23,7 +23,7 @@ fragment fragAllDetailView on HouseholdAllDetailView {
     }
   }
   memo
-  tags: detailTags {
+  tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
     __typename
     id
     tag {

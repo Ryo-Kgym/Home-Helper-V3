@@ -1,7 +1,7 @@
 query getTagList($groupId: String!) {
   group: groupByPk(id: $groupId) {
     id
-    tags {
+    tags(orderBy: { displayOrder: ASC }) {
       ...fragTag
     }
   }
