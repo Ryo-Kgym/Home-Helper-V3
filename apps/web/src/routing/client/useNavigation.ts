@@ -31,6 +31,5 @@ export const useNavigation = () => {
         .join("&");
       return push(`?${searchParamJoined}`);
     },
-    push,
   };
 };

@@ -5,7 +5,7 @@ import { FC, useState } from "react";
 import { Button } from "../../../components/ui/button/v5";
 import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
 import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";
-import { useNavigation } from "../../../routing/client/useNavigation";
+import { useRouter } from "../../../routing/client/useRouter";
 
 type Props = {
   //
@@ -23,7 +23,7 @@ export const SearchFormClient: FC<Props> = () => {
     toDate: null,
     tags: [],
   });
-  const { push } = useNavigation();
+  const { push } = useRouter();
 
   return (
     <div>
