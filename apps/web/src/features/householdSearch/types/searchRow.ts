@@ -24,5 +24,6 @@ export type SearchRow = {
     id: string;
     name: string;
     colorCode: string;
+    displayOrder: number;
   }[];
 };

@@ -1,0 +1,7 @@
+fragment fragTag on HouseholdTag {
+  __typename
+  id
+  name
+  colorCode
+  displayOrder
+}

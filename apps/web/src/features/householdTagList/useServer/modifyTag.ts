@@ -11,6 +11,7 @@ export const modifyTag = async (tag: Tag) => {
     form: {
       name: tag.name,
       colorCode: tag.colorCode,
+      displayOrder: tag.displayOrder,
     },
   });
 

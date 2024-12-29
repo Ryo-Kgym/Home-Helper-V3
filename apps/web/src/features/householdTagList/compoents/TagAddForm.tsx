@@ -1,7 +1,8 @@
 import { FC, useState } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
-import { TextInput } from "../../../components/ui/v4/textInput";
+import { NumberInput } from "../../../components/ui/numberInput/v4/NumberInput";
+import { TextInput } from "../../../components/ui/textInput/TextInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { Tag } from "../types/tag";
@@ -11,6 +12,7 @@ export const TagAddForm: FC = () => {
   const [tag, setTag] = useState<Omit<Tag, "id">>({
     name: "",
     colorCode: "",
+    displayOrder: 0,
   });
   const { refresh } = useNavigation();
 
@@ -37,6 +39,11 @@ export const TagAddForm: FC = () => {
           />
         </div>
       </div>
+      <NumberInput
+        label={"表示順"}
+        value={tag.displayOrder}
+        setValue={(v) => setTag((prev) => ({ ...prev, displayOrder: v || 0 }))}
+      />
       <Button
         label={"追加"}
         onClick={async () => {

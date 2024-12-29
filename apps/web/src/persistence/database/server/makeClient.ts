@@ -14,6 +14,14 @@ export const makeClient = () => {
             // @ts-expect-error - TS doesn't know about the signedAmount field
             return data?.aggregate?.max?.accountId;
           },
+          HouseholdDetailTagAggregate: (data) => {
+            // @ts-expect-error - TS doesn't know about the signedAmount field
+            return data?.aggregate?.count;
+          },
+          HouseholdDetailTagAggregateFields: (data) => {
+            // @ts-expect-error - TS doesn't know about the signedAmount field
+            return data?.aggregate?.count;
+          },
         },
         updates: {
           Mutation: {},

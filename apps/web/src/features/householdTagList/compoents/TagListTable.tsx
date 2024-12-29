@@ -1,10 +1,13 @@
 import { FC } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
+import { NumberInput } from "../../../components/ui/numberInput/v4/NumberInput";
+import { TextInput } from "../../../components/ui/textInput/TextInput";
 import { DataTable } from "../../../components/ui/v4/table";
-import { TextInput } from "../../../components/ui/v4/textInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
+import { useNavigation } from "../../../routing/client/useNavigation";
 import { useStateSetTag, useStateTagList } from "../hooks/useStateTagList";
+import { deleteTag } from "../useServer/deleteTag";
 import { modifyTag } from "../useServer/modifyTag";
 
 type Props = {
@@ -13,6 +16,7 @@ type Props = {
 export const TagListTable: FC<Props> = () => {
   const tags = useStateTagList();
   const setTag = useStateSetTag();
+  const { refresh } = useNavigation();
 
   return (
     <DataTable
@@ -57,6 +61,21 @@ export const TagListTable: FC<Props> = () => {
           },
         },
         {
+          accessor: "displayOrder",
+          title: "表示順序",
+          textAlign: "right",
+          width: "10%",
+          render: (tag) => {
+            return (
+              <NumberInput
+                label={""}
+                value={tag.displayOrder}
+                setValue={(v) => setTag({ ...tag, displayOrder: v || 0 })}
+              />
+            );
+          },
+        },
+        {
           accessor: "count",
           title: "使用件数",
           textAlign: "right",
@@ -69,19 +88,37 @@ export const TagListTable: FC<Props> = () => {
           width: "10%",
           render: (tag) => {
             return (
-              <Button
-                label={"更新"}
-                onClick={async () => {
-                  try {
-                    await modifyTag(tag);
-                    successPopup("更新しました");
-                  } catch (e) {
-                    console.error(e);
-                    errorPopup("更新に失敗しました");
-                  }
-                }}
-                type={"modify"}
-              />
+              <>
+                <Button
+                  label={"更新"}
+                  onClick={async () => {
+                    try {
+                      await modifyTag(tag);
+                      successPopup("更新しました");
+                      refresh();
+                    } catch (e) {
+                      console.error(e);
+                      errorPopup("更新に失敗しました");
+                    }
+                  }}
+                  type={"modify"}
+                />
+                <Button
+                  label={"削除"}
+                  onClick={async () => {
+                    try {
+                      await deleteTag(tag);
+                      successPopup("削除しました");
+                      refresh();
+                    } catch (e) {
+                      console.error(e);
+                      errorPopup("削除に失敗しました");
+                    }
+                  }}
+                  type={"dangerous"}
+                  disabled={tag.count > 0}
+                />
+              </>
             );
           },
         },
@@ -90,6 +127,7 @@ export const TagListTable: FC<Props> = () => {
         id: tag.id,
         name: tag.name,
         colorCode: tag.colorCode,
+        displayOrder: tag.displayOrder,
         count: tag.count,
       }))}
     />

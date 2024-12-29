@@ -11,3 +11,10 @@ mutation addTag($form: HouseholdTagInsertInput!) {
     id
   }
 }
+
+mutation deleteTag($id: String!) {
+  deleteHouseholdTagByPk(id: $id) {
+    __typename
+    id
+  }
+}

@@ -13,7 +13,8 @@ export const TagListServer = async () => {
       id: tag.id,
       name: tag.name,
       colorCode: tag.colorCode,
-      count: 0,
+      displayOrder: tag.displayOrder,
+      count: tag.detailTagsAggregate.aggregate?.count ?? 0,
     })) ?? [];
 
   return <TagListClient tags={tags} />;

@@ -22,6 +22,7 @@ describe("convertToCategoryChartData", () => {
             name: "ジャンル1",
             genreType: "FIXED",
           },
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -37,6 +38,7 @@ describe("convertToCategoryChartData", () => {
             name: "ジャンル1",
             genreType: "FIXED",
           },
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -52,6 +54,7 @@ describe("convertToCategoryChartData", () => {
             name: "ジャンル2",
             genreType: "FLUCTUATION",
           },
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -67,6 +70,7 @@ describe("convertToCategoryChartData", () => {
             name: "ジャンル1",
             genreType: "FIXED",
           },
+          tags: [],
         },
         {
           __typename: "HouseholdAllDetailView",
@@ -82,6 +86,7 @@ describe("convertToCategoryChartData", () => {
             name: "ジャンル1",
             genreType: "FIXED",
           },
+          tags: [],
         },
       ],
       transferCategory: {

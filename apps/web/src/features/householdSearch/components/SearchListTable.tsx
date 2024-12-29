@@ -65,11 +65,13 @@ export const SearchListTable: FC<Props> = ({ records }) => {
           categoryName: r.category.name,
           accountName: r.account.name,
           memo: r.memo,
-          tags: r.tags.map((tag) => ({
-            id: tag.id,
-            label: tag.name,
-            colorCode: tag.colorCode,
-          })),
+          tags: r.tags
+            .sort((a, b) => a.displayOrder - b.displayOrder)
+            .map((tag) => ({
+              id: tag.id,
+              label: tag.name,
+              colorCode: tag.colorCode,
+            })),
         }))}
         recordsPerPage={200}
         onRowClick={(detail) => {

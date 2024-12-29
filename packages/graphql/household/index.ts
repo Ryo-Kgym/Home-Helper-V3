@@ -697,6 +697,7 @@ export type HouseholdAllDetailViewBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -1128,6 +1129,7 @@ export type HouseholdCreditCardDetailBoolExp = {
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -1691,6 +1693,7 @@ export type HouseholdDailyDetailBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -2331,6 +2334,10 @@ export type HouseholdDepositCategoryStreamCursorInput = {
 export type HouseholdDepositCategoryStreamCursorValueInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
+};
+
+export type HouseholdDetailTagAggregateBoolExp = {
+  count?: InputMaybe<HouseholdDetailTagAggregateBoolExpCount>;
 };
 
 /** order by aggregate values of table "household.detail_tag" */
@@ -3033,9 +3040,22 @@ export enum HouseholdImportFileHistoryUpdateColumn {
 
 /** order by aggregate values of table "household.tag" */
 export type HouseholdTagAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdTagAvgOrderBy>;
   count?: InputMaybe<OrderBy>;
   max?: InputMaybe<HouseholdTagMaxOrderBy>;
   min?: InputMaybe<HouseholdTagMinOrderBy>;
+  stddev?: InputMaybe<HouseholdTagStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdTagStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdTagStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdTagSumOrderBy>;
+  varPop?: InputMaybe<HouseholdTagVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdTagVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdTagVarianceOrderBy>;
+};
+
+/** order by avg() on columns of table "household.tag" */
+export type HouseholdTagAvgOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
 };
 
 /** Boolean expression to filter rows from the table "household.tag". All fields are combined with a logical 'AND'. */
@@ -3045,6 +3065,8 @@ export type HouseholdTagBoolExp = {
   _or?: InputMaybe<Array<HouseholdTagBoolExp>>;
   colorCode?: InputMaybe<BpcharComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
+  displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
@@ -3057,10 +3079,16 @@ export enum HouseholdTagConstraint {
   MTagPkey = "m_tag_pkey",
 }
 
+/** input type for incrementing numeric columns in table "household.tag" */
+export type HouseholdTagIncInput = {
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+};
+
 /** input type for inserting data into table "household.tag" */
 export type HouseholdTagInsertInput = {
   colorCode?: InputMaybe<Scalars["bpchar"]>;
   detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
@@ -3069,6 +3097,7 @@ export type HouseholdTagInsertInput = {
 /** order by max() on columns of table "household.tag" */
 export type HouseholdTagMaxOrderBy = {
   colorCode?: InputMaybe<OrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
@@ -3077,6 +3106,7 @@ export type HouseholdTagMaxOrderBy = {
 /** order by min() on columns of table "household.tag" */
 export type HouseholdTagMinOrderBy = {
   colorCode?: InputMaybe<OrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
@@ -3100,6 +3130,7 @@ export type HouseholdTagOnConflict = {
 export type HouseholdTagOrderBy = {
   colorCode?: InputMaybe<OrderBy>;
   detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
+  displayOrder?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
@@ -3116,6 +3147,8 @@ export enum HouseholdTagSelectColumn {
   /** column name */
   ColorCode = "colorCode",
   /** column name */
+  DisplayOrder = "displayOrder",
+  /** column name */
   GroupId = "groupId",
   /** column name */
   Id = "id",
@@ -3126,7 +3159,23 @@ export enum HouseholdTagSelectColumn {
 /** input type for updating data in table "household.tag" */
 export type HouseholdTagSetInput = {
   colorCode?: InputMaybe<Scalars["bpchar"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
   name?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by stddev() on columns of table "household.tag" */
+export type HouseholdTagStddevOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "household.tag" */
+export type HouseholdTagStddevPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "household.tag" */
+export type HouseholdTagStddevSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
 };
 
 /** Streaming cursor of the table "household_tag" */
@@ -3140,9 +3189,15 @@ export type HouseholdTagStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HouseholdTagStreamCursorValueInput = {
   colorCode?: InputMaybe<Scalars["bpchar"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by sum() on columns of table "household.tag" */
+export type HouseholdTagSumOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
 };
 
 /** update columns of table "household.tag" */
@@ -3150,14 +3205,33 @@ export enum HouseholdTagUpdateColumn {
   /** column name */
   ColorCode = "colorCode",
   /** column name */
+  DisplayOrder = "displayOrder",
+  /** column name */
   Name = "name",
 }
 
 export type HouseholdTagUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<HouseholdTagIncInput>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<HouseholdTagSetInput>;
   /** filter the rows which have to be updated */
   where: HouseholdTagBoolExp;
+};
+
+/** order by varPop() on columns of table "household.tag" */
+export type HouseholdTagVarPopOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "household.tag" */
+export type HouseholdTagVarSampOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "household.tag" */
+export type HouseholdTagVarianceOrderBy = {
+  displayOrder?: InputMaybe<OrderBy>;
 };
 
 export type HouseholdTotalByCategoryViewAggregateBoolExp = {
@@ -3697,6 +3771,13 @@ export type HouseholdDepositCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
+export type HouseholdDetailTagAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdDetailTagSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<HouseholdDetailTagBoolExp>;
+  predicate: IntComparisonExp;
+};
+
 export type HouseholdFavoriteFilterAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdFavoriteFilterSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
@@ -4129,6 +4210,15 @@ export type AddTagMutation = {
   insertHouseholdTagOne?: { __typename: "HouseholdTag"; id: string } | null;
 };
 
+export type DeleteTagMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type DeleteTagMutation = {
+  __typename?: "mutation_root";
+  deleteHouseholdTagByPk?: { __typename: "HouseholdTag"; id: string } | null;
+};
+
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   genreId: Scalars["String"];
@@ -4308,13 +4398,14 @@ export type GetDailyDetailByDateQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4403,13 +4494,14 @@ export type GetCreditCardDetailListQuery = {
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4476,13 +4568,14 @@ export type GetDailyByAccountIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4561,6 +4654,7 @@ export type ChartDataQuery = {
   detailView: Array<{
     __typename: "HouseholdAllDetailView";
     id?: string | null;
+    type?: string | null;
     settlementDate?: any | null;
     withdrawalDate?: any | null;
     iocomeType?: string | null;
@@ -4586,6 +4680,17 @@ export type ChartDataQuery = {
         id: string;
       } | null;
     } | null;
+    tags: Array<{
+      __typename: "HouseholdDetailTag";
+      id: string;
+      tag: {
+        __typename: "HouseholdTag";
+        id: string;
+        name: string;
+        colorCode: any;
+        displayOrder: number;
+      };
+    }>;
   }>;
   transferCategory?: {
     __typename: "HouseholdTransferCategory";
@@ -4617,7 +4722,12 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
       id: string;
       name: string;
     } | null;
-    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
     category?: {
       __typename?: "HouseholdCategory";
       id: string;
@@ -4628,13 +4738,14 @@ export type ChartDetailTableFilterWithdrawalDateQuery = {
       } | null;
     } | null;
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4662,7 +4773,12 @@ export type ChartDetailTableFilterSettlementDateQuery = {
       id: string;
       name: string;
     } | null;
-    genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+    genre?: {
+      __typename?: "HouseholdGenre";
+      id: string;
+      name: string;
+      genreType: string;
+    } | null;
     category?: {
       __typename?: "HouseholdCategory";
       id: string;
@@ -4673,13 +4789,14 @@ export type ChartDetailTableFilterSettlementDateQuery = {
       } | null;
     } | null;
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   }>;
@@ -4699,7 +4816,12 @@ export type FragAllDetailViewFragment = {
     id: string;
     name: string;
   } | null;
-  genre?: { __typename?: "HouseholdGenre"; id: string; name: string } | null;
+  genre?: {
+    __typename?: "HouseholdGenre";
+    id: string;
+    name: string;
+    genreType: string;
+  } | null;
   category?: {
     __typename?: "HouseholdCategory";
     id: string;
@@ -4710,13 +4832,14 @@ export type FragAllDetailViewFragment = {
     } | null;
   } | null;
   tags: Array<{
-    __typename?: "HouseholdDetailTag";
+    __typename: "HouseholdDetailTag";
     id: string;
     tag: {
-      __typename?: "HouseholdTag";
+      __typename: "HouseholdTag";
       id: string;
       name: string;
       colorCode: any;
+      displayOrder: number;
     };
   }>;
 };
@@ -4741,13 +4864,14 @@ export type FragCreditCardDetailFragment = {
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
   };
   tags: Array<{
-    __typename?: "HouseholdDetailTag";
+    __typename: "HouseholdDetailTag";
     id: string;
     tag: {
-      __typename?: "HouseholdTag";
+      __typename: "HouseholdTag";
       id: string;
       name: string;
       colorCode: any;
+      displayOrder: number;
     };
   }>;
 };
@@ -4768,15 +4892,24 @@ export type FragDailyDetailFragment = {
   category: { __typename?: "HouseholdCategory"; id: string; name: string };
   account: { __typename?: "HouseholdAccount"; id: string; name: string };
   tags: Array<{
-    __typename?: "HouseholdDetailTag";
+    __typename: "HouseholdDetailTag";
     id: string;
     tag: {
-      __typename?: "HouseholdTag";
+      __typename: "HouseholdTag";
       id: string;
       name: string;
       colorCode: any;
+      displayOrder: number;
     };
   }>;
+};
+
+export type FragTagFragment = {
+  __typename: "HouseholdTag";
+  id: string;
+  name: string;
+  colorCode: any;
+  displayOrder: number;
 };
 
 export type GetAccountBalanceListQueryVariables = Exact<{
@@ -4839,6 +4972,7 @@ export type GetAllDetailViewQuery = {
         __typename?: "HouseholdGenre";
         id: string;
         name: string;
+        genreType: string;
       } | null;
       category?: {
         __typename?: "HouseholdCategory";
@@ -4850,13 +4984,14 @@ export type GetAllDetailViewQuery = {
         } | null;
       } | null;
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -4884,6 +5019,7 @@ export type GetAllDetailViewQuery = {
             __typename?: "HouseholdGenre";
             id: string;
             name: string;
+            genreType: string;
           } | null;
           category?: {
             __typename?: "HouseholdCategory";
@@ -4895,13 +5031,14 @@ export type GetAllDetailViewQuery = {
             } | null;
           } | null;
           tags: Array<{
-            __typename?: "HouseholdDetailTag";
+            __typename: "HouseholdDetailTag";
             id: string;
             tag: {
-              __typename?: "HouseholdTag";
+              __typename: "HouseholdTag";
               id: string;
               name: string;
               colorCode: any;
+              displayOrder: number;
             };
           }>;
         }>;
@@ -4936,13 +5073,14 @@ export type GetCreditCardDetailByIdQuery = {
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
     };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   } | null;
@@ -4982,13 +5120,14 @@ export type GetCreditCardDetailBySummaryIdQuery = {
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -5017,13 +5156,14 @@ export type GetDailyDetailByIdQuery = {
     category: { __typename?: "HouseholdCategory"; id: string; name: string };
     account: { __typename?: "HouseholdAccount"; id: string; name: string };
     tags: Array<{
-      __typename?: "HouseholdDetailTag";
+      __typename: "HouseholdDetailTag";
       id: string;
       tag: {
-        __typename?: "HouseholdTag";
+        __typename: "HouseholdTag";
         id: string;
         name: string;
         colorCode: any;
+        displayOrder: number;
       };
     }>;
   } | null;
@@ -5084,13 +5224,14 @@ export type GetDetailsByCategoryQuery = {
       category: { __typename?: "HouseholdCategory"; id: string; name: string };
       account: { __typename?: "HouseholdAccount"; id: string; name: string };
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -5114,13 +5255,14 @@ export type GetDetailsByCategoryQuery = {
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -5144,13 +5286,14 @@ export type GetDetailsByCategoryQuery = {
         account: { __typename?: "HouseholdAccount"; id: string; name: string };
       };
       tags: Array<{
-        __typename?: "HouseholdDetailTag";
+        __typename: "HouseholdDetailTag";
         id: string;
         tag: {
-          __typename?: "HouseholdTag";
+          __typename: "HouseholdTag";
           id: string;
           name: string;
           colorCode: any;
+          displayOrder: number;
         };
       }>;
     }>;
@@ -5298,6 +5441,14 @@ export type GetTagListQuery = {
       id: string;
       name: string;
       colorCode: any;
+      displayOrder: number;
+      detailTagsAggregate: {
+        __typename?: "HouseholdDetailTagAggregate";
+        aggregate?: {
+          __typename?: "HouseholdDetailTagAggregateFields";
+          count: number;
+        } | null;
+      };
     }>;
   } | null;
 };
@@ -5327,6 +5478,15 @@ export const FragFavoriteFilterFragmentDoc = gql`
     }
   }
 `;
+export const FragTagFragmentDoc = gql`
+  fragment fragTag on HouseholdTag {
+    __typename
+    id
+    name
+    colorCode
+    displayOrder
+  }
+`;
 export const FragAllDetailViewFragmentDoc = gql`
   fragment fragAllDetailView on HouseholdAllDetailView {
     __typename
@@ -5343,6 +5503,7 @@ export const FragAllDetailViewFragmentDoc = gql`
     genre {
       id
       name
+      genreType
     }
     category {
       id
@@ -5352,15 +5513,15 @@ export const FragAllDetailViewFragmentDoc = gql`
       }
     }
     memo
-    tags: detailTags {
+    tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
+      __typename
       id
       tag {
-        id
-        name
-        colorCode
+        ...fragTag
       }
     }
   }
+  ${FragTagFragmentDoc}
 `;
 export const FragCreditCardDetailFragmentDoc = gql`
   fragment fragCreditCardDetail on HouseholdCreditCardDetail {
@@ -5385,15 +5546,15 @@ export const FragCreditCardDetailFragmentDoc = gql`
         name
       }
     }
-    tags: detailTags {
+    tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
+      __typename
       id
       tag {
-        id
-        name
-        colorCode
+        ...fragTag
       }
     }
   }
+  ${FragTagFragmentDoc}
 `;
 export const FragDailyDetailFragmentDoc = gql`
   fragment fragDailyDetail on HouseholdDailyDetail {
@@ -5416,15 +5577,15 @@ export const FragDailyDetailFragmentDoc = gql`
     }
     amount
     memo
-    tags: detailTags {
+    tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
+      __typename
       id
       tag {
-        id
-        name
-        colorCode
+        ...fragTag
       }
     }
   }
+  ${FragTagFragmentDoc}
 `;
 export const CreateCategoryDocument = gql`
   mutation CreateCategory(
@@ -6037,6 +6198,20 @@ export function useAddTagMutation() {
     AddTagDocument,
   );
 }
+export const DeleteTagDocument = gql`
+  mutation deleteTag($id: String!) {
+    deleteHouseholdTagByPk(id: $id) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useDeleteTagMutation() {
+  return Urql.useMutation<DeleteTagMutation, DeleteTagMutationVariables>(
+    DeleteTagDocument,
+  );
+}
 export const UpdateCreditCardDetailByIdDocument = gql`
   mutation updateCreditCardDetailById(
     $id: String!
@@ -6502,29 +6677,7 @@ export const ChartDataDocument = gql`
         _and: { date: { _lte: $toDate } }
       }
     ) {
-      __typename
-      id
-      settlementDate
-      withdrawalDate
-      amount: originalAmount
-      iocomeType
-      account {
-        id
-        name
-      }
-      genre {
-        id
-        name
-        genreType
-      }
-      category {
-        id
-        name
-        depositCategory {
-          id: categoryId
-        }
-      }
-      memo
+      ...fragAllDetailView
     }
     transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
       __typename
@@ -6533,6 +6686,7 @@ export const ChartDataDocument = gql`
       outcomeCategoryId
     }
   }
+  ${FragAllDetailViewFragmentDoc}
 `;
 
 export function useChartDataQuery(
@@ -7028,11 +7182,17 @@ export const GetTagListDocument = gql`
   query getTagList($groupId: String!) {
     group: groupByPk(id: $groupId) {
       id
-      tags {
+      tags(orderBy: { displayOrder: ASC }) {
         __typename
         id
         name
         colorCode
+        displayOrder
+        detailTagsAggregate {
+          aggregate {
+            count
+          }
+        }
       }
     }
   }

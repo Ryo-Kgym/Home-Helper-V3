@@ -20,12 +20,11 @@ fragment fragCreditCardDetail on HouseholdCreditCardDetail {
       name
     }
   }
-  tags: detailTags {
+  tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
+    __typename
     id
     tag {
-      id
-      name
-      colorCode
+      ...fragTag
     }
   }
 }
