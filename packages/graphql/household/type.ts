@@ -682,6 +682,7 @@ export type HouseholdAllDetailViewBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -1109,6 +1110,7 @@ export type HouseholdCreditCardDetailBoolExp = {
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -1665,6 +1667,7 @@ export type HouseholdDailyDetailBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -2294,6 +2297,10 @@ export type HouseholdDepositCategoryStreamCursorInput = {
 export type HouseholdDepositCategoryStreamCursorValueInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
+};
+
+export type HouseholdDetailTagAggregateBoolExp = {
+  count?: InputMaybe<HouseholdDetailTagAggregateBoolExpCount>;
 };
 
 /** order by aggregate values of table "household.detail_tag" */
@@ -3004,6 +3011,7 @@ export type HouseholdTagBoolExp = {
   _or?: InputMaybe<Array<HouseholdTagBoolExp>>;
   colorCode?: InputMaybe<BpcharComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -3696,6 +3704,13 @@ export type HouseholdDepositCategoryAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  predicate: IntComparisonExp;
+};
+
+export type HouseholdDetailTagAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdDetailTagSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<HouseholdDetailTagBoolExp>;
   predicate: IntComparisonExp;
 };
 
@@ -5354,6 +5369,13 @@ export type GetTagListQuery = {
       name: string;
       colorCode: any;
       displayOrder: number;
+      detailTagsAggregate: {
+        __typename?: "HouseholdDetailTagAggregate";
+        aggregate?: {
+          __typename?: "HouseholdDetailTagAggregateFields";
+          count: number;
+        } | null;
+      };
     }>;
   } | null;
 };
@@ -5545,11 +5567,6 @@ export const FragAllDetailViewFragmentDoc = {
                 value: {
                   kind: "ObjectValue",
                   fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: { kind: "EnumValue", value: "DESC" },
-                    },
                     {
                       kind: "ObjectField",
                       name: { kind: "Name", value: "tag" },
@@ -12181,11 +12198,6 @@ export const ChartDataDocument = {
                   fields: [
                     {
                       kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: { kind: "EnumValue", value: "DESC" },
-                    },
-                    {
-                      kind: "ObjectField",
                       name: { kind: "Name", value: "tag" },
                       value: {
                         kind: "ObjectValue",
@@ -12511,11 +12523,6 @@ export const ChartDetailTableFilterWithdrawalDateDocument = {
                 value: {
                   kind: "ObjectValue",
                   fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: { kind: "EnumValue", value: "DESC" },
-                    },
                     {
                       kind: "ObjectField",
                       name: { kind: "Name", value: "tag" },
@@ -12846,11 +12853,6 @@ export const ChartDetailTableFilterSettlementDateDocument = {
                 value: {
                   kind: "ObjectValue",
                   fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: { kind: "EnumValue", value: "DESC" },
-                    },
                     {
                       kind: "ObjectField",
                       name: { kind: "Name", value: "tag" },
@@ -13586,11 +13588,6 @@ export const GetAllDetailViewDocument = {
                 value: {
                   kind: "ObjectValue",
                   fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: { kind: "EnumValue", value: "DESC" },
-                    },
                     {
                       kind: "ObjectField",
                       name: { kind: "Name", value: "tag" },
@@ -15933,8 +15930,40 @@ export const GetTagListDocument = {
                     kind: "SelectionSet",
                     selections: [
                       {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "fragTag" },
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "colorCode" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "displayOrder" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "detailTagsAggregate" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "aggregate" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "count" },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
                       },
                     ],
                   },
@@ -15942,24 +15971,6 @@ export const GetTagListDocument = {
               ],
             },
           },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragTag" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "HouseholdTag" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
-          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
         ],
       },
     },

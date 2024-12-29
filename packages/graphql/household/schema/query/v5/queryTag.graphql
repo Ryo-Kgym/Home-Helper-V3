@@ -2,7 +2,16 @@ query getTagList($groupId: String!) {
   group: groupByPk(id: $groupId) {
     id
     tags(orderBy: { displayOrder: ASC }) {
-      ...fragTag
+      __typename
+      id
+      name
+      colorCode
+      displayOrder
+      detailTagsAggregate {
+        aggregate {
+          count
+        }
+      }
     }
   }
 }

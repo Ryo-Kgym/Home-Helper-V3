@@ -697,6 +697,7 @@ export type HouseholdAllDetailViewBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -1128,6 +1129,7 @@ export type HouseholdCreditCardDetailBoolExp = {
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -1691,6 +1693,7 @@ export type HouseholdDailyDetailBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -2331,6 +2334,10 @@ export type HouseholdDepositCategoryStreamCursorInput = {
 export type HouseholdDepositCategoryStreamCursorValueInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
+};
+
+export type HouseholdDetailTagAggregateBoolExp = {
+  count?: InputMaybe<HouseholdDetailTagAggregateBoolExpCount>;
 };
 
 /** order by aggregate values of table "household.detail_tag" */
@@ -3058,6 +3065,7 @@ export type HouseholdTagBoolExp = {
   _or?: InputMaybe<Array<HouseholdTagBoolExp>>;
   colorCode?: InputMaybe<BpcharComparisonExp>;
   detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -3760,6 +3768,13 @@ export type HouseholdDepositCategoryAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  predicate: IntComparisonExp;
+};
+
+export type HouseholdDetailTagAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdDetailTagSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<HouseholdDetailTagBoolExp>;
   predicate: IntComparisonExp;
 };
 
@@ -5418,6 +5433,13 @@ export type GetTagListQuery = {
       name: string;
       colorCode: any;
       displayOrder: number;
+      detailTagsAggregate: {
+        __typename?: "HouseholdDetailTagAggregate";
+        aggregate?: {
+          __typename?: "HouseholdDetailTagAggregateFields";
+          count: number;
+        } | null;
+      };
     }>;
   } | null;
 };
@@ -5482,7 +5504,7 @@ export const FragAllDetailViewFragmentDoc = gql`
       }
     }
     memo
-    tags: detailTags(orderBy: { id: DESC, tag: { displayOrder: ASC } }) {
+    tags: detailTags(orderBy: { tag: { displayOrder: ASC } }) {
       __typename
       id
       tag {
@@ -7138,11 +7160,19 @@ export const GetTagListDocument = gql`
     group: groupByPk(id: $groupId) {
       id
       tags(orderBy: { displayOrder: ASC }) {
-        ...fragTag
+        __typename
+        id
+        name
+        colorCode
+        displayOrder
+        detailTagsAggregate {
+          aggregate {
+            count
+          }
+        }
       }
     }
   }
-  ${FragTagFragmentDoc}
 `;
 
 export function useGetTagListQuery(
