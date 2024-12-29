@@ -4146,6 +4146,15 @@ export type AddTagMutation = {
   insertHouseholdTagOne?: { __typename: "HouseholdTag"; id: string } | null;
 };
 
+export type DeleteTagMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type DeleteTagMutation = {
+  __typename?: "mutation_root";
+  deleteHouseholdTagByPk?: { __typename: "HouseholdTag"; id: string } | null;
+};
+
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   genreId: Scalars["String"];
@@ -9269,6 +9278,55 @@ export const AddTagDocument = {
     },
   ],
 } as unknown as DocumentNode<AddTagMutation, AddTagMutationVariables>;
+export const DeleteTagDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "deleteTag" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteHouseholdTagByPk" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DeleteTagMutation, DeleteTagMutationVariables>;
 export const UpdateCreditCardDetailByIdDocument = {
   kind: "Document",
   definitions: [

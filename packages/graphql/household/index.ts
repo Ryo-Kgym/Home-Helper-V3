@@ -4210,6 +4210,15 @@ export type AddTagMutation = {
   insertHouseholdTagOne?: { __typename: "HouseholdTag"; id: string } | null;
 };
 
+export type DeleteTagMutationVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type DeleteTagMutation = {
+  __typename?: "mutation_root";
+  deleteHouseholdTagByPk?: { __typename: "HouseholdTag"; id: string } | null;
+};
+
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   genreId: Scalars["String"];
@@ -6187,6 +6196,20 @@ export const AddTagDocument = gql`
 export function useAddTagMutation() {
   return Urql.useMutation<AddTagMutation, AddTagMutationVariables>(
     AddTagDocument,
+  );
+}
+export const DeleteTagDocument = gql`
+  mutation deleteTag($id: String!) {
+    deleteHouseholdTagByPk(id: $id) {
+      __typename
+      id
+    }
+  }
+`;
+
+export function useDeleteTagMutation() {
+  return Urql.useMutation<DeleteTagMutation, DeleteTagMutationVariables>(
+    DeleteTagDocument,
   );
 }
 export const UpdateCreditCardDetailByIdDocument = gql`

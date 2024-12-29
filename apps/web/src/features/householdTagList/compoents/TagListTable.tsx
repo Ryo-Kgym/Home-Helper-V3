@@ -6,6 +6,7 @@ import { NumberInput, TextInput } from "../../../components/ui/v4/textInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { useStateSetTag, useStateTagList } from "../hooks/useStateTagList";
+import { deleteTag } from "../useServer/deleteTag";
 import { modifyTag } from "../useServer/modifyTag";
 
 type Props = {
@@ -86,20 +87,37 @@ export const TagListTable: FC<Props> = () => {
           width: "10%",
           render: (tag) => {
             return (
-              <Button
-                label={"更新"}
-                onClick={async () => {
-                  try {
-                    await modifyTag(tag);
-                    successPopup("更新しました");
-                    refresh();
-                  } catch (e) {
-                    console.error(e);
-                    errorPopup("更新に失敗しました");
-                  }
-                }}
-                type={"modify"}
-              />
+              <>
+                <Button
+                  label={"更新"}
+                  onClick={async () => {
+                    try {
+                      await modifyTag(tag);
+                      successPopup("更新しました");
+                      refresh();
+                    } catch (e) {
+                      console.error(e);
+                      errorPopup("更新に失敗しました");
+                    }
+                  }}
+                  type={"modify"}
+                />
+                <Button
+                  label={"削除"}
+                  onClick={async () => {
+                    try {
+                      await deleteTag(tag);
+                      successPopup("削除しました");
+                      refresh();
+                    } catch (e) {
+                      console.error(e);
+                      errorPopup("削除に失敗しました");
+                    }
+                  }}
+                  type={"dangerous"}
+                  disabled={tag.count > 0}
+                />
+              </>
             );
           },
         },
