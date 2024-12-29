@@ -15,6 +15,7 @@ export const addTag = async (tag: Omit<Tag, "id">) => {
       id: generateId(),
       name: tag.name,
       colorCode: tag.colorCode,
+      displayOrder: tag.displayOrder,
       groupId: group.id,
     },
   });

@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
-import { TextInput } from "../../../components/ui/v4/textInput";
+import { NumberInput, TextInput } from "../../../components/ui/v4/textInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { Tag } from "../types/tag";
@@ -38,6 +38,11 @@ export const TagAddForm: FC = () => {
           />
         </div>
       </div>
+      <NumberInput
+        label={"表示順"}
+        value={tag.displayOrder}
+        setValue={(v) => setTag((prev) => ({ ...prev, displayOrder: v || 0 }))}
+      />
       <Button
         label={"追加"}
         onClick={async () => {

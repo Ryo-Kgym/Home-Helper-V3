@@ -2,8 +2,9 @@ import { FC } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
 import { DataTable } from "../../../components/ui/v4/table";
-import { TextInput } from "../../../components/ui/v4/textInput";
+import { NumberInput, TextInput } from "../../../components/ui/v4/textInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
+import { useNavigation } from "../../../routing/client/useNavigation";
 import { useStateSetTag, useStateTagList } from "../hooks/useStateTagList";
 import { modifyTag } from "../useServer/modifyTag";
 
@@ -13,6 +14,7 @@ type Props = {
 export const TagListTable: FC<Props> = () => {
   const tags = useStateTagList();
   const setTag = useStateSetTag();
+  const { refresh } = useNavigation();
 
   return (
     <DataTable
@@ -61,6 +63,15 @@ export const TagListTable: FC<Props> = () => {
           title: "表示順序",
           textAlign: "right",
           width: "10%",
+          render: (tag) => {
+            return (
+              <NumberInput
+                label={""}
+                value={tag.displayOrder}
+                setValue={(v) => setTag({ ...tag, displayOrder: v || 0 })}
+              />
+            );
+          },
         },
         {
           accessor: "count",
@@ -81,6 +92,7 @@ export const TagListTable: FC<Props> = () => {
                   try {
                     await modifyTag(tag);
                     successPopup("更新しました");
+                    refresh();
                   } catch (e) {
                     console.error(e);
                     errorPopup("更新に失敗しました");
