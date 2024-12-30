@@ -1,36 +1,19 @@
 import { useState } from "react";
 
-import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { registerDailyDetail } from "../../../useServer/household/daily_detail/registerDailyDetail";
-import { DailyDetailForm } from "./dailyDetailForm";
 import { RegisterDailyDetailPresenter } from "./RegisterDailyDetailPresenter";
+import { useStateDailyForm } from "./useStateDailyForm";
 
 export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
-  const [form, setForm] = useState<DailyDetailForm>({
+  const { form, setForm, resetForm } = useStateDailyForm({
     date,
-    genreId: "",
-    iocomeType: IocomeType.Income,
-    categoryId: "",
-    accountId: "",
-    amount: 0,
-    memo: "",
   });
 
   const { refresh } = useNavigation();
 
-  const allClear = () => {
-    setForm({
-      date: new Date(),
-      genreId: "",
-      iocomeType: IocomeType.Income,
-      categoryId: "",
-      accountId: "",
-      amount: 0,
-      memo: "",
-    });
-  };
+  const [isPosting, setIsPosting] = useState(false);
 
   const anyFieldIsInvalid = () => {
     const genreIdIsInvalid = !form.genreId;
@@ -51,15 +34,10 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
       errorPopup("入力に不備があります");
       return;
     }
+    setIsPosting(true);
     try {
       await registerDailyDetail({
-        date: form.date,
-        iocomeType: form.iocomeType,
-        genreId: form.genreId,
-        categoryId: form.categoryId,
-        accountId: form.accountId,
-        amount: form.amount,
-        memo: form.memo,
+        ...form,
       });
       setForm({ ...form, amount: 0, memo: "" });
       successPopup("登録しました");
@@ -67,6 +45,8 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
     } catch (e) {
       console.error(e);
       errorPopup("登録に失敗しました");
+    } finally {
+      setIsPosting(false);
     }
   };
 
@@ -89,8 +69,9 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
       setAccountId={(v) => setForm({ ...form, accountId: v ?? "" })}
       setAmount={(v) => setForm({ ...form, amount: v })}
       setMemo={(v) => setForm({ ...form, memo: v })}
-      clearClick={allClear}
+      clearClick={resetForm}
       registerClick={registerClickHandler}
+      disabled={isPosting}
     />
   );
 };

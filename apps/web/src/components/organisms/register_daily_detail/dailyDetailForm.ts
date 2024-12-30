@@ -9,3 +9,13 @@ export type DailyDetailForm = {
   amount: number;
   memo: string;
 };
+
+export const initialDailyDetailForm: DailyDetailForm = {
+  date: new Date(),
+  genreId: "",
+  iocomeType: IocomeType.Income,
+  categoryId: "",
+  accountId: "",
+  amount: 0,
+  memo: "",
+};
