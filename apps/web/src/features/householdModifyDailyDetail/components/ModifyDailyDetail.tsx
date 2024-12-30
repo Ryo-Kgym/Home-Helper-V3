@@ -37,8 +37,20 @@ export const ModifyDailyDetail = ({
       });
       successPopup("更新しました");
       refresh();
+      onClose();
     } catch (e) {
       errorPopup("更新に失敗しました");
+    }
+  };
+
+  const deleteClick = async () => {
+    try {
+      await deleteDailyDetail({ id });
+      successPopup("削除しました");
+      refresh();
+      onClose();
+    } catch (e) {
+      errorPopup("削除に失敗しました");
     }
   };
 
@@ -112,23 +124,9 @@ export const ModifyDailyDetail = ({
         />
       </Field>
       <div className={"flex justify-items-center"}>
-        <Button
-          type={"modify"}
-          label={"更新"}
-          onClick={async () => {
-            await updateClick();
-            onClose();
-          }}
-        />
+        <Button type={"modify"} label={"更新"} onClick={updateClick} />
         <Button type={"reset"} label={"リセット"} onClick={resetForm} />
-        <Button
-          type={"dangerous"}
-          label={"削除"}
-          onClick={async () => {
-            await deleteDailyDetail({ id });
-            onClose();
-          }}
-        />
+        <Button type={"dangerous"} label={"削除"} onClick={deleteClick} />
       </div>
     </div>
   );

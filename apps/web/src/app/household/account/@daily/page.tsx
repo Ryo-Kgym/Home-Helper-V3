@@ -1,4 +1,4 @@
-import { AccountListServer } from "../../../features/householdAccountList/components/AccountListServer";
+import { AccountDailyServer } from "../../../../features/householdAccountList/components/AccountDailyServer";
 
 const Page = async ({
   searchParams,
@@ -12,7 +12,7 @@ const Page = async ({
   const { fromDate, toDate, accountId } = await searchParams;
 
   return (
-    <AccountListServer
+    <AccountDailyServer
       fromDate={fromDate ? new Date(fromDate) : undefined}
       toDate={toDate ? new Date(toDate) : undefined}
       accountId={accountId}

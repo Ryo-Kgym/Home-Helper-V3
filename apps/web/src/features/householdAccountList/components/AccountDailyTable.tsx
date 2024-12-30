@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
@@ -5,49 +7,32 @@ import { IocomeTotal } from "../../../components/molecules/Total";
 import { TagGroup } from "../../../components/ui/tag/TagGroup";
 import { DataTable } from "../../../components/ui/v4/table";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { useGetCreditCardSummaryByAccountIdBetweenDate } from "../../../hooks/household/credit_card/useGetCreditCardSummaryByAccountIdBetweenDate";
-import { useGetDailyDetailByDateAccountId } from "../../../hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
 import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
+import { DailyBalanceRow } from "../types/dailyBalanceRow";
 
 export const AccountDailyTable = ({
-  fromDate,
-  toDate,
-  accountId,
+  records,
+  incomeTotal,
+  outcomeTotal,
 }: {
-  fromDate: Date;
-  toDate: Date;
-  accountId: string;
+  records: DailyBalanceRow[];
+  incomeTotal: number;
+  outcomeTotal: number;
 }) => {
   const [modifyModalOpen, setModifyModalOpen] = useState<boolean>(false);
   const [id, setId] = useState<string | null>(null);
 
-  const { data, incomeTotal, outcomeTotal } = useGetDailyDetailByDateAccountId(
-    accountId,
-    fromDate,
-    toDate,
-  );
-
-  const {
-    data: creditCardSummaryData,
-    incomeTotal: creditCardIncomeTotal,
-    outcomeTotal: creditCardOutcomeTotal,
-  } = useGetCreditCardSummaryByAccountIdBetweenDate(
-    accountId,
-    fromDate,
-    toDate,
-  );
   return (
     <>
       <DataTable
         columns={[
           { accessor: "type", title: "タイプ", hidden: true },
-          { accessor: "date", title: "決済日", width: "10%" },
-          { accessor: "genre", title: "ジャンル", width: "20%" },
           {
-            accessor: "iocomeType",
-            title: "収支区",
-            hidden: true,
+            accessor: "date",
+            title: "決済日",
+            width: "10%",
           },
+          { accessor: "genre", title: "ジャンル", width: "20%" },
           { accessor: "category", title: "カテゴリ", width: "10%" },
           {
             accessor: "amount",
@@ -56,7 +41,7 @@ export const AccountDailyTable = ({
             textAlign: "right",
             render: ({ amount, iocomeType }) => (
               <FormatPrice
-                price={amount as number}
+                price={amount}
                 iocomeType={iocomeType as IocomeType}
               />
             ),
@@ -75,45 +60,7 @@ export const AccountDailyTable = ({
             },
           },
         ]}
-        records={(
-          data?.dailies.map((d) => ({
-            type: "daily",
-            id: d.id,
-            date: d.date,
-            iocomeType: d.genre.iocomeType,
-            genre: d.genre.name,
-            category: d.category.name,
-            amount: d.amount,
-            memo: d.memo ?? "",
-            tags: d.tags.map((tag) => ({
-              id: tag.tag.id,
-              label: tag.tag.name,
-              colorCode: tag.tag.colorCode,
-            })),
-          })) ?? []
-        )
-          .concat(
-            creditCardSummaryData?.creditCardSummaries.map((s) => ({
-              type: "credit",
-              id: s.id,
-              date: s.withdrawalDate,
-              iocomeType: IocomeType.Outcome,
-              genre: "クレジットカード",
-              category: s.creditCard,
-              amount: s.totalAmount,
-              memo: "",
-              tags: [],
-            })) ?? [],
-          )
-          .sort((a, b) => {
-            if (a.date < b.date) {
-              return 1;
-            }
-            if (a.date > b.date) {
-              return -1;
-            }
-            return 0;
-          })}
+        records={records}
         onRowClick={({ id, type }) => {
           if (type === "credit") return;
 
@@ -121,10 +68,7 @@ export const AccountDailyTable = ({
           setModifyModalOpen(true);
         }}
       />
-      <IocomeTotal
-        income={(incomeTotal ?? 0) + creditCardIncomeTotal}
-        outcome={(outcomeTotal ?? 0) + (creditCardOutcomeTotal ?? 0)}
-      />
+      <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
       {id && (
         <DailyDetailEditModal
           id={id}
