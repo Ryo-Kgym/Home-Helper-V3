@@ -5190,6 +5190,55 @@ export type GetDashboardSettingQuery = {
   }>;
 };
 
+export type GetDetailsByAccountIdQueryVariables = Exact<{
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  accountId: Scalars["String"];
+}>;
+
+export type GetDetailsByAccountIdQuery = {
+  __typename?: "query_root";
+  account?: {
+    __typename: "HouseholdAccount";
+    id: string;
+    dailies: Array<{
+      __typename: "HouseholdDailyDetail";
+      id: string;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        genreType: string;
+        iocomeType: string;
+      };
+      category: { __typename?: "HouseholdCategory"; id: string; name: string };
+      account: { __typename?: "HouseholdAccount"; id: string; name: string };
+      tags: Array<{
+        __typename: "HouseholdDetailTag";
+        id: string;
+        tag: {
+          __typename: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: any;
+          displayOrder: number;
+        };
+      }>;
+    }>;
+    credits: Array<{
+      __typename: "HouseholdCreditCardSummary";
+      id: string;
+      creditCard: string;
+      date: any;
+      amount: any;
+      account: { __typename?: "HouseholdAccount"; id: string; name: string };
+    }>;
+  } | null;
+};
+
 export type GetDetailsByCategoryQueryVariables = Exact<{
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
@@ -6949,6 +6998,49 @@ export function useGetDashboardSettingQuery(
     GetDashboardSettingQuery,
     GetDashboardSettingQueryVariables
   >({ query: GetDashboardSettingDocument, ...options });
+}
+export const GetDetailsByAccountIdDocument = gql`
+  query getDetailsByAccountId(
+    $fromDate: date!
+    $toDate: date!
+    $accountId: String!
+  ) {
+    account: householdAccountByPk(id: $accountId) {
+      __typename
+      id
+      dailies: dailyDetails(
+        where: { date: { _gte: $fromDate, _lte: $toDate } }
+      ) {
+        ...fragDailyDetail
+      }
+      credits: creditCardSummaries(
+        where: { withdrawalDate: { _gte: $fromDate, _lte: $toDate } }
+      ) {
+        __typename
+        id
+        date: withdrawalDate
+        account {
+          id
+          name
+        }
+        creditCard
+        amount: totalAmount
+      }
+    }
+  }
+  ${FragDailyDetailFragmentDoc}
+`;
+
+export function useGetDetailsByAccountIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDetailsByAccountIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetDetailsByAccountIdQuery,
+    GetDetailsByAccountIdQueryVariables
+  >({ query: GetDetailsByAccountIdDocument, ...options });
 }
 export const GetDetailsByCategoryDocument = gql`
   query getDetailsByCategory(

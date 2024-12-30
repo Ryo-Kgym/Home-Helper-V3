@@ -1,0 +1,26 @@
+query getDetailsByAccountId(
+  $fromDate: date!
+  $toDate: date!
+  $accountId: String!
+) {
+  account: householdAccountByPk(id: $accountId) {
+    __typename
+    id
+    dailies: dailyDetails(where: { date: { _gte: $fromDate, _lte: $toDate } }) {
+      ...fragDailyDetail
+    }
+    credits: creditCardSummaries(
+      where: { withdrawalDate: { _gte: $fromDate, _lte: $toDate } }
+    ) {
+      __typename
+      id
+      date: withdrawalDate
+      account {
+        id
+        name
+      }
+      creditCard
+      amount: totalAmount
+    }
+  }
+}

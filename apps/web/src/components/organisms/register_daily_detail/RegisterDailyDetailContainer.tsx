@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
+import { useNavigation } from "../../../routing/client/useNavigation";
 import { registerDailyDetail } from "../../../useServer/household/daily_detail/registerDailyDetail";
 import { DailyDetailForm } from "./dailyDetailForm";
 import { RegisterDailyDetailPresenter } from "./RegisterDailyDetailPresenter";
@@ -16,6 +17,8 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
     amount: 0,
     memo: "",
   });
+
+  const { refresh } = useNavigation();
 
   const allClear = () => {
     setForm({
@@ -60,6 +63,7 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
       });
       setForm({ ...form, amount: 0, memo: "" });
       successPopup("登録しました");
+      refresh();
     } catch (e) {
       console.error(e);
       errorPopup("登録に失敗しました");
