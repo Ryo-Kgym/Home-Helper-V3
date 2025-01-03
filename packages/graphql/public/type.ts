@@ -18,11 +18,10 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  bpchar: any;
   date: any;
-  json: any;
   numeric: any;
   timestamp: any;
-  timestamptz: any;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -142,59 +141,19 @@ export type AppAggregateOrderBy = {
   min?: InputMaybe<AppMinOrderBy>;
 };
 
-/** input type for inserting array relation for remote table "app" */
-export type AppArrRelInsertInput = {
-  data: Array<AppInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<AppOnConflict>;
-};
-
 /** Boolean expression to filter rows from the table "app". All fields are combined with a logical 'AND'. */
 export type AppBoolExp = {
   _and?: InputMaybe<Array<AppBoolExp>>;
   _not?: InputMaybe<AppBoolExp>;
   _or?: InputMaybe<Array<AppBoolExp>>;
-  createUserId?: InputMaybe<StringComparisonExp>;
-  fields?: InputMaybe<FieldBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
-  importFileHistories?: InputMaybe<ImportFileHistoryBoolExp>;
-  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
-  importFileSetting?: InputMaybe<ImportFileSettingBoolExp>;
-  linkDatabase?: InputMaybe<LinkDatabaseBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
-  records?: InputMaybe<RecordBoolExp>;
-  recordsAggregate?: InputMaybe<RecordAggregateBoolExp>;
-  user?: InputMaybe<UserBoolExp>;
-  viewApps?: InputMaybe<ViewAppBoolExp>;
-};
-
-/** unique or primary key constraints on table "app" */
-export type AppConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "app_pkey";
-
-/** input type for inserting data into table "app" */
-export type AppInsertInput = {
-  createUserId?: InputMaybe<Scalars["String"]>;
-  fields?: InputMaybe<FieldArrRelInsertInput>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  importFileHistories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
-  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
-  importFileSetting?: InputMaybe<ImportFileSettingObjRelInsertInput>;
-  linkDatabase?: InputMaybe<LinkDatabaseObjRelInsertInput>;
-  name?: InputMaybe<Scalars["String"]>;
-  records?: InputMaybe<RecordArrRelInsertInput>;
-  user?: InputMaybe<UserObjRelInsertInput>;
-  viewApps?: InputMaybe<ViewAppArrRelInsertInput>;
 };
 
 /** order by max() on columns of table "app" */
 export type AppMaxOrderBy = {
-  createUserId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
@@ -202,63 +161,27 @@ export type AppMaxOrderBy = {
 
 /** order by min() on columns of table "app" */
 export type AppMinOrderBy = {
-  createUserId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "app" */
-export type AppObjRelInsertInput = {
-  data: AppInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<AppOnConflict>;
-};
-
-/** on_conflict condition type for table "app" */
-export type AppOnConflict = {
-  constraint: AppConstraint;
-  updateColumns?: Array<AppUpdateColumn>;
-  where?: InputMaybe<AppBoolExp>;
 };
 
 /** Ordering options when selecting data from "app". */
 export type AppOrderBy = {
-  createUserId?: InputMaybe<OrderBy>;
-  fieldsAggregate?: InputMaybe<FieldAggregateOrderBy>;
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
-  importFileHistoriesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
-  importFileSetting?: InputMaybe<ImportFileSettingOrderBy>;
-  linkDatabase?: InputMaybe<LinkDatabaseOrderBy>;
   name?: InputMaybe<OrderBy>;
-  recordsAggregate?: InputMaybe<RecordAggregateOrderBy>;
-  user?: InputMaybe<UserOrderBy>;
-  viewAppsAggregate?: InputMaybe<ViewAppAggregateOrderBy>;
-};
-
-/** primary key columns input for table: app */
-export type AppPkColumnsInput = {
-  id: Scalars["String"];
 };
 
 /** select columns of table "app" */
 export type AppSelectColumn =
-  /** column name */
-  | "createUserId"
   /** column name */
   | "groupId"
   /** column name */
   | "id"
   /** column name */
   | "name";
-
-/** input type for updating data in table "app" */
-export type AppSetInput = {
-  name?: InputMaybe<Scalars["String"]>;
-};
 
 /** Streaming cursor of the table "app" */
 export type AppStreamCursorInput = {
@@ -270,22 +193,9 @@ export type AppStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type AppStreamCursorValueInput = {
-  createUserId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-};
-
-/** update columns of table "app" */
-export type AppUpdateColumn =
-  /** column name */
-  "name";
-
-export type AppUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<AppSetInput>;
-  /** filter the rows which have to be updated */
-  where: AppBoolExp;
 };
 
 /** Boolean expression to filter rows from the table "application". All fields are combined with a logical 'AND'. */
@@ -350,6 +260,39 @@ export type BooleanComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["Boolean"]>>;
 };
 
+/** Boolean expression to compare columns of type "bpchar". All fields are combined with logical 'AND'. */
+export type BpcharComparisonExp = {
+  _eq?: InputMaybe<Scalars["bpchar"]>;
+  _gt?: InputMaybe<Scalars["bpchar"]>;
+  _gte?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column match the given case-insensitive pattern */
+  _ilike?: InputMaybe<Scalars["bpchar"]>;
+  _in?: InputMaybe<Array<Scalars["bpchar"]>>;
+  /** does the column match the given POSIX regular expression, case insensitive */
+  _iregex?: InputMaybe<Scalars["bpchar"]>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  /** does the column match the given pattern */
+  _like?: InputMaybe<Scalars["bpchar"]>;
+  _lt?: InputMaybe<Scalars["bpchar"]>;
+  _lte?: InputMaybe<Scalars["bpchar"]>;
+  _neq?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column NOT match the given case-insensitive pattern */
+  _nilike?: InputMaybe<Scalars["bpchar"]>;
+  _nin?: InputMaybe<Array<Scalars["bpchar"]>>;
+  /** does the column NOT match the given POSIX regular expression, case insensitive */
+  _niregex?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column NOT match the given pattern */
+  _nlike?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column NOT match the given POSIX regular expression, case sensitive */
+  _nregex?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column NOT match the given SQL regular expression */
+  _nsimilar?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column match the given POSIX regular expression, case sensitive */
+  _regex?: InputMaybe<Scalars["bpchar"]>;
+  /** does the column match the given SQL regular expression */
+  _similar?: InputMaybe<Scalars["bpchar"]>;
+};
+
 /** ordering argument of a cursor */
 export type CursorOrdering =
   /** ascending ordering of the cursor */
@@ -368,205 +311,6 @@ export type DateComparisonExp = {
   _lte?: InputMaybe<Scalars["date"]>;
   _neq?: InputMaybe<Scalars["date"]>;
   _nin?: InputMaybe<Array<Scalars["date"]>>;
-};
-
-/** order by aggregate values of table "field" */
-export type FieldAggregateOrderBy = {
-  avg?: InputMaybe<FieldAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<FieldMaxOrderBy>;
-  min?: InputMaybe<FieldMinOrderBy>;
-  stddev?: InputMaybe<FieldStddevOrderBy>;
-  stddevPop?: InputMaybe<FieldStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<FieldStddevSampOrderBy>;
-  sum?: InputMaybe<FieldSumOrderBy>;
-  varPop?: InputMaybe<FieldVarPopOrderBy>;
-  varSamp?: InputMaybe<FieldVarSampOrderBy>;
-  variance?: InputMaybe<FieldVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "field" */
-export type FieldArrRelInsertInput = {
-  data: Array<FieldInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<FieldOnConflict>;
-};
-
-/** order by avg() on columns of table "field" */
-export type FieldAvgOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "field". All fields are combined with a logical 'AND'. */
-export type FieldBoolExp = {
-  _and?: InputMaybe<Array<FieldBoolExp>>;
-  _not?: InputMaybe<FieldBoolExp>;
-  _or?: InputMaybe<Array<FieldBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  fieldKind?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  index?: InputMaybe<IntComparisonExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  options?: InputMaybe<JsonComparisonExp>;
-};
-
-/** unique or primary key constraints on table "field" */
-export type FieldConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "field_pkey";
-
-/** input type for incrementing numeric columns in table "field" */
-export type FieldIncInput = {
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "field" */
-export type FieldInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-};
-
-/** order by max() on columns of table "field" */
-export type FieldMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "field" */
-export type FieldMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "field" */
-export type FieldOnConflict = {
-  constraint: FieldConstraint;
-  updateColumns?: Array<FieldUpdateColumn>;
-  where?: InputMaybe<FieldBoolExp>;
-};
-
-/** Ordering options when selecting data from "field". */
-export type FieldOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  options?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: field */
-export type FieldPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "field" */
-export type FieldSelectColumn =
-  /** column name */
-  | "appId"
-  /** column name */
-  | "fieldKind"
-  /** column name */
-  | "id"
-  /** column name */
-  | "index"
-  /** column name */
-  | "name"
-  /** column name */
-  | "options";
-
-/** input type for updating data in table "field" */
-export type FieldSetInput = {
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-};
-
-/** order by stddev() on columns of table "field" */
-export type FieldStddevOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "field" */
-export type FieldStddevPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "field" */
-export type FieldStddevSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "field" */
-export type FieldStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: FieldStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type FieldStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-};
-
-/** order by sum() on columns of table "field" */
-export type FieldSumOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "field" */
-export type FieldUpdateColumn =
-  /** column name */
-  | "fieldKind"
-  /** column name */
-  | "index"
-  /** column name */
-  | "name"
-  /** column name */
-  | "options";
-
-export type FieldUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<FieldIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<FieldSetInput>;
-  /** filter the rows which have to be updated */
-  where: FieldBoolExp;
-};
-
-/** order by varPop() on columns of table "field" */
-export type FieldVarPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "field" */
-export type FieldVarSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "field" */
-export type FieldVarianceOrderBy = {
-  index?: InputMaybe<OrderBy>;
 };
 
 export type GroupApplicationAggregateBoolExp = {
@@ -651,14 +395,14 @@ export type GroupBoolExp = {
   apps?: InputMaybe<AppBoolExp>;
   categories?: InputMaybe<HouseholdCategoryBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   creditCardSummaries?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   dashboardSettings?: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateBoolExp>;
+  details?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
   favoriteFilters?: InputMaybe<HouseholdFavoriteFilterBoolExp>;
   favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateBoolExp>;
   genres?: InputMaybe<HouseholdGenreBoolExp>;
@@ -669,13 +413,10 @@ export type GroupBoolExp = {
   importFileHistories?: InputMaybe<HouseholdImportFileHistoryBoolExp>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
-  summaryViews?: InputMaybe<SummaryViewBoolExp>;
+  tags?: InputMaybe<HouseholdTagBoolExp>;
   totalByCategoryView?: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryBoolExp>;
-  views?: InputMaybe<ViewBoolExp>;
 };
 
 /** Ordering options when selecting data from "group". */
@@ -689,17 +430,16 @@ export type GroupOrderBy = {
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   dashboardSettingsAggregate?: InputMaybe<HouseholdDashboardSettingAggregateOrderBy>;
   depositCategoriesAggregate?: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
   favoriteFiltersAggregate?: InputMaybe<HouseholdFavoriteFilterAggregateOrderBy>;
   genresAggregate?: InputMaybe<HouseholdGenreAggregateOrderBy>;
   groupApplicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
   id?: InputMaybe<OrderBy>;
   importFileHistoriesAggregate?: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
-  summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
+  tagsAggregate?: InputMaybe<HouseholdTagAggregateOrderBy>;
   totalByCategoryViewAggregate?: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory?: InputMaybe<HouseholdTransferCategoryOrderBy>;
-  viewsAggregate?: InputMaybe<ViewAggregateOrderBy>;
 };
 
 /** select columns of table "group" */
@@ -759,7 +499,6 @@ export type HouseholdAccountBoolExp = {
   creditCardSummaries?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   creditCardSummariesAggregate?: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
@@ -937,17 +676,24 @@ export type HouseholdAllDetailViewBoolExp = {
   _and?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
   _not?: InputMaybe<HouseholdAllDetailViewBoolExp>;
   _or?: InputMaybe<Array<HouseholdAllDetailViewBoolExp>>;
+  account?: InputMaybe<HouseholdAccountBoolExp>;
   accountId?: InputMaybe<StringComparisonExp>;
+  category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
+  genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   iocomeType?: InputMaybe<StringComparisonExp>;
   memo?: InputMaybe<StringComparisonExp>;
   originalAmount?: InputMaybe<NumericComparisonExp>;
+  settlementDate?: InputMaybe<DateComparisonExp>;
   signedAmount?: InputMaybe<NumericComparisonExp>;
   type?: InputMaybe<StringComparisonExp>;
+  withdrawalDate?: InputMaybe<DateComparisonExp>;
 };
 
 /** order by max() on columns of table "household.all_detail_view" */
@@ -961,8 +707,10 @@ export type HouseholdAllDetailViewMaxOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "household.all_detail_view" */
@@ -976,23 +724,31 @@ export type HouseholdAllDetailViewMinOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** Ordering options when selecting data from "household.all_detail_view". */
 export type HouseholdAllDetailViewOrderBy = {
+  account?: InputMaybe<HouseholdAccountOrderBy>;
   accountId?: InputMaybe<OrderBy>;
+  category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
+  genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   originalAmount?: InputMaybe<OrderBy>;
+  settlementDate?: InputMaybe<OrderBy>;
   signedAmount?: InputMaybe<OrderBy>;
   type?: InputMaybe<OrderBy>;
+  withdrawalDate?: InputMaybe<OrderBy>;
 };
 
 /** select columns of table "household.all_detail_view" */
@@ -1016,9 +772,13 @@ export type HouseholdAllDetailViewSelectColumn =
   /** column name */
   | "originalAmount"
   /** column name */
+  | "settlementDate"
+  /** column name */
   | "signedAmount"
   /** column name */
-  | "type";
+  | "type"
+  /** column name */
+  | "withdrawalDate";
 
 /** order by stddev() on columns of table "household.all_detail_view" */
 export type HouseholdAllDetailViewStddevOrderBy = {
@@ -1057,8 +817,10 @@ export type HouseholdAllDetailViewStreamCursorValueInput = {
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
   originalAmount?: InputMaybe<Scalars["numeric"]>;
+  settlementDate?: InputMaybe<Scalars["date"]>;
   signedAmount?: InputMaybe<Scalars["numeric"]>;
   type?: InputMaybe<Scalars["String"]>;
+  withdrawalDate?: InputMaybe<Scalars["date"]>;
 };
 
 /** order by sum() on columns of table "household.all_detail_view" */
@@ -1118,9 +880,7 @@ export type HouseholdCategoryBoolExp = {
   _not?: InputMaybe<HouseholdCategoryBoolExp>;
   _or?: InputMaybe<Array<HouseholdCategoryBoolExp>>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   depositCategory?: InputMaybe<HouseholdDepositCategoryBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
@@ -1129,8 +889,6 @@ export type HouseholdCategoryBoolExp = {
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExp>;
   transferCategories?: InputMaybe<HouseholdTransferCategoryBoolExp>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateBoolExp>;
   validFlag?: InputMaybe<BooleanComparisonExp>;
@@ -1156,7 +914,6 @@ export type HouseholdCategoryInsertInput = {
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-  summaryCategories?: InputMaybe<HouseholdSummaryCategoryArrRelInsertInput>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
@@ -1204,7 +961,6 @@ export type HouseholdCategoryOrderBy = {
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-  summaryCategoriesAggregate?: InputMaybe<HouseholdSummaryCategoryAggregateOrderBy>;
   transferCategoriesAggregate?: InputMaybe<HouseholdTransferCategoryAggregateOrderBy>;
   validFlag?: InputMaybe<OrderBy>;
 };
@@ -1316,10 +1072,6 @@ export type HouseholdCategoryVarianceOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-export type HouseholdCreditCardDetailAggregateBoolExp = {
-  count?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExpCount>;
-};
-
 /** order by aggregate values of table "household.credit_card_detail" */
 export type HouseholdCreditCardDetailAggregateOrderBy = {
   avg?: InputMaybe<HouseholdCreditCardDetailAvgOrderBy>;
@@ -1357,6 +1109,8 @@ export type HouseholdCreditCardDetailBoolExp = {
   categoryId?: InputMaybe<StringComparisonExp>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   date?: InputMaybe<DateComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -1386,6 +1140,7 @@ export type HouseholdCreditCardDetailInsertInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryObjRelInsertInput>;
   date?: InputMaybe<Scalars["date"]>;
+  detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
   genre?: InputMaybe<HouseholdGenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
@@ -1439,6 +1194,7 @@ export type HouseholdCreditCardDetailOrderBy = {
   categoryId?: InputMaybe<OrderBy>;
   creditCardSummary?: InputMaybe<HouseholdCreditCardSummaryOrderBy>;
   date?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
@@ -1483,14 +1239,9 @@ export type HouseholdCreditCardDetailSelectColumn =
 export type HouseholdCreditCardDetailSetInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["String"]>;
-  date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
-  summaryId?: InputMaybe<Scalars["String"]>;
-  userId?: InputMaybe<Scalars["String"]>;
 };
 
 /** order by stddev() on columns of table "household.credit_card_detail" */
@@ -1542,21 +1293,11 @@ export type HouseholdCreditCardDetailUpdateColumn =
   /** column name */
   | "categoryId"
   /** column name */
-  | "date"
-  /** column name */
   | "genreId"
-  /** column name */
-  | "groupId"
-  /** column name */
-  | "id"
   /** column name */
   | "iocomeType"
   /** column name */
-  | "memo"
-  /** column name */
-  | "summaryId"
-  /** column name */
-  | "userId";
+  | "memo";
 
 export type HouseholdCreditCardDetailUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -1624,7 +1365,6 @@ export type HouseholdCreditCardSummaryBoolExp = {
   count?: InputMaybe<IntComparisonExp>;
   creditCard?: InputMaybe<StringComparisonExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
@@ -1888,10 +1628,6 @@ export type HouseholdCreditCardSummaryVarianceOrderBy = {
   totalAmount?: InputMaybe<OrderBy>;
 };
 
-export type HouseholdDailyDetailAggregateBoolExp = {
-  count?: InputMaybe<HouseholdDailyDetailAggregateBoolExpCount>;
-};
-
 /** order by aggregate values of table "household.daily_detail" */
 export type HouseholdDailyDetailAggregateOrderBy = {
   avg?: InputMaybe<HouseholdDailyDetailAvgOrderBy>;
@@ -1930,6 +1666,8 @@ export type HouseholdDailyDetailBoolExp = {
   category?: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId?: InputMaybe<StringComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   genre?: InputMaybe<HouseholdGenreBoolExp>;
   genreId?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -1959,6 +1697,7 @@ export type HouseholdDailyDetailInsertInput = {
   category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
+  detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
   genre?: InputMaybe<HouseholdGenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["String"]>;
@@ -2012,6 +1751,7 @@ export type HouseholdDailyDetailOrderBy = {
   category?: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   genre?: InputMaybe<HouseholdGenreOrderBy>;
   genreId?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
@@ -2058,11 +1798,8 @@ export type HouseholdDailyDetailSetInput = {
   categoryId?: InputMaybe<Scalars["String"]>;
   date?: InputMaybe<Scalars["date"]>;
   genreId?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
   iocomeType?: InputMaybe<Scalars["String"]>;
   memo?: InputMaybe<Scalars["String"]>;
-  userId?: InputMaybe<Scalars["String"]>;
 };
 
 /** order by stddev() on columns of table "household.daily_detail" */
@@ -2120,15 +1857,9 @@ export type HouseholdDailyDetailUpdateColumn =
   /** column name */
   | "genreId"
   /** column name */
-  | "groupId"
-  /** column name */
-  | "id"
-  /** column name */
   | "iocomeType"
   /** column name */
-  | "memo"
-  /** column name */
-  | "userId";
+  | "memo";
 
 export type HouseholdDailyDetailUpdates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -2568,6 +2299,115 @@ export type HouseholdDepositCategoryStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["String"]>;
 };
 
+export type HouseholdDetailTagAggregateBoolExp = {
+  count?: InputMaybe<HouseholdDetailTagAggregateBoolExpCount>;
+};
+
+/** order by aggregate values of table "household.detail_tag" */
+export type HouseholdDetailTagAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<HouseholdDetailTagMaxOrderBy>;
+  min?: InputMaybe<HouseholdDetailTagMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "household.detail_tag" */
+export type HouseholdDetailTagArrRelInsertInput = {
+  data: Array<HouseholdDetailTagInsertInput>;
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdDetailTagOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "household.detail_tag". All fields are combined with a logical 'AND'. */
+export type HouseholdDetailTagBoolExp = {
+  _and?: InputMaybe<Array<HouseholdDetailTagBoolExp>>;
+  _not?: InputMaybe<HouseholdDetailTagBoolExp>;
+  _or?: InputMaybe<Array<HouseholdDetailTagBoolExp>>;
+  creditCardDetailsDetailTag?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
+  dailyDetailsDetailTag?: InputMaybe<HouseholdDailyDetailBoolExp>;
+  detailId?: InputMaybe<StringComparisonExp>;
+  details?: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
+  id?: InputMaybe<StringComparisonExp>;
+  tag?: InputMaybe<HouseholdTagBoolExp>;
+  tagId?: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household.detail_tag" */
+export type HouseholdDetailTagConstraint =
+  /** unique or primary key constraint on columns "id" */
+  "detail_tag_pkey";
+
+/** input type for inserting data into table "household.detail_tag" */
+export type HouseholdDetailTagInsertInput = {
+  creditCardDetailsDetailTag?: InputMaybe<HouseholdCreditCardDetailArrRelInsertInput>;
+  dailyDetailsDetailTag?: InputMaybe<HouseholdDailyDetailArrRelInsertInput>;
+  detailId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  tag?: InputMaybe<HouseholdTagObjRelInsertInput>;
+  tagId?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "household.detail_tag" */
+export type HouseholdDetailTagMaxOrderBy = {
+  detailId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "household.detail_tag" */
+export type HouseholdDetailTagMinOrderBy = {
+  detailId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "household.detail_tag" */
+export type HouseholdDetailTagOnConflict = {
+  constraint: HouseholdDetailTagConstraint;
+  updateColumns?: Array<HouseholdDetailTagUpdateColumn>;
+  where?: InputMaybe<HouseholdDetailTagBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.detail_tag". */
+export type HouseholdDetailTagOrderBy = {
+  creditCardDetailsDetailTagAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
+  dailyDetailsDetailTagAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
+  detailId?: InputMaybe<OrderBy>;
+  detailsAggregate?: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tag?: InputMaybe<HouseholdTagOrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "household.detail_tag" */
+export type HouseholdDetailTagSelectColumn =
+  /** column name */
+  | "detailId"
+  /** column name */
+  | "id"
+  /** column name */
+  | "tagId";
+
+/** Streaming cursor of the table "household_detail_tag" */
+export type HouseholdDetailTagStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: HouseholdDetailTagStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type HouseholdDetailTagStreamCursorValueInput = {
+  detailId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  tagId?: InputMaybe<Scalars["String"]>;
+};
+
+/** placeholder for update columns of table "household.detail_tag" (current role has no relevant permissions) */
+export type HouseholdDetailTagUpdateColumn =
+  /** placeholder (do not use) */
+  "_PLACEHOLDER";
+
 export type HouseholdFavoriteFilterAggregateBoolExp = {
   count?: InputMaybe<HouseholdFavoriteFilterAggregateBoolExpCount>;
 };
@@ -2821,9 +2661,7 @@ export type HouseholdGenreBoolExp = {
   _or?: InputMaybe<Array<HouseholdGenreBoolExp>>;
   categories?: InputMaybe<HouseholdCategoryBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   genreType?: InputMaybe<StringComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
@@ -3146,161 +2984,196 @@ export type HouseholdImportFileHistoryUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
 
-export type HouseholdSummaryCategoryAggregateBoolExp = {
-  count?: InputMaybe<HouseholdSummaryCategoryAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "household.summary_category" */
-export type HouseholdSummaryCategoryAggregateOrderBy = {
-  avg?: InputMaybe<HouseholdSummaryCategoryAvgOrderBy>;
+/** order by aggregate values of table "household.tag" */
+export type HouseholdTagAggregateOrderBy = {
+  avg?: InputMaybe<HouseholdTagAvgOrderBy>;
   count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<HouseholdSummaryCategoryMaxOrderBy>;
-  min?: InputMaybe<HouseholdSummaryCategoryMinOrderBy>;
-  stddev?: InputMaybe<HouseholdSummaryCategoryStddevOrderBy>;
-  stddevPop?: InputMaybe<HouseholdSummaryCategoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<HouseholdSummaryCategoryStddevSampOrderBy>;
-  sum?: InputMaybe<HouseholdSummaryCategorySumOrderBy>;
-  varPop?: InputMaybe<HouseholdSummaryCategoryVarPopOrderBy>;
-  varSamp?: InputMaybe<HouseholdSummaryCategoryVarSampOrderBy>;
-  variance?: InputMaybe<HouseholdSummaryCategoryVarianceOrderBy>;
+  max?: InputMaybe<HouseholdTagMaxOrderBy>;
+  min?: InputMaybe<HouseholdTagMinOrderBy>;
+  stddev?: InputMaybe<HouseholdTagStddevOrderBy>;
+  stddevPop?: InputMaybe<HouseholdTagStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<HouseholdTagStddevSampOrderBy>;
+  sum?: InputMaybe<HouseholdTagSumOrderBy>;
+  varPop?: InputMaybe<HouseholdTagVarPopOrderBy>;
+  varSamp?: InputMaybe<HouseholdTagVarSampOrderBy>;
+  variance?: InputMaybe<HouseholdTagVarianceOrderBy>;
 };
 
-/** input type for inserting array relation for remote table "household.summary_category" */
-export type HouseholdSummaryCategoryArrRelInsertInput = {
-  data: Array<HouseholdSummaryCategoryInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HouseholdSummaryCategoryOnConflict>;
-};
-
-/** order by avg() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryAvgOrderBy = {
+/** order by avg() on columns of table "household.tag" */
+export type HouseholdTagAvgOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** Boolean expression to filter rows from the table "household.summary_category". All fields are combined with a logical 'AND'. */
-export type HouseholdSummaryCategoryBoolExp = {
-  _and?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  _not?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  _or?: InputMaybe<Array<HouseholdSummaryCategoryBoolExp>>;
-  category?: InputMaybe<HouseholdCategoryBoolExp>;
-  categoryId?: InputMaybe<StringComparisonExp>;
+/** Boolean expression to filter rows from the table "household.tag". All fields are combined with a logical 'AND'. */
+export type HouseholdTagBoolExp = {
+  _and?: InputMaybe<Array<HouseholdTagBoolExp>>;
+  _not?: InputMaybe<HouseholdTagBoolExp>;
+  _or?: InputMaybe<Array<HouseholdTagBoolExp>>;
+  colorCode?: InputMaybe<BpcharComparisonExp>;
+  detailTags?: InputMaybe<HouseholdDetailTagBoolExp>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
+  name?: InputMaybe<StringComparisonExp>;
 };
 
-/** unique or primary key constraints on table "household.summary_category" */
-export type HouseholdSummaryCategoryConstraint =
+/** unique or primary key constraints on table "household.tag" */
+export type HouseholdTagConstraint =
   /** unique or primary key constraint on columns "id" */
-  "summary_category_by_group_pkey";
+  "m_tag_pkey";
 
-/** input type for inserting data into table "household.summary_category" */
-export type HouseholdSummaryCategoryInsertInput = {
-  category?: InputMaybe<HouseholdCategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars["String"]>;
+/** input type for incrementing numeric columns in table "household.tag" */
+export type HouseholdTagIncInput = {
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+};
+
+/** input type for inserting data into table "household.tag" */
+export type HouseholdTagInsertInput = {
+  colorCode?: InputMaybe<Scalars["bpchar"]>;
+  detailTags?: InputMaybe<HouseholdDetailTagArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
 };
 
-/** order by max() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMaxOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
+/** order by max() on columns of table "household.tag" */
+export type HouseholdTagMaxOrderBy = {
+  colorCode?: InputMaybe<OrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
 };
 
-/** order by min() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryMinOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
+/** order by min() on columns of table "household.tag" */
+export type HouseholdTagMinOrderBy = {
+  colorCode?: InputMaybe<OrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
 };
 
-/** on_conflict condition type for table "household.summary_category" */
-export type HouseholdSummaryCategoryOnConflict = {
-  constraint: HouseholdSummaryCategoryConstraint;
-  updateColumns?: Array<HouseholdSummaryCategoryUpdateColumn>;
-  where?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
+/** input type for inserting object relation for remote table "household.tag" */
+export type HouseholdTagObjRelInsertInput = {
+  data: HouseholdTagInsertInput;
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdTagOnConflict>;
 };
 
-/** Ordering options when selecting data from "household.summary_category". */
-export type HouseholdSummaryCategoryOrderBy = {
-  category?: InputMaybe<HouseholdCategoryOrderBy>;
-  categoryId?: InputMaybe<OrderBy>;
+/** on_conflict condition type for table "household.tag" */
+export type HouseholdTagOnConflict = {
+  constraint: HouseholdTagConstraint;
+  updateColumns?: Array<HouseholdTagUpdateColumn>;
+  where?: InputMaybe<HouseholdTagBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.tag". */
+export type HouseholdTagOrderBy = {
+  colorCode?: InputMaybe<OrderBy>;
+  detailTagsAggregate?: InputMaybe<HouseholdDetailTagAggregateOrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  name?: InputMaybe<OrderBy>;
 };
 
-/** select columns of table "household.summary_category" */
-export type HouseholdSummaryCategorySelectColumn =
+/** primary key columns input for table: household.tag */
+export type HouseholdTagPkColumnsInput = {
+  id: Scalars["String"];
+};
+
+/** select columns of table "household.tag" */
+export type HouseholdTagSelectColumn =
   /** column name */
-  | "categoryId"
+  | "colorCode"
   /** column name */
   | "displayOrder"
   /** column name */
   | "groupId"
   /** column name */
-  | "id";
+  | "id"
+  /** column name */
+  | "name";
 
-/** order by stddev() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevOrderBy = {
+/** input type for updating data in table "household.tag" */
+export type HouseholdTagSetInput = {
+  colorCode?: InputMaybe<Scalars["bpchar"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  name?: InputMaybe<Scalars["String"]>;
+};
+
+/** order by stddev() on columns of table "household.tag" */
+export type HouseholdTagStddevOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** order by stddevPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevPopOrderBy = {
+/** order by stddevPop() on columns of table "household.tag" */
+export type HouseholdTagStddevPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** order by stddevSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryStddevSampOrderBy = {
+/** order by stddevSamp() on columns of table "household.tag" */
+export type HouseholdTagStddevSampOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** Streaming cursor of the table "household_summary_category" */
-export type HouseholdSummaryCategoryStreamCursorInput = {
+/** Streaming cursor of the table "household_tag" */
+export type HouseholdTagStreamCursorInput = {
   /** Stream column input with initial value */
-  initialValue: HouseholdSummaryCategoryStreamCursorValueInput;
+  initialValue: HouseholdTagStreamCursorValueInput;
   /** cursor ordering */
   ordering?: InputMaybe<CursorOrdering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type HouseholdSummaryCategoryStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars["String"]>;
+export type HouseholdTagStreamCursorValueInput = {
+  colorCode?: InputMaybe<Scalars["bpchar"]>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   groupId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
 };
 
-/** order by sum() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategorySumOrderBy = {
+/** order by sum() on columns of table "household.tag" */
+export type HouseholdTagSumOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** placeholder for update columns of table "household.summary_category" (current role has no relevant permissions) */
-export type HouseholdSummaryCategoryUpdateColumn =
-  /** placeholder (do not use) */
-  "_PLACEHOLDER";
+/** update columns of table "household.tag" */
+export type HouseholdTagUpdateColumn =
+  /** column name */
+  | "colorCode"
+  /** column name */
+  | "displayOrder"
+  /** column name */
+  | "name";
 
-/** order by varPop() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarPopOrderBy = {
+export type HouseholdTagUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<HouseholdTagIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdTagSetInput>;
+  /** filter the rows which have to be updated */
+  where: HouseholdTagBoolExp;
+};
+
+/** order by varPop() on columns of table "household.tag" */
+export type HouseholdTagVarPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** order by varSamp() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarSampOrderBy = {
+/** order by varSamp() on columns of table "household.tag" */
+export type HouseholdTagVarSampOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** order by variance() on columns of table "household.summary_category" */
-export type HouseholdSummaryCategoryVarianceOrderBy = {
+/** order by variance() on columns of table "household.tag" */
+export type HouseholdTagVarianceOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
@@ -3583,376 +3456,6 @@ export type HouseholdTransferCategoryStreamCursorValueInput = {
   outcomeCategoryId?: InputMaybe<Scalars["String"]>;
 };
 
-/** order by aggregate values of table "import_file_history" */
-export type ImportFileHistoryAggregateOrderBy = {
-  avg?: InputMaybe<ImportFileHistoryAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ImportFileHistoryMaxOrderBy>;
-  min?: InputMaybe<ImportFileHistoryMinOrderBy>;
-  stddev?: InputMaybe<ImportFileHistoryStddevOrderBy>;
-  stddevPop?: InputMaybe<ImportFileHistoryStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<ImportFileHistoryStddevSampOrderBy>;
-  sum?: InputMaybe<ImportFileHistorySumOrderBy>;
-  varPop?: InputMaybe<ImportFileHistoryVarPopOrderBy>;
-  varSamp?: InputMaybe<ImportFileHistoryVarSampOrderBy>;
-  variance?: InputMaybe<ImportFileHistoryVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "import_file_history" */
-export type ImportFileHistoryArrRelInsertInput = {
-  data: Array<ImportFileHistoryInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
-};
-
-/** order by avg() on columns of table "import_file_history" */
-export type ImportFileHistoryAvgOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "import_file_history". All fields are combined with a logical 'AND'. */
-export type ImportFileHistoryBoolExp = {
-  _and?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
-  _not?: InputMaybe<ImportFileHistoryBoolExp>;
-  _or?: InputMaybe<Array<ImportFileHistoryBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  count?: InputMaybe<IntComparisonExp>;
-  fileName?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  importDatetime?: InputMaybe<TimestamptzComparisonExp>;
-  importFileRecords?: InputMaybe<ImportFileRecordBoolExp>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateBoolExp>;
-};
-
-/** unique or primary key constraints on table "import_file_history" */
-export type ImportFileHistoryConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "import_file_history_pkey";
-
-/** input type for inserting data into table "import_file_history" */
-export type ImportFileHistoryInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  count?: InputMaybe<Scalars["Int"]>;
-  fileName?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  importDatetime?: InputMaybe<Scalars["timestamptz"]>;
-  importFileRecords?: InputMaybe<ImportFileRecordArrRelInsertInput>;
-};
-
-/** order by max() on columns of table "import_file_history" */
-export type ImportFileHistoryMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  count?: InputMaybe<OrderBy>;
-  fileName?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importDatetime?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "import_file_history" */
-export type ImportFileHistoryMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  count?: InputMaybe<OrderBy>;
-  fileName?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importDatetime?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "import_file_history" */
-export type ImportFileHistoryObjRelInsertInput = {
-  data: ImportFileHistoryInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
-};
-
-/** on_conflict condition type for table "import_file_history" */
-export type ImportFileHistoryOnConflict = {
-  constraint: ImportFileHistoryConstraint;
-  updateColumns?: Array<ImportFileHistoryUpdateColumn>;
-  where?: InputMaybe<ImportFileHistoryBoolExp>;
-};
-
-/** Ordering options when selecting data from "import_file_history". */
-export type ImportFileHistoryOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  count?: InputMaybe<OrderBy>;
-  fileName?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importDatetime?: InputMaybe<OrderBy>;
-  importFileRecordsAggregate?: InputMaybe<ImportFileRecordAggregateOrderBy>;
-};
-
-/** select columns of table "import_file_history" */
-export type ImportFileHistorySelectColumn =
-  /** column name */
-  | "appId"
-  /** column name */
-  | "count"
-  /** column name */
-  | "fileName"
-  /** column name */
-  | "id"
-  /** column name */
-  | "importDatetime";
-
-/** order by stddev() on columns of table "import_file_history" */
-export type ImportFileHistoryStddevOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "import_file_history" */
-export type ImportFileHistoryStddevPopOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "import_file_history" */
-export type ImportFileHistoryStddevSampOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "import_file_history" */
-export type ImportFileHistoryStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ImportFileHistoryStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ImportFileHistoryStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  count?: InputMaybe<Scalars["Int"]>;
-  fileName?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  importDatetime?: InputMaybe<Scalars["timestamptz"]>;
-};
-
-/** order by sum() on columns of table "import_file_history" */
-export type ImportFileHistorySumOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** placeholder for update columns of table "import_file_history" (current role has no relevant permissions) */
-export type ImportFileHistoryUpdateColumn =
-  /** placeholder (do not use) */
-  "_PLACEHOLDER";
-
-/** order by varPop() on columns of table "import_file_history" */
-export type ImportFileHistoryVarPopOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "import_file_history" */
-export type ImportFileHistoryVarSampOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "import_file_history" */
-export type ImportFileHistoryVarianceOrderBy = {
-  count?: InputMaybe<OrderBy>;
-};
-
-export type ImportFileRecordAggregateBoolExp = {
-  count?: InputMaybe<ImportFileRecordAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "import_file_record" */
-export type ImportFileRecordAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ImportFileRecordMaxOrderBy>;
-  min?: InputMaybe<ImportFileRecordMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "import_file_record" */
-export type ImportFileRecordArrRelInsertInput = {
-  data: Array<ImportFileRecordInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileRecordOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "import_file_record". All fields are combined with a logical 'AND'. */
-export type ImportFileRecordBoolExp = {
-  _and?: InputMaybe<Array<ImportFileRecordBoolExp>>;
-  _not?: InputMaybe<ImportFileRecordBoolExp>;
-  _or?: InputMaybe<Array<ImportFileRecordBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  historyId?: InputMaybe<StringComparisonExp>;
-  importFileHistory?: InputMaybe<ImportFileHistoryBoolExp>;
-  record?: InputMaybe<RecordBoolExp>;
-  recordId?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "import_file_record" */
-export type ImportFileRecordConstraint =
-  /** unique or primary key constraint on columns "record_id" */
-  "import_file_record_pkey";
-
-/** input type for inserting data into table "import_file_record" */
-export type ImportFileRecordInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  historyId?: InputMaybe<Scalars["String"]>;
-  importFileHistory?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
-  record?: InputMaybe<RecordObjRelInsertInput>;
-  recordId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "import_file_record" */
-export type ImportFileRecordMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  historyId?: InputMaybe<OrderBy>;
-  recordId?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "import_file_record" */
-export type ImportFileRecordMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  historyId?: InputMaybe<OrderBy>;
-  recordId?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "import_file_record" */
-export type ImportFileRecordObjRelInsertInput = {
-  data: ImportFileRecordInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileRecordOnConflict>;
-};
-
-/** on_conflict condition type for table "import_file_record" */
-export type ImportFileRecordOnConflict = {
-  constraint: ImportFileRecordConstraint;
-  updateColumns?: Array<ImportFileRecordUpdateColumn>;
-  where?: InputMaybe<ImportFileRecordBoolExp>;
-};
-
-/** Ordering options when selecting data from "import_file_record". */
-export type ImportFileRecordOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  historyId?: InputMaybe<OrderBy>;
-  importFileHistory?: InputMaybe<ImportFileHistoryOrderBy>;
-  record?: InputMaybe<RecordOrderBy>;
-  recordId?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "import_file_record" */
-export type ImportFileRecordSelectColumn =
-  /** column name */
-  | "appId"
-  /** column name */
-  | "historyId"
-  /** column name */
-  | "recordId";
-
-/** Streaming cursor of the table "import_file_record" */
-export type ImportFileRecordStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ImportFileRecordStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ImportFileRecordStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  historyId?: InputMaybe<Scalars["String"]>;
-  recordId?: InputMaybe<Scalars["String"]>;
-};
-
-/** placeholder for update columns of table "import_file_record" (current role has no relevant permissions) */
-export type ImportFileRecordUpdateColumn =
-  /** placeholder (do not use) */
-  "_PLACEHOLDER";
-
-/** Boolean expression to filter rows from the table "import_file_setting". All fields are combined with a logical 'AND'. */
-export type ImportFileSettingBoolExp = {
-  _and?: InputMaybe<Array<ImportFileSettingBoolExp>>;
-  _not?: InputMaybe<ImportFileSettingBoolExp>;
-  _or?: InputMaybe<Array<ImportFileSettingBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  settings?: InputMaybe<JsonComparisonExp>;
-};
-
-/** unique or primary key constraints on table "import_file_setting" */
-export type ImportFileSettingConstraint =
-  /** unique or primary key constraint on columns "app_id" */
-  "import_file_setting_pkey";
-
-/** input type for inserting data into table "import_file_setting" */
-export type ImportFileSettingInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  settings?: InputMaybe<Scalars["json"]>;
-};
-
-/** input type for inserting object relation for remote table "import_file_setting" */
-export type ImportFileSettingObjRelInsertInput = {
-  data: ImportFileSettingInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ImportFileSettingOnConflict>;
-};
-
-/** on_conflict condition type for table "import_file_setting" */
-export type ImportFileSettingOnConflict = {
-  constraint: ImportFileSettingConstraint;
-  updateColumns?: Array<ImportFileSettingUpdateColumn>;
-  where?: InputMaybe<ImportFileSettingBoolExp>;
-};
-
-/** Ordering options when selecting data from "import_file_setting". */
-export type ImportFileSettingOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  settings?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: import_file_setting */
-export type ImportFileSettingPkColumnsInput = {
-  appId: Scalars["String"];
-};
-
-/** select columns of table "import_file_setting" */
-export type ImportFileSettingSelectColumn =
-  /** column name */
-  | "appId"
-  /** column name */
-  | "settings";
-
-/** input type for updating data in table "import_file_setting" */
-export type ImportFileSettingSetInput = {
-  settings?: InputMaybe<Scalars["json"]>;
-};
-
-/** Streaming cursor of the table "import_file_setting" */
-export type ImportFileSettingStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ImportFileSettingStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ImportFileSettingStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  settings?: InputMaybe<Scalars["json"]>;
-};
-
-/** update columns of table "import_file_setting" */
-export type ImportFileSettingUpdateColumn =
-  /** column name */
-  "settings";
-
-export type ImportFileSettingUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ImportFileSettingSetInput>;
-  /** filter the rows which have to be updated */
-  where: ImportFileSettingBoolExp;
-};
-
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type IntComparisonExp = {
   _eq?: InputMaybe<Scalars["Int"]>;
@@ -3964,141 +3467,6 @@ export type IntComparisonExp = {
   _lte?: InputMaybe<Scalars["Int"]>;
   _neq?: InputMaybe<Scalars["Int"]>;
   _nin?: InputMaybe<Array<Scalars["Int"]>>;
-};
-
-/** Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'. */
-export type JsonComparisonExp = {
-  _eq?: InputMaybe<Scalars["json"]>;
-  _gt?: InputMaybe<Scalars["json"]>;
-  _gte?: InputMaybe<Scalars["json"]>;
-  _in?: InputMaybe<Array<Scalars["json"]>>;
-  _isNull?: InputMaybe<Scalars["Boolean"]>;
-  _lt?: InputMaybe<Scalars["json"]>;
-  _lte?: InputMaybe<Scalars["json"]>;
-  _neq?: InputMaybe<Scalars["json"]>;
-  _nin?: InputMaybe<Array<Scalars["json"]>>;
-};
-
-/** Boolean expression to filter rows from the table "link_database". All fields are combined with a logical 'AND'. */
-export type LinkDatabaseBoolExp = {
-  _and?: InputMaybe<Array<LinkDatabaseBoolExp>>;
-  _not?: InputMaybe<LinkDatabaseBoolExp>;
-  _or?: InputMaybe<Array<LinkDatabaseBoolExp>>;
-  appId?: InputMaybe<StringComparisonExp>;
-  connection?: InputMaybe<JsonComparisonExp>;
-  database?: InputMaybe<StringComparisonExp>;
-  fieldColumnMaps?: InputMaybe<JsonComparisonExp>;
-  parameters?: InputMaybe<JsonComparisonExp>;
-  sql?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "link_database" */
-export type LinkDatabaseConstraint =
-  /** unique or primary key constraint on columns "app_id" */
-  "link_database_pkey";
-
-/** input type for inserting data into table "link_database" */
-export type LinkDatabaseInsertInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  connection?: InputMaybe<Scalars["json"]>;
-  database?: InputMaybe<Scalars["String"]>;
-  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
-  parameters?: InputMaybe<Scalars["json"]>;
-  sql?: InputMaybe<Scalars["String"]>;
-};
-
-/** input type for inserting object relation for remote table "link_database" */
-export type LinkDatabaseObjRelInsertInput = {
-  data: LinkDatabaseInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<LinkDatabaseOnConflict>;
-};
-
-/** on_conflict condition type for table "link_database" */
-export type LinkDatabaseOnConflict = {
-  constraint: LinkDatabaseConstraint;
-  updateColumns?: Array<LinkDatabaseUpdateColumn>;
-  where?: InputMaybe<LinkDatabaseBoolExp>;
-};
-
-/** Ordering options when selecting data from "link_database". */
-export type LinkDatabaseOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  connection?: InputMaybe<OrderBy>;
-  database?: InputMaybe<OrderBy>;
-  fieldColumnMaps?: InputMaybe<OrderBy>;
-  parameters?: InputMaybe<OrderBy>;
-  sql?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: link_database */
-export type LinkDatabasePkColumnsInput = {
-  appId: Scalars["String"];
-};
-
-/** select columns of table "link_database" */
-export type LinkDatabaseSelectColumn =
-  /** column name */
-  | "appId"
-  /** column name */
-  | "connection"
-  /** column name */
-  | "database"
-  /** column name */
-  | "fieldColumnMaps"
-  /** column name */
-  | "parameters"
-  /** column name */
-  | "sql";
-
-/** input type for updating data in table "link_database" */
-export type LinkDatabaseSetInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  connection?: InputMaybe<Scalars["json"]>;
-  database?: InputMaybe<Scalars["String"]>;
-  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
-  parameters?: InputMaybe<Scalars["json"]>;
-  sql?: InputMaybe<Scalars["String"]>;
-};
-
-/** Streaming cursor of the table "link_database" */
-export type LinkDatabaseStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: LinkDatabaseStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type LinkDatabaseStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  connection?: InputMaybe<Scalars["json"]>;
-  database?: InputMaybe<Scalars["String"]>;
-  fieldColumnMaps?: InputMaybe<Scalars["json"]>;
-  parameters?: InputMaybe<Scalars["json"]>;
-  sql?: InputMaybe<Scalars["String"]>;
-};
-
-/** update columns of table "link_database" */
-export type LinkDatabaseUpdateColumn =
-  /** column name */
-  | "appId"
-  /** column name */
-  | "connection"
-  /** column name */
-  | "database"
-  /** column name */
-  | "fieldColumnMaps"
-  /** column name */
-  | "parameters"
-  /** column name */
-  | "sql";
-
-export type LinkDatabaseUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<LinkDatabaseSetInput>;
-  /** filter the rows which have to be updated */
-  where: LinkDatabaseBoolExp;
 };
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
@@ -4128,197 +3496,6 @@ export type OrderBy =
   | "DESC_NULLS_FIRST"
   /** in descending order, nulls last */
   | "DESC_NULLS_LAST";
-
-export type RecordAggregateBoolExp = {
-  count?: InputMaybe<RecordAggregateBoolExpCount>;
-};
-
-/** order by aggregate values of table "record" */
-export type RecordAggregateOrderBy = {
-  avg?: InputMaybe<RecordAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<RecordMaxOrderBy>;
-  min?: InputMaybe<RecordMinOrderBy>;
-  stddev?: InputMaybe<RecordStddevOrderBy>;
-  stddevPop?: InputMaybe<RecordStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<RecordStddevSampOrderBy>;
-  sum?: InputMaybe<RecordSumOrderBy>;
-  varPop?: InputMaybe<RecordVarPopOrderBy>;
-  varSamp?: InputMaybe<RecordVarSampOrderBy>;
-  variance?: InputMaybe<RecordVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "record" */
-export type RecordArrRelInsertInput = {
-  data: Array<RecordInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<RecordOnConflict>;
-};
-
-/** order by avg() on columns of table "record" */
-export type RecordAvgOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "record". All fields are combined with a logical 'AND'. */
-export type RecordBoolExp = {
-  _and?: InputMaybe<Array<RecordBoolExp>>;
-  _not?: InputMaybe<RecordBoolExp>;
-  _or?: InputMaybe<Array<RecordBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  columns?: InputMaybe<JsonComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  importFileRecord?: InputMaybe<ImportFileRecordBoolExp>;
-  index?: InputMaybe<IntComparisonExp>;
-};
-
-/** unique or primary key constraints on table "record" */
-export type RecordConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "record_pkey";
-
-/** input type for incrementing numeric columns in table "record" */
-export type RecordIncInput = {
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "record" */
-export type RecordInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  columns?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  importFileRecord?: InputMaybe<ImportFileRecordObjRelInsertInput>;
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** order by max() on columns of table "record" */
-export type RecordMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "record" */
-export type RecordMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "record" */
-export type RecordObjRelInsertInput = {
-  data: RecordInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<RecordOnConflict>;
-};
-
-/** on_conflict condition type for table "record" */
-export type RecordOnConflict = {
-  constraint: RecordConstraint;
-  updateColumns?: Array<RecordUpdateColumn>;
-  where?: InputMaybe<RecordBoolExp>;
-};
-
-/** Ordering options when selecting data from "record". */
-export type RecordOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  columns?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  importFileRecord?: InputMaybe<ImportFileRecordOrderBy>;
-  index?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: record */
-export type RecordPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "record" */
-export type RecordSelectColumn =
-  /** column name */
-  | "appId"
-  /** column name */
-  | "columns"
-  /** column name */
-  | "id"
-  /** column name */
-  | "index";
-
-/** input type for updating data in table "record" */
-export type RecordSetInput = {
-  columns?: InputMaybe<Scalars["json"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** order by stddev() on columns of table "record" */
-export type RecordStddevOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "record" */
-export type RecordStddevPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "record" */
-export type RecordStddevSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "record" */
-export type RecordStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: RecordStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type RecordStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  columns?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** order by sum() on columns of table "record" */
-export type RecordSumOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "record" */
-export type RecordUpdateColumn =
-  /** column name */
-  | "columns"
-  /** column name */
-  | "index";
-
-export type RecordUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<RecordIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<RecordSetInput>;
-  /** filter the rows which have to be updated */
-  where: RecordBoolExp;
-};
-
-/** order by varPop() on columns of table "record" */
-export type RecordVarPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "record" */
-export type RecordVarSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "record" */
-export type RecordVarianceOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
@@ -4353,124 +3530,6 @@ export type StringComparisonExp = {
   _similar?: InputMaybe<Scalars["String"]>;
 };
 
-/** order by aggregate values of table "summary_view" */
-export type SummaryViewAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<SummaryViewMaxOrderBy>;
-  min?: InputMaybe<SummaryViewMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "summary_view" */
-export type SummaryViewArrRelInsertInput = {
-  data: Array<SummaryViewInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<SummaryViewOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "summary_view". All fields are combined with a logical 'AND'. */
-export type SummaryViewBoolExp = {
-  _and?: InputMaybe<Array<SummaryViewBoolExp>>;
-  _not?: InputMaybe<SummaryViewBoolExp>;
-  _or?: InputMaybe<Array<SummaryViewBoolExp>>;
-  group?: InputMaybe<GroupBoolExp>;
-  groupId?: InputMaybe<StringComparisonExp>;
-  groupingFields?: InputMaybe<JsonComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  summaryFields?: InputMaybe<JsonComparisonExp>;
-  view?: InputMaybe<ViewBoolExp>;
-  viewId?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "summary_view" */
-export type SummaryViewConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "summary_view_pkey";
-
-/** input type for inserting data into table "summary_view" */
-export type SummaryViewInsertInput = {
-  groupId?: InputMaybe<Scalars["String"]>;
-  groupingFields?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  summaryFields?: InputMaybe<Scalars["json"]>;
-  view?: InputMaybe<ViewObjRelInsertInput>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "summary_view" */
-export type SummaryViewMaxOrderBy = {
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "summary_view" */
-export type SummaryViewMinOrderBy = {
-  groupId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "summary_view" */
-export type SummaryViewOnConflict = {
-  constraint: SummaryViewConstraint;
-  updateColumns?: Array<SummaryViewUpdateColumn>;
-  where?: InputMaybe<SummaryViewBoolExp>;
-};
-
-/** Ordering options when selecting data from "summary_view". */
-export type SummaryViewOrderBy = {
-  group?: InputMaybe<GroupOrderBy>;
-  groupId?: InputMaybe<OrderBy>;
-  groupingFields?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  summaryFields?: InputMaybe<OrderBy>;
-  view?: InputMaybe<ViewOrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "summary_view" */
-export type SummaryViewSelectColumn =
-  /** column name */
-  | "groupId"
-  /** column name */
-  | "groupingFields"
-  /** column name */
-  | "id"
-  /** column name */
-  | "name"
-  /** column name */
-  | "summaryFields"
-  /** column name */
-  | "viewId";
-
-/** Streaming cursor of the table "summary_view" */
-export type SummaryViewStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: SummaryViewStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type SummaryViewStreamCursorValueInput = {
-  groupId?: InputMaybe<Scalars["String"]>;
-  groupingFields?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  summaryFields?: InputMaybe<Scalars["json"]>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** placeholder for update columns of table "summary_view" (current role has no relevant permissions) */
-export type SummaryViewUpdateColumn =
-  /** placeholder (do not use) */
-  "_PLACEHOLDER";
-
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
 export type TimestampComparisonExp = {
   _eq?: InputMaybe<Scalars["timestamp"]>;
@@ -4484,19 +3543,6 @@ export type TimestampComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["timestamp"]>>;
 };
 
-/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
-export type TimestamptzComparisonExp = {
-  _eq?: InputMaybe<Scalars["timestamptz"]>;
-  _gt?: InputMaybe<Scalars["timestamptz"]>;
-  _gte?: InputMaybe<Scalars["timestamptz"]>;
-  _in?: InputMaybe<Array<Scalars["timestamptz"]>>;
-  _isNull?: InputMaybe<Scalars["Boolean"]>;
-  _lt?: InputMaybe<Scalars["timestamptz"]>;
-  _lte?: InputMaybe<Scalars["timestamptz"]>;
-  _neq?: InputMaybe<Scalars["timestamptz"]>;
-  _nin?: InputMaybe<Array<Scalars["timestamptz"]>>;
-};
-
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
 export type UserBoolExp = {
   _and?: InputMaybe<Array<UserBoolExp>>;
@@ -4504,16 +3550,12 @@ export type UserBoolExp = {
   _or?: InputMaybe<Array<UserBoolExp>>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
   affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
-  apps?: InputMaybe<AppBoolExp>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   email?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
-  views?: InputMaybe<ViewBoolExp>;
 };
 
 /** unique or primary key constraints on table "user" */
@@ -4526,14 +3568,12 @@ export type UserConstraint =
 /** input type for inserting data into table "user" */
 export type UserInsertInput = {
   affiliations?: InputMaybe<AffiliationArrRelInsertInput>;
-  apps?: InputMaybe<AppArrRelInsertInput>;
   creditCardDetails?: InputMaybe<HouseholdCreditCardDetailArrRelInsertInput>;
   dailyDetails?: InputMaybe<HouseholdDailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   email?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
-  views?: InputMaybe<ViewArrRelInsertInput>;
 };
 
 /** input type for inserting object relation for remote table "user" */
@@ -4553,14 +3593,12 @@ export type UserOnConflict = {
 /** Ordering options when selecting data from "user". */
 export type UserOrderBy = {
   affiliationsAggregate?: InputMaybe<AffiliationAggregateOrderBy>;
-  appsAggregate?: InputMaybe<AppAggregateOrderBy>;
   creditCardDetailsAggregate?: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   dailyDetailsAggregate?: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
   email?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-  viewsAggregate?: InputMaybe<ViewAggregateOrderBy>;
 };
 
 /** select columns of table "user" */
@@ -4594,432 +3632,6 @@ export type UserStreamCursorValueInput = {
 export type UserUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
-
-/** order by aggregate values of table "view" */
-export type ViewAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ViewMaxOrderBy>;
-  min?: InputMaybe<ViewMinOrderBy>;
-};
-
-/** order by aggregate values of table "view_app" */
-export type ViewAppAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ViewAppMaxOrderBy>;
-  min?: InputMaybe<ViewAppMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "view_app" */
-export type ViewAppArrRelInsertInput = {
-  data: Array<ViewAppInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ViewAppOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "view_app". All fields are combined with a logical 'AND'. */
-export type ViewAppBoolExp = {
-  _and?: InputMaybe<Array<ViewAppBoolExp>>;
-  _not?: InputMaybe<ViewAppBoolExp>;
-  _or?: InputMaybe<Array<ViewAppBoolExp>>;
-  app?: InputMaybe<AppBoolExp>;
-  appId?: InputMaybe<StringComparisonExp>;
-  fields?: InputMaybe<JsonComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  view?: InputMaybe<ViewBoolExp>;
-  viewId?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "view_app" */
-export type ViewAppConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "view_app_pkey";
-
-/** input type for inserting data into table "view_app" */
-export type ViewAppInsertInput = {
-  app?: InputMaybe<AppObjRelInsertInput>;
-  appId?: InputMaybe<Scalars["String"]>;
-  fields?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  view?: InputMaybe<ViewObjRelInsertInput>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "view_app" */
-export type ViewAppMaxOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "view_app" */
-export type ViewAppMinOrderBy = {
-  appId?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "view_app" */
-export type ViewAppOnConflict = {
-  constraint: ViewAppConstraint;
-  updateColumns?: Array<ViewAppUpdateColumn>;
-  where?: InputMaybe<ViewAppBoolExp>;
-};
-
-/** Ordering options when selecting data from "view_app". */
-export type ViewAppOrderBy = {
-  app?: InputMaybe<AppOrderBy>;
-  appId?: InputMaybe<OrderBy>;
-  fields?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  view?: InputMaybe<ViewOrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "view_app" */
-export type ViewAppSelectColumn =
-  /** column name */
-  | "appId"
-  /** column name */
-  | "fields"
-  /** column name */
-  | "id"
-  /** column name */
-  | "viewId";
-
-/** Streaming cursor of the table "view_app" */
-export type ViewAppStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ViewAppStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ViewAppStreamCursorValueInput = {
-  appId?: InputMaybe<Scalars["String"]>;
-  fields?: InputMaybe<Scalars["json"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** placeholder for update columns of table "view_app" (current role has no relevant permissions) */
-export type ViewAppUpdateColumn =
-  /** placeholder (do not use) */
-  "_PLACEHOLDER";
-
-/** input type for inserting array relation for remote table "view" */
-export type ViewArrRelInsertInput = {
-  data: Array<ViewInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ViewOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "view". All fields are combined with a logical 'AND'. */
-export type ViewBoolExp = {
-  _and?: InputMaybe<Array<ViewBoolExp>>;
-  _not?: InputMaybe<ViewBoolExp>;
-  _or?: InputMaybe<Array<ViewBoolExp>>;
-  group?: InputMaybe<GroupBoolExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  summaryViews?: InputMaybe<SummaryViewBoolExp>;
-  user?: InputMaybe<UserBoolExp>;
-  viewApps?: InputMaybe<ViewAppBoolExp>;
-  viewFields?: InputMaybe<ViewFieldBoolExp>;
-};
-
-/** unique or primary key constraints on table "view" */
-export type ViewConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "view_pkey";
-
-/** order by aggregate values of table "view_field" */
-export type ViewFieldAggregateOrderBy = {
-  avg?: InputMaybe<ViewFieldAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<ViewFieldMaxOrderBy>;
-  min?: InputMaybe<ViewFieldMinOrderBy>;
-  stddev?: InputMaybe<ViewFieldStddevOrderBy>;
-  stddevPop?: InputMaybe<ViewFieldStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<ViewFieldStddevSampOrderBy>;
-  sum?: InputMaybe<ViewFieldSumOrderBy>;
-  varPop?: InputMaybe<ViewFieldVarPopOrderBy>;
-  varSamp?: InputMaybe<ViewFieldVarSampOrderBy>;
-  variance?: InputMaybe<ViewFieldVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "view_field" */
-export type ViewFieldArrRelInsertInput = {
-  data: Array<ViewFieldInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<ViewFieldOnConflict>;
-};
-
-/** order by avg() on columns of table "view_field" */
-export type ViewFieldAvgOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "view_field". All fields are combined with a logical 'AND'. */
-export type ViewFieldBoolExp = {
-  _and?: InputMaybe<Array<ViewFieldBoolExp>>;
-  _not?: InputMaybe<ViewFieldBoolExp>;
-  _or?: InputMaybe<Array<ViewFieldBoolExp>>;
-  fieldKind?: InputMaybe<StringComparisonExp>;
-  id?: InputMaybe<StringComparisonExp>;
-  index?: InputMaybe<IntComparisonExp>;
-  name?: InputMaybe<StringComparisonExp>;
-  options?: InputMaybe<JsonComparisonExp>;
-  view?: InputMaybe<ViewBoolExp>;
-  viewId?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "view_field" */
-export type ViewFieldConstraint =
-  /** unique or primary key constraint on columns "id" */
-  "view_field_pkey";
-
-/** input type for incrementing numeric columns in table "view_field" */
-export type ViewFieldIncInput = {
-  index?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "view_field" */
-export type ViewFieldInsertInput = {
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-  view?: InputMaybe<ViewObjRelInsertInput>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by max() on columns of table "view_field" */
-export type ViewFieldMaxOrderBy = {
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "view_field" */
-export type ViewFieldMinOrderBy = {
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** on_conflict condition type for table "view_field" */
-export type ViewFieldOnConflict = {
-  constraint: ViewFieldConstraint;
-  updateColumns?: Array<ViewFieldUpdateColumn>;
-  where?: InputMaybe<ViewFieldBoolExp>;
-};
-
-/** Ordering options when selecting data from "view_field". */
-export type ViewFieldOrderBy = {
-  fieldKind?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  index?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  options?: InputMaybe<OrderBy>;
-  view?: InputMaybe<ViewOrderBy>;
-  viewId?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: view_field */
-export type ViewFieldPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "view_field" */
-export type ViewFieldSelectColumn =
-  /** column name */
-  | "fieldKind"
-  /** column name */
-  | "id"
-  /** column name */
-  | "index"
-  /** column name */
-  | "name"
-  /** column name */
-  | "options"
-  /** column name */
-  | "viewId";
-
-/** input type for updating data in table "view_field" */
-export type ViewFieldSetInput = {
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-};
-
-/** order by stddev() on columns of table "view_field" */
-export type ViewFieldStddevOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevPop() on columns of table "view_field" */
-export type ViewFieldStddevPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by stddevSamp() on columns of table "view_field" */
-export type ViewFieldStddevSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "view_field" */
-export type ViewFieldStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ViewFieldStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ViewFieldStreamCursorValueInput = {
-  fieldKind?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  index?: InputMaybe<Scalars["Int"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  options?: InputMaybe<Scalars["json"]>;
-  viewId?: InputMaybe<Scalars["String"]>;
-};
-
-/** order by sum() on columns of table "view_field" */
-export type ViewFieldSumOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "view_field" */
-export type ViewFieldUpdateColumn =
-  /** column name */
-  | "index"
-  /** column name */
-  | "name"
-  /** column name */
-  | "options";
-
-export type ViewFieldUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<ViewFieldIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ViewFieldSetInput>;
-  /** filter the rows which have to be updated */
-  where: ViewFieldBoolExp;
-};
-
-/** order by varPop() on columns of table "view_field" */
-export type ViewFieldVarPopOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by varSamp() on columns of table "view_field" */
-export type ViewFieldVarSampOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** order by variance() on columns of table "view_field" */
-export type ViewFieldVarianceOrderBy = {
-  index?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting data into table "view" */
-export type ViewInsertInput = {
-  createUserId?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-  summaryViews?: InputMaybe<SummaryViewArrRelInsertInput>;
-  user?: InputMaybe<UserObjRelInsertInput>;
-  viewApps?: InputMaybe<ViewAppArrRelInsertInput>;
-  viewFields?: InputMaybe<ViewFieldArrRelInsertInput>;
-};
-
-/** order by max() on columns of table "view" */
-export type ViewMaxOrderBy = {
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** order by min() on columns of table "view" */
-export type ViewMinOrderBy = {
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-};
-
-/** input type for inserting object relation for remote table "view" */
-export type ViewObjRelInsertInput = {
-  data: ViewInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ViewOnConflict>;
-};
-
-/** on_conflict condition type for table "view" */
-export type ViewOnConflict = {
-  constraint: ViewConstraint;
-  updateColumns?: Array<ViewUpdateColumn>;
-  where?: InputMaybe<ViewBoolExp>;
-};
-
-/** Ordering options when selecting data from "view". */
-export type ViewOrderBy = {
-  group?: InputMaybe<GroupOrderBy>;
-  id?: InputMaybe<OrderBy>;
-  name?: InputMaybe<OrderBy>;
-  summaryViewsAggregate?: InputMaybe<SummaryViewAggregateOrderBy>;
-  user?: InputMaybe<UserOrderBy>;
-  viewAppsAggregate?: InputMaybe<ViewAppAggregateOrderBy>;
-  viewFieldsAggregate?: InputMaybe<ViewFieldAggregateOrderBy>;
-};
-
-/** primary key columns input for table: view */
-export type ViewPkColumnsInput = {
-  id: Scalars["String"];
-};
-
-/** select columns of table "view" */
-export type ViewSelectColumn =
-  /** column name */
-  | "id"
-  /** column name */
-  | "name";
-
-/** input type for updating data in table "view" */
-export type ViewSetInput = {
-  name?: InputMaybe<Scalars["String"]>;
-};
-
-/** Streaming cursor of the table "view" */
-export type ViewStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: ViewStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type ViewStreamCursorValueInput = {
-  id?: InputMaybe<Scalars["String"]>;
-  name?: InputMaybe<Scalars["String"]>;
-};
-
-/** update columns of table "view" */
-export type ViewUpdateColumn =
-  /** column name */
-  "name";
-
-export type ViewUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ViewSetInput>;
-  /** filter the rows which have to be updated */
-  where: ViewBoolExp;
-};
 
 export type AffiliationAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<AffiliationSelectColumn>>;
@@ -5081,13 +3693,6 @@ export type HouseholdAllDetailViewAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HouseholdCreditCardDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdCreditCardDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdCreditCardDetailBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HouseholdCreditCardSummaryAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdCreditCardSummarySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
@@ -5095,17 +3700,17 @@ export type HouseholdCreditCardSummaryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HouseholdDailyDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdDailyDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdDailyDetailBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HouseholdDepositCategoryAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdDepositCategorySelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  predicate: IntComparisonExp;
+};
+
+export type HouseholdDetailTagAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<HouseholdDetailTagSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<HouseholdDetailTagBoolExp>;
   predicate: IntComparisonExp;
 };
 
@@ -5151,13 +3756,6 @@ export type HouseholdImportFileHistoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HouseholdSummaryCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HouseholdSummaryCategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HouseholdSummaryCategoryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HouseholdTotalByCategoryViewAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
@@ -5170,256 +3768,6 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HouseholdTransferCategoryBoolExp>;
   predicate: IntComparisonExp;
-};
-
-export type ImportFileRecordAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<ImportFileRecordSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<ImportFileRecordBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type RecordAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<RecordSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<RecordBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type DeleteAppRelationsMutationVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type DeleteAppRelationsMutation = {
-  __typename?: "mutation_root";
-  deleteImportFileSettingByPk?: {
-    __typename: "ImportFileSetting";
-    appId: string;
-  } | null;
-  deleteImportFileRecord?: {
-    __typename: "ImportFileRecordMutationResponse";
-    affectedRows: number;
-  } | null;
-  deleteImportFileHistory?: {
-    __typename: "ImportFileHistoryMutationResponse";
-    affectedRows: number;
-  } | null;
-  deleteRecord?: {
-    __typename: "RecordMutationResponse";
-    affectedRows: number;
-  } | null;
-  deleteField?: {
-    __typename: "FieldMutationResponse";
-    affectedRows: number;
-  } | null;
-  deleteAppByPk?: { __typename: "App"; id: string } | null;
-};
-
-export type DeleteImportFileHistoryMutationVariables = Exact<{
-  historyId: Scalars["String"];
-}>;
-
-export type DeleteImportFileHistoryMutation = {
-  __typename?: "mutation_root";
-  deleteImportFileRecord?: {
-    __typename: "ImportFileRecordMutationResponse";
-    affectedRows: number;
-    returning: Array<{ __typename?: "ImportFileRecord"; recordId: string }>;
-  } | null;
-  deleteImportFileHistoryByPk?: {
-    __typename: "ImportFileHistory";
-    id: string;
-  } | null;
-};
-
-export type DeleteRecordMutationVariables = Exact<{
-  recordId: Scalars["String"];
-}>;
-
-export type DeleteRecordMutation = {
-  __typename?: "mutation_root";
-  deleteRecordByPk?: { __typename: "Record"; id: string } | null;
-};
-
-export type DeleteViewRelationsMutationVariables = Exact<{
-  viewId: Scalars["String"];
-}>;
-
-export type DeleteViewRelationsMutation = {
-  __typename?: "mutation_root";
-  deleteSummaryView?: {
-    __typename: "SummaryViewMutationResponse";
-    affectedRows: number;
-  } | null;
-  deleteViewApp?: {
-    __typename: "ViewAppMutationResponse";
-    affectedRows: number;
-  } | null;
-  deleteViewField?: {
-    __typename: "ViewFieldMutationResponse";
-    affectedRows: number;
-  } | null;
-  deleteViewByPk?: { __typename: "View"; id: string } | null;
-};
-
-export type InsertAppMutationVariables = Exact<{
-  id: Scalars["String"];
-  name: Scalars["String"];
-  fields: Array<FieldInsertInput> | FieldInsertInput;
-  createUserId: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type InsertAppMutation = {
-  __typename?: "mutation_root";
-  insertAppOne?: { __typename: "App"; id: string } | null;
-  insertField?: {
-    __typename: "FieldMutationResponse";
-    affectedRows: number;
-  } | null;
-};
-
-export type InsertImportFileHistoryMutationVariables = Exact<{
-  id: Scalars["String"];
-  appId: Scalars["String"];
-  fileName: Scalars["String"];
-  importDatetime: Scalars["timestamptz"];
-  count: Scalars["Int"];
-}>;
-
-export type InsertImportFileHistoryMutation = {
-  __typename?: "mutation_root";
-  insertImportFileHistoryOne?: {
-    __typename?: "ImportFileHistory";
-    id: string;
-    fileName: string;
-    importDatetime: any;
-    count: number;
-  } | null;
-};
-
-export type InsertImportFileRecordsMutationVariables = Exact<{
-  recordObjects: Array<RecordInsertInput> | RecordInsertInput;
-  relationObjects:
-    | Array<ImportFileRecordInsertInput>
-    | ImportFileRecordInsertInput;
-}>;
-
-export type InsertImportFileRecordsMutation = {
-  __typename?: "mutation_root";
-  insertRecord?: {
-    __typename: "RecordMutationResponse";
-    affectedRows: number;
-    returning: Array<{ __typename?: "Record"; id: string }>;
-  } | null;
-  insertImportFileRecord?: {
-    __typename: "ImportFileRecordMutationResponse";
-    affectedRows: number;
-    returning: Array<{ __typename?: "ImportFileRecord"; recordId: string }>;
-  } | null;
-};
-
-export type InsertImportFileSettingMutationVariables = Exact<{
-  appId: Scalars["String"];
-  settings: Scalars["json"];
-}>;
-
-export type InsertImportFileSettingMutation = {
-  __typename?: "mutation_root";
-  insertImportFileSettingOne?: {
-    __typename: "ImportFileSetting";
-    appId: string;
-    settings: any;
-  } | null;
-};
-
-export type InsertRecordMutationVariables = Exact<{
-  id: Scalars["String"];
-  appId: Scalars["String"];
-  index: Scalars["Int"];
-  columns: Scalars["json"];
-}>;
-
-export type InsertRecordMutation = {
-  __typename?: "mutation_root";
-  insertRecordOne?: { __typename: "Record"; id: string } | null;
-};
-
-export type InsertViewMutationVariables = Exact<{
-  viewId: Scalars["String"];
-  name: Scalars["String"];
-  fields: Array<ViewFieldInsertInput> | ViewFieldInsertInput;
-  createUserId: Scalars["String"];
-  groupId: Scalars["String"];
-}>;
-
-export type InsertViewMutation = {
-  __typename?: "mutation_root";
-  insertViewOne?: { __typename: "View"; id: string } | null;
-  insertViewField?: {
-    __typename: "ViewFieldMutationResponse";
-    affectedRows: number;
-  } | null;
-};
-
-export type UpdateAppMutationVariables = Exact<{
-  id: Scalars["String"];
-  name: Scalars["String"];
-  updateFields: Array<FieldUpdates> | FieldUpdates;
-  insertFields: Array<FieldInsertInput> | FieldInsertInput;
-  deleteFieldIds: Array<Scalars["String"]> | Scalars["String"];
-}>;
-
-export type UpdateAppMutation = {
-  __typename?: "mutation_root";
-  updateAppByPk?: { __typename: "App"; id: string } | null;
-  insertField?: {
-    __typename: "FieldMutationResponse";
-    affectedRows: number;
-  } | null;
-  updateFieldMany?: Array<{
-    __typename: "FieldMutationResponse";
-    affectedRows: number;
-  } | null> | null;
-  deleteField?: {
-    __typename: "FieldMutationResponse";
-    affectedRows: number;
-  } | null;
-};
-
-export type UpdateLinkDatabaseMutationVariables = Exact<{
-  appId: Scalars["String"];
-  input: LinkDatabaseInsertInput;
-}>;
-
-export type UpdateLinkDatabaseMutation = {
-  __typename?: "mutation_root";
-  insertLinkDatabase?: {
-    __typename?: "LinkDatabaseMutationResponse";
-    returning: Array<{ __typename: "LinkDatabase"; appId: string }>;
-  } | null;
-};
-
-export type UpdateRecordMutationVariables = Exact<{
-  id: Scalars["String"];
-  columns: Scalars["json"];
-}>;
-
-export type UpdateRecordMutation = {
-  __typename?: "mutation_root";
-  updateRecordByPk?: { __typename?: "Record"; id: string } | null;
-};
-
-export type UpdateViewMutationVariables = Exact<{
-  viewAppObjects: Array<ViewAppInsertInput> | ViewAppInsertInput;
-}>;
-
-export type UpdateViewMutation = {
-  __typename?: "mutation_root";
-  insertViewApp?: {
-    __typename?: "ViewAppMutationResponse";
-    affectedRows: number;
-  } | null;
 };
 
 export type GetUserByEmailQueryVariables = Exact<{
@@ -5439,157 +3787,6 @@ export type GetUserByEmailQuery = {
       groupRole: string;
       group: { __typename?: "Group"; id: string; name: string };
     }>;
-  }>;
-};
-
-export type FragFieldsFragment = {
-  __typename: "Field";
-  id: string;
-  name: string;
-  index: number;
-  fieldKind: string;
-  options?: any | null;
-};
-
-export type FragLinkDatabaseFragment = {
-  __typename: "LinkDatabase";
-  database: string;
-  connection: any;
-  sql: string;
-  parameters: any;
-  fieldColumnMaps: any;
-  id: string;
-};
-
-export type FragRecordsFragment = {
-  __typename: "Record";
-  id: string;
-  index: number;
-  columns: any;
-};
-
-export type GetAppQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetAppQuery = {
-  __typename?: "query_root";
-  app?: {
-    __typename: "App";
-    id: string;
-    name: string;
-    fields: Array<{
-      __typename: "Field";
-      id: string;
-      name: string;
-      index: number;
-      fieldKind: string;
-      options?: any | null;
-    }>;
-    records: Array<{
-      __typename: "Record";
-      id: string;
-      index: number;
-      columns: any;
-    }>;
-    linkDatabase?: {
-      __typename: "LinkDatabase";
-      database: string;
-      connection: any;
-      sql: string;
-      parameters: any;
-      fieldColumnMaps: any;
-      id: string;
-    } | null;
-  } | null;
-};
-
-export type GetAppDangerousSourceQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetAppDangerousSourceQuery = {
-  __typename?: "query_root";
-  app?: {
-    __typename: "App";
-    id: string;
-    name: string;
-    fields: Array<{ __typename: "Field"; id: string; name: string }>;
-    importFileHistories: Array<{
-      __typename: "ImportFileHistory";
-      id: string;
-      fileName: string;
-    }>;
-    importFileRecordsAggregate: {
-      __typename: "ImportFileRecordAggregate";
-      aggregate?: {
-        __typename: "ImportFileRecordAggregateFields";
-        count: number;
-      } | null;
-    };
-    importFileSetting?: {
-      __typename: "ImportFileSetting";
-      appId: string;
-    } | null;
-    recordsAggregate: {
-      __typename: "RecordAggregate";
-      aggregate?: { __typename: "RecordAggregateFields"; count: number } | null;
-    };
-    viewApps: Array<{
-      __typename: "ViewApp";
-      id: string;
-      view: { __typename: "View"; id: string; name: string };
-    }>;
-  } | null;
-};
-
-export type GetAppFieldListQueryVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type GetAppFieldListQuery = {
-  __typename?: "query_root";
-  group?: {
-    __typename?: "Group";
-    id: string;
-    apps: Array<{
-      __typename?: "App";
-      id: string;
-      name: string;
-      fields: Array<{
-        __typename: "Field";
-        id: string;
-        name: string;
-        index: number;
-        fieldKind: string;
-        options?: any | null;
-      }>;
-    }>;
-  } | null;
-};
-
-export type GetAppLinkDatabaseQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetAppLinkDatabaseQuery = {
-  __typename?: "query_root";
-  linkDatabase?: {
-    __typename: "LinkDatabase";
-    database: string;
-    connection: any;
-    sql: string;
-    parameters: any;
-    fieldColumnMaps: any;
-    id: string;
-  } | null;
-  fields: Array<{
-    __typename: "Field";
-    id: string;
-    name: string;
-    index: number;
-    fieldKind: string;
-    options?: any | null;
   }>;
 };
 
@@ -5616,2303 +3813,6 @@ export type GetApplicationsQuery = {
   } | null;
 };
 
-export type GetImportFileQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetImportFileQuery = {
-  __typename?: "query_root";
-  importFileSetting?: {
-    __typename: "ImportFileSetting";
-    settings: any;
-    id: string;
-  } | null;
-  importFileHistories: Array<{
-    __typename: "ImportFileHistory";
-    id: string;
-    count: number;
-    fileName: string;
-    importDatetime: any;
-    importFileRecords: Array<{
-      __typename: "ImportFileRecord";
-      id: string;
-      record: { __typename: "Record"; id: string; index: number; columns: any };
-    }>;
-  }>;
-};
-
-export type GetMaxRecordIndexQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetMaxRecordIndexQuery = {
-  __typename?: "query_root";
-  recordAggregate: {
-    __typename?: "RecordAggregate";
-    aggregate?: {
-      __typename?: "RecordAggregateFields";
-      max?: { __typename?: "RecordMaxFields"; index?: number | null } | null;
-    } | null;
-  };
-};
-
-export type GetRecordQueryVariables = Exact<{
-  recordId: Scalars["String"];
-}>;
-
-export type GetRecordQuery = {
-  __typename?: "query_root";
-  record?: {
-    __typename: "Record";
-    id: string;
-    index: number;
-    columns: any;
-    app: {
-      __typename?: "App";
-      id: string;
-      fields: Array<{
-        __typename: "Field";
-        id: string;
-        name: string;
-        index: number;
-        fieldKind: string;
-        options?: any | null;
-      }>;
-    };
-  } | null;
-};
-
-export type GetRecordsQueryVariables = Exact<{
-  appId: Scalars["String"];
-}>;
-
-export type GetRecordsQuery = {
-  __typename?: "query_root";
-  records: Array<{
-    __typename: "Record";
-    id: string;
-    index: number;
-    columns: any;
-  }>;
-};
-
-export type GetRecordsInAppIdsQueryVariables = Exact<{
-  appIds: Array<Scalars["String"]> | Scalars["String"];
-}>;
-
-export type GetRecordsInAppIdsQuery = {
-  __typename?: "query_root";
-  apps: Array<{
-    __typename: "App";
-    id: string;
-    records: Array<{
-      __typename: "Record";
-      appId: string;
-      id: string;
-      index: number;
-      columns: any;
-    }>;
-  }>;
-};
-
-export type GetViewQueryVariables = Exact<{
-  viewId: Scalars["String"];
-}>;
-
-export type GetViewQuery = {
-  __typename?: "query_root";
-  view?: {
-    __typename: "View";
-    id: string;
-    name: string;
-    viewFields: Array<{
-      __typename: "ViewField";
-      id: string;
-      name: string;
-      index: number;
-      fieldKind: string;
-      options?: any | null;
-    }>;
-    viewApps: Array<{
-      __typename: "ViewApp";
-      id: string;
-      appId: string;
-      fields: any;
-    }>;
-  } | null;
-};
-
-export type GetViewDangerousSourceQueryVariables = Exact<{
-  viewId: Scalars["String"];
-}>;
-
-export type GetViewDangerousSourceQuery = {
-  __typename?: "query_root";
-  view?: {
-    __typename: "View";
-    id: string;
-    name: string;
-    summaryViews: Array<{
-      __typename: "SummaryView";
-      id: string;
-      name: string;
-    }>;
-    viewApps: Array<{
-      __typename: "ViewApp";
-      id: string;
-      app: { __typename: "App"; id: string; name: string };
-    }>;
-    viewFields: Array<{ __typename: "ViewField"; id: string; name: string }>;
-  } | null;
-};
-
-export type GetViewRecordsSourceQueryVariables = Exact<{
-  viewId: Scalars["String"];
-}>;
-
-export type GetViewRecordsSourceQuery = {
-  __typename?: "query_root";
-  view?: {
-    __typename: "View";
-    id: string;
-    name: string;
-    viewFields: Array<{
-      __typename: "ViewField";
-      id: string;
-      name: string;
-      index: number;
-      fieldKind: string;
-      options?: any | null;
-    }>;
-    viewApps: Array<{
-      __typename: "ViewApp";
-      id: string;
-      appId: string;
-      fields: any;
-      app: {
-        __typename: "App";
-        id: string;
-        name: string;
-        fields: Array<{
-          __typename: "Field";
-          id: string;
-          name: string;
-          index: number;
-          fieldKind: string;
-          options?: any | null;
-        }>;
-        records: Array<{
-          __typename: "Record";
-          id: string;
-          index: number;
-          columns: any;
-        }>;
-        linkDatabase?: {
-          __typename: "LinkDatabase";
-          database: string;
-          connection: any;
-          sql: string;
-          parameters: any;
-          fieldColumnMaps: any;
-          id: string;
-        } | null;
-      };
-    }>;
-  } | null;
-};
-
-export type GetViewsQueryVariables = Exact<{
-  groupId: Scalars["String"];
-}>;
-
-export type GetViewsQuery = {
-  __typename?: "query_root";
-  group?: {
-    __typename: "Group";
-    id: string;
-    views: Array<{ __typename: "View"; id: string; name: string }>;
-  } | null;
-};
-
-export const FragFieldsFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragFields" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Field" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
-          { kind: "Field", name: { kind: "Name", value: "options" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<FragFieldsFragment, unknown>;
-export const FragLinkDatabaseFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragLinkDatabase" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "LinkDatabase" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "id" },
-            name: { kind: "Name", value: "appId" },
-          },
-          { kind: "Field", name: { kind: "Name", value: "database" } },
-          { kind: "Field", name: { kind: "Name", value: "connection" } },
-          { kind: "Field", name: { kind: "Name", value: "sql" } },
-          { kind: "Field", name: { kind: "Name", value: "parameters" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldColumnMaps" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<FragLinkDatabaseFragment, unknown>;
-export const FragRecordsFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragRecords" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Record" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "columns" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<FragRecordsFragment, unknown>;
-export const DeleteAppRelationsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "deleteAppRelations" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteImportFileSettingByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "appId" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "appId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "appId" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteImportFileRecord" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteImportFileHistory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteRecord" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteField" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteAppByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "appId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  DeleteAppRelationsMutation,
-  DeleteAppRelationsMutationVariables
->;
-export const DeleteImportFileHistoryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "deleteImportFileHistory" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "historyId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteImportFileRecord" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "historyId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "historyId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "recordId" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteImportFileHistoryByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "historyId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  DeleteImportFileHistoryMutation,
-  DeleteImportFileHistoryMutationVariables
->;
-export const DeleteRecordDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "deleteRecord" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "recordId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteRecordByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "recordId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  DeleteRecordMutation,
-  DeleteRecordMutationVariables
->;
-export const DeleteViewRelationsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "deleteViewRelations" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "viewId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteSummaryView" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "viewId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "viewId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteViewApp" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "viewId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "viewId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteViewField" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "viewId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "viewId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteViewByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "viewId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  DeleteViewRelationsMutation,
-  DeleteViewRelationsMutationVariables
->;
-export const InsertAppDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "insertApp" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fields" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "FieldInsertInput" },
-                },
-              },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "createUserId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertAppOne" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "object" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "id" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "name" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "name" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "createUserId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "createUserId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertField" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "fields" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<InsertAppMutation, InsertAppMutationVariables>;
-export const InsertImportFileHistoryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "insertImportFileHistory" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fileName" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "importDatetime" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "timestamptz" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "count" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertImportFileHistoryOne" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "object" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "id" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "appId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "fileName" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "fileName" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "importDatetime" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "importDatetime" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "count" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "count" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "fileName" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "importDatetime" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "count" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  InsertImportFileHistoryMutation,
-  InsertImportFileHistoryMutationVariables
->;
-export const InsertImportFileRecordsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "insertImportFileRecords" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "recordObjects" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "RecordInsertInput" },
-                },
-              },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "relationObjects" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "ImportFileRecordInsertInput" },
-                },
-              },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertRecord" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "recordObjects" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertImportFileRecord" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "relationObjects" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "recordId" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  InsertImportFileRecordsMutation,
-  InsertImportFileRecordsMutationVariables
->;
-export const InsertImportFileSettingDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "insertImportFileSetting" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "settings" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "json" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertImportFileSettingOne" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "object" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "appId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "settings" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "settings" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "onConflict" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "constraint" },
-                      value: {
-                        kind: "EnumValue",
-                        value: "import_file_setting_pkey",
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "updateColumns" },
-                      value: {
-                        kind: "ListValue",
-                        values: [{ kind: "EnumValue", value: "settings" }],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "appId" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "appId" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "appId" } },
-                { kind: "Field", name: { kind: "Name", value: "settings" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  InsertImportFileSettingMutation,
-  InsertImportFileSettingMutationVariables
->;
-export const InsertRecordDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "insertRecord" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "index" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "columns" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "json" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertRecordOne" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "object" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "id" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "appId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "index" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "index" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "columns" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "columns" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  InsertRecordMutation,
-  InsertRecordMutationVariables
->;
-export const InsertViewDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "insertView" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "viewId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "fields" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "ViewFieldInsertInput" },
-                },
-              },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "createUserId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertViewOne" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "object" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "viewId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "name" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "name" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "createUserId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "createUserId" },
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "groupId" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "groupId" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertViewField" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "fields" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<InsertViewMutation, InsertViewMutationVariables>;
-export const UpdateAppDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "updateApp" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "updateFields" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "FieldUpdates" },
-                },
-              },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "insertFields" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "FieldInsertInput" },
-                },
-              },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "deleteFieldIds" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "String" },
-                },
-              },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateAppByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "pkColumns" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "id" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "_set" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "name" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "name" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertField" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "insertFields" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateFieldMany" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "updates" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "updateFields" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteField" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_in" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "deleteFieldIds" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateAppMutation, UpdateAppMutationVariables>;
-export const UpdateLinkDatabaseDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "updateLinkDatabase" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "input" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "LinkDatabaseInsertInput" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertLinkDatabase" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "ListValue",
-                  values: [
-                    {
-                      kind: "Variable",
-                      name: { kind: "Name", value: "input" },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "onConflict" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "constraint" },
-                      value: { kind: "EnumValue", value: "link_database_pkey" },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "updateColumns" },
-                      value: {
-                        kind: "ListValue",
-                        values: [
-                          { kind: "EnumValue", value: "connection" },
-                          { kind: "EnumValue", value: "database" },
-                          { kind: "EnumValue", value: "fieldColumnMaps" },
-                          { kind: "EnumValue", value: "parameters" },
-                          { kind: "EnumValue", value: "sql" },
-                        ],
-                      },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "where" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "appId" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
-                                  value: {
-                                    kind: "Variable",
-                                    name: { kind: "Name", value: "appId" },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "returning" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "appId" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateLinkDatabaseMutation,
-  UpdateLinkDatabaseMutationVariables
->;
-export const UpdateRecordDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "updateRecord" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "columns" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "json" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateRecordByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "_set" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "columns" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "columns" },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "pkColumns" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "id" },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateRecordMutation,
-  UpdateRecordMutationVariables
->;
-export const UpdateViewDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "updateView" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "viewAppObjects" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "ViewAppInsertInput" },
-                },
-              },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "insertViewApp" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "objects" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "viewAppObjects" },
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "onConflict" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "constraint" },
-                      value: { kind: "EnumValue", value: "view_app_pkey" },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "updateColumns" },
-                      value: { kind: "ListValue", values: [] },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "affectedRows" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateViewMutation, UpdateViewMutationVariables>;
 export const GetUserByEmailDocument = {
   kind: "Document",
   definitions: [
@@ -8018,636 +3918,6 @@ export const GetUserByEmailDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUserByEmailQuery, GetUserByEmailQueryVariables>;
-export const GetAppDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getApp" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "app" },
-            name: { kind: "Name", value: "appByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "appId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "fields" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "orderBy" },
-                      value: {
-                        kind: "ListValue",
-                        values: [
-                          {
-                            kind: "ObjectValue",
-                            fields: [
-                              {
-                                kind: "ObjectField",
-                                name: { kind: "Name", value: "index" },
-                                value: { kind: "EnumValue", value: "ASC" },
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "fragFields" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "records" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "fragRecords" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linkDatabase" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "fragLinkDatabase" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragFields" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Field" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
-          { kind: "Field", name: { kind: "Name", value: "options" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragRecords" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Record" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "columns" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragLinkDatabase" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "LinkDatabase" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "id" },
-            name: { kind: "Name", value: "appId" },
-          },
-          { kind: "Field", name: { kind: "Name", value: "database" } },
-          { kind: "Field", name: { kind: "Name", value: "connection" } },
-          { kind: "Field", name: { kind: "Name", value: "sql" } },
-          { kind: "Field", name: { kind: "Name", value: "parameters" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldColumnMaps" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetAppQuery, GetAppQueryVariables>;
-export const GetAppDangerousSourceDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getAppDangerousSource" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "app" },
-            name: { kind: "Name", value: "appByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "appId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "fields" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "importFileHistories" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "fileName" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "importFileRecordsAggregate" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "aggregate" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "count" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "importFileSetting" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "appId" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "recordsAggregate" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "aggregate" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "count" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "viewApps" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "view" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetAppDangerousSourceQuery,
-  GetAppDangerousSourceQueryVariables
->;
-export const GetAppFieldListDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getAppFieldList" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "group" },
-            name: { kind: "Name", value: "groupByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "groupId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "apps" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "fields" },
-                        arguments: [
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "orderBy" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "index" },
-                                  value: { kind: "EnumValue", value: "ASC" },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "FragmentSpread",
-                              name: { kind: "Name", value: "fragFields" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragFields" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Field" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
-          { kind: "Field", name: { kind: "Name", value: "options" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetAppFieldListQuery,
-  GetAppFieldListQueryVariables
->;
-export const GetAppLinkDatabaseDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getAppLinkDatabase" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "linkDatabase" },
-            name: { kind: "Name", value: "linkDatabaseByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "appId" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "appId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "fragLinkDatabase" },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "fields" },
-            name: { kind: "Name", value: "field" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "fragFields" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragLinkDatabase" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "LinkDatabase" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "id" },
-            name: { kind: "Name", value: "appId" },
-          },
-          { kind: "Field", name: { kind: "Name", value: "database" } },
-          { kind: "Field", name: { kind: "Name", value: "connection" } },
-          { kind: "Field", name: { kind: "Name", value: "sql" } },
-          { kind: "Field", name: { kind: "Name", value: "parameters" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldColumnMaps" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragFields" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Field" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
-          { kind: "Field", name: { kind: "Name", value: "options" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetAppLinkDatabaseQuery,
-  GetAppLinkDatabaseQueryVariables
->;
 export const GetApplicationsDocument = {
   kind: "Document",
   definitions: [
@@ -8745,1141 +4015,3 @@ export const GetApplicationsDocument = {
   GetApplicationsQuery,
   GetApplicationsQueryVariables
 >;
-export const GetImportFileDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getImportFile" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "importFileSetting" },
-            name: { kind: "Name", value: "importFileSettingByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "appId" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "appId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "id" },
-                  name: { kind: "Name", value: "appId" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "settings" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "importFileHistories" },
-            name: { kind: "Name", value: "importFileHistory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "importDatetime" },
-                      value: { kind: "EnumValue", value: "DESC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "count" } },
-                { kind: "Field", name: { kind: "Name", value: "fileName" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "importDatetime" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "importFileRecords" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        alias: { kind: "Name", value: "id" },
-                        name: { kind: "Name", value: "recordId" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "record" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "index" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "columns" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetImportFileQuery, GetImportFileQueryVariables>;
-export const GetMaxRecordIndexDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getMaxRecordIndex" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "recordAggregate" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "aggregate" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "max" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "index" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMaxRecordIndexQuery,
-  GetMaxRecordIndexQueryVariables
->;
-export const GetRecordDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getRecord" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "recordId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "record" },
-            name: { kind: "Name", value: "recordByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "recordId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "fragRecords" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "app" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "fields" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "FragmentSpread",
-                              name: { kind: "Name", value: "fragFields" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragRecords" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Record" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "columns" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragFields" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Field" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
-          { kind: "Field", name: { kind: "Name", value: "options" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetRecordQuery, GetRecordQueryVariables>;
-export const GetRecordsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getRecords" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "records" },
-            name: { kind: "Name", value: "record" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "appId" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_eq" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appId" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "index" },
-                      value: { kind: "EnumValue", value: "ASC" },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "fragRecords" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragRecords" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Record" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "columns" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetRecordsQuery, GetRecordsQueryVariables>;
-export const GetRecordsInAppIdsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getRecordsInAppIds" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "appIds" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "ListType",
-              type: {
-                kind: "NonNullType",
-                type: {
-                  kind: "NamedType",
-                  name: { kind: "Name", value: "String" },
-                },
-              },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "apps" },
-            name: { kind: "Name", value: "app" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "_in" },
-                            value: {
-                              kind: "Variable",
-                              name: { kind: "Name", value: "appIds" },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "records" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "appId" } },
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "fragRecords" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragRecords" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Record" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "columns" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetRecordsInAppIdsQuery,
-  GetRecordsInAppIdsQueryVariables
->;
-export const GetViewDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getView" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "viewId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "view" },
-            name: { kind: "Name", value: "viewByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "viewId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "viewFields" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "orderBy" },
-                      value: {
-                        kind: "ListValue",
-                        values: [
-                          {
-                            kind: "ObjectValue",
-                            fields: [
-                              {
-                                kind: "ObjectField",
-                                name: { kind: "Name", value: "index" },
-                                value: { kind: "EnumValue", value: "ASC" },
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "index" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "fieldKind" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "options" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "viewApps" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "appId" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "fields" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetViewQuery, GetViewQueryVariables>;
-export const GetViewDangerousSourceDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getViewDangerousSource" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "viewId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "view" },
-            name: { kind: "Name", value: "viewByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "viewId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "summaryViews" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "viewApps" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "app" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "viewFields" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetViewDangerousSourceQuery,
-  GetViewDangerousSourceQueryVariables
->;
-export const GetViewRecordsSourceDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getViewRecordsSource" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "viewId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "view" },
-            name: { kind: "Name", value: "viewByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "viewId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "viewFields" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "orderBy" },
-                      value: {
-                        kind: "ListValue",
-                        values: [
-                          {
-                            kind: "ObjectValue",
-                            fields: [
-                              {
-                                kind: "ObjectField",
-                                name: { kind: "Name", value: "index" },
-                                value: { kind: "EnumValue", value: "ASC" },
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "index" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "fieldKind" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "options" },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "viewApps" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "appId" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "fields" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "app" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "fields" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "FragmentSpread",
-                                    name: { kind: "Name", value: "fragFields" },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "records" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "FragmentSpread",
-                                    name: {
-                                      kind: "Name",
-                                      value: "fragRecords",
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "linkDatabase" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "FragmentSpread",
-                                    name: {
-                                      kind: "Name",
-                                      value: "fragLinkDatabase",
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragFields" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Field" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldKind" } },
-          { kind: "Field", name: { kind: "Name", value: "options" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragRecords" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Record" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "index" } },
-          { kind: "Field", name: { kind: "Name", value: "columns" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "fragLinkDatabase" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "LinkDatabase" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "id" },
-            name: { kind: "Name", value: "appId" },
-          },
-          { kind: "Field", name: { kind: "Name", value: "database" } },
-          { kind: "Field", name: { kind: "Name", value: "connection" } },
-          { kind: "Field", name: { kind: "Name", value: "sql" } },
-          { kind: "Field", name: { kind: "Name", value: "parameters" } },
-          { kind: "Field", name: { kind: "Name", value: "fieldColumnMaps" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetViewRecordsSourceQuery,
-  GetViewRecordsSourceQueryVariables
->;
-export const GetViewsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getViews" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "groupId" },
-          },
-          type: {
-            kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "String" },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "group" },
-            name: { kind: "Name", value: "groupByPk" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "groupId" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "views" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "__typename" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetViewsQuery, GetViewsQueryVariables>;
