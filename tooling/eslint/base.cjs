@@ -119,6 +119,8 @@ const config = {
     "dist",
     "pnpm-lock.yaml",
     "tailwind.config.ts",
+    "**/*.generated.ts",
+    "**/generated/*.ts",
   ],
   reportUnusedDisableDirectives: true,
 };
