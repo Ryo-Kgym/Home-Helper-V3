@@ -7,9 +7,12 @@ import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
 import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";
 import { convertToYmd } from "../../../function/date/convertToYmd";
 import { useRouter } from "../../../routing/client/useRouter";
+import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 
 type Props = {
-  //
+  fromDate: YYYY_MM_DD;
+  toDate: YYYY_MM_DD;
+  tagIds: string[];
 };
 
 type SearchFormFormState = {
@@ -18,11 +21,11 @@ type SearchFormFormState = {
   tags: string[];
 };
 
-export const SearchFormClient: FC<Props> = () => {
+export const SearchFormClient: FC<Props> = ({ fromDate, toDate, tagIds }) => {
   const [form, setForm] = useState<SearchFormFormState>({
-    fromDate: null,
-    toDate: null,
-    tags: [],
+    fromDate: new Date(fromDate),
+    toDate: new Date(toDate),
+    tags: tagIds,
   });
   const { push } = useRouter();
 
