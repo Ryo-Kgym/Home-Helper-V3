@@ -22,6 +22,7 @@ type Props = {
   setMemo: (_: string) => void;
   clearClick: () => void;
   registerClick: () => void;
+  disabled: boolean;
 };
 
 export const RegisterDailyDetailPresenter: FC<Props> = ({
@@ -35,6 +36,7 @@ export const RegisterDailyDetailPresenter: FC<Props> = ({
   setMemo,
   clearClick,
   registerClick,
+  disabled,
 }) => (
   <div className={"grid w-full grid-cols-1"}>
     <Field>
@@ -75,7 +77,12 @@ export const RegisterDailyDetailPresenter: FC<Props> = ({
       <MemoTextArea memo={form.memo} setMemo={setMemo} />
     </Field>
     <div className={"grid grid-cols-2 justify-items-center"}>
-      <Button type={"add"} onClick={registerClick} label={"登録"} />
+      <Button
+        type={"add"}
+        onClick={registerClick}
+        label={"登録"}
+        disabled={disabled}
+      />
       <Button type={"back"} onClick={clearClick} label={"クリア"} />
     </div>
   </div>
