@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
@@ -9,7 +11,7 @@ import { useGetCreditCardSummaryByAccountIdBetweenDate } from "../../../hooks/ho
 import { useGetDailyDetailByDateAccountId } from "../../../hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
 import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
 
-export const AccountDailyTable = ({
+export const AccountDetailTable = ({
   fromDate,
   toDate,
   accountId,
