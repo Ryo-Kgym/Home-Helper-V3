@@ -5,6 +5,7 @@ import { FC, useState } from "react";
 import { Button } from "../../../components/ui/button/v5";
 import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
 import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";
+import { convertToYmd } from "../../../function/date/convertToYmd";
 import { useRouter } from "../../../routing/client/useRouter";
 
 type Props = {
@@ -61,10 +62,9 @@ export const SearchFormClient: FC<Props> = () => {
         label={"検索"}
         onClick={() => {
           const fromDateQuery =
-            form.fromDate &&
-            `fromDate=${form.fromDate.toISOString().slice(0, 10)}`;
+            form.fromDate && `fromDate=${convertToYmd(form.fromDate)}`;
           const toDateQuery =
-            form.toDate && `toDate=${form.toDate.toISOString().slice(0, 10)}`;
+            form.toDate && `toDate=${convertToYmd(form.toDate)}`;
           const tagIdsQuery =
             form.tags.length &&
             `tag=${form.tags.map((tag) => `${tag}`).join(",")}`;
