@@ -1,3 +1,4 @@
+import { fetchAccountDetailList } from "../server/fetchAccountDetailList";
 import { AccountDetailTable } from "./AccountDetailTable";
 
 export const AccountDetailTableServer = async ({
@@ -9,11 +10,21 @@ export const AccountDetailTableServer = async ({
   toDate: Date | undefined;
   accountId: string | undefined;
 }) => {
+  if (!accountId) {
+    return null;
+  }
+
+  const { records, incomeTotal, outcomeTotal } = await fetchAccountDetailList({
+    fromDate,
+    toDate,
+    accountId,
+  });
+
   return (
     <AccountDetailTable
-      fromDate={fromDate}
-      toDate={toDate}
-      accountId={accountId ?? ""}
+      records={records}
+      incomeTotal={incomeTotal}
+      outcomeTotal={outcomeTotal}
     />
   );
 };

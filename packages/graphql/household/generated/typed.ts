@@ -21,3 +21,4 @@ export type HouseholdDetailTagInsertInput = {};
 export type HouseholdTagSetInput = {};
 export type HouseholdTagInsertInput = {};
 export type HouseholdCreditCardSummarySetInput = {};
+export type OrderBy = {};
