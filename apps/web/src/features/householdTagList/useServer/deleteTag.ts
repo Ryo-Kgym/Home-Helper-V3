@@ -1,6 +1,6 @@
 "use server";
 
-import { DeleteTagDocument } from "@v3/graphql/household/type";
+import { DeleteTagDocument } from "@v3/graphql/household/schema/mutation/v5/mutateTag.generated";
 
 import { execMutation } from "../../../persistence/database/server/execMutation";
 import { Tag } from "../types/tag";

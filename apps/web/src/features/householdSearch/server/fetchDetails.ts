@@ -1,9 +1,8 @@
-import {
-  FragAllDetailViewFragment,
-  GetAllDetailViewDocument,
-} from "@v3/graphql/household/type";
+import { FragAllDetailViewFragment } from "@v3/graphql/household/schema/query/v5/fragChartDetailTable.generated";
+import { GetAllDetailViewDocument } from "@v3/graphql/household/schema/query/v5/getAllDetailView.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { convertToDate } from "../../../function/date/convertToDate";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
 import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
@@ -20,8 +19,8 @@ export const fetchDetails = async (params: Params) => {
 
   const { data } = await execQuery(GetAllDetailViewDocument, {
     groupId: group.id,
-    fromDate: params.fromDate,
-    toDate: params.toDate,
+    fromDate: convertToDate(params.fromDate),
+    toDate: convertToDate(params.toDate),
     tagIds: params.tagIds,
   });
 
@@ -52,8 +51,8 @@ export const fetchDetails = async (params: Params) => {
 const converter = (detail: FragAllDetailViewFragment): SearchRow => {
   return {
     id: detail.id ?? "",
-    settlementDate: detail.settlementDate ?? "",
-    withdrawalDate: detail.withdrawalDate ?? "",
+    settlementDate: detail.settlementDate!,
+    withdrawalDate: detail.withdrawalDate!,
     type: detail.type ?? "",
     amount: detail.amount ?? 0,
     account: {

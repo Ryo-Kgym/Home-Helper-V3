@@ -8,8 +8,16 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  bpchar: any;
-  date: any;
-  numeric: any;
-  timestamp: any;
+  bpchar: string;
+  date: Date;
+  numeric: number;
+  timestamp: Date;
 };
+
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+
+export type HouseholdDetailTagInsertInput = {};
+export type HouseholdTagSetInput = {};
+export type HouseholdTagInsertInput = {};
+export type HouseholdCreditCardSummarySetInput = {};

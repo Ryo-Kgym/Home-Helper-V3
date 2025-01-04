@@ -1,6 +1,6 @@
 "use server";
 
-import { DeleteDailyDetailBySerialNoDocument } from "@v3/graphql/household/type";
+import { DeleteDailyDetailBySerialNoDocument } from "@v3/graphql/household/schema/mutation/delete/DeleteDailyDetailBySerialNo.generated";
 
 import { execMutation } from "../../../persistence/database/server/execMutation";
 

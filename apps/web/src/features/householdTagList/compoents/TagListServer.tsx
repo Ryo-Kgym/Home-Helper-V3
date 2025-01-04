@@ -1,4 +1,4 @@
-import { GetTagListDocument } from "@v3/graphql/household/type";
+import { GetTagListDocument } from "@v3/graphql/household/schema/query/v5/queryTag.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";

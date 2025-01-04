@@ -1,6 +1,6 @@
 "use server";
 
-import { AddTagDocument } from "@v3/graphql/household/type";
+import { AddTagDocument } from "@v3/graphql/household/schema/mutation/v5/mutateTag.generated";
 
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";

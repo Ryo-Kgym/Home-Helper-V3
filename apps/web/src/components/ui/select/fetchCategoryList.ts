@@ -1,6 +1,6 @@
 "use server";
 
-import { GetValidCategoryByGenreIdDocument } from "@v3/graphql/household/type";
+import { GetValidCategoryByGenreIdDocument } from "@v3/graphql/household/schema/query/v5/getValidCategoryByGenreId.generated";
 
 import type { SelectData } from "./v5";
 import { findUser } from "../../../persistence/browser/server/find-user";

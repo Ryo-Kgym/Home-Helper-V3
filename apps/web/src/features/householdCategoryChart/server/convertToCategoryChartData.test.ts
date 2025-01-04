@@ -4,18 +4,28 @@ import {
   convertToCategoryChartData,
 } from "./convertToCategoryChartData";
 
+const dummyData = {
+  __typename: "HouseholdAllDetailView" as const,
+  id: null,
+  type: null,
+  withdrawalDate: null,
+  memo: null,
+  account: null,
+};
+
 describe("convertToCategoryChartData", () => {
   test("期待通りに処理されること", () => {
     const params: Parameters<typeof convertToCategoryChartData>[0] = {
       detailView: [
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           settlementDate: "2023-08-01",
           iocomeType: "OUTCOME",
           amount: 100,
           category: {
             id: "c1",
             name: "カテゴリ1",
+            depositCategory: null,
           },
           genre: {
             id: "g1",
@@ -25,13 +35,14 @@ describe("convertToCategoryChartData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           settlementDate: "2023-08-02",
           iocomeType: "OUTCOME",
           amount: 50,
           category: {
             id: "c1",
             name: "カテゴリ1",
+            depositCategory: null,
           },
           genre: {
             id: "g1",
@@ -41,13 +52,14 @@ describe("convertToCategoryChartData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           settlementDate: "2023-08-03",
           iocomeType: "INCOME",
           amount: 50,
           category: {
             id: "c2",
             name: "カテゴリ2",
+            depositCategory: null,
           },
           genre: {
             id: "g2",
@@ -57,13 +69,14 @@ describe("convertToCategoryChartData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           settlementDate: "2023-09-01",
           iocomeType: "OUTCOME",
           amount: 100,
           category: {
             id: "c1",
             name: "カテゴリ1",
+            depositCategory: null,
           },
           genre: {
             id: "g1",
@@ -73,13 +86,14 @@ describe("convertToCategoryChartData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           settlementDate: "2023-09-02",
           iocomeType: "OUTCOME",
           amount: 300,
           category: {
             id: "c1",
             name: "カテゴリ1",
+            depositCategory: null,
           },
           genre: {
             id: "g1",

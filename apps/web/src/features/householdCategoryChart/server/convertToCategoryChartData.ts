@@ -1,4 +1,4 @@
-import { ChartDataQuery } from "@v3/graphql/household/type";
+import { ChartDataQuery } from "@v3/graphql/household/schema/query/v5/chartData.generated";
 
 import { GenreType } from "../../../domain/model/household/GenreType";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
@@ -70,7 +70,13 @@ export const aggregateCategoryData = (
   data: ChartDataQuery,
 ): AggregateCategoryDataType =>
   data?.detailView.reduce<AggregateCategoryDataType>((acc, cur) => {
-    const yearMonth = cur.settlementDate.slice(0, 7);
+    const yearMonth = cur.settlementDate?.slice(0, 7);
+    const amount = cur.amount ?? 0;
+
+    if (!yearMonth) {
+      throw new Error("yearMonth is required");
+    }
+
     const key = cur.category?.id + "__" + yearMonth;
 
     if (!acc[key]) {
@@ -86,7 +92,7 @@ export const aggregateCategoryData = (
             cur.category?.id === data?.transferCategory?.incomeCategoryId ||
             cur.category?.id === data?.transferCategory?.outcomeCategoryId,
           yearMonth,
-          total: cur.amount,
+          total: amount,
         },
       };
     }
@@ -103,7 +109,7 @@ export const aggregateCategoryData = (
           cur.category?.id === data?.transferCategory?.incomeCategoryId ||
           cur.category?.id === data?.transferCategory?.outcomeCategoryId,
         yearMonth,
-        total: acc[key].total + cur.amount,
+        total: acc[key].total + amount,
       },
     };
   }, {});

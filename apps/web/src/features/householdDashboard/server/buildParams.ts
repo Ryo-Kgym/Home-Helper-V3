@@ -30,8 +30,8 @@ export const buildParams = (
   );
 
   return {
-    firstDay: firstDay.toISOString().slice(0, 10),
-    lastDay: lastDay.toISOString().slice(0, 10),
+    firstDay,
+    lastDay,
   };
 };
 

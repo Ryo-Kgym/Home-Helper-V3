@@ -1,6 +1,6 @@
 "use server";
 
-import { GetValidAccountsDocument } from "@v3/graphql/household/type";
+import { GetValidAccountsDocument } from "@v3/graphql/household/schema/query/v5/getValidAccounts.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";

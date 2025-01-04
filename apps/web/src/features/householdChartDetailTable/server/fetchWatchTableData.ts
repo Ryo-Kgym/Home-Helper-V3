@@ -1,11 +1,12 @@
 import {
   ChartDetailTableFilterSettlementDateDocument,
   ChartDetailTableFilterWithdrawalDateDocument,
-} from "@v3/graphql/household/type";
+} from "@v3/graphql/household/schema/query/v5/chartDetailTable.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
+import { ChartDetailTableRow } from "../types/chartDetailTableRow";
 
 export const fetchWatchTableData = async ({
   watchFirstDate,
@@ -13,7 +14,7 @@ export const fetchWatchTableData = async ({
 }: {
   watchFirstDate: Date;
   dateType: "withdrawalDate" | "settlementDate";
-}) => {
+}): Promise<{ records: ChartDetailTableRow[] }> => {
   // watchFirstDate から月末日を生成する
   const watchLastDate = getLastDateOfMonth(watchFirstDate);
 
@@ -34,9 +35,9 @@ export const fetchWatchTableData = async ({
     records: data?.detailView.map((rec) => ({
       id: rec.id!,
       type: rec.type!,
-      withdrawalDate: rec.withdrawalDate,
-      settlementDate: rec.settlementDate,
-      amount: rec.amount as number,
+      withdrawalDate: rec.withdrawalDate!,
+      settlementDate: rec.settlementDate!,
+      amount: rec.amount!,
       iocomeType: rec.iocomeType as IocomeType,
       accountId: rec.account?.id ?? "",
       accountName: rec.account?.name ?? "",

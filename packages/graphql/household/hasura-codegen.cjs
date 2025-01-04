@@ -20,15 +20,17 @@ module.exports = {
         onlyOperationTypes: true,
         enumsAsTypes: true,
         scalars: {
-          Date: "Date",
-          Datetime: "Date",
+          bpchar: "string",
+          date: "string",
+          timestamp: "string",
+          numeric: "number",
         },
         defaultScalarType: "unknown",
         avoidOptionals: {
           field: true,
-          inputValue: false,
+          inputValue: true,
           object: true,
-          defaultValue: false,
+          defaultValue: true,
         },
       },
       hooks: {

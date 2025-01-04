@@ -1,9 +1,9 @@
 import "server-only";
 
-import { GetDashboardSettingDocument } from "@v3/graphql/household/type";
+import { GetDashboardSettingDocument } from "@v3/graphql/household/schema/query/v5/getDashboardSetting.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
-import { fetchQuery } from "../../../persistence/database/server/fetchQuery";
+import { execQuery } from "../../../persistence/database/server/execQuery";
 import { DashboardFeature } from "../types/dashboardFeature";
 
 export const fetchDashboardSettings = async () => {
@@ -12,7 +12,7 @@ export const fetchDashboardSettings = async () => {
     group: { id: groupId },
   } = await findUser();
 
-  const { data } = await fetchQuery(GetDashboardSettingDocument, {
+  const { data } = await execQuery(GetDashboardSettingDocument, {
     userId,
     groupId,
   });

@@ -1,11 +1,21 @@
 import { sumBalanceData } from "./sumBalanceData";
 
+const dummyData = {
+  __typename: "HouseholdAllDetailView" as const,
+  type: null,
+  settlementDate: null,
+  memo: null,
+  account: null,
+  genre: null,
+  category: null,
+};
+
 describe("sumBalanceData", () => {
   test("期待通りに処理されること", () => {
     const params: Parameters<typeof sumBalanceData>[0] = {
       detailView: [
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           id: "1",
           withdrawalDate: "2023-08-01",
           iocomeType: "INCOME",
@@ -13,7 +23,7 @@ describe("sumBalanceData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           id: "2",
           withdrawalDate: "2023-08-02",
           iocomeType: "OUTCOME",
@@ -21,7 +31,7 @@ describe("sumBalanceData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           id: "3",
           withdrawalDate: "2023-08-03",
           iocomeType: "INCOME",
@@ -29,7 +39,7 @@ describe("sumBalanceData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           id: "4",
           withdrawalDate: "2023-09-01",
           iocomeType: "OUTCOME",
@@ -37,7 +47,7 @@ describe("sumBalanceData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           id: "5",
           withdrawalDate: "2023-09-02",
           iocomeType: "INCOME",
@@ -45,7 +55,7 @@ describe("sumBalanceData", () => {
           tags: [],
         },
         {
-          __typename: "HouseholdAllDetailView",
+          ...dummyData,
           id: "6",
           withdrawalDate: "2023-09-03",
           iocomeType: "OUTCOME",
@@ -60,6 +70,7 @@ describe("sumBalanceData", () => {
           tags: [],
         },
       ],
+      transferCategory: null,
     };
 
     const actual = sumBalanceData(params);

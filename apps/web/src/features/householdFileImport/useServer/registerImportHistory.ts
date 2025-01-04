@@ -1,6 +1,6 @@
 "use server";
 
-import { CreateImportFileHistoryDocument } from "@v3/graphql/household/type";
+import { CreateImportFileHistoryDocument } from "@v3/graphql/household/schema/mutation/create/CreateImportFileHistory.generated";
 
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";

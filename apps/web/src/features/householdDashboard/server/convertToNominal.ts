@@ -1,6 +1,6 @@
 import "server-only";
 
-import { GetDetailsByCategoryQuery } from "@v3/graphql/household/type";
+import { GetDetailsByCategoryQuery } from "@v3/graphql/household/schema/query/v5/getDetailsByCategory.generated";
 
 import { Nominal } from "./fetchDashboardMonthly";
 

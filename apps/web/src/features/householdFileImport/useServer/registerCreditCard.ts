@@ -1,9 +1,7 @@
 "use server";
 
-import {
-  CreateCreditCardDetailDocument,
-  CreateCreditCardSummaryDocument,
-} from "@v3/graphql/household/type";
+import { CreateCreditCardDetailDocument } from "@v3/graphql/household/schema/mutation/create/CreateCreditCardDetail.generated";
+import { CreateCreditCardSummaryDocument } from "@v3/graphql/household/schema/mutation/create/CreateCreditCardSummary.generated";
 
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";
