@@ -16,7 +16,7 @@ describe("getYear", () => {
 
   it("引数指定がない場合、当年のデータを返す。", () => {
     const mockDate = new Date(1712150000000);
-    jest.spyOn(global, "Date").mockImplementation(() => mockDate);
+    jest.spyOn(globalThis, "Date").mockImplementation(() => mockDate);
 
     const year = getYear();
     expect(year).toEqual({
