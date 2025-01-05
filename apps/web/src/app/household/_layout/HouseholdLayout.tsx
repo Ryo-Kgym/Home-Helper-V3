@@ -1,10 +1,8 @@
-"use client";
-
 import { ReactNode } from "react";
 
 import { NavbarSection } from "../../_layout/NavbarSection";
 import { Navi } from "../../_layout/navi";
-import { RegisterDailyButton } from "../../../components/molecules";
+import { RegisterDailyButtonServer } from "../../../features/householdRegisterDaily/components/RegisterDailyButtonServer";
 import { paths } from "../../../routing/paths";
 
 export const HouseholdLayout = ({ children }: { children: ReactNode }) => (
@@ -12,7 +10,7 @@ export const HouseholdLayout = ({ children }: { children: ReactNode }) => (
     <NavbarSection header={"家計簿アプリ"} naviArray={householdMenu}>
       {children}
       <div className={"absolute bottom-16 left-12 z-[110]"}>
-        <RegisterDailyButton />
+        <RegisterDailyButtonServer />
       </div>
     </NavbarSection>
   </div>
