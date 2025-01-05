@@ -10,28 +10,55 @@ module.exports = {
   schema: process.env.ONEFORALL_GRAPHQL_ENDPOINT,
   documents: "./household/**/**.graphql",
   generates: {
-    "./household/index.ts": {
-      config: {
-        onlyOperationTypes: true,
-        withHooks: true,
-      },
-      plugins: ["typescript", "typescript-operations", "typescript-urql"],
-      hooks: {
-        afterOneFileWrite: ["prettier --write"],
-      },
-    },
-    "./household/type.ts": {
-      config: {
-        enumsAsTypes: true,
-        onlyOperationTypes: true,
+    "./household/generated/": {
+      preset: "near-operation-file",
+      presetConfig: {
+        baseTypesPath: "typed",
       },
       plugins: ["typescript", "typescript-operations", "typed-document-node"],
+      config: {
+        onlyOperationTypes: true,
+        enumsAsTypes: true,
+        scalars: {
+          bpchar: "string",
+          date: "string",
+          timestamp: "string",
+          numeric: "number",
+        },
+        defaultScalarType: "unknown",
+        avoidOptionals: {
+          field: true,
+          inputValue: true,
+          object: true,
+          defaultValue: true,
+        },
+      },
       hooks: {
         afterOneFileWrite: ["prettier --write"],
       },
     },
-    "./household/schema.json": {
-      plugins: ["introspection"],
-    },
+    // "./household/index.ts": {
+    //   config: {
+    //     onlyOperationTypes: true,
+    //     withHooks: true,
+    //   },
+    //   plugins: ["typescript", "typescript-operations", "typescript-urql"],
+    //   hooks: {
+    //     afterOneFileWrite: ["prettier --write"],
+    //   },
+    // },
+    // "./household/type.ts": {
+    //   config: {
+    //     enumsAsTypes: true,
+    //     onlyOperationTypes: true,
+    //   },
+    //   plugins: ["typescript", "typescript-operations", "typed-document-node"],
+    //   hooks: {
+    //     afterOneFileWrite: ["prettier --write"],
+    //   },
+    // },
+    // "./household/schema.json": {
+    //   plugins: ["introspection"],
+    // },
   },
 };

@@ -7,23 +7,14 @@ import { Table, TableProps } from "../../../components/atoms/Table";
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { Button } from "../../../components/ui/button/v5";
 import { Tag } from "../../../components/ui/tag/Tag";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { paths } from "../../../routing/paths";
+import { CreditDetailRow } from "../types/creditDetailRow";
 import { CreditSummaryTable } from "./CreditSummaryTable";
 
 type Props = {
   creditCardSummaryId: string;
   summary: ComponentProps<typeof CreditSummaryTable>;
-  details: {
-    id: string;
-    date: string;
-    genreName: string;
-    categoryName: string;
-    iocomeType: IocomeType;
-    amount: number;
-    memo: string;
-    tags: { label: string; value: string; colorCode: string }[];
-  }[];
+  details: CreditDetailRow[];
 };
 export const CreditDetailListClient: FC<Props> = ({
   creditCardSummaryId,

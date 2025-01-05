@@ -1,4 +1,4 @@
-import { GetCreditCardDetailBySummaryIdDocument } from "@v3/graphql/household/type";
+import { GetCreditCardDetailBySummaryIdDocument } from "@v3/graphql/household/schema/query/v5/getCreditCardDetailBySummaryId.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { execQuery } from "../../../persistence/database/server/execQuery";
@@ -22,7 +22,7 @@ export const CreditDetailListServer = async ({
     creditCard: data.creditCardSummary.creditCard,
     withdrawalDate: new Date(data.creditCardSummary.withdrawalDate),
     accountId: data.creditCardSummary.account.id,
-    totalAmount: data.creditCardSummary.totalAmount as number,
+    totalAmount: data.creditCardSummary.totalAmount,
     count: data.creditCardSummary.creditCardDetails.length,
   };
 

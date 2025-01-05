@@ -9,7 +9,7 @@ export const getYear = (baseDate?: Date) => {
   const lastYear = new Date(year - 1, 0, 1, 9);
   // 本日と年末を比較して、小さい方を返す
   const lastDateNotGreaterThanToday = new Date(
-    Math.min(lastDayOfYear.getTime(), new Date().getTime()),
+    Math.min(lastDayOfYear.getTime(), baseDate.getTime()),
   );
   lastDateNotGreaterThanToday.setHours(9, 0, 0, 0);
 

@@ -1,9 +1,9 @@
 "use server";
 
-import { GetDetailsByCategoryDocument } from "@v3/graphql/household/type";
+import { GetDetailsByCategoryDocument } from "@v3/graphql/household/schema/query/v5/getDetailsByCategory.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
-import { fetchQuery } from "../../../persistence/database/server/fetchQuery";
+import { execQuery } from "../../../persistence/database/server/execQuery";
 import { DashboardComponentProps } from "../types/dashboardFC";
 import { buildParams } from "./buildParams";
 import { convertToNominal } from "./convertToNominal";
@@ -28,7 +28,7 @@ export const fetchDashboardMonthly = async (
   const { group } = await findUser();
   const { firstDay, lastDay } = buildParams(params);
 
-  const { data: outcomeData } = await fetchQuery(GetDetailsByCategoryDocument, {
+  const { data: outcomeData } = await execQuery(GetDetailsByCategoryDocument, {
     fromDate: firstDay,
     toDate: lastDay,
     groupId: group.id,
@@ -37,7 +37,7 @@ export const fetchDashboardMonthly = async (
 
   const outcome = convertToNominal(outcomeData);
 
-  const { data: incomeData } = await fetchQuery(GetDetailsByCategoryDocument, {
+  const { data: incomeData } = await execQuery(GetDetailsByCategoryDocument, {
     fromDate: firstDay,
     toDate: lastDay,
     groupId: group.id,

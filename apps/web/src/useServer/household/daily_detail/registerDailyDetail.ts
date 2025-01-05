@@ -1,9 +1,8 @@
 "use server";
 
-import { CreateDailyDetailDocument } from "@v3/graphql/household/type";
+import { CreateDailyDetailDocument } from "@v3/graphql/household/schema/mutation/create/CreateDailyDetail.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { convertToFull } from "../../../function/date/convertToFull";
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execMutation } from "../../../persistence/database/server/execMutation";
@@ -32,13 +31,13 @@ export const registerDailyDetail = async ({
 
   await execMutation(CreateDailyDetailDocument, {
     id: generateId(),
-    date: convertToFull(date),
+    date,
     amount,
     accountId,
     genreId,
     iocomeType,
     categoryId,
-    memo: memo,
+    memo: memo ?? "",
     groupId,
     userId,
   });

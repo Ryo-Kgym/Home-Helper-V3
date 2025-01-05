@@ -1,3 +1,4 @@
+import { convertToDate } from "../../../function/date/convertToDate";
 import { buildParams } from "./buildParams";
 
 describe("buildParams", () => {
@@ -19,8 +20,8 @@ describe("buildParams", () => {
     });
 
     expect(actual).toEqual({
-      firstDay: "2023-02-01",
-      lastDay: "2023-02-28",
+      firstDay: convertToDate("2023-02-01"),
+      lastDay: convertToDate("2023-02-28"),
     });
   });
 });

@@ -1,6 +1,6 @@
 "use server";
 
-import { GetValidGenreListByIocomeTypeDocument } from "@v3/graphql/household/type";
+import { GetValidGenreListByIocomeTypeDocument } from "@v3/graphql/household/schema/query/v5/getValidGenreListByIocomeType.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { findUser } from "../../../persistence/browser/server/find-user";

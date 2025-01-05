@@ -1,18 +1,24 @@
-import { ChartDataQuery } from "@v3/graphql/household/type";
+import { ChartDataQuery } from "@v3/graphql/household/schema/query/v5/chartData.generated";
 
 import { SumBalance } from "./types";
 
 export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
   return data.detailView?.reduce<SumBalance>((sum, cur) => {
-    const yearMonth = cur.withdrawalDate.slice(0, 7); // yyyy-mm
+    const yearMonth = cur.withdrawalDate?.slice(0, 7); // yyyy-mm
+    const amount = cur.amount ?? 0;
+
+    if (!yearMonth) {
+      throw new Error("withdrawalDate is required");
+    }
+
     if (!(yearMonth in sum)) {
       return {
         ...sum,
         [yearMonth]: {
-          income: isIncome(cur) ? cur.amount : 0,
-          outcome: isOutcome(cur) ? cur.amount : 0,
-          deposit: isDeposit(cur) ? cur.amount : 0,
-          diff: cur.iocomeType === "INCOME" ? cur.amount : -cur.amount,
+          income: isIncome(cur) ? amount : 0,
+          outcome: isOutcome(cur) ? amount : 0,
+          deposit: isDeposit(cur) ? amount : 0,
+          diff: cur.iocomeType === "INCOME" ? amount : -amount,
         },
       };
     }
@@ -20,12 +26,11 @@ export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
     return {
       ...sum,
       [yearMonth]: {
-        income: thisYearMonth.income + (isIncome(cur) ? cur.amount : 0),
-        outcome: thisYearMonth.outcome + (isOutcome(cur) ? cur.amount : 0),
-        deposit: thisYearMonth.deposit + (isDeposit(cur) ? cur.amount : 0),
+        income: thisYearMonth.income + (isIncome(cur) ? amount : 0),
+        outcome: thisYearMonth.outcome + (isOutcome(cur) ? amount : 0),
+        deposit: thisYearMonth.deposit + (isDeposit(cur) ? amount : 0),
         diff:
-          thisYearMonth.diff +
-          (cur.iocomeType === "INCOME" ? cur.amount : -cur.amount),
+          thisYearMonth.diff + (cur.iocomeType === "INCOME" ? amount : -amount),
       },
     };
   }, {});

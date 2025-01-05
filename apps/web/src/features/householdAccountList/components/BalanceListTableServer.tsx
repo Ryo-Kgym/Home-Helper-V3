@@ -1,7 +1,7 @@
 import { fetchBalanceList } from "../server/fetchBalanceList";
-import { AccountListClient } from "./AccountListClient";
+import { BalanceListTable } from "./BalanceListTable";
 
-export const AccountListServer = async ({
+export const BalanceListTableServer = async ({
   fromDate = new Date("2019-01-01"),
   toDate = new Date(),
 }: {
@@ -14,7 +14,7 @@ export const AccountListServer = async ({
   });
 
   return (
-    <AccountListClient
+    <BalanceListTable
       balanceRecords={records}
       total={total}
       fromDate={fromDate}

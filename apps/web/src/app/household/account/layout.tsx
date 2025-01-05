@@ -4,12 +4,12 @@ import { ResponsiveSwitcher } from "../_layout/ResponsiveSwitcher";
 
 const Layout = ({
   balance,
-  daily,
+  detail,
 }: {
   balance: ReactNode;
-  daily: ReactNode;
+  detail: ReactNode;
 }) => {
-  return <ResponsiveSwitcher first={balance} second={daily} size={25} />;
+  return <ResponsiveSwitcher first={balance} second={detail} size={25} />;
 };
 
 export default Layout;

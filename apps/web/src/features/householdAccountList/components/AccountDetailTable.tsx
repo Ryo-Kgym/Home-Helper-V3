@@ -7,15 +7,16 @@ import { IocomeTotal } from "../../../components/molecules/Total";
 import { TagGroup } from "../../../components/ui/tag/TagGroup";
 import { DataTable } from "../../../components/ui/v4/table";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { convertToYmd } from "../../../function/date/convertToYmd";
 import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
-import { DailyBalanceRow } from "../types/dailyBalanceRow";
+import { AccountDetailRow } from "../types/accountDetailRow";
 
-export const AccountDailyTable = ({
+export const AccountDetailTable = ({
   records,
   incomeTotal,
   outcomeTotal,
 }: {
-  records: DailyBalanceRow[];
+  records: AccountDetailRow[];
   incomeTotal: number;
   outcomeTotal: number;
 }) => {
@@ -31,8 +32,14 @@ export const AccountDailyTable = ({
             accessor: "date",
             title: "決済日",
             width: "10%",
+            render: ({ date }) => convertToYmd(date),
           },
           { accessor: "genre", title: "ジャンル", width: "20%" },
+          {
+            accessor: "iocomeType",
+            title: "収支区",
+            hidden: true,
+          },
           { accessor: "category", title: "カテゴリ", width: "10%" },
           {
             accessor: "amount",

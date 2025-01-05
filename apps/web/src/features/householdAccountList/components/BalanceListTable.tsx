@@ -3,8 +3,9 @@
 import { AccountBalance } from "@oneforall/domain/household/accountBalance";
 
 import { Total } from "../../../components/molecules/Total";
-import { RangeDatePicker } from "../../../components/ui/date";
+import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";
 import { DataTable } from "../../../components/ui/v4/table";
+import { convertToYmd } from "../../../function/date/convertToYmd";
 import { useNavigation } from "../../../routing/client/useNavigation";
 
 export const BalanceListTable = ({
@@ -22,14 +23,20 @@ export const BalanceListTable = ({
 
   return (
     <>
-      <RangeDatePicker
-        fromDate={fromDate}
-        changeFromDate={(d) => {
-          prependParamAndPush({ fromDate: d.toISOString().slice(0, 10) });
+      <DateInput
+        label={"From"}
+        value={fromDate}
+        setValue={(d) => {
+          if (!d) return;
+          prependParamAndPush({ fromDate: convertToYmd(d) });
         }}
-        toDate={toDate}
-        changeToDate={(d) => {
-          prependParamAndPush({ toDate: d.toISOString().slice(0, 10) });
+      />
+      <DateInput
+        label={"To"}
+        value={toDate}
+        setValue={(d) => {
+          if (!d) return;
+          prependParamAndPush({ toDate: convertToYmd(d) });
         }}
       />
       <DataTable

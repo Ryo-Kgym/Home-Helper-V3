@@ -8,27 +8,12 @@ import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { colors } from "../../../styles/colors";
 import { CreditCardDetailEditModal } from "../../householdCreditDetailEdit/components/CreditCardDetailEditModel";
 import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
+import { ChartDetailTableRow } from "../types/chartDetailTableRow";
 
 export const ChartDetailTableClient = ({
   records,
 }: {
-  records: {
-    id: string;
-    type: string;
-    withdrawalDate: string;
-    settlementDate: string;
-    amount: number;
-    iocomeType: IocomeType;
-    accountId: string;
-    accountName: string;
-    genreId: string;
-    genreName: string;
-    categoryId: string;
-    categoryName: string;
-    memo: string;
-    tags: { label: string; value: string; colorCode: string }[];
-    isDeposit: boolean;
-  }[];
+  records: ChartDetailTableRow[];
 }) => {
   const [detail, setDetail] = useState<
     { id: string; type: "daily" | "credit" } | undefined

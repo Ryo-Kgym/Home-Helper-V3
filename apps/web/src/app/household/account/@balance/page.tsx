@@ -1,4 +1,4 @@
-import { AccountListServer } from "../../../../features/householdAccountList/components/AccountListServer";
+import { BalanceListTableServer } from "../../../../features/householdAccountList/components/BalanceListTableServer";
 
 const Page = async ({
   searchParams,
@@ -12,7 +12,7 @@ const Page = async ({
   const { fromDate, toDate } = await searchParams;
 
   return (
-    <AccountListServer
+    <BalanceListTableServer
       fromDate={fromDate ? new Date(fromDate) : undefined}
       toDate={toDate ? new Date(toDate) : undefined}
     />

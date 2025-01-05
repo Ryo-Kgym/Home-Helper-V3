@@ -2,7 +2,7 @@ import {
   convertToAccounts,
   totalBalance,
 } from "@v3/graphql/household/convert/parseToAccounts";
-import { GetAccountBalanceListDocument } from "@v3/graphql/household/type";
+import { GetAccountBalanceListDocument } from "@v3/graphql/household/schema/query/v5/getAccountBalanceList.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
