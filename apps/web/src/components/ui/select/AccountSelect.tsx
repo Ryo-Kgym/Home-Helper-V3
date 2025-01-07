@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { fetchAccountList } from "./fetchAccountList";
+import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
 import { SelectProps } from "./v4";
 import { Select } from "./v5";
 
@@ -18,12 +18,10 @@ export const AccountSelect = ({
   withLabel = false,
 }: AccountSelectProps) => {
   const [options, setOptions] = useState<SelectProps<string>["data"]>([]);
+  const { getAccounts } = useGetDetailMaster();
 
   useEffect(() => {
-    void (async () => {
-      const { accounts } = await fetchAccountList();
-      setOptions(accounts);
-    })();
+    setOptions(getAccounts());
   }, []);
 
   return (

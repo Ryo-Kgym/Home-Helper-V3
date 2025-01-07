@@ -1,14 +1,11 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
 "use client";
 
 import { useState } from "react";
 
-import { Modal } from "../../atoms/Modal";
-import { RegisterDailyDetail } from "../../organisms/register_daily_detail";
-import { Transfer } from "../../organisms/transfer";
-import { Tab } from "../../ui";
+import { Modal } from "../../../components/atoms/Modal";
+import { RegisterDailyDetail } from "../../../components/organisms/register_daily_detail";
+import { Transfer } from "../../../components/organisms/transfer";
+import { Tab } from "../../../components/ui";
 
 export const RegisterDailyButton = ({ date = new Date() }: { date?: Date }) => {
   const [opened, setOpened] = useState<boolean>(false);
