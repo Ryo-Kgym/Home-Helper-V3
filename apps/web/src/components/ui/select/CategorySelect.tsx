@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import type { SelectData } from "./v5";
-import { fetchCategoryList } from "./fetchCategoryList";
+import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
 import { Select } from "./v5";
 
 export const CategorySelect = ({
@@ -20,15 +20,17 @@ export const CategorySelect = ({
   withLabel?: boolean;
 }) => {
   const [options, setOptions] = useState<SelectData[]>([]);
+  const { getCategories } = useGetDetailMaster();
 
-  useEffect(() => {
-    if (!genreId) return;
+  useEffect(
+    () => {
+      if (!genreId) return;
 
-    void (async () => {
-      const { categories } = await fetchCategoryList({ genreId });
-      setOptions(categories);
-    })();
-  }, [genreId]);
+      setOptions(getCategories(genreId));
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [genreId],
+  );
 
   return (
     <Select

@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
 import { Select } from "../index";
-import { fetchGenreList } from "./fetchGenreList";
 import { SelectProps } from "./v4";
 
 export const GenreSelect = ({
@@ -21,13 +21,15 @@ export const GenreSelect = ({
   withLabel?: boolean;
 }) => {
   const [options, setOptions] = useState<SelectProps<string>["data"]>([]);
+  const { getGenres } = useGetDetailMaster();
 
-  useEffect(() => {
-    void (async () => {
-      const { genres } = await fetchGenreList({ iocomeType });
-      setOptions(genres);
-    })();
-  }, [iocomeType]);
+  useEffect(
+    () => {
+      setOptions(getGenres(iocomeType));
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [iocomeType],
+  );
 
   return (
     <Select
