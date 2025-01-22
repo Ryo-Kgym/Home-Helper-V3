@@ -1,21 +1,41 @@
-query getDailyAttendance($date: date!, $groupId: String!, $userId: String!) {
-  days: businessDailyAttendance(
+query getAttendance($date: date!, $groupId: String!, $userId: String!) {
+  day: businessDailyAttendance(
     where: {
       date: { _eq: $date }
       _and: { groupId: { _eq: $groupId }, _and: { userId: { _eq: $userId } } }
     }
   ) {
+    ...fragDailyAttendance
+  }
+}
+
+query getAttendanceOfMonth(
+  $fromDate: date!
+  $toDate: date!
+  $groupId: String!
+  $userId: String!
+) {
+  days: businessDailyAttendance(
+    where: {
+      date: { _gte: $fromDate, _lte: $toDate }
+      _and: { groupId: { _eq: $groupId }, _and: { userId: { _eq: $userId } } }
+    }
+  ) {
+    ...fragDailyAttendance
+  }
+}
+
+fragment fragDailyAttendance on BusinessDailyAttendance {
+  __typename
+  id
+  date
+  startTime
+  endTime
+  logs: dailyAttendanceLogs {
     __typename
     id
-    date
-    startTime
-    endTime
-    logs: dailyAttendanceLogs {
-      __typename
-      id
-      time
-      type
-      memo
-    }
+    time
+    type
+    memo
   }
 }

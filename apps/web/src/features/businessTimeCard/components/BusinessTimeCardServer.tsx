@@ -1,6 +1,6 @@
 import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { fetchDailyAttendance } from "../server/fetchDailyAttendance";
-import { AttendanceButton } from "./AttendanceButton";
+import { AttendanceAtWorkButton, LeaveWorkButton } from "./AttendanceButton";
 import { DailyAttendanceTable } from "./DailyAttendanceTable";
 
 export const BusinessTimeCardServer = async ({
@@ -12,8 +12,8 @@ export const BusinessTimeCardServer = async ({
 
   return (
     <div>
-      <AttendanceButton label="出勤" />
-      <AttendanceButton label="退勤" />
+      <AttendanceAtWorkButton />
+      <LeaveWorkButton />
       <DailyAttendanceTable days={days} />
     </div>
   );

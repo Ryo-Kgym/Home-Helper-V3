@@ -55,6 +55,6 @@ const householdMenu: Navi[] = [
   },
   {
     label: "タイムカード",
-    url: paths.business.timecard,
+    url: paths.business.timecard(),
   },
 ];

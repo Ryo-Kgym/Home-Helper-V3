@@ -1,4 +1,4 @@
-import { GetDailyAttendanceDocument } from "@v3/graphql/business/schema/query/v5/queryDailyAttendance.generated";
+import { GetAttendanceOfMonthDocument } from "@v3/graphql/business/schema/query/v5/queryDailyAttendance.generated";
 
 import { convertToDate } from "../../../function/date/convertToDate";
 import { findUser } from "../../../persistence/browser/server/find-user";
@@ -12,8 +12,9 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
 
   const { id, group } = await findUser();
 
-  const { data } = await execQuery(GetDailyAttendanceDocument, {
-    date: convertToDate(baseDate),
+  const { data } = await execQuery(GetAttendanceOfMonthDocument, {
+    fromDate: convertToDate(monthlyList[0] ?? baseDate),
+    toDate: convertToDate(monthlyList[monthlyList.length - 1] ?? baseDate),
     userId: id,
     groupId: group.id,
   });

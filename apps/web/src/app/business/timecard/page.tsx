@@ -1,9 +1,21 @@
+import { redirect } from "next/navigation";
+
 import { BusinessTimeCardServer } from "../../../features/businessTimeCard/components/BusinessTimeCardServer";
+import { paths } from "../../../routing/paths";
+import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 
-const Page = () => {
-  const baseDate = "2021-08-01";
+const Page = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ date: YYYY_MM_DD }>;
+}) => {
+  const { date } = await searchParams;
 
-  return <BusinessTimeCardServer baseDate={baseDate} />;
+  if (!date) {
+    redirect(paths.business.timecard());
+  }
+
+  return <BusinessTimeCardServer baseDate={date} />;
 };
 
 export default Page;

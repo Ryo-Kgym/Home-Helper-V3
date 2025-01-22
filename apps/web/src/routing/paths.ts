@@ -1,3 +1,5 @@
+import { convertToYmd } from "../function/date/convertToYmd";
+
 export const paths = {
   group: {
     select: "/group",
@@ -30,6 +32,7 @@ export const paths = {
     },
   },
   business: {
-    timecard: "/business/timecard",
+    timecard: (date?: Date) =>
+      `/business/timecard?date=${convertToYmd(date ?? new Date())}`,
   },
 };
