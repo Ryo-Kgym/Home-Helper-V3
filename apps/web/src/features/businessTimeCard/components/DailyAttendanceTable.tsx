@@ -38,9 +38,9 @@ export const DayRow: FC<DayAttendance> = ({
     <tr>
       <td>{date}</td>
       <td>{dayOfWeek}</td>
-      <td>{startTime}</td>
-      <td>{endTime}</td>
-      <td>{breakTime}</td>
+      <td align={"center"}>{startTime ?? "-"}</td>
+      <td align={"center"}>{endTime ?? "-"}</td>
+      <td align={"center"}>{breakTime ?? "-"}</td>
     </tr>
   );
 };
