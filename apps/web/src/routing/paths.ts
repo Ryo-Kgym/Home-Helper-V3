@@ -29,4 +29,7 @@ export const paths = {
         `/household/creditCard/${creditCardSummaryId}/add`,
     },
   },
+  business: {
+    timecard: "/business/timecard",
+  },
 };

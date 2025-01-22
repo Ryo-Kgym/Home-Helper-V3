@@ -53,4 +53,8 @@ const householdMenu: Navi[] = [
     label: "設定",
     url: paths.household.setting.genre,
   },
+  {
+    label: "タイムカード",
+    url: paths.business.timecard,
+  },
 ];
