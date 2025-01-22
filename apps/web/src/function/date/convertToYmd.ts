@@ -1,5 +1,7 @@
 import dayjs from "dayjs";
 
-export const convertToYmd = (date: Date) => {
-  return dayjs(date).format("YYYY-MM-DD");
+import { YYYY_MM_DD } from "../../types/yyyyMMdd";
+
+export const convertToYmd = (date: Date): YYYY_MM_DD => {
+  return dayjs(date).format("YYYY-MM-DD") as YYYY_MM_DD;
 };
