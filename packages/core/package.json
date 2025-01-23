@@ -9,8 +9,8 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint .",
     "with-env": "dotenv -e ../../.env --",
-    "test": "exit 0",
-    "test-watch": "exit 0"
+    "test": "vitest:run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@acme/eslint-config": "^0.2.0",
