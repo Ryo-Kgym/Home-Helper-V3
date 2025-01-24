@@ -13,6 +13,7 @@
     "allcheck": "tsc && next lint && vitest --run"
   },
   "dependencies": {
+    "@/core": "workspace:^",
     "@apollo/client": "^3.9.9",
     "@clerk/nextjs": "^6.9.0",
     "@emotion/react": "^11.11.4",
@@ -38,7 +39,6 @@
     "@mantine/spotlight": "^7.7.1",
     "@mantine/tiptap": "^7.7.1",
     "@oneforall/domain": "workspace:^",
-    "@/core": "workspace:^",
     "@tabler/icons": "^1.119.0",
     "@tabler/icons-react": "^2.47.0",
     "@tiptap/extension-link": "^2.2.4",

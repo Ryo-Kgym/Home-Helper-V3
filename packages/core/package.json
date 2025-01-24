@@ -9,7 +9,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint .",
     "with-env": "dotenv -e ../../.env --",
-    "test": "vitest:run",
+    "test": "vitest --run",
     "test:watch": "vitest"
   },
   "devDependencies": {
