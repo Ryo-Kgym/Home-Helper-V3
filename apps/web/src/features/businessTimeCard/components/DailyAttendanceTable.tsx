@@ -30,17 +30,17 @@ export const DailyAttendanceTable: FC<Props> = ({ days }) => {
 export const DayRow: FC<DayAttendance> = ({
   date,
   dayOfWeek,
-  startTime,
-  endTime,
-  breakTime,
+  startDatetime,
+  endDatetime,
+  breakSecond,
 }) => {
   return (
     <tr>
       <td>{date}</td>
       <td>{dayOfWeek}</td>
-      <td align={"center"}>{startTime ?? "-"}</td>
-      <td align={"center"}>{endTime ?? "-"}</td>
-      <td align={"center"}>{breakTime ?? "-"}</td>
+      <td align={"center"}>{startDatetime?.toTimeString() ?? "-"}</td>
+      <td align={"center"}>{endDatetime?.toTimeString() ?? "-"}</td>
+      <td align={"center"}>{breakSecond ?? "-"}</td>
     </tr>
   );
 };

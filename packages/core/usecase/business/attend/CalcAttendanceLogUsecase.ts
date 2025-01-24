@@ -23,6 +23,7 @@ export class CalcAttendanceLogUsecase
         }).leave(input.date);
 
         return {
+          dailyAttendanceId: lastLog.dailyAttendanceId,
           nextState: "leave" as const,
           startDatetime,
           endDatetime,
@@ -31,13 +32,14 @@ export class CalcAttendanceLogUsecase
       }
       case "leave": {
         const { breakSecond } = new AttendAtWork({
-          lastLeaveTime: lastLog.datetime,
+          lastLeaveTime: lastLog.endDatetime,
         }).attend(input.date);
 
         return {
+          dailyAttendanceId: lastLog.dailyAttendanceId,
           nextState: "attend" as const,
           startDatetime: lastLog.startDatetime,
-          endDatetime: input.date,
+          endDatetime: lastLog.endDatetime,
           breakSecond: lastLog.breakSecond + breakSecond,
         };
       }
@@ -50,6 +52,7 @@ export type CalcAttendanceLogInput = {
 };
 
 export type CalcAttendanceLogOutput = {
+  dailyAttendanceId: string | null;
   nextState: AttendanceState;
   startDatetime: Date;
   endDatetime: Date;

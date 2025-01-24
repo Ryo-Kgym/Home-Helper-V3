@@ -21,7 +21,7 @@ export type BusinessDailyAttendanceLogInsertInput = {
   dailyAttendanceId: String;
   id: String;
   memo?: String;
-  time: string;
+  datetime: Date;
   type: AttendanceType;
 };
 
@@ -30,11 +30,18 @@ export type BusinessDailyAttendanceInsertInput = {
     data: BusinessDailyAttendanceLogInsertInput[];
   };
   date: Date;
-  endTime: string;
+  breakSecond: number;
+  endDatetime: Date;
   groupId: String;
   id: String;
-  startTime: string;
+  startDatetime: Date;
   userId: String;
+};
+
+export type BusinessDailyAttendanceSetInput = {
+  breakSecond: number;
+  endDatetime: Date;
+  startDatetime?: Date;
 };
 
 export type AttendanceType = "attend" | "leave";

@@ -180,6 +180,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@/core':
+        specifier: workspace:^
+        version: link:../../packages/core
       '@apollo/client':
         specifier: ^3.9.9
         version: 3.10.8(@types/react@18.3.12)(graphql@16.9.0)(react-dom@18.3.1)(react@18.3.1)
@@ -449,9 +452,6 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.5.3
-      vitest:
-        specifier: ^2.1.1
-        version: 2.1.8(@types/node@20.14.10)(sass@1.77.8)
 
   packages/domain:
     dependencies:

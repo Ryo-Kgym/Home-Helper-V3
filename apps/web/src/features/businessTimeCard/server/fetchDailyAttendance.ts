@@ -22,12 +22,22 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
   const mergedDailyList: DayAttendance[] = monthlyList.map((d) => {
     const matched = data.days.find((day) => day.date === d);
 
+    if (!matched) {
+      return {
+        date: d,
+        dayOfWeek: "sun",
+        startDatetime: undefined,
+        endDatetime: undefined,
+        breakSecond: undefined,
+      };
+    }
+
     return {
       date: d,
       dayOfWeek: "sun",
-      startTime: matched?.startTime,
-      endTime: matched?.endTime,
-      breakTime: undefined,
+      startDatetime: new Date(matched.startDatetime),
+      endDatetime: new Date(matched.endDatetime),
+      breakSecond: matched.breakSecond ?? 0,
     };
   });
 

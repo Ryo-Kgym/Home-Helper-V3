@@ -24,7 +24,6 @@ export type Scalars = {
   date: string;
   numeric: number;
   timestamp: string;
-  timetz: string;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -301,13 +300,14 @@ export type BusinessDailyAttendanceBoolExp = {
   _and: InputMaybe<Array<BusinessDailyAttendanceBoolExp>>;
   _not: InputMaybe<BusinessDailyAttendanceBoolExp>;
   _or: InputMaybe<Array<BusinessDailyAttendanceBoolExp>>;
+  breakSecond: InputMaybe<IntComparisonExp>;
   dailyAttendanceLogs: InputMaybe<BusinessDailyAttendanceLogBoolExp>;
   date: InputMaybe<DateComparisonExp>;
-  endTime: InputMaybe<TimetzComparisonExp>;
+  endDatetime: InputMaybe<DateComparisonExp>;
   group: InputMaybe<GroupBoolExp>;
   groupId: InputMaybe<StringComparisonExp>;
   id: InputMaybe<StringComparisonExp>;
-  startTime: InputMaybe<TimetzComparisonExp>;
+  startDatetime: InputMaybe<DateComparisonExp>;
   user: InputMaybe<UserBoolExp>;
   userId: InputMaybe<StringComparisonExp>;
 };
@@ -317,14 +317,20 @@ export type BusinessDailyAttendanceConstraint =
   /** unique or primary key constraint on columns "id" */
   "daily_attendance_pkey";
 
+/** input type for incrementing numeric columns in table "business.daily_attendance" */
+export type BusinessDailyAttendanceIncInput = {
+  breakSecond: InputMaybe<Scalars["Int"]>;
+};
+
 /** input type for inserting data into table "business.daily_attendance" */
 export type BusinessDailyAttendanceInsertInput = {
+  breakSecond: InputMaybe<Scalars["Int"]>;
   dailyAttendanceLogs: InputMaybe<BusinessDailyAttendanceLogArrRelInsertInput>;
   date: InputMaybe<Scalars["date"]>;
-  endTime: InputMaybe<Scalars["timetz"]>;
+  endDatetime: InputMaybe<Scalars["date"]>;
   groupId: InputMaybe<Scalars["String"]>;
   id: InputMaybe<Scalars["String"]>;
-  startTime: InputMaybe<Scalars["timetz"]>;
+  startDatetime: InputMaybe<Scalars["date"]>;
   user: InputMaybe<UserObjRelInsertInput>;
   userId: InputMaybe<Scalars["String"]>;
 };
@@ -350,9 +356,9 @@ export type BusinessDailyAttendanceLogBoolExp = {
   _or: InputMaybe<Array<BusinessDailyAttendanceLogBoolExp>>;
   dailyAttendance: InputMaybe<BusinessDailyAttendanceBoolExp>;
   dailyAttendanceId: InputMaybe<StringComparisonExp>;
+  datetime: InputMaybe<DateComparisonExp>;
   id: InputMaybe<StringComparisonExp>;
   memo: InputMaybe<StringComparisonExp>;
-  time: InputMaybe<TimetzComparisonExp>;
   type: InputMaybe<StringComparisonExp>;
 };
 
@@ -365,27 +371,27 @@ export type BusinessDailyAttendanceLogConstraint =
 export type BusinessDailyAttendanceLogInsertInput = {
   dailyAttendance: InputMaybe<BusinessDailyAttendanceObjRelInsertInput>;
   dailyAttendanceId: InputMaybe<Scalars["String"]>;
+  datetime: InputMaybe<Scalars["date"]>;
   id: InputMaybe<Scalars["String"]>;
   memo: InputMaybe<Scalars["String"]>;
-  time: InputMaybe<Scalars["timetz"]>;
   type: InputMaybe<Scalars["String"]>;
 };
 
 /** order by max() on columns of table "business.daily_attendance_log" */
 export type BusinessDailyAttendanceLogMaxOrderBy = {
   dailyAttendanceId: InputMaybe<OrderBy>;
+  datetime: InputMaybe<OrderBy>;
   id: InputMaybe<OrderBy>;
   memo: InputMaybe<OrderBy>;
-  time: InputMaybe<OrderBy>;
   type: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "business.daily_attendance_log" */
 export type BusinessDailyAttendanceLogMinOrderBy = {
   dailyAttendanceId: InputMaybe<OrderBy>;
+  datetime: InputMaybe<OrderBy>;
   id: InputMaybe<OrderBy>;
   memo: InputMaybe<OrderBy>;
-  time: InputMaybe<OrderBy>;
   type: InputMaybe<OrderBy>;
 };
 
@@ -400,9 +406,9 @@ export type BusinessDailyAttendanceLogOnConflict = {
 export type BusinessDailyAttendanceLogOrderBy = {
   dailyAttendance: InputMaybe<BusinessDailyAttendanceOrderBy>;
   dailyAttendanceId: InputMaybe<OrderBy>;
+  datetime: InputMaybe<OrderBy>;
   id: InputMaybe<OrderBy>;
   memo: InputMaybe<OrderBy>;
-  time: InputMaybe<OrderBy>;
   type: InputMaybe<OrderBy>;
 };
 
@@ -411,11 +417,11 @@ export type BusinessDailyAttendanceLogSelectColumn =
   /** column name */
   | "dailyAttendanceId"
   /** column name */
+  | "datetime"
+  /** column name */
   | "id"
   /** column name */
   | "memo"
-  /** column name */
-  | "time"
   /** column name */
   | "type";
 
@@ -430,9 +436,9 @@ export type BusinessDailyAttendanceLogStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type BusinessDailyAttendanceLogStreamCursorValueInput = {
   dailyAttendanceId: InputMaybe<Scalars["String"]>;
+  datetime: InputMaybe<Scalars["date"]>;
   id: InputMaybe<Scalars["String"]>;
   memo: InputMaybe<Scalars["String"]>;
-  time: InputMaybe<Scalars["timetz"]>;
   type: InputMaybe<Scalars["String"]>;
 };
 
@@ -457,13 +463,14 @@ export type BusinessDailyAttendanceOnConflict = {
 
 /** Ordering options when selecting data from "business.daily_attendance". */
 export type BusinessDailyAttendanceOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
   dailyAttendanceLogsAggregate: InputMaybe<BusinessDailyAttendanceLogAggregateOrderBy>;
   date: InputMaybe<OrderBy>;
-  endTime: InputMaybe<OrderBy>;
+  endDatetime: InputMaybe<OrderBy>;
   group: InputMaybe<GroupOrderBy>;
   groupId: InputMaybe<OrderBy>;
   id: InputMaybe<OrderBy>;
-  startTime: InputMaybe<OrderBy>;
+  startDatetime: InputMaybe<OrderBy>;
   user: InputMaybe<UserOrderBy>;
   userId: InputMaybe<OrderBy>;
 };
@@ -476,22 +483,25 @@ export type BusinessDailyAttendancePkColumnsInput = {
 /** select columns of table "business.daily_attendance" */
 export type BusinessDailyAttendanceSelectColumn =
   /** column name */
+  | "breakSecond"
+  /** column name */
   | "date"
   /** column name */
-  | "endTime"
+  | "endDatetime"
   /** column name */
   | "groupId"
   /** column name */
   | "id"
   /** column name */
-  | "startTime"
+  | "startDatetime"
   /** column name */
   | "userId";
 
 /** input type for updating data in table "business.daily_attendance" */
 export type BusinessDailyAttendanceSetInput = {
-  endTime: InputMaybe<Scalars["timetz"]>;
-  startTime: InputMaybe<Scalars["timetz"]>;
+  breakSecond: InputMaybe<Scalars["Int"]>;
+  endDatetime: InputMaybe<Scalars["date"]>;
+  startDatetime: InputMaybe<Scalars["date"]>;
 };
 
 /** Streaming cursor of the table "business_daily_attendance" */
@@ -504,22 +514,27 @@ export type BusinessDailyAttendanceStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type BusinessDailyAttendanceStreamCursorValueInput = {
+  breakSecond: InputMaybe<Scalars["Int"]>;
   date: InputMaybe<Scalars["date"]>;
-  endTime: InputMaybe<Scalars["timetz"]>;
+  endDatetime: InputMaybe<Scalars["date"]>;
   groupId: InputMaybe<Scalars["String"]>;
   id: InputMaybe<Scalars["String"]>;
-  startTime: InputMaybe<Scalars["timetz"]>;
+  startDatetime: InputMaybe<Scalars["date"]>;
   userId: InputMaybe<Scalars["String"]>;
 };
 
 /** update columns of table "business.daily_attendance" */
 export type BusinessDailyAttendanceUpdateColumn =
   /** column name */
-  | "endTime"
+  | "breakSecond"
   /** column name */
-  | "startTime";
+  | "endDatetime"
+  /** column name */
+  | "startDatetime";
 
 export type BusinessDailyAttendanceUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc: InputMaybe<BusinessDailyAttendanceIncInput>;
   /** sets the columns of the filtered rows to the given values */
   _set: InputMaybe<BusinessDailyAttendanceSetInput>;
   /** filter the rows which have to be updated */
@@ -3776,19 +3791,6 @@ export type TimestampComparisonExp = {
   _nin: InputMaybe<Array<Scalars["timestamp"]>>;
 };
 
-/** Boolean expression to compare columns of type "timetz". All fields are combined with logical 'AND'. */
-export type TimetzComparisonExp = {
-  _eq: InputMaybe<Scalars["timetz"]>;
-  _gt: InputMaybe<Scalars["timetz"]>;
-  _gte: InputMaybe<Scalars["timetz"]>;
-  _in: InputMaybe<Array<Scalars["timetz"]>>;
-  _isNull: InputMaybe<Scalars["Boolean"]>;
-  _lt: InputMaybe<Scalars["timetz"]>;
-  _lte: InputMaybe<Scalars["timetz"]>;
-  _neq: InputMaybe<Scalars["timetz"]>;
-  _nin: InputMaybe<Array<Scalars["timetz"]>>;
-};
-
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
 export type UserBoolExp = {
   _and: InputMaybe<Array<UserBoolExp>>;
@@ -4028,12 +4030,13 @@ export type GetAttendanceQuery = {
     __typename: "BusinessDailyAttendance";
     id: string;
     date: string;
-    startTime: string;
-    endTime: string;
+    startDatetime: string;
+    endDatetime: string;
+    breakSecond: number;
     logs: Array<{
       __typename: "BusinessDailyAttendanceLog";
       id: string;
-      time: string;
+      datetime: string;
       type: string;
       memo: string | null;
     }>;
@@ -4053,12 +4056,13 @@ export type GetAttendanceOfMonthQuery = {
     __typename: "BusinessDailyAttendance";
     id: string;
     date: string;
-    startTime: string;
-    endTime: string;
+    startDatetime: string;
+    endDatetime: string;
+    breakSecond: number;
     logs: Array<{
       __typename: "BusinessDailyAttendanceLog";
       id: string;
-      time: string;
+      datetime: string;
       type: string;
       memo: string | null;
     }>;
@@ -4069,12 +4073,13 @@ export type FragDailyAttendanceFragment = {
   __typename: "BusinessDailyAttendance";
   id: string;
   date: string;
-  startTime: string;
-  endTime: string;
+  startDatetime: string;
+  endDatetime: string;
+  breakSecond: number;
   logs: Array<{
     __typename: "BusinessDailyAttendanceLog";
     id: string;
-    time: string;
+    datetime: string;
     type: string;
     memo: string | null;
   }>;
@@ -4096,18 +4101,35 @@ export const FragDailyAttendanceFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "date" } },
-          { kind: "Field", name: { kind: "Name", value: "startTime" } },
-          { kind: "Field", name: { kind: "Name", value: "endTime" } },
+          { kind: "Field", name: { kind: "Name", value: "startDatetime" } },
+          { kind: "Field", name: { kind: "Name", value: "endDatetime" } },
+          { kind: "Field", name: { kind: "Name", value: "breakSecond" } },
           {
             kind: "Field",
             alias: { kind: "Name", value: "logs" },
             name: { kind: "Name", value: "dailyAttendanceLogs" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "datetime" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "time" } },
+                { kind: "Field", name: { kind: "Name", value: "datetime" } },
                 { kind: "Field", name: { kind: "Name", value: "type" } },
                 { kind: "Field", name: { kind: "Name", value: "memo" } },
               ],
@@ -4279,18 +4301,35 @@ export const GetAttendanceDocument = {
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "date" } },
-          { kind: "Field", name: { kind: "Name", value: "startTime" } },
-          { kind: "Field", name: { kind: "Name", value: "endTime" } },
+          { kind: "Field", name: { kind: "Name", value: "startDatetime" } },
+          { kind: "Field", name: { kind: "Name", value: "endDatetime" } },
+          { kind: "Field", name: { kind: "Name", value: "breakSecond" } },
           {
             kind: "Field",
             alias: { kind: "Name", value: "logs" },
             name: { kind: "Name", value: "dailyAttendanceLogs" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "datetime" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "time" } },
+                { kind: "Field", name: { kind: "Name", value: "datetime" } },
                 { kind: "Field", name: { kind: "Name", value: "type" } },
                 { kind: "Field", name: { kind: "Name", value: "memo" } },
               ],
@@ -4484,18 +4523,35 @@ export const GetAttendanceOfMonthDocument = {
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "date" } },
-          { kind: "Field", name: { kind: "Name", value: "startTime" } },
-          { kind: "Field", name: { kind: "Name", value: "endTime" } },
+          { kind: "Field", name: { kind: "Name", value: "startDatetime" } },
+          { kind: "Field", name: { kind: "Name", value: "endDatetime" } },
+          { kind: "Field", name: { kind: "Name", value: "breakSecond" } },
           {
             kind: "Field",
             alias: { kind: "Name", value: "logs" },
             name: { kind: "Name", value: "dailyAttendanceLogs" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "datetime" },
+                      value: { kind: "EnumValue", value: "ASC" },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "time" } },
+                { kind: "Field", name: { kind: "Name", value: "datetime" } },
                 { kind: "Field", name: { kind: "Name", value: "type" } },
                 { kind: "Field", name: { kind: "Name", value: "memo" } },
               ],

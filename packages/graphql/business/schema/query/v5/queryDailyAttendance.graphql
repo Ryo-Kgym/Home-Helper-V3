@@ -29,12 +29,13 @@ fragment fragDailyAttendance on BusinessDailyAttendance {
   __typename
   id
   date
-  startTime
-  endTime
-  logs: dailyAttendanceLogs {
+  startDatetime
+  endDatetime
+  breakSecond
+  logs: dailyAttendanceLogs(orderBy: { datetime: ASC }) {
     __typename
     id
-    time
+    datetime
     type
     memo
   }

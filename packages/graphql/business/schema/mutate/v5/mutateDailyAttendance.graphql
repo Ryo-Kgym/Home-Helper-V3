@@ -11,3 +11,15 @@ mutation insertDailyAttendance($object: BusinessDailyAttendanceInsertInput!) {
     id
   }
 }
+
+mutation updateDailyAttendance(
+  $id: String!
+  $set: BusinessDailyAttendanceSetInput!
+) {
+  update: updateBusinessDailyAttendanceByPk(
+    pkColumns: { id: $id }
+    _set: $set
+  ) {
+    id
+  }
+}

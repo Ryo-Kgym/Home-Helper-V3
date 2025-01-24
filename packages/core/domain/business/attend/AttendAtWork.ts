@@ -10,7 +10,7 @@ export class AttendAtWork {
       attendTime.getTime() - this.lastLeaveTime.getTime();
 
     return {
-      breakSecond: breakMilliSecond / 1000,
+      breakSecond: Math.floor(breakMilliSecond / 1000),
     };
   }
 }

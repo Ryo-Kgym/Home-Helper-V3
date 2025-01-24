@@ -38,6 +38,7 @@
     "@mantine/spotlight": "^7.7.1",
     "@mantine/tiptap": "^7.7.1",
     "@oneforall/domain": "workspace:^",
+    "@/core": "workspace:^",
     "@tabler/icons": "^1.119.0",
     "@tabler/icons-react": "^2.47.0",
     "@tiptap/extension-link": "^2.2.4",
