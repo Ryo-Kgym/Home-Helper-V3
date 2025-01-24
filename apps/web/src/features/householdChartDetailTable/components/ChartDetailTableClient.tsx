@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { IocomeTotal } from "../../../components/molecules/Total";
 import { Tag } from "../../../components/ui/tag/Tag";
 import { DataTable } from "../../../components/ui/v4/table";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
@@ -12,8 +13,12 @@ import { ChartDetailTableRow } from "../types/chartDetailTableRow";
 
 export const ChartDetailTableClient = ({
   records,
+  incomeTotal,
+  outcomeTotal,
 }: {
   records: ChartDetailTableRow[];
+  incomeTotal: number;
+  outcomeTotal: number;
 }) => {
   const [detail, setDetail] = useState<
     { id: string; type: "daily" | "credit" } | undefined
@@ -94,6 +99,9 @@ export const ChartDetailTableClient = ({
           });
         }}
       />
+      <div>
+        <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
+      </div>
       {detail && detail.type === "daily" && (
         <DailyDetailEditModal
           id={detail.id}

@@ -12,7 +12,16 @@ export const ChartDetailTableServer = async ({
     return <div>年月を選択してください</div>;
   }
 
-  const { records } = await fetchWatchTableData({ watchFirstDate, dateType });
+  const { records, incomeTotal, outcomeTotal } = await fetchWatchTableData({
+    watchFirstDate,
+    dateType,
+  });
 
-  return <ChartDetailTableClient records={records} />;
+  return (
+    <ChartDetailTableClient
+      records={records}
+      incomeTotal={incomeTotal}
+      outcomeTotal={outcomeTotal}
+    />
+  );
 };

@@ -1,0 +1,5 @@
+fragment fragTransferCategory on HouseholdTransferCategory {
+  id: groupId
+  incomeCategoryId
+  outcomeCategoryId
+}

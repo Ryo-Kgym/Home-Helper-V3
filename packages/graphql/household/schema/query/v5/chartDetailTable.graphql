@@ -17,6 +17,9 @@ query chartDetailTableFilterWithdrawalDate(
   ) {
     ...fragAllDetailView
   }
+  transfer: householdTransferCategoryByPk(groupId: $groupId) {
+    ...fragTransferCategory
+  }
 }
 
 query chartDetailTableFilterSettlementDate(
@@ -37,5 +40,8 @@ query chartDetailTableFilterSettlementDate(
     ]
   ) {
     ...fragAllDetailView
+  }
+  transfer: householdTransferCategoryByPk(groupId: $groupId) {
+    ...fragTransferCategory
   }
 }

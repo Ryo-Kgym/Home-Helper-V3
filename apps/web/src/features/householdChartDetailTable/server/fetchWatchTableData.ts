@@ -14,7 +14,11 @@ export const fetchWatchTableData = async ({
 }: {
   watchFirstDate: Date;
   dateType: "withdrawalDate" | "settlementDate";
-}): Promise<{ records: ChartDetailTableRow[] }> => {
+}): Promise<{
+  records: ChartDetailTableRow[];
+  incomeTotal: number;
+  outcomeTotal: number;
+}> => {
   // watchFirstDate から月末日を生成する
   const watchLastDate = getLastDateOfMonth(watchFirstDate);
 
@@ -31,31 +35,52 @@ export const fetchWatchTableData = async ({
     toDate: watchLastDate,
   });
 
-  return {
-    records: data?.detailView.map((rec) => ({
-      id: rec.id!,
-      type: rec.type!,
-      withdrawalDate: rec.withdrawalDate!,
-      settlementDate: rec.settlementDate!,
-      amount: rec.amount!,
-      iocomeType: rec.iocomeType as IocomeType,
-      accountId: rec.account?.id ?? "",
-      accountName: rec.account?.name ?? "",
-      genreId: rec.genre?.id ?? "",
-      genreName: rec.genre?.name ?? "",
-      categoryId: rec.category?.id ?? "",
-      categoryName: rec.category?.name ?? "",
-      memo: rec.memo ?? "",
-      isDeposit: !!rec.category?.depositCategory,
-      tags: rec.tags.map((tag) => ({
-        label: tag.tag.name,
-        value: tag.tag.id,
-        colorCode: tag.tag.colorCode,
-      })),
+  const records = data?.detailView.map((rec) => ({
+    id: rec.id!,
+    type: rec.type!,
+    withdrawalDate: rec.withdrawalDate!,
+    settlementDate: rec.settlementDate!,
+    amount: rec.amount!,
+    iocomeType: rec.iocomeType as IocomeType,
+    accountId: rec.account?.id ?? "",
+    accountName: rec.account?.name ?? "",
+    genreId: rec.genre?.id ?? "",
+    genreName: rec.genre?.name ?? "",
+    categoryId: rec.category?.id ?? "",
+    categoryName: rec.category?.name ?? "",
+    memo: rec.memo ?? "",
+    isDeposit: !!rec.category?.depositCategory,
+    tags: rec.tags.map((tag) => ({
+      label: tag.tag.name,
+      value: tag.tag.id,
+      colorCode: tag.tag.colorCode,
     })),
+  }));
+
+  return {
+    records,
+    incomeTotal: calcTotal(records, IocomeType.Income, [
+      data?.transfer?.incomeCategoryId ?? "",
+    ]),
+    outcomeTotal: calcTotal(records, IocomeType.Outcome, [
+      data?.transfer?.outcomeCategoryId ?? "",
+    ]),
   };
 };
 
 const getLastDateOfMonth = (date: Date) => {
   return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+};
+
+const calcTotal = (
+  records: ChartDetailTableRow[],
+  type: IocomeType,
+  ignoreIds: string[],
+) => {
+  return records
+    .filter((rec) => rec.iocomeType === type)
+    .filter((rec) => !ignoreIds.includes(rec.categoryId))
+    .reduce((acc, rec) => {
+      return acc + rec.amount;
+    }, 0);
 };
