@@ -1,0 +1,25 @@
+mutation insertDailyAttendanceLog(
+  $object: BusinessDailyAttendanceLogInsertInput!
+) {
+  insert: insertBusinessDailyAttendanceLogOne(object: $object) {
+    id
+  }
+}
+
+mutation insertDailyAttendance($object: BusinessDailyAttendanceInsertInput!) {
+  insert: insertBusinessDailyAttendanceOne(object: $object) {
+    id
+  }
+}
+
+mutation updateDailyAttendance(
+  $id: String!
+  $set: BusinessDailyAttendanceSetInput!
+) {
+  update: updateBusinessDailyAttendanceByPk(
+    pkColumns: { id: $id }
+    _set: $set
+  ) {
+    id
+  }
+}

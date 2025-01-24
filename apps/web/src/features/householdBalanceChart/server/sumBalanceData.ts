@@ -3,6 +3,9 @@ import { ChartDataQuery } from "@v3/graphql/household/schema/query/v5/chartData.
 import { SumBalance } from "./types";
 
 export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
+  const transferIncomeCategoryId = data.transferCategory?.incomeCategoryId;
+  const transferOutcomeCategoryId = data.transferCategory?.outcomeCategoryId;
+
   return data.detailView?.reduce<SumBalance>((sum, cur) => {
     const yearMonth = cur.withdrawalDate?.slice(0, 7); // yyyy-mm
     const amount = cur.amount ?? 0;
@@ -15,8 +18,10 @@ export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
       return {
         ...sum,
         [yearMonth]: {
-          income: isIncome(cur) ? amount : 0,
-          outcome: isOutcome(cur) ? amount : 0,
+          income: isIncome(cur, [transferIncomeCategoryId ?? ""]) ? amount : 0,
+          outcome: isOutcome(cur, [transferOutcomeCategoryId ?? ""])
+            ? amount
+            : 0,
           deposit: isDeposit(cur) ? amount : 0,
           diff: cur.iocomeType === "INCOME" ? amount : -amount,
         },
@@ -26,8 +31,12 @@ export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
     return {
       ...sum,
       [yearMonth]: {
-        income: thisYearMonth.income + (isIncome(cur) ? amount : 0),
-        outcome: thisYearMonth.outcome + (isOutcome(cur) ? amount : 0),
+        income:
+          thisYearMonth.income +
+          (isIncome(cur, [transferIncomeCategoryId ?? ""]) ? amount : 0),
+        outcome:
+          thisYearMonth.outcome +
+          (isOutcome(cur, [transferOutcomeCategoryId ?? ""]) ? amount : 0),
         deposit: thisYearMonth.deposit + (isDeposit(cur) ? amount : 0),
         diff:
           thisYearMonth.diff + (cur.iocomeType === "INCOME" ? amount : -amount),
@@ -36,12 +45,25 @@ export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
   }, {});
 };
 
-const isIncome = (cur: NonNullable<ChartDataQuery>["detailView"][number]) => {
-  return cur.iocomeType === "INCOME";
+const isIncome = (
+  cur: NonNullable<ChartDataQuery>["detailView"][number],
+  ignoreIds: string[],
+) => {
+  return (
+    cur.iocomeType === "INCOME" &&
+    ignoreIds.every((id) => id !== cur.category?.id)
+  );
 };
 
-const isOutcome = (cur: NonNullable<ChartDataQuery>["detailView"][number]) => {
-  return cur.iocomeType === "OUTCOME" && !cur.category?.depositCategory;
+const isOutcome = (
+  cur: NonNullable<ChartDataQuery>["detailView"][number],
+  ignoreIds: string[],
+) => {
+  return (
+    cur.iocomeType === "OUTCOME" &&
+    !cur.category?.depositCategory &&
+    ignoreIds.every((id) => id !== cur.category?.id)
+  );
 };
 
 const isDeposit = (cur: NonNullable<ChartDataQuery>["detailView"][number]) => {

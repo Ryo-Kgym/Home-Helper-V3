@@ -1,0 +1,12 @@
+.module {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  color: white;
+  font-size: 80px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.module:active {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}

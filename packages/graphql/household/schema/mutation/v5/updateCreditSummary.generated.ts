@@ -24,6 +24,7 @@ export type Scalars = {
   date: string;
   numeric: number;
   timestamp: string;
+  timestamptz: unknown;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -293,6 +294,252 @@ export type BpcharComparisonExp = {
   _regex: InputMaybe<Scalars["bpchar"]>;
   /** does the column match the given SQL regular expression */
   _similar: InputMaybe<Scalars["bpchar"]>;
+};
+
+/** Boolean expression to filter rows from the table "business.daily_attendance". All fields are combined with a logical 'AND'. */
+export type BusinessDailyAttendanceBoolExp = {
+  _and: InputMaybe<Array<BusinessDailyAttendanceBoolExp>>;
+  _not: InputMaybe<BusinessDailyAttendanceBoolExp>;
+  _or: InputMaybe<Array<BusinessDailyAttendanceBoolExp>>;
+  breakSecond: InputMaybe<IntComparisonExp>;
+  dailyAttendanceLogs: InputMaybe<BusinessDailyAttendanceLogBoolExp>;
+  date: InputMaybe<DateComparisonExp>;
+  endDatetime: InputMaybe<TimestamptzComparisonExp>;
+  group: InputMaybe<GroupBoolExp>;
+  groupId: InputMaybe<StringComparisonExp>;
+  id: InputMaybe<StringComparisonExp>;
+  startDatetime: InputMaybe<TimestamptzComparisonExp>;
+  user: InputMaybe<UserBoolExp>;
+  userId: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "business.daily_attendance" */
+export type BusinessDailyAttendanceConstraint =
+  /** unique or primary key constraint on columns "id" */
+  "daily_attendance_pkey";
+
+/** input type for incrementing numeric columns in table "business.daily_attendance" */
+export type BusinessDailyAttendanceIncInput = {
+  breakSecond: InputMaybe<Scalars["Int"]>;
+};
+
+/** input type for inserting data into table "business.daily_attendance" */
+export type BusinessDailyAttendanceInsertInput = {
+  breakSecond: InputMaybe<Scalars["Int"]>;
+  dailyAttendanceLogs: InputMaybe<BusinessDailyAttendanceLogArrRelInsertInput>;
+  date: InputMaybe<Scalars["date"]>;
+  endDatetime: InputMaybe<Scalars["timestamptz"]>;
+  groupId: InputMaybe<Scalars["String"]>;
+  id: InputMaybe<Scalars["String"]>;
+  startDatetime: InputMaybe<Scalars["timestamptz"]>;
+  user: InputMaybe<UserObjRelInsertInput>;
+  userId: InputMaybe<Scalars["String"]>;
+};
+
+/** order by aggregate values of table "business.daily_attendance_log" */
+export type BusinessDailyAttendanceLogAggregateOrderBy = {
+  count: InputMaybe<OrderBy>;
+  max: InputMaybe<BusinessDailyAttendanceLogMaxOrderBy>;
+  min: InputMaybe<BusinessDailyAttendanceLogMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "business.daily_attendance_log" */
+export type BusinessDailyAttendanceLogArrRelInsertInput = {
+  data: Array<BusinessDailyAttendanceLogInsertInput>;
+  /** upsert condition */
+  onConflict: InputMaybe<BusinessDailyAttendanceLogOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "business.daily_attendance_log". All fields are combined with a logical 'AND'. */
+export type BusinessDailyAttendanceLogBoolExp = {
+  _and: InputMaybe<Array<BusinessDailyAttendanceLogBoolExp>>;
+  _not: InputMaybe<BusinessDailyAttendanceLogBoolExp>;
+  _or: InputMaybe<Array<BusinessDailyAttendanceLogBoolExp>>;
+  dailyAttendance: InputMaybe<BusinessDailyAttendanceBoolExp>;
+  dailyAttendanceId: InputMaybe<StringComparisonExp>;
+  datetime: InputMaybe<TimestamptzComparisonExp>;
+  id: InputMaybe<StringComparisonExp>;
+  memo: InputMaybe<StringComparisonExp>;
+  state: InputMaybe<StringComparisonExp>;
+};
+
+/** unique or primary key constraints on table "business.daily_attendance_log" */
+export type BusinessDailyAttendanceLogConstraint =
+  /** unique or primary key constraint on columns "id" */
+  "daily_attendance_log_pkey";
+
+/** input type for inserting data into table "business.daily_attendance_log" */
+export type BusinessDailyAttendanceLogInsertInput = {
+  dailyAttendance: InputMaybe<BusinessDailyAttendanceObjRelInsertInput>;
+  dailyAttendanceId: InputMaybe<Scalars["String"]>;
+  datetime: InputMaybe<Scalars["timestamptz"]>;
+  id: InputMaybe<Scalars["String"]>;
+  memo: InputMaybe<Scalars["String"]>;
+  state: InputMaybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "business.daily_attendance_log" */
+export type BusinessDailyAttendanceLogMaxOrderBy = {
+  dailyAttendanceId: InputMaybe<OrderBy>;
+  datetime: InputMaybe<OrderBy>;
+  id: InputMaybe<OrderBy>;
+  memo: InputMaybe<OrderBy>;
+  state: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "business.daily_attendance_log" */
+export type BusinessDailyAttendanceLogMinOrderBy = {
+  dailyAttendanceId: InputMaybe<OrderBy>;
+  datetime: InputMaybe<OrderBy>;
+  id: InputMaybe<OrderBy>;
+  memo: InputMaybe<OrderBy>;
+  state: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "business.daily_attendance_log" */
+export type BusinessDailyAttendanceLogOnConflict = {
+  constraint: BusinessDailyAttendanceLogConstraint;
+  updateColumns: Array<BusinessDailyAttendanceLogUpdateColumn>;
+  where: InputMaybe<BusinessDailyAttendanceLogBoolExp>;
+};
+
+/** Ordering options when selecting data from "business.daily_attendance_log". */
+export type BusinessDailyAttendanceLogOrderBy = {
+  dailyAttendance: InputMaybe<BusinessDailyAttendanceOrderBy>;
+  dailyAttendanceId: InputMaybe<OrderBy>;
+  datetime: InputMaybe<OrderBy>;
+  id: InputMaybe<OrderBy>;
+  memo: InputMaybe<OrderBy>;
+  state: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "business.daily_attendance_log" */
+export type BusinessDailyAttendanceLogSelectColumn =
+  /** column name */
+  | "dailyAttendanceId"
+  /** column name */
+  | "datetime"
+  /** column name */
+  | "id"
+  /** column name */
+  | "memo"
+  /** column name */
+  | "state";
+
+/** Streaming cursor of the table "business_daily_attendance_log" */
+export type BusinessDailyAttendanceLogStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: BusinessDailyAttendanceLogStreamCursorValueInput;
+  /** cursor ordering */
+  ordering: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type BusinessDailyAttendanceLogStreamCursorValueInput = {
+  dailyAttendanceId: InputMaybe<Scalars["String"]>;
+  datetime: InputMaybe<Scalars["timestamptz"]>;
+  id: InputMaybe<Scalars["String"]>;
+  memo: InputMaybe<Scalars["String"]>;
+  state: InputMaybe<Scalars["String"]>;
+};
+
+/** placeholder for update columns of table "business.daily_attendance_log" (current role has no relevant permissions) */
+export type BusinessDailyAttendanceLogUpdateColumn =
+  /** placeholder (do not use) */
+  "_PLACEHOLDER";
+
+/** input type for inserting object relation for remote table "business.daily_attendance" */
+export type BusinessDailyAttendanceObjRelInsertInput = {
+  data: BusinessDailyAttendanceInsertInput;
+  /** upsert condition */
+  onConflict: InputMaybe<BusinessDailyAttendanceOnConflict>;
+};
+
+/** on_conflict condition type for table "business.daily_attendance" */
+export type BusinessDailyAttendanceOnConflict = {
+  constraint: BusinessDailyAttendanceConstraint;
+  updateColumns: Array<BusinessDailyAttendanceUpdateColumn>;
+  where: InputMaybe<BusinessDailyAttendanceBoolExp>;
+};
+
+/** Ordering options when selecting data from "business.daily_attendance". */
+export type BusinessDailyAttendanceOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+  dailyAttendanceLogsAggregate: InputMaybe<BusinessDailyAttendanceLogAggregateOrderBy>;
+  date: InputMaybe<OrderBy>;
+  endDatetime: InputMaybe<OrderBy>;
+  group: InputMaybe<GroupOrderBy>;
+  groupId: InputMaybe<OrderBy>;
+  id: InputMaybe<OrderBy>;
+  startDatetime: InputMaybe<OrderBy>;
+  user: InputMaybe<UserOrderBy>;
+  userId: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: business.daily_attendance */
+export type BusinessDailyAttendancePkColumnsInput = {
+  id: Scalars["String"];
+};
+
+/** select columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceSelectColumn =
+  /** column name */
+  | "breakSecond"
+  /** column name */
+  | "date"
+  /** column name */
+  | "endDatetime"
+  /** column name */
+  | "groupId"
+  /** column name */
+  | "id"
+  /** column name */
+  | "startDatetime"
+  /** column name */
+  | "userId";
+
+/** input type for updating data in table "business.daily_attendance" */
+export type BusinessDailyAttendanceSetInput = {
+  breakSecond: InputMaybe<Scalars["Int"]>;
+  endDatetime: InputMaybe<Scalars["timestamptz"]>;
+  startDatetime: InputMaybe<Scalars["timestamptz"]>;
+};
+
+/** Streaming cursor of the table "business_daily_attendance" */
+export type BusinessDailyAttendanceStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: BusinessDailyAttendanceStreamCursorValueInput;
+  /** cursor ordering */
+  ordering: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type BusinessDailyAttendanceStreamCursorValueInput = {
+  breakSecond: InputMaybe<Scalars["Int"]>;
+  date: InputMaybe<Scalars["date"]>;
+  endDatetime: InputMaybe<Scalars["timestamptz"]>;
+  groupId: InputMaybe<Scalars["String"]>;
+  id: InputMaybe<Scalars["String"]>;
+  startDatetime: InputMaybe<Scalars["timestamptz"]>;
+  userId: InputMaybe<Scalars["String"]>;
+};
+
+/** update columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceUpdateColumn =
+  /** column name */
+  | "breakSecond"
+  /** column name */
+  | "endDatetime"
+  /** column name */
+  | "startDatetime";
+
+export type BusinessDailyAttendanceUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc: InputMaybe<BusinessDailyAttendanceIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set: InputMaybe<BusinessDailyAttendanceSetInput>;
+  /** filter the rows which have to be updated */
+  where: BusinessDailyAttendanceBoolExp;
 };
 
 /** ordering argument of a cursor */
@@ -3543,6 +3790,19 @@ export type TimestampComparisonExp = {
   _lte: InputMaybe<Scalars["timestamp"]>;
   _neq: InputMaybe<Scalars["timestamp"]>;
   _nin: InputMaybe<Array<Scalars["timestamp"]>>;
+};
+
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
+export type TimestamptzComparisonExp = {
+  _eq: InputMaybe<Scalars["timestamptz"]>;
+  _gt: InputMaybe<Scalars["timestamptz"]>;
+  _gte: InputMaybe<Scalars["timestamptz"]>;
+  _in: InputMaybe<Array<Scalars["timestamptz"]>>;
+  _isNull: InputMaybe<Scalars["Boolean"]>;
+  _lt: InputMaybe<Scalars["timestamptz"]>;
+  _lte: InputMaybe<Scalars["timestamptz"]>;
+  _neq: InputMaybe<Scalars["timestamptz"]>;
+  _nin: InputMaybe<Array<Scalars["timestamptz"]>>;
 };
 
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */

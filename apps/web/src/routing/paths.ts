@@ -1,3 +1,5 @@
+import { convertToYmd } from "../function/date/convertToYmd";
+
 export const paths = {
   group: {
     select: "/group",
@@ -28,5 +30,9 @@ export const paths = {
       add: ({ creditCardSummaryId }: { creditCardSummaryId: string }) =>
         `/household/creditCard/${creditCardSummaryId}/add`,
     },
+  },
+  business: {
+    timecard: (date?: Date) =>
+      `/business/timecard?date=${convertToYmd(date ?? new Date())}`,
   },
 };
