@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { convertToHms } from "../../../function/date/convertToHms";
 import { AttendanceLog } from "../types/type";
+import styles from "./AttendanceLogTable.module.scss";
 
 type Props = {
   logs: AttendanceLog[];
@@ -9,9 +10,9 @@ type Props = {
 
 export const AttendanceLogTable: FC<Props> = ({ logs }) => {
   return (
-    <table>
+    <table className={styles.module}>
       <thead>
-        <tr>
+        <tr className={styles.tr}>
           <th>時刻</th>
           <th>イベント</th>
         </tr>
@@ -27,7 +28,7 @@ export const AttendanceLogTable: FC<Props> = ({ logs }) => {
 
 const LogRow = (log: AttendanceLog) => {
   return (
-    <tr>
+    <tr className={styles.tr}>
       <td align={"center"}>{convertToHms(log.datetime)}</td>
       <td align={"center"}>{log.state === "attend" ? "出勤" : "退勤"}</td>
     </tr>
