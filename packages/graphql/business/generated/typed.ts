@@ -22,7 +22,7 @@ export type BusinessDailyAttendanceLogInsertInput = {
   id: String;
   memo?: String;
   datetime: Date;
-  type: AttendanceState;
+  state: AttendanceState;
 };
 
 export type BusinessDailyAttendanceInsertInput = {

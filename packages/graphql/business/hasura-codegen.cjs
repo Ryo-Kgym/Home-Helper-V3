@@ -25,6 +25,7 @@ module.exports = {
           timestamp: "string",
           numeric: "number",
           timetz: "string",
+          timestamptz: "Date",
         },
         defaultScalarType: "unknown",
         avoidOptionals: {

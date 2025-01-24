@@ -6,7 +6,7 @@ import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
 import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { makeDaysOfMonth } from "../function/makeDaysOfMonth";
-import { DayAttendance } from "../types/type";
+import { AttendanceLog, DayAttendance } from "../types/type";
 
 export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
   const monthlyList = makeDaysOfMonth(baseDate);
@@ -36,19 +36,26 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
     return {
       date: d,
       dayOfWeek: "sun",
-      startDatetime: new Date(matched.startDatetime),
-      endDatetime: new Date(matched.endDatetime),
+      startDatetime: matched.startDatetime,
+      endDatetime: matched.endDatetime,
       breakSecond: matched.breakSecond ?? 0,
     };
   });
 
-  const baseDateLastLog = data.days
-    .find((day) => day.date === baseDate)
-    ?.logs.slice(-1)[0];
-  const lastState = (baseDateLastLog?.type ?? "attend") as AttendanceState;
+  const baseDateLogs: AttendanceLog[] =
+    data.days
+      .find((day) => day.date === baseDate)
+      ?.logs?.map((log) => ({
+        id: log.id,
+        state: log.state as AttendanceState,
+        datetime: log.datetime,
+      })) ?? [];
+  const baseDateLastLog = baseDateLogs.slice(-1)[0];
+  const lastState = (baseDateLastLog?.state ?? "leave") as AttendanceState;
 
   return {
     days: mergedDailyList,
     lastState,
+    baseDateLogs,
   };
 };

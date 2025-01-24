@@ -24,6 +24,7 @@ export type Scalars = {
   date: string;
   numeric: number;
   timestamp: string;
+  timestamptz: Date;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -303,11 +304,11 @@ export type BusinessDailyAttendanceBoolExp = {
   breakSecond: InputMaybe<IntComparisonExp>;
   dailyAttendanceLogs: InputMaybe<BusinessDailyAttendanceLogBoolExp>;
   date: InputMaybe<DateComparisonExp>;
-  endDatetime: InputMaybe<DateComparisonExp>;
+  endDatetime: InputMaybe<TimestamptzComparisonExp>;
   group: InputMaybe<GroupBoolExp>;
   groupId: InputMaybe<StringComparisonExp>;
   id: InputMaybe<StringComparisonExp>;
-  startDatetime: InputMaybe<DateComparisonExp>;
+  startDatetime: InputMaybe<TimestamptzComparisonExp>;
   user: InputMaybe<UserBoolExp>;
   userId: InputMaybe<StringComparisonExp>;
 };
@@ -327,10 +328,10 @@ export type BusinessDailyAttendanceInsertInput = {
   breakSecond: InputMaybe<Scalars["Int"]>;
   dailyAttendanceLogs: InputMaybe<BusinessDailyAttendanceLogArrRelInsertInput>;
   date: InputMaybe<Scalars["date"]>;
-  endDatetime: InputMaybe<Scalars["date"]>;
+  endDatetime: InputMaybe<Scalars["timestamptz"]>;
   groupId: InputMaybe<Scalars["String"]>;
   id: InputMaybe<Scalars["String"]>;
-  startDatetime: InputMaybe<Scalars["date"]>;
+  startDatetime: InputMaybe<Scalars["timestamptz"]>;
   user: InputMaybe<UserObjRelInsertInput>;
   userId: InputMaybe<Scalars["String"]>;
 };
@@ -356,10 +357,10 @@ export type BusinessDailyAttendanceLogBoolExp = {
   _or: InputMaybe<Array<BusinessDailyAttendanceLogBoolExp>>;
   dailyAttendance: InputMaybe<BusinessDailyAttendanceBoolExp>;
   dailyAttendanceId: InputMaybe<StringComparisonExp>;
-  datetime: InputMaybe<DateComparisonExp>;
+  datetime: InputMaybe<TimestamptzComparisonExp>;
   id: InputMaybe<StringComparisonExp>;
   memo: InputMaybe<StringComparisonExp>;
-  type: InputMaybe<StringComparisonExp>;
+  state: InputMaybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "business.daily_attendance_log" */
@@ -371,10 +372,10 @@ export type BusinessDailyAttendanceLogConstraint =
 export type BusinessDailyAttendanceLogInsertInput = {
   dailyAttendance: InputMaybe<BusinessDailyAttendanceObjRelInsertInput>;
   dailyAttendanceId: InputMaybe<Scalars["String"]>;
-  datetime: InputMaybe<Scalars["date"]>;
+  datetime: InputMaybe<Scalars["timestamptz"]>;
   id: InputMaybe<Scalars["String"]>;
   memo: InputMaybe<Scalars["String"]>;
-  type: InputMaybe<Scalars["String"]>;
+  state: InputMaybe<Scalars["String"]>;
 };
 
 /** order by max() on columns of table "business.daily_attendance_log" */
@@ -383,7 +384,7 @@ export type BusinessDailyAttendanceLogMaxOrderBy = {
   datetime: InputMaybe<OrderBy>;
   id: InputMaybe<OrderBy>;
   memo: InputMaybe<OrderBy>;
-  type: InputMaybe<OrderBy>;
+  state: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "business.daily_attendance_log" */
@@ -392,7 +393,7 @@ export type BusinessDailyAttendanceLogMinOrderBy = {
   datetime: InputMaybe<OrderBy>;
   id: InputMaybe<OrderBy>;
   memo: InputMaybe<OrderBy>;
-  type: InputMaybe<OrderBy>;
+  state: InputMaybe<OrderBy>;
 };
 
 /** on_conflict condition type for table "business.daily_attendance_log" */
@@ -409,7 +410,7 @@ export type BusinessDailyAttendanceLogOrderBy = {
   datetime: InputMaybe<OrderBy>;
   id: InputMaybe<OrderBy>;
   memo: InputMaybe<OrderBy>;
-  type: InputMaybe<OrderBy>;
+  state: InputMaybe<OrderBy>;
 };
 
 /** select columns of table "business.daily_attendance_log" */
@@ -423,7 +424,7 @@ export type BusinessDailyAttendanceLogSelectColumn =
   /** column name */
   | "memo"
   /** column name */
-  | "type";
+  | "state";
 
 /** Streaming cursor of the table "business_daily_attendance_log" */
 export type BusinessDailyAttendanceLogStreamCursorInput = {
@@ -436,10 +437,10 @@ export type BusinessDailyAttendanceLogStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type BusinessDailyAttendanceLogStreamCursorValueInput = {
   dailyAttendanceId: InputMaybe<Scalars["String"]>;
-  datetime: InputMaybe<Scalars["date"]>;
+  datetime: InputMaybe<Scalars["timestamptz"]>;
   id: InputMaybe<Scalars["String"]>;
   memo: InputMaybe<Scalars["String"]>;
-  type: InputMaybe<Scalars["String"]>;
+  state: InputMaybe<Scalars["String"]>;
 };
 
 /** placeholder for update columns of table "business.daily_attendance_log" (current role has no relevant permissions) */
@@ -500,8 +501,8 @@ export type BusinessDailyAttendanceSelectColumn =
 /** input type for updating data in table "business.daily_attendance" */
 export type BusinessDailyAttendanceSetInput = {
   breakSecond: InputMaybe<Scalars["Int"]>;
-  endDatetime: InputMaybe<Scalars["date"]>;
-  startDatetime: InputMaybe<Scalars["date"]>;
+  endDatetime: InputMaybe<Scalars["timestamptz"]>;
+  startDatetime: InputMaybe<Scalars["timestamptz"]>;
 };
 
 /** Streaming cursor of the table "business_daily_attendance" */
@@ -516,10 +517,10 @@ export type BusinessDailyAttendanceStreamCursorInput = {
 export type BusinessDailyAttendanceStreamCursorValueInput = {
   breakSecond: InputMaybe<Scalars["Int"]>;
   date: InputMaybe<Scalars["date"]>;
-  endDatetime: InputMaybe<Scalars["date"]>;
+  endDatetime: InputMaybe<Scalars["timestamptz"]>;
   groupId: InputMaybe<Scalars["String"]>;
   id: InputMaybe<Scalars["String"]>;
-  startDatetime: InputMaybe<Scalars["date"]>;
+  startDatetime: InputMaybe<Scalars["timestamptz"]>;
   userId: InputMaybe<Scalars["String"]>;
 };
 
@@ -3789,6 +3790,19 @@ export type TimestampComparisonExp = {
   _lte: InputMaybe<Scalars["timestamp"]>;
   _neq: InputMaybe<Scalars["timestamp"]>;
   _nin: InputMaybe<Array<Scalars["timestamp"]>>;
+};
+
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
+export type TimestamptzComparisonExp = {
+  _eq: InputMaybe<Scalars["timestamptz"]>;
+  _gt: InputMaybe<Scalars["timestamptz"]>;
+  _gte: InputMaybe<Scalars["timestamptz"]>;
+  _in: InputMaybe<Array<Scalars["timestamptz"]>>;
+  _isNull: InputMaybe<Scalars["Boolean"]>;
+  _lt: InputMaybe<Scalars["timestamptz"]>;
+  _lte: InputMaybe<Scalars["timestamptz"]>;
+  _neq: InputMaybe<Scalars["timestamptz"]>;
+  _nin: InputMaybe<Array<Scalars["timestamptz"]>>;
 };
 
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */

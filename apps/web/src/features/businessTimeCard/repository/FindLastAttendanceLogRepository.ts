@@ -27,7 +27,7 @@ export class FindLastAttendanceLogRepository
       return {
         dailyAttendanceId,
         datetime: now,
-        state: (lastLog?.type ?? "attend") as AttendanceState,
+        state: (lastLog?.state ?? "attend") as AttendanceState,
         startDatetime: new Date(attendance.data.day[0].startDatetime),
         endDatetime: new Date(attendance.data.day[0].endDatetime),
         breakSecond: attendance.data.day[0].breakSecond,

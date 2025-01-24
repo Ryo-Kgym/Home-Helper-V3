@@ -16,6 +16,6 @@ export const convertSecondToMinute = (
   return {
     minute: mm,
     second: ss,
-    mmss: `${mm}:${ss}`,
+    mmss: `${mm.toString().padStart(2, "0")}:${ss.toString().padStart(2, "0")}`,
   };
 };

@@ -36,7 +36,7 @@ fragment fragDailyAttendance on BusinessDailyAttendance {
     __typename
     id
     datetime
-    type
+    state
     memo
   }
 }

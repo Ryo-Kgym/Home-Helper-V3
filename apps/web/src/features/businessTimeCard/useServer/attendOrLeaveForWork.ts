@@ -34,7 +34,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
       object: {
         id: generateId(),
         dailyAttendanceId: output.dailyAttendanceId,
-        type: output.nextState,
+        state: output.nextState,
         datetime: now,
       },
     });
@@ -55,7 +55,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
       object: {
         id: generateId(),
         dailyAttendanceId,
-        type: output.nextState,
+        state: output.nextState,
         datetime: now,
       },
     });
