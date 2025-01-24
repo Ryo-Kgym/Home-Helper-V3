@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { convertSecondToMinute } from "../../../function/date/convertSecond";
+import { convertToHms } from "../../../function/date/convertToHms";
 import { DayAttendance } from "../types/type";
 
 type Props = {
@@ -36,11 +38,11 @@ export const DayRow: FC<DayAttendance> = ({
 }) => {
   return (
     <tr>
-      <td>{date}</td>
+      <td>{date.slice(5, 10)}</td>
       <td>{dayOfWeek}</td>
-      <td align={"center"}>{startDatetime?.toTimeString() ?? "-"}</td>
-      <td align={"center"}>{endDatetime?.toTimeString() ?? "-"}</td>
-      <td align={"center"}>{breakSecond ?? "-"}</td>
+      <td align={"center"}>{convertToHms(startDatetime, "-")}</td>
+      <td align={"center"}>{convertToHms(endDatetime, "-")}</td>
+      <td align={"center"}>{convertSecondToMinute(breakSecond, "-").mmss}</td>
     </tr>
   );
 };
