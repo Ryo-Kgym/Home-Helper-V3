@@ -1,3 +1,4 @@
+import { AttendanceState } from "@/core/domain/business/attend/AttendanceState";
 import { GetAttendanceOfMonthDocument } from "@v3/graphql/business/schema/query/v5/queryDailyAttendance.generated";
 
 import { convertToDate } from "../../../function/date/convertToDate";
@@ -41,7 +42,13 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
     };
   });
 
+  const baseDateLastLog = data.days
+    .find((day) => day.date === baseDate)
+    ?.logs.slice(-1)[0];
+  const lastState = (baseDateLastLog?.type ?? "attend") as AttendanceState;
+
   return {
     days: mergedDailyList,
+    lastState,
   };
 };

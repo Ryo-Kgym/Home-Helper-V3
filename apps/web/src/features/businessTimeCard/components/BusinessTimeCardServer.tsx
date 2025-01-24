@@ -8,11 +8,11 @@ export const BusinessTimeCardServer = async ({
 }: {
   baseDate: YYYY_MM_DD;
 }) => {
-  const { days } = await fetchDailyAttendance(baseDate);
+  const { days, lastState } = await fetchDailyAttendance(baseDate);
 
   return (
     <div>
-      <AttendOrLeaveButton />
+      <AttendOrLeaveButton lastState={lastState} />
       <DailyAttendanceTable days={days} />
     </div>
   );

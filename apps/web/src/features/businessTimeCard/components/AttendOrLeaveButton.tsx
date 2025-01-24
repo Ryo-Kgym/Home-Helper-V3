@@ -5,8 +5,13 @@ import { FC } from "react";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { attendOrLeaveForWork } from "../useServer/attendOrLeaveForWork";
+import styles from "./AttendOrLeaveButton.module.scss";
 
-export const AttendOrLeaveButton: FC = () => {
+type Props = {
+  lastState: "attend" | "leave";
+};
+
+export const AttendOrLeaveButton: FC<Props> = ({ lastState }) => {
   const { refresh } = useNavigation();
 
   const onClick = async () => {
@@ -21,5 +26,13 @@ export const AttendOrLeaveButton: FC = () => {
       console.error(error);
     }
   };
-  return <button onClick={onClick}>出勤 or 退勤</button>;
+  return (
+    <button
+      className={styles.module}
+      style={{ backgroundColor: lastState === "attend" ? "red" : "blue" }}
+      onClick={onClick}
+    >
+      {lastState === "attend" ? "退勤" : "出勤"}
+    </button>
+  );
 };
