@@ -14,23 +14,25 @@ type Props = {
 
 export const DailyAttendanceTable: FC<Props> = ({ days }) => {
   return (
-    <table className={styles.module}>
-      <thead>
-        <tr className={styles.tr}>
-          <th>日付</th>
-          <th>曜日</th>
-          <th>出勤</th>
-          <th>退出</th>
-          <th>休憩</th>
-          <th>勤務時間</th>
-        </tr>
-      </thead>
-      <tbody>
-        {days.map((day) => (
-          <DayRow key={day.date} {...day} />
-        ))}
-      </tbody>
-    </table>
+    <div className={styles.module}>
+      <table>
+        <thead>
+          <tr className={styles.tr}>
+            <th>日付</th>
+            <th>曜日</th>
+            <th>出勤</th>
+            <th>退出</th>
+            <th>休憩</th>
+            <th>勤務時間</th>
+          </tr>
+        </thead>
+        <tbody>
+          {days.map((day) => (
+            <DayRow key={day.date} {...day} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

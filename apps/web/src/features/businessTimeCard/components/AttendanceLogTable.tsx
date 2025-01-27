@@ -10,19 +10,21 @@ type Props = {
 
 export const AttendanceLogTable: FC<Props> = ({ logs }) => {
   return (
-    <table className={styles.module}>
-      <thead>
-        <tr className={styles.tr}>
-          <th>時刻</th>
-          <th>イベント</th>
-        </tr>
-      </thead>
-      <tbody>
-        {logs.map((log) => (
-          <LogRow key={log.id} {...log} />
-        ))}
-      </tbody>
-    </table>
+    <div className={styles.module}>
+      <table>
+        <thead>
+          <tr className={styles.tr}>
+            <th>時刻</th>
+            <th>イベント</th>
+          </tr>
+        </thead>
+        <tbody>
+          {logs.map((log) => (
+            <LogRow key={log.id} {...log} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
