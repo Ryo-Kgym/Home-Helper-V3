@@ -1,9 +1,9 @@
-import dayjs from "dayjs";
+import jaDayjs from "./locale/ja-dayjs";
 
 export const convertToHms = (date: Date | undefined, alternativeValue = "") => {
   if (date === undefined) {
     return alternativeValue;
   }
 
-  return dayjs(date).format("HH:mm:ss");
+  return jaDayjs.toInstance(date).format("HH:mm:ss");
 };
