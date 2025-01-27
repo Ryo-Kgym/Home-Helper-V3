@@ -1,3 +1,4 @@
+import { Tabs } from "../../../components/ui/v4/tab";
 import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { fetchDailyAttendance } from "../server/fetchDailyAttendance";
 import { AttendanceLogTable } from "./AttendanceLogTable";
@@ -31,8 +32,19 @@ export const BusinessTimeCardServer = async ({
           alignItems: "start",
         }}
       >
-        <DailyAttendanceTable days={days} />
-        <AttendanceLogTable logs={baseDateLogs} />
+        <Tabs
+          tabs={{
+            monthly: {
+              label: "日毎",
+              Component: <DailyAttendanceTable days={days} />,
+            },
+            log: {
+              label: "履歴",
+              Component: <AttendanceLogTable logs={baseDateLogs} />,
+            },
+          }}
+          defaultTab={"monthly"}
+        />
       </div>
     </div>
   );

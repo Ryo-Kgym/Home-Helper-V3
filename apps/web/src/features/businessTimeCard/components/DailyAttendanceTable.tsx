@@ -15,9 +15,9 @@ export const DailyAttendanceTable: FC<Props> = ({ days }) => {
       <thead>
         <tr className={styles.tr}>
           <th>日付</th>
-          <th>出勤時間</th>
-          <th>退出時間</th>
-          <th>休憩時間</th>
+          <th>出勤</th>
+          <th>退出</th>
+          <th>休憩</th>
         </tr>
       </thead>
       <tbody>
