@@ -8,9 +8,10 @@ export type DayAttendance = {
   startDatetime: Date | undefined;
   endDatetime: Date | undefined;
   breakSecond: number | undefined;
+  workSecond: number | undefined;
 };
 
-export type DayOfWeek = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
+type DayOfWeek = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
 
 export type AttendanceLog = {
   id: string;

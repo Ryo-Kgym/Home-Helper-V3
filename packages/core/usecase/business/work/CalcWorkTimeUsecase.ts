@@ -1,4 +1,5 @@
 import { AttendanceState } from "../../../domain/business/attend/AttendanceState";
+import { WorkTime } from "../../../domain/business/work/WorkTime";
 import { DayOfWeek } from "../../../domain/date/dayOfWeek";
 import { DayOfWeekFactory } from "../../../domain/date/DayOfWeekFactory";
 import { YYYY_MM_DD } from "../../../domain/date/yyyyMMdd";
@@ -18,13 +19,13 @@ export class CalcWorkTimeUsecase
   async handle(input: CalcWorkTimeInput) {
     const monthlyList = makeDaysOfMonth(input.baseDate);
 
-    const data = await this.findAttendanceGateway.findBy(
+    const { days } = await this.findAttendanceGateway.findBy(
       monthlyList[0] ?? input.baseDate,
       monthlyList.slice(-1)[0] ?? input.baseDate,
     );
 
     const mergedDailyList: DayAttendance[] = monthlyList.map((date) => {
-      const matched = data.days.find((day) => day.date === date);
+      const matched = days.find((day) => day.date === date);
 
       if (!matched) {
         return {
@@ -43,12 +44,15 @@ export class CalcWorkTimeUsecase
         startDatetime: matched.startDatetime,
         endDatetime: matched.endDatetime,
         breakSecond: matched.breakSecond ?? 0,
-        workSecond: 0,
+        workSecond: new WorkTime({
+          startDatetime: matched.startDatetime,
+          endDatetime: matched.endDatetime,
+        }).calcWorkSecond(matched.breakSecond),
       };
     });
 
     const baseDateLogs: AttendanceLog[] =
-      data.days
+      days
         .find((day) => day.date === input.baseDate)
         ?.logs?.map((log) => ({
           id: log.id,

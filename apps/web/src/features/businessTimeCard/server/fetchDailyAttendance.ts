@@ -17,7 +17,17 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
         groupId: group.id,
       });
 
-      return data;
+      return {
+        days:
+          data.days.map((day) => ({
+            id: day.id,
+            date: day.date,
+            startDatetime: new Date(day.startDatetime),
+            endDatetime: new Date(day.endDatetime),
+            breakSecond: day.breakSecond,
+            logs: day.logs ?? [],
+          })) ?? [],
+      };
     },
   });
 
