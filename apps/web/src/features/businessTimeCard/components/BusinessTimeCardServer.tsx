@@ -4,13 +4,14 @@ import { fetchDailyAttendance } from "../server/fetchDailyAttendance";
 import { AttendanceLogTable } from "./AttendanceLogTable";
 import { AttendOrLeaveButton } from "./AttendOrLeaveButton";
 import { DailyAttendanceTable } from "./DailyAttendanceTable";
+import { MonthlySummary } from "./MonthlySummary";
 
 export const BusinessTimeCardServer = async ({
   baseDate,
 }: {
   baseDate: YYYY_MM_DD;
 }) => {
-  const { days, lastState, baseDateLogs } =
+  const { days, lastState, baseDateLogs, totalWorkSecond } =
     await fetchDailyAttendance(baseDate);
 
   return (
@@ -25,6 +26,7 @@ export const BusinessTimeCardServer = async ({
       }}
     >
       <AttendOrLeaveButton lastState={lastState} />
+      <MonthlySummary totalWorkSecond={totalWorkSecond} />
       <div
         style={{
           display: "flex",

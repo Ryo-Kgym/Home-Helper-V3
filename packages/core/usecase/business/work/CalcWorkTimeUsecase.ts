@@ -62,10 +62,16 @@ export class CalcWorkTimeUsecase
     const baseDateLastLog = baseDateLogs.slice(-1)[0];
     const lastState = (baseDateLastLog?.state ?? "leave") as AttendanceState;
 
+    const totalWorkSecond = mergedDailyList.reduce(
+      (acc, day) => acc + (day.workSecond ?? 0),
+      0,
+    );
+
     return {
       days: mergedDailyList,
       lastState,
       baseDateLogs,
+      totalWorkSecond,
     };
   }
 }
@@ -78,6 +84,7 @@ type CalcWorkTimeOutput = {
   days: DayAttendance[];
   lastState: AttendanceState;
   baseDateLogs: AttendanceLog[];
+  totalWorkSecond: number;
 };
 
 type DayAttendance = {

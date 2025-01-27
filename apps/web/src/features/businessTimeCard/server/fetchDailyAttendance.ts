@@ -31,11 +31,5 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
     },
   });
 
-  const { days, lastState, baseDateLogs } = await usecase.handle({ baseDate });
-
-  return {
-    days,
-    lastState,
-    baseDateLogs,
-  };
+  return await usecase.handle({ baseDate });
 };
