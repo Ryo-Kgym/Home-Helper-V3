@@ -1,0 +1,103 @@
+import { AttendanceState } from "../../../domain/business/attend/AttendanceState";
+import { WorkTime } from "../../../domain/business/work/WorkTime";
+import { DayOfWeek } from "../../../domain/date/dayOfWeek";
+import { DayOfWeekFactory } from "../../../domain/date/DayOfWeekFactory";
+import { YYYY_MM_DD } from "../../../domain/date/yyyyMMdd";
+import { FindAttendanceGateway } from "../../../gateway/business/work/FindAttendanceGateway";
+import { BusinessUsecase } from "../BusinessUsecase";
+import { makeDaysOfMonth } from "./makeDaysOfMonth";
+
+export class CalcWorkTimeUsecase
+  implements BusinessUsecase<CalcWorkTimeInput, CalcWorkTimeOutput>
+{
+  private readonly findAttendanceGateway: FindAttendanceGateway;
+
+  constructor(findAttendanceGateway: FindAttendanceGateway) {
+    this.findAttendanceGateway = findAttendanceGateway;
+  }
+
+  async handle(input: CalcWorkTimeInput) {
+    const monthlyList = makeDaysOfMonth(input.baseDate);
+
+    const { days } = await this.findAttendanceGateway.findBy(
+      monthlyList[0] ?? input.baseDate,
+      monthlyList.slice(-1)[0] ?? input.baseDate,
+    );
+
+    const mergedDailyList: DayAttendance[] = monthlyList.map((date) => {
+      const matched = days.find((day) => day.date === date);
+
+      if (!matched) {
+        return {
+          date,
+          dayOfWeek: DayOfWeekFactory.of(date),
+          startDatetime: undefined,
+          endDatetime: undefined,
+          breakSecond: undefined,
+          workSecond: undefined,
+        };
+      }
+
+      return {
+        date,
+        dayOfWeek: DayOfWeekFactory.of(date),
+        startDatetime: matched.startDatetime,
+        endDatetime: matched.endDatetime,
+        breakSecond: matched.breakSecond ?? 0,
+        workSecond: new WorkTime({
+          startDatetime: matched.startDatetime,
+          endDatetime: matched.endDatetime,
+        }).calcWorkSecond(matched.breakSecond),
+      };
+    });
+
+    const baseDateLogs: AttendanceLog[] =
+      days
+        .find((day) => day.date === input.baseDate)
+        ?.logs?.map((log) => ({
+          id: log.id,
+          state: log.state as AttendanceState,
+          datetime: log.datetime,
+        })) ?? [];
+    const baseDateLastLog = baseDateLogs.slice(-1)[0];
+    const lastState = (baseDateLastLog?.state ?? "leave") as AttendanceState;
+
+    const totalWorkSecond = mergedDailyList.reduce(
+      (acc, day) => acc + (day.workSecond ?? 0),
+      0,
+    );
+
+    return {
+      days: mergedDailyList,
+      lastState,
+      baseDateLogs,
+      totalWorkSecond,
+    };
+  }
+}
+
+type CalcWorkTimeInput = {
+  baseDate: YYYY_MM_DD;
+};
+
+type CalcWorkTimeOutput = {
+  days: DayAttendance[];
+  lastState: AttendanceState;
+  baseDateLogs: AttendanceLog[];
+  totalWorkSecond: number;
+};
+
+type DayAttendance = {
+  date: YYYY_MM_DD;
+  dayOfWeek: DayOfWeek;
+  startDatetime: Date | undefined;
+  endDatetime: Date | undefined;
+  breakSecond: number | undefined;
+  workSecond: number | undefined;
+};
+
+type AttendanceLog = {
+  id: string;
+  state: AttendanceState;
+  datetime: Date;
+};

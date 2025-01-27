@@ -1,15 +1,18 @@
+import { Tabs } from "../../../components/ui/v4/tab";
 import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { fetchDailyAttendance } from "../server/fetchDailyAttendance";
 import { AttendanceLogTable } from "./AttendanceLogTable";
 import { AttendOrLeaveButton } from "./AttendOrLeaveButton";
 import { DailyAttendanceTable } from "./DailyAttendanceTable";
+import { DateNavigator } from "./DateNavigator";
+import { MonthlySummary } from "./MonthlySummary";
 
 export const BusinessTimeCardServer = async ({
   baseDate,
 }: {
   baseDate: YYYY_MM_DD;
 }) => {
-  const { days, lastState, baseDateLogs } =
+  const { days, lastState, baseDateLogs, totalWorkSecond } =
     await fetchDailyAttendance(baseDate);
 
   return (
@@ -23,7 +26,9 @@ export const BusinessTimeCardServer = async ({
         gap: "20px",
       }}
     >
+      <DateNavigator baseDate={baseDate} />
       <AttendOrLeaveButton lastState={lastState} />
+      <MonthlySummary totalWorkSecond={totalWorkSecond} />
       <div
         style={{
           display: "flex",
@@ -31,8 +36,19 @@ export const BusinessTimeCardServer = async ({
           alignItems: "start",
         }}
       >
-        <DailyAttendanceTable days={days} />
-        <AttendanceLogTable logs={baseDateLogs} />
+        <Tabs
+          tabs={{
+            monthly: {
+              label: "日毎",
+              Component: <DailyAttendanceTable days={days} />,
+            },
+            log: {
+              label: "履歴",
+              Component: <AttendanceLogTable logs={baseDateLogs} />,
+            },
+          }}
+          defaultTab={"monthly"}
+        />
       </div>
     </div>
   );

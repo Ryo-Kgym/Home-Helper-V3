@@ -1,6 +1,6 @@
+import { YYYY_MM_DD } from "../../../domain/date/yyyyMMdd";
 import { convertToDate } from "../../../function/date/convertToDate";
 import { convertToYmd } from "../../../function/date/convertToYmd";
-import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 
 export const makeDaysOfMonth = (baseDate: YYYY_MM_DD) => {
   const date = convertToDate(baseDate);
