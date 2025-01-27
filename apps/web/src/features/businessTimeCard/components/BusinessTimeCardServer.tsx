@@ -4,6 +4,7 @@ import { fetchDailyAttendance } from "../server/fetchDailyAttendance";
 import { AttendanceLogTable } from "./AttendanceLogTable";
 import { AttendOrLeaveButton } from "./AttendOrLeaveButton";
 import { DailyAttendanceTable } from "./DailyAttendanceTable";
+import { DateNavigator } from "./DateNavigator";
 import { MonthlySummary } from "./MonthlySummary";
 
 export const BusinessTimeCardServer = async ({
@@ -25,6 +26,7 @@ export const BusinessTimeCardServer = async ({
         gap: "20px",
       }}
     >
+      <DateNavigator baseDate={baseDate} />
       <AttendOrLeaveButton lastState={lastState} />
       <MonthlySummary totalWorkSecond={totalWorkSecond} />
       <div
