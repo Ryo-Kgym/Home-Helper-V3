@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "format": "prettier --check ./*/convert/*",
+    "format": "prettier --check ./**/typed.ts",
     "lint": "eslint --fix",
     "test": "exit 0",
     "test-watch": "exit 0",
