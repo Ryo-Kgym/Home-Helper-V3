@@ -18,4 +18,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
   );
 };
 
+export const metadata = {
+  title: "タイムカード",
+  description: "勤怠のページ",
+};
+
 export default Layout;
