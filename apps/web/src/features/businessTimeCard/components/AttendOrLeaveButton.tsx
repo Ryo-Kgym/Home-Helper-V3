@@ -16,9 +16,10 @@ export const AttendOrLeaveButton: FC<Props> = ({ lastState }) => {
 
   const onClick = async () => {
     try {
-      const { nextState } = await attendOrLeaveForWork(new Date());
+      const date = new Date();
+      const { nextState } = await attendOrLeaveForWork(date);
       successPopup(
-        nextState === "attend" ? "出勤しました。" : "退勤しました。",
+        `${nextState === "attend" ? "出勤しました。" : "退勤しました。"}: ${date.toLocaleTimeString()}`,
       );
       refresh();
     } catch (error) {
