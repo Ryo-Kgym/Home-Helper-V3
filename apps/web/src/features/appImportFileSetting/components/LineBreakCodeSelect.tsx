@@ -1,4 +1,4 @@
-import type { LineBreakCode } from "@oneforall/domain/schema/importFileSettingsSchema";
+import type { LineBreakCode } from "features/appImportFileSetting/client/importFileSettingsSchema";
 
 import { Select } from "../../../components/ui/select/v4";
 

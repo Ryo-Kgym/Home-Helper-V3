@@ -1,19 +1,19 @@
-import { YYYY_MM_DD } from "../../../domain/date/yyyyMMdd";
+import { TZDateTime, YYYYmmDD } from "@/type/date/date";
 
 export type FindAttendanceGateway = {
   findBy: (
-    fromDate: YYYY_MM_DD,
-    toDate: YYYY_MM_DD,
+    fromDate: YYYYmmDD,
+    toDate: YYYYmmDD,
   ) => Promise<{
     days: {
       id: string;
-      date: string;
-      startDatetime: Date;
-      endDatetime: Date;
+      date: YYYYmmDD;
+      startDatetime: TZDateTime;
+      endDatetime: TZDateTime;
       breakSecond: number;
       logs: {
         id: string;
-        datetime: Date;
+        datetime: TZDateTime;
         state: string;
         memo: string | null;
       }[];

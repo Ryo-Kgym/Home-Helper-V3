@@ -1,12 +1,11 @@
 import { AttendanceState } from "@/core/domain/business/attend/AttendanceState";
-
-import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
+import { TZDateTime, YYYYmmDD } from "@/type/date/date";
 
 export type DayAttendance = {
-  date: YYYY_MM_DD;
+  date: YYYYmmDD;
   dayOfWeek: DayOfWeek;
-  startDatetime: Date | undefined;
-  endDatetime: Date | undefined;
+  startDatetime: TZDateTime | undefined;
+  endDatetime: TZDateTime | undefined;
   breakSecond: number | undefined;
   workSecond: number | undefined;
 };
@@ -16,5 +15,5 @@ type DayOfWeek = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
 export type AttendanceLog = {
   id: string;
   state: AttendanceState;
-  datetime: Date;
+  datetime: TZDateTime;
 };

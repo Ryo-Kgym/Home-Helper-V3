@@ -28,7 +28,7 @@ export const DailyAttendanceTable: FC<Props> = ({ days }) => {
         </thead>
         <tbody>
           {days.map((day) => (
-            <DayRow key={day.date} {...day} />
+            <DayRow key={day.date.toString()} {...day} />
           ))}
         </tbody>
       </table>
@@ -46,10 +46,10 @@ export const DayRow: FC<DayAttendance> = ({
 }) => {
   return (
     <tr className={styles.tr}>
-      <td align={"center"}>{date.slice(8, 10)}</td>
+      <td align={"center"}>{date.toString().slice(8, 10)}</td>
       <td align={"center"}>{dayOfWeek}</td>
-      <td align={"center"}>{convertToHms(startDatetime, "-")}</td>
-      <td align={"center"}>{convertToHms(endDatetime, "-")}</td>
+      <td align={"center"}>{convertToHms(startDatetime?.parseDate(), "-")}</td>
+      <td align={"center"}>{convertToHms(endDatetime?.parseDate(), "-")}</td>
       <td align={"center"}>{convertSecondToMinute(breakSecond, "-").minute}</td>
       <td align={"center"}>{convertSecondToHour(workSecond, "-").hhmm}</td>
     </tr>

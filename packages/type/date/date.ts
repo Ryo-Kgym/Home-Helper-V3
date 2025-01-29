@@ -1,11 +1,11 @@
 /** @private */
 type SingleDigit = `${0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}`;
 /** @private */
-type YYYY = `20${SingleDigit}${SingleDigit}`;
+export type YYYY = `20${SingleDigit}${SingleDigit}`;
 
 // prettier-ignore
 /** @private */
-type MM_DD =
+export type MM_DD =
   | "01-01" | "01-02" | "01-03" | "01-04" | "01-05" | "01-06" | "01-07" | "01-08" | "01-09" | "01-10"
   | "01-11" | "01-12" | "01-13" | "01-14" | "01-15" | "01-16" | "01-17" | "01-18" | "01-19" | "01-20"
   | "01-21" | "01-22" | "01-23" | "01-24" | "01-25" | "01-26" | "01-27" | "01-28" | "01-29" | "01-30" | "01-31"
@@ -43,4 +43,61 @@ type MM_DD =
   | "12-11" | "12-12" | "12-13" | "12-14" | "12-15" | "12-16" | "12-17" | "12-18" | "12-19" | "12-20"
   | "12-21" | "12-22" | "12-23" | "12-24" | "12-25" | "12-26" | "12-27" | "12-28" | "12-29" | "12-30" | "12-31"
 
-export type YYYY_MM_DD = `${YYYY}-${MM_DD}`;
+export type YYYY_MM_DD = `${string}`;
+export type YYYY_MM_DD_HH_MM_SS = `${YYYY_MM_DD}T${string}Z`;
+
+export class YYYYmmDD {
+  private readonly yyyyMMdd: YYYY_MM_DD;
+
+  constructor(str: YYYY_MM_DD) {
+    this.yyyyMMdd = str;
+  }
+
+  static valueOf(date: Date) {
+    return new YYYYmmDD(date.toISOString().slice(0, 10));
+  }
+
+  toString() {
+    return this.yyyyMMdd;
+  }
+
+  equals(other: YYYYmmDD) {
+    return this.yyyyMMdd === other.yyyyMMdd;
+  }
+
+  parseDate() {
+    return new Date(this.yyyyMMdd);
+  }
+
+  parseTZDateTime() {
+    return new TZDateTime(`${this.yyyyMMdd}T00:00:00Z`);
+  }
+}
+
+export class TZDateTime {
+  private readonly tzDateTime: YYYY_MM_DD_HH_MM_SS;
+
+  constructor(str: YYYY_MM_DD_HH_MM_SS) {
+    this.tzDateTime = str;
+  }
+
+  static valueOf(date: Date) {
+    return new TZDateTime(date.toISOString() as YYYY_MM_DD_HH_MM_SS);
+  }
+
+  toString(): YYYY_MM_DD_HH_MM_SS {
+    return this.tzDateTime;
+  }
+
+  getTime() {
+    return new Date(this.tzDateTime).getTime();
+  }
+
+  parseDate() {
+    return new Date(this.tzDateTime);
+  }
+
+  getYYYYmmDD() {
+    return YYYYmmDD.valueOf(this.parseDate());
+  }
+}

@@ -1,5 +1,4 @@
-import { YYYYmmDD } from "@/type/date/date";
-
+import { YYYY_MM_DD } from "./date";
 import { DayOfWeek } from "./dayOfWeek";
 
 export class DayOfWeekFactory {
@@ -18,8 +17,8 @@ export class DayOfWeekFactory {
     this.date = date;
   }
 
-  static of(yyyyMMdd: YYYYmmDD): DayOfWeek {
-    return new DayOfWeekFactory(yyyyMMdd.parseDate()).convert();
+  static of(yyyyMMdd: YYYY_MM_DD): DayOfWeek {
+    return new DayOfWeekFactory(new Date(yyyyMMdd)).convert();
   }
 
   private convert(): DayOfWeek {

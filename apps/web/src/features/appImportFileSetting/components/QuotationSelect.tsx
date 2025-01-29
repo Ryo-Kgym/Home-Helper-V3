@@ -1,4 +1,4 @@
-import type { Quotation } from "@oneforall/domain/schema/importFileSettingsSchema";
+import type { Quotation } from "features/appImportFileSetting/client/importFileSettingsSchema";
 
 import { Select } from "../../../components/ui/select/v4";
 

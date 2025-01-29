@@ -1,5 +1,6 @@
+import { YYYY_MM_DD } from "@/type/date/date";
+
 import { Tabs } from "../../../components/ui/v4/tab";
-import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { fetchDailyAttendance } from "../server/fetchDailyAttendance";
 import { AttendanceLogTable } from "./AttendanceLogTable";
 import { AttendOrLeaveButton } from "./AttendOrLeaveButton";

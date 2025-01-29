@@ -1,19 +1,19 @@
 import { AttendanceState } from "@/core/domain/business/attend/AttendanceState";
 import { FindLastAttendanceLogGateway } from "@/core/gateway/business/attend/FindLastAttendanceLogGateway";
+import { TZDateTime, YYYYmmDD } from "@/type/date/date";
 import { GetAttendanceDocument } from "@v3/graphql/business/schema/query/v5/queryDailyAttendance.generated";
 
-import { convertToYmd } from "../../../function/date/convertToYmd";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
 
 export class FindLastAttendanceLogRepository
   implements FindLastAttendanceLogGateway
 {
-  async findBy(now: Date) {
+  async findBy(now: YYYYmmDD) {
     const { id, group } = await findUser();
 
     const attendance = await execQuery(GetAttendanceDocument, {
-      date: convertToYmd(now) as unknown as Date,
+      date: now.toString(),
       userId: id,
       groupId: group.id,
     });
@@ -28,8 +28,8 @@ export class FindLastAttendanceLogRepository
         dailyAttendanceId,
         datetime: now,
         state: (lastLog?.state ?? "attend") as AttendanceState,
-        startDatetime: new Date(attendance.data.day[0].startDatetime),
-        endDatetime: new Date(attendance.data.day[0].endDatetime),
+        startDatetime: new TZDateTime(attendance.data.day[0].startDatetime),
+        endDatetime: new TZDateTime(attendance.data.day[0].endDatetime),
         breakSecond: attendance.data.day[0].breakSecond,
       };
     }
@@ -38,8 +38,8 @@ export class FindLastAttendanceLogRepository
       dailyAttendanceId,
       datetime: now,
       state: "leave" as const,
-      startDatetime: now,
-      endDatetime: now,
+      startDatetime: now.parseTZDateTime(),
+      endDatetime: now.parseTZDateTime(),
       breakSecond: 0,
     };
   }

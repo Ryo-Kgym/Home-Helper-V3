@@ -54,7 +54,7 @@ export const IMPORT_FILE_SETTINGS_DEFAULT = {
   splitter: ",",
 } as const;
 
-export const importFileSettingsSchema = z
+const importFileSettingsSchema = z
   .object({
     encodingTo: encodingSchema,
     encodingFrom: encodingSchema,

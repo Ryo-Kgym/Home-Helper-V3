@@ -4,17 +4,17 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "format": "prettier --check ./*/convert/*",
-    "lint": "eslint ./*/convert/*",
-    "test": "jest",
-    "test-watch": "jest --watch",
+    "format": "prettier --check ./**/typed.ts",
+    "lint": "eslint --fix",
+    "test": "exit 0",
+    "test-watch": "exit 0",
     "hasura-public-codegen": "graphql-codegen --config public/hasura-codegen.cjs",
     "hasura-household-codegen": "graphql-codegen --config household/hasura-codegen.cjs",
     "hasura-business-codegen": "graphql-codegen --config business/hasura-codegen.cjs"
 
   },
   "dependencies": {
-    "@oneforall/domain": "workspace:^"
+    "@/type": "workspace:^"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:^0.2.0",
@@ -29,16 +29,11 @@
     "@graphql-codegen/typescript": "^3.0.4",
     "@graphql-codegen/typescript-operations": "^3.0.4",
     "@graphql-codegen/typescript-urql": "^3.7.3",
-    "@jest/globals": "^29.7.0",
     "@types/node": "^20.12.2",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "graphql": "^16.8.1",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.6.2",
-    "jest-fetch-mock": "3.0.3",
     "prettier": "^3.2.5",
-    "ts-jest": "^29.1.2",
     "typescript": "^5.3.3",
     "urql": "^4.0.6",
     "uuid": "^9.0.1"

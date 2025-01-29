@@ -1,13 +1,15 @@
+import { TZDateTime } from "@/type/date/date";
+
 export class WorkTime {
-  private readonly startDatetime: Date;
-  private readonly endDatetime: Date;
+  private readonly startDatetime: TZDateTime;
+  private readonly endDatetime: TZDateTime;
 
   constructor({
     startDatetime,
     endDatetime,
   }: {
-    startDatetime: Date;
-    endDatetime: Date;
+    startDatetime: TZDateTime;
+    endDatetime: TZDateTime;
   }) {
     this.startDatetime = startDatetime;
     this.endDatetime = endDatetime;

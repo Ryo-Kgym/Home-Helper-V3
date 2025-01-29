@@ -1,13 +1,13 @@
 "use server";
 
 import { CalcAttendanceLogUsecase } from "@/core/usecase/business/attend/CalcAttendanceLogUsecase";
+import { TZDateTime, YYYYmmDD } from "@/type/date/date";
 import {
   InsertDailyAttendanceDocument,
   InsertDailyAttendanceLogDocument,
   UpdateDailyAttendanceDocument,
 } from "@v3/graphql/business/schema/mutate/v5/mutateDailyAttendance.generated";
 
-import { convertToYmd } from "../../../function/date/convertToYmd";
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execMutation } from "../../../persistence/database/server/execMutation";
@@ -20,13 +20,13 @@ export const attendOrLeaveForWork = async (now: Date) => {
     new FindLastAttendanceLogRepository(),
   );
 
-  const output = await usecase.handle({ date: now });
+  const output = await usecase.handle({ date: TZDateTime.valueOf(now) });
 
   if (output.dailyAttendanceId) {
     await execMutation(UpdateDailyAttendanceDocument, {
       id: output.dailyAttendanceId,
       set: {
-        endDatetime: output.endDatetime,
+        endDatetime: output.endDatetime.toString(),
         breakSecond: output.breakSecond,
       },
     });
@@ -35,7 +35,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
         id: generateId(),
         dailyAttendanceId: output.dailyAttendanceId,
         state: output.nextState,
-        datetime: now,
+        datetime: TZDateTime.valueOf(now).toString(),
       },
     });
   } else {
@@ -43,9 +43,9 @@ export const attendOrLeaveForWork = async (now: Date) => {
     await execMutation(InsertDailyAttendanceDocument, {
       object: {
         id: dailyAttendanceId,
-        date: convertToYmd(now) as unknown as Date,
-        startDatetime: now,
-        endDatetime: now,
+        date: YYYYmmDD.valueOf(now).toString(),
+        startDatetime: TZDateTime.valueOf(now).toString(),
+        endDatetime: TZDateTime.valueOf(now).toString(),
         breakSecond: 0,
         userId: id,
         groupId: group.id,
@@ -56,7 +56,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
         id: generateId(),
         dailyAttendanceId,
         state: output.nextState,
-        datetime: now,
+        datetime: TZDateTime.valueOf(now).toString(),
       },
     });
   }

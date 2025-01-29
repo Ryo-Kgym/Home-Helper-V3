@@ -1,9 +1,7 @@
-import { YYYY_MM_DD } from "../../../domain/date/yyyyMMdd";
-import { convertToDate } from "../../../function/date/convertToDate";
-import { convertToYmd } from "../../../function/date/convertToYmd";
+import { YYYYmmDD } from "@/type/date/date";
 
-export const makeDaysOfMonth = (baseDate: YYYY_MM_DD) => {
-  const date = convertToDate(baseDate);
+export const makeDaysOfMonth = (baseDate: YYYYmmDD) => {
+  const date = baseDate.parseDate();
   const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
 
   return Array.from(
@@ -11,5 +9,5 @@ export const makeDaysOfMonth = (baseDate: YYYY_MM_DD) => {
     (_, i) => new Date(firstDay.getFullYear(), firstDay.getMonth(), i + 1),
   )
     .filter((d) => d.getMonth() === firstDay.getMonth())
-    .map(convertToYmd);
+    .map((d) => YYYYmmDD.valueOf(d));
 };

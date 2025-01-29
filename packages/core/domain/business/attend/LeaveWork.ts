@@ -1,11 +1,13 @@
-export class LeaveWork {
-  private readonly lastAttendedTime: Date;
+import { TZDateTime } from "@/type/date/date";
 
-  constructor({ lastAttendedTime }: { lastAttendedTime: Date }) {
+export class LeaveWork {
+  private readonly lastAttendedTime: TZDateTime;
+
+  constructor({ lastAttendedTime }: { lastAttendedTime: TZDateTime }) {
     this.lastAttendedTime = lastAttendedTime;
   }
 
-  leave(leaveTime: Date) {
+  leave(leaveTime: TZDateTime) {
     return {
       startDatetime: this.lastAttendedTime,
       endDatetime: leaveTime,
