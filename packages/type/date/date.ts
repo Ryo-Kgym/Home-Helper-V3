@@ -43,7 +43,7 @@ export type MM_DD =
   | "12-11" | "12-12" | "12-13" | "12-14" | "12-15" | "12-16" | "12-17" | "12-18" | "12-19" | "12-20"
   | "12-21" | "12-22" | "12-23" | "12-24" | "12-25" | "12-26" | "12-27" | "12-28" | "12-29" | "12-30" | "12-31"
 
-export type YYYY_MM_DD = `${YYYY}-${MM_DD}`;
+export type YYYY_MM_DD = `${string}`;
 export type YYYY_MM_DD_HH_MM_SS = `${YYYY_MM_DD}T${string}Z`;
 
 export class YYYYmmDD {
@@ -54,7 +54,7 @@ export class YYYYmmDD {
   }
 
   static valueOf(date: Date) {
-    return new YYYYmmDD(date.toISOString().slice(0, 10) as YYYY_MM_DD);
+    return new YYYYmmDD(date.toISOString().slice(0, 10));
   }
 
   toString() {
