@@ -14,7 +14,7 @@
 
   },
   "dependencies": {
-    "@oneforall/domain": "workspace:^"
+    "@/type": "workspace:^"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:^0.2.0",

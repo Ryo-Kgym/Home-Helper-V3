@@ -183,6 +183,9 @@ importers:
       '@/core':
         specifier: workspace:^
         version: link:../../packages/core
+      '@/type':
+        specifier: workspace:^
+        version: link:../../packages/type
       '@apollo/client':
         specifier: ^3.9.9
         version: 3.10.8(@types/react@18.3.12)(graphql@16.9.0)(react-dom@18.3.1)(react@18.3.1)
@@ -433,9 +436,9 @@ importers:
 
   packages/core:
     dependencies:
-      '@neondatabase/serverless':
-        specifier: ^0.9.3
-        version: 0.9.4
+      '@/type':
+        specifier: workspace:^
+        version: link:../type
     devDependencies:
       '@acme/eslint-config':
         specifier: ^0.2.0
@@ -498,9 +501,9 @@ importers:
 
   packages/graphql:
     dependencies:
-      '@oneforall/domain':
+      '@/type':
         specifier: workspace:^
-        version: link:../domain
+        version: link:../type
     devDependencies:
       '@acme/eslint-config':
         specifier: workspace:^0.2.0
@@ -577,6 +580,28 @@ importers:
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
+
+  packages/type:
+    dependencies:
+      '@neondatabase/serverless':
+        specifier: ^0.9.3
+        version: 0.9.4
+    devDependencies:
+      '@acme/eslint-config':
+        specifier: ^0.2.0
+        version: link:../../tooling/eslint
+      '@acme/prettier-config':
+        specifier: ^0.1.0
+        version: link:../../tooling/prettier
+      '@acme/tsconfig':
+        specifier: ^0.1.0
+        version: link:../../tooling/typescript
+      prettier:
+        specifier: ^3.2.5
+        version: 3.3.2
+      typescript:
+        specifier: ^5.3.3
+        version: 5.5.3
 
   tooling/eslint:
     dependencies:

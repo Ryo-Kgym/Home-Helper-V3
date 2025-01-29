@@ -31,7 +31,7 @@ export const AttendanceLogTable: FC<Props> = ({ logs }) => {
 const LogRow = (log: AttendanceLog) => {
   return (
     <tr className={styles.tr}>
-      <td align={"center"}>{convertToHms(log.datetime)}</td>
+      <td align={"center"}>{convertToHms(log.datetime.parseDate())}</td>
       <td align={"center"}>{log.state === "attend" ? "出勤" : "退勤"}</td>
     </tr>
   );

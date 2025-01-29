@@ -1,8 +1,9 @@
+import { TZDateTime, YYYYmmDD } from "@/type/date/date";
+
 import { AttendanceState } from "../../../domain/business/attend/AttendanceState";
 import { WorkTime } from "../../../domain/business/work/WorkTime";
 import { DayOfWeek } from "../../../domain/date/dayOfWeek";
 import { DayOfWeekFactory } from "../../../domain/date/DayOfWeekFactory";
-import { YYYY_MM_DD } from "../../../domain/date/yyyyMMdd";
 import { FindAttendanceGateway } from "../../../gateway/business/work/FindAttendanceGateway";
 import { BusinessUsecase } from "../BusinessUsecase";
 import { makeDaysOfMonth } from "./makeDaysOfMonth";
@@ -53,7 +54,7 @@ export class CalcWorkTimeUsecase
 
     const baseDateLogs: AttendanceLog[] =
       days
-        .find((day) => day.date === input.baseDate)
+        .find((day) => day.date.equals(input.baseDate))
         ?.logs?.map((log) => ({
           id: log.id,
           state: log.state as AttendanceState,
@@ -77,7 +78,7 @@ export class CalcWorkTimeUsecase
 }
 
 type CalcWorkTimeInput = {
-  baseDate: YYYY_MM_DD;
+  baseDate: YYYYmmDD;
 };
 
 type CalcWorkTimeOutput = {
@@ -88,10 +89,10 @@ type CalcWorkTimeOutput = {
 };
 
 type DayAttendance = {
-  date: YYYY_MM_DD;
+  date: YYYYmmDD;
   dayOfWeek: DayOfWeek;
-  startDatetime: Date | undefined;
-  endDatetime: Date | undefined;
+  startDatetime: TZDateTime | undefined;
+  endDatetime: TZDateTime | undefined;
   breakSecond: number | undefined;
   workSecond: number | undefined;
 };
@@ -99,5 +100,5 @@ type DayAttendance = {
 type AttendanceLog = {
   id: string;
   state: AttendanceState;
-  datetime: Date;
+  datetime: TZDateTime;
 };

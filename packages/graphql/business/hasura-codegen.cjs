@@ -15,17 +15,23 @@ module.exports = {
       presetConfig: {
         baseTypesPath: "typed",
       },
-      plugins: ["typescript", "typescript-operations", "typed-document-node"],
+      plugins:
+        ["typescript", "typescript-operations", "typed-document-node",
+          {
+            add: {
+              content: "import { YYYYmmDD, TZDateTime } from '@/type/date/date';"
+            }
+          }
+        ],
       config: {
         onlyOperationTypes: true,
         enumsAsTypes: true,
         scalars: {
           bpchar: "string",
-          date: "string",
+          date: "YYYYmmDD",
           timestamp: "string",
           numeric: "number",
-          timetz: "string",
-          timestamptz: "Date",
+          timestamptz: "TZDateTime",
         },
         defaultScalarType: "unknown",
         avoidOptionals: {

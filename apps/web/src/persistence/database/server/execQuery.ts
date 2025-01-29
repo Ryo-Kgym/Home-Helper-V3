@@ -15,12 +15,12 @@ export const execQuery = async <
   const { getClient } = registerUrql(makeClient);
   const { data, error } = await getClient().query(query, variables).toPromise();
 
-  if (!data) {
-    throw new Error("Failed data fetching.");
-  }
-
   if (error) {
     throw error;
+  }
+
+  if (!data) {
+    throw new Error("Failed data fetching.");
   }
 
   return { data };

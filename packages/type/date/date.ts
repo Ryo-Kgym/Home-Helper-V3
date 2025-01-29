@@ -44,3 +44,59 @@ type MM_DD =
   | "12-21" | "12-22" | "12-23" | "12-24" | "12-25" | "12-26" | "12-27" | "12-28" | "12-29" | "12-30" | "12-31"
 
 export type YYYY_MM_DD = `${YYYY}-${MM_DD}`;
+
+export class YYYYmmDD {
+  private readonly yyyyMMdd: YYYY_MM_DD;
+
+  constructor(str: string) {
+    this.yyyyMMdd = str as YYYY_MM_DD;
+  }
+
+  static valueOf(date: Date) {
+    return new YYYYmmDD(date.toISOString().slice(0, 10));
+  }
+
+  toString() {
+    return this.yyyyMMdd;
+  }
+
+  equals(other: YYYYmmDD) {
+    return this.yyyyMMdd === other.yyyyMMdd;
+  }
+
+  parseDate() {
+    return new Date(this.yyyyMMdd);
+  }
+
+  parseTZDateTime() {
+    return new TZDateTime(`${this.yyyyMMdd}T00:00:00Z`);
+  }
+}
+
+export class TZDateTime {
+  private readonly tzDateTime: `${YYYY_MM_DD}T${string}Z`;
+
+  constructor(str: string) {
+    this.tzDateTime = str as `${YYYY_MM_DD}T${string}Z`;
+  }
+
+  static valueOf(date: Date) {
+    return new TZDateTime(date.toISOString());
+  }
+
+  toString() {
+    return this.tzDateTime;
+  }
+
+  getTime() {
+    return new Date(this.tzDateTime).getTime();
+  }
+
+  parseDate() {
+    return new Date(this.tzDateTime);
+  }
+
+  getYYYYmmDD() {
+    return new YYYYmmDD(this.tzDateTime.slice(0, 10));
+  }
+}

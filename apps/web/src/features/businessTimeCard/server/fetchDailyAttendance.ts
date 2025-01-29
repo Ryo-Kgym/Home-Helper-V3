@@ -1,4 +1,5 @@
 import { CalcWorkTimeUsecase } from "@/core/usecase/business/work/CalcWorkTimeUsecase";
+import { YYYYmmDD } from "@/type/date/date";
 import { GetAttendanceOfMonthDocument } from "@v3/graphql/business/schema/query/v5/queryDailyAttendance.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
@@ -11,8 +12,8 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
   const usecase = new CalcWorkTimeUsecase({
     findBy: async (fromDate, toDate) => {
       const { data } = await execQuery(GetAttendanceOfMonthDocument, {
-        fromDate: new Date(fromDate),
-        toDate: new Date(toDate),
+        fromDate,
+        toDate,
         userId: id,
         groupId: group.id,
       });
@@ -22,8 +23,8 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
           data.days.map((day) => ({
             id: day.id,
             date: day.date,
-            startDatetime: new Date(day.startDatetime),
-            endDatetime: new Date(day.endDatetime),
+            startDatetime: day.startDatetime,
+            endDatetime: day.endDatetime,
             breakSecond: day.breakSecond,
             logs: day.logs ?? [],
           })) ?? [],
@@ -31,5 +32,5 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
     },
   });
 
-  return await usecase.handle({ baseDate });
+  return await usecase.handle({ baseDate: new YYYYmmDD(baseDate) });
 };

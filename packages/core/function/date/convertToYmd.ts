@@ -1,4 +1,5 @@
-import { YYYY_MM_DD } from "../../domain/date/yyyyMMdd";
+import { YYYY_MM_DD } from "@/type/date/date";
+
 import jaDayjs from "./locale/ja-dayjs";
 
 export const convertToYmd = (date: Date): YYYY_MM_DD => {

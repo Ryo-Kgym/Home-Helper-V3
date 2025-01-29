@@ -1,11 +1,13 @@
-export class AttendAtWork {
-  private readonly lastLeaveTime: Date;
+import { TZDateTime } from "@/type/date/date";
 
-  constructor({ lastLeaveTime }: { lastLeaveTime: Date }) {
+export class AttendAtWork {
+  private readonly lastLeaveTime: TZDateTime;
+
+  constructor({ lastLeaveTime }: { lastLeaveTime: TZDateTime }) {
     this.lastLeaveTime = lastLeaveTime;
   }
 
-  attend(attendTime: Date) {
+  attend(attendTime: TZDateTime) {
     const breakMilliSecond =
       attendTime.getTime() - this.lastLeaveTime.getTime();
 

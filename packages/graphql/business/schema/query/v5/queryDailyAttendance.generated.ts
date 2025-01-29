@@ -1,3 +1,4 @@
+import { TZDateTime, YYYYmmDD } from "@/type/date/date";
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 
 import * as Types from "../../../generated/typed";
@@ -21,10 +22,10 @@ export type Scalars = {
   Int: number;
   Float: number;
   bpchar: string;
-  date: string;
+  date: YYYYmmDD;
   numeric: number;
   timestamp: string;
-  timestamptz: Date;
+  timestamptz: TZDateTime;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -4043,14 +4044,14 @@ export type GetAttendanceQuery = {
   day: Array<{
     __typename: "BusinessDailyAttendance";
     id: string;
-    date: string;
-    startDatetime: Date;
-    endDatetime: Date;
+    date: YYYYmmDD;
+    startDatetime: TZDateTime;
+    endDatetime: TZDateTime;
     breakSecond: number;
     logs: Array<{
       __typename: "BusinessDailyAttendanceLog";
       id: string;
-      datetime: Date;
+      datetime: TZDateTime;
       state: string;
       memo: string | null;
     }>;
@@ -4069,14 +4070,14 @@ export type GetAttendanceOfMonthQuery = {
   days: Array<{
     __typename: "BusinessDailyAttendance";
     id: string;
-    date: string;
-    startDatetime: Date;
-    endDatetime: Date;
+    date: YYYYmmDD;
+    startDatetime: TZDateTime;
+    endDatetime: TZDateTime;
     breakSecond: number;
     logs: Array<{
       __typename: "BusinessDailyAttendanceLog";
       id: string;
-      datetime: Date;
+      datetime: TZDateTime;
       state: string;
       memo: string | null;
     }>;
@@ -4086,14 +4087,14 @@ export type GetAttendanceOfMonthQuery = {
 export type FragDailyAttendanceFragment = {
   __typename: "BusinessDailyAttendance";
   id: string;
-  date: string;
-  startDatetime: Date;
-  endDatetime: Date;
+  date: YYYYmmDD;
+  startDatetime: TZDateTime;
+  endDatetime: TZDateTime;
   breakSecond: number;
   logs: Array<{
     __typename: "BusinessDailyAttendanceLog";
     id: string;
-    datetime: Date;
+    datetime: TZDateTime;
     state: string;
     memo: string | null;
   }>;

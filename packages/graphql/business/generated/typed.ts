@@ -1,3 +1,5 @@
+import { TZDateTime, YYYYmmDD } from "@/type/date/date";
+
 export type Exact<T extends Record<string, unknown>> = {
   [K in keyof T]: T[K];
 };
@@ -9,9 +11,9 @@ export type Scalars = {
   Int: number;
   Float: number;
   bpchar: string;
-  date: Date;
+  date: YYYYmmDD;
   numeric: number;
-  timestamp: Date;
+  timestamp: TZDateTime;
 };
 
 export type Maybe<T> = T | null;
@@ -21,7 +23,7 @@ export type BusinessDailyAttendanceLogInsertInput = {
   dailyAttendanceId: String;
   id: String;
   memo?: String;
-  datetime: Date;
+  datetime: TZDateTime;
   state: AttendanceState;
 };
 
@@ -29,19 +31,19 @@ export type BusinessDailyAttendanceInsertInput = {
   dailyAttendanceLogs?: {
     data: BusinessDailyAttendanceLogInsertInput[];
   };
-  date: Date;
+  date: YYYYmmDD;
   breakSecond: number;
-  endDatetime: Date;
+  endDatetime: TZDateTime;
   groupId: String;
   id: String;
-  startDatetime: Date;
+  startDatetime: TZDateTime;
   userId: String;
 };
 
 export type BusinessDailyAttendanceSetInput = {
   breakSecond: number;
-  endDatetime: Date;
-  startDatetime?: Date;
+  endDatetime: TZDateTime;
+  startDatetime?: TZDateTime;
 };
 
 export type AttendanceState = "attend" | "leave";

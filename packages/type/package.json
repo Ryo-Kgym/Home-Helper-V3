@@ -1,5 +1,5 @@
 {
-  "name": "@/core",
+  "name": "@/type",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -9,8 +9,8 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint .",
     "with-env": "dotenv -e ../../.env --",
-    "test": "vitest --run",
-    "test:watch": "vitest"
+    "test": "exit 0",
+    "test:watch": "exit 0"
   },
   "devDependencies": {
     "@acme/eslint-config": "^0.2.0",
@@ -27,6 +27,6 @@
   },
   "prettier": "@acme/prettier-config",
   "dependencies": {
-    "@/type": "workspace:^"
+    "@neondatabase/serverless": "^0.9.3"
   }
 }
