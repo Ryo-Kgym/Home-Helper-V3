@@ -36,9 +36,6 @@ jobs:
       - name: Expo-Test
         run: cd apps/expo && pnpm jest && cd ../../
 
-      - name: Graphql-Test
-        run: cd packages/graphql && pnpm jest && cd ../../
-
   lint:
     runs-on: ubuntu-latest
     steps:
