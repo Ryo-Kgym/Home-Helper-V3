@@ -26,7 +26,7 @@ export class CalcWorkTimeUsecase
     );
 
     const mergedDailyList: DayAttendance[] = monthlyList.map((date) => {
-      const matched = days.find((day) => day.date === date);
+      const matched = days.find((day) => day.date.equals(date));
 
       if (!matched) {
         return {

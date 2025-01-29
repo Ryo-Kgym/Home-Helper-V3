@@ -26,7 +26,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
     await execMutation(UpdateDailyAttendanceDocument, {
       id: output.dailyAttendanceId,
       set: {
-        endDatetime: output.endDatetime,
+        endDatetime: output.endDatetime.toString(),
         breakSecond: output.breakSecond,
       },
     });
@@ -35,7 +35,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
         id: generateId(),
         dailyAttendanceId: output.dailyAttendanceId,
         state: output.nextState,
-        datetime: TZDateTime.valueOf(now),
+        datetime: TZDateTime.valueOf(now).toString(),
       },
     });
   } else {
@@ -43,9 +43,9 @@ export const attendOrLeaveForWork = async (now: Date) => {
     await execMutation(InsertDailyAttendanceDocument, {
       object: {
         id: dailyAttendanceId,
-        date: YYYYmmDD.valueOf(now),
-        startDatetime: TZDateTime.valueOf(now),
-        endDatetime: TZDateTime.valueOf(now),
+        date: YYYYmmDD.valueOf(now).toString(),
+        startDatetime: TZDateTime.valueOf(now).toString(),
+        endDatetime: TZDateTime.valueOf(now).toString(),
         breakSecond: 0,
         userId: id,
         groupId: group.id,
@@ -56,7 +56,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
         id: generateId(),
         dailyAttendanceId,
         state: output.nextState,
-        datetime: TZDateTime.valueOf(now),
+        datetime: TZDateTime.valueOf(now).toString(),
       },
     });
   }

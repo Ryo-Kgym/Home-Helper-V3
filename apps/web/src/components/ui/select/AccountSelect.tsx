@@ -20,9 +20,13 @@ export const AccountSelect = ({
   const [options, setOptions] = useState<SelectProps<string>["data"]>([]);
   const { getAccounts } = useGetDetailMaster();
 
-  useEffect(() => {
-    setOptions(getAccounts());
-  }, []);
+  useEffect(
+    () => {
+      setOptions(getAccounts());
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   return (
     <Select

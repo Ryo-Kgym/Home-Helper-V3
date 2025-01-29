@@ -1,4 +1,4 @@
-import { TZDateTime, YYYYmmDD } from "@/type/date/date";
+import { YYYY_MM_DD, YYYY_MM_DD_HH_MM_SS } from "@/type/date/date";
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 
 import * as Types from "../../../generated/typed";
@@ -22,10 +22,10 @@ export type Scalars = {
   Int: number;
   Float: number;
   bpchar: string;
-  date: YYYYmmDD;
+  date: YYYY_MM_DD;
   numeric: number;
   timestamp: string;
-  timestamptz: TZDateTime;
+  timestamptz: YYYY_MM_DD_HH_MM_SS;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -4044,14 +4044,14 @@ export type GetAttendanceQuery = {
   day: Array<{
     __typename: "BusinessDailyAttendance";
     id: string;
-    date: YYYYmmDD;
-    startDatetime: TZDateTime;
-    endDatetime: TZDateTime;
+    date: YYYY_MM_DD;
+    startDatetime: YYYY_MM_DD_HH_MM_SS;
+    endDatetime: YYYY_MM_DD_HH_MM_SS;
     breakSecond: number;
     logs: Array<{
       __typename: "BusinessDailyAttendanceLog";
       id: string;
-      datetime: TZDateTime;
+      datetime: YYYY_MM_DD_HH_MM_SS;
       state: string;
       memo: string | null;
     }>;
@@ -4070,14 +4070,14 @@ export type GetAttendanceOfMonthQuery = {
   days: Array<{
     __typename: "BusinessDailyAttendance";
     id: string;
-    date: YYYYmmDD;
-    startDatetime: TZDateTime;
-    endDatetime: TZDateTime;
+    date: YYYY_MM_DD;
+    startDatetime: YYYY_MM_DD_HH_MM_SS;
+    endDatetime: YYYY_MM_DD_HH_MM_SS;
     breakSecond: number;
     logs: Array<{
       __typename: "BusinessDailyAttendanceLog";
       id: string;
-      datetime: TZDateTime;
+      datetime: YYYY_MM_DD_HH_MM_SS;
       state: string;
       memo: string | null;
     }>;
@@ -4087,14 +4087,14 @@ export type GetAttendanceOfMonthQuery = {
 export type FragDailyAttendanceFragment = {
   __typename: "BusinessDailyAttendance";
   id: string;
-  date: YYYYmmDD;
-  startDatetime: TZDateTime;
-  endDatetime: TZDateTime;
+  date: YYYY_MM_DD;
+  startDatetime: YYYY_MM_DD_HH_MM_SS;
+  endDatetime: YYYY_MM_DD_HH_MM_SS;
   breakSecond: number;
   logs: Array<{
     __typename: "BusinessDailyAttendanceLog";
     id: string;
-    datetime: TZDateTime;
+    datetime: YYYY_MM_DD_HH_MM_SS;
     state: string;
     memo: string | null;
   }>;

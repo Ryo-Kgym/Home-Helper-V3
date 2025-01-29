@@ -1,10 +1,9 @@
 import { CalcWorkTimeUsecase } from "@/core/usecase/business/work/CalcWorkTimeUsecase";
-import { YYYYmmDD } from "@/type/date/date";
+import { TZDateTime, YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 import { GetAttendanceOfMonthDocument } from "@v3/graphql/business/schema/query/v5/queryDailyAttendance.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 
 export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
   const { id, group } = await findUser();
@@ -12,8 +11,8 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
   const usecase = new CalcWorkTimeUsecase({
     findBy: async (fromDate, toDate) => {
       const { data } = await execQuery(GetAttendanceOfMonthDocument, {
-        fromDate,
-        toDate,
+        fromDate: fromDate.toString(),
+        toDate: toDate.toString(),
         userId: id,
         groupId: group.id,
       });
@@ -22,11 +21,17 @@ export const fetchDailyAttendance = async (baseDate: YYYY_MM_DD) => {
         days:
           data.days.map((day) => ({
             id: day.id,
-            date: day.date,
-            startDatetime: day.startDatetime,
-            endDatetime: day.endDatetime,
+            date: new YYYYmmDD(day.date),
+            startDatetime: new TZDateTime(day.startDatetime),
+            endDatetime: new TZDateTime(day.endDatetime),
             breakSecond: day.breakSecond,
-            logs: day.logs ?? [],
+            logs:
+              day.logs.map((log) => ({
+                id: log.id,
+                datetime: new TZDateTime(log.datetime),
+                state: log.state,
+                memo: log.memo,
+              })) ?? [],
           })) ?? [],
       };
     },

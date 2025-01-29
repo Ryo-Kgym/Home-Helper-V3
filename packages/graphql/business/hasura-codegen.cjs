@@ -19,7 +19,7 @@ module.exports = {
         ["typescript", "typescript-operations", "typed-document-node",
           {
             add: {
-              content: "import { YYYYmmDD, TZDateTime } from '@/type/date/date';"
+              content: "import { YYYY_MM_DD, YYYY_MM_DD_HH_MM_SS } from '@/type/date/date';"
             }
           }
         ],
@@ -28,10 +28,10 @@ module.exports = {
         enumsAsTypes: true,
         scalars: {
           bpchar: "string",
-          date: "YYYYmmDD",
+          date: "YYYY_MM_DD",
           timestamp: "string",
           numeric: "number",
-          timestamptz: "TZDateTime",
+          timestamptz: "YYYY_MM_DD_HH_MM_SS",
         },
         defaultScalarType: "unknown",
         avoidOptionals: {
