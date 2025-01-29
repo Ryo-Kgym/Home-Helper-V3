@@ -1,4 +1,4 @@
-import type { Splitter } from "@oneforall/domain/schema/importFileSettingsSchema";
+import type { Splitter } from "features/appImportFileSetting/client/importFileSettingsSchema";
 
 import { Select } from "../../../components/ui/select/v4";
 

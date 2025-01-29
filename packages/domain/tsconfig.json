@@ -1,9 +1,0 @@
-{
-  "extends": "@acme/tsconfig/base.json",
-  "compilerOptions": {
-    "target": "es2015",
-    "downlevelIteration": true,
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
-  },
-  "exclude": ["node_modules"]
-}

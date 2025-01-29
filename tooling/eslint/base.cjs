@@ -52,15 +52,6 @@ const config = {
       "error",
       [
         ...featuresDirs.map((name) => ({
-          module: `src/features/${name}/server`,
-          allowReferenceFrom: [
-            `src/pageComponents/*/components/*Server.tsx`, // 廃止予定
-            `src/pageComponents/*/components/*Page.tsx`,
-            `src/feature`,
-          ],
-          allowSameModule: true,
-        })),
-        ...featuresDirs.map((name) => ({
           module: `src/features/${name}/client`,
           allowReferenceFrom: [
             `src/pageComponents/*/client`,

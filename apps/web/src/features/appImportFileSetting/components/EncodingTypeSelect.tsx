@@ -1,4 +1,4 @@
-import type { EncodingType } from "@oneforall/domain/schema/importFileSettingsSchema";
+import type { EncodingType } from "features/appImportFileSetting/client/importFileSettingsSchema";
 
 import { Select } from "../../../components/ui/select/v4";
 
