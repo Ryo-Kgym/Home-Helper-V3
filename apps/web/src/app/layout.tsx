@@ -11,6 +11,7 @@ import { ClientsProviders } from "./_provider/ClientsProviders";
 
 export const metadata: Metadata = {
   title: "我が家の家計簿",
+  appleWebApp: true,
 };
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
