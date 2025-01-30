@@ -1,3 +1,5 @@
+import { YYYYmmDD } from "@/type/date/date";
+
 import { BalanceListTableServer } from "../../../../../features/householdAccountList/components/BalanceListTableServer";
 
 const Page = async ({
@@ -13,8 +15,8 @@ const Page = async ({
 
   return (
     <BalanceListTableServer
-      fromDate={fromDate ? new Date(fromDate) : undefined}
-      toDate={toDate ? new Date(toDate) : undefined}
+      fromDate={fromDate ? new YYYYmmDD(fromDate) : undefined}
+      toDate={toDate ? new YYYYmmDD(toDate) : undefined}
     />
   );
 };

@@ -1,3 +1,4 @@
+import { YYYYmmDD } from "@/type/date/date";
 import { ChartDataDocument } from "@v3/graphql/household/schema/query/v5/chartData.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
@@ -8,15 +9,15 @@ export const fetchCategoryChartData = async ({
   fromDate,
   toDate,
 }: {
-  fromDate: Date;
-  toDate: Date;
+  fromDate: YYYYmmDD;
+  toDate: YYYYmmDD;
 }) => {
   const { group } = await findUser();
 
   const source = await execQuery(ChartDataDocument, {
     groupId: group.id,
-    fromDate,
-    toDate,
+    fromDate: fromDate.toString(),
+    toDate: toDate.toString(),
   });
 
   const categoryChartData = convertToCategoryChartData(source?.data);

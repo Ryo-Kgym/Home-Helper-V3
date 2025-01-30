@@ -41,7 +41,7 @@ describe("filterSumBalance", () => {
       },
     };
 
-    const actual = filterSumBalance(params, new Date("2023-09-01"));
+    const actual = filterSumBalance(params, "2023-09-01");
 
     expect(actual).toEqual({
       "2023-09-01": {

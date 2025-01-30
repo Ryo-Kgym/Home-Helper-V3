@@ -1,13 +1,16 @@
+import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
+
 import { fetchAccountDetailList } from "../server/fetchAccountDetailList";
 import { AccountDetailTable } from "./AccountDetailTable";
 
 export const AccountDetailTableServer = async ({
-  fromDate = new Date("2019-01-01"),
-  toDate = new Date(),
+  fromDate = "2019-01-01",
+  toDate = new YYYYmmDD(convertToYmd(new Date())).toString(),
   accountId,
 }: {
-  fromDate: Date | undefined;
-  toDate: Date | undefined;
+  fromDate: YYYY_MM_DD | undefined;
+  toDate: YYYY_MM_DD | undefined;
   accountId: string | undefined;
 }) => {
   if (!accountId) {

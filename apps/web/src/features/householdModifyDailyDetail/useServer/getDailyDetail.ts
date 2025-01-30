@@ -19,7 +19,7 @@ export const getDailyDetail = async (params: {
 
   return {
     id: data.daily.id,
-    date: new Date(data.daily.date),
+    date: data.daily.date,
     amount: data.daily.amount,
     iocomeType: data.daily.genre.iocomeType as IocomeType,
     genreId: data.daily.genre.id,

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { convertToYmd } from "@/core/function/date/convertToYmd";
 
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
@@ -38,6 +39,7 @@ export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
     try {
       await registerDailyDetail({
         ...form,
+        date: convertToYmd(form.date),
       });
       setForm({ ...form, amount: 0, memo: "" });
       successPopup("登録しました");

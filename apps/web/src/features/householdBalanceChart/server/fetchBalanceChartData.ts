@@ -1,3 +1,4 @@
+import { YYYYmmDD } from "@/type/date/date";
 import { ChartDataDocument } from "@v3/graphql/household/schema/query/v5/chartData.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";
@@ -10,20 +11,20 @@ export const fetchBalanceChartData = async ({
   fromDate,
   toDate,
 }: {
-  fromDate: Date;
-  toDate: Date;
+  fromDate: YYYYmmDD;
+  toDate: YYYYmmDD;
 }) => {
   const { group } = await findUser();
 
   const source = await execQuery(ChartDataDocument, {
     groupId: group.id,
-    fromDate: new Date("2019-01-01"),
-    toDate,
+    fromDate: "2019-01-01",
+    toDate: toDate.toString(),
   });
 
   const sumBalance = sumBalanceData(source?.data);
   const cumulative = cumulateSumBalance(sumBalance);
-  const filteredCumulative = filterSumBalance(cumulative, fromDate);
+  const filteredCumulative = filterSumBalance(cumulative, fromDate.toString());
 
   return {
     data: filteredCumulative,

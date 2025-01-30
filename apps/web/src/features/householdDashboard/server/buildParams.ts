@@ -1,3 +1,5 @@
+import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { YYYYmmDD } from "@/type/date/date";
 import { z } from "zod";
 
 import { DashboardComponentProps } from "../types/dashboardFC";
@@ -16,17 +18,15 @@ export const buildParams = (
   const targetMonth = params.targetMonth ?? new Date();
   targetMonth.setMonth(targetMonth.getMonth() + month);
 
-  const firstDay = new Date(
-    targetMonth.getFullYear(),
-    targetMonth.getMonth(),
-    1,
-    9,
+  const firstDay = new YYYYmmDD(
+    convertToYmd(
+      new Date(targetMonth.getFullYear(), targetMonth.getMonth(), 1),
+    ),
   );
-  const lastDay = new Date(
-    targetMonth.getFullYear(),
-    targetMonth.getMonth() + 1,
-    0,
-    9,
+  const lastDay = new YYYYmmDD(
+    convertToYmd(
+      new Date(targetMonth.getFullYear(), targetMonth.getMonth() + 1, 0),
+    ),
   );
 
   return {

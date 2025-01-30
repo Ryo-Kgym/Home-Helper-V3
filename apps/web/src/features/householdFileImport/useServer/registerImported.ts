@@ -1,5 +1,7 @@
 "use server";
 
+import { YYYY_MM_DD } from "@/type/date/date";
+
 import { registerDailyDetail } from "../../../useServer/household/daily_detail/registerDailyDetail";
 import { LoadFileProps } from "../types";
 import { ImportFileType } from "../types/importFileType";
@@ -15,7 +17,7 @@ export const registerImported = async ({
 }: {
   importFileType: ImportFileType;
   fileName: string;
-  withdrawalDate: Date;
+  withdrawalDate: YYYY_MM_DD;
   accountId: string;
   loadData: LoadFileProps[];
 }) => {
@@ -44,6 +46,7 @@ export const registerImported = async ({
           async (data) =>
             await registerDailyDetail({
               ...data,
+              date: data.date.toString(),
               accountId,
             }),
         ),

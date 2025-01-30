@@ -1,5 +1,6 @@
 "use server";
 
+import { TZDateTime } from "@/type/date/date";
 import { CreateImportFileHistoryDocument } from "@v3/graphql/household/schema/mutation/create/CreateImportFileHistory.generated";
 
 import { generateId } from "../../../function/generateId";
@@ -24,7 +25,7 @@ export const registerImportHistory = async ({
     fileType: importFileType,
     fileName,
     importUserId,
-    importDatetime: new Date(),
+    importDatetime: TZDateTime.valueOf(new Date()).toString(),
     groupId,
   });
 

@@ -12,3 +12,5 @@ beforeEach(() => {
 afterEach(() => {
   cleanup();
 });
+
+vi.mock("@/core/function/date/convertToYmd");

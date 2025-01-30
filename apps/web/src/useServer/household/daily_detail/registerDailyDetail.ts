@@ -1,5 +1,6 @@
 "use server";
 
+import { YYYY_MM_DD } from "@/type/date/date";
 import { CreateDailyDetailDocument } from "@v3/graphql/household/schema/mutation/create/CreateDailyDetail.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
@@ -16,7 +17,7 @@ export const registerDailyDetail = async ({
   amount,
   memo,
 }: {
-  date: Date;
+  date: YYYY_MM_DD;
   genreId: string;
   iocomeType: IocomeType;
   categoryId: string;

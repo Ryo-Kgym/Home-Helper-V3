@@ -1,3 +1,4 @@
+import { YYYYmmDD } from "@/type/date/date";
 import { GetAccountBalanceListDocument } from "@v3/graphql/household/schema/query/v5/getAccountBalanceList.generated";
 import {
   convertToAccounts,
@@ -11,16 +12,16 @@ export const fetchBalanceList = async ({
   fromDate,
   toDate,
 }: {
-  fromDate: Date;
-  toDate: Date;
+  fromDate: YYYYmmDD;
+  toDate: YYYYmmDD;
 }) => {
   const {
     group: { id: groupId },
   } = await findUser();
 
   const { data } = await execQuery(GetAccountBalanceListDocument, {
-    fromDate,
-    toDate,
+    fromDate: fromDate.toString(),
+    toDate: toDate.toString(),
     groupId,
   });
 

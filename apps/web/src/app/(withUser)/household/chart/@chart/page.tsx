@@ -1,3 +1,5 @@
+import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
+
 import { BalanceChartPageServer } from "../../../../../features/householdBalanceChart/components/BalanceChartPageServer";
 import { CategoryChartServer } from "../../../../../features/householdCategoryChart/components/CategoryChartServer";
 
@@ -5,20 +7,15 @@ const Page = async ({
   searchParams,
 }: {
   searchParams: Promise<{
-    fromDate: string | undefined;
-    toDate: string | undefined;
+    fromDate: YYYY_MM_DD | undefined;
+    toDate: YYYY_MM_DD | undefined;
     type: string | undefined;
   }>;
 }) => {
   const { type, fromDate, toDate } = await searchParams;
 
-  const convertToDate = (date: string | undefined) => {
-    const d = date ? new Date(date) : undefined;
-
-    if (isNaN(d?.getTime() ?? 0)) {
-      return undefined;
-    }
-    return d;
+  const convertToDate = (date: YYYY_MM_DD | undefined) => {
+    return date ? new YYYYmmDD(date) : undefined;
   };
 
   switch (type) {
@@ -42,3 +39,5 @@ const Page = async ({
 };
 
 export default Page;
+
+export const dynamic = "force-dynamic";

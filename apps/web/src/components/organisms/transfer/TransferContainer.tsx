@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { YYYYmmDD } from "@/type/date/date";
 
 import { errorPopup, successPopup } from "../../../function/successPopup";
-import { registerTransfer } from "../../../hooks/household/transfer/useRegisterTransfer";
+import { registerTransfer } from "../../../hooks/household/transfer/registerTransfer";
 import { TransferPresenter } from "./TransferPresenter";
 
 export const TransferContainer = ({ date }: { date: Date }) => {
@@ -21,7 +22,7 @@ export const TransferContainer = ({ date }: { date: Date }) => {
   const registerHandler = async () => {
     try {
       await registerTransfer({
-        date: registerDate,
+        date: YYYYmmDD.valueOf(registerDate),
         sendAccountId: sendAccountId,
         receiveAccountId: receiveAccountId,
         amount: amount,

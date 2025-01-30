@@ -1,3 +1,5 @@
+import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { YYYYmmDD } from "@/type/date/date";
 import {
   ChartDetailTableFilterSettlementDateDocument,
   ChartDetailTableFilterWithdrawalDateDocument,
@@ -12,7 +14,7 @@ export const fetchWatchTableData = async ({
   watchFirstDate,
   dateType,
 }: {
-  watchFirstDate: Date;
+  watchFirstDate: YYYYmmDD;
   dateType: "withdrawalDate" | "settlementDate";
 }): Promise<{
   records: ChartDetailTableRow[];
@@ -20,7 +22,7 @@ export const fetchWatchTableData = async ({
   outcomeTotal: number;
 }> => {
   // watchFirstDate から月末日を生成する
-  const watchLastDate = getLastDateOfMonth(watchFirstDate);
+  const watchLastDate = getLastDateOfMonth(watchFirstDate.parseDate());
 
   const { group } = await findUser();
 
@@ -31,8 +33,8 @@ export const fetchWatchTableData = async ({
 
   const { data } = await execQuery(query, {
     groupId: group.id,
-    fromDate: watchFirstDate,
-    toDate: watchLastDate,
+    fromDate: watchFirstDate.toString(),
+    toDate: watchLastDate.toString(),
   });
 
   const records = data?.detailView.map((rec) => ({
@@ -69,7 +71,9 @@ export const fetchWatchTableData = async ({
 };
 
 const getLastDateOfMonth = (date: Date) => {
-  return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  return new YYYYmmDD(
+    convertToYmd(new Date(date.getFullYear(), date.getMonth() + 1, 0)),
+  );
 };
 
 const calcTotal = (
