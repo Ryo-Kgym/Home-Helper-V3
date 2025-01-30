@@ -61,5 +61,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
     });
   }
 
-  return output;
+  return {
+    nextState: output.nextState,
+  };
 };
