@@ -1,4 +1,6 @@
 import { FC, PropsWithChildren } from "react";
+import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { YYYYmmDD } from "@/type/date/date";
 
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
 import { Button } from "../../../components/ui/button/v5";
@@ -60,10 +62,15 @@ export const ModifyDailyDetail = ({
     <div className={"grid w-full grid-cols-1"}>
       <Field>
         <DatePicker
-          value={form.date}
-          onChange={(value) => setForm({ ...form, date: value })}
+          value={new YYYYmmDD(form.date).parseDate()}
+          onChange={(value) =>
+            setForm({
+              ...form,
+              date: new YYYYmmDD(convertToYmd(value)).toString(),
+            })
+          }
           required
-          defaultValue={form.date}
+          defaultValue={new YYYYmmDD(form.date).parseDate()}
         />
       </Field>
       <Field>

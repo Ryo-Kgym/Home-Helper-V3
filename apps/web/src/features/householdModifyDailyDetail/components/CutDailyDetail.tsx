@@ -1,3 +1,6 @@
+import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { YYYYmmDD } from "@/type/date/date";
+
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
 import { Button } from "../../../components/ui/button/v5";
 import { DatePicker } from "../../../components/ui/date";
@@ -52,7 +55,7 @@ export const CutDailyDetail = ({
         <div className={"w-full"}>
           <div>分解前</div>
           <DatePicker
-            value={initData.date}
+            value={new YYYYmmDD(initData.date).parseDate()}
             onChange={() => undefined}
             required
             disabled
@@ -91,7 +94,7 @@ export const CutDailyDetail = ({
         <div className={"w-full"}>
           <div>分解後</div>
           <DatePicker
-            value={initData.date}
+            value={new YYYYmmDD(initData.date).parseDate()}
             onChange={() => undefined}
             required
             disabled
@@ -129,10 +132,15 @@ export const CutDailyDetail = ({
         <div className={"w-full"}>
           <div>新規</div>
           <DatePicker
-            value={form.date}
-            onChange={(v) => setForm({ ...form, date: v })}
+            value={new YYYYmmDD(form.date).parseDate()}
+            onChange={(v) =>
+              setForm({
+                ...form,
+                date: new YYYYmmDD(convertToYmd(v)).toString(),
+              })
+            }
             required
-            defaultValue={form.date}
+            defaultValue={new YYYYmmDD(form.date).parseDate()}
           />
           <GenreSelect
             genreId={form.genreId}

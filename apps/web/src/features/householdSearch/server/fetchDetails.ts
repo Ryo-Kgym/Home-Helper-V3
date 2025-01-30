@@ -1,16 +1,15 @@
+import { YYYYmmDD } from "@/type/date/date";
 import { FragAllDetailViewFragment } from "@v3/graphql/household/schema/query/v5/fragChartDetailTable.generated";
 import { GetAllDetailViewDocument } from "@v3/graphql/household/schema/query/v5/getAllDetailView.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { convertToDate } from "../../../function/date/convertToDate";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { SearchRow } from "../types/searchRow";
 
 type Params = {
-  fromDate: YYYY_MM_DD;
-  toDate: YYYY_MM_DD;
+  fromDate: YYYYmmDD;
+  toDate: YYYYmmDD;
   tagIds: string[];
 };
 
@@ -19,8 +18,8 @@ export const fetchDetails = async (params: Params) => {
 
   const { data } = await execQuery(GetAllDetailViewDocument, {
     groupId: group.id,
-    fromDate: convertToDate(params.fromDate),
-    toDate: convertToDate(params.toDate),
+    fromDate: params.fromDate.toString(),
+    toDate: params.toDate.toString(),
     tagIds: params.tagIds,
   });
 

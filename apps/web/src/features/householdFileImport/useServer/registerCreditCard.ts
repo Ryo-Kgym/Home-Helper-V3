@@ -1,5 +1,6 @@
 "use server";
 
+import { YYYY_MM_DD } from "@/type/date/date";
 import { CreateCreditCardDetailDocument } from "@v3/graphql/household/schema/mutation/create/CreateCreditCardDetail.generated";
 import { CreateCreditCardSummaryDocument } from "@v3/graphql/household/schema/mutation/create/CreateCreditCardSummary.generated";
 
@@ -15,7 +16,7 @@ export const registerCreditCard = async ({
   loadData,
 }: {
   summaryId: string;
-  withdrawalDate: Date;
+  withdrawalDate: YYYY_MM_DD;
   accountId: string;
   loadData: LoadFileProps[];
 }) => {
@@ -30,7 +31,7 @@ export const registerCreditCard = async ({
     accountId: accountId,
     totalAmount: loadData.reduce((acc, cur) => acc + cur.amount, 0),
     count: loadData.length,
-    withdrawalDate: withdrawalDate,
+    withdrawalDate,
     groupId,
   });
 
@@ -45,7 +46,9 @@ export const registerCreditCard = async ({
   const results = await Promise.all(
     detailVariableList.map(
       async (detail) =>
-        await execMutation(CreateCreditCardDetailDocument, detail),
+        await execMutation(CreateCreditCardDetailDocument, {
+          ...detail,
+        }),
     ),
   );
 

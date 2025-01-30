@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
+import { convertToYmd } from "@/core/function/date/convertToYmd";
 
 import { Button } from "../../../../components/ui/button/v5";
 import { DatePicker } from "../../../../components/ui/date";
@@ -61,9 +62,12 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
       const { count } = await registerImported({
         importFileType,
         fileName: uploadFile.name,
-        withdrawalDate,
+        withdrawalDate: convertToYmd(withdrawalDate),
         accountId,
-        loadData: Object.values(importFileRowAware),
+        loadData: Object.values(importFileRowAware).map((v) => ({
+          ...v,
+          date: convertToYmd(v.date),
+        })),
       });
       successPopup(`${count}件の明細を登録しました`);
       onChange(null);

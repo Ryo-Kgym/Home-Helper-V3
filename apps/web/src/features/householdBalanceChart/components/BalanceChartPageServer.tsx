@@ -1,3 +1,6 @@
+import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { YYYYmmDD } from "@/type/date/date";
+
 import { colors } from "../../../styles/colors";
 import { fetchBalanceChartData } from "../server/fetchBalanceChartData";
 import { BalanceChartClient } from "./BalanceChartClient";
@@ -5,15 +8,15 @@ import { BalanceChartClient } from "./BalanceChartClient";
 const getPast12MonthDate = () => {
   const date = new Date();
   date.setMonth(date.getMonth() - 12);
-  return date;
+  return new YYYYmmDD(convertToYmd(date));
 };
 
 export const BalanceChartPageServer = async ({
   fromDate = getPast12MonthDate(),
-  toDate = new Date(),
+  toDate = new YYYYmmDD(convertToYmd(new Date())),
 }: {
-  fromDate: Date | undefined;
-  toDate: Date | undefined;
+  fromDate: YYYYmmDD | undefined;
+  toDate: YYYYmmDD | undefined;
 }) => {
   const { data } = await fetchBalanceChartData({
     fromDate,
@@ -25,8 +28,8 @@ export const BalanceChartPageServer = async ({
       barchartSetting={barchartSetting}
       areaChartSetting={areaChartSetting}
       data={data}
-      fromDate={fromDate}
-      toDate={toDate}
+      fromDate={fromDate?.parseDate()}
+      toDate={toDate?.parseDate()}
     />
   );
 };

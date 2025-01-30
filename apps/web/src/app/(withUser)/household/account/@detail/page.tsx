@@ -1,11 +1,13 @@
+import { YYYY_MM_DD } from "@/type/date/date";
+
 import { AccountDetailTableServer } from "../../../../../features/householdAccountList/components/AccountDetailTableServer";
 
 const Page = async ({
   searchParams,
 }: {
   searchParams: Promise<{
-    fromDate: string | undefined;
-    toDate: string | undefined;
+    fromDate: YYYY_MM_DD | undefined;
+    toDate: YYYY_MM_DD | undefined;
     accountId: string | undefined;
   }>;
 }) => {
@@ -13,8 +15,8 @@ const Page = async ({
 
   return (
     <AccountDetailTableServer
-      fromDate={fromDate ? new Date(fromDate) : undefined}
-      toDate={toDate ? new Date(toDate) : undefined}
+      fromDate={fromDate}
+      toDate={toDate}
       accountId={accountId}
     />
   );

@@ -1,12 +1,15 @@
+import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { YYYYmmDD } from "@/type/date/date";
+
 import { fetchBalanceList } from "../server/fetchBalanceList";
 import { BalanceListTable } from "./BalanceListTable";
 
 export const BalanceListTableServer = async ({
-  fromDate = new Date("2019-01-01"),
-  toDate = new Date(),
+  fromDate = new YYYYmmDD("2019-01-01"),
+  toDate = new YYYYmmDD(convertToYmd(new Date())),
 }: {
-  fromDate: Date | undefined;
-  toDate: Date | undefined;
+  fromDate: YYYYmmDD | undefined;
+  toDate: YYYYmmDD | undefined;
 }) => {
   const { records, total } = await fetchBalanceList({
     fromDate,
@@ -17,8 +20,8 @@ export const BalanceListTableServer = async ({
     <BalanceListTable
       balanceRecords={records}
       total={total}
-      fromDate={fromDate}
-      toDate={toDate}
+      fromDate={fromDate?.parseDate()}
+      toDate={toDate?.parseDate()}
     />
   );
 };

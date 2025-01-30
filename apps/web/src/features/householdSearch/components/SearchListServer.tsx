@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { YYYYmmDD } from "@/type/date/date";
 
 import { IocomeTotal } from "../../../components/molecules/Total";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
@@ -18,8 +19,8 @@ export const SearchListServer: FC<Props> = async ({
   tagIds,
 }) => {
   const { records } = await fetchDetails({
-    fromDate,
-    toDate,
+    fromDate: new YYYYmmDD(fromDate),
+    toDate: new YYYYmmDD(toDate),
     tagIds,
   });
 

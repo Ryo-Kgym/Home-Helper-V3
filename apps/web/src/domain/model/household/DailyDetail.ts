@@ -1,8 +1,10 @@
+import { YYYY_MM_DD } from "@/type/date/date";
+
 import { IocomeType } from "./IocomeType";
 
 export type DailyDetail = {
   id: string;
-  date: Date;
+  date: YYYY_MM_DD;
   amount: number;
   iocomeType: IocomeType;
   genreId: string;

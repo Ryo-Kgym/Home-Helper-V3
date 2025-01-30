@@ -1,3 +1,10 @@
+import {
+  TZDateTime,
+  YYYY_MM_DD,
+  YYYY_MM_DD_HH_MM_SS,
+  YYYYmmDD,
+} from "@/type/date/date";
+
 export type Exact<T extends Record<string, unknown>> = {
   [K in keyof T]: T[K];
 };
@@ -9,9 +16,9 @@ export type Scalars = {
   Int: number;
   Float: number;
   bpchar: string;
-  date: Date;
+  date: YYYY_MM_DD;
   numeric: number;
-  timestamp: Date;
+  timestamp: YYYY_MM_DD_HH_MM_SS;
 };
 
 export type Maybe<T> = T | null;

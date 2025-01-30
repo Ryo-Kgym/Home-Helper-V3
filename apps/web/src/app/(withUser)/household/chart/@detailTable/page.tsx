@@ -1,3 +1,5 @@
+import { YYYYmmDD } from "@/type/date/date";
+
 import { ChartDetailTableServer } from "../../../../../features/householdChartDetailTable/components/ChartDetailTableServer";
 
 const Page = async ({
@@ -12,7 +14,7 @@ const Page = async ({
 
   return (
     <ChartDetailTableServer
-      watchFirstDate={watch ? new Date(`${watch}-01`) : null}
+      watchFirstDate={watch ? new YYYYmmDD(`${watch}-01`) : null}
       dateType={(() => {
         switch (dateType) {
           case "withdrawalDate":

@@ -1,3 +1,5 @@
+import { YYYYmmDD } from "@/type/date/date";
+
 import { fetchWatchTableData } from "../server/fetchWatchTableData";
 import { ChartDetailTableClient } from "./ChartDetailTableClient";
 
@@ -5,7 +7,7 @@ export const ChartDetailTableServer = async ({
   watchFirstDate,
   dateType,
 }: {
-  watchFirstDate: Date | null;
+  watchFirstDate: YYYYmmDD | null;
   dateType: "withdrawalDate" | "settlementDate";
 }) => {
   if (!watchFirstDate) {

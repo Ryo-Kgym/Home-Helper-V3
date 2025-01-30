@@ -29,8 +29,8 @@ export const fetchDashboardMonthly = async (
   const { firstDay, lastDay } = buildParams(params);
 
   const { data: outcomeData } = await execQuery(GetDetailsByCategoryDocument, {
-    fromDate: firstDay,
-    toDate: lastDay,
+    fromDate: firstDay.toString(),
+    toDate: lastDay.toString(),
     groupId: group.id,
     iocomeType: "OUTCOME",
   });
@@ -38,8 +38,8 @@ export const fetchDashboardMonthly = async (
   const outcome = convertToNominal(outcomeData);
 
   const { data: incomeData } = await execQuery(GetDetailsByCategoryDocument, {
-    fromDate: firstDay,
-    toDate: lastDay,
+    fromDate: firstDay.toString(),
+    toDate: lastDay.toString(),
     groupId: group.id,
     iocomeType: "INCOME",
   });
