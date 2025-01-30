@@ -1,3 +1,4 @@
+import { YYYY_MM_DD, YYYY_MM_DD_HH_MM_SS } from "@/type/date/date";
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 
 import * as Types from "../../../generated/typed";
@@ -21,10 +22,10 @@ export type Scalars = {
   Int: number;
   Float: number;
   bpchar: string;
-  date: string;
+  date: YYYY_MM_DD;
   numeric: number;
   timestamp: string;
-  timestamptz: unknown;
+  timestamptz: YYYY_MM_DD_HH_MM_SS;
 };
 
 export type AffiliationAggregateBoolExp = {
@@ -4035,7 +4036,7 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
 export type FragDailyDetailFragment = {
   __typename: "HouseholdDailyDetail";
   id: string;
-  date: string;
+  date: YYYY_MM_DD;
   amount: number;
   memo: string | null;
   genre: {
