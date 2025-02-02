@@ -19,7 +19,7 @@ describe("CalcAttendanceLogUsecase", () => {
     });
 
     return usecase
-      .handle({ date: new Date("2021-01-01T11:00:00Z") })
+      .handle({ datetime: new Date("2021-01-01T11:00:00Z") })
       .then((output) => {
         expect(output).toEqual({
           dailyAttendanceId: "1",
@@ -45,7 +45,7 @@ describe("CalcAttendanceLogUsecase", () => {
     });
 
     return usecase
-      .handle({ date: new Date("2021-01-01T11:00:00Z") })
+      .handle({ datetime: new Date("2021-01-01T11:00:00Z") })
       .then((output) => {
         expect(output).toEqual({
           dailyAttendanceId: "1",

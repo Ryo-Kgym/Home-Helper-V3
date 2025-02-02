@@ -1,4 +1,4 @@
-import { TZDateTime } from "@/type/date/date";
+import { TZDateTime, YYYYmmDD } from "@/type/date/date";
 
 import { AttendanceState } from "../../../domain/business/attend/AttendanceState";
 import { AttendAtWork } from "../../../domain/business/attend/AttendAtWork";
@@ -16,15 +16,13 @@ export class CalcAttendanceLogUsecase
   }
 
   async handle(input: CalcAttendanceLogInput) {
-    const lastLog = await this.attendanceGateway.findBy(
-      input.date.getYYYYmmDD(),
-    );
+    const lastLog = await this.attendanceGateway.findBy(input.currentDate);
 
     switch (lastLog.state) {
       case "attend": {
         const { startDatetime, endDatetime } = new LeaveWork({
           lastAttendedTime: lastLog.startDatetime,
-        }).leave(input.date);
+        }).leave(input.datetime);
 
         return {
           dailyAttendanceId: lastLog.dailyAttendanceId,
@@ -37,7 +35,7 @@ export class CalcAttendanceLogUsecase
       case "leave": {
         const { breakSecond } = new AttendAtWork({
           lastLeaveTime: lastLog.endDatetime,
-        }).attend(input.date);
+        }).attend(input.datetime);
 
         return {
           dailyAttendanceId: lastLog.dailyAttendanceId,
@@ -52,7 +50,8 @@ export class CalcAttendanceLogUsecase
 }
 
 export type CalcAttendanceLogInput = {
-  date: TZDateTime;
+  currentDate: YYYYmmDD;
+  datetime: TZDateTime;
 };
 
 export type CalcAttendanceLogOutput = {

@@ -1,5 +1,6 @@
 "use server";
 
+import { convertToYmd } from "@/core/function/date/convertToYmd";
 import { CalcAttendanceLogUsecase } from "@/core/usecase/business/attend/CalcAttendanceLogUsecase";
 import { TZDateTime, YYYYmmDD } from "@/type/date/date";
 import {
@@ -20,7 +21,12 @@ export const attendOrLeaveForWork = async (now: Date) => {
     new FindLastAttendanceLogRepository(),
   );
 
-  const output = await usecase.handle({ date: TZDateTime.valueOf(now) });
+  const currentTZDateTime = TZDateTime.valueOf(now);
+
+  const output = await usecase.handle({
+    currentDate: new YYYYmmDD(convertToYmd(now)),
+    datetime: currentTZDateTime,
+  });
 
   if (output.dailyAttendanceId) {
     await execMutation(UpdateDailyAttendanceDocument, {
@@ -35,7 +41,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
         id: generateId(),
         dailyAttendanceId: output.dailyAttendanceId,
         state: output.nextState,
-        datetime: TZDateTime.valueOf(now).toString(),
+        datetime: currentTZDateTime.toString(),
       },
     });
   } else {
@@ -44,8 +50,8 @@ export const attendOrLeaveForWork = async (now: Date) => {
       object: {
         id: dailyAttendanceId,
         date: YYYYmmDD.valueOf(now).toString(),
-        startDatetime: TZDateTime.valueOf(now).toString(),
-        endDatetime: TZDateTime.valueOf(now).toString(),
+        startDatetime: currentTZDateTime.toString(),
+        endDatetime: currentTZDateTime.toString(),
         breakSecond: 0,
         userId: id,
         groupId: group.id,
@@ -56,7 +62,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
         id: generateId(),
         dailyAttendanceId,
         state: output.nextState,
-        datetime: TZDateTime.valueOf(now).toString(),
+        datetime: currentTZDateTime.toString(),
       },
     });
   }
