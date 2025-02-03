@@ -1,16 +1,18 @@
-import { YYYY_MM_DD } from "@/type/date/date";
+import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { YYYYmmDD } from "@/type/date/date";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
+import { getPast12MonthYyyyMMdd } from "../../../function/date/getPast12MonthYyyyMMdd";
 import { fetchMonthlySummaryRecords } from "../server/fetchMonthlySummaryRecords";
 import { MonthlySummaryForm } from "./MonthlySummaryForm";
 import { MonthlySummaryTable } from "./MonthlySummaryTable";
 
 export const MonthlySummaryServer = async ({
-  fromDate,
-  toDate,
+  fromDate = getPast12MonthYyyyMMdd(),
+  toDate = new YYYYmmDD(convertToYmd(new Date())),
 }: {
-  fromDate: YYYY_MM_DD;
-  toDate: YYYY_MM_DD;
+  fromDate: YYYYmmDD | undefined;
+  toDate: YYYYmmDD | undefined;
 }) => {
   const { columns, income, outcome } = await fetchMonthlySummaryRecords(
     fromDate,
@@ -19,7 +21,10 @@ export const MonthlySummaryServer = async ({
 
   return (
     <div>
-      <MonthlySummaryForm />
+      <MonthlySummaryForm
+        fromDate={fromDate?.parseDate()}
+        toDate={toDate?.parseDate()}
+      />
       <MonthlySummaryTable
         iocomeType={IocomeType.Income}
         columns={columns}

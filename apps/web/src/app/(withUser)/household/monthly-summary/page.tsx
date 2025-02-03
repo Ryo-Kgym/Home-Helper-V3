@@ -1,5 +1,4 @@
-import { convertToYmd } from "@/core/function/date/convertToYmd";
-import { YYYY_MM_DD } from "@/type/date/date";
+import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 
 import { MonthlySummaryServer } from "../../../../features/householdMonthlySummary/components/MonthlySummaryServer";
 
@@ -13,20 +12,14 @@ const Page = async ({
 }) => {
   const { from, to } = await searchParams;
 
-  const thisMonthFirstDate = (() => {
-    const today = new Date();
-    return new Date(today.getFullYear(), today.getMonth(), 1);
-  })();
-
-  const nextYearDate = (() => {
-    const today = new Date();
-    return new Date(today.getFullYear() + 1, today.getMonth(), 0);
-  })();
+  const convertToDate = (date: YYYY_MM_DD | undefined) => {
+    return date ? new YYYYmmDD(date) : undefined;
+  };
 
   return (
     <MonthlySummaryServer
-      fromDate={from ?? convertToYmd(thisMonthFirstDate)}
-      toDate={to ?? convertToYmd(nextYearDate)}
+      fromDate={convertToDate(from)}
+      toDate={convertToDate(to)}
     />
   );
 };

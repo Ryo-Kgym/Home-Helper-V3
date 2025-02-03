@@ -1,4 +1,4 @@
-import { YYYY_MM, YYYY_MM_DD } from "@/type/date/date";
+import { YYYY_MM, YYYYmmDD } from "@/type/date/date";
 import { GetCategorizedDetailsDocument } from "@v3/graphql/household/schema/query/v5/getCategorizedDetails.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
@@ -6,15 +6,15 @@ import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
 
 export const fetchMonthlySummaryRecords = async (
-  fromDate: YYYY_MM_DD,
-  toDate: YYYY_MM_DD,
+  fromDate: YYYYmmDD,
+  toDate: YYYYmmDD,
 ) => {
   const { group } = await findUser();
 
   const { data } = await execQuery(GetCategorizedDetailsDocument, {
     groupId: group.id,
-    fromDate,
-    toDate,
+    fromDate: fromDate.toString(),
+    toDate: toDate.toString(),
   });
 
   const convertToRecords = (iocomeType: IocomeType) =>
@@ -94,17 +94,17 @@ export const fetchMonthlySummaryRecords = async (
     } & Record<string, number>;
   };
 
-  // fromYyyyMMからtoYyyyMMまでを列挙する
-  const yyyyMMdd = new Date(fromDate);
-  const columns: Record<YYYY_MM, { title: string }> = {};
-  while (yyyyMMdd.toISOString().slice(0, 7) <= toDate) {
-    const yyyymm = yyyyMMdd.toISOString().slice(0, 7);
-    columns[yyyymm as YYYY_MM] = { title: yyyymm };
-    yyyyMMdd.setMonth(yyyyMMdd.getMonth() + 1);
-  }
-
   const incomeRecords = convertToRecords(IocomeType.Income);
   const outcomeRecords = convertToRecords(IocomeType.Outcome);
+
+  const columns = Object.fromEntries(
+    Object.keys(convertToTotalRecord(incomeRecords))
+      .filter(
+        (key) => key !== "id" && key !== "categoryName" && key !== "total",
+      )
+      .sort()
+      .map((key) => [key, { title: key }]),
+  );
 
   return {
     columns,

@@ -8,7 +8,6 @@ import { IocomeType } from "../../../domain/model/household/IocomeType";
 
 type ColumnAttribute = {
   title: string;
-  hidden?: boolean;
 };
 
 type Props = {
