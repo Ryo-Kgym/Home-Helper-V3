@@ -21,11 +21,12 @@ export const attendOrLeaveForWork = async (now: Date) => {
     new FindLastAttendanceLogRepository(),
   );
 
-  const currentTZDateTime = TZDateTime.valueOf(now);
+  const currentDate = new YYYYmmDD(convertToYmd(now));
+  const currentTZDatetime = TZDateTime.valueOf(now);
 
   const output = await usecase.handle({
-    currentDate: new YYYYmmDD(convertToYmd(now)),
-    datetime: currentTZDateTime,
+    currentDate,
+    currentTZDatetime,
   });
 
   if (output.dailyAttendanceId) {
@@ -41,7 +42,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
         id: generateId(),
         dailyAttendanceId: output.dailyAttendanceId,
         state: output.nextState,
-        datetime: currentTZDateTime.toString(),
+        datetime: currentTZDatetime.toString(),
       },
     });
   } else {
@@ -49,9 +50,9 @@ export const attendOrLeaveForWork = async (now: Date) => {
     await execMutation(InsertDailyAttendanceDocument, {
       object: {
         id: dailyAttendanceId,
-        date: YYYYmmDD.valueOf(now).toString(),
-        startDatetime: currentTZDateTime.toString(),
-        endDatetime: currentTZDateTime.toString(),
+        date: currentDate.toString(),
+        startDatetime: currentTZDatetime.toString(),
+        endDatetime: currentTZDatetime.toString(),
         breakSecond: 0,
         userId: id,
         groupId: group.id,
@@ -62,7 +63,7 @@ export const attendOrLeaveForWork = async (now: Date) => {
         id: generateId(),
         dailyAttendanceId,
         state: output.nextState,
-        datetime: currentTZDateTime.toString(),
+        datetime: currentTZDatetime.toString(),
       },
     });
   }

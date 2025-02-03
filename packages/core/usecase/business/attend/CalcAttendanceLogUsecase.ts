@@ -22,7 +22,7 @@ export class CalcAttendanceLogUsecase
       case "attend": {
         const { startDatetime, endDatetime } = new LeaveWork({
           lastAttendedTime: lastLog.startDatetime,
-        }).leave(input.datetime);
+        }).leave(input.currentTZDatetime);
 
         return {
           dailyAttendanceId: lastLog.dailyAttendanceId,
@@ -35,7 +35,7 @@ export class CalcAttendanceLogUsecase
       case "leave": {
         const { breakSecond } = new AttendAtWork({
           lastLeaveTime: lastLog.endDatetime,
-        }).attend(input.datetime);
+        }).attend(input.currentTZDatetime);
 
         return {
           dailyAttendanceId: lastLog.dailyAttendanceId,
@@ -51,7 +51,7 @@ export class CalcAttendanceLogUsecase
 
 export type CalcAttendanceLogInput = {
   currentDate: YYYYmmDD;
-  datetime: TZDateTime;
+  currentTZDatetime: TZDateTime;
 };
 
 export type CalcAttendanceLogOutput = {

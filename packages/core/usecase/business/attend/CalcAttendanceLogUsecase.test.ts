@@ -22,7 +22,7 @@ describe("CalcAttendanceLogUsecase", () => {
     return usecase
       .handle({
         currentDate: new YYYYmmDD("2021-01-01"),
-        datetime: new TZDateTime("2021-01-01T11:00:00Z"),
+        currentTZDatetime: new TZDateTime("2021-01-01T11:00:00Z"),
       })
       .then((output) => {
         expect(output).toEqual({
@@ -51,7 +51,7 @@ describe("CalcAttendanceLogUsecase", () => {
     return usecase
       .handle({
         currentDate: new YYYYmmDD("2021-01-01"),
-        datetime: new TZDateTime("2021-01-01T11:00:00Z"),
+        currentTZDatetime: new TZDateTime("2021-01-01T11:00:00Z"),
       })
       .then((output) => {
         expect(output).toEqual({
