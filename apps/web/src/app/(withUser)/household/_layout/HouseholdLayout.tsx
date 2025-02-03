@@ -38,6 +38,10 @@ const householdMenu: Navi[] = [
     url: paths.household.search,
   },
   {
+    label: "月別サマリ",
+    url: paths.household.monthlySummary.root(),
+  },
+  {
     label: "アカウント",
     url: paths.household.account,
   },
