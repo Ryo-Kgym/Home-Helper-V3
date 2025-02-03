@@ -2,9 +2,10 @@ query getCategorizedDetails(
   $groupId: String!
   $fromDate: date!
   $toDate: date!
+  $categoryIds: [String!] = []
 ) {
   categories: householdCategory(
-    where: { groupId: { _eq: $groupId } }
+    where: { groupId: { _eq: $groupId }, _and: { id: { _in: $categoryIds } } }
     orderBy: { displayOrder: ASC }
   ) {
     id

@@ -3934,6 +3934,9 @@ export type GetCategorizedDetailsQueryVariables = Types.Exact<{
   groupId: Types.Scalars["String"];
   fromDate: Types.Scalars["date"];
   toDate: Types.Scalars["date"];
+  categoryIds?: Types.InputMaybe<
+    Array<Types.Scalars["String"]> | Types.Scalars["String"]
+  >;
 }>;
 
 export type GetCategorizedDetailsQuery = {
@@ -4031,6 +4034,24 @@ export const GetCategorizedDetailsDocument = {
             type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "categoryIds" },
+          },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NonNullType",
+              type: {
+                kind: "NamedType",
+                name: { kind: "Name", value: "String" },
+              },
+            },
+          },
+          defaultValue: { kind: "ListValue", values: [] },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -4058,6 +4079,35 @@ export const GetCategorizedDetailsDocument = {
                             value: {
                               kind: "Variable",
                               name: { kind: "Name", value: "groupId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "_and" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "id" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_in" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: {
+                                      kind: "Name",
+                                      value: "categoryIds",
+                                    },
+                                  },
+                                },
+                              ],
                             },
                           },
                         ],

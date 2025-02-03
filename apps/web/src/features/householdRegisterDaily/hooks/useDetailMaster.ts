@@ -13,9 +13,9 @@ export const useSetDetailMaster = () => {
 };
 
 export const useGetDetailMaster = () => {
-  const { getAccounts, getGenres, getCategories, getTags } =
+  const { getAccounts, getGenres, getCategories, getAllCategories, getTags } =
     useDetailMasterZustand();
-  return { getAccounts, getGenres, getCategories, getTags };
+  return { getAccounts, getGenres, getCategories, getAllCategories, getTags };
 };
 
 type State = {
@@ -33,6 +33,10 @@ type Actions = {
   getAccounts: () => SelectProps<string>["data"];
   getGenres: (type: IocomeType) => SelectProps<string>["data"];
   getCategories: (genreId: string) => SelectProps<string>["data"];
+  getAllCategories: () => {
+    group: string;
+    items: SelectProps<string>["data"];
+  }[];
   getTags: () => ComponentProps<typeof TagInput>["data"];
 };
 
@@ -64,6 +68,18 @@ const useDetailMasterZustand = create<State & Actions>()(
     getAccounts: () => get().accountData,
     getGenres: (type) => get().genreData[type],
     getCategories: (genreId) => get().categoryData[genreId] ?? [],
+    getAllCategories: () => {
+      const genreNameMap = Object.fromEntries(
+        Object.values(get().genreData)
+          .flat()
+          .map((v) => [v.value, v.label]),
+      );
+
+      return Object.entries(get().categoryData).map(([k, v]) => ({
+        group: genreNameMap[k] ?? k,
+        items: v,
+      }));
+    },
     getTags: () => get().tagData,
   })),
 );

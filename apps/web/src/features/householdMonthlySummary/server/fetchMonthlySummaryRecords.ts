@@ -8,6 +8,7 @@ import { execQuery } from "../../../persistence/database/server/execQuery";
 export const fetchMonthlySummaryRecords = async (
   fromDate: YYYYmmDD,
   toDate: YYYYmmDD,
+  categoryIds: string[],
 ) => {
   const { group } = await findUser();
 
@@ -15,6 +16,7 @@ export const fetchMonthlySummaryRecords = async (
     groupId: group.id,
     fromDate: fromDate.toString(),
     toDate: toDate.toString(),
+    categoryIds,
   });
 
   const convertToRecords = (iocomeType: IocomeType) =>
