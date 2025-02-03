@@ -1,7 +1,6 @@
 import { convertToYmd } from "@/core/function/date/convertToYmd";
 import { YYYYmmDD } from "@/type/date/date";
 
-import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { getPast12MonthYyyyMMdd } from "../../../function/date/getPast12MonthYyyyMMdd";
 import { findAccountIds } from "../../../persistence/browser/server/findAccountIds";
 import { findCategoryIds } from "../../../persistence/browser/server/findCategoryIds";
@@ -19,7 +18,7 @@ export const MonthlySummaryServer = async ({
   const categoryIds = await findCategoryIds();
   const accountIds = await findAccountIds();
 
-  const { columns, income, outcome } = await fetchMonthlySummaryRecords(
+  const { columns, details, total } = await fetchMonthlySummaryRecords(
     fromDate,
     toDate,
     categoryIds,
@@ -34,16 +33,7 @@ export const MonthlySummaryServer = async ({
         categoryIds={categoryIds}
         accountIds={accountIds}
       />
-      <MonthlySummaryTable
-        iocomeType={IocomeType.Income}
-        columns={columns}
-        records={income.records}
-      />
-      <MonthlySummaryTable
-        iocomeType={IocomeType.Outcome}
-        columns={columns}
-        records={outcome.records}
-      />
+      <MonthlySummaryTable columns={columns} records={details} totals={total} />
     </div>
   );
 };

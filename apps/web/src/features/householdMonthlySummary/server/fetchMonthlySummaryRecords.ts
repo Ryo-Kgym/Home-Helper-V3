@@ -4,6 +4,7 @@ import { GetCategorizedDetailsDocument } from "@v3/graphql/household/schema/quer
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
+import { RowAttribute } from "../components/MonthlySummaryTable";
 
 export const fetchMonthlySummaryRecords = async (
   fromDate: YYYYmmDD,
@@ -50,13 +51,10 @@ export const fetchMonthlySummaryRecords = async (
         return {
           id: category.id,
           categoryName: category.name,
+          iocomeType,
           ...yyyyMMGroupedDetails,
           total,
-        } as {
-          id: string;
-          categoryName: string;
-          total: number;
-        } & Record<string, number>;
+        } as RowAttribute;
       })
       .filter((record) => record.total !== 0)
       .sort((a, b) => b.total - a.total);
@@ -87,15 +85,12 @@ export const fetchMonthlySummaryRecords = async (
       ...monthlyTotal,
       id: "total",
       categoryName: "合計",
+      iocomeType: records[0]?.iocomeType ?? IocomeType.Income,
       total: Object.values(monthlyTotal).reduce(
         (acc, amount) => acc + amount,
         0,
       ),
-    } as {
-      id: string;
-      categoryName: string;
-      total: number;
-    } & Record<string, number>;
+    } as RowAttribute;
   };
 
   const incomeRecords = convertToRecords(IocomeType.Income);
@@ -104,7 +99,11 @@ export const fetchMonthlySummaryRecords = async (
   const columns = Object.fromEntries(
     Object.keys(convertToTotalRecord(incomeRecords))
       .filter(
-        (key) => key !== "id" && key !== "categoryName" && key !== "total",
+        (key) =>
+          key !== "id" &&
+          key !== "categoryName" &&
+          key !== "total" &&
+          key !== "iocomeType",
       )
       .sort()
       .map((key) => [key, { title: key }]),
@@ -112,11 +111,10 @@ export const fetchMonthlySummaryRecords = async (
 
   return {
     columns,
-    income: {
-      records: [...incomeRecords, convertToTotalRecord(incomeRecords)],
-    },
-    outcome: {
-      records: [...outcomeRecords, convertToTotalRecord(outcomeRecords)],
-    },
+    details: [...incomeRecords, ...outcomeRecords],
+    total: [
+      convertToTotalRecord(incomeRecords),
+      convertToTotalRecord(outcomeRecords),
+    ],
   };
 };
