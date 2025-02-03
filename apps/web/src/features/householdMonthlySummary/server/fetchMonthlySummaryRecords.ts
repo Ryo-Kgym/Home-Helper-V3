@@ -9,6 +9,7 @@ export const fetchMonthlySummaryRecords = async (
   fromDate: YYYYmmDD,
   toDate: YYYYmmDD,
   categoryIds: string[],
+  accountIds: string[],
 ) => {
   const { group } = await findUser();
 
@@ -17,6 +18,7 @@ export const fetchMonthlySummaryRecords = async (
     fromDate: fromDate.toString(),
     toDate: toDate.toString(),
     categoryIds,
+    accountIds,
   });
 
   const convertToRecords = (iocomeType: IocomeType) =>

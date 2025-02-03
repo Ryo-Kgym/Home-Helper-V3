@@ -4,9 +4,11 @@ import { FC, useState } from "react";
 import { convertToYmd } from "@/core/function/date/convertToYmd";
 
 import { Button } from "../../../components/ui/button/v5";
+import { AccountMultipleSelect } from "../../../components/ui/select/AccountMultipleSelect";
 import { CategoryMultipleSelect } from "../../../components/ui/select/CategoryMultipleSelect";
 import { Modal } from "../../../components/ui/v4/modal";
 import { RangeMonthPicker } from "../../../components/ui/v5/date/RangeMonthPicker";
+import { saveAccountIds } from "../../../persistence/browser/client/saveAccountIds";
 import { saveCategoryIds } from "../../../persistence/browser/client/saveCategoryIds";
 import { useNavigation } from "../../../routing/client/useNavigation";
 
@@ -14,19 +16,21 @@ type Props = {
   fromDate: Date;
   toDate: Date;
   categoryIds: string[];
+  accountIds: string[];
 };
 
 export const MonthlySummaryForm: FC<Props> = ({
   fromDate,
   toDate,
   categoryIds,
+  accountIds,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState<Form>({
     fromDate,
     toDate,
     categoryIds,
-    accountIds: [],
+    accountIds,
   });
   const { prependParamAndPush } = useNavigation();
 
@@ -55,6 +59,15 @@ export const MonthlySummaryForm: FC<Props> = ({
               }))
             }
           />
+          <AccountMultipleSelect
+            accountIds={form.accountIds}
+            onChange={(v) =>
+              setForm((prev) => ({
+                ...prev,
+                accountIds: v,
+              }))
+            }
+          />
 
           <Button
             label={"検索"}
@@ -64,6 +77,7 @@ export const MonthlySummaryForm: FC<Props> = ({
                 to: convertToYmd(form.toDate),
               });
               void saveCategoryIds(form.categoryIds);
+              void saveAccountIds(form.accountIds);
             }}
             type={"save"}
           />

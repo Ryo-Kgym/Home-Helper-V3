@@ -3,6 +3,7 @@ query getCategorizedDetails(
   $fromDate: date!
   $toDate: date!
   $categoryIds: [String!] = []
+  $accountIds: [String!] = []
 ) {
   categories: householdCategory(
     where: { groupId: { _eq: $groupId }, _and: { id: { _in: $categoryIds } } }
@@ -16,8 +17,8 @@ query getCategorizedDetails(
     }
     details(
       where: {
-        settlementDate: { _gte: $fromDate }
-        _and: { settlementDate: { _lte: $toDate } }
+        settlementDate: { _gte: $fromDate, _lte: $toDate }
+        _and: { accountId: { _in: $accountIds } }
       }
       orderBy: { settlementDate: DESC, withdrawalDate: DESC }
     ) {

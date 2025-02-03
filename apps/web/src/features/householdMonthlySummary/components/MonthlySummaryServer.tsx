@@ -3,6 +3,7 @@ import { YYYYmmDD } from "@/type/date/date";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { getPast12MonthYyyyMMdd } from "../../../function/date/getPast12MonthYyyyMMdd";
+import { findAccountIds } from "../../../persistence/browser/server/findAccountIds";
 import { findCategoryIds } from "../../../persistence/browser/server/findCategoryIds";
 import { fetchMonthlySummaryRecords } from "../server/fetchMonthlySummaryRecords";
 import { MonthlySummaryForm } from "./MonthlySummaryForm";
@@ -16,11 +17,13 @@ export const MonthlySummaryServer = async ({
   toDate: YYYYmmDD | undefined;
 }) => {
   const categoryIds = await findCategoryIds();
+  const accountIds = await findAccountIds();
 
   const { columns, income, outcome } = await fetchMonthlySummaryRecords(
     fromDate,
     toDate,
     categoryIds,
+    accountIds,
   );
 
   return (
@@ -29,6 +32,7 @@ export const MonthlySummaryServer = async ({
         fromDate={fromDate?.parseDate()}
         toDate={toDate?.parseDate()}
         categoryIds={categoryIds}
+        accountIds={accountIds}
       />
       <MonthlySummaryTable
         iocomeType={IocomeType.Income}

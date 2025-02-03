@@ -3937,6 +3937,9 @@ export type GetCategorizedDetailsQueryVariables = Types.Exact<{
   categoryIds?: Types.InputMaybe<
     Array<Types.Scalars["String"]> | Types.Scalars["String"]
   >;
+  accountIds?: Types.InputMaybe<
+    Array<Types.Scalars["String"]> | Types.Scalars["String"]
+  >;
 }>;
 
 export type GetCategorizedDetailsQuery = {
@@ -4039,6 +4042,24 @@ export const GetCategorizedDetailsDocument = {
           variable: {
             kind: "Variable",
             name: { kind: "Name", value: "categoryIds" },
+          },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NonNullType",
+              type: {
+                kind: "NamedType",
+                name: { kind: "Name", value: "String" },
+              },
+            },
+          },
+          defaultValue: { kind: "ListValue", values: [] },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "accountIds" },
           },
           type: {
             kind: "ListType",
@@ -4174,6 +4195,14 @@ export const GetCategorizedDetailsDocument = {
                                     name: { kind: "Name", value: "fromDate" },
                                   },
                                 },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_lte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "toDate" },
+                                  },
+                                },
                               ],
                             },
                           },
@@ -4185,21 +4214,18 @@ export const GetCategorizedDetailsDocument = {
                               fields: [
                                 {
                                   kind: "ObjectField",
-                                  name: {
-                                    kind: "Name",
-                                    value: "settlementDate",
-                                  },
+                                  name: { kind: "Name", value: "accountId" },
                                   value: {
                                     kind: "ObjectValue",
                                     fields: [
                                       {
                                         kind: "ObjectField",
-                                        name: { kind: "Name", value: "_lte" },
+                                        name: { kind: "Name", value: "_in" },
                                         value: {
                                           kind: "Variable",
                                           name: {
                                             kind: "Name",
-                                            value: "toDate",
+                                            value: "accountIds",
                                           },
                                         },
                                       },
