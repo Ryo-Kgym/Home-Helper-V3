@@ -3930,32 +3930,76 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type UpdateDashboardSettingOrderMutationVariables = Types.Exact<{
-  settingId: Types.Scalars["String"];
-  order: Types.Scalars["Int"];
+export type GetCategorizedDetailsQueryVariables = Types.Exact<{
+  groupId: Types.Scalars["String"];
+  fromDate: Types.Scalars["date"];
+  toDate: Types.Scalars["date"];
 }>;
 
-export type UpdateDashboardSettingOrderMutation = {
-  __typename?: "mutation_root";
-  updateHouseholdDashboardSettingByPk: {
-    __typename: "HouseholdDashboardSetting";
+export type GetCategorizedDetailsQuery = {
+  __typename?: "query_root";
+  categories: Array<{
+    __typename?: "HouseholdCategory";
     id: string;
-  } | null;
+    name: string;
+    genre: { __typename?: "HouseholdGenre"; id: string; iocomeType: string };
+    details: Array<{
+      __typename: "HouseholdAllDetailView";
+      id: string | null;
+      type: string | null;
+      settlementDate: YYYY_MM_DD | null;
+      withdrawalDate: YYYY_MM_DD | null;
+      iocomeType: string | null;
+      memo: string | null;
+      amount: number | null;
+      account: {
+        __typename?: "HouseholdAccount";
+        id: string;
+        name: string;
+      } | null;
+      genre: {
+        __typename?: "HouseholdGenre";
+        id: string;
+        name: string;
+        genreType: string;
+      } | null;
+      category: {
+        __typename?: "HouseholdCategory";
+        id: string;
+        name: string;
+        depositCategory: {
+          __typename?: "HouseholdDepositCategory";
+          id: string;
+        } | null;
+      } | null;
+      tags: Array<{
+        __typename: "HouseholdDetailTag";
+        id: string;
+        tag: {
+          __typename: "HouseholdTag";
+          id: string;
+          name: string;
+          colorCode: string;
+          displayOrder: number;
+        };
+      }>;
+    }>;
+  }>;
 };
 
-export const UpdateDashboardSettingOrderDocument = {
+export const GetCategorizedDetailsDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "updateDashboardSettingOrder" },
+      operation: "query",
+      name: { kind: "Name", value: "getCategorizedDetails" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
           variable: {
             kind: "Variable",
-            name: { kind: "Name", value: "settingId" },
+            name: { kind: "Name", value: "groupId" },
           },
           type: {
             kind: "NonNullType",
@@ -3969,11 +4013,22 @@ export const UpdateDashboardSettingOrderDocument = {
           kind: "VariableDefinition",
           variable: {
             kind: "Variable",
-            name: { kind: "Name", value: "order" },
+            name: { kind: "Name", value: "fromDate" },
           },
           type: {
             kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "toDate" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
           },
         },
       ],
@@ -3982,23 +4037,30 @@ export const UpdateDashboardSettingOrderDocument = {
         selections: [
           {
             kind: "Field",
-            name: {
-              kind: "Name",
-              value: "updateHouseholdDashboardSettingByPk",
-            },
+            alias: { kind: "Name", value: "categories" },
+            name: { kind: "Name", value: "householdCategory" },
             arguments: [
               {
                 kind: "Argument",
-                name: { kind: "Name", value: "pkColumns" },
+                name: { kind: "Name", value: "where" },
                 value: {
                   kind: "ObjectValue",
                   fields: [
                     {
                       kind: "ObjectField",
-                      name: { kind: "Name", value: "id" },
+                      name: { kind: "Name", value: "groupId" },
                       value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "settingId" },
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "groupId" },
+                            },
+                          },
+                        ],
                       },
                     },
                   ],
@@ -4006,17 +4068,14 @@ export const UpdateDashboardSettingOrderDocument = {
               },
               {
                 kind: "Argument",
-                name: { kind: "Name", value: "_set" },
+                name: { kind: "Name", value: "orderBy" },
                 value: {
                   kind: "ObjectValue",
                   fields: [
                     {
                       kind: "ObjectField",
-                      name: { kind: "Name", value: "order" },
-                      value: {
-                        kind: "Variable",
-                        name: { kind: "Name", value: "order" },
-                      },
+                      name: { kind: "Name", value: "displayOrder" },
+                      value: { kind: "EnumValue", value: "ASC" },
                     },
                   ],
                 },
@@ -4026,7 +4085,254 @@ export const UpdateDashboardSettingOrderDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "genre" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "iocomeType" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "details" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "where" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "settlementDate" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_gte" },
+                                  value: {
+                                    kind: "Variable",
+                                    name: { kind: "Name", value: "fromDate" },
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_and" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: {
+                                    kind: "Name",
+                                    value: "settlementDate",
+                                  },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_lte" },
+                                        value: {
+                                          kind: "Variable",
+                                          name: {
+                                            kind: "Name",
+                                            value: "toDate",
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "orderBy" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "settlementDate" },
+                            value: { kind: "EnumValue", value: "DESC" },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "withdrawalDate" },
+                            value: { kind: "EnumValue", value: "DESC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragAllDetailView" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdTag" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "colorCode" } },
+          { kind: "Field", name: { kind: "Name", value: "displayOrder" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "fragAllDetailView" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HouseholdAllDetailView" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "settlementDate" } },
+          { kind: "Field", name: { kind: "Name", value: "withdrawalDate" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "amount" },
+            name: { kind: "Name", value: "originalAmount" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "iocomeType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "account" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "genre" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "genreType" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "category" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "depositCategory" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        alias: { kind: "Name", value: "id" },
+                        name: { kind: "Name", value: "categoryId" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "memo" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "tags" },
+            name: { kind: "Name", value: "detailTags" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "orderBy" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "tag" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "displayOrder" },
+                            value: { kind: "EnumValue", value: "ASC" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tag" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "fragTag" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -4035,6 +4341,6 @@ export const UpdateDashboardSettingOrderDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  UpdateDashboardSettingOrderMutation,
-  UpdateDashboardSettingOrderMutationVariables
+  GetCategorizedDetailsQuery,
+  GetCategorizedDetailsQueryVariables
 >;

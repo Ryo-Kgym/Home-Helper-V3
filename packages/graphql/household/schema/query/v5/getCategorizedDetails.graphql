@@ -1,0 +1,26 @@
+query getCategorizedDetails(
+  $groupId: String!
+  $fromDate: date!
+  $toDate: date!
+) {
+  categories: householdCategory(
+    where: { groupId: { _eq: $groupId } }
+    orderBy: { displayOrder: ASC }
+  ) {
+    id
+    name
+    genre {
+      id
+      iocomeType
+    }
+    details(
+      where: {
+        settlementDate: { _gte: $fromDate }
+        _and: { settlementDate: { _lte: $toDate } }
+      }
+      orderBy: { settlementDate: DESC, withdrawalDate: DESC }
+    ) {
+      ...fragAllDetailView
+    }
+  }
+}
