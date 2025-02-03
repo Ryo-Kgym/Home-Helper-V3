@@ -46,7 +46,7 @@ export const registerImported = async ({
           async (data) =>
             await registerDailyDetail({
               ...data,
-              date: data.date.toString(),
+              date: data.date,
               accountId,
             }),
         ),

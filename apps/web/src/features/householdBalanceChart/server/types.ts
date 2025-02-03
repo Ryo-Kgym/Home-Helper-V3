@@ -1,6 +1,6 @@
-import { YYYY_MM_DD } from "@/type/date/date";
+import { YYYY_MM } from "@/type/date/date";
 
-export type SumBalance = Record<YYYY_MM_DD, SumBalanceAttributes>;
+export type SumBalance = Record<YYYY_MM, SumBalanceAttributes>;
 
 export type SumBalanceAttributes = {
   income: number;

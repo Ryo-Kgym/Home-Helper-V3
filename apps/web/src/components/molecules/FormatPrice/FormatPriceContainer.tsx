@@ -12,6 +12,8 @@ export const FormatPriceContainer = ({
   iocomeType: IocomeType;
   price: number;
 }) => {
+  if (!Number(price)) return null;
+
   const priceWithComma = Number(price).toLocaleString();
 
   const className =

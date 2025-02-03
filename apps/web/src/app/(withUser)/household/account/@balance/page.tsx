@@ -1,4 +1,4 @@
-import { YYYYmmDD } from "@/type/date/date";
+import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 
 import { BalanceListTableServer } from "../../../../../features/householdAccountList/components/BalanceListTableServer";
 
@@ -6,8 +6,8 @@ const Page = async ({
   searchParams,
 }: {
   searchParams: Promise<{
-    fromDate: string | undefined;
-    toDate: string | undefined;
+    fromDate: YYYY_MM_DD | undefined;
+    toDate: YYYY_MM_DD | undefined;
     accountId: string | undefined;
   }>;
 }) => {
