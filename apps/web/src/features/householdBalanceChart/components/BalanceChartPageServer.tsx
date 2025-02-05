@@ -1,18 +1,13 @@
 import { convertToYmd } from "@/core/function/date/convertToYmd";
 import { YYYYmmDD } from "@/type/date/date";
 
+import { getPast12MonthYyyyMMdd } from "../../../function/date/getPast12MonthYyyyMMdd";
 import { colors } from "../../../styles/colors";
 import { fetchBalanceChartData } from "../server/fetchBalanceChartData";
 import { BalanceChartClient } from "./BalanceChartClient";
 
-const getPast12MonthDate = () => {
-  const date = new Date();
-  date.setMonth(date.getMonth() - 12);
-  return new YYYYmmDD(convertToYmd(date));
-};
-
 export const BalanceChartPageServer = async ({
-  fromDate = getPast12MonthDate(),
+  fromDate = getPast12MonthYyyyMMdd(),
   toDate = new YYYYmmDD(convertToYmd(new Date())),
 }: {
   fromDate: YYYYmmDD | undefined;

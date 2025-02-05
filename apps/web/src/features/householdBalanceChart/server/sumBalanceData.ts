@@ -1,3 +1,4 @@
+import { YYYY_MM } from "@/type/date/date";
 import { ChartDataQuery } from "@v3/graphql/household/schema/query/v5/chartData.generated";
 
 import { SumBalance } from "./types";
@@ -7,7 +8,7 @@ export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
   const transferOutcomeCategoryId = data.transferCategory?.outcomeCategoryId;
 
   return data.detailView?.reduce<SumBalance>((sum, cur) => {
-    const yearMonth = cur.withdrawalDate?.slice(0, 7); // yyyy-mm
+    const yearMonth = cur.withdrawalDate?.slice(0, 7) as YYYY_MM; // yyyy-mm
     const amount = cur.amount ?? 0;
 
     if (!yearMonth) {

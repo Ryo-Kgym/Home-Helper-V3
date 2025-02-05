@@ -9,7 +9,7 @@ import { execMutation } from "../../../persistence/database/server/execMutation"
 export const modifyDailyDetail = async (params: DailyDetail) => {
   const { data } = await execMutation(UpdateDailyDetailByIdDocument, {
     ...params,
-    date: params.date.toString(),
+    date: params.date,
     tagDetails: params.tags.map((tag) => ({
       id: generateId(),
       tagId: tag,

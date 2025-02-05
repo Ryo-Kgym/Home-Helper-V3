@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-rm -rf ./apps/web/.next
-
 pnpm typecheck
 pnpm lint
 pushd apps/web && pnpm test

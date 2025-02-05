@@ -28,6 +28,9 @@ export const paths = {
       add: ({ creditCardSummaryId }: { creditCardSummaryId: string }) =>
         `/household/creditCard/${creditCardSummaryId}/add`,
     },
+    monthlySummary: {
+      root: () => `/household/monthly-summary`,
+    },
   },
   business: {
     timecard: () => `/business/timecard`,

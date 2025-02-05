@@ -664,8 +664,6 @@ export type GroupBoolExp = {
   importFileHistoriesAggregate: InputMaybe<HouseholdImportFileHistoryAggregateBoolExp>;
   name: InputMaybe<StringComparisonExp>;
   tags: InputMaybe<HouseholdTagBoolExp>;
-  totalByCategoryView: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
-  totalByCategoryViewAggregate: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExp>;
   transferCategory: InputMaybe<HouseholdTransferCategoryBoolExp>;
 };
 
@@ -688,7 +686,6 @@ export type GroupOrderBy = {
   importFileHistoriesAggregate: InputMaybe<HouseholdImportFileHistoryAggregateOrderBy>;
   name: InputMaybe<OrderBy>;
   tagsAggregate: InputMaybe<HouseholdTagAggregateOrderBy>;
-  totalByCategoryViewAggregate: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategory: InputMaybe<HouseholdTransferCategoryOrderBy>;
 };
 
@@ -1132,6 +1129,8 @@ export type HouseholdCategoryBoolExp = {
   creditCardDetails: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   dailyDetails: InputMaybe<HouseholdDailyDetailBoolExp>;
   depositCategory: InputMaybe<HouseholdDepositCategoryBoolExp>;
+  details: InputMaybe<HouseholdAllDetailViewBoolExp>;
+  detailsAggregate: InputMaybe<HouseholdAllDetailViewAggregateBoolExp>;
   displayOrder: InputMaybe<IntComparisonExp>;
   genre: InputMaybe<HouseholdGenreBoolExp>;
   genreId: InputMaybe<StringComparisonExp>;
@@ -1139,6 +1138,7 @@ export type HouseholdCategoryBoolExp = {
   groupId: InputMaybe<StringComparisonExp>;
   id: InputMaybe<StringComparisonExp>;
   name: InputMaybe<StringComparisonExp>;
+  totalByCategoryViews: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   transferCategories: InputMaybe<HouseholdTransferCategoryBoolExp>;
   transferCategoriesAggregate: InputMaybe<HouseholdTransferCategoryAggregateBoolExp>;
   validFlag: InputMaybe<BooleanComparisonExp>;
@@ -1204,6 +1204,7 @@ export type HouseholdCategoryOrderBy = {
   creditCardDetailsAggregate: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   dailyDetailsAggregate: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   depositCategory: InputMaybe<HouseholdDepositCategoryOrderBy>;
+  detailsAggregate: InputMaybe<HouseholdAllDetailViewAggregateOrderBy>;
   displayOrder: InputMaybe<OrderBy>;
   genre: InputMaybe<HouseholdGenreOrderBy>;
   genreId: InputMaybe<OrderBy>;
@@ -1211,6 +1212,7 @@ export type HouseholdCategoryOrderBy = {
   groupId: InputMaybe<OrderBy>;
   id: InputMaybe<OrderBy>;
   name: InputMaybe<OrderBy>;
+  totalByCategoryViewsAggregate: InputMaybe<HouseholdTotalByCategoryViewAggregateOrderBy>;
   transferCategoriesAggregate: InputMaybe<HouseholdTransferCategoryAggregateOrderBy>;
   validFlag: InputMaybe<OrderBy>;
 };
@@ -3427,10 +3429,6 @@ export type HouseholdTagVarianceOrderBy = {
   displayOrder: InputMaybe<OrderBy>;
 };
 
-export type HouseholdTotalByCategoryViewAggregateBoolExp = {
-  count: InputMaybe<HouseholdTotalByCategoryViewAggregateBoolExpCount>;
-};
-
 /** order by aggregate values of table "household.total_by_category_view" */
 export type HouseholdTotalByCategoryViewAggregateOrderBy = {
   avg: InputMaybe<HouseholdTotalByCategoryViewAvgOrderBy>;
@@ -3456,52 +3454,38 @@ export type HouseholdTotalByCategoryViewBoolExp = {
   _and: InputMaybe<Array<HouseholdTotalByCategoryViewBoolExp>>;
   _not: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   _or: InputMaybe<Array<HouseholdTotalByCategoryViewBoolExp>>;
+  category: InputMaybe<HouseholdCategoryBoolExp>;
   categoryId: InputMaybe<StringComparisonExp>;
-  categoryName: InputMaybe<StringComparisonExp>;
-  date: InputMaybe<DateComparisonExp>;
-  genreId: InputMaybe<StringComparisonExp>;
-  genreName: InputMaybe<StringComparisonExp>;
   group: InputMaybe<GroupBoolExp>;
   groupId: InputMaybe<StringComparisonExp>;
-  iocomeType: InputMaybe<StringComparisonExp>;
   total: InputMaybe<NumericComparisonExp>;
+  yyyyMm: InputMaybe<StringComparisonExp>;
 };
 
 /** order by max() on columns of table "household.total_by_category_view" */
 export type HouseholdTotalByCategoryViewMaxOrderBy = {
   categoryId: InputMaybe<OrderBy>;
-  categoryName: InputMaybe<OrderBy>;
-  date: InputMaybe<OrderBy>;
-  genreId: InputMaybe<OrderBy>;
-  genreName: InputMaybe<OrderBy>;
   groupId: InputMaybe<OrderBy>;
-  iocomeType: InputMaybe<OrderBy>;
   total: InputMaybe<OrderBy>;
+  yyyyMm: InputMaybe<OrderBy>;
 };
 
 /** order by min() on columns of table "household.total_by_category_view" */
 export type HouseholdTotalByCategoryViewMinOrderBy = {
   categoryId: InputMaybe<OrderBy>;
-  categoryName: InputMaybe<OrderBy>;
-  date: InputMaybe<OrderBy>;
-  genreId: InputMaybe<OrderBy>;
-  genreName: InputMaybe<OrderBy>;
   groupId: InputMaybe<OrderBy>;
-  iocomeType: InputMaybe<OrderBy>;
   total: InputMaybe<OrderBy>;
+  yyyyMm: InputMaybe<OrderBy>;
 };
 
 /** Ordering options when selecting data from "household.total_by_category_view". */
 export type HouseholdTotalByCategoryViewOrderBy = {
+  category: InputMaybe<HouseholdCategoryOrderBy>;
   categoryId: InputMaybe<OrderBy>;
-  categoryName: InputMaybe<OrderBy>;
-  date: InputMaybe<OrderBy>;
-  genreId: InputMaybe<OrderBy>;
-  genreName: InputMaybe<OrderBy>;
   group: InputMaybe<GroupOrderBy>;
   groupId: InputMaybe<OrderBy>;
-  iocomeType: InputMaybe<OrderBy>;
   total: InputMaybe<OrderBy>;
+  yyyyMm: InputMaybe<OrderBy>;
 };
 
 /** select columns of table "household.total_by_category_view" */
@@ -3509,19 +3493,11 @@ export type HouseholdTotalByCategoryViewSelectColumn =
   /** column name */
   | "categoryId"
   /** column name */
-  | "categoryName"
-  /** column name */
-  | "date"
-  /** column name */
-  | "genreId"
-  /** column name */
-  | "genreName"
-  /** column name */
   | "groupId"
   /** column name */
-  | "iocomeType"
+  | "total"
   /** column name */
-  | "total";
+  | "yyyyMm";
 
 /** order by stddev() on columns of table "household.total_by_category_view" */
 export type HouseholdTotalByCategoryViewStddevOrderBy = {
@@ -3549,13 +3525,9 @@ export type HouseholdTotalByCategoryViewStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HouseholdTotalByCategoryViewStreamCursorValueInput = {
   categoryId: InputMaybe<Scalars["String"]>;
-  categoryName: InputMaybe<Scalars["String"]>;
-  date: InputMaybe<Scalars["date"]>;
-  genreId: InputMaybe<Scalars["String"]>;
-  genreName: InputMaybe<Scalars["String"]>;
   groupId: InputMaybe<Scalars["String"]>;
-  iocomeType: InputMaybe<Scalars["String"]>;
   total: InputMaybe<Scalars["numeric"]>;
+  yyyyMm: InputMaybe<Scalars["String"]>;
 };
 
 /** order by sum() on columns of table "household.total_by_category_view" */
@@ -3576,62 +3548,6 @@ export type HouseholdTotalByCategoryViewVarSampOrderBy = {
 /** order by variance() on columns of table "household.total_by_category_view" */
 export type HouseholdTotalByCategoryViewVarianceOrderBy = {
   total: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "household.total_by_genre_view". All fields are combined with a logical 'AND'. */
-export type HouseholdTotalByGenreViewBoolExp = {
-  _and: InputMaybe<Array<HouseholdTotalByGenreViewBoolExp>>;
-  _not: InputMaybe<HouseholdTotalByGenreViewBoolExp>;
-  _or: InputMaybe<Array<HouseholdTotalByGenreViewBoolExp>>;
-  date: InputMaybe<DateComparisonExp>;
-  genreId: InputMaybe<StringComparisonExp>;
-  genreName: InputMaybe<StringComparisonExp>;
-  groupId: InputMaybe<StringComparisonExp>;
-  iocomeType: InputMaybe<StringComparisonExp>;
-  total: InputMaybe<NumericComparisonExp>;
-};
-
-/** Ordering options when selecting data from "household.total_by_genre_view". */
-export type HouseholdTotalByGenreViewOrderBy = {
-  date: InputMaybe<OrderBy>;
-  genreId: InputMaybe<OrderBy>;
-  genreName: InputMaybe<OrderBy>;
-  groupId: InputMaybe<OrderBy>;
-  iocomeType: InputMaybe<OrderBy>;
-  total: InputMaybe<OrderBy>;
-};
-
-/** select columns of table "household.total_by_genre_view" */
-export type HouseholdTotalByGenreViewSelectColumn =
-  /** column name */
-  | "date"
-  /** column name */
-  | "genreId"
-  /** column name */
-  | "genreName"
-  /** column name */
-  | "groupId"
-  /** column name */
-  | "iocomeType"
-  /** column name */
-  | "total";
-
-/** Streaming cursor of the table "household_total_by_genre_view" */
-export type HouseholdTotalByGenreViewStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: HouseholdTotalByGenreViewStreamCursorValueInput;
-  /** cursor ordering */
-  ordering: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type HouseholdTotalByGenreViewStreamCursorValueInput = {
-  date: InputMaybe<Scalars["date"]>;
-  genreId: InputMaybe<Scalars["String"]>;
-  genreName: InputMaybe<Scalars["String"]>;
-  groupId: InputMaybe<Scalars["String"]>;
-  iocomeType: InputMaybe<Scalars["String"]>;
-  total: InputMaybe<Scalars["numeric"]>;
 };
 
 export type HouseholdTransferCategoryAggregateBoolExp = {
@@ -3903,19 +3819,7 @@ export type AffiliationAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type CategoryTotalByMonthArgs = {
-  from_date: InputMaybe<Scalars["date"]>;
-  group_id: InputMaybe<Scalars["String"]>;
-  to_date: InputMaybe<Scalars["date"]>;
-};
-
 export type DailyDetailByDateArgs = {
-  from_date: InputMaybe<Scalars["date"]>;
-  group_id: InputMaybe<Scalars["String"]>;
-  to_date: InputMaybe<Scalars["date"]>;
-};
-
-export type GenreTotalByMonthArgs = {
   from_date: InputMaybe<Scalars["date"]>;
   group_id: InputMaybe<Scalars["String"]>;
   to_date: InputMaybe<Scalars["date"]>;
@@ -4016,13 +3920,6 @@ export type HouseholdImportFileHistoryAggregateBoolExpCount = {
   arguments: InputMaybe<Array<HouseholdImportFileHistorySelectColumn>>;
   distinct: InputMaybe<Scalars["Boolean"]>;
   filter: InputMaybe<HouseholdImportFileHistoryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type HouseholdTotalByCategoryViewAggregateBoolExpCount = {
-  arguments: InputMaybe<Array<HouseholdTotalByCategoryViewSelectColumn>>;
-  distinct: InputMaybe<Scalars["Boolean"]>;
-  filter: InputMaybe<HouseholdTotalByCategoryViewBoolExp>;
   predicate: IntComparisonExp;
 };
 

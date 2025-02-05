@@ -12,6 +12,7 @@ type ColumnProps<R extends object> = {
   textAlign?: "left" | "center" | "right";
   render?: (record: R) => ReactNode;
   hidden?: boolean;
+  footer?: ReactNode;
 };
 
 type DataTableProps<R extends object> = {
