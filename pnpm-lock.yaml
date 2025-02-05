@@ -560,8 +560,8 @@ importers:
         specifier: ^9.1.0
         version: 9.1.0(eslint@9.19.0)
       eslint-config-turbo:
-        specifier: ^1.11.3
-        version: 1.13.4(eslint@9.19.0)
+        specifier: ^2.4.0
+        version: 2.4.0(eslint@9.19.0)(turbo@2.4.0)
       eslint-plugin-import:
         specifier: ^2.29.1
         version: 2.31.0(@typescript-eslint/parser@6.21.0)(eslint-import-resolver-typescript@3.7.0)(eslint@9.19.0)
@@ -2695,7 +2695,7 @@ packages:
 
   /@expo/bunyan@4.0.1:
     resolution: {integrity: sha512-+Lla7nYSiHZirgK+U/uYzsLv/X+HaJienbD5AKX1UQZHYfWaP+9uuQluRB4GrEVWF0GZ7vEVp/jzaOT9k/SQlg==}
-    engines: {node: '>=0.10.0'}
+    engines: {'0': node >=0.10.0}
     dependencies:
       uuid: 8.3.2
     dev: false
@@ -8938,13 +8938,15 @@ packages:
       eslint: 9.19.0
     dev: false
 
-  /eslint-config-turbo@1.13.4(eslint@9.19.0):
-    resolution: {integrity: sha512-+we4eWdZlmlEn7LnhXHCIPX/wtujbHCS7XjQM/TN09BHNEl2fZ8id4rHfdfUKIYTSKyy8U/nNyJ0DNoZj5Q8bw==}
+  /eslint-config-turbo@2.4.0(eslint@9.19.0)(turbo@2.4.0):
+    resolution: {integrity: sha512-AiRdy83iwyG4+iMSxXQGUbEClxkGxSlXYH8E2a+0972ao75OWnlDBiiuLMOzDpJubR+QVGC4zonn29AIFCSbFw==}
     peerDependencies:
       eslint: '>6.6.0'
+      turbo: '>2.0.0'
     dependencies:
       eslint: 9.19.0
-      eslint-plugin-turbo: 1.13.4(eslint@9.19.0)
+      eslint-plugin-turbo: 2.4.0(eslint@9.19.0)(turbo@2.4.0)
+      turbo: 2.4.0
     dev: false
 
   /eslint-import-resolver-node@0.3.9:
@@ -9140,13 +9142,15 @@ packages:
       require-strip-json-comments: 2.0.0
     dev: true
 
-  /eslint-plugin-turbo@1.13.4(eslint@9.19.0):
-    resolution: {integrity: sha512-82GfMzrewI/DJB92Bbch239GWbGx4j1zvjk1lqb06lxIlMPnVwUHVwPbAnLfyLG3JuhLv9whxGkO/q1CL18JTg==}
+  /eslint-plugin-turbo@2.4.0(eslint@9.19.0)(turbo@2.4.0):
+    resolution: {integrity: sha512-qCgoRi/OTc1VMxab7+sdKiV1xlkY4qjK9sM+kS7+WogrB1DxLguJSQXvk4HA13SD5VmJsq+8FYOw5q4EUk6Ixg==}
     peerDependencies:
       eslint: '>6.6.0'
+      turbo: '>2.0.0'
     dependencies:
       dotenv: 16.0.3
       eslint: 9.19.0
+      turbo: 2.4.0
     dev: false
 
   /eslint-scope@8.2.0:
@@ -15851,7 +15855,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-darwin-arm64@2.4.0:
@@ -15859,7 +15862,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-linux-64@2.4.0:
@@ -15867,7 +15869,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-linux-arm64@2.4.0:
@@ -15875,7 +15876,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-stream@2.4.0:
@@ -15887,7 +15887,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-windows-arm64@2.4.0:
@@ -15895,7 +15894,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo@2.4.0:
@@ -15908,7 +15906,6 @@ packages:
       turbo-linux-arm64: 2.4.0
       turbo-windows-64: 2.4.0
       turbo-windows-arm64: 2.4.0
-    dev: true
 
   /type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
