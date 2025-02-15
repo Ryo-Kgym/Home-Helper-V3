@@ -33,10 +33,13 @@ jobs:
       - name: Web-Test
         run: cd apps/web && pnpm vitest --run && cd ../../
 
+      - name: Core-Test
+        run: cd packages/core && pnpm vitest --run && cd ../../
+
       - name: Expo-Test
         run: cd apps/expo && pnpm jest && cd ../../
 
-  format:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,7 +48,7 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Format
-        run: pnpm format
+        run: pnpm biome:check
 
   typecheck:
     runs-on: ubuntu-latest
