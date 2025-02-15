@@ -1,4 +1,4 @@
-import { YYYYmmDD } from "@/type/date/date";
+import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 import { FragAllDetailViewFragment } from "@v3/graphql/household/schema/query/v5/fragChartDetailTable.generated";
 import { GetAllDetailViewDocument } from "@v3/graphql/household/schema/query/v5/getAllDetailView.generated";
 
@@ -37,7 +37,8 @@ export const fetchDetails = async (params: Params) => {
 
     return {
       records: uniqueIds
-        .map((id) => duplicatedRecords.find((r) => r.id === id)!)
+        .map((id) => duplicatedRecords.find((r) => r.id === id))
+        .filter((r): r is SearchRow => !!r)
         .sort((a, b) => b.settlementDate.localeCompare(a.settlementDate)),
     };
   }
@@ -50,8 +51,8 @@ export const fetchDetails = async (params: Params) => {
 const converter = (detail: FragAllDetailViewFragment): SearchRow => {
   return {
     id: detail.id ?? "",
-    settlementDate: detail.settlementDate!,
-    withdrawalDate: detail.withdrawalDate!,
+    settlementDate: detail.settlementDate as YYYY_MM_DD,
+    withdrawalDate: detail.withdrawalDate as YYYY_MM_DD,
     type: detail.type ?? "",
     amount: detail.amount ?? 0,
     account: {

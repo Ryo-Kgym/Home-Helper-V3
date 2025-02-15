@@ -1,5 +1,5 @@
-import { FC } from "react";
 import { YYYYmmDD } from "@/type/date/date";
+import { FC } from "react";
 
 import { IocomeTotal } from "../../../components/molecules/Total";
 import { IocomeType } from "../../../domain/model/household/IocomeType";

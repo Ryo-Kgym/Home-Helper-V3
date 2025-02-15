@@ -58,8 +58,8 @@ export const MonthlySummaryTable: FC<Props> = ({
             <FormatPrice price={amount} iocomeType={iocomeType} />
           ),
           footer: (() => {
-            const income = incomeTotal ? incomeTotal[yyyyMM] ?? 0 : 0;
-            const outcome = outcomeTotal ? outcomeTotal[yyyyMM] ?? 0 : 0;
+            const income = incomeTotal ? (incomeTotal[yyyyMM] ?? 0) : 0;
+            const outcome = outcomeTotal ? (outcomeTotal[yyyyMM] ?? 0) : 0;
 
             return (
               <div>

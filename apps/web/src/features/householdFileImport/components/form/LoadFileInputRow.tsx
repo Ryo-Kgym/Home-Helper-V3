@@ -27,10 +27,12 @@ export const LoadFileInputRow: FC<Props> = ({
   const { mapping } = useFileImportColumnMapping();
   const { setImportFileRowAware } = useImportFileRowAware();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setCategoryId(null);
   }, [genreId]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(
     () => {
       // FIXME それぞれの責務で分割すること
@@ -94,6 +96,7 @@ export const LoadFileInputRow: FC<Props> = ({
     }
   }, [item, mapping]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(
     () => {
       if (!mapping.memo) return;
@@ -109,6 +112,7 @@ export const LoadFileInputRow: FC<Props> = ({
   return (
     <>
       {item
+        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         .map((c, i) => <Table.BodyTd key={i}>{c}</Table.BodyTd>)
         .concat(
           <Table.BodyTd key={`genre-${rowNumber}`}>

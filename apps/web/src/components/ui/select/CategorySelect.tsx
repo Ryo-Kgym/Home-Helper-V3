@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import type { SelectData } from "./v5";
 import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
+import type { SelectData } from "./v5";
 import { Select } from "./v5";
 
 export const CategorySelect = ({
@@ -22,15 +22,12 @@ export const CategorySelect = ({
   const [options, setOptions] = useState<SelectData[]>([]);
   const { getCategories } = useGetDetailMaster();
 
-  useEffect(
-    () => {
-      if (!genreId) return;
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    if (!genreId) return;
 
-      setOptions(getCategories(genreId));
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [genreId],
-  );
+    setOptions(getCategories(genreId));
+  }, [genreId]);
 
   return (
     <Select

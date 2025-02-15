@@ -1,6 +1,5 @@
+import { ScrollArea, Table } from "@mantine/core";
 import type { RefObject } from "react";
-import { ActionIcon, ScrollArea, Table } from "@mantine/core";
-import { IconArrowBarToDown } from "@tabler/icons-react";
 
 type TablePresenterProps = {
   headerTr: React.ReactNode;
@@ -24,9 +23,7 @@ export const TablePresenter = ({
   fontSize,
   horizontalSpacing,
   verticalSpacing,
-  scrollToBottom,
   viewport,
-  toButtonOpen,
   onMouseMoveHandler,
   onMouseOutHandler,
 }: TablePresenterProps) => (
@@ -55,28 +52,6 @@ export const TablePresenter = ({
           </Table.Tfoot>
         )}
       </Table>
-      {toButtonOpen && <JumpToBottom scrollToBottom={scrollToBottom} />}
     </ScrollArea>
   </>
 );
-
-const JumpToBottom = ({
-  scrollToBottom,
-}: {
-  scrollToBottom: (() => void) | undefined;
-}) => {
-  return null;
-  // FIXME: 破損しているので、修正が必要
-  return (
-    <button
-      className={
-        "max-sm:button-1 absolute bottom-10 right-10 z-10 border-0 max-sm:right-3"
-      }
-      onClick={scrollToBottom}
-    >
-      <ActionIcon variant="default" size={"3em"}>
-        <IconArrowBarToDown size="3em" className={"text-slate-400"} />
-      </ActionIcon>
-    </button>
-  );
-};

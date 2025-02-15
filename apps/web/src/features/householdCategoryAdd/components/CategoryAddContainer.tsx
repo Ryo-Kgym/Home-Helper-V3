@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { useCreateCategoryMutation } from "@v3/graphql/household";
+import { useState } from "react";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
@@ -27,7 +27,7 @@ export const CategoryAddContainer = () => {
       const { error } = await mutation({
         categoryId: generate(),
         categoryName: inputCategoryName,
-        genreId: inputGenreId!,
+        genreId: inputGenreId as string,
         validFlag: inputIsValid,
         displayOrder: Number(inputDisplayOrder),
         groupId,

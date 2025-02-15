@@ -23,6 +23,6 @@ export class DayOfWeekFactory {
   }
 
   private convert(): DayOfWeek {
-    return this.map[this.date.getDay() & 7]!;
+    return this.map[this.date.getDay() & 7] as DayOfWeek;
   }
 }

@@ -29,10 +29,10 @@ export const paths = {
         `/household/creditCard/${creditCardSummaryId}/add`,
     },
     monthlySummary: {
-      root: () => `/household/monthly-summary`,
+      root: () => "/household/monthly-summary",
     },
   },
   business: {
-    timecard: () => `/business/timecard`,
+    timecard: () => "/business/timecard",
   },
 };

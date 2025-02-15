@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Group, Button } from "@mantine/core";
+import { Button, Group } from "@mantine/core";
 import { showNotification, updateNotification } from "@mantine/notifications";
 import { IconCheck } from "@tabler/icons";
 

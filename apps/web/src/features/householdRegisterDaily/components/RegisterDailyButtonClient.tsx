@@ -1,7 +1,7 @@
 "use client";
 
-import { ComponentProps, FC, useEffect } from "react";
 import { IocomeType } from "domain/model/household/IocomeType";
+import { ComponentProps, FC, useEffect } from "react";
 
 import { SelectProps } from "../../../components/ui/select/v4";
 import { TagInput } from "../../../components/ui/tag/TagInput";
@@ -23,16 +23,13 @@ export const RegisterDailyButtonClient: FC<Props> = ({
 }) => {
   const set = useSetDetailMaster();
 
-  useEffect(
-    () => {
-      set.setAccountData(accountData);
-      set.setGenreData(genreData);
-      set.setCategoryData(categoryData);
-      set.setTagData(tagData);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    set.setAccountData(accountData);
+    set.setGenreData(genreData);
+    set.setCategoryData(categoryData);
+    set.setTagData(tagData);
+  }, []);
 
   return <RegisterDailyButton />;
 };

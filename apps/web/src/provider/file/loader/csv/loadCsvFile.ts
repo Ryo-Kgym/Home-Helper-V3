@@ -13,6 +13,7 @@ export const decodeCsv = (
   from: Encoding.Encoding,
   type: "array",
 ) => {
+  // biome-ignore lint/style/noNonNullAssertion: <explanation>
   const decoded = Encoding.convert(new Uint8Array(readFile.value!), {
     to: to,
     from: from,

@@ -2,8 +2,8 @@ import { YYYY_MM_DD } from "@/type/date/date";
 
 import { Tabs } from "../../../components/ui/v4/tab";
 import { fetchDailyAttendance } from "../server/fetchDailyAttendance";
-import { AttendanceLogTable } from "./AttendanceLogTable";
 import { AttendOrLeaveButton } from "./AttendOrLeaveButton";
+import { AttendanceLogTable } from "./AttendanceLogTable";
 import { DailyAttendanceTable } from "./DailyAttendanceTable";
 import { DateNavigator } from "./DateNavigator";
 import { MonthlySummary } from "./MonthlySummary";

@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
+import { useState } from "react";
 import { describe, expect, test } from "vitest";
 
 import { TagInput } from "./TagInput";
@@ -27,12 +27,12 @@ describe("TagInput", () => {
 
     const expected1 = ["タグ2", "タグ3"];
     screen.getAllByTestId("tag").forEach((element) => {
-      expect(element).toHaveTextContent(expected1.shift()!);
+      expect(element).toHaveTextContent(expected1.shift() ?? "");
     });
     await userEvent.click(screen.getByLabelText("タグ3"));
     const expected2 = ["タグ2"];
     screen.getAllByTestId("tag").forEach((element) => {
-      expect(element).toHaveTextContent(expected2.shift()!);
+      expect(element).toHaveTextContent(expected2.shift() ?? "");
     });
   });
 });

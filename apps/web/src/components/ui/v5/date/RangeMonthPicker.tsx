@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { MonthPickerInput as MantineMonthPickerInput } from "@mantine/dates";
+import { useEffect, useState } from "react";
 
 type NullableDate = Date | null;
 
@@ -15,23 +15,20 @@ export const RangeMonthPicker = ({
   const [value, setValue] =
     useState<[NullableDate, NullableDate]>(defaultValue);
 
-  useEffect(
-    () => {
-      const [fromFirstDayOfMonth, toFirstDayOfMonth] = value;
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    const [fromFirstDayOfMonth, toFirstDayOfMonth] = value;
 
-      const toLastDayOfMonth = toFirstDayOfMonth
-        ? new Date(
-            toFirstDayOfMonth.getFullYear(),
-            toFirstDayOfMonth.getMonth() + 1,
-            0,
-          )
-        : null;
+    const toLastDayOfMonth = toFirstDayOfMonth
+      ? new Date(
+          toFirstDayOfMonth.getFullYear(),
+          toFirstDayOfMonth.getMonth() + 1,
+          0,
+        )
+      : null;
 
-      void onChange([fromFirstDayOfMonth, toLastDayOfMonth]);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [value],
-  );
+    void onChange([fromFirstDayOfMonth, toLastDayOfMonth]);
+  }, [value]);
 
   return (
     <MantineMonthPickerInput

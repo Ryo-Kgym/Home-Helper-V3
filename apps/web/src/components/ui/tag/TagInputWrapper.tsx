@@ -17,13 +17,10 @@ export const TagInputWrapper: FC<Props> = ({ values, onChange, label }) => {
   const [data, setData] = useState<ComponentProps<typeof TagInput>["data"]>([]);
   const { getTags } = useGetDetailMaster();
 
-  useEffect(
-    () => {
-      setData(getTags());
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    setData(getTags());
+  }, []);
 
   return (
     <TagInput values={values} onChange={onChange} data={data} label={label} />

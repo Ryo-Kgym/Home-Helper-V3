@@ -9,13 +9,10 @@ export const useStateSetTagList = (tagList: TagListRow[]) => {
     setTagList: store.setTagList,
   }));
 
-  useEffect(
-    () => {
-      set.setTagList(tagList);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [tagList],
-  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    set.setTagList(tagList);
+  }, [tagList]);
 };
 
 export const useStateTagList = () => {

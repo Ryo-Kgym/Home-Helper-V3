@@ -11,15 +11,12 @@ export const useDashboardMonthly = (
 ): LoadingData<DataType> => {
   const [data, setData] = useState<DataType>();
 
-  useEffect(
-    () => {
-      void (async () => {
-        setData(await fetchDashboardMonthly(params));
-      })();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    void (async () => {
+      setData(await fetchDashboardMonthly(params));
+    })();
+  }, []);
 
   if (!data) {
     return {

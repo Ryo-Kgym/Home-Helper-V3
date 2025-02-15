@@ -1,11 +1,11 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
 import {
   useGetCategoryByIdQuery,
   useUpdateCategoryByIdMutation,
 } from "@v3/graphql/household";
 import { GenreSelect } from "components/ui/select/GenreSelect";
+import { ReactNode, useEffect, useState } from "react";
 
 import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
 import { Button } from "../../../components/ui/button/v5";
@@ -48,7 +48,7 @@ export const CategoryEdit = ({ categoryId }: { categoryId: string }) => {
       await mutation({
         categoryId,
         categoryName: inputCategoryName,
-        genreId: inputGenreId!,
+        genreId: inputGenreId as string,
         validFlag: inputIsValid,
         displayOrder: Number(inputDisplayOrder),
       });

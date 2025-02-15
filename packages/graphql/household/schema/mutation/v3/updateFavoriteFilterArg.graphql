@@ -1,7 +1,4 @@
-mutation updateFavoriteFilterArg(
-  $argId: String!
-  $value: String!
-) {
+mutation updateFavoriteFilterArg($argId: String!, $value: String!) {
   insertArg: updateHouseholdFavoriteFilterArgsByPk(
     pkColumns: { id: $argId }
     _set: { value: $value }

@@ -1,5 +1,5 @@
 import { convertToYmd } from "@/core/function/date/convertToYmd";
-import { YYYYmmDD } from "@/type/date/date";
+import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 import {
   ChartDetailTableFilterSettlementDateDocument,
   ChartDetailTableFilterWithdrawalDateDocument,
@@ -38,11 +38,11 @@ export const fetchWatchTableData = async ({
   });
 
   const records = data?.detailView.map((rec) => ({
-    id: rec.id!,
-    type: rec.type!,
-    withdrawalDate: rec.withdrawalDate!,
-    settlementDate: rec.settlementDate!,
-    amount: rec.amount!,
+    id: rec.id as string,
+    type: rec.type as string,
+    withdrawalDate: rec.withdrawalDate as YYYY_MM_DD,
+    settlementDate: rec.settlementDate as YYYY_MM_DD,
+    amount: rec.amount as number,
     iocomeType: rec.iocomeType as IocomeType,
     accountId: rec.account?.id ?? "",
     accountName: rec.account?.name ?? "",

@@ -19,7 +19,10 @@ export const LinkList = ({ props }: { props: LinkProps[] }) => (
         label={p.label}
         back={p.back}
         handleClick={p.handleClick}
-        key={"link" + i}
+        key={`link${
+          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+          i
+        }`}
       />
     ))}
   </div>

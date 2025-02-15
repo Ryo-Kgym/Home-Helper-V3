@@ -23,13 +23,10 @@ export const GenreSelect = ({
   const [options, setOptions] = useState<SelectProps<string>["data"]>([]);
   const { getGenres } = useGetDetailMaster();
 
-  useEffect(
-    () => {
-      setOptions(getGenres(iocomeType));
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [iocomeType],
-  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    setOptions(getGenres(iocomeType));
+  }, [iocomeType]);
 
   return (
     <Select

@@ -10,7 +10,6 @@
     "hasura-public-codegen": "graphql-codegen --config public/hasura-codegen.cjs",
     "hasura-household-codegen": "graphql-codegen --config household/hasura-codegen.cjs",
     "hasura-business-codegen": "graphql-codegen --config business/hasura-codegen.cjs"
-
   },
   "dependencies": {
     "@/type": "workspace:^"

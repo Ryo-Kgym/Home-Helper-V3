@@ -19,7 +19,7 @@ export const MantineTabs = ({ defaultSelect, tabPropsList }: TabsProps) => {
           <Tabs.Tab
             value={tab.value}
             leftSection={tab.icon}
-            key={"tab" + i}
+            key={tab.value}
             className={`${normalClassName} ${mobileClassName}`}
           >
             {tab.label}
@@ -28,7 +28,7 @@ export const MantineTabs = ({ defaultSelect, tabPropsList }: TabsProps) => {
       </Tabs.List>
 
       {tabPropsList.map(({ value, contents }, i) => (
-        <Tabs.Panel value={value} pt="lg" pb="lg" key={"panel" + i}>
+        <Tabs.Panel value={value} pt="lg" pb="lg" key={`panel${value}`}>
           {contents}
         </Tabs.Panel>
       ))}

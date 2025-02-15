@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import Link from "next/link";
 
 import { Navi } from "./navi";
 
@@ -38,11 +38,18 @@ export const NavbarSection = ({
           {naviArray
             .filter(({ visible = true }) => visible)
             .map((navi, index) => (
-              <Link key={`menu-${index}`} href={navi.url}>
+              <Link
+                key={`menu-${
+                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                  index
+                }`}
+                href={navi.url}
+              >
                 <button
                   className={
                     "my-1 w-full bg-inherit p-3 text-left font-bold text-white hover:bg-blue-700 hover:font-bold hover:text-white"
                   }
+                  type="button"
                   onClick={() => {
                     // widthがsm以下の場合は、メニューを閉じる
                     if (window.innerWidth < 640) toggle();

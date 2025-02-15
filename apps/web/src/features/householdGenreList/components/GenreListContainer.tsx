@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useGetAllGenreQuery } from "@v3/graphql/household";
+import { useRouter } from "next/navigation";
 
 import { ValidityStatus } from "../../../components/atoms";
 import { TableProps } from "../../../components/atoms/Table";
@@ -10,8 +10,8 @@ import {
   getLabel as getGenreTypeLabel,
 } from "../../../domain/model/household/GenreType";
 import {
-  getLabel as getIocomeTypeLabel,
   IocomeType,
+  getLabel as getIocomeTypeLabel,
 } from "../../../domain/model/household/IocomeType";
 import { useGroup } from "../../../hooks/group/useGroup";
 import { GenreListPresenter } from "./GenreListPresenter";

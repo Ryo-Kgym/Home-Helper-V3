@@ -29,6 +29,7 @@ export const AttendOrLeaveButton: FC<Props> = ({ lastState }) => {
   };
   return (
     <button
+      type="button"
       className={styles.module}
       style={{ backgroundColor: lastState === "attend" ? "red" : "blue" }}
       onClick={onClick}
