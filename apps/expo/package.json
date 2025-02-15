@@ -8,7 +8,6 @@
     "dev:ios": "expo start --ios",
     "ios": "expo run:ios",
     "format": "prettier --check ./src --ignore-path ../../.gitignore",
-    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -48,7 +47,6 @@
     "urql": "^4.0.6"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:^",
     "@acme/prettier-config": "workspace:^",
     "@acme/tailwind-config": "workspace:^",
     "@acme/tsconfig": "workspace:^",
@@ -59,22 +57,11 @@
     "@types/babel__core": "^7.20.5",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.3.12",
-    "eslint": "^9.19.0",
     "jest": "^29.7.0",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@acme/eslint-config/base.cjs",
-      "@acme/eslint-config/react"
-    ],
-    "ignorePatterns": [
-      "expo-plugins/**"
-    ]
   },
   "prettier": "@acme/prettier-config"
 }
