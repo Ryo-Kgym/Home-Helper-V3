@@ -1,9 +1,10 @@
-##!/usr/bin/env sh
-#. "$(dirname -- "$0")/_/husky.sh"
-#
-#pnpm typecheck
-#pnpm lint
-#pushd apps/web && pnpm test
-#popd
-#pushd apps/expo && pnpm test
-#popd
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+exit 0
+pnpm typecheck
+pnpm lint
+pushd apps/web && pnpm test
+popd
+pushd apps/expo && pnpm test
+popd
