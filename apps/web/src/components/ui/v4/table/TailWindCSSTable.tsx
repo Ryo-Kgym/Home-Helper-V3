@@ -9,7 +9,10 @@ const Header = ({ headerItems }: { headerItems: { name: string }[] }) => (
     <tr className={"bg-gray-100"}>
       {headerItems.map(({ name }, index) => (
         <th
-          key={`th-td-${index}}`}
+          key={`th-td-${
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            index
+          }}`}
           className={"border border-gray-300 p-2 font-bold"}
         >
           {name}
@@ -32,6 +35,7 @@ const Body = <T,>({
 }) => (
   <tbody>
     {data.map((item, index) => (
+      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
       <Tr key={index} rowClick={rowClick && (() => rowClick(item))}>
         {renderItem(item, index)}
       </Tr>
@@ -57,6 +61,7 @@ const Tr = ({
   <tr
     className={`border border-gray-300 even:bg-gray-50 hover:bg-gray-100 ${rowClick ? "cursor-pointer" : ""}`}
     onClick={rowClick}
+    onKeyPress={undefined}
   >
     {children}
   </tr>

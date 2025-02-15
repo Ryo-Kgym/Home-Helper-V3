@@ -7,17 +7,14 @@ export const useStateDailyDetail = (params: { id: string }) => {
   const [form, setForm] = useState<DailyDetail>();
   const [initState, setInitSate] = useState<DailyDetail>();
 
-  useEffect(
-    () => {
-      void (async () => {
-        const daily = await getDailyDetail(params);
-        setForm(daily);
-        setInitSate(daily);
-      })();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    void (async () => {
+      const daily = await getDailyDetail(params);
+      setForm(daily);
+      setInitSate(daily);
+    })();
+  }, []);
 
   const resetForm = () => {
     setForm(initState);

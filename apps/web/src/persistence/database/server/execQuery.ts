@@ -1,6 +1,6 @@
 import type { TypedDocumentNode } from "../graphql/document";
-import type { Exact } from "./exact";
 import { registerUrql } from "../graphql/urql";
+import type { Exact } from "./exact";
 import { makeClient } from "./makeClient";
 
 export const execQuery = async <

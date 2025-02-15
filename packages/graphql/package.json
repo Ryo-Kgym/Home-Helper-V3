@@ -5,21 +5,18 @@
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check ./**/typed.ts",
-    "lint": "eslint --fix",
     "test": "exit 0",
     "test-watch": "exit 0",
     "hasura-public-codegen": "graphql-codegen --config public/hasura-codegen.cjs",
     "hasura-household-codegen": "graphql-codegen --config household/hasura-codegen.cjs",
     "hasura-business-codegen": "graphql-codegen --config business/hasura-codegen.cjs"
-
   },
   "dependencies": {
     "@/type": "workspace:^"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:^0.2.0",
-    "@acme/prettier-config": "workspace:^0.1.0",
-    "@acme/tsconfig": "workspace:^0.1.0",
+    "@acme/prettier-config": "workspace:^",
+    "@acme/tsconfig": "workspace:^",
     "@apollo/client": "^3.9.9",
     "@graphql-codegen/cli": "^3.3.1",
     "@graphql-codegen/client-preset": "3.0.0",
@@ -31,18 +28,11 @@
     "@graphql-codegen/typescript-urql": "^3.7.3",
     "@types/node": "^20.12.2",
     "dotenv": "^16.4.5",
-    "eslint": "^9.19.0",
     "graphql": "^16.8.1",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
     "urql": "^4.0.6",
     "uuid": "^9.0.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@acme/eslint-config/base.cjs"
-    ]
   },
   "prettier": "@acme/prettier-config"
 }

@@ -4,11 +4,11 @@
 "use client";
 
 import type { MantineSize } from "@mantine/core";
-import { useEffect, useRef, useState } from "react";
 import { Table } from "@mantine/core";
+import { useEffect, useRef, useState } from "react";
 
-import { ColumnProps, TableProps } from "./index";
 import { TablePresenter } from "./TablePresenter";
+import { ColumnProps, TableProps } from "./index";
 
 type Props = {
   header: string[];
@@ -34,7 +34,16 @@ export const TableContainer = ({
   const thead = (
     <Table.Tr>
       {header.map((title, i) => {
-        return <Table.Th key={"th" + i}>{title}</Table.Th>;
+        return (
+          <Table.Th
+            key={`th${
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              i
+            }`}
+          >
+            {title}
+          </Table.Th>
+        );
       })}
     </Table.Tr>
   );
@@ -54,7 +63,7 @@ export const TableContainer = ({
 
   const generateColumn = (columnProps: ColumnProps, j: number) => (
     <Table.Td
-      key={"td" + j}
+      key={`td${j}`}
       align={columnProps.align ?? "left"}
       hidden={columnProps.hidden ?? false}
     >
@@ -63,10 +72,13 @@ export const TableContainer = ({
   );
 
   const generateFooterRow = (row: ColumnProps[], i: number) => (
-    <Table.Tr key={"tfoot" + i}>
+    <Table.Tr key={`${tfoot}i}`}>
       {row.map((columnProps: ColumnProps, j: number) => (
         <Table.Td
-          key={"td" + j}
+          key={`td${
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            j
+          }`}
           align={columnProps.align ?? "left"}
           hidden={columnProps.hidden ?? false}
           className={"border-2 bg-white p-2 font-bold"}
@@ -99,6 +111,7 @@ export const TableContainer = ({
     }, 2000);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (defaultBottom) {
       scrollToBottomHandler("instant");
@@ -111,9 +124,9 @@ export const TableContainer = ({
       tbody={tbody}
       tfoot={tfoot}
       height={height}
-      fontSize={paddingMap.get(size)!.fontSize}
-      horizontalSpacing={paddingMap.get(size)!.horizontalSpacing}
-      verticalSpacing={paddingMap.get(size)!.verticalSpacing}
+      fontSize={paddingMap[size].fontSize}
+      horizontalSpacing={paddingMap[size].horizontalSpacing}
+      verticalSpacing={paddingMap[size].verticalSpacing}
       viewport={viewport}
       scrollToBottom={scrollToBottom}
       toButtonOpen={toButtonOpen}
@@ -125,13 +138,13 @@ export const TableContainer = ({
   );
 };
 
-const paddingMap = new Map<
+const paddingMap: Record<
   MantineSize,
   { fontSize: number; horizontalSpacing: number; verticalSpacing: number }
->([
-  ["xs", { fontSize: 14, horizontalSpacing: 10, verticalSpacing: 10 }],
-  ["sm", { fontSize: 18, horizontalSpacing: 15, verticalSpacing: 15 }],
-  ["md", { fontSize: 20, horizontalSpacing: 20, verticalSpacing: 20 }],
-  ["lg", { fontSize: 23, horizontalSpacing: 25, verticalSpacing: 25 }],
-  ["xl", { fontSize: 28, horizontalSpacing: 30, verticalSpacing: 30 }],
-]);
+> = {
+  xs: { fontSize: 14, horizontalSpacing: 10, verticalSpacing: 10 },
+  sm: { fontSize: 18, horizontalSpacing: 15, verticalSpacing: 15 },
+  md: { fontSize: 20, horizontalSpacing: 20, verticalSpacing: 20 },
+  lg: { fontSize: 23, horizontalSpacing: 25, verticalSpacing: 25 },
+  xl: { fontSize: 28, horizontalSpacing: 30, verticalSpacing: 30 },
+};

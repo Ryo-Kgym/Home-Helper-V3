@@ -16,6 +16,7 @@ export const TailWindCssTabs = ({ tabs, defaultTab }: TabsProps) => {
         {Object.entries(tabs).map(([id, tab]) => (
           <button
             key={id}
+            type="button"
             className={`w-full border-b-4 border-gray-300 bg-inherit p-2 text-center ${selectedTab === id ? "border-b-blue-500" : ""}`}
             onClick={() => setSelectedTab(id)}
           >

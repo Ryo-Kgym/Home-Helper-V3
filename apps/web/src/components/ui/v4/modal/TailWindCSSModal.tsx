@@ -17,7 +17,7 @@ export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
         onClose();
       }}
       tabIndex={0}
-      role="button"
+      role="tab"
       onKeyDown={(event) => {
         if (event.key === "Escape") {
           event.stopPropagation();
@@ -33,7 +33,7 @@ export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
           event.stopPropagation();
         }}
         tabIndex={0}
-        role="button"
+        role="tab"
         onKeyDown={(event) => {
           if (event.key === "Escape") {
             event.stopPropagation();
@@ -51,7 +51,7 @@ export const TailWindCSSModal = ({ isOpen, onClose, children }: ModalProps) => {
 const Header = ({ onClose }: { onClose: ModalProps["onClose"] }) => {
   return (
     <div className={"flex justify-end"}>
-      <button className={"bg-inherit text-2xl"} onClick={onClose}>
+      <button type="button" className={"bg-inherit text-2xl"} onClick={onClose}>
         ×
       </button>
     </div>

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useRouter } from "../../routing/client/useRouter";
 import { paths } from "../../routing/paths";
 
-export default function Error({
+export default function ErrorPage({
   error,
 }: {
   error: Error & { digest?: string };
@@ -36,6 +36,7 @@ export default function Error({
         {error.message}
       </h2>
       <button
+        type="button"
         onClick={
           // Attempt to recover by trying to re-render the segment
           () => push(paths.group.select)

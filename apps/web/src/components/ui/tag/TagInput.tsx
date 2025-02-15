@@ -46,6 +46,7 @@ export const TagInputCore: FC<Props> = ({
   return (
     <div className={styles.module} onMouseLeave={() => setOpenSelect(false)}>
       <button
+        type="button"
         className={styles.input}
         onMouseOver={() => setOpenSelect(true)}
         onFocus={() => setOpenSelect(true)}

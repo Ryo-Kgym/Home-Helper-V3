@@ -17,6 +17,7 @@ export const TailWindCSSButton = ({
 
   return (
     <button
+      type="button"
       className={`p-2 ${bgColor} ${textColor} rounded-xl shadow-md`}
       onClick={onClick}
       disabled={disabled}

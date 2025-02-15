@@ -13,7 +13,7 @@ export const CategoryChartTooltipContent = ({
     {payload?.map((p) => (
       <span
         key={p.name}
-        className={`flex items-center justify-between space-x-5`}
+        className={"flex items-center justify-between space-x-5"}
       >
         <span>{p.name}</span>
         <span

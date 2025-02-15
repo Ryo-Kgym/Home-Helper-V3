@@ -1,5 +1,5 @@
-import { FC, useMemo } from "react";
 import { Combobox, Pill, PillsInput, useCombobox } from "@mantine/core";
+import { FC, useMemo } from "react";
 
 import { ComboBoxProps } from "./index";
 

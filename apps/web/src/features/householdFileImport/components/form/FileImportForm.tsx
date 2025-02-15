@@ -1,7 +1,7 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
 import { convertToYmd } from "@/core/function/date/convertToYmd";
+import { FC, useEffect, useState } from "react";
 
 import { Button } from "../../../../components/ui/button/v5";
 import { DatePicker } from "../../../../components/ui/date";
@@ -80,13 +80,10 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
     }
   };
 
-  useEffect(
-    () => {
-      clearImportFileRowAware();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [loadFile],
-  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    clearImportFileRowAware();
+  }, [loadFile]);
 
   return (
     <div className={"space-y-5"}>
@@ -108,6 +105,7 @@ export const FileImportForm: FC<Props> = ({ importFileType }) => {
       />
       <div className={"text-red-500"}>
         {message.map((m, i) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
           <div key={i}>{m}</div>
         ))}
       </div>

@@ -27,7 +27,7 @@ export const Select = <T extends string | number>({
         required={required}
         className={requiredBgColor}
         disabled={disabled}
-      ></MantineSelect>
+      />
     </FieldContainer>
   );
 };

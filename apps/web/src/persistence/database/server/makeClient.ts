@@ -2,7 +2,7 @@ import { cacheExchange, createClient, fetchExchange } from "../graphql/urql";
 
 export const makeClient = () => {
   return createClient({
-    url: process.env.ONEFORALL_GRAPHQL_ENDPOINT!,
+    url: process.env.ONEFORALL_GRAPHQL_ENDPOINT as string,
     exchanges: [
       cacheExchange({
         keys: {

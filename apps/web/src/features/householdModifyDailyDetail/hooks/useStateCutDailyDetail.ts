@@ -14,33 +14,27 @@ export const useStateCutDailyDetail = (params: { id: string }) => {
     memo: "",
   });
 
-  useEffect(
-    () => {
-      void (async () => {
-        const daily = await getDailyDetail(params);
-        setBefore(daily);
-        setAfter({
-          ...daily,
-          amount: 0,
-          memo: "",
-        });
-        setCutAfterInit(daily);
-      })();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
-
-  useEffect(
-    () => {
-      setCutAfterInit({
-        ...cutAfterInit,
-        amount: (before?.amount ?? 0) - (after?.amount ?? 0),
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    void (async () => {
+      const daily = await getDailyDetail(params);
+      setBefore(daily);
+      setAfter({
+        ...daily,
+        amount: 0,
+        memo: "",
       });
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [after?.amount],
-  );
+      setCutAfterInit(daily);
+    })();
+  }, []);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    setCutAfterInit({
+      ...cutAfterInit,
+      amount: (before?.amount ?? 0) - (after?.amount ?? 0),
+    });
+  }, [after?.amount]);
 
   const loading = !after || !before;
 

@@ -13,6 +13,7 @@ export const RegisterDailyButton = ({ date = new Date() }: { date?: Date }) => {
   return (
     <div>
       <button
+        type="button"
         className={
           "w-13 h-13 cursor-pointer rounded-full border-2 border-green-300 bg-green-300 text-center text-5xl shadow hover:bg-green-400 hover:text-white hover:shadow-md"
         }

@@ -10,19 +10,14 @@
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo clean",
     "dev": "turbo dev --parallel",
-    "format": "turbo format --continue -- --cache --cache-location node_modules/.cache/.prettiercache",
-    "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
-    "lint": "turbo lint --continue -- --cache-location node_modules/.cache/.eslintcache",
-    "lint:fix": "turbo lint --continue -- --fix --cache-location node_modules/.cache/.eslintcache",
-    "lint:ws": "pnpm dlx sherif@latest",
-    "postinstall": "pnpm lint:ws",
     "typecheck": "turbo typecheck",
     "prepare": "husky install",
-    "test": "pushd apps/web && pnpm test && popd && pushd apps/expo && pnpm test && popd && pushd packages/graphql && pnpm test && popd"
-
+    "test": "pushd apps/web && pnpm test && popd && pushd apps/expo && pnpm test && popd && pushd packages/graphql && pnpm test && popd",
+    "biome:check": "biome check"
   },
   "devDependencies": {
     "@acme/prettier-config": "workspace:^",
+    "@biomejs/biome": "^1.9.4",
     "@turbo/gen": "^2.4.0",
     "husky": "^8.0.0",
     "prettier": "^3.2.5",

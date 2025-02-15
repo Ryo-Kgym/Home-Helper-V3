@@ -1,6 +1,6 @@
 query getAccountById($accountId: String!) {
-    account: householdAccountByPk(id: $accountId){
-        id
-        name
-    }
+  account: householdAccountByPk(id: $accountId) {
+    id
+    name
+  }
 }

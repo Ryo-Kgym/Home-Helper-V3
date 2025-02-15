@@ -77,7 +77,7 @@ export const aggregateCategoryData = (
       throw new Error("yearMonth is required");
     }
 
-    const key = cur.category?.id + "__" + yearMonth;
+    const key = `${cur.category?.id}__${yearMonth}`;
 
     if (!acc[key]) {
       return {

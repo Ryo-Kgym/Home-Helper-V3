@@ -33,25 +33,13 @@ jobs:
       - name: Web-Test
         run: cd apps/web && pnpm vitest --run && cd ../../
 
+      - name: Core-Test
+        run: cd packages/core && pnpm vitest --run && cd ../../
+
       - name: Expo-Test
         run: cd apps/expo && pnpm jest && cd ../../
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup
-        uses: ./tooling/github/setup
-
-      - name: Copy env
-        shell: bash
-        run: cp .env.example .env
-
-      - name: Lint
-        run: pnpm lint && pnpm lint:ws
-
-  format:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +48,7 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Format
-        run: pnpm format
+        run: pnpm biome:check
 
   typecheck:
     runs-on: ubuntu-latest

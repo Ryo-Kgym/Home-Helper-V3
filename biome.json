@@ -1,0 +1,60 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "ignore": [
+      "*/**/*-codegen.cjs",
+      "*/**/*.config.*",
+      ".turbo/",
+      "apps/expo/.expo*",
+      "apps/expo/dist",
+      "apps/expo/ios",
+      "apps/expo/src",
+      "apps/web/.next/",
+      "apps/web/src/styles/globals.css",
+      "packages/graphql/**/*schema.json",
+      "packages/graphql/household/generated/typed.ts",
+      "packages/graphql/household/index.ts",
+      "packages/graphql/household/type.ts",
+      "packages/graphql/public/index.ts",
+      "packages/graphql/public/type.ts",
+      "packages/type/date/date.ts",
+      "tooling/prettier/index.js"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useImportType": "off"
+      },
+      "correctness": {
+        "noUnknownFunction": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
+      },
+      "performance": {
+        "noAccumulatingSpread": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  }
+}

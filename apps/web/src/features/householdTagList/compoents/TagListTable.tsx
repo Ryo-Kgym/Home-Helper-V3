@@ -10,10 +10,7 @@ import { useStateSetTag, useStateTagList } from "../hooks/useStateTagList";
 import { deleteTag } from "../useServer/deleteTag";
 import { modifyTag } from "../useServer/modifyTag";
 
-type Props = {
-  // empty
-};
-export const TagListTable: FC<Props> = () => {
+export const TagListTable: FC = () => {
   const tags = useStateTagList();
   const setTag = useStateSetTag();
   const { refresh } = useNavigation();

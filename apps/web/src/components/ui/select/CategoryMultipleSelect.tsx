@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { MultiSelect } from "@mantine/core";
+import { useEffect, useState } from "react";
 
-import type { SelectData } from "./v5";
 import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
+import type { SelectData } from "./v5";
 
 export const CategoryMultipleSelect = ({
   categoryId,
@@ -20,13 +20,10 @@ export const CategoryMultipleSelect = ({
   const [options, setOptions] = useState<SelectData[]>([]);
   const { getAllCategories } = useGetDetailMaster();
 
-  useEffect(
-    () => {
-      setOptions(getAllCategories());
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    setOptions(getAllCategories());
+  }, []);
 
   return (
     <MultiSelect

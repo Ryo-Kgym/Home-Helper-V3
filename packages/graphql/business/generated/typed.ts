@@ -20,9 +20,9 @@ export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 
 export type BusinessDailyAttendanceLogInsertInput = {
-  dailyAttendanceId: String;
-  id: String;
-  memo?: String;
+  dailyAttendanceId: string;
+  id: string;
+  memo?: string;
   datetime: YYYY_MM_DD_HH_MM_SS;
   state: AttendanceState;
 };
@@ -34,10 +34,10 @@ export type BusinessDailyAttendanceInsertInput = {
   date: YYYY_MM_DD;
   breakSecond: number;
   endDatetime: YYYY_MM_DD_HH_MM_SS;
-  groupId: String;
-  id: String;
+  groupId: string;
+  id: string;
   startDatetime: YYYY_MM_DD_HH_MM_SS;
-  userId: String;
+  userId: string;
 };
 
 export type BusinessDailyAttendanceSetInput = {

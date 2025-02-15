@@ -28,7 +28,7 @@ export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
         },
       };
     }
-    const thisYearMonth = sum[yearMonth]!;
+    const thisYearMonth = sum[yearMonth] as SumBalance[YYYY_MM];
     return {
       ...sum,
       [yearMonth]: {

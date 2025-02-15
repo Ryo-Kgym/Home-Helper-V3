@@ -5,7 +5,7 @@ import { registerUrql } from "@urql/next/rsc";
 
 const makeClient = () => {
   return createClient({
-    url: process.env.ONEFORALL_GRAPHQL_ENDPOINT!,
+    url: process.env.ONEFORALL_GRAPHQL_ENDPOINT as string,
     exchanges: [
       cacheExchange({
         updates: {
@@ -43,5 +43,5 @@ export const fetchQuery = async <
     new Error("Failed data fetching.");
   }
 
-  return { data: data!, error };
+  return { data, error };
 };
