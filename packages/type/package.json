@@ -13,9 +13,9 @@
     "test:watch": "exit 0"
   },
   "devDependencies": {
-    "@acme/eslint-config": "^0.2.0",
-    "@acme/prettier-config": "^0.1.0",
-    "@acme/tsconfig": "^0.1.0",
+    "@acme/eslint-config": "workspace:^",
+    "@acme/prettier-config": "workspace:^",
+    "@acme/tsconfig": "workspace:^",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3"
   },
