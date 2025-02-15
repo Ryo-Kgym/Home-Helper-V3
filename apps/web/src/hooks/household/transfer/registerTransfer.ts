@@ -1,6 +1,6 @@
 "use server";
 
-import { YYYYmmDD } from "@/type/date/date";
+import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 import { CreateDailyDetailDocument } from "@v3/graphql/household/schema/mutation/create/CreateDailyDetail.generated";
 import { GetTransferCategoryByDocument } from "@v3/graphql/household/schema/query/v5/getTransferCategory.generated";
 
@@ -17,7 +17,7 @@ export const registerTransfer = async ({
   amount,
   memo,
 }: {
-  date: YYYYmmDD;
+  date: YYYY_MM_DD;
   sendAccountId: string;
   receiveAccountId: string;
   amount: number;
@@ -49,7 +49,7 @@ export const registerTransfer = async ({
       genreId,
       iocomeType,
       categoryId,
-      date: date.toString(),
+      date,
       groupId,
       id: generateId(),
       memo: memo ?? "",

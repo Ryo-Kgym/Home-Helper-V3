@@ -14,9 +14,15 @@
 
 .selector {
   border: solid 1px #ccc;
-  height: 10rem;
+  max-height: 10rem;
   padding: 0.5rem;
-  width: fit-content;
+  z-index: 1000;
+  width: 100%;
+  background-color: #fff;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .selector li:hover {

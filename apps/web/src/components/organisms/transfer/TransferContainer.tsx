@@ -22,7 +22,7 @@ export const TransferContainer = ({ date }: { date: Date }) => {
   const registerHandler = async () => {
     try {
       await registerTransfer({
-        date: YYYYmmDD.valueOf(registerDate),
+        date: YYYYmmDD.valueOf(registerDate).toString(),
         sendAccountId: sendAccountId,
         receiveAccountId: receiveAccountId,
         amount: amount,
