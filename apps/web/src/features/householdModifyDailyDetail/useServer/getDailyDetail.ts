@@ -2,8 +2,8 @@
 
 import { GetDailyDetailByIdDocument } from "@v3/graphql/household/schema/query/v5/getDailyDetailById.generated";
 
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { DailyDetail } from "../../../domain/model/household/DailyDetail";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { execQuery } from "../../../persistence/database/server/execQuery";
 
 export const getDailyDetail = async (params: {

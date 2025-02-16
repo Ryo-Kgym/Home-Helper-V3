@@ -1,11 +1,11 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import {
   convertSecondToHour,
   convertSecondToMinute,
 } from "../../../function/date/convertSecond";
 import { convertToHms } from "../../../function/date/convertToHms";
-import { DayAttendance } from "../types/type";
+import type { DayAttendance } from "../types/type";
 import styles from "./DailyAttendanceTable.module.scss";
 
 type Props = {

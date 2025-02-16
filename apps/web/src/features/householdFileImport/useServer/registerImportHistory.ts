@@ -6,7 +6,7 @@ import { CreateImportFileHistoryDocument } from "@v3/graphql/household/schema/mu
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execMutation } from "../../../persistence/database/server/execMutation";
-import { ImportFileType } from "../types/importFileType";
+import type { ImportFileType } from "../types/importFileType";
 
 export const registerImportHistory = async ({
   importFileType,

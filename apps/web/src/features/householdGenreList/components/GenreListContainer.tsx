@@ -1,16 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 
 import { ValidityStatus } from "../../../components/atoms";
-import { TableProps } from "../../../components/atoms/Table";
+import type { TableProps } from "../../../components/atoms/Table";
 import {
-  GenreType,
+  type GenreType,
   getLabel as getGenreTypeLabel,
 } from "../../../domain/model/household/GenreType";
 import {
-  IocomeType,
+  type IocomeType,
   getLabel as getIocomeTypeLabel,
 } from "../../../domain/model/household/IocomeType";
 import { GenreListPresenter } from "./GenreListPresenter";

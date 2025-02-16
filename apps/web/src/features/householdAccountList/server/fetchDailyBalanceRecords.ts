@@ -2,7 +2,7 @@ import { GetDetailsByAccountIdDocument } from "@v3/graphql/household/type";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { DailyBalanceRow } from "../types/dailyBalanceRow";
+import type { DailyBalanceRow } from "../types/dailyBalanceRow";
 
 export const fetchDailyBalanceRecords = async (params: {
   accountId: string;

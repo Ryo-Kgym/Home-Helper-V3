@@ -1,7 +1,7 @@
 "use client";
 
 import { convertToYmd } from "@/core/function/date/convertToYmd";
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 
 import { Button } from "../../../../components/ui/button/v5";
 import { DatePicker } from "../../../../components/ui/date";
@@ -12,7 +12,7 @@ import { useBuildTable } from "../../client/useBuildTable";
 import { useImportFileRowAware } from "../../client/useImportFileRowAware";
 import { useLoadFile } from "../../client/useLoadFile";
 import { useMessage } from "../../client/useMessage";
-import { ImportFileType } from "../../types/importFileType";
+import type { ImportFileType } from "../../types/importFileType";
 import { registerImported } from "../../useServer/registerImported";
 import { LoadFileInputTable } from "./LoadFileInputTable";
 

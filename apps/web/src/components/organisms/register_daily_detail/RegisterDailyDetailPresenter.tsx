@@ -1,15 +1,15 @@
 import { Button } from "components/ui/button/v5";
 import { DatePicker } from "components/ui/date";
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { MemoTextArea } from "../../molecules/CustomTextArea/Memo";
 import { AmountInput } from "../../ui/numberInput/amount/AmountInput";
 import { IocomeTypeSegment } from "../../ui/segment/IocomeTypeSegment";
 import { AccountSelect } from "../../ui/select/AccountSelect";
 import { CategorySelect } from "../../ui/select/CategorySelect";
 import { GenreSelect } from "../../ui/select/GenreSelect";
-import { DailyDetailForm } from "./dailyDetailForm";
+import type { DailyDetailForm } from "./dailyDetailForm";
 
 type Props = {
   form: DailyDetailForm;

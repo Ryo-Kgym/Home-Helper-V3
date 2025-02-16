@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
 import { AccountSelect } from "../../../components/ui/select/AccountSelect";
@@ -6,7 +6,10 @@ import { TextInput } from "../../../components/ui/textInput/TextInput";
 import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useStateCreditSummary } from "../hooks/useStateCreditSummary";
-import { SummaryDisplayState, SummaryFormState } from "../types/summaryProps";
+import type {
+  SummaryDisplayState,
+  SummaryFormState,
+} from "../types/summaryProps";
 import { modifyCreditSummary } from "../useServer/modifyCreditSummary";
 import styles from "./CreditSummaryTable.module.scss";
 

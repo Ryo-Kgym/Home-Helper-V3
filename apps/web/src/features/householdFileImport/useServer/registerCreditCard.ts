@@ -1,13 +1,13 @@
 "use server";
 
-import { YYYY_MM_DD } from "@/type/date/date";
+import type { YYYY_MM_DD } from "@/type/date/date";
 import { CreateCreditCardDetailDocument } from "@v3/graphql/household/schema/mutation/create/CreateCreditCardDetail.generated";
 import { CreateCreditCardSummaryDocument } from "@v3/graphql/household/schema/mutation/create/CreateCreditCardSummary.generated";
 
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execMutation } from "../../../persistence/database/server/execMutation";
-import { LoadFileProps } from "../types";
+import type { LoadFileProps } from "../types";
 
 export const registerCreditCard = async ({
   summaryId,

@@ -1,6 +1,6 @@
 import { GenreType } from "../../../domain/model/household/GenreType";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { CategoryChartData } from "../types";
+import type { CategoryChartData } from "../types";
 
 export const sortByTotal = (
   data: CategoryChartData,

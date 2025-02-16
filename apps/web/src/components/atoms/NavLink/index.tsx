@@ -4,7 +4,7 @@
 
 import { NavLink as MNavLink } from "@mantine/core";
 
-import { HomeHelperSize } from "../index";
+import type { HomeHelperSize } from "../index";
 
 type Props = {
   label: string;

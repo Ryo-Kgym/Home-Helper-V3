@@ -1,4 +1,4 @@
-import { TypedDocumentNode } from "@v3/graphql/document";
+import type { TypedDocumentNode } from "@v3/graphql/document";
 import { registerUrql } from "@v3/graphql/urql";
 
 import type { Exact } from "./exact";

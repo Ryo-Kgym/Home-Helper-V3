@@ -1,6 +1,6 @@
 "use client";
 
-import { AccountBalance } from "features/householdAccountList/types/accountBalance";
+import type { AccountBalance } from "features/householdAccountList/types/accountBalance";
 
 import { Total } from "../../../components/molecules/Total";
 import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";

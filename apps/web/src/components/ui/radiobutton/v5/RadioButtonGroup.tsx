@@ -1,4 +1,4 @@
-import { RadioButtonGroupProps } from "../props";
+import type { RadioButtonGroupProps } from "../props";
 import { RadioButton } from "./RadioButton";
 import styles from "./RadioButton.module.scss";
 

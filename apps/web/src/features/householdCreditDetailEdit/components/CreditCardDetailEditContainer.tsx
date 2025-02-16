@@ -1,9 +1,9 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 
 import { Loading } from "../../../components/ui/v5/loading/Loading";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
 import { useStateCreditDetail } from "../hooks/useStateCreditDetail";

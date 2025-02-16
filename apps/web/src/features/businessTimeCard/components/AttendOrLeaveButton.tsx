@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";

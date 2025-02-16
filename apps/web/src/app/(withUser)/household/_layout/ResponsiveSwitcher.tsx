@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import { Split } from "../../../../components/ui/split/v5/Split";
 

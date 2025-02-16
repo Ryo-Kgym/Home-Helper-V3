@@ -1,4 +1,4 @@
-import { ImportFileType } from "./importFileType";
+import type { ImportFileType } from "./importFileType";
 
 export type ImportFileColumn =
   keyof (typeof importFileFields)[keyof typeof importFileFields];

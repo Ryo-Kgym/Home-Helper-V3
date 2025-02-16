@@ -1,10 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 
 import { ValidityStatus } from "../../../components/atoms";
-import { TableProps } from "../../../components/atoms/Table";
+import type { TableProps } from "../../../components/atoms/Table";
 import { CategoryListPresenter } from "./CategoryListPresenter";
 
 type Props = {

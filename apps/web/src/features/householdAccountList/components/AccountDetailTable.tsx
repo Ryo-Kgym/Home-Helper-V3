@@ -6,10 +6,10 @@ import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { IocomeTotal } from "../../../components/molecules/Total";
 import { TagGroup } from "../../../components/ui/tag/TagGroup";
 import { DataTable } from "../../../components/ui/v4/table";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { convertToYmd } from "../../../function/date/convertToYmd";
 import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
-import { AccountDetailRow } from "../types/accountDetailRow";
+import type { AccountDetailRow } from "../types/accountDetailRow";
 
 export const AccountDetailTable = ({
   records,

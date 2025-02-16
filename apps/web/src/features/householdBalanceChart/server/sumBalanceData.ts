@@ -1,7 +1,7 @@
-import { YYYY_MM } from "@/type/date/date";
-import { ChartDataQuery } from "@v3/graphql/household/schema/query/v5/chartData.generated";
+import type { YYYY_MM } from "@/type/date/date";
+import type { ChartDataQuery } from "@v3/graphql/household/schema/query/v5/chartData.generated";
 
-import { SumBalance } from "./types";
+import type { SumBalance } from "./types";
 
 export const sumBalanceData = (data: ChartDataQuery): SumBalance => {
   const transferIncomeCategoryId = data.transferCategory?.incomeCategoryId;

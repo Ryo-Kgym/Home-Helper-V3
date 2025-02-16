@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
 import { Select } from "../index";
-import { SelectProps } from "./v4";
+import type { SelectProps } from "./v4";
 
 export const GenreSelect = ({
   genreId,

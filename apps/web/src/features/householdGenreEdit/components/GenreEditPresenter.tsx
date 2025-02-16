@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
 import { Button } from "../../../components/ui";
@@ -10,8 +10,8 @@ import { DisplayOrderInput } from "../../../components/ui/numberInput/displayOrd
 import { GenreTypeSegment } from "../../../components/ui/segment/GenreTypeSegment";
 import { IocomeTypeSegment } from "../../../components/ui/segment/IocomeTypeSegment";
 import { ValiditySegment } from "../../../components/ui/segment/ValiditySegment";
-import { GenreType } from "../../../domain/model/household/GenreType";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { GenreType } from "../../../domain/model/household/GenreType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const GenreEditPresenter = ({
   categories = [],

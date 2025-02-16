@@ -1,6 +1,6 @@
 import { Drawer } from "@mantine/core";
 
-import { DrawerProps } from ".";
+import type { DrawerProps } from ".";
 
 export const MantineDrawer = ({ opened, onClose, children }: DrawerProps) => {
   return (

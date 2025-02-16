@@ -1,7 +1,7 @@
 import { GetAllGenreDocument } from "@v3/graphql/household/schema/query/get/GetAllGenre.generated";
 
-import { GenreType } from "../../../domain/model/household/GenreType";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { GenreType } from "../../../domain/model/household/GenreType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
 import { GenreListContainer } from "./GenreListContainer";

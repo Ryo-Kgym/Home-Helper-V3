@@ -1,5 +1,5 @@
 import { FieldContainer } from "../v4/FieldContainer";
-import { FieldValueProps } from "../v4/property";
+import type { FieldValueProps } from "../v4/property";
 
 export const TextInput = ({
   label,

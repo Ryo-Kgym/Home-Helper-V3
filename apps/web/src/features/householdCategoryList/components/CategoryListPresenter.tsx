@@ -1,6 +1,6 @@
 "use client";
 
-import { Table, TableProps } from "../../../components/atoms/Table";
+import { Table, type TableProps } from "../../../components/atoms/Table";
 
 export const CategoryListPresenter = ({
   tablePropsList,

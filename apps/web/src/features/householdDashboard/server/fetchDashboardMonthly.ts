@@ -4,7 +4,7 @@ import { GetDetailsByCategoryDocument } from "@v3/graphql/household/schema/query
 
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { DashboardComponentProps } from "../types/dashboardFC";
+import type { DashboardComponentProps } from "../types/dashboardFC";
 import { buildParams } from "./buildParams";
 import { convertToNominal } from "./convertToNominal";
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { TabsProps } from "./index";
+import type { TabsProps } from "./index";
 
 /**
  * @package

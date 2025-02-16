@@ -4,11 +4,11 @@
 
 "use client";
 
-import { YYYY_MM_DD } from "@/type/date/date";
+import type { YYYY_MM_DD } from "@/type/date/date";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import type { FC } from "react";
 
-import { TableProps } from "../../../components/atoms/Table";
+import type { TableProps } from "../../../components/atoms/Table";
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { CreditHistoryListPresenter } from "./CreditHistoryListPresenter";

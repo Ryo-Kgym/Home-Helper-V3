@@ -1,8 +1,8 @@
-import { ChartDataQuery } from "@v3/graphql/household/schema/query/v5/chartData.generated";
+import type { ChartDataQuery } from "@v3/graphql/household/schema/query/v5/chartData.generated";
 
-import { GenreType } from "../../../domain/model/household/GenreType";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { CategoryChartData } from "../types";
+import type { GenreType } from "../../../domain/model/household/GenreType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { CategoryChartData } from "../types";
 
 export const convertToCategoryChartData = (
   data: ChartDataQuery,

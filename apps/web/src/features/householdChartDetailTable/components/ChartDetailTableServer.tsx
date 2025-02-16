@@ -1,4 +1,4 @@
-import { YYYYmmDD } from "@/type/date/date";
+import type { YYYYmmDD } from "@/type/date/date";
 
 import { fetchWatchTableData } from "../server/fetchWatchTableData";
 import { ChartDetailTableClient } from "./ChartDetailTableClient";

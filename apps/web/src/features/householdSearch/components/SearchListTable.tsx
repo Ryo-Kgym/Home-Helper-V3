@@ -1,13 +1,13 @@
 "use client";
 
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { TagGroup } from "../../../components/ui/tag/TagGroup";
 import { DataTable } from "../../../components/ui/v4/table";
 import { CreditCardDetailEditModal } from "../../householdCreditDetailEdit/components/CreditCardDetailEditModel";
 import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
-import { SearchRow } from "../types/searchRow";
+import type { SearchRow } from "../types/searchRow";
 
 type Props = {
   records: SearchRow[];

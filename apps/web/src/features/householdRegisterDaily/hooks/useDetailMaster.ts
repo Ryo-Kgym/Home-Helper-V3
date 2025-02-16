@@ -1,9 +1,9 @@
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-import { SelectProps } from "../../../components/ui/select/v4";
-import { TagInput } from "../../../components/ui/tag/TagInput";
+import type { SelectProps } from "../../../components/ui/select/v4";
+import type { TagInput } from "../../../components/ui/tag/TagInput";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const useSetDetailMaster = () => {

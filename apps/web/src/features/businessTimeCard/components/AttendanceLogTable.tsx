@@ -1,7 +1,7 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import { convertToHms } from "../../../function/date/convertToHms";
-import { AttendanceLog } from "../types/type";
+import type { AttendanceLog } from "../types/type";
 import styles from "./AttendanceLogTable.module.scss";
 
 type Props = {

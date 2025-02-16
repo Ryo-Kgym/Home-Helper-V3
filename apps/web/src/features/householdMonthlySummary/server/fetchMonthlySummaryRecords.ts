@@ -1,10 +1,10 @@
-import { YYYY_MM, YYYYmmDD } from "@/type/date/date";
+import type { YYYY_MM, YYYYmmDD } from "@/type/date/date";
 import { GetCategorizedDetailsDocument } from "@v3/graphql/household/schema/query/v5/getCategorizedDetails.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { RowAttribute } from "../components/MonthlySummaryTable";
+import type { RowAttribute } from "../components/MonthlySummaryTable";
 
 export const fetchMonthlySummaryRecords = async (
   fromDate: YYYYmmDD,

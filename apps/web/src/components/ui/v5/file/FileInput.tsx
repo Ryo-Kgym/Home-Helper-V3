@@ -1,6 +1,6 @@
 import { FileInput as MantineFileInput } from "@mantine/core";
 import { IconUpload } from "@tabler/icons-react";
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 
 type Props = {
   onChange: (_: File | null) => void;

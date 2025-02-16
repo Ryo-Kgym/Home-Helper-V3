@@ -1,5 +1,5 @@
 import { SearchListServer } from "../../../../../features/householdSearch/components/SearchListServer";
-import { YYYY_MM_DD } from "../../../../../types/yyyyMMdd";
+import type { YYYY_MM_DD } from "../../../../../types/yyyyMMdd";
 
 const Page = async ({
   searchParams,

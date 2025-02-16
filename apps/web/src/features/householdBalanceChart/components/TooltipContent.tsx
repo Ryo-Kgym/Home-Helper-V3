@@ -1,8 +1,8 @@
-import {
+import type {
   NameType,
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
-import { TooltipProps } from "recharts/types/component/Tooltip";
+import type { TooltipProps } from "recharts/types/component/Tooltip";
 
 export const TooltipContent = ({
   label,

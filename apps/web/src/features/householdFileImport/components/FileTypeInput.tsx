@@ -1,7 +1,7 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import { RadioButtonGroup } from "../../../components/ui/radiobutton/v5/RadioButtonGroup";
-import { ImportFileType } from "../types/importFileType";
+import type { ImportFileType } from "../types/importFileType";
 
 export const FileTypeInput: FC<{
   importFileType: ImportFileType;

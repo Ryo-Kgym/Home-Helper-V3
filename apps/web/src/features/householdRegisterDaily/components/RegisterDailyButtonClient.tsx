@@ -1,10 +1,10 @@
 "use client";
 
-import { IocomeType } from "domain/model/household/IocomeType";
-import { ComponentProps, FC, useEffect } from "react";
+import type { IocomeType } from "domain/model/household/IocomeType";
+import { type ComponentProps, type FC, useEffect } from "react";
 
-import { SelectProps } from "../../../components/ui/select/v4";
-import { TagInput } from "../../../components/ui/tag/TagInput";
+import type { SelectProps } from "../../../components/ui/select/v4";
+import type { TagInput } from "../../../components/ui/tag/TagInput";
 import { useSetDetailMaster } from "../hooks/useDetailMaster";
 import { RegisterDailyButton } from "./RegisterDailyButton";
 

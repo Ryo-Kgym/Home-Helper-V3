@@ -5,7 +5,7 @@ import { AddTagDocument } from "@v3/graphql/household/schema/mutation/v5/mutateT
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execMutation } from "../../../persistence/database/server/execMutation";
-import { Tag } from "../types/tag";
+import type { Tag } from "../types/tag";
 
 export const addTag = async (tag: Omit<Tag, "id">) => {
   const { group } = await findUser();

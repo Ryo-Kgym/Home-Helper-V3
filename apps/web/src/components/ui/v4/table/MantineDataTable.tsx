@@ -1,7 +1,7 @@
 "use client";
 
 import { DataTable } from "mantine-datatable";
-import { ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 type DataTableRowType<R extends object> = { id: string } & R;
 

@@ -1,5 +1,5 @@
 import { convertToYmd } from "@/core/function/date/convertToYmd";
-import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
+import { type YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 
 import { fetchAccountDetailList } from "../server/fetchAccountDetailList";
 import { AccountDetailTable } from "./AccountDetailTable";

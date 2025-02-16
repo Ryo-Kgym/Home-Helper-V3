@@ -1,8 +1,8 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import { Table } from "../../../../components/ui/v4/table";
 import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
-import { ImportFileType } from "../../types/importFileType";
+import type { ImportFileType } from "../../types/importFileType";
 import { LoadFileInputRow } from "./LoadFileInputRow";
 
 type Props = {

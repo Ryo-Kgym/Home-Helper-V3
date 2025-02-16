@@ -1,4 +1,4 @@
-import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
+import { type YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 
 import { BalanceListTableServer } from "../../../../../features/householdAccountList/components/BalanceListTableServer";
 

@@ -2,7 +2,7 @@ import { convertToYmd } from "@/core/function/date/convertToYmd";
 import { YYYYmmDD } from "@/type/date/date";
 import { z } from "zod";
 
-import { DashboardComponentProps } from "../types/dashboardFC";
+import type { DashboardComponentProps } from "../types/dashboardFC";
 
 export const buildParams = (
   params: Pick<DashboardComponentProps, "dashboardSettingArgs"> & {

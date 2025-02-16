@@ -1,7 +1,7 @@
 import { DatePickerInput } from "@mantine/dates";
 
 import { FieldContainer } from "../FieldContainer";
-import { FieldValueProps } from "../property";
+import type { FieldValueProps } from "../property";
 
 export const DateInput = ({
   label,

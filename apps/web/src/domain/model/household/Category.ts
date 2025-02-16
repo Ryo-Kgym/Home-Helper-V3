@@ -1,4 +1,4 @@
-import { IocomeType } from "./IocomeType";
+import type { IocomeType } from "./IocomeType";
 
 export type Category = {
   iocomeType: IocomeType;

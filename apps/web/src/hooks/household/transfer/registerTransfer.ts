@@ -1,10 +1,10 @@
 "use server";
 
-import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
+import { type YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 import { CreateDailyDetailDocument } from "@v3/graphql/household/schema/mutation/create/CreateDailyDetail.generated";
 import { GetTransferCategoryByDocument } from "@v3/graphql/household/schema/query/v5/getTransferCategory.generated";
 
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execMutation } from "../../../persistence/database/server/execMutation";

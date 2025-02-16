@@ -2,7 +2,7 @@
 
 import { Loading } from "../../../components/ui/v5/loading/Loading";
 import { useDashboardBalance } from "../client/useDashboardBalance";
-import { DashboardFC } from "../types/dashboardFC";
+import type { DashboardFC } from "../types/dashboardFC";
 import styles from "./DashboardBalanceClient.module.scss";
 
 export const DashboardBalanceClient: DashboardFC = ({ dashboardSettingId }) => {

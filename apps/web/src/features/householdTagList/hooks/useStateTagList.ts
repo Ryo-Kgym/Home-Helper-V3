@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-import { TagListRow } from "../types/tagListRow";
+import type { TagListRow } from "../types/tagListRow";
 
 export const useStateSetTagList = (tagList: TagListRow[]) => {
   const set = useTagListZustand((store) => ({

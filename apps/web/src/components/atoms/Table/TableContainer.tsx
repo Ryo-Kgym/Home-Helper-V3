@@ -8,7 +8,7 @@ import { Table } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 
 import { TablePresenter } from "./TablePresenter";
-import { ColumnProps, TableProps } from "./index";
+import type { ColumnProps, TableProps } from "./index";
 
 type Props = {
   header: string[];

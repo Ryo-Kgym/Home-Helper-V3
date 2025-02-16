@@ -4,7 +4,7 @@ import { GetDashboardSettingDocument } from "@v3/graphql/household/schema/query/
 
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { DashboardFeature } from "../types/dashboardFeature";
+import type { DashboardFeature } from "../types/dashboardFeature";
 
 export const fetchDashboardSettings = async () => {
   const {

@@ -5,7 +5,7 @@ import {
   useUpdateCategoryByIdMutation,
 } from "@v3/graphql/household";
 import { GenreSelect } from "components/ui/select/GenreSelect";
-import { ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 import { GenreNameTextInput } from "../../../components/molecules/CustomTextInput";
 import { Button } from "../../../components/ui/button/v5";

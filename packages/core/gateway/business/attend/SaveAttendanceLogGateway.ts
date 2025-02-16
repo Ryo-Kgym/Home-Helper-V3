@@ -1,4 +1,4 @@
-import { AttendanceState } from "../../../domain/business/attend/AttendanceState";
+import type { AttendanceState } from "../../../domain/business/attend/AttendanceState";
 
 export type SaveAttendanceLogGateway = {
   save: (_: {

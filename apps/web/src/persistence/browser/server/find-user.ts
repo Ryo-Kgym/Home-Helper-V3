@@ -1,4 +1,4 @@
-import { User } from "../../../type/user";
+import type { User } from "../../../type/user";
 import { getCookieValue } from "./cookie";
 
 export const findUser = async (): Promise<User> => {

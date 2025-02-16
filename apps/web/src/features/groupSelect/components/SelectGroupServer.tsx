@@ -2,8 +2,8 @@ import { GetUserByEmailDocument } from "@v3/graphql/public/type";
 
 import { findEmail } from "../../../persistence/browser/server/find-email";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { Group } from "../types/group";
-import { User } from "../types/user";
+import type { Group } from "../types/group";
+import type { User } from "../types/user";
 import { SelectGroupContainer } from "./SelectGroupContainer";
 
 export const SelectGroupServer = async () => {

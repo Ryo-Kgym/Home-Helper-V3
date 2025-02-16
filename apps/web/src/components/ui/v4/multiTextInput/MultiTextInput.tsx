@@ -1,5 +1,5 @@
 import { FieldContainer } from "../FieldContainer";
-import { FieldValueProps } from "../property";
+import type { FieldValueProps } from "../property";
 
 export const MultiTextInput = ({
   label,
