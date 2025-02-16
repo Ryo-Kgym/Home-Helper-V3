@@ -3944,6 +3944,7 @@ export type GetAllCategoriesQuery = {
     categoryName: string;
     genre: {
       __typename?: "HouseholdGenre";
+      id: string;
       genreId: string;
       genreName: string;
     };
@@ -4066,6 +4067,7 @@ export const GetAllCategoriesDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       {
                         kind: "Field",
                         alias: { kind: "Name", value: "genreId" },

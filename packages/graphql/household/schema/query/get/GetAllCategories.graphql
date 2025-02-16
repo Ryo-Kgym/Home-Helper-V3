@@ -8,6 +8,7 @@ query GetAllCategories($groupId: String!) {
     displayOrder
     validFlag
     genre {
+      id
       genreId: id
       genreName: name
     }
