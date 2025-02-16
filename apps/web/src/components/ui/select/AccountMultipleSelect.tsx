@@ -4,6 +4,7 @@ import { MultiSelect } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
+import { AllSelectButtons } from "./AllSelectButtons";
 import type { SelectData } from "./v5";
 
 export const AccountMultipleSelect = ({
@@ -26,16 +27,19 @@ export const AccountMultipleSelect = ({
   }, []);
 
   return (
-    <MultiSelect
-      label={nonLabel ? "" : "アカウント"}
-      value={accountIds}
-      onChange={onChange}
-      data={options}
-      placeholder={"アカウントを選択してください"}
-      withAsterisk
-      size={"xs"}
-      disabled={disabled}
-      multiple
-    />
+    <>
+      <MultiSelect
+        label={nonLabel ? "" : "アカウント"}
+        value={accountIds}
+        onChange={onChange}
+        data={options}
+        placeholder={"アカウントを選択してください"}
+        withAsterisk
+        size={"xs"}
+        disabled={disabled}
+        multiple
+      />
+      <AllSelectButtons options={options} onChange={onChange} />
+    </>
   );
 };

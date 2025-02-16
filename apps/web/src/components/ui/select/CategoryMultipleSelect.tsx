@@ -1,9 +1,11 @@
 "use client";
 
 import { MultiSelect } from "@mantine/core";
+import { builders } from "prettier/doc";
 import { useEffect, useState } from "react";
 
 import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
+import { AllSelectButtons } from "./AllSelectButtons";
 import type { SelectData } from "./v5";
 
 export const CategoryMultipleSelect = ({
@@ -26,16 +28,19 @@ export const CategoryMultipleSelect = ({
   }, []);
 
   return (
-    <MultiSelect
-      label={nonLabel ? "" : "カテゴリ"}
-      value={categoryId}
-      onChange={onChange}
-      data={options}
-      placeholder={"カテゴリを選択してください"}
-      withAsterisk
-      size={"xs"}
-      disabled={disabled}
-      multiple
-    />
+    <>
+      <MultiSelect
+        label={nonLabel ? "" : "カテゴリ"}
+        value={categoryId}
+        onChange={onChange}
+        data={options}
+        placeholder={"カテゴリを選択してください"}
+        withAsterisk
+        size={"xs"}
+        disabled={disabled}
+        multiple
+      />
+      <AllSelectButtons options={options} onChange={onChange} />
+    </>
   );
 };

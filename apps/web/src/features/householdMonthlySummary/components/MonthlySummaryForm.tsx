@@ -1,7 +1,8 @@
 "use client";
 
 import { convertToYmd } from "@/core/function/date/convertToYmd";
-import { type FC, useState } from "react";
+import type { FC } from "react";
+import { useState } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
 import { AccountMultipleSelect } from "../../../components/ui/select/AccountMultipleSelect";
@@ -83,10 +84,6 @@ export const MonthlySummaryForm: FC<Props> = ({
           />
         </div>
       </Modal>
-      {/*<div>絞り込み</div>*/}
-      {/*<div>日付</div>*/}
-      {/*<div>カテゴリ</div>*/}
-      {/*<div>アカウント</div>*/}
     </div>
   );
 };
