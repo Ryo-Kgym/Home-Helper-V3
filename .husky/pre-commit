@@ -2,5 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 pnpm typecheck
-pnpm biome check
-pnpm biome lint
+pnpm biome check --fix
+pnpm biome lint --fix

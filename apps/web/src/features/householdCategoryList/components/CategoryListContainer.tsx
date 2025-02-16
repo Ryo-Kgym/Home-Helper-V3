@@ -1,32 +1,33 @@
 "use client";
 
-import { useGetAllCategoriesQuery } from "@v3/graphql/household";
 import { useRouter } from "next/navigation";
+import { FC } from "react";
 
 import { ValidityStatus } from "../../../components/atoms";
 import { TableProps } from "../../../components/atoms/Table";
-import { useGroup } from "../../../hooks/group/useGroup";
 import { CategoryListPresenter } from "./CategoryListPresenter";
 
-export const CategoryListContainer = () => {
-  const { push } = useRouter();
-  const { groupId } = useGroup();
-  const [{ data, fetching }] = useGetAllCategoriesQuery({
-    variables: {
-      groupId,
-    },
-  });
+type Props = {
+  categoryList: {
+    id: string;
+    categoryName: string;
+    genreName: string;
+    validFlag: boolean;
+    displayOrder: number;
+  }[];
+};
 
-  if (fetching) return <div>Loading....</div>;
+export const CategoryListContainer: FC<Props> = ({ categoryList }) => {
+  const { push } = useRouter();
 
   const tablePropsList: TableProps[] =
-    data?.categories.map(
+    categoryList.map(
       ({
         id: categoryId,
         categoryName,
         displayOrder,
         validFlag,
-        genre: { genreName },
+        genreName,
       }) => ({
         keyPrefix: "category",
         columns: [

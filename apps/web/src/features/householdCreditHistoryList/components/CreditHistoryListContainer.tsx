@@ -4,28 +4,56 @@
 
 "use client";
 
-import { useGetCreditCardListQuery } from "@v3/graphql/household";
+import { YYYY_MM_DD } from "@/type/date/date";
 import { useRouter } from "next/navigation";
+import { FC } from "react";
 
 import { TableProps } from "../../../components/atoms/Table";
-import { useGroup } from "../../../hooks/group/useGroup";
+import { FormatPrice } from "../../../components/molecules/FormatPrice";
+import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { CreditHistoryListPresenter } from "./CreditHistoryListPresenter";
-import { creditCardListConverter } from "./creditCardListConverter";
 
-export const CreditHistoryListContainer = () => {
-  const { groupId } = useGroup();
+type Props = {
+  creditHistoryList: {
+    id: string;
+    withdrawalDate: YYYY_MM_DD;
+    creditCard: string;
+    accountName: string;
+    totalAmount: number;
+  }[];
+};
+
+export const CreditHistoryListContainer: FC<Props> = ({
+  creditHistoryList,
+}) => {
   const { push } = useRouter();
-
-  const [{ data }] = useGetCreditCardListQuery({ variables: { groupId } });
 
   const showDetailPage = (summaryId: string) => {
     push(`/household/creditCard/${summaryId}`);
   };
 
-  const tableProps: TableProps[] = creditCardListConverter({
-    data,
-    showDetailPage,
-  });
+  const tableProps: TableProps[] = creditHistoryList.map((history) => ({
+    keyPrefix: "creditCard",
+    columns: [
+      { value: history.withdrawalDate, align: "center" },
+      { value: history.creditCard, align: "center" },
+      {
+        value: history.accountName,
+      },
+      {
+        value: (
+          <FormatPrice
+            price={history.totalAmount as number}
+            iocomeType={IocomeType.Outcome}
+          />
+        ),
+        align: "right",
+      },
+    ],
+    onClick: () => {
+      showDetailPage(history.id);
+    },
+  }));
 
   return <CreditHistoryListPresenter tableProps={tableProps} />;
 };
