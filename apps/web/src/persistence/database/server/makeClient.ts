@@ -6,20 +6,20 @@ export const makeClient = () => {
     exchanges: [
       cacheExchange({
         keys: {
-          HouseholdAllDetailViewAggregateFields: (data) => {
-            // @ts-expect-error - TS doesn't know about the signedAmount field
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          HouseholdAllDetailViewAggregateFields: (data: any) => {
             return data?.aggregate?.max?.accountId;
           },
-          HouseholdAllDetailViewAggregate: (data) => {
-            // @ts-expect-error - TS doesn't know about the signedAmount field
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          HouseholdAllDetailViewAggregate: (data: any) => {
             return data?.aggregate?.max?.accountId;
           },
-          HouseholdDetailTagAggregate: (data) => {
-            // @ts-expect-error - TS doesn't know about the signedAmount field
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          HouseholdDetailTagAggregate: (data: any) => {
             return data?.aggregate?.count;
           },
-          HouseholdDetailTagAggregateFields: (data) => {
-            // @ts-expect-error - TS doesn't know about the signedAmount field
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          HouseholdDetailTagAggregateFields: (data: any) => {
             return data?.aggregate?.count;
           },
         },
