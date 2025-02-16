@@ -1,11 +1,11 @@
-import { TZDateTime, YYYYmmDD } from "@/type/date/date";
+import type { TZDateTime, YYYYmmDD } from "@/type/date/date";
 
-import { AttendanceState } from "../../../domain/business/attend/AttendanceState";
+import type { AttendanceState } from "../../../domain/business/attend/AttendanceState";
 import { WorkTime } from "../../../domain/business/work/WorkTime";
 import { DayOfWeekFactory } from "../../../domain/date/DayOfWeekFactory";
-import { DayOfWeek } from "../../../domain/date/dayOfWeek";
-import { FindAttendanceGateway } from "../../../gateway/business/work/FindAttendanceGateway";
-import { BusinessUsecase } from "../BusinessUsecase";
+import type { DayOfWeek } from "../../../domain/date/dayOfWeek";
+import type { FindAttendanceGateway } from "../../../gateway/business/work/FindAttendanceGateway";
+import type { BusinessUsecase } from "../BusinessUsecase";
 import { makeDaysOfMonth } from "./makeDaysOfMonth";
 
 export class CalcWorkTimeUsecase

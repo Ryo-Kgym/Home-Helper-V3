@@ -1,3 +1,3 @@
-import { CreditHistoryListContainer } from "../../../../features/householdCreditHistoryList/components/CreditHistoryListContainer";
+import { CreditHistoryListServer } from "../../../../features/householdCreditHistoryList/components/CreditHistoryListServer";
 
-export default CreditHistoryListContainer;
+export default CreditHistoryListServer;

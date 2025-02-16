@@ -1,6 +1,6 @@
 import { GetCreditCardDetailBySummaryIdDocument } from "@v3/graphql/household/schema/query/v5/getCreditCardDetailBySummaryId.generated";
 
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { execQuery } from "../../../persistence/database/server/execQuery";
 import { CreditDetailListClient } from "./CreditDetailListClient";
 

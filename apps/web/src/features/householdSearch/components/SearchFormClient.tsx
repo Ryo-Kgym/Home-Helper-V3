@@ -1,13 +1,13 @@
 "use client";
 
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
 import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
 import { DateInput } from "../../../components/ui/v4/dateInput/DateInput";
 import { convertToYmd } from "../../../function/date/convertToYmd";
 import { useRouter } from "../../../routing/client/useRouter";
-import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
+import type { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 
 type Props = {
   fromDate: YYYY_MM_DD;

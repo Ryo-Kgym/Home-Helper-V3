@@ -1,4 +1,4 @@
-import { YYYY_MM_DD } from "@/type/date/date";
+import type { YYYY_MM_DD } from "@/type/date/date";
 
 import jaDayjs from "./locale/ja-dayjs";
 

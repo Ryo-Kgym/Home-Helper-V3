@@ -1,4 +1,4 @@
-import { TZDateTime } from "@/type/date/date";
+import type { TZDateTime } from "@/type/date/date";
 
 export class LeaveWork {
   private readonly lastAttendedTime: TZDateTime;

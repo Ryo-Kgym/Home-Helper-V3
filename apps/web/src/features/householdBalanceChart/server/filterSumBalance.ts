@@ -1,6 +1,6 @@
-import { YYYY_MM_DD } from "@/type/date/date";
+import type { YYYY_MM_DD } from "@/type/date/date";
 
-import { SumBalanceAttributes } from "./types";
+import type { SumBalanceAttributes } from "./types";
 
 export const filterSumBalance = <T extends SumBalanceAttributes>(
   data: Record<string, T>,

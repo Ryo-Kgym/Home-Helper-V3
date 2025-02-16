@@ -1,5 +1,5 @@
 import { SearchFormServer } from "../../../../../features/householdSearch/components/SearchFormServer";
-import { YYYY_MM_DD } from "../../../../../types/yyyyMMdd";
+import type { YYYY_MM_DD } from "../../../../../types/yyyyMMdd";
 
 const Page = async ({
   searchParams,

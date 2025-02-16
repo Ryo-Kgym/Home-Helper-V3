@@ -1,6 +1,6 @@
-import { TZDateTime, YYYYmmDD } from "@/type/date/date";
+import type { TZDateTime, YYYYmmDD } from "@/type/date/date";
 
-import { AttendanceState } from "../../../domain/business/attend/AttendanceState";
+import type { AttendanceState } from "../../../domain/business/attend/AttendanceState";
 
 export type FindLastAttendanceLogGateway = {
   findBy: (_: YYYYmmDD) => Promise<{

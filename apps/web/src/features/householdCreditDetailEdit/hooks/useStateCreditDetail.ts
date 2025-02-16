@@ -2,7 +2,7 @@ import { useGetCreditCardDetailByIdQuery } from "@v3/graphql/household";
 import { useEffect, useMemo, useState } from "react";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import {
+import type {
   CreditDetailEditDisplayState,
   CreditDetailEditFormState,
 } from "../types/type";

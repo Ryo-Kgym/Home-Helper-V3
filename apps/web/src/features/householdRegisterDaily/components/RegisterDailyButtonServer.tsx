@@ -1,7 +1,7 @@
 import { GetDetailMasterDocument } from "@v3/graphql/household/schema/query/v5/queryDetailMaster.generated";
 import { IocomeType } from "domain/model/household/IocomeType";
 
-import { SelectProps } from "../../../components/ui/select/v4";
+import type { SelectProps } from "../../../components/ui/select/v4";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
 import { RegisterDailyButtonClient } from "./RegisterDailyButtonClient";

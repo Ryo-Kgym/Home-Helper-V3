@@ -1,4 +1,4 @@
-import { YYYY_MM } from "@/type/date/date";
+import type { YYYY_MM } from "@/type/date/date";
 
 export type SumBalance = Record<YYYY_MM, SumBalanceAttributes>;
 

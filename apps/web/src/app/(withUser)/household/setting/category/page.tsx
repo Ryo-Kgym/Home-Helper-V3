@@ -1,3 +1,3 @@
-import { CategoryListContainer } from "../../../../../features/householdCategoryList/components/CategoryListContainer";
+import { CategoryListServer } from "../../../../../features/householdCategoryList/components/CategoryListServer";
 
-export default CategoryListContainer;
+export default CategoryListServer;

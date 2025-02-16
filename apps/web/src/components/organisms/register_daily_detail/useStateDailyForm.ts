@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-import { DailyDetailForm, initialDailyDetailForm } from "./dailyDetailForm";
+import {
+  type DailyDetailForm,
+  initialDailyDetailForm,
+} from "./dailyDetailForm";
 
 export const useStateDailyForm = (params: { date: Date }) => {
   const [form, setForm] = useState<DailyDetailForm>({

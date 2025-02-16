@@ -1,11 +1,11 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
 import { NumberInput } from "../../../components/ui/numberInput/v4/NumberInput";
 import { TextInput } from "../../../components/ui/textInput/TextInput";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
-import { Tag } from "../types/tag";
+import type { Tag } from "../types/tag";
 import { addTag } from "../useServer/addTag";
 
 export const TagAddForm: FC = () => {

@@ -1,4 +1,4 @@
-import { FieldValueProps } from "../../v4/property";
+import type { FieldValueProps } from "../../v4/property";
 
 export { Select } from "./Select";
 

@@ -9,7 +9,7 @@ import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { colors } from "../../../styles/colors";
 import { CreditCardDetailEditModal } from "../../householdCreditDetailEdit/components/CreditCardDetailEditModel";
 import { DailyDetailEditModal } from "../../householdModifyDailyDetail/components/DailyDetailEditModal";
-import { ChartDetailTableRow } from "../types/chartDetailTableRow";
+import type { ChartDetailTableRow } from "../types/chartDetailTableRow";
 
 export const ChartDetailTableClient = ({
   records,

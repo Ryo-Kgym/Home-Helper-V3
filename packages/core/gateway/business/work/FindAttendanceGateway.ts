@@ -1,4 +1,4 @@
-import { TZDateTime, YYYYmmDD } from "@/type/date/date";
+import type { TZDateTime, YYYYmmDD } from "@/type/date/date";
 
 export type FindAttendanceGateway = {
   findBy: (

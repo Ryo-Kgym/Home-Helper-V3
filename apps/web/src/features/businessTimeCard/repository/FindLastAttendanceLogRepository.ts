@@ -1,6 +1,6 @@
-import { AttendanceState } from "@/core/domain/business/attend/AttendanceState";
-import { FindLastAttendanceLogGateway } from "@/core/gateway/business/attend/FindLastAttendanceLogGateway";
-import { TZDateTime, YYYYmmDD } from "@/type/date/date";
+import type { AttendanceState } from "@/core/domain/business/attend/AttendanceState";
+import type { FindLastAttendanceLogGateway } from "@/core/gateway/business/attend/FindLastAttendanceLogGateway";
+import { TZDateTime, type YYYYmmDD } from "@/type/date/date";
 import { GetAttendanceDocument } from "@v3/graphql/business/schema/query/v5/queryDailyAttendance.generated";
 
 import { findUser } from "../../../persistence/browser/server/find-user";

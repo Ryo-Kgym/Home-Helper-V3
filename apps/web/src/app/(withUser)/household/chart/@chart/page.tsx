@@ -1,4 +1,4 @@
-import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
+import { type YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 
 import { BalanceChartPageServer } from "../../../../../features/householdBalanceChart/components/BalanceChartPageServer";
 import { CategoryChartServer } from "../../../../../features/householdCategoryChart/components/CategoryChartServer";

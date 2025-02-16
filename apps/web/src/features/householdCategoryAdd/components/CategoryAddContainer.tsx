@@ -1,17 +1,13 @@
 "use client";
 
-import { useCreateCategoryMutation } from "@v3/graphql/household";
 import { useState } from "react";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
-import { useGroup } from "../../../hooks/group/useGroup";
-import { useGenerateId } from "../../../hooks/useGenerateId";
+import { addCategory } from "../useServer/addCategory";
 import { CategoryAddPresenter } from "./CategoryAddPresenter";
 
 export const CategoryAddContainer = () => {
-  const { generate } = useGenerateId();
-  const { groupId } = useGroup();
   const [inputCategoryName, setInputCategoryName] = useState<string>("");
   const [inputIocomeType, setInputIocomeType] = useState<IocomeType>(
     IocomeType.Income,
@@ -20,19 +16,14 @@ export const CategoryAddContainer = () => {
   const [inputIsValid, setInputIsValid] = useState<boolean>(true);
   const [inputDisplayOrder, setInputDisplayOrder] = useState<number | "">(0);
 
-  const [, mutation] = useCreateCategoryMutation();
-
   const registerHandler = async () => {
     try {
-      const { error } = await mutation({
-        categoryId: generate(),
+      await addCategory({
         categoryName: inputCategoryName,
         genreId: inputGenreId as string,
         validFlag: inputIsValid,
         displayOrder: Number(inputDisplayOrder),
-        groupId,
       });
-      if (error) new Error(error.message);
 
       successPopup("登録しました");
     } catch (e) {

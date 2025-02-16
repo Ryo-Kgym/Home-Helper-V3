@@ -4,8 +4,8 @@ import { LinkList } from "../../../components/atoms/Card";
 import { useAuth } from "../../../hooks/authentication/useAuth";
 import { saveUser } from "../../../persistence/browser/client";
 import { paths } from "../../../routing/paths";
-import { Group } from "../types/group";
-import { User } from "../types/user";
+import type { Group } from "../types/group";
+import type { User } from "../types/user";
 
 export const SelectGroupContainer = ({
   user,

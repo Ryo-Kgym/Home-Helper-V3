@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 
 import { MemoTextArea } from "../../../../components/molecules/CustomTextArea/Memo";
 import { CategorySelect } from "../../../../components/ui/select/CategorySelect";
@@ -7,7 +7,7 @@ import { Table } from "../../../../components/ui/v4/table";
 import { IocomeType } from "../../../../domain/model/household/IocomeType";
 import { useFileImportColumnMapping } from "../../client/useFileImportColumnMapping";
 import { useImportFileRowAware } from "../../client/useImportFileRowAware";
-import { ImportFileType } from "../../types/importFileType";
+import type { ImportFileType } from "../../types/importFileType";
 
 type Props = {
   importFileType: ImportFileType;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { SummaryFormState } from "../types/summaryProps";
+import type { SummaryFormState } from "../types/summaryProps";
 
 export const useStateCreditSummary = ({ init }: { init: SummaryFormState }) => {
   const [form, setForm] = useState<SummaryFormState>({

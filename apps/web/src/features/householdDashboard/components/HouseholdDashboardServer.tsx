@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import { fetchDashboardSettings } from "../server/fetchDashboardSettings";
 import { HouseholdDashboardClient } from "./HouseholdDashboardClient";

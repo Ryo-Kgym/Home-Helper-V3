@@ -1,6 +1,6 @@
 "use server";
 
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
+import type { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { registerDailyDetail } from "../../../useServer/household/daily_detail/registerDailyDetail";
 import { modifyDailyDetail } from "./modifyDailyDetail";
 

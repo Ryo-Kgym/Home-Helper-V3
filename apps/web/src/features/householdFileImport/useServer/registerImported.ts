@@ -1,10 +1,10 @@
 "use server";
 
-import { YYYY_MM_DD } from "@/type/date/date";
+import type { YYYY_MM_DD } from "@/type/date/date";
 
 import { registerDailyDetail } from "../../../useServer/household/daily_detail/registerDailyDetail";
-import { LoadFileProps } from "../types";
-import { ImportFileType } from "../types/importFileType";
+import type { LoadFileProps } from "../types";
+import type { ImportFileType } from "../types/importFileType";
 import { registerCreditCard } from "./registerCreditCard";
 import { registerImportHistory } from "./registerImportHistory";
 

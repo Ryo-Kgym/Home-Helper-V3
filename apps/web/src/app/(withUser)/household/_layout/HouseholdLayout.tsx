@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { RegisterDailyButtonServer } from "../../../../features/householdRegisterDaily/components/RegisterDailyButtonServer";
 import { paths } from "../../../../routing/paths";
 import { NavbarSection } from "../../../_layout/NavbarSection";
-import { Navi } from "../../../_layout/navi";
+import type { Navi } from "../../../_layout/navi";
 
 export const HouseholdLayout = ({ children }: { children: ReactNode }) => (
   <div className={"bg-white text-black"}>

@@ -1,5 +1,5 @@
-import { GetAccountBalanceListQuery } from "@v3/graphql/household/type";
-import { AccountBalance } from "features/householdAccountList/types/accountBalance";
+import type { GetAccountBalanceListQuery } from "@v3/graphql/household/type";
+import type { AccountBalance } from "features/householdAccountList/types/accountBalance";
 
 export const convertToAccounts = (
   data: GetAccountBalanceListQuery,

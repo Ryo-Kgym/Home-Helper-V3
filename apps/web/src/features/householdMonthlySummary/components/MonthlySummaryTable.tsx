@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { DataTable } from "../../../components/ui/v4/table";

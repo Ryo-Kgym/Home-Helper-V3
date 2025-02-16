@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
 import { NumberInput } from "../../../components/ui/numberInput/v4/NumberInput";

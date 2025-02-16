@@ -5,7 +5,7 @@ import { DisplayOrderInput } from "../../../components/ui/numberInput/displayOrd
 import { IocomeTypeSegment } from "../../../components/ui/segment/IocomeTypeSegment";
 import { ValiditySegment } from "../../../components/ui/segment/ValiditySegment";
 import { GenreSelect } from "../../../components/ui/select/GenreSelect";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export const CategoryAddPresenter = ({
   inputCategoryName,

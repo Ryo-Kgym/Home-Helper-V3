@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import {
   Area,
   Bar,
@@ -11,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { CategoricalChartState } from "recharts/types/chart/types";
+import type { CategoricalChartState } from "recharts/types/chart/types";
 
 import { TooltipContent } from "./TooltipContent";
 

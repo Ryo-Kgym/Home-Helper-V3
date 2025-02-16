@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 import { Drawer } from "./index";
 

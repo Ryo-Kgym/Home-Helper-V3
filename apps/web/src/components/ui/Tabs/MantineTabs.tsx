@@ -6,7 +6,7 @@
 
 import { Tabs } from "@mantine/core";
 
-import { TabsProps } from "./index";
+import type { TabsProps } from "./index";
 
 export const MantineTabs = ({ defaultSelect, tabPropsList }: TabsProps) => {
   const normalClassName = "";

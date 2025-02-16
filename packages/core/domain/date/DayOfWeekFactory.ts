@@ -1,6 +1,6 @@
-import { YYYYmmDD } from "@/type/date/date";
+import type { YYYYmmDD } from "@/type/date/date";
 
-import { DayOfWeek } from "./dayOfWeek";
+import type { DayOfWeek } from "./dayOfWeek";
 
 export class DayOfWeekFactory {
   private readonly date: Date;

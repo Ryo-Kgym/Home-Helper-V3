@@ -1,7 +1,7 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { DashboardComponentProps } from "../types/dashboardFC";
-import { DashboardFeature } from "../types/dashboardFeature";
+import type { DashboardComponentProps } from "../types/dashboardFC";
+import type { DashboardFeature } from "../types/dashboardFeature";
 import { DashboardBalanceClient } from "./DashboardBalanceClient";
 import { DashboardMonthlyClient } from "./DashboardMonthlyClient";
 import styles from "./HouseholdDashboardClient.module.scss";

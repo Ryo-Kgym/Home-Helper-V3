@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
-import { ImportFileColumn } from "../types/importFileColumn";
+import type { ImportFileColumn } from "../types/importFileColumn";
 
 export const useFileImportColumnMapping = () =>
   useFileImportColumnMappingState((store) => ({

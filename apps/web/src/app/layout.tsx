@@ -5,7 +5,7 @@ import "@mantine/dates/styles.css";
 import "mantine-datatable/styles.layer.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { ClientsProviders } from "./_provider/ClientsProviders";
 

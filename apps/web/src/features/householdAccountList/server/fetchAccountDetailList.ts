@@ -1,11 +1,11 @@
-import { YYYY_MM_DD } from "@/type/date/date";
+import type { YYYY_MM_DD } from "@/type/date/date";
 import { GetCreditCardSummaryByAccountIdDocument } from "@v3/graphql/household/schema/query/v3/getCreditCardSummaryByAccountId.generated";
 import { GetDailyByAccountIdDocument } from "@v3/graphql/household/schema/query/v3/getDailyByAccountId.generated";
 
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { AccountDetailRow } from "../types/accountDetailRow";
+import type { AccountDetailRow } from "../types/accountDetailRow";
 
 type Params = {
   fromDate: YYYY_MM_DD;

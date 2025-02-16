@@ -1,8 +1,8 @@
 "use client";
 
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 
-import { ImportFileType } from "../types/importFileType";
+import type { ImportFileType } from "../types/importFileType";
 import { FileTypeInput } from "./FileTypeInput";
 import { FileImportForm } from "./form/FileImportForm";
 import { FileImportColumnMapping } from "./setting/FileImportColumnMapping";

@@ -1,5 +1,5 @@
 import { convertToYmd } from "@/core/function/date/convertToYmd";
-import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
+import { type YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 import {
   ChartDetailTableFilterSettlementDateDocument,
   ChartDetailTableFilterWithdrawalDateDocument,
@@ -8,7 +8,7 @@ import {
 import { IocomeType } from "../../../domain/model/household/IocomeType";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execQuery } from "../../../persistence/database/server/execQuery";
-import { ChartDetailTableRow } from "../types/chartDetailTableRow";
+import type { ChartDetailTableRow } from "../types/chartDetailTableRow";
 
 export const fetchWatchTableData = async ({
   watchFirstDate,

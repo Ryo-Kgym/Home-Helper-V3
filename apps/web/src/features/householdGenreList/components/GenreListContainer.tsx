@@ -1,33 +1,36 @@
 "use client";
 
-import { useGetAllGenreQuery } from "@v3/graphql/household";
 import { useRouter } from "next/navigation";
+import type { FC } from "react";
 
 import { ValidityStatus } from "../../../components/atoms";
-import { TableProps } from "../../../components/atoms/Table";
+import type { TableProps } from "../../../components/atoms/Table";
 import {
-  GenreType,
+  type GenreType,
   getLabel as getGenreTypeLabel,
 } from "../../../domain/model/household/GenreType";
 import {
-  IocomeType,
+  type IocomeType,
   getLabel as getIocomeTypeLabel,
 } from "../../../domain/model/household/IocomeType";
-import { useGroup } from "../../../hooks/group/useGroup";
 import { GenreListPresenter } from "./GenreListPresenter";
 
-export const GenreListContainer = () => {
+type Props = {
+  genreList: {
+    id: string;
+    genreName: string;
+    genreType: GenreType;
+    iocomeType: IocomeType;
+    displayOrder: number;
+    validFlag: boolean;
+  }[];
+};
+
+export const GenreListContainer: FC<Props> = ({ genreList }) => {
   const { push } = useRouter();
-  const { groupId } = useGroup();
-  const [{ data, fetching }] = useGetAllGenreQuery({
-    variables: {
-      groupId,
-    },
-  });
-  if (fetching) return <div>Loading....</div>;
 
   const tablePropsList: TableProps[] =
-    data?.genre.map(
+    genreList.map(
       ({
         id: genreId,
         genreName,

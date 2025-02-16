@@ -1,5 +1,6 @@
-import type { TypedDocumentNode } from "../graphql/document";
-import { registerUrql } from "../graphql/urql";
+import type { TypedDocumentNode } from "@v3/graphql/document";
+import { registerUrql } from "@v3/graphql/urql";
+
 import type { Exact } from "./exact";
 import { makeClient } from "./makeClient";
 

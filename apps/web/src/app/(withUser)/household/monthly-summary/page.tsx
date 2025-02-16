@@ -1,4 +1,4 @@
-import { YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
+import { type YYYY_MM_DD, YYYYmmDD } from "@/type/date/date";
 
 import { MonthlySummaryServer } from "../../../../features/householdMonthlySummary/components/MonthlySummaryServer";
 

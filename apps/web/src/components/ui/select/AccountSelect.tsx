@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
-import { SelectProps } from "./v4";
+import type { SelectProps } from "./v4";
 import { Select } from "./v5";
 
 type AccountSelectProps = {

@@ -1,3 +1,3 @@
-import { GenreListContainer } from "../../../../../features/householdGenreList/components/GenreListContainer";
+import { GenreListServer } from "../../../../../features/householdGenreList/components/GenreListServer";
 
-export default GenreListContainer;
+export default GenreListServer;

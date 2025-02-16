@@ -4,7 +4,7 @@ import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
 
-import { Navi } from "./navi";
+import type { Navi } from "./navi";
 
 export const NavbarSection = ({
   header,

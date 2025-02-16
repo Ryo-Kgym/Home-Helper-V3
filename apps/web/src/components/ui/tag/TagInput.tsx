@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 
 import { FieldContainer } from "../v4/FieldContainer";
 import { Tag } from "./Tag";

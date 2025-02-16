@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
+import type { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { getDailyDetail } from "../useServer/getDailyDetail";
 
 export const useStateDailyDetail = (params: { id: string }) => {

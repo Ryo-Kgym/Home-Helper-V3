@@ -1,10 +1,10 @@
-import { TZDateTime, YYYYmmDD } from "@/type/date/date";
+import type { TZDateTime, YYYYmmDD } from "@/type/date/date";
 
 import { AttendAtWork } from "../../../domain/business/attend/AttendAtWork";
-import { AttendanceState } from "../../../domain/business/attend/AttendanceState";
+import type { AttendanceState } from "../../../domain/business/attend/AttendanceState";
 import { LeaveWork } from "../../../domain/business/attend/LeaveWork";
-import { FindLastAttendanceLogGateway } from "../../../gateway/business/attend/FindLastAttendanceLogGateway";
-import { BusinessUsecase } from "../BusinessUsecase";
+import type { FindLastAttendanceLogGateway } from "../../../gateway/business/attend/FindLastAttendanceLogGateway";
+import type { BusinessUsecase } from "../BusinessUsecase";
 
 export class CalcAttendanceLogUsecase
   implements BusinessUsecase<CalcAttendanceLogInput, CalcAttendanceLogOutput>

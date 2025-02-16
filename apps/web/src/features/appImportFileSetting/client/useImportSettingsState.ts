@@ -1,6 +1,6 @@
 import {
   IMPORT_FILE_SETTINGS_DEFAULT,
-  ImportFileSettings,
+  type ImportFileSettings,
 } from "features/appImportFileSetting/client/importFileSettingsSchema";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";

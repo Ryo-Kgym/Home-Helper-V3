@@ -1,6 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { CheckboxProps } from "../props";
+import type { CheckboxProps } from "../props";
 import styles from "./Checkbox.module.scss";
 
 export const Checkbox: FC<CheckboxProps> = ({

@@ -1,6 +1,6 @@
 "use client";
 
-import { ComponentProps, FC, useEffect, useState } from "react";
+import { type ComponentProps, type FC, useEffect, useState } from "react";
 
 import { useGetDetailMaster } from "../../../features/householdRegisterDaily/hooks/useDetailMaster";
 import { TagInput } from "./TagInput";

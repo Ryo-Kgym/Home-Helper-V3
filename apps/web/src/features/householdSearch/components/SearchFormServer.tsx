@@ -1,6 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
+import type { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { SearchFormClient } from "./SearchFormClient";
 
 type Props = {

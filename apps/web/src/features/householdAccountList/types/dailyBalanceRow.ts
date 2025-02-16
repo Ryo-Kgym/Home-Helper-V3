@@ -1,4 +1,4 @@
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 
 export type DailyBalanceRow = {
   type: "daily" | "credit";

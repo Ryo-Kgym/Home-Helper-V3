@@ -1,9 +1,9 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 
 import { useStateSetTagList } from "../hooks/useStateTagList";
-import { TagListRow } from "../types/tagListRow";
+import type { TagListRow } from "../types/tagListRow";
 import { TagAddForm } from "./TagAddForm";
 import { TagListTable } from "./TagListTable";
 

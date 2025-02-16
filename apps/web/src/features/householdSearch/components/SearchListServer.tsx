@@ -1,9 +1,9 @@
 import { YYYYmmDD } from "@/type/date/date";
-import { FC } from "react";
+import type { FC } from "react";
 
 import { IocomeTotal } from "../../../components/molecules/Total";
 import { IocomeType } from "../../../domain/model/household/IocomeType";
-import { YYYY_MM_DD } from "../../../types/yyyyMMdd";
+import type { YYYY_MM_DD } from "../../../types/yyyyMMdd";
 import { fetchDetails } from "../server/fetchDetails";
 import { SearchListTable } from "./SearchListTable";
 

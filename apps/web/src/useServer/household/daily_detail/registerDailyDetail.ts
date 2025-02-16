@@ -1,9 +1,9 @@
 "use server";
 
-import { YYYY_MM_DD } from "@/type/date/date";
+import type { YYYY_MM_DD } from "@/type/date/date";
 import { CreateDailyDetailDocument } from "@v3/graphql/household/schema/mutation/create/CreateDailyDetail.generated";
 
-import { IocomeType } from "../../../domain/model/household/IocomeType";
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { generateId } from "../../../function/generateId";
 import { findUser } from "../../../persistence/browser/server/find-user";
 import { execMutation } from "../../../persistence/database/server/execMutation";

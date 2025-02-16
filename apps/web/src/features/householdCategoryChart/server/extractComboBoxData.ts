@@ -1,5 +1,5 @@
-import { ComboBox } from "../../../components/ui/v4/comboBox";
-import { CategoryChartData } from "../types";
+import type { ComboBox } from "../../../components/ui/v4/comboBox";
+import type { CategoryChartData } from "../types";
 
 export const extractComboBoxData = (data: CategoryChartData) =>
   Object.entries(data).reduce<Parameters<typeof ComboBox>[0]["data"]>(

@@ -3,7 +3,7 @@
 import { ModifyTagDocument } from "@v3/graphql/household/schema/mutation/v5/mutateTag.generated";
 
 import { execMutation } from "../../../persistence/database/server/execMutation";
-import { Tag } from "../types/tag";
+import type { Tag } from "../types/tag";
 
 export const modifyTag = async (tag: Tag) => {
   const { data } = await execMutation(ModifyTagDocument, {

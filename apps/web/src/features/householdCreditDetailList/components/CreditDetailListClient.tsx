@@ -1,14 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ComponentProps, FC } from "react";
+import type { ComponentProps, FC } from "react";
 
-import { Table, TableProps } from "../../../components/atoms/Table";
+import { Table, type TableProps } from "../../../components/atoms/Table";
 import { FormatPrice } from "../../../components/molecules/FormatPrice";
 import { Button } from "../../../components/ui/button/v5";
 import { Tag } from "../../../components/ui/tag/Tag";
 import { paths } from "../../../routing/paths";
-import { CreditDetailRow } from "../types/creditDetailRow";
+import type { CreditDetailRow } from "../types/creditDetailRow";
 import { CreditSummaryTable } from "./CreditSummaryTable";
 
 type Props = {

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { MemoTextArea } from "../../../components/molecules/CustomTextArea/Memo";
 import { Button } from "../../../components/ui/button/v5";
@@ -8,8 +8,8 @@ import { IocomeTypeSegment } from "../../../components/ui/segment/IocomeTypeSegm
 import { CategorySelect } from "../../../components/ui/select/CategorySelect";
 import { GenreSelect } from "../../../components/ui/select/GenreSelect";
 import { TagInputWrapper } from "../../../components/ui/tag/TagInputWrapper";
-import { IocomeType } from "../../../domain/model/household/IocomeType";
-import {
+import type { IocomeType } from "../../../domain/model/household/IocomeType";
+import type {
   CreditDetailEditDisplayState,
   CreditDetailEditFormState,
 } from "../types/type";

@@ -1,4 +1,4 @@
-import { YYYY_MM_DD } from "@/type/date/date";
+import type { YYYY_MM_DD } from "@/type/date/date";
 
 import { Tabs } from "../../../components/ui/v4/tab";
 import { fetchDailyAttendance } from "../server/fetchDailyAttendance";

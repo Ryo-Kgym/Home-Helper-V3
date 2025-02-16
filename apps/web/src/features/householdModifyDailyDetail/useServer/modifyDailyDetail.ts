@@ -2,7 +2,7 @@
 
 import { UpdateDailyDetailByIdDocument } from "@v3/graphql/household/schema/mutation/update/UpdateDailyDetailById.generated";
 
-import { DailyDetail } from "../../../domain/model/household/DailyDetail";
+import type { DailyDetail } from "../../../domain/model/household/DailyDetail";
 import { generateId } from "../../../function/generateId";
 import { execMutation } from "../../../persistence/database/server/execMutation";
 

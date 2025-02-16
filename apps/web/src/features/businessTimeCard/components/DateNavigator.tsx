@@ -1,7 +1,7 @@
 "use client";
 
-import { YYYY_MM_DD } from "@/type/date/date";
-import { FC } from "react";
+import type { YYYY_MM_DD } from "@/type/date/date";
+import type { FC } from "react";
 
 type Props = {
   baseDate: YYYY_MM_DD;

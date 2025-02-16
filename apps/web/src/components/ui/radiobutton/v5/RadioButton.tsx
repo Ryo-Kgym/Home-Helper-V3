@@ -1,4 +1,4 @@
-import { RadioButtonProps } from "../props";
+import type { RadioButtonProps } from "../props";
 import styles from "./RadioButton.module.scss";
 
 export const RadioButton = <T extends string = string>({
