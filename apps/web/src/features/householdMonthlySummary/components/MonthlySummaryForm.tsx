@@ -1,7 +1,8 @@
 "use client";
 
 import { convertToYmd } from "@/core/function/date/convertToYmd";
-import { type FC, useState } from "react";
+import type { FC } from "react";
+import { useState } from "react";
 
 import { Button } from "../../../components/ui/button/v5";
 import { AccountMultipleSelect } from "../../../components/ui/select/AccountMultipleSelect";
@@ -71,22 +72,18 @@ export const MonthlySummaryForm: FC<Props> = ({
 
           <Button
             label={"検索"}
-            onClick={() => {
+            onClick={async () => {
+              await saveCategoryIds(form.categoryIds);
+              await saveAccountIds(form.accountIds);
               prependParamAndPush({
                 from: convertToYmd(form.fromDate),
                 to: convertToYmd(form.toDate),
               });
-              void saveCategoryIds(form.categoryIds);
-              void saveAccountIds(form.accountIds);
             }}
             type={"save"}
           />
         </div>
       </Modal>
-      {/*<div>絞り込み</div>*/}
-      {/*<div>日付</div>*/}
-      {/*<div>カテゴリ</div>*/}
-      {/*<div>アカウント</div>*/}
     </div>
   );
 };

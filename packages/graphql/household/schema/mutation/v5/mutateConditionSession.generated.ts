@@ -4151,47 +4151,155 @@ export type HouseholdTransferCategoryAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type GetAllUsersQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type InsertConditionSessionMutationVariables = Types.Exact<{
+  groupId: Types.Scalars["String"];
+  key: Types.Scalars["String"];
+  value: Types.InputMaybe<Array<Types.Scalars["json"]> | Types.Scalars["json"]>;
+  dataType: Types.Scalars["String"];
+}>;
 
-export type GetAllUsersQuery = {
-  __typename?: "query_root";
-  users: Array<{
-    __typename?: "User";
-    id: string;
-    name: string | null;
-    email: string;
-    affiliation: Array<{
-      __typename?: "Affiliation";
-      group: { __typename?: "Group"; id: string; name: string };
-    }>;
-  }>;
+export type InsertConditionSessionMutation = {
+  __typename?: "mutation_root";
+  insertHouseholdConditionSessionOne: {
+    __typename?: "HouseholdConditionSession";
+    key: string;
+  } | null;
 };
 
-export const GetAllUsersDocument = {
+export const InsertConditionSessionDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetAllUsers" },
+      operation: "mutation",
+      name: { kind: "Name", value: "insertConditionSession" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "groupId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "key" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "value" },
+          },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NonNullType",
+              type: {
+                kind: "NamedType",
+                name: { kind: "Name", value: "json" },
+              },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "dataType" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           {
             kind: "Field",
-            alias: { kind: "Name", value: "users" },
-            name: { kind: "Name", value: "user" },
+            name: { kind: "Name", value: "insertHouseholdConditionSessionOne" },
             arguments: [
               {
                 kind: "Argument",
-                name: { kind: "Name", value: "orderBy" },
+                name: { kind: "Name", value: "object" },
                 value: {
                   kind: "ObjectValue",
                   fields: [
                     {
                       kind: "ObjectField",
-                      name: { kind: "Name", value: "displayOrder" },
-                      value: { kind: "EnumValue", value: "ASC" },
+                      name: { kind: "Name", value: "groupId" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "groupId" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "key" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "key" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "value" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "value" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "dataType" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "dataType" },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "onConflict" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "constraint" },
+                      value: {
+                        kind: "EnumValue",
+                        value: "condition_session_pkey",
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "updateColumns" },
+                      value: {
+                        kind: "ListValue",
+                        values: [{ kind: "EnumValue", value: "value" }],
+                      },
                     },
                   ],
                 },
@@ -4200,36 +4308,7 @@ export const GetAllUsersDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "email" } },
-                {
-                  kind: "Field",
-                  alias: { kind: "Name", value: "affiliation" },
-                  name: { kind: "Name", value: "affiliations" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "group" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
+                { kind: "Field", name: { kind: "Name", value: "key" } },
               ],
             },
           },
@@ -4237,4 +4316,7 @@ export const GetAllUsersDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<GetAllUsersQuery, GetAllUsersQueryVariables>;
+} as unknown as DocumentNode<
+  InsertConditionSessionMutation,
+  InsertConditionSessionMutationVariables
+>;

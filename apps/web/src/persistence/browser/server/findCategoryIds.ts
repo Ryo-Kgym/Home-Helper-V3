@@ -1,11 +1,11 @@
-import { getCookieValue } from "./cookie";
+import { findConditionSession } from "./findConditionSession";
 
 export const findCategoryIds = async (): Promise<string[]> => {
-  const value = await getCookieValue("categoryIds");
+  const session = await findConditionSession("categoryIds");
 
-  if (!value) {
+  if (!session) {
     return [];
   }
 
-  return JSON.parse(value) as string[];
+  return session.value;
 };

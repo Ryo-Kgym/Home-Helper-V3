@@ -1,0 +1,8 @@
+query getConditionSession($key: String!) {
+  conditionSession: householdConditionSessionByPk(key: $key) {
+    id: key
+    key
+    value
+    dataType
+  }
+}

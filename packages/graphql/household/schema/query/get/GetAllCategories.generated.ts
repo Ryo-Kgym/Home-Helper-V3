@@ -23,6 +23,7 @@ export type Scalars = {
   Float: number;
   bpchar: string;
   date: YYYY_MM_DD;
+  json: unknown;
   numeric: number;
   timestamp: string;
   timestamptz: YYYY_MM_DD_HH_MM_SS;
@@ -297,6 +298,26 @@ export type BpcharComparisonExp = {
   _similar: InputMaybe<Scalars["bpchar"]>;
 };
 
+/** order by aggregate values of table "business.daily_attendance" */
+export type BusinessDailyAttendanceAggregateOrderBy = {
+  avg: InputMaybe<BusinessDailyAttendanceAvgOrderBy>;
+  count: InputMaybe<OrderBy>;
+  max: InputMaybe<BusinessDailyAttendanceMaxOrderBy>;
+  min: InputMaybe<BusinessDailyAttendanceMinOrderBy>;
+  stddev: InputMaybe<BusinessDailyAttendanceStddevOrderBy>;
+  stddevPop: InputMaybe<BusinessDailyAttendanceStddevPopOrderBy>;
+  stddevSamp: InputMaybe<BusinessDailyAttendanceStddevSampOrderBy>;
+  sum: InputMaybe<BusinessDailyAttendanceSumOrderBy>;
+  varPop: InputMaybe<BusinessDailyAttendanceVarPopOrderBy>;
+  varSamp: InputMaybe<BusinessDailyAttendanceVarSampOrderBy>;
+  variance: InputMaybe<BusinessDailyAttendanceVarianceOrderBy>;
+};
+
+/** order by avg() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceAvgOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+};
+
 /** Boolean expression to filter rows from the table "business.daily_attendance". All fields are combined with a logical 'AND'. */
 export type BusinessDailyAttendanceBoolExp = {
   _and: InputMaybe<Array<BusinessDailyAttendanceBoolExp>>;
@@ -449,6 +470,28 @@ export type BusinessDailyAttendanceLogUpdateColumn =
   /** placeholder (do not use) */
   "_PLACEHOLDER";
 
+/** order by max() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceMaxOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+  date: InputMaybe<OrderBy>;
+  endDatetime: InputMaybe<OrderBy>;
+  groupId: InputMaybe<OrderBy>;
+  id: InputMaybe<OrderBy>;
+  startDatetime: InputMaybe<OrderBy>;
+  userId: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceMinOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+  date: InputMaybe<OrderBy>;
+  endDatetime: InputMaybe<OrderBy>;
+  groupId: InputMaybe<OrderBy>;
+  id: InputMaybe<OrderBy>;
+  startDatetime: InputMaybe<OrderBy>;
+  userId: InputMaybe<OrderBy>;
+};
+
 /** input type for inserting object relation for remote table "business.daily_attendance" */
 export type BusinessDailyAttendanceObjRelInsertInput = {
   data: BusinessDailyAttendanceInsertInput;
@@ -506,6 +549,21 @@ export type BusinessDailyAttendanceSetInput = {
   startDatetime: InputMaybe<Scalars["timestamptz"]>;
 };
 
+/** order by stddev() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceStddevOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceStddevPopOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceStddevSampOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+};
+
 /** Streaming cursor of the table "business_daily_attendance" */
 export type BusinessDailyAttendanceStreamCursorInput = {
   /** Stream column input with initial value */
@@ -525,6 +583,11 @@ export type BusinessDailyAttendanceStreamCursorValueInput = {
   userId: InputMaybe<Scalars["String"]>;
 };
 
+/** order by sum() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceSumOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+};
+
 /** update columns of table "business.daily_attendance" */
 export type BusinessDailyAttendanceUpdateColumn =
   /** column name */
@@ -541,6 +604,21 @@ export type BusinessDailyAttendanceUpdates = {
   _set: InputMaybe<BusinessDailyAttendanceSetInput>;
   /** filter the rows which have to be updated */
   where: BusinessDailyAttendanceBoolExp;
+};
+
+/** order by varPop() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceVarPopOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceVarSampOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "business.daily_attendance" */
+export type BusinessDailyAttendanceVarianceOrderBy = {
+  breakSecond: InputMaybe<OrderBy>;
 };
 
 /** ordering argument of a cursor */
@@ -644,9 +722,11 @@ export type GroupBoolExp = {
   affiliationsAggregate: InputMaybe<AffiliationAggregateBoolExp>;
   apps: InputMaybe<AppBoolExp>;
   categories: InputMaybe<HouseholdCategoryBoolExp>;
+  conditionSessions: InputMaybe<HouseholdConditionSessionBoolExp>;
   creditCardDetails: InputMaybe<HouseholdCreditCardDetailBoolExp>;
   creditCardSummaries: InputMaybe<HouseholdCreditCardSummaryBoolExp>;
   creditCardSummariesAggregate: InputMaybe<HouseholdCreditCardSummaryAggregateBoolExp>;
+  dailyAttendances: InputMaybe<BusinessDailyAttendanceBoolExp>;
   dailyDetails: InputMaybe<HouseholdDailyDetailBoolExp>;
   dashboardSettings: InputMaybe<HouseholdDashboardSettingBoolExp>;
   depositCategories: InputMaybe<HouseholdDepositCategoryBoolExp>;
@@ -673,8 +753,10 @@ export type GroupOrderBy = {
   affiliationsAggregate: InputMaybe<AffiliationAggregateOrderBy>;
   appsAggregate: InputMaybe<AppAggregateOrderBy>;
   categoriesAggregate: InputMaybe<HouseholdCategoryAggregateOrderBy>;
+  conditionSessionsAggregate: InputMaybe<HouseholdConditionSessionAggregateOrderBy>;
   creditCardDetailsAggregate: InputMaybe<HouseholdCreditCardDetailAggregateOrderBy>;
   creditCardSummariesAggregate: InputMaybe<HouseholdCreditCardSummaryAggregateOrderBy>;
+  dailyAttendancesAggregate: InputMaybe<BusinessDailyAttendanceAggregateOrderBy>;
   dailyDetailsAggregate: InputMaybe<HouseholdDailyDetailAggregateOrderBy>;
   dashboardSettingsAggregate: InputMaybe<HouseholdDashboardSettingAggregateOrderBy>;
   depositCategoriesAggregate: InputMaybe<HouseholdDepositCategoryAggregateOrderBy>;
@@ -1322,6 +1404,128 @@ export type HouseholdCategoryVarSampOrderBy = {
 /** order by variance() on columns of table "household.category" */
 export type HouseholdCategoryVarianceOrderBy = {
   displayOrder: InputMaybe<OrderBy>;
+};
+
+/** order by aggregate values of table "household.condition_session" */
+export type HouseholdConditionSessionAggregateOrderBy = {
+  count: InputMaybe<OrderBy>;
+  max: InputMaybe<HouseholdConditionSessionMaxOrderBy>;
+  min: InputMaybe<HouseholdConditionSessionMinOrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "household.condition_session". All fields are combined with a logical 'AND'. */
+export type HouseholdConditionSessionBoolExp = {
+  _and: InputMaybe<Array<HouseholdConditionSessionBoolExp>>;
+  _not: InputMaybe<HouseholdConditionSessionBoolExp>;
+  _or: InputMaybe<Array<HouseholdConditionSessionBoolExp>>;
+  dataType: InputMaybe<StringComparisonExp>;
+  group: InputMaybe<GroupBoolExp>;
+  groupId: InputMaybe<StringComparisonExp>;
+  key: InputMaybe<StringComparisonExp>;
+  value: InputMaybe<JsonArrayComparisonExp>;
+};
+
+/** unique or primary key constraints on table "household.condition_session" */
+export type HouseholdConditionSessionConstraint =
+  /** unique or primary key constraint on columns "key" */
+  "condition_session_pkey";
+
+/** input type for inserting data into table "household.condition_session" */
+export type HouseholdConditionSessionInsertInput = {
+  dataType: InputMaybe<Scalars["String"]>;
+  groupId: InputMaybe<Scalars["String"]>;
+  key: InputMaybe<Scalars["String"]>;
+  value: InputMaybe<Array<Scalars["json"]>>;
+};
+
+/** order by max() on columns of table "household.condition_session" */
+export type HouseholdConditionSessionMaxOrderBy = {
+  dataType: InputMaybe<OrderBy>;
+  groupId: InputMaybe<OrderBy>;
+  key: InputMaybe<OrderBy>;
+  value: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "household.condition_session" */
+export type HouseholdConditionSessionMinOrderBy = {
+  dataType: InputMaybe<OrderBy>;
+  groupId: InputMaybe<OrderBy>;
+  key: InputMaybe<OrderBy>;
+  value: InputMaybe<OrderBy>;
+};
+
+/** on_conflict condition type for table "household.condition_session" */
+export type HouseholdConditionSessionOnConflict = {
+  constraint: HouseholdConditionSessionConstraint;
+  updateColumns: Array<HouseholdConditionSessionUpdateColumn>;
+  where: InputMaybe<HouseholdConditionSessionBoolExp>;
+};
+
+/** Ordering options when selecting data from "household.condition_session". */
+export type HouseholdConditionSessionOrderBy = {
+  dataType: InputMaybe<OrderBy>;
+  group: InputMaybe<GroupOrderBy>;
+  groupId: InputMaybe<OrderBy>;
+  key: InputMaybe<OrderBy>;
+  value: InputMaybe<OrderBy>;
+};
+
+/** primary key columns input for table: household.condition_session */
+export type HouseholdConditionSessionPkColumnsInput = {
+  key: Scalars["String"];
+};
+
+/** select columns of table "household.condition_session" */
+export type HouseholdConditionSessionSelectColumn =
+  /** column name */
+  | "dataType"
+  /** column name */
+  | "groupId"
+  /** column name */
+  | "key"
+  /** column name */
+  | "value";
+
+/** input type for updating data in table "household.condition_session" */
+export type HouseholdConditionSessionSetInput = {
+  dataType: InputMaybe<Scalars["String"]>;
+  groupId: InputMaybe<Scalars["String"]>;
+  key: InputMaybe<Scalars["String"]>;
+  value: InputMaybe<Array<Scalars["json"]>>;
+};
+
+/** Streaming cursor of the table "household_condition_session" */
+export type HouseholdConditionSessionStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: HouseholdConditionSessionStreamCursorValueInput;
+  /** cursor ordering */
+  ordering: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type HouseholdConditionSessionStreamCursorValueInput = {
+  dataType: InputMaybe<Scalars["String"]>;
+  groupId: InputMaybe<Scalars["String"]>;
+  key: InputMaybe<Scalars["String"]>;
+  value: InputMaybe<Array<Scalars["json"]>>;
+};
+
+/** update columns of table "household.condition_session" */
+export type HouseholdConditionSessionUpdateColumn =
+  /** column name */
+  | "dataType"
+  /** column name */
+  | "groupId"
+  /** column name */
+  | "key"
+  /** column name */
+  | "value";
+
+export type HouseholdConditionSessionUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set: InputMaybe<HouseholdConditionSessionSetInput>;
+  /** filter the rows which have to be updated */
+  where: HouseholdConditionSessionBoolExp;
 };
 
 /** order by aggregate values of table "household.credit_card_detail" */
@@ -3635,6 +3839,23 @@ export type IntComparisonExp = {
   _nin: InputMaybe<Array<Scalars["Int"]>>;
 };
 
+/** Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'. */
+export type JsonArrayComparisonExp = {
+  /** is the array contained in the given array value */
+  _containedIn: InputMaybe<Array<Scalars["json"]>>;
+  /** does the array contain the given value */
+  _contains: InputMaybe<Array<Scalars["json"]>>;
+  _eq: InputMaybe<Array<Scalars["json"]>>;
+  _gt: InputMaybe<Array<Scalars["json"]>>;
+  _gte: InputMaybe<Array<Scalars["json"]>>;
+  _in: InputMaybe<Array<Array<Scalars["json"]>>>;
+  _isNull: InputMaybe<Scalars["Boolean"]>;
+  _lt: InputMaybe<Array<Scalars["json"]>>;
+  _lte: InputMaybe<Array<Scalars["json"]>>;
+  _neq: InputMaybe<Array<Scalars["json"]>>;
+  _nin: InputMaybe<Array<Array<Scalars["json"]>>>;
+};
+
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
 export type NumericComparisonExp = {
   _eq: InputMaybe<Scalars["numeric"]>;
@@ -3944,6 +4165,7 @@ export type GetAllCategoriesQuery = {
     categoryName: string;
     genre: {
       __typename?: "HouseholdGenre";
+      id: string;
       genreId: string;
       genreName: string;
     };
@@ -4066,6 +4288,7 @@ export const GetAllCategoriesDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       {
                         kind: "Field",
                         alias: { kind: "Name", value: "genreId" },

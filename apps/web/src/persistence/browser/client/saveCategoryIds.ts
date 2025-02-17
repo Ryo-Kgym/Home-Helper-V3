@@ -1,5 +1,7 @@
-import { saveCookie } from "./cookie";
+"use server";
+
+import { insertConditionSession } from "./insertConditionSession";
 
 export const saveCategoryIds = async (categoryIds: string[]) => {
-  saveCookie({ key: "categoryIds", value: JSON.stringify(categoryIds) });
+  await insertConditionSession("categoryIds", categoryIds, "string[]");
 };
