@@ -1,0 +1,13 @@
+mutation insertConditionSession(
+  $groupId: String!
+  $key: String!
+  $value: [json!]
+  $dataType: String!
+) {
+  insertHouseholdConditionSessionOne(
+    object: { groupId: $groupId, key: $key, value: $value, dataType: $dataType }
+    onConflict: { constraint: condition_session_pkey, updateColumns: [value] }
+  ) {
+    key
+  }
+}
