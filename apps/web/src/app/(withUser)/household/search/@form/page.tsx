@@ -1,5 +1,7 @@
-import { SearchFormServer } from "../../../../../features/householdSearch/components/SearchFormServer";
 import type { YYYY_MM_DD } from "../../../../../types/yyyyMMdd";
+import { SearchFormServer } from "../../../../../features/householdSearch/components/SearchFormServer";
+import { findAccountIds } from "../../../../../persistence/browser/server/findAccountIds";
+import { findCategoryIds } from "../../../../../persistence/browser/server/findCategoryIds";
 
 const Page = async ({
   searchParams,
@@ -19,11 +21,17 @@ const Page = async ({
     const date = new Date();
     return `${date.getFullYear()}-12-31` as YYYY_MM_DD;
   };
+
+  const categoryIds = await findCategoryIds();
+  const accountIds = await findAccountIds();
+
   return (
     <SearchFormServer
       fromDate={fromDate ?? getThisYearFirstDate()}
       toDate={toDate ?? getThisYearLastDate()}
       tagIds={tag?.split(",") ?? []}
+      categoryIds={categoryIds}
+      accountIds={accountIds}
     />
   );
 };

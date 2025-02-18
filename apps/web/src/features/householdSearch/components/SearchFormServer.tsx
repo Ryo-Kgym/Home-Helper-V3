@@ -7,6 +7,8 @@ type Props = {
   fromDate: YYYY_MM_DD;
   toDate: YYYY_MM_DD;
   tagIds: string[];
+  categoryIds: string[];
+  accountIds: string[];
 };
 
 export const SearchFormServer: FC<Props> = (props) => {
