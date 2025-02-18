@@ -6,8 +6,11 @@ import { Loading } from "../../../components/ui/v5/loading/Loading";
 import type { IocomeType } from "../../../domain/model/household/IocomeType";
 import { errorPopup, successPopup } from "../../../function/successPopup";
 import { useNavigation } from "../../../routing/client/useNavigation";
+
+import "../useServer/updateCreditDetail";
+
 import { useStateCreditDetail } from "../hooks/useStateCreditDetail";
-import { useUpdateCreditDetail } from "../hooks/useUpdateCreditDetail";
+import { updateCreditDetail } from "../useServer/updateCreditDetail";
 import { CreditCardDetailEditPresenter } from "./CreditCardDetailEditPresenter";
 
 type Props = {
@@ -24,7 +27,6 @@ export const CreditCardDetailEditContainer: FC<Props> = ({
       id,
     });
 
-  const { updateCreditDetail } = useUpdateCreditDetail({ id });
   const { refresh } = useNavigation();
 
   const updateHandler = async () => {
@@ -42,6 +44,7 @@ export const CreditCardDetailEditContainer: FC<Props> = ({
       }
 
       await updateCreditDetail({
+        id,
         genreId,
         categoryId,
         memo,

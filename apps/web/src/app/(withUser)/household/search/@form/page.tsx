@@ -1,7 +1,7 @@
-import type { YYYY_MM_DD } from "../../../../../types/yyyyMMdd";
 import { SearchFormServer } from "../../../../../features/householdSearch/components/SearchFormServer";
 import { findAccountIds } from "../../../../../persistence/browser/server/findAccountIds";
 import { findCategoryIds } from "../../../../../persistence/browser/server/findCategoryIds";
+import type { YYYY_MM_DD } from "../../../../../types/yyyyMMdd";
 
 const Page = async ({
   searchParams,
