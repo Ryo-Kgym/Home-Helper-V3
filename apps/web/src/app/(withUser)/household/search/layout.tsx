@@ -1,11 +1,9 @@
 import type { ReactNode } from "react";
 
-import styles from "./layout.module.scss";
-
 const Layout = ({ form, list }: { form: ReactNode; list: ReactNode }) => {
   return (
-    <div className={styles.module}>
-      <div className={styles.form}>{form}</div>
+    <div>
+      {form}
       <div>{list}</div>
     </div>
   );

@@ -4158,6 +4158,12 @@ export type GetAllDetailViewQueryVariables = Types.Exact<{
   tagIds?: Types.InputMaybe<
     Array<Types.Scalars["String"]> | Types.Scalars["String"]
   >;
+  accountIds?: Types.InputMaybe<
+    Array<Types.Scalars["String"]> | Types.Scalars["String"]
+  >;
+  categoryIds?: Types.InputMaybe<
+    Array<Types.Scalars["String"]> | Types.Scalars["String"]
+  >;
 }>;
 
 export type GetAllDetailViewQuery = {
@@ -4320,6 +4326,42 @@ export const GetAllDetailViewDocument = {
           },
           defaultValue: { kind: "ListValue", values: [] },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "accountIds" },
+          },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NonNullType",
+              type: {
+                kind: "NamedType",
+                name: { kind: "Name", value: "String" },
+              },
+            },
+          },
+          defaultValue: { kind: "ListValue", values: [] },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "categoryIds" },
+          },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NonNullType",
+              type: {
+                kind: "NamedType",
+                name: { kind: "Name", value: "String" },
+              },
+            },
+          },
+          defaultValue: { kind: "ListValue", values: [] },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -4393,6 +4435,76 @@ export const GetAllDetailViewDocument = {
                                             kind: "Name",
                                             value: "toDate",
                                           },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "_and" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: {
+                                          kind: "Name",
+                                          value: "accountId",
+                                        },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: {
+                                                kind: "Name",
+                                                value: "_in",
+                                              },
+                                              value: {
+                                                kind: "Variable",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "accountIds",
+                                                },
+                                              },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "_and" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: {
+                                                kind: "Name",
+                                                value: "categoryId",
+                                              },
+                                              value: {
+                                                kind: "ObjectValue",
+                                                fields: [
+                                                  {
+                                                    kind: "ObjectField",
+                                                    name: {
+                                                      kind: "Name",
+                                                      value: "_in",
+                                                    },
+                                                    value: {
+                                                      kind: "Variable",
+                                                      name: {
+                                                        kind: "Name",
+                                                        value: "categoryIds",
+                                                      },
+                                                    },
+                                                  },
+                                                ],
+                                              },
+                                            },
+                                          ],
                                         },
                                       },
                                     ],
@@ -4542,6 +4654,84 @@ export const GetAllDetailViewDocument = {
                                                         kind: "Name",
                                                         value: "toDate",
                                                       },
+                                                    },
+                                                  },
+                                                ],
+                                              },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: {
+                                                kind: "Name",
+                                                value: "_and",
+                                              },
+                                              value: {
+                                                kind: "ObjectValue",
+                                                fields: [
+                                                  {
+                                                    kind: "ObjectField",
+                                                    name: {
+                                                      kind: "Name",
+                                                      value: "accountId",
+                                                    },
+                                                    value: {
+                                                      kind: "ObjectValue",
+                                                      fields: [
+                                                        {
+                                                          kind: "ObjectField",
+                                                          name: {
+                                                            kind: "Name",
+                                                            value: "_in",
+                                                          },
+                                                          value: {
+                                                            kind: "Variable",
+                                                            name: {
+                                                              kind: "Name",
+                                                              value:
+                                                                "accountIds",
+                                                            },
+                                                          },
+                                                        },
+                                                      ],
+                                                    },
+                                                  },
+                                                  {
+                                                    kind: "ObjectField",
+                                                    name: {
+                                                      kind: "Name",
+                                                      value: "_and",
+                                                    },
+                                                    value: {
+                                                      kind: "ObjectValue",
+                                                      fields: [
+                                                        {
+                                                          kind: "ObjectField",
+                                                          name: {
+                                                            kind: "Name",
+                                                            value: "categoryId",
+                                                          },
+                                                          value: {
+                                                            kind: "ObjectValue",
+                                                            fields: [
+                                                              {
+                                                                kind: "ObjectField",
+                                                                name: {
+                                                                  kind: "Name",
+                                                                  value: "_in",
+                                                                },
+                                                                value: {
+                                                                  kind: "Variable",
+                                                                  name: {
+                                                                    kind: "Name",
+                                                                    value:
+                                                                      "categoryIds",
+                                                                  },
+                                                                },
+                                                              },
+                                                            ],
+                                                          },
+                                                        },
+                                                      ],
                                                     },
                                                   },
                                                 ],

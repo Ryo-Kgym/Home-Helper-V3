@@ -11,6 +11,8 @@ type Params = {
   fromDate: YYYYmmDD;
   toDate: YYYYmmDD;
   tagIds: string[];
+  accountIds: string[];
+  categoryIds: string[];
 };
 
 export const fetchDetails = async (params: Params) => {
@@ -21,6 +23,8 @@ export const fetchDetails = async (params: Params) => {
     fromDate: params.fromDate.toString(),
     toDate: params.toDate.toString(),
     tagIds: params.tagIds,
+    accountIds: params.accountIds,
+    categoryIds: params.categoryIds,
   });
 
   if (!data?.group) {
