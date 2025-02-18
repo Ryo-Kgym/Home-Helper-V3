@@ -3,13 +3,21 @@ query getAllDetailView(
   $fromDate: date!
   $toDate: date!
   $tagIds: [String!] = []
+  $accountIds: [String!] = []
+  $categoryIds: [String!] = []
 ) {
   group: groupByPk(id: $groupId) {
     id
     details(
       where: {
         settlementDate: { _gte: $fromDate }
-        _and: { settlementDate: { _lte: $toDate } }
+        _and: {
+          settlementDate: { _lte: $toDate }
+          _and: {
+            accountId: { _in: $accountIds }
+            _and: { categoryId: { _in: $categoryIds } }
+          }
+        }
       }
       orderBy: { settlementDate: DESC, withdrawalDate: DESC }
     ) {
@@ -22,7 +30,13 @@ query getAllDetailView(
         details(
           where: {
             settlementDate: { _gte: $fromDate }
-            _and: { settlementDate: { _lte: $toDate } }
+            _and: {
+              settlementDate: { _lte: $toDate }
+              _and: {
+                accountId: { _in: $accountIds }
+                _and: { categoryId: { _in: $categoryIds } }
+              }
+            }
           }
           orderBy: { settlementDate: DESC, withdrawalDate: DESC }
         ) {
