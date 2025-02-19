@@ -1,6 +1,7 @@
 import { convertToYmd } from "@/core/function/date/convertToYmd";
 import { YYYYmmDD } from "@/type/date/date";
 
+import { findAccountIds } from "../../../persistence/browser/server/findAccountIds";
 import { fetchBalanceList } from "../server/fetchBalanceList";
 import { BalanceListTable } from "./BalanceListTable";
 
@@ -11,9 +12,11 @@ export const BalanceListTableServer = async ({
   fromDate: YYYYmmDD | undefined;
   toDate: YYYYmmDD | undefined;
 }) => {
+  const accountIds = await findAccountIds();
   const { records, total } = await fetchBalanceList({
     fromDate,
     toDate,
+    accountIds,
   });
 
   return (
@@ -22,6 +25,7 @@ export const BalanceListTableServer = async ({
       total={total}
       fromDate={fromDate?.parseDate()}
       toDate={toDate?.parseDate()}
+      accountIds={accountIds}
     />
   );
 };

@@ -2,9 +2,10 @@ query getAccountBalanceList(
   $groupId: String!
   $fromDate: date!
   $toDate: date!
+  $accountIds: [String!] = []
 ) {
   account: householdAccount(
-    where: { _and: { groupId: { _eq: $groupId } } }
+    where: { groupId: { _eq: $groupId }, _and: { id: { _in: $accountIds } } }
     orderBy: { displayOrder: ASC }
   ) {
     __typename
