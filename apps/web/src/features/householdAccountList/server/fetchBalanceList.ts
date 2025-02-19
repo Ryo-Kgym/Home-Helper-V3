@@ -11,9 +11,11 @@ import { execQuery } from "../../../persistence/database/server/execQuery";
 export const fetchBalanceList = async ({
   fromDate,
   toDate,
+  accountIds,
 }: {
   fromDate: YYYYmmDD;
   toDate: YYYYmmDD;
+  accountIds: string[];
 }) => {
   const {
     group: { id: groupId },
@@ -23,6 +25,7 @@ export const fetchBalanceList = async ({
     fromDate: fromDate.toString(),
     toDate: toDate.toString(),
     groupId,
+    accountIds,
   });
 
   if (!data) {

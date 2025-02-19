@@ -4155,6 +4155,9 @@ export type GetAccountBalanceListQueryVariables = Types.Exact<{
   groupId: Types.Scalars["String"];
   fromDate: Types.Scalars["date"];
   toDate: Types.Scalars["date"];
+  accountIds?: Types.InputMaybe<
+    Array<Types.Scalars["String"]> | Types.Scalars["String"]
+  >;
 }>;
 
 export type GetAccountBalanceListQuery = {
@@ -4225,6 +4228,24 @@ export const GetAccountBalanceListDocument = {
             type: { kind: "NamedType", name: { kind: "Name", value: "date" } },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "accountIds" },
+          },
+          type: {
+            kind: "ListType",
+            type: {
+              kind: "NonNullType",
+              type: {
+                kind: "NamedType",
+                name: { kind: "Name", value: "String" },
+              },
+            },
+          },
+          defaultValue: { kind: "ListValue", values: [] },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -4242,22 +4263,39 @@ export const GetAccountBalanceListDocument = {
                   fields: [
                     {
                       kind: "ObjectField",
+                      name: { kind: "Name", value: "groupId" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "_eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "groupId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
                       name: { kind: "Name", value: "_and" },
                       value: {
                         kind: "ObjectValue",
                         fields: [
                           {
                             kind: "ObjectField",
-                            name: { kind: "Name", value: "groupId" },
+                            name: { kind: "Name", value: "id" },
                             value: {
                               kind: "ObjectValue",
                               fields: [
                                 {
                                   kind: "ObjectField",
-                                  name: { kind: "Name", value: "_eq" },
+                                  name: { kind: "Name", value: "_in" },
                                   value: {
                                     kind: "Variable",
-                                    name: { kind: "Name", value: "groupId" },
+                                    name: { kind: "Name", value: "accountIds" },
                                   },
                                 },
                               ],

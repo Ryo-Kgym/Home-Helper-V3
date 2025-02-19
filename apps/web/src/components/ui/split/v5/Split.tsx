@@ -24,7 +24,7 @@ export const Split = ({
     gutterStyle={() => ({})}
     sizes={[size, 100 - size]}
   >
-    <div className="flex items-center justify-center">{first}</div>
-    <div className="flex items-center justify-center">{second}</div>
+    <div className="flex justify-center">{first}</div>
+    <div className="flex justify-center">{second}</div>
   </ReactSplit>
 );
